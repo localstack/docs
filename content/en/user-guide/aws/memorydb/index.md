@@ -10,16 +10,6 @@ aliases:
 
 ## Introduction
 
-Amazon ElastiCache is a managed in-memory caching service provided by Amazon Web Services (AWS).
-It facilitates the deployment and operation of in-memory caches within the AWS cloud environment.
-ElastiCache is designed to improve application performance and scalability by alleviating the workload on backend databases.
-It supports popular open-source caching engines like Redis and Memcached (LocalStack currently supports Redis),
-providing a means to efficiently store and retrieve frequently accessed data with minimal latency.
-
-LocalStack supports ElastiCache via the Pro offering, allowing you to use the ElastiCache APIs in your local environment.
-The supported APIs are available on our API Coverage Page,
-which provides information on the extent of ElastiCache integration with LocalStack.
-
 Amazon MemoryDB is a fully managed, Redis-compatible, in-memory database service offered by Amazon Web Services (AWS).
 It is designed to simplify the deployment and management of in-memory databases in the AWS cloud environment.
 
@@ -76,20 +66,13 @@ $ redis-cli -c -p 4510 cluster nodes
 
 
 
-## Resource browser
+## Container mode
 
-The LocalStack Web Application provides a Resource Browser for managing ElastiCache resources.
-You can access the Resource Browser by opening the LocalStack Web Application in your browser and navigating to the Resources section, then clicking on ElastiCache.
+In order to start Redis clusters of a specific version, you need to use the container mode for Redis-based services.
+This instructs LocalStack to start Redis instances in a separate container using the specified image tag.
+Another reason you might want to use the container mode is to check the logs of every Redis instance separately.
 
-In the ElastiCache resource browser you can:
-
-* List and remove existing cache clusters
-  {{< img src="elasticache-resource-browser-list.png" alt="Create a ElastiCache cluster in the resource browser" >}}
-* View details of cache clusters
-  {{< img src="elasticache-resource-browser-show.png" alt="Create a ElastiCache cluster in the resource browser" >}}
-* Create new cache clusters
-  {{< img src="elasticache-resource-browser-create.png" alt="Create a ElastiCache cluster in the resource browser" >}}
-
+To do this, you can set the `REDIS_CONTAINER_MODE` configuration variable to `1`.
 
 ## Limitations
 
