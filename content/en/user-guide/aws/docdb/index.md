@@ -79,7 +79,7 @@ As we did not specify a `MasterUsername` or `MasterUserPassword` for the creatio
 To create a new database, we can use the `create-db-instance` command, like in this example:
 
 {{< command >}}
-$ awslocal docdb create-db-instance --db-instance-identifier test-company
+$ awslocal docdb create-db-instance --db-instance-identifier test-company \
 --db-instance-class db.r5.large --engine docdb --db-cluster-identifier test-docdb-cluster
 {{< /command >}}
 ```yaml
