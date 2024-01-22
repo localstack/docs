@@ -23,13 +23,13 @@ For this particular example, we'll be using a [sample application repository](ht
 
 The general prerequisites for this guide are:
 
-- LocalStack Pro with a [LocalStack AUTH token](https://docs.localstack.cloud/getting-started/auth-token/)
+- LocalStack Pro with a [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
 - [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 - [Python-3](https://www.python.org/downloads/)
 - `dig`
 
-Start LocalStack by using the `docker-compose.yml` file from the repository. Ensure to set your AUTH token as an environment variable during this process.
+Start LocalStack by using the `docker-compose.yml` file from the repository. Ensure to set your Auth Token as an environment variable during this process.
 
 {{< command >}}
 $ LOCALSTACK_AUTH_TOKEN=<YOUR_LOCALSTACK_AUTH_TOKEN>
