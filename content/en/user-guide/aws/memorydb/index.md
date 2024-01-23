@@ -32,7 +32,7 @@ After starting LocalStack Pro, you can create a cluster with the following comma
 {{< command >}}
 $ awslocal memorydb create-cluster \
   --cluster-name my-redis-cluster \
-  --cache-node-type db.t4g.small \
+  --node-type db.t4g.small \
   --acl-name open-access 
 {{< /command>}}
 
@@ -78,7 +78,7 @@ To do this, you can set the `REDIS_CONTAINER_MODE` configuration variable to `1`
 ## Limitations
 
 LocalStack emulation support for MemoryDB is mostly centered around starting/stopping Redis servers in cluster mode.
-Resources necessary to operate a cluster, like parameter groups, security groups, subnets groups, etc. are mocked, but have no effect on the functioning of the Redis servers.
+Resources necessary to operate a cluster, like parameter groups, security groups, or subnets groups are mocked, but have no effect on the functioning of the Redis servers.
 
 LocalStack currently doesn't support MemoryDB snapshots, failovers, users/passwords, service updates, replication scaling, SSL, migrations, service integration (like CloudWatch/Kinesis log delivery, SNS notifications) or tests.
 
