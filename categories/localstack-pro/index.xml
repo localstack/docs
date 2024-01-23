@@ -1939,6 +1939,11 @@ Use this port number to connect to the Redis instance like so:&lt;/p>
 &lt;p>Note that the group nodes do not have a primary endpoint. Instead they have a &lt;code>ConfigurationEndpoint&lt;/code>, which you can connect to using &lt;code>redis-cli -c&lt;/code> where &lt;code>-c&lt;/code> is for cluster mode.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elasticache describe-replication-groups --replication-group-id my-clustered-redis-replication-group \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --query &amp;#34;ReplicationGroups[0].ConfigurationEndpoint&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="container-mode">Container mode&lt;/h2>
+&lt;p>In order to start Redis clusters of a specific version, you need to use the container mode for Redis-based services.
+This instructs LocalStack to start Redis instances in a separate container using the specified image tag.
+Another reason you might want to use the container mode is to check the logs of every Redis instance separately.&lt;/p>
+&lt;p>To do this, you can set the &lt;code>REDIS_CONTAINER_MODE&lt;/code> configuration variable to &lt;code>1&lt;/code>.&lt;/p>
 &lt;h2 id="resource-browser">Resource browser&lt;/h2>
 &lt;p>The LocalStack Web Application provides a Resource Browser for managing ElastiCache resources.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser and navigating to the Resources section, then clicking on ElastiCache.&lt;/p>
@@ -2093,7 +2098,50 @@ The certificate is signed by the LocalStack root CA.&lt;/p>
 &lt;h2 id="topic-rules">Topic Rules&lt;/h2>
 &lt;p>It is also possible to use advanced features like SQL queries for IoT topic rules.&lt;/p>
 &lt;p>For example, you can use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html">&lt;code>CreateTopicRule&lt;/code>&lt;/a> operation to define a topic rule with a SQL query &lt;code>SELECT * FROM 'my/topic' where attr=123&lt;/code> which will execute a trigger whenever a message with attribute &lt;code>attr=123&lt;/code> is received on the MQTT topic &lt;code>my/topic&lt;/code>.&lt;/p>
-&lt;p>Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.&lt;/p></description></item><item><title>User-Guide: Quantum Ledger Database (QLDB)</title><link>/user-guide/aws/qldb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/qldb/</guid><description>
+&lt;p>Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.&lt;/p></description></item><item><title>User-Guide: MemoryDB for Redis</title><link>/user-guide/aws/memorydb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/memorydb/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Amazon MemoryDB is a fully managed, Redis-compatible, in-memory database tailored for workloads demanding ultra-fast, primary database functionality.
+It streamlines the deployment and management of in-memory databases within the AWS cloud environment, acting as a replacement for using a cache in front of a database for improved durability and performance.&lt;/p>
+&lt;p>MemoryDB is a good fit for your use case if you want to build an application using Redis data structures and APIs with a primary, durable database.
+It seamlessly integrates with applications relying on Redis for its remarkable ultra-fast performance, offering microsecond read times and single-digit millisecond write latencies.
+This makes MemoryDB a compelling choice for applications that prioritize speed and responsiveness.&lt;/p>
+&lt;p>LocalStack&amp;rsquo;s Pro offering contains support for the main MemoryDB APIs surrounding cluster creation, allowing developers to utilize the MemoryDB functionalities in their local development environment.
+For detailed information on the supported MemoryDB APIs and the extent of integration with LocalStack, please refer to our API Coverage Page.
+This resource outlines the comprehensive support for MemoryDB, enabling developers to simulate and test their applications effectively before deploying them to the AWS cloud.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to MemoryDB and assumes basic knowledge of the AWS CLI and our &lt;code>awslocal&lt;/code> wrapper script.&lt;/p>
+&lt;h3 id="basic-cluster-creation">Basic cluster creation&lt;/h3>
+&lt;p>After starting LocalStack Pro, you can create a cluster with the following command.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal memorydb create-cluster \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cluster-name my-redis-cluster \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --node-type db.t4g.small \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --acl-name open-access&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Wait for it to be available, then you can use the cluster endpoint for Redis operations.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal memorydb describe-clusters --query &amp;#34;Clusters[0].ClusterEndpoint&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Address&amp;#34;: &amp;#34;127.0.0.1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Port&amp;#34;: 36739
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The cache cluster uses a random port of the &lt;a href="/references/external-ports/">external service port range&lt;/a> in regular execution and a port between 36739 and 46738 in container mode.
+Use this port number to connect to the Redis instance like so:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 ping
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PONG
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 set foo bar
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>OK
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 get foo
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;bar&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can also check the cluster configuration like so:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -c -p 4510 cluster nodes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="container-mode">Container mode&lt;/h2>
+&lt;p>In order to start Redis clusters of a specific version, you need to use the container mode for Redis-based services.
+This instructs LocalStack to start Redis instances in a separate container using the specified image tag.
+Another reason you might want to use the container mode is to check the logs of every Redis instance separately.&lt;/p>
+&lt;p>To do this, you can set the &lt;code>REDIS_CONTAINER_MODE&lt;/code> configuration variable to &lt;code>1&lt;/code>.&lt;/p>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>LocalStack emulation support for MemoryDB is mostly centered around starting/stopping Redis servers in cluster mode.
+Resources necessary to operate a cluster, like parameter groups, security groups, or subnets groups are mocked, but have no effect on the functioning of the Redis servers.&lt;/p>
+&lt;p>LocalStack currently doesn&amp;rsquo;t support MemoryDB snapshots, failovers, users/passwords, service updates, replication scaling, SSL, migrations, service integration (like CloudWatch/Kinesis log delivery, SNS notifications) or tests.&lt;/p></description></item><item><title>User-Guide: Quantum Ledger Database (QLDB)</title><link>/user-guide/aws/qldb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/qldb/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Quantum Ledger Database (QLDB) is supported by LocalStack only in the Pro version.&lt;/p>
 &lt;p>Amazon Quantum Ledger Database is a fully managed ledger database service offered by Amazon Web
