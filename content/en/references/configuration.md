@@ -134,7 +134,7 @@ This section covers configuration options that are specific to certain AWS servi
 | Variable | Example Values | Description |
 | - | - | - |
 | `PROVIDER_OVERRIDE_ELASTICACHE` | `legacy` | Use the legacy ElastiCache provider. |
-| `REDIS_CONTAINER_MODE` | `0`\|`1` (default) | Start ElastiCache cache nodes in separate containers instead of in the LocalStack container |
+| `REDIS_CONTAINER_MODE` | `1`\|`0` (default) | Start ElastiCache cache nodes in separate containers instead of in the LocalStack container |
 
 
 ### Elasticsearch
@@ -192,7 +192,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `REDIS_CONTAINER_MODE` | `0`\|`1` (default) | Start MemoryDB cluster nodes in separate containers instead of in the LocalStack container |
+| `REDIS_CONTAINER_MODE` | `1`\|`0` (default) | Start MemoryDB cluster nodes in separate containers instead of in the LocalStack container |
 
 ### MWAA
 
