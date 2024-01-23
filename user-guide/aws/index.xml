@@ -7815,7 +7815,18 @@ Run the following command to query the number of items in the &lt;code>global01&
 &lt;h4 class="alert-heading">Note&lt;/h4>
 You can run DynamoDB in memory, which can greatly improve the performance of your database operations. However, this also means that the data will not be possible to persist on disk and will be lost even though persistence is enabled in LocalStack. To enable this feature, you need to set the environment variable &lt;code>DYNAMODB_IN_MEMORY=1&lt;/code> while starting LocalStack.
 &lt;/div>
-&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;h3 id="time-to-live">Time To Live&lt;/h3>
+&lt;p>Since version 3.1.0., LocalStack supports &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html">Time to Live (TTL)&lt;/a> in DynamoDB.
+To enable this feature, you need to set the environment variable &lt;code>DYNAMODB_REMOVE_EXPIRED_ITEMS&lt;/code> to 1.
+This enables a worker running every 60 minutes that scans all the tables and deletes the expired items.&lt;/p>
+&lt;p>In addition, to programmatically trigger the worker at convenience, we provide the following endpoint:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>DELETE /_aws/dynamodb/expired&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>The response returns the number of deleted items:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-console" data-lang="console">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">curl -X DELETE localhost:4566//_aws/dynamodb/expired
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">{&amp;#34;ExpiredItems&amp;#34;: 3}
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
 &lt;p>The LocalStack Web Application provides a Resource Browser for managing DynamoDB tables and items.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>DynamoDB&lt;/strong> under the &lt;strong>Database&lt;/strong> section.&lt;/p>
 &lt;img src="dynamodb-resource-browser.png" alt="DynamoDB Resource Browser" title="DynamoDB Resource Browser" width="900" />
