@@ -135,6 +135,8 @@ This section covers configuration options that are specific to certain AWS servi
 | Variable | Example Values | Description |
 | - | - | - |
 | `PROVIDER_OVERRIDE_ELASTICACHE` | `legacy` | Use the legacy ElastiCache provider. |
+| `REDIS_CONTAINER_MODE` | `1`\|`0` (default) | Start ElastiCache cache nodes in separate containers instead of in the LocalStack container |
+
 
 ### Elasticsearch
 
@@ -186,6 +188,12 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `LAMBDA_RUNTIME_IMAGE_MAPPING` | [base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html) (default) | Customize the Docker image of Lambda runtimes, either by:<br> a) pattern with `<runtime>` placeholder, e.g. `custom-repo/lambda-<runtime>:2022` <br> b) json dict mapping the `<runtime>` to an image, e.g. `{"python3.9": "custom-repo/lambda-py:thon3.9"}` |
 | `LAMBDA_SYNCHRONOUS_CREATE` | `0` (default) | Set to `1` to create lambda functions synchronously (not recommended). |
 | `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console. This does not affect the logs processing in CloudWatch. |
+
+### MemoryDB
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `REDIS_CONTAINER_MODE` | `1`\|`0` (default) | Start MemoryDB cluster nodes in separate containers instead of in the LocalStack container |
 
 ### MWAA
 

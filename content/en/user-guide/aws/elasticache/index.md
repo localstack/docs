@@ -107,6 +107,13 @@ $ awslocal elasticache describe-replication-groups --replication-group-id my-clu
     --query "ReplicationGroups[0].ConfigurationEndpoint"
 {{< /command >}}
 
+## Container mode
+
+In order to start Redis clusters of a specific version, you need to use the container mode for Redis-based services.
+This instructs LocalStack to start Redis instances in a separate container using the specified image tag.
+Another reason you might want to use the container mode is to check the logs of every Redis instance separately.
+
+To do this, you can set the `REDIS_CONTAINER_MODE` configuration variable to `1`.
 
 ## Resource browser
 
