@@ -112,7 +112,7 @@ $ awslocal sqs purge-queue --queue-url http://sqs.us-east-1.localhost.localstack
 LocalStack's SQS implementation supports both regular [dead-letter queues (DLQ)](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html) and [DLQ redrive](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html) via move message tasks.
 Here's an end-to-end example of how to use message move tasks to test DQL redrive.
 
-First, create three queues. One will serve as original input queue, one as DLQ, and the third as target for DQL redrive.
+First, create three queues. One will serve as original input queue, one as DLQ, and the third as target for DLQ redrive.
 {{< command >}}
 $ awslocal sqs create-queue --queue-name input-queue
 $ awslocal sqs create-queue --queue-name dead-letter-queue
