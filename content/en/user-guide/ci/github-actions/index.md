@@ -64,14 +64,14 @@ To enable LocalStack Pro+, you need to add your LocalStack CI API key to the pro
 Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key. To add the CI key to your GitHub project, follow these steps:
 
 - Navigate to your repository **Settings**, click **Secrets**, and press **New repository secret**.
-- Enter `LOCALSTACK_AUTH_TOKEN` as the name of the secret and paste your CI key as the value.
+- Enter `LOCALSTACK_API_KEY` as the name of the secret and paste your CI key as the value.
 - Click **Add secret** to save your secret.
 
 <img src="github-create-secret.png" alt="Adding the LocalStack CI key as secret in GitHub" title="Adding the LocalStack CI key as secret in GitHub" width="900" />
 <br>
 <br>
 
-Additionally, you need to modify your GitHub Action workflow to use the `localstack/localstack-pro` image and use the `LOCALSTACK_AUTH_TOKEN` environment variable. Here is an example:
+Additionally, you need to modify your GitHub Action workflow to use the `localstack/localstack-pro` image and use the `LOCALSTACK_API_KEY` environment variable. Here is an example:
 
 ```yml
 - name: Start LocalStack
@@ -82,7 +82,7 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
     configuration: DEBUG=1
     use-pro: 'true'
   env:
-    LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
+    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
 ```
 
 ## Limitations
