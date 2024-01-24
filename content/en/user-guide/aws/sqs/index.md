@@ -40,7 +40,7 @@ $ awslocal sqs list-queues
 
 You will see the following output:
 
-```sh
+```json
 {
     "QueueUrls": [
         "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/localstack-queue"
@@ -71,7 +71,7 @@ $ awslocal sqs send-message --queue-url http://sqs.us-east-1.localhost.localstac
 It will return the MD5 hash of the Message Body and a Message ID.
 You will see output similar to the following:
 
-```bash
+```json
 {
     "MD5OfMessageBody": "b10a8db164e0754105b7a99be72e3fe5",
     "MessageId": "92612c02-4879-47db-92f6-40bf2b341c07"
@@ -106,6 +106,93 @@ Run the following command to purge the queue:
 {{< command >}}
 $ awslocal sqs purge-queue --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/localstack-queue
 {{< / command >}}
+
+## Dead-letter queue testing
+
+LocalStack's SQS implementation supports both regular [dead-letter queues (DLQ)](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html) and [DLQ redrive](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html) via move message tasks.
+Here's an end-to-end example of how to use message move tasks to test DQL redrive.
+
+First, create three queues. One will serve as original input queue, one as DLQ, and the third as target for DQL redrive.
+{{< command >}}
+$ awslocal sqs create-queue --queue-name input-queue
+$ awslocal sqs create-queue --queue-name dead-letter-queue
+$ awslocal sqs create-queue --queue-name recovery-queue
+{
+    "QueueUrl": "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/input-queue"
+}
+{
+    "QueueUrl": "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/dead-letter-queue"
+}
+{
+    "QueueUrl": "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/recovery-queue"
+}
+{{< /command >}}
+
+
+Configure `dead-letter-queue` to be a DLQ for `input-queue`:
+{{< command >}}
+$ awslocal sqs set-queue-attributes \
+--queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/input-queue \
+--attributes '{
+    "RedrivePolicy": "{\"deadLetterTargetArn\":\"arn:aws:sqs:us-east-1:000000000000:dead-letter-queue\",\"maxReceiveCount\":\"1\"}"
+}'
+{{< /command >}}
+
+Send a message to the input queue:
+{{< command >}}
+$ awslocal sqs send-message --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/input-queue --message-body '{"hello": "world"}'
+{{< /command >}}
+
+Receive the message twice to provoke a move into the dead-letter queue:
+{{< command >}}
+$ awslocal sqs receive-message --visibility-timeout 0 --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/input-queue
+$ awslocal sqs receive-message --visibility-timeout 0 --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/input-queue
+{{< /command >}}
+
+In the localstack logs you should see something like the following line, indicating the message was moved to the DLQ:
+```
+2024-01-24T13:51:16.824 DEBUG --- [   asgi_gw_1] l.services.sqs.models      : message SqsMessage(id=5be95a04-93f0-4b9d-8bd5-6695f34758cf,group=None) has been received 2 times, marking it for DLQ
+```
+
+Now, start a message move task to asynchronously move the messages from the DLQ into the recovery queue:
+{{< command >}}
+$ awslocal sqs start-message-move-task \
+        --source-arn arn:aws:sqs:us-east-1:000000000000:dead-letter-queue \
+        --destination-arn arn:aws:sqs:us-east-1:000000000000:recovery-queue
+{{< /command >}}
+
+Listing the message move tasks should yield something like
+{{< command >}}
+$ awslocal sqs list-message-move-tasks --source-arn arn:aws:sqs:us-east-1:000000000000:dead-letter-queue
+{
+    "Results": [
+        {
+            "Status": "COMPLETED",
+            "SourceArn": "arn:aws:sqs:us-east-1:000000000000:dead-letter-queue",
+            "DestinationArn": "arn:aws:sqs:us-east-1:000000000000:recovery-queue",
+            "ApproximateNumberOfMessagesMoved": 1,
+            "ApproximateNumberOfMessagesToMove": 1,
+            "StartedTimestamp": 1706097183866
+        }
+    ]
+}
+{{< /command >}}
+
+Receiving messages from the recovery queue should now show us the original message:
+{{< command >}}
+$ awslocal sqs receive-message --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/recovery-queue
+{
+    "Messages": [
+        {
+            "MessageId": "5be95a04-93f0-4b9d-8bd5-6695f34758cf",
+            "ReceiptHandle": "NzkwMWJiZDYtMzgyNy00Nzc3LTlkODMtMmEzYTNjYjlhZWQwIGFybjphd3M6c3FzOnV...",
+            "MD5OfBody": "49dfdd54b01cbcd2d2ab5e9e5ee6b9b9",
+            "Body": "{\"hello\": \"world\"}"
+        }
+    ]
+}
+{{< /command >}}
+
 
 ## SQS Query API
 
