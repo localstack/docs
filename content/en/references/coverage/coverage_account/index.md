@@ -1,5 +1,5 @@
 ---
-title: "account"
+title: "AWS Account Management"
 linkTitle: "account"
 description: >
   Implementation details for API account
