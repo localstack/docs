@@ -391,7 +391,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -406,7 +406,7 @@
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": true,
-        "snapshot_tested": true,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -475,10 +475,10 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -621,8 +621,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -666,10 +666,10 @@
       "GetVpcLinks": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
-        "external_test_suite": false,
+        "internal_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
+        "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -751,7 +751,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -917,6 +917,16 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..EncryptionType', '$..Data']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_with_sqs_integration",
+            "test": "test_websocket_with_sqs_integration",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MD5OfMessageAttributes', '$..MD5OfMessageSystemAttributes', '$..SequenceNumber']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3215,6 +3225,20 @@
           }
         ]
       },
+      "ApiId, CredentialsArn, IntegrationMethod, IntegrationType, IntegrationUri, PassthroughBehavior, PayloadFormatVersion, RequestParameters, RequestTemplates, TemplateSelectionExpression": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_with_sqs_integration",
+            "test": "test_websocket_with_sqs_integration",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MD5OfMessageAttributes', '$..MD5OfMessageSystemAttributes', '$..SequenceNumber']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "ApiId, CredentialsArn, IntegrationMethod, IntegrationType, IntegrationUri, PayloadFormatVersion": {
         "ls_pro": [
           {
@@ -3445,6 +3469,20 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, CredentialsArn, IntegrationMethod, IntegrationType, IntegrationUri, PayloadFormatVersion, RequestParameters, RequestTemplates, TemplateSelectionExpression": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_with_sqs_integration",
+            "test": "test_websocket_with_sqs_integration",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MD5OfMessageAttributes', '$..MD5OfMessageSystemAttributes', '$..SequenceNumber']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -4024,16 +4062,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_ws_connection_with_invalid_auth",
-            "test": "test_ws_connection_with_invalid_auth",
-            "response": "400",
-            "error": "BadRequestException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           }
         ]
       },
@@ -4069,6 +4097,20 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..headers', '$..args', '$..files', '$..form', '$..json', '$..origin', '$..url', '$..method']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, IntegrationMethod, IntegrationType, PayloadFormatVersion, RequestTemplates": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_ws_connection_with_invalid_auth",
+            "test": "test_ws_connection_with_invalid_auth",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4120,6 +4162,20 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          }
+        ]
+      },
+      "ApiId, IntegrationType, RequestTemplates, TemplateSelectionExpression": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_with_sqs_integration",
+            "test": "test_websocket_with_sqs_integration",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MD5OfMessageAttributes', '$..MD5OfMessageSystemAttributes', '$..SequenceNumber']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -4196,6 +4252,20 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          }
+        ]
+      },
+      "ApiId, IntegrationId, IntegrationResponseKey, ResponseTemplates": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_with_sqs_integration",
+            "test": "test_websocket_with_sqs_integration",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MD5OfMessageAttributes', '$..MD5OfMessageSystemAttributes', '$..SequenceNumber']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -4650,6 +4720,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_ws_connection_with_invalid_auth",
+            "test": "test_ws_connection_with_invalid_auth",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -5006,6 +5086,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_with_sqs_integration",
+            "test": "test_websocket_with_sqs_integration",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MD5OfMessageAttributes', '$..MD5OfMessageSystemAttributes', '$..SequenceNumber']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "201",
@@ -5314,6 +5404,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_with_sqs_integration",
+            "test": "test_websocket_with_sqs_integration",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MD5OfMessageAttributes', '$..MD5OfMessageSystemAttributes', '$..SequenceNumber']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_ws_connection_with_invalid_auth",
             "test": "test_ws_connection_with_invalid_auth",
             "response": "201",
@@ -5527,6 +5627,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_with_sqs_integration",
+            "test": "test_websocket_with_sqs_integration",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MD5OfMessageAttributes', '$..MD5OfMessageSystemAttributes', '$..SequenceNumber']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -6824,6 +6934,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_with_sqs_integration",
+            "test": "test_websocket_with_sqs_integration",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..MD5OfMessageAttributes', '$..MD5OfMessageSystemAttributes', '$..SequenceNumber']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_ws_connection_with_invalid_auth",
             "test": "test_ws_connection_with_invalid_auth",
             "response": "204",
@@ -7473,16 +7593,6 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_api_mapping_deployment",
-            "test": "test_api_mapping_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -7492,36 +7602,6 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
-            "test": "test_servicediscovery_ecs_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_api_mapping_deployment",
-            "test": "test_api_mapping_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
             "test": "test_create_apigatewayv2_resources",
             "response": "200",
@@ -7530,26 +7610,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_sam_api_tagging",
-            "test": "test_sam_api_tagging",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
@@ -7612,16 +7672,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -8010,36 +8060,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_api_mapping_deployment",
-            "test": "test_api_mapping_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_domain_name_attributes",
-            "test": "test_domain_name_attributes",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Tags']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       }
@@ -8117,16 +8137,6 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -8163,27 +8173,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -8298,16 +8288,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -8315,16 +8295,6 @@
     "GetStage": {
       "ApiId, StageName": {
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
-            "test": "test_servicediscovery_ecs_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_multiple_routes",
             "test": "test_create_multiple_routes",
@@ -8334,36 +8304,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_api_mapping_deployment",
-            "test": "test_api_mapping_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_sam_api_tagging",
-            "test": "test_sam_api_tagging",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_multiple_routes",
@@ -8374,32 +8314,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          }
-        ]
-      }
-    },
-    "GetVpcLinks": {
-      "- (without any parameters)": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
-            "test": "test_servicediscovery_ecs_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }

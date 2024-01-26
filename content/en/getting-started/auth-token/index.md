@@ -19,20 +19,48 @@ The Auth Token remains unchanged unless manually rotated by the user, regardless
 
 ## Managing your License
 
-To begin using LocalStack, a license is required. If you don't already have a license, you can opt for a free 14-day trial by [signing up here](https://localstack.cloud/pricing/), with no credit card required. This trial allows full access to all LocalStack features.
+To use LocalStack, a license is required. You can get a license by registering on the [LocalStack Web Application](https://app.localstack.cloud/sign-up).Choose between a 14-day trial or explore additional features with our [paid offerring](https://app.localstack.cloud/pricing). During the trial period, you are welcome to use all the features of LocalStack.
 
-For license management, assign licenses to users via the [Users & Licenses page](https://app.localstack.cloud/workspace/members). To view your own assigned license, visit the [My License page](https://app.localstack.cloud/workspace/my-license).
+After initiating your trial or acquiring a license, proceed to assign it to a user by following the steps outlined below:
+
+- Visit the [Users & Licenses page](https://app.localstack.cloud/workspace/members).
+- Select a user in the **Workspace Members** section for license assignment.
+- Define user's role via the **Member Role** dropdown. Single users automatically receive the **Admin** role.
+- Toggle **Advanced Permissions** to set specific permissions. Single users automatically receive full permissions.
+- Click **Save** to complete the assignment. Single users assign licenses to themselves.
+
+{{< img src="assigning-a-license.png" class="img-fluid shadow rounded" width="800" >}}
+<br><br>
+
+If you have joined a workspace, you need to be assigned a license by the workspace administrator. In case of switching workspaces or licenses, you need to make sure that you are assigned to the correct license.
+
+{{< alert title="Note" >}}
+If you do not assign a license, you will not be able to use LocalStack even if you have a valid Auth token.
+{{< /alert >}}
+
+To view your own assigned license, visit the [My License page](https://app.localstack.cloud/workspace/my-license). You can further navigate to the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) to view your Auth Token.
+
+## Configuring your Auth Token
+
+LocalStack requires the `LOCALSTACK_AUTH_TOKEN` environment variable to contain your Auth Token. You can configure your Auth Token in several ways, depending on your use case. The following sections describe the various methods of setting your Auth Token.
 
 {{< alert title="Important" color="danger" >}}
 -   It's crucial to keep your Auth Token confidential. Do not include it in source code management systems, such as Git repositories.
 -   Be aware that if an Auth Token is committed to a public repository, it's at risk of exposure, and could remain in the repository's history, even if attempts are made to rewrite it.
 -   In case your Auth Token is accidentally published, immediately rotate it on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token).
--   For use in Continuous Integration (CI) or automated test environments, a CI key is necessary. Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
 {{< /alert >}}
 
-### Starting LocalStack via CLI
+### Configuring your CI environment
 
-LocalStack requires the `LOCALSTACK_AUTH_TOKEN` environment variable to contain your Auth Token. You should set the `LOCALSTACK_AUTH_TOKEN` environment variable either before or during the startup of LocalStack using the `localstack` command-line interface (CLI).
+For use in Continuous Integration (CI) or automated test environments, a CI key is necessary.  
+Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
+
+To configure your CI key, you need to set the `LOCALSTACK_API_KEY` environment variable to your CI key.
+You can find your CI key on the [CI Keys page](https://app.localstack.cloud/workspace/ci-keys) in the LocalStack Web Application.
+
+### LocalStack CLI
+
+You should set the `LOCALSTACK_AUTH_TOKEN` environment variable either before or during the startup of LocalStack using the `localstack` command-line interface (CLI).
 
 {{< tabpane >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
@@ -52,7 +80,7 @@ The `localstack` CLI automatically detects the Auth Token and appropriately conv
 If you are using LocalStack with an Auth Token, it's necessary to download the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image), which includes Pro services and several advanced features.
 {{< /alert >}}
 
-### Starting LocalStack via Docker
+### Docker
 
 To start LocalStack via Docker, you need to provide the Auth Token using the `-e` flag, which is used for setting environment variables.
 
@@ -67,9 +95,9 @@ $ docker run \
 
 For more information about starting LocalStack with Docker, take a look at our [Docker installation](https://docs.localstack.cloud/getting-started/installation/#docker) guide.
 
-### Starting LocalStack via Docker-Compose
+### Docker Compose
 
-To start LocalStack using `docker-compose`, you have to include the `LOCALSTACK_AUTH_TOKEN` environment variable in your `docker-compose.yml` file:
+To start LocalStack using `docker compose`, you have to include the `LOCALSTACK_AUTH_TOKEN` environment variable in your `docker-compose.yml` file:
 
 ```yaml
 environment:
@@ -155,13 +183,30 @@ Due to this error, Localstack has quit. LocalStack pro features can only be used
 - If you want to continue using LocalStack without pro features you can set `ACTIVATE_PRO=0`.
 ```
 
-Key activation in LocalStack can fail for several reasons:
+The key activation in LocalStack may fail for several reasons, and the most common ones are listed below in this section.
 
--   **Missing Credentials:** Using the `localstack/localstack-pro` image typically requires an Auth Token or a legacy API key.
--   **Invalid License:** This occurs if there's no valid license linked to your account, possibly due to expiration.
--   **License Server Unreachable:** LocalStack attempts offline activation if the license server is inaccessible, but this necessitates re-activation every 24 hours.
+### Missing Credentials
 
-If you're using the `localstack/localstack-pro` image but are unable to activate your license, consider switching to the community version, `localstack/localstack`. If switching isn't feasible, setting `ACTIVATE_PRO=0` will try to start LocalStack without the Pro features.
+You need to provide either an Auth Token or an API Key to start the LocalStack Pro image successfully. You can find your Auth Token or API Key on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) or the [Legacy API Key page](https://app.localstack.cloud/workspace/api-keys) in the LocalStack Web Application.
 
-Navigate to our [FAQ page]({{< ref "faq" >}}) if your are having troubles with the LocalStack license activation.
+If you are using the `localstack` CLI, you can set the `LOCALSTACK_AUTH_TOKEN` environment variable to your Auth Token or use the following command to set it up:
+
+{{< command >}}
+$ localstack auth set-token <YOUR_AUTH_TOKEN>
+{{< / command >}}
+
+### Invalid License
+
+The issue may occur if there is no valid license linked to your account due to expiration or if the license has not been assigned. You can check your license status in the LocalStack Web Application on the [My License page](https://app.localstack.cloud/workspace/my-license).
+
+### License Server Unreachable
+
+LocalStack initiates offline activation when the license server is unreachable, requiring re-activation every 24 hours. Log output may indicate issues with your machine resolving the LocalStack API domain, which can be verified using a tool like `dig`:
+
+{{< command >}}
+$ dig api.localstack.cloud
+{{< / command >}}
+
+If the result shows a status other than `status: NOERROR`, your machine is unable to resolve this domain. Certain corporate DNS servers may filter requests to specific domains. Kindly reach out to your network administrator to safelist `localstack.cloud` domain.
+
 If you have any further problems concerning your license activation, or if the steps do not help, do not hesitate to [contact us](https://localstack.cloud/contact/).

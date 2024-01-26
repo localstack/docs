@@ -128,7 +128,7 @@ We are continually enhancing our CloudFormation feature coverage by consistently
 | Intrinsic Functions | Partial                                         |
 
 {{< alert title="Note">}}
-Currently, support for `UPDATE` operations on resources is limited. It is preferred stack re-creation instead of attempting to update an existing one.
+Currently, support for `UPDATE` operations on resources is limited. Prefer stack re-creation over stack update at this time.
 {{< /alert >}}
 
 ### Intrinsic Functions

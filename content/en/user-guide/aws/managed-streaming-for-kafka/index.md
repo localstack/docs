@@ -41,7 +41,7 @@ Run the following command to create the cluster:
 $ awslocal kafka create-cluster \
     --cluster-name "EventsCluster" \
     --broker-node-group-info file://brokernodegroupinfo.json \
-    --kafka-version "2.2.1" \
+    --kafka-version "2.8.0" \
     --number-of-broker-nodes 3
 {{< / command >}}
 
@@ -97,11 +97,11 @@ To use LocalStack MSK, you can download and utilize the Kafka command line inter
 To download Apache Kafka, execute the following commands.
 
 {{< command >}}
-$ wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
-$ tar -xzf kafka_2.12-2.2.1.tgz
+$ wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.12-2.8.0.tgz
+$ tar -xzf kafka_2.12-2.8.0.tgz
 {{< / command >}}
 
-Navigate to the **kafka_2.12-2.2.1** directory. Execute the following command, replacing `ZookeeperConnectString` with the value you saved after running the [`DescribeCluster`](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster) API:
+Navigate to the **kafka_2.12-2.8.0** directory. Execute the following command, replacing `ZookeeperConnectString` with the value you saved after running the [`DescribeCluster`](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster) API:
 
 {{< command >}}
 $ bin/kafka-topics.sh \

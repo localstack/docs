@@ -60,7 +60,7 @@ You can see an output similar to the following:
 ...
 ```
 
-You can save te `AccessKeyId` and `SecretAccessKey` values, and export them in the environment to run commands under the `test` user. Run the following command:
+You can save the `AccessKeyId` and `SecretAccessKey` values, and export them in the environment to run commands under the `test` user. Run the following command:
 
 {{< command >}}
 $ export AWS_ACCESS_KEY_ID=LKIAQAAAAAAAGFWKCM5F AWS_SECRET_ACCESS_KEY=DUulXk2N2yD6rgoBBR9A/5iXa6dBcLyDknr925Q5

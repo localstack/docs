@@ -108,7 +108,7 @@ $ awslocal sns publish --topic-arn "arn:aws:sns:us-east-1:000000000000:localstac
 
 Check that our message has arrived:
 {{< command >}}
-$ awslocal receive-message --queue-url "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue"
+$ awslocal sqs receive-message --queue-url "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue"
 {
     "Messages": [
         {

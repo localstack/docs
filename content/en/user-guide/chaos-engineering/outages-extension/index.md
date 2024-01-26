@@ -23,21 +23,21 @@ For this particular example, we'll be using a Terraform configuration file from 
 
 The general prerequisites for this guide are:
 
-- LocalStack Pro with [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) & [LocalStack API key](https://docs.localstack.cloud/getting-started/api-key/)
+- LocalStack Pro with [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) & [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
 - [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 - [Terraform](https://www.terraform.io/downloads.html) and [`tflocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/terraform/#tflocal-wrapper-script).
 
-Start LocalStack by using the `docker-compose.yml` file from the repository. Ensure to set your API key as an environment variable during this process.
+Start LocalStack by using the `docker-compose.yml` file from the repository. Ensure to set your Auth Token as an environment variable during this process.
 
 {{< command >}}
-$ LOCALSTACK_API_KEY=<YOUR_LOCALSTACK_API_KEY>
+$ LOCALSTACK_AUTH_TOKEN=<YOUR_LOCALSTACK_AUTH_TOKEN>
 $ docker compose up
 {{< /command >}}
 
 ### Installing the extension
 
-To install the LocalStack Outages Extension, first set up your LocalStack API key in your environment. Once the API key is configured, use the command below to install the extension:
+To install the LocalStack Outages Extension, first set up your LocalStack Auth Token in your environment. Once the token is configured, use the command below to install the extension:
 
 {{< command >}}
 $ localstack extensions install localstack-extension-outages

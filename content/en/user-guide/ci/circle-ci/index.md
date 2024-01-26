@@ -6,6 +6,8 @@ description: >
   Use LocalStack in CircleCI
 ---
 
+## Introduction
+
 [Circle CI](https://circleci.com) is a continuous integration and continuous delivery (CI/CD) platform which uses a configuration file (usually named `.circleci/config.yml`) to define the build, test, and deployment workflows. LocalStack supports CircleCI out of the box and can be easily integrated into your pipeline to run your tests against a local cloud emulator.
 
 ## Getting started

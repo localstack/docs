@@ -1,79 +1,92 @@
 ---
 title: "GitHub Actions"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
+linkTitle: "GitHub Actions"
 weight: 5
 description: >
-  Use LocalStack in [GitHub Actions](https://github.com/features/actions)
-aliases:
-  - /ci/github-actions/
+  Use LocalStack in GitHub Actions
 ---
 
-This guide shows you how to start LocalStack in a Github Actions job.
+## Introduction
 
-## Setting up your Github Actions job
+GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform which uses a configuration file (hosted in the `.github/workflows` directory) to define the build, test, and deployment workflows. LocalStack supports GitHub Actions out of the box and can be easily integrated into your pipeline to run your tests against a local cloud emulator. You can further use GitHub Actions to export and import your LocalStack container state and setup application previews using ephemeral instances. 
 
-In order to start LocalStack, we recommend to start it in a separate [build step][1], to separate its log output / status from the rest of your job.
+## Getting started
 
-We recommend taking the following steps:
-- Install the LocalStack CLI (and maybe also `awslocal`).
-- Make sure your LocalStack docker image is up-to-date by pulling the latest version.
-- Use the LocalStack CLI to start LocalStack. Make sure to use the `-d` flag to start the LocalStack docker container in detached mode.
-- Wait for the container to report that it is up and running.
+This guide is designed for users new to GitHub Actions and assumes basic knowledge of YAML and LocalStack tooling. To setup a GitHub Action job that uses LocalStack, create a new file in your repository under `.github/workflows/` with the name `localstack.yml`.
 
-An official GitHub action for this also planned, to make the configuration easier and less verbose.
+You can add the following configuration to the `localstack.yml` file to start LocalStack and run your tests against it:
 
-The following example can be integrated into your GitHub workflow.
-As an example, it will use awslocal to create bucket and list it afterwards.
+```yml
+name: LocalStack Test
+on: [ push, pull_request ]
 
-```yaml
-name: localstack-action-example
-on: push
 jobs:
-  example-job:
+  localstack-action-test:
+    name: 'Test LocalStack GitHub Action'
     runs-on: ubuntu-latest
     steps:
-      - name: Start LocalStack
-        run: |
-          pip install localstack awscli-local[ver1] # install LocalStack cli and awslocal
-          docker pull localstack/localstack         # Make sure to pull the latest version of the image
-          localstack start -d                       # Start LocalStack in the background
+      - uses: actions/checkout@v3
 
-          echo "Waiting for LocalStack startup..."  # Wait 30 seconds for the LocalStack container
-          localstack wait -t 30                     # to become ready before timing out
-          echo "Startup complete"
-      - name: Run some Tests against LocalStack
+      - name: Start LocalStack
+        uses: LocalStack/setup-localstack@main
+        with:
+          image-tag: 'latest'
+          install-awslocal: 'true'
+
+      - name: Run Tests against LocalStack
         run: |
           awslocal s3 mb s3://test
           awslocal s3 ls
-          echo "Test Execution complete!"
+          echo "Test Execution complete!" 
 ```
 
-If you want to add further configuration for LocalStack, you can use the `env` section of your build step to set the configuration variables as described [here][2].
+The above configuration will start LocalStack using the [`setup-localstack` action](https://github.com/localstack/setup-localstack) and run the `awslocal` commands against it. You can add further steps to your build to run your tests against LocalStack.
 
-{{< alert title="Note" >}}
-Deploying Lambdas targeting the `arm64` architecture on GitHub Actions can pose challenges. While the [`LAMBDA_IGNORE_ARCHITECTURE` configuration](https://docs.localstack.cloud/references/configuration/#lambda) is an option for cross-architecture compatible Lambdas, it may not be suitable for statically compiled Lambdas. To address this, users are recommended to leverage Docker's [`setup-qemu-action`](https://github.com/docker/setup-qemu-action) to enable emulation for the `arm64` architecture. It's important to note that using this approach may result in significantly slower build times.
-{{< /alert >}}
+## Configuration
+
+To set LocalStack configuration options, you can use the `configuration` input parameter. For example, to set the `DEBUG` configuration option, you can use the following configuration:
+
+```yml
+- name: Start LocalStack
+  uses: LocalStack/setup-localstack@main
+  with:
+    image-tag: 'latest'
+    install-awslocal: 'true'
+    configuration: DEBUG=1
+```
+
+You can add extra configuration options by separating them with a comma.
 
 ## Configuring a CI key
 
-You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key as a [Github Encrypted Secret][3] to store your CI key securely. You can set the `LOCALSTACK_API_KEY` environment variable to the value of the secret `LOCALSTACK_API_KEY`. You can set your secret at an environment, repository or organization level. Navigate to your repository **Settings**, click **Secrets**, and press **New Repository Secret**. Here is an example:
+To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables. The LocalStack container will automatically pick it up and activate the licensed features. 
 
-```yaml
+Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key. To add the CI key to your GitHub project, follow these steps:
+
+- Navigate to your repository **Settings**, click **Secrets**, and press **New repository secret**.
+- Enter `LOCALSTACK_API_KEY` as the name of the secret and paste your CI key as the value.
+- Click **Add secret** to save your secret.
+
+<img src="github-create-secret.png" alt="Adding the LocalStack CI key as secret in GitHub" title="Adding the LocalStack CI key as secret in GitHub" width="900" />
+<br>
+<br>
+
+Additionally, you need to modify your GitHub Action workflow to use the `localstack/localstack-pro` image and use the `LOCALSTACK_API_KEY` environment variable. Here is an example:
+
+```yml
 - name: Start LocalStack
+  uses: LocalStack/setup-localstack@main
+  with:
+    image-tag: 'latest'
+    install-awslocal: 'true'
+    configuration: DEBUG=1
+    use-pro: 'true'
   env:
     LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
-  run: |
-    pip install localstack awscli-local[ver1] # install LocalStack cli and awslocal
-    docker pull localstack/localstack-pro     # Make sure to pull the latest version of the image
-    localstack start -d                       # Start LocalStack in the background
-
-    echo "Waiting for LocalStack startup..."  # Wait 30 seconds for the LocalStack container
-    localstack wait -t 30                     # to become ready before timing out
-    echo "Startup complete"
 ```
 
-![Adding the LocalStack CI key as secret in GitHub](github-create-secret.png)
+## Limitations
 
-[1]: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#steps "GitHub Action Build Steps"
-[2]: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsenv "GitHub Action Steps - Environment variables"
-[3]: https://docs.github.com/en/actions/security-guides/encrypted-secrets "GitHub Encrypted Secrets"
+### Running Lambdas targeting the `arm64` architecture
+
+Deploying Lambdas targeting the `arm64` architecture on GitHub Actions can pose challenges. While the [`LAMBDA_IGNORE_ARCHITECTURE` configuration](https://docs.localstack.cloud/references/configuration/#lambda) is an option for cross-architecture compatible Lambdas, it may not be suitable for statically compiled Lambdas. To address this, users are recommended to leverage Docker's [`setup-qemu-action`](https://github.com/docker/setup-qemu-action) to enable emulation for the `arm64` architecture. It's important to note that using this approach may result in significantly slower build times.
