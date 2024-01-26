@@ -88,6 +88,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `BIGDATA_DOCKER_NETWORK` | | Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
 | `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
 
+### CloudWatch
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `PROVIDER_OVERRIDE_CLOUDWATCH` | `v2` | Use the new CloudWatch provider. |
+
 ### DocumentDB
 
 | Variable | Example Values | Description |

@@ -9,7 +9,7 @@ description: >
 
 EventBridge provides a centralized mechanism to discover and communicate events across various AWS services and applications. EventBridge allows you to register, track, and resolve events, which indicates a change in the environment and then applies a rule to route the event to a target. EventBridge rules are tied to an Event Bus to manage event-driven workflows. You can use either identity-based or resource-based policies to control access to EventBridge resources, where the former can be attached to IAM users, groups, and roles, and the latter can be attached to specific AWS resources.
 
-LocalStack supports EventBridge via the Community offering, allowing you to use the EventBridge APIs in your local environment to create rules that route events to a target. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_events/), which provides information on the extent of EventBridge's integration with LocalStack.
+LocalStack supports EventBridge via the Community offering, allowing you to use the EventBridge APIs in your local environment to create rules that route events to a target. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_events/), which provides information on the extent of EventBridge's integration with LocalStack. For information on EventBridge Pipes, please refer to the [EventBridge Pipes]({{< ref "user-guide/aws/pipes" >}}) section.
 
 ## Getting Started
 

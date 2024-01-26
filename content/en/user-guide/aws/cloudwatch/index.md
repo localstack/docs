@@ -11,6 +11,17 @@ CloudWatch is a comprehensive monitoring and observability service that Amazon W
 
 LocalStack supports CloudWatch via its Community offering, allowing you to leverage CloudWatch functionalities on your local machine. With LocalStack, you can create and manage CloudWatch resources, such as custom metrics, alarms, and log groups, for local development and testing purposes. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/), which provides information on the extent of CloudWatch's integration with LocalStack.
 
+{{< alert title="Note" >}}
+We have introduced an all-new LocalStack-native [CloudWatch provider](https://docs.localstack.cloud/user-guide/aws/cloudwatch/) is available behind a feature flag. You can activate it by configuring  `PROVIDER_OVERRIDE_CLOUDWATCH=v2` in your LocalStack configuration.
+
+We have migrated from storing data in Python objects within the Moto backend to a more robust system. Now, metrics are efficiently stored in SQLite, and alarm resources are managed using LocalStack stores.
+
+-   Various enhancements have been made to attain greater feature parity with AWS.
+-   The provider is engineered to ensure thread safety, facilitating smooth concurrent operations.
+-   There’s a significant improvement in the integrity and durability of data.
+-   The new provider allows for more efficient data retrieval.
+{{< /alert >}}
+
 ## Getting started
 
 This guide is designed for users new to CloudWatch and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.

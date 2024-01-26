@@ -156,7 +156,7 @@ You can run DynamoDB in memory, which can greatly improve the performance of you
 
 ### Time To Live
 
-Since version 3.1.0., LocalStack supports [Time to Live (TTL)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html) in DynamoDB.
+LocalStack supports [Time to Live (TTL)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html) in DynamoDB.
 To enable this feature, you need to set the environment variable `DYNAMODB_REMOVE_EXPIRED_ITEMS` to 1.
 This enables a worker running every 60 minutes that scans all the tables and deletes the expired items.
 
