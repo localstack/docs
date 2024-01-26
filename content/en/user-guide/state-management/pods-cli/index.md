@@ -1,6 +1,6 @@
 ---
 title: "CLI command reference"
-weight: 4
+weight: 5
 description: >
   Reference guide for LocalStack Cloud Pods CLI commands and how to get started on using them!
 aliases:

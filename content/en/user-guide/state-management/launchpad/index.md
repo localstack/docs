@@ -1,6 +1,6 @@
 ---
 title: "Launchpad"
-weight: 10
+weight: 4
 description: Get started with Cloud Pods Launchpad to share and inject Cloud Pods into your LocalStack instance via a URL
 aliases:
   - /user-guide/cloud-pods/launchpad/
@@ -8,7 +8,7 @@ aliases:
 
 The LocalStack Cloud Pods Launchpad enables you to easily share and inject Cloud Pods into a LocalStack instance.
 
-## Creating your sharable link
+## Creating your shareable link
 
 You can visit [Cloud Pods launchpad](https://app.localstack.cloud/launchpad) to generate a shareable link for your pods.
 
@@ -34,7 +34,7 @@ To add a badge to your README that links to the Cloud Pod Launchpad, you can inc
 
 You need to include the `url_of_your_pod` as the `url` query parameter in the URL. For instance, if your Cloud Pod is hosted within the same repository, simply use the URL that directs to the raw Cloud Pod file.
 
-Additionally, you can utilize the [Link Generator]({{< ref "#creating-your-sharable-link" >}}) to generate a sharable link for your pod and copy the corresponding markdown snippet for your repository. Check out a proper example <a href="https://github.com/localstack/cloud-pod-badge" target="_blank">on th Cloud Pod badge GitHub repository</a>.
+Additionally, you can utilize the [Link Generator]({{< ref "#creating-your-sharable-link" >}}) to generate a shareable link for your pod and copy the corresponding markdown snippet for your repository. Check out a proper example <a href="https://github.com/localstack/cloud-pod-badge" target="_blank">on th Cloud Pod badge GitHub repository</a>.
 
 ## Troubleshooting common problems
 
