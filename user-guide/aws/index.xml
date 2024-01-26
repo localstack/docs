@@ -4293,7 +4293,52 @@
 &lt;td>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>User-Guide: Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
+&lt;/table></description></item><item><title>User-Guide: Account</title><link>/user-guide/aws/account/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/account/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>The Account service provides APIs to manage your AWS account. You can use the Account APIs to retrieve information about your account, manage your contact information and alternate contacts. Additionally, you can use the Account APIs to enable or disable a region for your account, and delete alternate contacts in your account.&lt;/p>
+&lt;p>LocalStack supports Account via the Pro offering, allowing you to use the Account API to retrieve information about your account. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_account/">API coverage page&lt;/a>, which provides information on the extent of Account&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+LocalStack&amp;rsquo;s Account provider is mock-only and does not support any real AWS account. The Account APIs are only intended to demonstrate how you can use and mock the AWS Account APIs in your local environment. It&amp;rsquo;s important to note that LocalStack doesn&amp;rsquo;t offer a programmatic interface to manage your AWS or your LocalStack account.
+&lt;/div>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users who are new to Account and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to put contact information, fetch account details, and attach an alternate contact to your account.&lt;/p>
+&lt;h3 id="put-contact-information">Put contact information&lt;/h3>
+&lt;p>You can use the &lt;a href="https://docs.aws.amazon.com/accounts/latest/reference/API_PutContactInformation.html">&lt;code>PutContactInformation&lt;/code>&lt;/a> API to add or update the contact information for your AWS account. Run the following command to add contact information to your account:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal account put-contact-information \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --contact-information &amp;#39;{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;FullName&amp;#34;: &amp;#34;Jane Doe&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;PhoneNumber&amp;#34;: &amp;#34;+XXXXXXXXX&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;AddressLine1&amp;#34;: &amp;#34;XXXX Main St&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;City&amp;#34;: &amp;#34;XXXX&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;PostalCode&amp;#34;: &amp;#34;XXXXX&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CountryCode&amp;#34;: &amp;#34;US&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;StateOrRegion&amp;#34;: &amp;#34;WA&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="fetch-account-details">Fetch account details&lt;/h3>
+&lt;p>You can use the &lt;a href="https://docs.aws.amazon.com/accounts/latest/reference/API_GetContactInformation.html">&lt;code>GetContactInformation&lt;/code>&lt;/a> API to retrieve the contact information for your AWS account. Run the following command to fetch the contact information for your account:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal account get-contact-information&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The command will return the contact information for your account:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ContactInformation&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;AddressLine1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;XXXX Main St&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;City&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;XXXX&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;CountryCode&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;US&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;FullName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Jane Doe&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;PhoneNumber&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;+XXXXXXXXX&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;PostalCode&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;XXXXX&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;StateOrRegion&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;WA&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="attach-alternate-contact">Attach alternate contact&lt;/h3>
+&lt;p>You can attach an alternate contact using &lt;a href="https://docs.aws.amazon.com/accounts/latest/reference/API_PutAlternateContact.html">&lt;code>PutAlternateContact&lt;/code>&lt;/a> API. Run the following command to attach an alternate contact to your account:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal account put-alternate-contact \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --alternate-contact-type &amp;#34;BILLING&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --email-address &amp;#34;bill@ing.com&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name &amp;#34;Bill Ing&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --phone-number &amp;#34;+1 555-555-5555&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --title &amp;#34;Billing&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Amplify is a JavaScript-based development framework with libraries, UI components, and a standard CLI interface for building and deploying web and mobile applications. With Amplify, developers can build and host static websites, single-page applications, and full-stack serverless web applications using an abstraction layer over popular AWS services like DynamoDB, Cognito, AppSync, Lambda, S3, and more.&lt;/p>
 &lt;p>LocalStack supports Amplify via the Pro/Team offering, allowing you to use the Amplify APIs to build and test their Amplify applications locally. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_amplify/">API coverage page&lt;/a>, which provides information on the extent of Amplify&amp;rsquo;s integration with LocalStack.&lt;/p>
@@ -6848,6 +6893,17 @@ Refer to the section on &lt;a href="/user-guide/tools/dns-server/#system-dns-con
 &lt;/ul></description></item><item><title>User-Guide: CloudWatch</title><link>/user-guide/aws/cloudwatch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudwatch/</guid><description>
 &lt;p>CloudWatch is a comprehensive monitoring and observability service that Amazon Web Services (AWS) provides. It allows you to collect and track metrics, collect and monitor log files, and set alarms. CloudWatch provides valuable insights into your AWS resources, applications, and services, enabling you to troubleshoot issues, optimize performance, and make informed decisions.&lt;/p>
 &lt;p>LocalStack supports CloudWatch via its Community offering, allowing you to leverage CloudWatch functionalities on your local machine. With LocalStack, you can create and manage CloudWatch resources, such as custom metrics, alarms, and log groups, for local development and testing purposes. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/">API coverage page&lt;/a>, which provides information on the extent of CloudWatch&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;p>We have introduced an all-new LocalStack-native &lt;a href="https://docs.localstack.cloud/user-guide/aws/cloudwatch/">CloudWatch provider&lt;/a> is available behind a feature flag. You can activate it by configuring &lt;code>PROVIDER_OVERRIDE_CLOUDWATCH=v2&lt;/code> in your LocalStack configuration.&lt;/p>
+&lt;p>We have migrated from storing data in Python objects within the Moto backend to a more robust system. Now, metrics are efficiently stored in SQLite, and alarm resources are managed using LocalStack stores.&lt;/p>
+&lt;ul>
+&lt;li>Various enhancements have been made to attain greater feature parity with AWS.&lt;/li>
+&lt;li>The provider is engineered to ensure thread safety, facilitating smooth concurrent operations.&lt;/li>
+&lt;li>There’s a significant improvement in the integrity and durability of data.&lt;/li>
+&lt;li>The new provider allows for more efficient data retrieval.&lt;/li>
+&lt;/ul>
+&lt;/div>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to CloudWatch and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method and deploy your Lambda functions that will generate some logs. You can get the name for your Lambda Functions using the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_ListFunctions.html">&lt;code>ListFunctions&lt;/code>&lt;/a> API.&lt;/p>
@@ -7816,7 +7872,7 @@ Run the following command to query the number of items in the &lt;code>global01&
 You can run DynamoDB in memory, which can greatly improve the performance of your database operations. However, this also means that the data will not be possible to persist on disk and will be lost even though persistence is enabled in LocalStack. To enable this feature, you need to set the environment variable &lt;code>DYNAMODB_IN_MEMORY=1&lt;/code> while starting LocalStack.
 &lt;/div>
 &lt;h3 id="time-to-live">Time To Live&lt;/h3>
-&lt;p>Since version 3.1.0., LocalStack supports &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html">Time to Live (TTL)&lt;/a> in DynamoDB.
+&lt;p>LocalStack supports &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html">Time to Live (TTL)&lt;/a> in DynamoDB.
 To enable this feature, you need to set the environment variable &lt;code>DYNAMODB_REMOVE_EXPIRED_ITEMS&lt;/code> to 1.
 This enables a worker running every 60 minutes that scans all the tables and deletes the expired items.&lt;/p>
 &lt;p>In addition, to programmatically trigger the worker at convenience, we provide the following endpoint:&lt;/p>
@@ -9297,7 +9353,7 @@ Run the following command to download the file:&lt;/p>
 &lt;p>The Elemental MediaStore service requires the use of a custom HTTP/HTTPS endpoint. In case you encounter any issues, please consult our &lt;a href="/references/network-troubleshooting/">Networking documentation&lt;/a> for assistance.&lt;/p></description></item><item><title>User-Guide: EventBridge</title><link>/user-guide/aws/eventbridge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/eventbridge/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>EventBridge provides a centralized mechanism to discover and communicate events across various AWS services and applications. EventBridge allows you to register, track, and resolve events, which indicates a change in the environment and then applies a rule to route the event to a target. EventBridge rules are tied to an Event Bus to manage event-driven workflows. You can use either identity-based or resource-based policies to control access to EventBridge resources, where the former can be attached to IAM users, groups, and roles, and the latter can be attached to specific AWS resources.&lt;/p>
-&lt;p>LocalStack supports EventBridge via the Community offering, allowing you to use the EventBridge APIs in your local environment to create rules that route events to a target. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_events/">API coverage page&lt;/a>, which provides information on the extent of EventBridge&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack supports EventBridge via the Community offering, allowing you to use the EventBridge APIs in your local environment to create rules that route events to a target. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_events/">API coverage page&lt;/a>, which provides information on the extent of EventBridge&amp;rsquo;s integration with LocalStack. For information on EventBridge Pipes, please refer to the &lt;a href="/user-guide/aws/pipes/">EventBridge Pipes&lt;/a> section.&lt;/p>
 &lt;h2 id="getting-started">Getting Started&lt;/h2>
 &lt;p>This guide is designed for users new to EventBridge and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate creating an EventBridge rule to run a Lambda function on a schedule.&lt;/p>
@@ -9367,6 +9423,82 @@ Run the following command to download the file:&lt;/p>
 &lt;li>&lt;strong>Create Event Rule&lt;/strong>: You can create a new Event Rule by specifying &lt;strong>Name&lt;/strong>, &lt;strong>Description&lt;/strong>, &lt;strong>Event Pattern&lt;/strong>, &lt;strong>Schedule Expressions&lt;/strong>, &lt;strong>State&lt;/strong>, &lt;strong>Role ARN&lt;/strong>, and &lt;strong>Tags&lt;/strong>.&lt;/li>
 &lt;li>&lt;strong>Trigger Event&lt;/strong>: You can trigger an Event by specifying the &lt;strong>Entries&lt;/strong> and &lt;strong>Endpoint Id&lt;/strong>. While creating an Entry, you must specify &lt;strong>Source&lt;/strong>, &lt;strong>Event Bus Name&lt;/strong>, &lt;strong>Detail&lt;/strong>, &lt;strong>Resources&lt;/strong>, &lt;strong>Detail Type&lt;/strong>, and &lt;strong>Trace Header&lt;/strong>.&lt;/li>
 &lt;li>&lt;strong>Remove Selected&lt;/strong>: You can remove the selected EventBridge Bus.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: EventBridge Pipes</title><link>/user-guide/aws/pipes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/pipes/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>EventBridge Pipes allows users to create point-to-point integrations between event producers and consumers with transform, filter and enrichment steps. Pipes are particularly useful for scenarios involving real-time data processing, application integration, and automated workflows, while simplifying the process of routing events between AWS services. Pipes offer a point-to-point connection from one source to one target (one-to-one). In contrast, EventBridge Event Bus offers a one-to-many integration where an event router delivers one event to zero or more destinations.&lt;/p>
+&lt;p>LocalStack supports EventBridge Pipes via the Pro/Team offering, allowing you to use the Pipes APIs in your local environment to create Pipes with SQS queues and Kinesis streams as source and target. You can also filter events using EventBridge event patterns and enrich events using Lambda.&lt;/p>
+&lt;p>The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_pipes/">API coverage page&lt;/a>, which provides information on the extent of Pipe&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The implementation of EventBridge Pipes is currently in &lt;strong>Alpha&lt;/strong> stage and under active development. If you would like support for more APIs or report bugs, please make an issue on &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub&lt;/a>.
+&lt;/div>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to EventBridge Pipes and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create a Pipe with SQS queues as source and target, and send events to the source queue which will be routed to the target queue.&lt;/p>
+&lt;h3 id="create-an-sqs-queue">Create an SQS queue&lt;/h3>
+&lt;p>Create two SQS queues that will be used as source and target for the Pipe. Run the following command to create a queue using the &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html">&lt;code>CreateQueue&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs create-queue --queue-name source-queue
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs create-queue --queue-name target-queue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can fetch their queue ARNs using the &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueAttributes.html">&lt;code>GetQueueAttributes&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>SOURCE_QUEUE_ARN=$(awslocal sqs get-queue-attributes --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/source-queue --attribute-names QueueArn --output text)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>TARGET_QUEUE_ARN=$(awslocal sqs get-queue-attributes --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/target-queue --attribute-names QueueArn --output text)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-a-pipe">Create a Pipe&lt;/h3>
+&lt;p>You can now create a Pipe, using the &lt;a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreatePipe.html">&lt;code>CreatePipe&lt;/code>&lt;/a> API. Run the following command, by specifying the source and target queue ARNs we created earlier:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal pipes create-pipe --name sample-pipe \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --source $SOURCE_QUEUE_ARN \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --target $TARGET_QUEUE_ARN \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-arn arn:aws:iam::000000000000:role/pipes-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:pipes:us-east-1:000000000000:pipe/sample-pipe&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationTime&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2024-01-26T11:55:27.069088+05:30&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CurrentState&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;CREATING&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;DesiredState&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;RUNNING&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;LastModifiedTime&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2024-01-26T11:55:27.069088+05:30&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;sample-pipe&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="describe-the-pipe">Describe the Pipe&lt;/h3>
+&lt;p>You can use the &lt;a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribePipe.html">&lt;code>DescribePipe&lt;/code>&lt;/a> API to get information about the Pipe:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal pipes describe-pipe --name sample-pipe&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:pipes:us-east-1:000000000000:pipe/sample-pipe&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationTime&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2024-01-26T11:55:27.069088+05:30&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CurrentState&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;RUNNING&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;DesiredState&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;RUNNING&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;EnrichmentParameters&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;LastModifiedTime&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2024-01-26T11:55:27.069088+05:30&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;sample-pipe&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;RoleArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:role/pipe-role&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Source&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:sqs:us-east-1:000000000000:source-queue&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SourceParameters&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SqsQueueParameters&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;BatchSize&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;StateReason&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;USER_INITIATED&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Tags&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Target&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:sqs:us-east-1:000000000000:target-queue&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TargetParameters&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="send-events-to-the-source-queue">Send events to the source queue&lt;/h3>
+&lt;p>You can now send events to the source queue, which will be routed to the target queue. Run the following command to send an event to the source queue:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs send-message \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/source-queue \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message-body &amp;#34;message-1&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="receive-events-from-the-target-queue">Receive events from the target queue&lt;/h3>
+&lt;p>You can fetch the message from the target queue using the &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html">&lt;code>ReceiveMessage&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs receive-message \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/target-queue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>The EventBridge Pipes implementation in LocalStack is currently in alpha and has the following limitations:&lt;/p>
+&lt;ul>
+&lt;li>Lack of input transformers.&lt;/li>
+&lt;li>Absence of failure handling mechanisms.&lt;/li>
+&lt;li>No provision for handling partial batch failures.&lt;/li>
+&lt;li>Batch handling may have parity issues.&lt;/li>
+&lt;li>Lack of concurrency support, resulting in slower processing of numerous events.&lt;/li>
+&lt;li>Lack of lifecycle management for pipe states, such as inadequate locking and basic state transition testing.&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: Fault Injection Simulator (FIS)</title><link>/user-guide/aws/fis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/fis/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Fault Injection Simulator (FIS) is a service provided by Amazon Web Services (AWS) that enables you to test the resilience of your applications and infrastructure by injecting faults and failures into your AWS resources.
@@ -11368,113 +11500,4 @@ Therefore, you must follow the above steps to install any required provider pack
 &lt;h2 id="connections">Connections&lt;/h2>
 &lt;p>When incorporating connections to other AWS services within your DAGs, it is crucial to specify either the internal Docker IP address of the LocalStack container or utilize &lt;code>host.docker.internal&lt;/code>.
 LocalStack currently does not use the credentials and region from &lt;code>aws_conn_id&lt;/code>.
-This information must be explicitly passed in operators, hooks, and sensors.&lt;/p></description></item><item><title>User-Guide: MemoryDB for Redis</title><link>/user-guide/aws/memorydb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/memorydb/</guid><description>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Amazon MemoryDB is a fully managed, Redis-compatible, in-memory database tailored for workloads demanding ultra-fast, primary database functionality.
-It streamlines the deployment and management of in-memory databases within the AWS cloud environment, acting as a replacement for using a cache in front of a database for improved durability and performance.&lt;/p>
-&lt;p>MemoryDB is a good fit for your use case if you want to build an application using Redis data structures and APIs with a primary, durable database.
-It seamlessly integrates with applications relying on Redis for its remarkable ultra-fast performance, offering microsecond read times and single-digit millisecond write latencies.
-This makes MemoryDB a compelling choice for applications that prioritize speed and responsiveness.&lt;/p>
-&lt;p>LocalStack&amp;rsquo;s Pro offering contains support for the main MemoryDB APIs surrounding cluster creation, allowing developers to utilize the MemoryDB functionalities in their local development environment.
-For detailed information on the supported MemoryDB APIs and the extent of integration with LocalStack, please refer to our API Coverage Page.
-This resource outlines the comprehensive support for MemoryDB, enabling developers to simulate and test their applications effectively before deploying them to the AWS cloud.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>This guide is designed for users new to MemoryDB and assumes basic knowledge of the AWS CLI and our &lt;code>awslocal&lt;/code> wrapper script.&lt;/p>
-&lt;h3 id="basic-cluster-creation">Basic cluster creation&lt;/h3>
-&lt;p>After starting LocalStack Pro, you can create a cluster with the following command.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal memorydb create-cluster \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cluster-name my-redis-cluster \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --node-type db.t4g.small \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --acl-name open-access&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Wait for it to be available, then you can use the cluster endpoint for Redis operations.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal memorydb describe-clusters --query &amp;#34;Clusters[0].ClusterEndpoint&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Address&amp;#34;: &amp;#34;127.0.0.1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Port&amp;#34;: 36739
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The cache cluster uses a random port of the &lt;a href="/references/external-ports/">external service port range&lt;/a> in regular execution and a port between 36739 and 46738 in container mode.
-Use this port number to connect to the Redis instance like so:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 ping
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PONG
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 set foo bar
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>OK
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 get foo
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;bar&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can also check the cluster configuration like so:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -c -p 4510 cluster nodes
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="container-mode">Container mode&lt;/h2>
-&lt;p>In order to start Redis clusters of a specific version, you need to use the container mode for Redis-based services.
-This instructs LocalStack to start Redis instances in a separate container using the specified image tag.
-Another reason you might want to use the container mode is to check the logs of every Redis instance separately.&lt;/p>
-&lt;p>To do this, you can set the &lt;code>REDIS_CONTAINER_MODE&lt;/code> configuration variable to &lt;code>1&lt;/code>.&lt;/p>
-&lt;h2 id="limitations">Limitations&lt;/h2>
-&lt;p>LocalStack emulation support for MemoryDB is mostly centered around starting/stopping Redis servers in cluster mode.
-Resources necessary to operate a cluster, like parameter groups, security groups, or subnets groups are mocked, but have no effect on the functioning of the Redis servers.&lt;/p>
-&lt;p>LocalStack currently doesn&amp;rsquo;t support MemoryDB snapshots, failovers, users/passwords, service updates, replication scaling, SSL, migrations, service integration (like CloudWatch/Kinesis log delivery, SNS notifications) or tests.&lt;/p></description></item><item><title>User-Guide: MQ</title><link>/user-guide/aws/mq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mq/</guid><description>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>MQ is a managed message broker service offered by Amazon Web Services (AWS). It facilitates the exchange of messages between various components of distributed applications, enabling reliable and scalable communication. AWS MQ supports popular messaging protocols like MQTT, AMQP, and STOMP, making it suitable for a wide range of messaging use cases.&lt;/p>
-&lt;p>LocalStack supports MQ via the Pro/Team offering, allowing you to use the MQ APIs to implement pub/sub messaging, request/response patterns, or distributed event-driven architectures in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_mq/">API Coverage Page&lt;/a>, which provides information on the extent of MQ integration with LocalStack.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>This guide is designed for users new to MQ and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
-&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an MQ broker and send a message to a sample queue.&lt;/p>
-&lt;h3 id="create-a-broker">Create a broker&lt;/h3>
-&lt;p>You can create a broker using the &lt;a href="https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers.html#brokerspost">&lt;code>CreateBroker&lt;/code>&lt;/a> API. Run the following command to create a broker named &lt;code>test-broker&lt;/code> with the following configuration:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mq create-broker \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --broker-name test-broker \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --deployment-mode SINGLE_INSTANCE \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine-type ACTIVEMQ \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine-version=&amp;#39;5.16.6&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --host-instance-type &amp;#39;mq.t2.micro&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --auto-minor-version-upgrade \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --publicly-accessible \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --users=&amp;#39;{&amp;#34;ConsoleAccess&amp;#34;: true, &amp;#34;Groups&amp;#34;: [&amp;#34;testgroup&amp;#34;],&amp;#34;Password&amp;#34;: &amp;#34;QXwV*$iUM9USHnVv&amp;amp;!^7s3c@&amp;#34;, &amp;#34;Username&amp;#34;: &amp;#34;admin&amp;#34;}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerArn&amp;#34;: &amp;#34;arn:aws:mq:us-east-1:000000000000:broker:test-broker:b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerId&amp;#34;: &amp;#34;b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="describe-the-broker">Describe the broker&lt;/h3>
-&lt;p>You can use the &lt;a href="https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers.html#brokersget">&lt;code>DescribeBroker&lt;/code>&lt;/a> API to get more detailed information about the broker. Run the following command to get information about the broker we created above:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mq describe-broker --broker-id
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerArn&amp;#34;: &amp;#34;arn:aws:mq:us-east-1:000000000000:broker:test-broker:b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerId&amp;#34;: &amp;#34;b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerInstances&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ConsoleURL&amp;#34;: &amp;#34;http://localhost:4513&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Endpoints&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stomp://localhost:4515&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;tcp://localhost:4514&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerName&amp;#34;: &amp;#34;test-broker&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerState&amp;#34;: &amp;#34;RUNNING&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Created&amp;#34;: &amp;#34;2022-10-17T07:14:21.065527Z&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DeploymentMode&amp;#34;: &amp;#34;SINGLE_INSTANCE&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EngineType&amp;#34;: &amp;#34;ACTIVEMQ&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;HostInstanceType&amp;#34;: &amp;#34;mq.t2.micro&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Tags&amp;#34;: {}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="send-a-message">Send a message&lt;/h3>
-&lt;p>Now that the broker is actively listening, we can use curl to send a message to a sample queue. Run the following command to send a message to the &lt;code>orders.input&lt;/code> queue:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -XPOST -d &amp;#34;body=message&amp;#34; http://admin:admin@localhost:4513/api/message\?destination\=queue://orders.input&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="examples">Examples&lt;/h2>
-&lt;p>The following code snippets and sample applications provide practical examples of how to use MQ in LocalStack for various use cases:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/mq-broker">Demo application illustrating the use of MQ with LocalStack&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h2 id="limitations">Limitations&lt;/h2>
-&lt;p>Currently, our MQ emulation offers only fundamental capabilities, and it comes with certain limitations:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>ActiveMQ Version Limitation:&lt;/strong> Presently, only ActiveMQ version 5.16.6 is supported.&lt;/li>
-&lt;li>&lt;strong>IAM User Management:&lt;/strong> IAM Users are not actively enforced, although they are necessary for making correct calls within the system.&lt;/li>
-&lt;li>&lt;strong>Configuration Enforcement:&lt;/strong> While it is feasible to create configurations, they are not actively enforced within the broker.&lt;/li>
-&lt;li>&lt;strong>Persistence and Cloud Pods:&lt;/strong> LocalStack does not provide support for Persistence and Cloud Pods at this time.&lt;/li>
-&lt;li>&lt;strong>API Coverage:&lt;/strong> Please note that there is limited API coverage available as part of the current emulation capabilities.&lt;/li>
-&lt;/ul></description></item></channel></rss>
+This information must be explicitly passed in operators, hooks, and sensors.&lt;/p></description></item></channel></rss>
