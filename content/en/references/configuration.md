@@ -207,6 +207,12 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | - | - | - |
 | `MWAA_PIP_TRUSTED_HOSTS` | `pypi.org,files.pythonhosted.org` | Comma-separated list of hosts for which SSL verification is not performed when installing Python dependencies for MWAA environment. |
 
+### Neptune
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `NEPTUNE_DB_TYPE` | `neo4j`\|`tinkerpop` (default) | Starts Neptune DB as traditional netpune with Tinkerpop/Gremlin (default) or in Neo4J mode. |
+
 ### OpenSearch
 
 | Variable | Example Values | Description |
