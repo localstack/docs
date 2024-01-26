@@ -6,17 +6,21 @@ description: Get started with EventBridge Pipes on LocalStack
 
 ## Introduction
 
-EventBridge Pipes allows users to create point-to-point integrations between event producers and consumers with transform, filter and enrich steps. Pipes is particularly useful for scenarios involving real-time data processing, application integration, and automated workflows, while simplifying the process of routing events between AWS services.
+EventBridge Pipes allows users to create point-to-point integrations between event producers and consumers with transform, filter and enrichment steps. Pipes are particularly useful for scenarios involving real-time data processing, application integration, and automated workflows, while simplifying the process of routing events between AWS services. Pipes offer a point-to-point connection from one source to one target (one-to-one). In contrast, EventBridge Event Bus offers a one-to-many integration where an event router delivers one event to zero or more destinations.
 
-LocalStack supports EventBridge Pipes via the Pro/Team offering, allowing you to use the Pipes APIs in your local environment to to create Pipes with SQS queues and Kinesis streams as source and target. You can also filter events using EventBridge event patterns and enrich events using Lambda.
+LocalStack supports EventBridge Pipes via the Pro/Team offering, allowing you to use the Pipes APIs in your local environment to create Pipes with SQS queues and Kinesis streams as source and target. You can also filter events using EventBridge event patterns and enrich events using Lambda.
 
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_pipes/), which provides information on the extent of MWAA's integration with LocalStack.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_pipes/), which provides information on the extent of Pipe's integration with LocalStack. 
+
+{{< alert title="Note" color="info" >}}
+The implementation of EventBridge Pipes is currently in **Alpha** stage and under active development. If you would like support for more APIs or report bugs, please make an issue on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
+{{< /alert >}}
 
 ## Getting started
 
-This guide is designed for users new to EventBridge Piples and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+This guide is designed for users new to EventBridge Pipes and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create a Pipe with two SQS queues as source and target, and send events to the source queue which will be routed to the target queue. 
+Start your LocalStack container using your preferred method. We will demonstrate how to create a Pipe with SQS queues as source and target, and send events to the source queue which will be routed to the target queue. 
 
 ### Create an SQS queue
 

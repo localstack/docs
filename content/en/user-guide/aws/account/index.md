@@ -6,7 +6,7 @@ description: Get started with Account on LocalStack
 
 ## Introduction
 
-Account service provides APIs to manage your AWS account. You can use the Account APIs to retrieve information about your account, such as the account ID, the account alias, and the AWS Identity and Access Management (IAM) role that is associated with the account.
+The Account service provides APIs to manage your AWS account. You can use the Account APIs to retrieve information about your account, manage your contact information and alternate contacts. Additionally, you can use the Account APIs to enable or disable a region for your account, and delete alternate contacts in your account.
 
 LocalStack supports Account via the Pro offering, allowing you to use the Account API to retrieve information about your account. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_account/), which provides information on the extent of Account's integration with LocalStack.
 
