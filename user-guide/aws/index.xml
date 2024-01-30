@@ -8932,7 +8932,112 @@ You will see a response similar to the following:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/emr-hadoop-spark-jobs">Running data analytics jobs using EMR&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/emr-serverless-sample">Running EMR Serverless Jobs with Java&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: ElastiCache</title><link>/user-guide/aws/elasticache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elasticache/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Elastic Transcoder</title><link>/user-guide/aws/elastictranscoder/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastictranscoder/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Elastic Transcoder is a managed service that facilitates the transcoding of multimedia files into various formats to ensure compatibility across devices. Elastic Transcoder manages the underlying resources, ensuring high availability and fault tolerance. It also supports a wide range of input and output formats, enabling users to efficiently process and deliver video content at scale.&lt;/p>
+&lt;p>LocalStack supports Elastic Transcoder via the Pro/Team offering, allowing you to mock the Elastic Transcoder APIs in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_elastictranscoder/">API coverage page&lt;/a>, which provides information on the extent of Elastic Transcoder&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Elastic Transcoder and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an Elastic Transcoder pipeline, read the pipeline, and list all pipelines using the AWS CLI.&lt;/p>
+&lt;h3 id="create-s3-buckets">Create S3 buckets&lt;/h3>
+&lt;p>You can create S3 buckets using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html">&lt;code>mb&lt;/code>&lt;/a> API. Execute the following command to create two buckets named &lt;code>elasticbucket&lt;/code> and &lt;code>outputbucket&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://elasticbucket
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://outputbucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-an-elastic-transcoder-pipeline">Create an Elastic Transcoder pipeline&lt;/h3>
+&lt;p>You can create an Elastic Transcoder pipeline using the &lt;a href="https://docs.aws.amazon.com/elastictranscoder/latest/developerguide/create-pipeline.html">&lt;code>CreatePipeline&lt;/code>&lt;/a> API. Execute the following command to create a pipeline named &lt;code>test-pipeline&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elastictranscoder create-pipeline \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name Default \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --input-bucket elasticbucket \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --output-bucket outputbucket \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/Elastic_Transcoder_Default_Role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Pipeline&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Id&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;0998507242379-vltecz&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:elastictranscoder:us-east-1:000000000000:pipeline/0998507242379-vltecz&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Default&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Status&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Active&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;InputBucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;elasticbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;OutputBucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;outputbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Role&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:role/Elastic_Transcoder_Default_Role&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Notifications&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Progressing&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Completed&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Warning&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Error&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ContentConfig&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Bucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;outputbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Permissions&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ThumbnailConfig&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Bucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;outputbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Permissions&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Warnings&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="list-the-pipelines">List the pipelines&lt;/h3>
+&lt;p>You can list all pipelines using the &lt;a href="https://docs.aws.amazon.com/elastictranscoder/latest/developerguide/list-pipelines.html">&lt;code>ListPipelines&lt;/code>&lt;/a> API. Execute the following command to list all pipelines:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elastictranscoder list-pipelines&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Pipelines&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Id&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;0998507242379-vltecz&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:elastictranscoder:us-east-1:000000000000:pipeline/0998507242379-vltecz&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Default&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Status&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Active&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;InputBucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;elasticbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;OutputBucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;outputbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Role&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:role/Elastic_Transcoder_Default_Role&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Notifications&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Progressing&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Completed&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Warning&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Error&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ContentConfig&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Bucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;outputbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Permissions&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ThumbnailConfig&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Bucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;outputbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Permissions&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="read-the-pipeline">Read the pipeline&lt;/h3>
+&lt;p>You can read a pipeline using the &lt;a href="https://docs.aws.amazon.com/elastictranscoder/latest/developerguide/read-pipeline.html">&lt;code>ReadPipeline&lt;/code>&lt;/a> API. Execute the following command to read the pipeline with the ID &lt;code>0998507242379-vltecz&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elastictranscoder read-pipeline --id 0998507242379-vltecz&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Pipeline&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Id&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;0998507242379-vltecz&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:elastictranscoder:us-east-1:000000000000:pipeline/0998507242379-vltecz&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Default&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Status&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Active&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;InputBucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;elasticbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;OutputBucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;outputbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Role&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:role/Elastic_Transcoder_Default_Role&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Notifications&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Progressing&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Completed&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Warning&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Error&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ContentConfig&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Bucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;outputbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Permissions&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ThumbnailConfig&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Bucket&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;outputbucket&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Permissions&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: ElastiCache</title><link>/user-guide/aws/elasticache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elasticache/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Amazon ElastiCache is a managed in-memory caching service provided by Amazon Web Services (AWS).
 It facilitates the deployment and operation of in-memory caches within the AWS cloud environment.
@@ -11429,75 +11534,4 @@ The following step is optional and may not be required, depending on the operati
 &lt;p>You can delete the local MSK cluster using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/kafka/delete-cluster.html">&lt;code>DeleteCluster&lt;/code>&lt;/a> API. To do so, you must first obtain the ARN of the cluster you want to delete. Run the following command to list all the clusters in the region:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kafka list-clusters --region us-east-1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>To initiate the deletion of a cluster, select the corresponding &lt;code>ClusterARN&lt;/code> from the list of clusters, and then execute the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kafka delete-cluster --cluster-arn ClusterArn&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Managed Workflows for Apache Airflow (MWAA)</title><link>/user-guide/aws/mwaa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mwaa/</guid><description>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Managed Workflows for Apache Airflow (MWAA) is a fully managed service by AWS that simplifies the deployment, management, and scaling of Apache Airflow workflows in the cloud.
-MWAA leverages the familiar Airflow features and integrations while integrating with S3, Glue, Redshift, Lambda, and other AWS services to build data pipelines and orchestrate data processing workflows in the cloud.&lt;/p>
-&lt;p>LocalStack supports Managed Workflows for Apache Airflow via the Pro/Team offering, allowing you to use the MWAA APIs in your local environment to allow the setup and operation of data pipelines.
-The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_mwaa/">API coverage page&lt;/a>, which provides information on the extent of MWAA&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>This guide is designed for users new to Managed Workflows for Apache Airflow and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
-&lt;p>Start your LocalStack container using your preferred method.
-We will demonstrate how to create an Airflow environment and access the Airflow UI.&lt;/p>
-&lt;h3 id="create-a-s3-bucket">Create a S3 bucket&lt;/h3>
-&lt;p>Create a S3 bucket that will be used for Airflow resources.
-Run the following command to create a bucket using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html">&lt;code>mb&lt;/code>&lt;/a> command.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://my-mwaa-bucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="create-an-airflow-environment">Create an Airflow environment&lt;/h3>
-&lt;p>You can now create an Airflow environment, using the &lt;a href="https://docs.aws.amazon.com/mwaa/latest/API/API_CreateEnvironment.html">&lt;code>CreateEnvironment&lt;/code>&lt;/a> API.
-Run the following command, by specifying the bucket ARN we created earlier:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mwaa create-environment --dag-s3-path /dags \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --execution-role-arn arn:aws:iam::000000000000:role/airflow-role \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --network-configuration {} \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --source-bucket-arn arn:aws:s3:::my-mwaa-bucket \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --airflow-version 2.2.2 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --airflow-configuration-options agent.code=007,agent.name=bond \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name my-mwaa-env&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="access-the-airflow-ui">Access the Airflow UI&lt;/h3>
-&lt;p>LocalStack will create the Airflow environment and print the Airflow UI URL and access credentials in the logs:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2022-11-30T17:58:36.533 DEBUG --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>functhread13&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.services.mwaa.provider : Airflow available at http://localhost.localstack.cloud:4510 with &lt;span style="color:#000">username&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>localstack and &lt;span style="color:#000">password&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>localstack
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="airflow-versions">Airflow versions&lt;/h2>
-&lt;p>LocalStack supports the following versions of Apache Airflow:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>1.10.12&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.0.2&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.2.2&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.4.3&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.5.1&lt;/code> (default)&lt;/li>
-&lt;/ul>
-&lt;h2 id="airflow-configuration-options">Airflow configuration options&lt;/h2>
-&lt;p>To configure Airflow environments effectively, you can utilize the &lt;code>AirflowConfigurationOptions&lt;/code> argument.
-These options are transformed into corresponding environment variables and passed to Airflow.
-For instance:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>agent.code&lt;/code>:&lt;code>007&lt;/code> is transformed into &lt;code>AIRFLOW__AGENT__CODE:007&lt;/code>.&lt;/li>
-&lt;li>&lt;code>agent.name&lt;/code>:&lt;code>bond&lt;/code> is transformed into &lt;code>AIRFLOW__AGENT__NAME:bond&lt;/code>.&lt;/li>
-&lt;/ul>
-&lt;p>This transformation process ensures that your configuration settings are easily applied within the Airflow environment.&lt;/p>
-&lt;h2 id="adding-or-updating-dags">Adding or updating DAGs&lt;/h2>
-&lt;p>When it comes to adding or updating DAGs in Airflow, the process is simple and efficient.
-Just upload your DAGs to the designated S3 bucket path, configured by the &lt;code>DagS3Path&lt;/code> argument.&lt;/p>
-&lt;p>Follow this example command to upload a sample DAG named &lt;code>sample_dag.py&lt;/code> to your S3 bucket named &lt;code>my-mwaa-bucket&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp sample_dag.py s3://my-mwaa-bucket/dags&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="installing-custom-plugins">Installing custom plugins&lt;/h2>
-&lt;p>You can extend the capabilities of Airflow by incorporating custom plugins, which introduce new operators, interfaces, or hooks.
-LocalStack seamlessly supports plugins packaged according to &lt;a href="https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html#configuring-dag-plugins-test-create">AWS specifications&lt;/a>.&lt;/p>
-&lt;p>To integrate your custom plugins into the MWAA environment, upload the packaged &lt;code>plugins.zip&lt;/code> file to the designated S3 bucket path:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp plugins.zip s3://my-mwaa-bucket/plugins.zip&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="installing-python-dependencies">Installing Python dependencies&lt;/h2>
-&lt;p>LocalStack streamlines the process of installing Python dependencies for Apache Airflow within your environments.
-To get started, create a &lt;code>requirements.txt&lt;/code> file that lists the required dependencies.
-For example:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-txt" data-lang="txt">&lt;span style="display:flex;">&lt;span>boto3==1.17.54
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>boto==2.49.0
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>botocore==1.20.54
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once you have your &lt;code>requirements.txt&lt;/code> file ready, upload it to the designated S3 bucket, configured for use by the MWAA environment.
-Make sure to upload the file to &lt;code>/requirements.txt&lt;/code> in the bucket:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp requirements.txt s3://my-mwaa-bucket/requirements.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>After the upload, the environment will be automatically updated, and your Apache Airflow setup will be equipped with the new dependencies.
-It is important to note that, unlike &lt;a href="https://docs.aws.amazon.com/mwaa/latest/userguide/connections-packages.html">AWS&lt;/a>, LocalStack does not install any provider packages by default.
-Therefore, you must follow the above steps to install any required provider packages.&lt;/p>
-&lt;h2 id="connections">Connections&lt;/h2>
-&lt;p>When incorporating connections to other AWS services within your DAGs, it is crucial to specify either the internal Docker IP address of the LocalStack container or utilize &lt;code>host.docker.internal&lt;/code>.
-LocalStack currently does not use the credentials and region from &lt;code>aws_conn_id&lt;/code>.
-This information must be explicitly passed in operators, hooks, and sensors.&lt;/p></description></item></channel></rss>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kafka delete-cluster --cluster-arn ClusterArn&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
