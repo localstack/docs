@@ -1,5 +1,5 @@
 ---
-title: "pipes"
+title: "Pipes (EventBridge Pipes)"
 linkTitle: "pipes"
 description: >
   Implementation details for API pipes

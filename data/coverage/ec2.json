@@ -44,7 +44,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -2637,8 +2637,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -6260,7 +6260,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -8993,7 +8993,7 @@
       }
     },
     "CreateNetworkAcl": {
-      "TagSpecifications, VpcId": {
+      "ClientToken, TagSpecifications, VpcId": {
         "ls_community": [
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/aws_ec2_networkacl/test_basic.py::TestBasicCRD::test_black_box",
@@ -9222,42 +9222,52 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -9675,7 +9685,7 @@
       }
     },
     "CreateRouteTable": {
-      "TagSpecifications, VpcId": {
+      "ClientToken, TagSpecifications, VpcId": {
         "ls_community": [
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_cfn_with_multiple_route_table_associations",
@@ -9747,7 +9757,33 @@
             "snapshot_tested": false,
             "origin": "internal"
           }
-        ],
+        ]
+      },
+      "ClientToken, VpcId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/ec2/test_ec2.py::TestEc2Integrations::test_create_route_table_association",
+            "test": "test_create_route_table_association",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/ec2/test_ec2.py::TestEc2Integrations::test_create_vpc_end_point",
+            "test": "test_create_vpc_end_point",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
+      "TagSpecifications, VpcId": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
@@ -9892,28 +9928,6 @@
         ]
       },
       "VpcId": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/ec2/test_ec2.py::TestEc2Integrations::test_create_route_table_association",
-            "test": "test_create_route_table_association",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/ec2/test_ec2.py::TestEc2Integrations::test_create_vpc_end_point",
-            "test": "test_create_vpc_end_point",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
@@ -15136,13 +15150,13 @@
       "AttributeNames": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_sqs.py::test_failing_lambda_retries_after_visibility_timeout",
-            "test": "test_failing_lambda_retries_after_visibility_timeout",
+            "node_id": "LocalStack Community: tests/aws/services/opensearch/test_opensearch.py::TestOpensearchProvider::test_list_versions",
+            "test": "test_list_versions",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..FunctionResponseTypes', '$..StartingPosition', '$..StateTransitionReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -15304,6 +15318,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2_imds.py::TestEC2IMDSServer::test_instance_id",
             "test": "test_instance_id",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2_imds.py::TestEC2IMDSServer::test_instance_identity_document",
+            "test": "test_instance_identity_document",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17658,6 +17682,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_create_aurora_v2_cluster_reboot_instances",
+            "test": "test_create_aurora_v2_cluster_reboot_instances",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ActivityStreamStatus', '$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..CertificateDetails', '$..StorageThroughput', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..Endpoint.HostedZoneId', '$..LatestRestorableTime', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..DedicatedLogVolume', '$.reboot-db-instance.DBInstance.DBInstanceStatus', '$..DBInstance.IAMDatabaseAuthenticationEnabled', '$..DBInstance.MultiAZ', '$..DBInstance.OptionGroupMemberships', '$..DBInstance.StorageEncrypted', '$..DBInstance.TagList', '$..DBInstance.DbiResourceId', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_create_db_custom_port",
             "test": "test_create_db_custom_port",
             "response": "200",
@@ -18994,7 +19028,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::test_dns_namespace_with_and_without_dot[private-invalid name]",
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_private_hosted_zone",
+            "test": "test_dns_namespace_private_hosted_zone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..OperationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[private-invalid name]",
             "test": "test_dns_namespace_with_and_without_dot[private-invalid name]",
             "response": "200",
             "error": "",
@@ -19004,7 +19048,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::test_dns_namespace_with_and_without_dot[private-test-<rnd>.com]",
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[private-test-<rnd>.com]",
             "test": "test_dns_namespace_with_and_without_dot[private-test-<rnd>.com]",
             "response": "200",
             "error": "",
@@ -19014,7 +19058,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::test_dns_namespace_with_and_without_dot[private-test-domain-<rnd>]",
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[private-test-domain-<rnd>]",
             "test": "test_dns_namespace_with_and_without_dot[private-test-domain-<rnd>]",
             "response": "200",
             "error": "",
@@ -19024,7 +19068,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::test_dns_namespace_with_and_without_dot[public-invalid name]",
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[public-invalid name]",
             "test": "test_dns_namespace_with_and_without_dot[public-invalid name]",
             "response": "200",
             "error": "",
@@ -19034,7 +19078,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::test_dns_namespace_with_and_without_dot[public-test-<rnd>.com]",
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[public-test-<rnd>.com]",
             "test": "test_dns_namespace_with_and_without_dot[public-test-<rnd>.com]",
             "response": "200",
             "error": "",
@@ -19044,7 +19088,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::test_dns_namespace_with_and_without_dot[public-test-domain-<rnd>]",
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[public-test-domain-<rnd>]",
             "test": "test_dns_namespace_with_and_without_dot[public-test-domain-<rnd>]",
             "response": "200",
             "error": "",
@@ -19983,6 +20027,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ActivityStreamStatus', '$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..CertificateDetails', '$..StorageThroughput', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..Endpoint.HostedZoneId', '$..LatestRestorableTime', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..delete_db_cluster.DBCluster.DBClusterMembers', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_create_aurora_v2_cluster_reboot_instances",
+            "test": "test_create_aurora_v2_cluster_reboot_instances",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ActivityStreamStatus', '$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..CertificateDetails', '$..StorageThroughput', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..Endpoint.HostedZoneId', '$..LatestRestorableTime', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..DedicatedLogVolume', '$.reboot-db-instance.DBInstance.DBInstanceStatus', '$..DBInstance.IAMDatabaseAuthenticationEnabled', '$..DBInstance.MultiAZ', '$..DBInstance.OptionGroupMemberships', '$..DBInstance.StorageEncrypted', '$..DBInstance.TagList', '$..DBInstance.DbiResourceId', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -22948,6 +23002,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2_imds.py::TestEC2IMDSServer::test_instance_identity_document",
+            "test": "test_instance_identity_document",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2_imds.py::TestEC2IMDSServer::test_instance_type",
             "test": "test_instance_type",
             "response": "200",
@@ -23190,6 +23254,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2_imds.py::TestEC2IMDSServer::test_instance_id",
             "test": "test_instance_id",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2_imds.py::TestEC2IMDSServer::test_instance_identity_document",
+            "test": "test_instance_identity_document",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
