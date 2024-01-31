@@ -177,7 +177,8 @@ The `SELECT` statement above currently requires us to prefix the database/table 
 
 ## Iceberg Tables
 
-The LocalStack Athena implementation also supports [Iceberg tables](https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html). You can define an Iceberg table in Athena using the `CREATE TABLE` statement, as shown in the example below:
+The LocalStack Athena implementation also supports [Iceberg tables](https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html).
+You can define an Iceberg table in Athena using the `CREATE TABLE` statement, as shown in the example below:
 
 ```sql
 CREATE TABLE mytable (c1 integer, c2 string, c3 double)
