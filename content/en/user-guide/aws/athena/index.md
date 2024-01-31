@@ -177,7 +177,28 @@ The `SELECT` statement above currently requires us to prefix the database/table 
 
 ## Iceberg Tables
 
-The LocalStack Athena implementation also supports [Iceberg tables](https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html) - more details and samples will be provided here soon.
+The LocalStack Athena implementation also supports [Iceberg tables](https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html). You can define an Iceberg table in Athena using the `CREATE TABLE` statement, as shown in the example below:
+
+```sql
+CREATE TABLE mytable (c1 integer, c2 string, c3 double)
+LOCATION 's3://mybucket/prefix/' TBLPROPERTIES ( 'table_type' = 'ICEBERG' )
+```
+
+Once the table has been created and data inserted into it, you can see the Iceberg metadata and data files being created in S3:
+
+```bash
+s3://mybucket/_tmp.prefix/
+s3://mybucket/prefix/data/00000-0-user1_20230212221600_cd8f8cbd-4dcc-4c3f-96a2-f08d4104d6fb-job_local1695603329_0001-00001.parquet
+s3://mybucket/prefix/data/00000-0-user1_20230212221606_eef1fd88-8ff1-467a-a15b-7a24be7bc52b-job_local1976884152_0002-00001.parquet
+s3://mybucket/prefix/metadata/00000-06706bea-e09d-4ff1-b366-353705634f3a.metadata.json
+s3://mybucket/prefix/metadata/00001-3df6a04e-070d-447c-a213-644fe6633759.metadata.json
+s3://mybucket/prefix/metadata/00002-5dcd5d07-a9ed-4757-a6bc-9e87fcd671d5.metadata.json
+s3://mybucket/prefix/metadata/2f8d3628-bb13-4081-b5a9-30f2e81b7226-m0.avro
+s3://mybucket/prefix/metadata/70de28f7-6507-44ae-b505-618d734174b9-m0.avro
+s3://mybucket/prefix/metadata/snap-8425363304532374388-1-70de28f7-6507-44ae-b505-618d734174b9.avro
+s3://mybucket/prefix/metadata/snap-9068645333036463050-1-2f8d3628-bb13-4081-b5a9-30f2e81b7226.avro
+s3://mybucket/prefix/temp/
+```
 
 ## Resource Browser
 
