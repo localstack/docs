@@ -1159,7 +1159,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -1471,7 +1471,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -2548,16 +2548,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaBaseFeatures::test_large_payloads",
-            "test": "test_large_payloads",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..LogResult']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaFunction::test_function_lifecycle",
             "test": "test_function_lifecycle",
             "response": "200",
@@ -2586,6 +2576,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_source_mapping",
+            "test": "test_dynamodb_event_source_mapping",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_sqs.py::test_failing_lambda_retries_after_visibility_timeout",
@@ -6070,6 +6070,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
+            "test": "test_kinesis_dlq_pipe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
             "test": "test_kinesis_pipe",
             "response": "200",
@@ -6098,6 +6108,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_s3_extension_helpers[11]",
+            "test": "test_postgres_s3_extension_helpers[11]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       }
@@ -7368,16 +7388,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaBaseFeatures::test_large_payloads",
-            "test": "test_large_payloads",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..LogResult']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaFunction::test_function_lifecycle",
             "test": "test_function_lifecycle",
             "response": "200",
@@ -7393,6 +7403,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_source_mapping",
+            "test": "test_dynamodb_event_source_mapping",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10980,6 +11000,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
+            "test": "test_kinesis_dlq_pipe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
             "test": "test_kinesis_pipe",
             "response": "200",
@@ -11959,16 +11989,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaBaseFeatures::test_large_payloads",
-            "test": "test_large_payloads",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..LogResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -15696,6 +15716,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
+            "test": "test_read_from_json_secret[False-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
+            "test": "test_read_from_json_secret[False-True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
+            "test": "test_read_from_json_secret[True-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
@@ -16196,6 +16246,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
+            "test": "test_kinesis_dlq_pipe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
             "test": "test_kinesis_pipe",
             "response": "200",
@@ -16246,8 +16306,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[10.23]",
-            "test": "test_postgres_extension_query_export_to_s3[10.23]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[11]",
+            "test": "test_postgres_extension_query_export_to_s3[11]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16256,8 +16316,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[11.16]",
-            "test": "test_postgres_extension_query_export_to_s3[11.16]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[12]",
+            "test": "test_postgres_extension_query_export_to_s3[12]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16266,8 +16326,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[12.8]",
-            "test": "test_postgres_extension_query_export_to_s3[12.8]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[13]",
+            "test": "test_postgres_extension_query_export_to_s3[13]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16276,8 +16336,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[13.4]",
-            "test": "test_postgres_extension_query_export_to_s3[13.4]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[14]",
+            "test": "test_postgres_extension_query_export_to_s3[14]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16286,8 +16346,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[14.7]",
-            "test": "test_postgres_extension_query_export_to_s3[14.7]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[15]",
+            "test": "test_postgres_extension_query_export_to_s3[15]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16296,8 +16356,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[15.2]",
-            "test": "test_postgres_extension_query_export_to_s3[15.2]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[16]",
+            "test": "test_postgres_extension_query_export_to_s3[16]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16306,8 +16366,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[10.23]",
-            "test": "test_postgres_extension_table_import_from_s3[10.23]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[11]",
+            "test": "test_postgres_extension_table_import_from_s3[11]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16316,8 +16376,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[11.16]",
-            "test": "test_postgres_extension_table_import_from_s3[11.16]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[12]",
+            "test": "test_postgres_extension_table_import_from_s3[12]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16326,8 +16386,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[12.8]",
-            "test": "test_postgres_extension_table_import_from_s3[12.8]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[13]",
+            "test": "test_postgres_extension_table_import_from_s3[13]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16336,8 +16396,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[13.4]",
-            "test": "test_postgres_extension_table_import_from_s3[13.4]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[14]",
+            "test": "test_postgres_extension_table_import_from_s3[14]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16346,8 +16406,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[14.7]",
-            "test": "test_postgres_extension_table_import_from_s3[14.7]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[15]",
+            "test": "test_postgres_extension_table_import_from_s3[15]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16356,14 +16416,24 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[15.2]",
-            "test": "test_postgres_extension_table_import_from_s3[15.2]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[16]",
+            "test": "test_postgres_extension_table_import_from_s3[16]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_s3_extension_helpers[11]",
+            "test": "test_postgres_s3_extension_helpers[11]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       },
@@ -18342,6 +18412,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_drift_detection.py::test_drift_detection_on_lambda",
+            "test": "test_drift_detection_on_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_modules.py::TestExtensionsModules::test_module_usage",
             "test": "test_module_usage",
             "response": "200",
@@ -18349,26 +18429,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_resourcetypes.py::TestExtensionsResourceTypes::test_deploy_resource_type",
-            "test": "test_deploy_resource_type",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/engine/test_attributes.py::TestResourceAttributes::test_invalid_getatt_fails",
-            "test": "test_invalid_getatt_fails",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "all",
-            "aws_validated": true,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -18400,6 +18460,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_cloudtrail_trace.py::test_cloudtrail_trace_example",
+            "test": "test_cloudtrail_trace_example",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_to_default_eventbus_for_custom_eventbus",
@@ -20982,6 +21052,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
+            "test": "test_security_groups",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/iam/test_iam.py::TestIAMIntegrations::test_attach_iam_role_to_new_iam_user",
             "test": "test_attach_iam_role_to_new_iam_user",
             "response": "404",
@@ -21624,8 +21704,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_target_type_default_values[instance]",
-            "test": "test_target_group_target_type_default_values[instance]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_target_type_default_values[lambda]",
+            "test": "test_target_group_target_type_default_values[lambda]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -22074,6 +22154,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
+            "test": "test_kinesis_dlq_pipe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
             "test": "test_kinesis_pipe",
             "response": "200",
@@ -22420,8 +22510,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_modules.py::TestExtensionsModules::test_module_usage",
-            "test": "test_module_usage",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_drift_detection.py::test_drift_detection_on_lambda",
+            "test": "test_drift_detection_on_lambda",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -22430,8 +22520,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_resourcetypes.py::TestExtensionsResourceTypes::test_deploy_resource_type",
-            "test": "test_deploy_resource_type",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_modules.py::TestExtensionsModules::test_module_usage",
+            "test": "test_module_usage",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -22448,16 +22538,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/engine/test_attributes.py::TestResourceAttributes::test_invalid_getatt_fails",
-            "test": "test_invalid_getatt_fails",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "all",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/test_iam.py::test_delete_role_detaches_role_policy",
@@ -22878,6 +22958,16 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_cloudtrail_trace.py::test_cloudtrail_trace_example",
+            "test": "test_cloudtrail_trace_example",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_template_engine.py::TestMacros::test_capabilities_requirements",
@@ -25670,6 +25760,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
+            "test": "test_security_groups",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/test_config_service.py::TestConfigService::test_put_configuration_recorder",
             "test": "test_put_configuration_recorder",
             "response": "200",
@@ -26722,6 +26822,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
+            "test": "test_read_from_json_secret[False-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
+            "test": "test_read_from_json_secret[False-True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
+            "test": "test_read_from_json_secret[True-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
@@ -26752,8 +26882,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_target_type_default_values[instance]",
-            "test": "test_target_group_target_type_default_values[instance]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_target_type_default_values[lambda]",
+            "test": "test_target_group_target_type_default_values[lambda]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27212,6 +27342,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
+            "test": "test_kinesis_dlq_pipe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
             "test": "test_kinesis_pipe",
             "response": "200",
@@ -27262,8 +27402,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[10.23]",
-            "test": "test_postgres_extension_query_export_to_s3[10.23]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[11]",
+            "test": "test_postgres_extension_query_export_to_s3[11]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27272,8 +27422,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[11.16]",
-            "test": "test_postgres_extension_query_export_to_s3[11.16]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[12]",
+            "test": "test_postgres_extension_query_export_to_s3[12]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27282,8 +27432,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[12.8]",
-            "test": "test_postgres_extension_query_export_to_s3[12.8]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[13]",
+            "test": "test_postgres_extension_query_export_to_s3[13]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27292,8 +27442,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[13.4]",
-            "test": "test_postgres_extension_query_export_to_s3[13.4]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[14]",
+            "test": "test_postgres_extension_query_export_to_s3[14]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27302,8 +27452,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[14.7]",
-            "test": "test_postgres_extension_query_export_to_s3[14.7]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[15]",
+            "test": "test_postgres_extension_query_export_to_s3[15]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27312,8 +27462,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[15.2]",
-            "test": "test_postgres_extension_query_export_to_s3[15.2]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[16]",
+            "test": "test_postgres_extension_query_export_to_s3[16]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27322,8 +27472,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[10.23]",
-            "test": "test_postgres_extension_table_import_from_s3[10.23]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[11]",
+            "test": "test_postgres_extension_table_import_from_s3[11]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27332,8 +27482,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[11.16]",
-            "test": "test_postgres_extension_table_import_from_s3[11.16]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[12]",
+            "test": "test_postgres_extension_table_import_from_s3[12]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27342,8 +27492,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[12.8]",
-            "test": "test_postgres_extension_table_import_from_s3[12.8]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[13]",
+            "test": "test_postgres_extension_table_import_from_s3[13]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27352,8 +27502,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[13.4]",
-            "test": "test_postgres_extension_table_import_from_s3[13.4]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[14]",
+            "test": "test_postgres_extension_table_import_from_s3[14]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27362,8 +27512,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[14.7]",
-            "test": "test_postgres_extension_table_import_from_s3[14.7]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[15]",
+            "test": "test_postgres_extension_table_import_from_s3[15]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -27372,8 +27522,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[15.2]",
-            "test": "test_postgres_extension_table_import_from_s3[15.2]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[16]",
+            "test": "test_postgres_extension_table_import_from_s3[16]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -28021,506 +28171,6 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -32766,6 +32416,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
+            "test": "test_read_from_json_secret[False-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
+            "test": "test_read_from_json_secret[False-True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
+            "test": "test_read_from_json_secret[True-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
@@ -33006,8 +32686,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[10.23]",
-            "test": "test_postgres_extension_query_export_to_s3[10.23]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[11]",
+            "test": "test_postgres_extension_query_export_to_s3[11]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33016,8 +32706,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[11.16]",
-            "test": "test_postgres_extension_query_export_to_s3[11.16]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[12]",
+            "test": "test_postgres_extension_query_export_to_s3[12]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33026,8 +32716,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[12.8]",
-            "test": "test_postgres_extension_query_export_to_s3[12.8]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[13]",
+            "test": "test_postgres_extension_query_export_to_s3[13]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33036,8 +32726,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[13.4]",
-            "test": "test_postgres_extension_query_export_to_s3[13.4]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[14]",
+            "test": "test_postgres_extension_query_export_to_s3[14]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33046,8 +32736,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[14.7]",
-            "test": "test_postgres_extension_query_export_to_s3[14.7]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[15]",
+            "test": "test_postgres_extension_query_export_to_s3[15]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33056,8 +32746,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[15.2]",
-            "test": "test_postgres_extension_query_export_to_s3[15.2]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[16]",
+            "test": "test_postgres_extension_query_export_to_s3[16]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33066,8 +32756,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[10.23]",
-            "test": "test_postgres_extension_table_import_from_s3[10.23]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[11]",
+            "test": "test_postgres_extension_table_import_from_s3[11]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33076,8 +32766,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[11.16]",
-            "test": "test_postgres_extension_table_import_from_s3[11.16]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[12]",
+            "test": "test_postgres_extension_table_import_from_s3[12]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33086,8 +32776,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[12.8]",
-            "test": "test_postgres_extension_table_import_from_s3[12.8]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[13]",
+            "test": "test_postgres_extension_table_import_from_s3[13]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33096,8 +32786,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[13.4]",
-            "test": "test_postgres_extension_table_import_from_s3[13.4]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[14]",
+            "test": "test_postgres_extension_table_import_from_s3[14]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33106,8 +32796,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[14.7]",
-            "test": "test_postgres_extension_table_import_from_s3[14.7]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[15]",
+            "test": "test_postgres_extension_table_import_from_s3[15]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33116,8 +32806,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[15.2]",
-            "test": "test_postgres_extension_table_import_from_s3[15.2]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[16]",
+            "test": "test_postgres_extension_table_import_from_s3[16]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33923,6 +33613,606 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           }
         ]
@@ -36388,6 +36678,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_drift_detection.py::test_drift_detection_on_lambda",
+            "test": "test_drift_detection_on_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_modules.py::TestExtensionsModules::test_module_usage",
             "test": "test_module_usage",
             "response": "200",
@@ -36395,26 +36695,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_resourcetypes.py::TestExtensionsResourceTypes::test_deploy_resource_type",
-            "test": "test_deploy_resource_type",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/engine/test_attributes.py::TestResourceAttributes::test_invalid_getatt_fails",
-            "test": "test_invalid_getatt_fails",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "all",
-            "aws_validated": true,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -36736,6 +37016,16 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_cloudtrail_trace.py::test_cloudtrail_trace_example",
+            "test": "test_cloudtrail_trace_example",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_template_engine.py::TestMacros::test_capabilities_requirements",
@@ -39336,6 +39626,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
+            "test": "test_security_groups",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -40030,8 +40330,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_target_type_default_values[instance]",
-            "test": "test_target_group_target_type_default_values[instance]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_target_type_default_values[lambda]",
+            "test": "test_target_group_target_type_default_values[lambda]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -40220,6 +40520,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
+            "test": "test_kinesis_dlq_pipe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
             "test": "test_kinesis_pipe",
             "response": "200",
@@ -40248,6 +40558,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/integration/services/internal/test_stackinfo.py::test_stackinfo_resource",
@@ -41162,26 +41482,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestS3BucketNotifications::test_s3_bucket_notification_lambda",
-            "test": "test_s3_bucket_notification_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.ArgumentName', '$..Error.ArgumentName1', '$..Error.ArgumentValue', '$..Error.ArgumentValue1']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestS3BucketNotifications::test_s3_bucket_notification_lambda",
-            "test": "test_s3_bucket_notification_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.ArgumentName', '$..Error.ArgumentName1', '$..Error.ArgumentValue', '$..Error.ArgumentValue1']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       }
@@ -41688,26 +41988,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestS3BucketNotifications::test_s3_bucket_notification_lambda",
-            "test": "test_s3_bucket_notification_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.ArgumentName', '$..Error.ArgumentName1', '$..Error.ArgumentValue', '$..Error.ArgumentValue1']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestS3BucketNotifications::test_s3_bucket_notification_lambda",
-            "test": "test_s3_bucket_notification_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.ArgumentName', '$..Error.ArgumentName1', '$..Error.ArgumentValue', '$..Error.ArgumentValue1']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       }
@@ -41865,6 +42145,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -42188,26 +42478,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestS3BucketNotifications::test_s3_bucket_notification_lambda",
-            "test": "test_s3_bucket_notification_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.ArgumentName', '$..Error.ArgumentName1', '$..Error.ArgumentValue', '$..Error.ArgumentValue1']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestS3BucketNotifications::test_s3_bucket_notification_lambda",
-            "test": "test_s3_bucket_notification_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.ArgumentName', '$..Error.ArgumentName1', '$..Error.ArgumentValue', '$..Error.ArgumentValue1']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
             "test": "test_appsync_deployed",
             "response": "200",
@@ -42466,16 +42736,6 @@
           {
             "node_id": "LocalStack Pro: tests/aws/test_network_configuration.py::test_kafka",
             "test": "test_kafka",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/test_network_configuration.py::test_mediastore",
-            "test": "test_mediastore",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -45892,6 +46152,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
+            "test": "test_read_from_json_secret[False-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
+            "test": "test_read_from_json_secret[False-True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
+            "test": "test_read_from_json_secret[True-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
@@ -46572,26 +46862,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestS3BucketNotifications::test_s3_bucket_notification_lambda",
-            "test": "test_s3_bucket_notification_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.ArgumentName', '$..Error.ArgumentName1', '$..Error.ArgumentValue', '$..Error.ArgumentValue1']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestS3BucketNotifications::test_s3_bucket_notification_lambda",
-            "test": "test_s3_bucket_notification_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.ArgumentName', '$..Error.ArgumentName1', '$..Error.ArgumentValue', '$..Error.ArgumentValue1']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestIoTCrud::test_crud_role_alias",
             "test": "test_crud_role_alias",
             "response": "200",
@@ -46610,6 +46880,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
+            "test": "test_kinesis_dlq_pipe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
@@ -46640,6 +46920,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
@@ -50202,6 +50492,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
+            "test": "test_read_from_json_secret[False-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
+            "test": "test_read_from_json_secret[False-True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
+            "test": "test_read_from_json_secret[True-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
@@ -50882,26 +51202,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestS3BucketNotifications::test_s3_bucket_notification_lambda",
-            "test": "test_s3_bucket_notification_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.ArgumentName', '$..Error.ArgumentName1', '$..Error.ArgumentValue', '$..Error.ArgumentValue1']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestS3BucketNotifications::test_s3_bucket_notification_lambda",
-            "test": "test_s3_bucket_notification_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.ArgumentName', '$..Error.ArgumentName1', '$..Error.ArgumentValue', '$..Error.ArgumentValue1']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestIoTCrud::test_crud_role_alias",
             "test": "test_crud_role_alias",
             "response": "200",
@@ -50920,6 +51220,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
+            "test": "test_kinesis_dlq_pipe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
@@ -50950,6 +51260,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
@@ -53238,6 +53558,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
+            "test": "test_read_from_json_secret[False-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
+            "test": "test_read_from_json_secret[False-True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
+            "test": "test_read_from_json_secret[True-False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
@@ -53488,8 +53838,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[10.23]",
-            "test": "test_postgres_extension_query_export_to_s3[10.23]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[11]",
+            "test": "test_postgres_extension_query_export_to_s3[11]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53498,8 +53848,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[11.16]",
-            "test": "test_postgres_extension_query_export_to_s3[11.16]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[12]",
+            "test": "test_postgres_extension_query_export_to_s3[12]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53508,8 +53858,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[12.8]",
-            "test": "test_postgres_extension_query_export_to_s3[12.8]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[13]",
+            "test": "test_postgres_extension_query_export_to_s3[13]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53518,8 +53868,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[13.4]",
-            "test": "test_postgres_extension_query_export_to_s3[13.4]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[14]",
+            "test": "test_postgres_extension_query_export_to_s3[14]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53528,8 +53878,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[14.7]",
-            "test": "test_postgres_extension_query_export_to_s3[14.7]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[15]",
+            "test": "test_postgres_extension_query_export_to_s3[15]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53538,8 +53888,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[15.2]",
-            "test": "test_postgres_extension_query_export_to_s3[15.2]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_query_export_to_s3[16]",
+            "test": "test_postgres_extension_query_export_to_s3[16]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53548,8 +53898,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[10.23]",
-            "test": "test_postgres_extension_table_import_from_s3[10.23]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[11]",
+            "test": "test_postgres_extension_table_import_from_s3[11]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53558,8 +53908,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[11.16]",
-            "test": "test_postgres_extension_table_import_from_s3[11.16]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[12]",
+            "test": "test_postgres_extension_table_import_from_s3[12]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53568,8 +53918,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[12.8]",
-            "test": "test_postgres_extension_table_import_from_s3[12.8]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[13]",
+            "test": "test_postgres_extension_table_import_from_s3[13]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53578,8 +53928,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[13.4]",
-            "test": "test_postgres_extension_table_import_from_s3[13.4]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[14]",
+            "test": "test_postgres_extension_table_import_from_s3[14]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53588,8 +53938,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[14.7]",
-            "test": "test_postgres_extension_table_import_from_s3[14.7]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[15]",
+            "test": "test_postgres_extension_table_import_from_s3[15]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -53598,14 +53948,24 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[15.2]",
-            "test": "test_postgres_extension_table_import_from_s3[15.2]",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_extension_table_import_from_s3[16]",
+            "test": "test_postgres_extension_table_import_from_s3[16]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgres_s3_extension_helpers[11]",
+            "test": "test_postgres_s3_extension_helpers[11]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       }
