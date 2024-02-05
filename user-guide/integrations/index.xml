@@ -3159,7 +3159,7 @@ If there are any difficulties resolving this DNS record, you can utilize &lt;cod
 &lt;/div>
 &lt;h2 id="cdk-for-terraform">CDK for Terraform&lt;/h2>
 &lt;p>Cloud Development Kit for Terraform (CDKTF) allows you to use general-purpose programming languages, such as TypeScript, Python, Java, and more, to create infrastructure declaratively. It allows you to create, update, and delete AWS infrastructure by leveraging a Terraform backend without manually configuring Terraform using HCL and &lt;a href="https://aws.amazon.com/cdk/">AWS Cloud Development Kit&lt;/a> to translate your code into infrastructure configuration files for Terraform. CDKTF supports every Terraform provider and module available on the &lt;a href="https://registry.terraform.io/">Terraform Registry&lt;/a>.&lt;/p>
-&lt;h3 id="conifguration">Conifguration&lt;/h3>
+&lt;h3 id="configuration-1">Configuration&lt;/h3>
 &lt;p>To configure your existing CDKTF configuration to work with LocalStack, manually configure the local service endpoints and credentials. It includes:&lt;/p>
 &lt;ul>
 &lt;li>General configuration to specify mock credentials for the AWS provider (&lt;code>region&lt;/code>, &lt;code>access_key&lt;/code>, &lt;code>secret_key&lt;/code>).&lt;/li>
@@ -3470,6 +3470,17 @@ id="tabs-11-01" role="tabpanel" aria-labelled-by="tabs-11-01-tab">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Verify that the S3 bucket has been created successfully by running the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Your CDKTF stack is now successfully deployed to LocalStack. You can now start using CDKTF to create and manage your AWS resources on LocalStack.&lt;/p>
+&lt;h2 id="opentofu">OpenTofu&lt;/h2>
+&lt;p>OpenTofu is an open-source fork of Terraform acting as a drop-in replacement for Terraform, as it&amp;rsquo;s compatible with Terraform versions 1.5.x and most of 1.6.x. You can use OpenTofu with LocalStack to create and manage your AWS resources with your pre-existing Terraform configurations. You can use the &lt;code>TF_CMD&lt;/code> environment variable with &lt;code>tflocal&lt;/code> to specify the &lt;code>tofu&lt;/code> binary to call, or setup a manual configuration to point the individual services to LocalStack.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>TF_CMD=tofu tflocal --help
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: tofu [global options] &amp;lt;subcommand&amp;gt; [args]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The available commands for execution are listed below.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The primary workflow commands are given first, followed by
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>less common or more advanced commands.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="examples">Examples&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/serverless-api-ecs-apigateway-sample">Serverless Container-based APIs with Amazon ECS &amp;amp; API Gateway&lt;/a>&lt;/li>
