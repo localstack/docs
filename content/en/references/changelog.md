@@ -1,7 +1,7 @@
 ---
 title: "Changelog"
 linkTitle: "Changelog"
-weight: 70
+weight: 12
 description: >
   This page lists new features, highlights, and bug fixes for official LocalStack releases.
 cascade:
