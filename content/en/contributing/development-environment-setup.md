@@ -25,7 +25,7 @@ You will need the following tools for the local development of LocalStack.
 * [Maven](https://maven.apache.org/download.cgi)
 * [Gradle](https://gradle.org/install/)
 * [Terraform](https://www.terraform.io/downloads)
-* [Docker](https://docs.docker.com/desktop/)
+* [Docker Desktop](https://docs.docker.com/desktop/)
 * [Docker-Compose](https://docs.docker.com/compose/install/)
 
 We recommend you to individually install the above tools using your favorite package manager. For example, on macOS, you can use [Homebrew](https://brew.sh/) to install the above tools.
@@ -73,3 +73,4 @@ $ make docker-build
 * If `virtualenv` chooses system python installations before your pyenv installations, manually initialize `virtualenv` before running `make install`: `virtualenv -p ~/.pyenv/shims/python3.10 .venv` .
 * Terraform needs version <0.14 to work currently. Use `tfenv` (<https://github.com/tfutils/tfenv>) to manage terraform versions comfortable. Quick start: `tfenv install 0.13.7 && tfenv use 0.13.7`
 * Set env variable `LS_LOG='trace'` to print every `http` request sent to localstack and their responses. It is useful for debugging certain issues.
+* If `make docker-build` fails with the error `unknown flag: --pull`, you may not have buildx` installed. See this SO page for more information: https://askubuntu.com/questions/1467602/buildx-is-not-a-docker-command
