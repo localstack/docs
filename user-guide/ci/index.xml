@@ -154,7 +154,82 @@ CI Analytics is currently in &lt;strong>private beta&lt;/strong>. If you&amp;rsq
 &lt;li>Name your environment variable &lt;code>LOCALSTACK_API_KEY&lt;/code>.&lt;/li>
 &lt;li>Paste your CI key into the input field.&lt;/li>
 &lt;/ul>
-&lt;img src="circleci-env-config.png" width="800px" alt="Adding the LocalStack CI key in CircleCI" /></description></item><item><title>User-Guide: Drone CI</title><link>/user-guide/ci/drone-ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/ci/drone-ci/</guid><description>
+&lt;img src="circleci-env-config.png" width="800px" alt="Adding the LocalStack CI key in CircleCI" /></description></item><item><title>User-Guide: CodeBuild</title><link>/user-guide/ci/codebuild/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/ci/codebuild/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>CodeBuild is a managed AWS service for the build and testing phases of software development. CodeBuild allows you to define your build project, set the source code location, and handles the building and testing, while supporting various programming languages, build tools, and runtime environments. LocalStack supports CodeBuild out of the box and can be easily integrated into your pipeline to run your tests against a cloud emulator.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to CodeBuild and assumes basic knowledge of YAML and LocalStack tooling. In this guide, we will show you how to set up a CodeBuild project that uses LocalStack to run basic S3 tests against it.&lt;/p>
+&lt;h3 id="configure-your-codebuild-project">Configure your CodeBuild project&lt;/h3>
+&lt;p>Navigate to the AWS Management Console and open the &lt;a href="https://console.aws.amazon.com/codesuite/codebuild/home">CodeBuild console&lt;/a>.&lt;/p>
+&lt;p>Click on &lt;strong>Create build project&lt;/strong>. In the &lt;strong>Create build project&lt;/strong> page, enter the following details:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Project name&lt;/strong>: Enter a name for your build project.&lt;/li>
+&lt;li>&lt;strong>Source&lt;/strong>: Select the source code provider and repository details. For this example, we will use the the &lt;strong>No Source&lt;/strong> option.&lt;/li>
+&lt;li>&lt;strong>Operating system&lt;/strong>: Select the operating system for your build environment. For this example, we will use &lt;strong>Ubuntu&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Runtime&lt;/strong>: Select the runtime for your build environment. For this example, we will use &lt;strong>Standard&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Image&lt;/strong>: Select the image for your build environment. For this example, we will use &lt;strong>aws/codebuild/standard:7.0&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Service Role&lt;/strong>: Select the service role for your build environment. For this example, we will use the &lt;strong>New service role&lt;/strong> option.&lt;/li>
+&lt;li>&lt;strong>Additional Configuration&lt;/strong>: Click on it and select &lt;strong>Enable this flag if you want to build Docker images or want your builds to get elevated privileges&lt;/strong> under the &lt;strong>Privileges&lt;/strong> section.&lt;/li>
+&lt;li>&lt;strong>Buildspec&lt;/strong>: Select &lt;strong>Insert build commands&lt;/strong> and add &lt;code>uname -a&lt;/code> to the build commands for testing purposes.&lt;/li>
+&lt;li>&lt;strong>Logs&lt;/strong>: Select &lt;strong>CloudWatch&lt;/strong> for the logs.&lt;/li>
+&lt;/ul>
+&lt;p>Click on &lt;strong>Create build project&lt;/strong> to create your build project.&lt;/p>
+&lt;h3 id="configure-your-buildspec-file">Configure your buildspec file&lt;/h3>
+&lt;p>On the project dashboard, click on &lt;strong>Edit&lt;/strong> to open the dropdown and select &lt;strong>Buildspec&lt;/strong>. On the &lt;strong>Edit Buildspec&lt;/strong> page, enter the following build commands:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0.2&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">phases&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">pre_build&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">commands&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">pip3 install localstack awscli&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">docker pull public.ecr.aws/localstack/localstack:latest &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">localstack start -d&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">localstack wait -t 30&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">build&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">commands&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">export AWS_ACCESS_KEY_ID=&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">export AWS_SECRET_ACCESS_KEY=&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">export AWS_DEFAULT_REGION=&amp;#34;us-east-1&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">curl http://0.0.0.0:4566/_localstack/health | jq&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">aws s3 mb s3://test --endpoint-url=http://0.0.0.0:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">aws s3 ls --endpoint-url=http://0.0.0.0:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Click on &lt;strong>Update buildspec&lt;/strong> to save your buildspec file.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;p>In the above buildspec file, we are using the &lt;code>public.ecr.aws/localstack/localstack:latest&lt;/code> image to start LocalStack, instead of the &lt;code>localstack/localstack:latest&lt;/code> image. LocalStack mirrors the Docker Hub image to the public ECR repository. You can use the Docker Hub image as well, though you may run into the following error:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;h3 id="start-your-build">Start your build&lt;/h3>
+&lt;p>Click on &lt;strong>Start build&lt;/strong> to start your build. After the build is complete, you can view the build logs and the build status.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>Container&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> 2024/02/07 09:19:25.791565 Running &lt;span style="color:#204a87">command&lt;/span> aws s3 mb s3://test --endpoint-url&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>http://0.0.0.0:4566
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make_bucket: &lt;span style="color:#204a87">test&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>Container&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> 2024/02/07 09:19:26.849784 Running &lt;span style="color:#204a87">command&lt;/span> aws s3 ls --endpoint-url&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>http://0.0.0.0:4566
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2024-02-07 09:19:26 &lt;span style="color:#204a87">test&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>Container&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> 2024/02/07 09:19:27.305446 Phase complete: BUILD State: SUCCEEDED
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>Container&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> 2024/02/07 09:19:27.305465 Phase context status code: Message:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>Container&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> 2024/02/07 09:19:27.343546 Entering phase POST_BUILD
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>Container&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> 2024/02/07 09:19:27.345126 Phase complete: POST_BUILD State: SUCCEEDED
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>Container&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> 2024/02/07 09:19:27.345139 Phase context status code: Message:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="configuring-a-ci-key">Configuring a CI key&lt;/h2>
+&lt;p>To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project&amp;rsquo;s environment variables. The LocalStack container will automatically pick it up and activate the licensed features.&lt;/p>
+&lt;p>Go to the &lt;a href="https://app.localstack.cloud/workspace/ci-keys">CI Key Page&lt;/a> page and copy your CI key. To add the CI key to your CodeBuild project, follow these steps:&lt;/p>
+&lt;ul>
+&lt;li>Navigate to your project dashboard, click &lt;strong>Edit&lt;/strong> to open the dropdown, and select &lt;strong>Environment&lt;/strong>.&lt;/li>
+&lt;li>Click on &lt;strong>Additional configuration&lt;/strong> and navigate to the &lt;strong>Environment variables&lt;/strong> section.&lt;/li>
+&lt;li>Specify &lt;strong>Name&lt;/strong> as &lt;code>LOCALSTACK_API_KEY&lt;/code> and &lt;strong>Value&lt;/strong> as your CI key. Specify &lt;strong>Type&lt;/strong> as per your requirement.&lt;/li>
+&lt;/ul>
+&lt;p>Click on &lt;strong>Update environment&lt;/strong> to save your environment variables. Navigate to the buildspec file and change the Docker image to &lt;code>public.ecr.aws/localstack/localstack-pro:latest&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>phases:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pre_build:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> commands:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - pip3 install localstack awscli
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - docker pull public.ecr.aws/localstack/localstack-pro:latest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Drone CI</title><link>/user-guide/ci/drone-ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/ci/drone-ci/</guid><description>
 &lt;p>This guide shows you how to start LocalStack in a Drone CI pipeline.&lt;/p>
 &lt;h2 id="setting-up-your-drone-ci-pipeline">Setting up your Drone CI pipeline&lt;/h2>
 &lt;p>There are a few restrictions in Drone CI Pipelines that make it hard to customize the behavior of Docker. For example, mounting the host machine Docker socket is considered insecure, and hence alleviated privileges are required to run commands like &lt;code>localstack wait&lt;/code>. Learn more about configuring Docker for Drone CI pipelines over &lt;a href="https://docs.drone.io/pipeline/docker/overview/">their official documentation&lt;/a>.&lt;/p>
