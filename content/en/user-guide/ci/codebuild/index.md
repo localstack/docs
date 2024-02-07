@@ -59,6 +59,13 @@ phases:
 
 Click on **Update buildspec** to save your buildspec file.
 
+{{< alert title="Note">}}
+In the above buildspec file, we are using the `public.ecr.aws/localstack/localstack:latest` image to start LocalStack, instead of the `localstack/localstack:latest` image. LocalStack mirrors the Docker Hub image to the public ECR repository. You can use the Docker Hub image as well, though you may run into the following error:
+```bash
+toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit
+```
+{{< /alert >}}
+
 ### Start your build
 
 Click on **Start build** to start your build. After the build is complete, you can view the build logs and the build status.
