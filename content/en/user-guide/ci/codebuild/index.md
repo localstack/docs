@@ -15,7 +15,7 @@ This guide is designed for users new to CodeBuild and assumes basic knowledge of
 
 ### Configure your CodeBuild project
 
-Navigate to the AWS Management Console and open the CodeBuild console at [https://console.aws.amazon.com/codesuite/codebuild/home](https://console.aws.amazon.com/codesuite/codebuild/home).
+Navigate to the AWS Management Console and open the [CodeBuild console](https://console.aws.amazon.com/codesuite/codebuild/home).
 
 Click on **Create build project**. In the **Create build project** page, enter the following details:
 
@@ -50,8 +50,6 @@ phases:
       - export AWS_ACCESS_KEY_ID="test"
       - export AWS_SECRET_ACCESS_KEY="test"
       - export AWS_DEFAULT_REGION="us-east-1"
-      - docker ps
-      - localstack logs
       - curl http://0.0.0.0:4566/_localstack/health | jq
       - aws s3 mb s3://test --endpoint-url=http://0.0.0.0:4566
       - aws s3 ls --endpoint-url=http://0.0.0.0:4566
