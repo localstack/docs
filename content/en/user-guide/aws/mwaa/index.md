@@ -61,7 +61,9 @@ LocalStack supports the following versions of Apache Airflow:
 - `2.0.2`
 - `2.2.2`
 - `2.4.3`
-- `2.5.1` (default)
+- `2.5.1`
+- `2.6.3`
+- `2.7.2` (default)
 
 ## Airflow configuration options
 
