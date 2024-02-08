@@ -137,6 +137,17 @@ You can add in the volume `~/.docker/config.json:/config.json` where the `con
 ...
 ```
 
+If you have an active AWS account, you can use the public AWS ECR image. You can use the following command to pull the image:
+
+{{< tabpane >}}
+{{< tab header="Community" lang="shell" >}}
+docker pull public.ecr.aws/localstack/localstack:latest
+{{< /tab >}}
+{{< tab header="Pro" lang="powershell" >}}
+docker pull public.ecr.aws/localstack/localstack-pro:latest
+{{< /tab >}}
+{{< /tabpane >}}
+
 ### How to increase IO performance for LocalStack's Docker image under Windows?
 
 {{< alert title="Note">}}
