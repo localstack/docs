@@ -87,7 +87,7 @@ The following code snippets and sample applications provide practical examples o
 
 Currently, our MQ emulation offers only fundamental capabilities, and it comes with certain limitations:
 
-- **ActiveMQ Version Limitation:** Presently, only ActiveMQ version 5.16.6 is supported.
+- **ActiveMQ Version Limitation:** Presently, only ActiveMQ version 5.16.6 is supported. RabbitMQ is not supported at this time.
 - **IAM User Management:** IAM Users are not actively enforced, although they are necessary for making correct calls within the system.
 - **Configuration Enforcement:** While it is feasible to create configurations, they are not actively enforced within the broker. 
 - **Persistence and Cloud Pods:** LocalStack does not provide support for Persistence and Cloud Pods at this time.
