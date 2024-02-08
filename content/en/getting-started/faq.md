@@ -103,9 +103,18 @@ environment:
 
 You might be able to connect to the internet, but your Docker container can't connect. This can affect start of LocalStack.
 
-More details can be found on [official docker documentation](https://docs.docker.com/network/bridge/#enable-forwarding-from-docker-containers-to-the-outside-world).
+Please ensure that you are not using the `none` network driver when starting your docker container.
+More details about the default bridge network can be found on [official docker documentation](https://docs.docker.com/network/bridge).
 
-Solution for this is enabling the IP forwarding:
+Please also ensure that the docker container has an assigned IP address, by running:
+
+```bash
+docker inspect <container-name> | jq -r '.[0].NetworkSettings.Networks | to_entries | .[].value.IPAddress'
+```
+
+At least one IP address should be returned.
+
+If you are using Linux, ensure that you have enabled IP forwarding:
 
 ```bash
 sudo sysctl -w net.ipv4.ip_forward=1
