@@ -14,6 +14,17 @@ Neptune supports popular graph query languages like Gremlin and SPARQL, making i
 LocalStack supports Neptune via the Pro/Team offering, allowing you to use the Neptune APIs in your local environment  to support both property graph and RDF graph models.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_neptune/), which provides information on the extent of Neptune's integration with LocalStack.
 
+ The following versions of Neptune engine are supported by LocalStack:
+
+| Engine Version | Tinkerpop Version |
+|-----------------|---------------------|
+| `1.1.0.0`       | `3.4.11`            |
+| `1.1.1.0`       | `3.5.2`             |
+| `1.2.0.0`       | `3.5.2`             |
+| `1.2.0.1`       | `3.5.2`             |
+| `1.2.0.2`       | `3.5.2`             |
+| `1.2.1.0`       | `3.6.2`             |
+
 ## Getting started
 
 This guide is designed for users new to Neptune and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script. 
