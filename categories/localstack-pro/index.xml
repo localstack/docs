@@ -543,7 +543,7 @@ Make sure to set a breakpoint in the Lambda handler code first, which can then l
 &lt;p>Please be aware that &lt;a href="https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html">remote debugging in PyCharm&lt;/a> is only available in the Professional version.&lt;/p>
 &lt;p>You do not need to change the &lt;code>LAMBDA_DOCKER_FLAGS&lt;/code> when debugging with PyCharm Professional.&lt;/p>
 &lt;h4 id="configuring-pycharm-for-remote-python-debugging">Configuring PyCharm for remote Python debugging&lt;/h4>
-&lt;p>You can &lt;a href="https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config">follow the steps in the offical docs&lt;/a>, which will come down to:&lt;/p>
+&lt;p>You can &lt;a href="https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config">follow the steps in the official docs&lt;/a>, which will come down to:&lt;/p>
 &lt;ul>
 &lt;li>Create a debug configuration with the IDE host name &lt;code>localhost&lt;/code> and the debug port &lt;code>19891&lt;/code>.&lt;/li>
 &lt;li>Add path mapping with your project files on the host and map it to the remote directory &lt;code>/var/task&lt;/code>.&lt;/li>
@@ -1244,7 +1244,7 @@ non-relational databases, also known as NoSQL databases.
 &lt;/div>
 &lt;p>DocumentDB currently uses the default configuration of the
 latest &lt;a href="https://hub.docker.com/_/mongo">MongoDB Docker image&lt;/a>.&lt;/p>
-&lt;p>When the &lt;code>MasterUsername&lt;/code> and &lt;code>MasterUserPassword&lt;/code> are set for the creation for the DocumentDB cluster or instance, the container will be started with the correspoding ENVs &lt;code>MONGO_INITDB_ROOT_USERNAME&lt;/code> respectively &lt;code>MONGO_INITDB_ROOT_PASSWORD&lt;/code>.&lt;/p>
+&lt;p>When the &lt;code>MasterUsername&lt;/code> and &lt;code>MasterUserPassword&lt;/code> are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs &lt;code>MONGO_INITDB_ROOT_USERNAME&lt;/code> respectively &lt;code>MONGO_INITDB_ROOT_PASSWORD&lt;/code>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not
@@ -1578,7 +1578,7 @@ Run the following command to create the key pair and pipe the output to a file n
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --output text | tee key.pem&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can assign necessary permissions to the key pair file using the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>chmod 400 key.pem&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Alternatively, we can import an existing keypair, for example if you have an SSH public key in your home directory under &lt;code>~/.ssh/id_rsa.pub&lt;/code>:
+&lt;p>Alternatively, we can import an existing key pair, for example if you have an SSH public key in your home directory under &lt;code>~/.ssh/id_rsa.pub&lt;/code>:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
 &lt;h3 id="add-rules-to-your-security-group">Add rules to your security group&lt;/h3>
@@ -1648,7 +1648,7 @@ Any execution of this data is recorded in the &lt;code>/var/log/cloud-init-outpu
 &lt;/div>
 &lt;h3 id="connecting-via-ssh">Connecting via SSH&lt;/h3>
 &lt;p>You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.&lt;/p>
-&lt;p>This section assumes that you have created or imported an SSH keypair named &lt;code>my-key&lt;/code> (see &lt;a href="#create-a-key-pair">instructions above&lt;/a>).
+&lt;p>This section assumes that you have created or imported an SSH key pair named &lt;code>my-key&lt;/code> (see &lt;a href="#create-a-key-pair">instructions above&lt;/a>).
 When running the EC2 instance, make sure to pass the &lt;code>--key-name&lt;/code> parameter to the command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --key-name my-key ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Once the instance is up and running, we can use the &lt;code>ssh&lt;/code> command to set up an SSH connection.

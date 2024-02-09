@@ -7468,7 +7468,7 @@ non-relational databases, also known as NoSQL databases.
 &lt;/div>
 &lt;p>DocumentDB currently uses the default configuration of the
 latest &lt;a href="https://hub.docker.com/_/mongo">MongoDB Docker image&lt;/a>.&lt;/p>
-&lt;p>When the &lt;code>MasterUsername&lt;/code> and &lt;code>MasterUserPassword&lt;/code> are set for the creation for the DocumentDB cluster or instance, the container will be started with the correspoding ENVs &lt;code>MONGO_INITDB_ROOT_USERNAME&lt;/code> respectively &lt;code>MONGO_INITDB_ROOT_PASSWORD&lt;/code>.&lt;/p>
+&lt;p>When the &lt;code>MasterUsername&lt;/code> and &lt;code>MasterUserPassword&lt;/code> are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs &lt;code>MONGO_INITDB_ROOT_USERNAME&lt;/code> respectively &lt;code>MONGO_INITDB_ROOT_PASSWORD&lt;/code>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not
@@ -8021,7 +8021,7 @@ Run the following command to create the key pair and pipe the output to a file n
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --output text | tee key.pem&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can assign necessary permissions to the key pair file using the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>chmod 400 key.pem&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Alternatively, we can import an existing keypair, for example if you have an SSH public key in your home directory under &lt;code>~/.ssh/id_rsa.pub&lt;/code>:
+&lt;p>Alternatively, we can import an existing key pair, for example if you have an SSH public key in your home directory under &lt;code>~/.ssh/id_rsa.pub&lt;/code>:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
 &lt;h3 id="add-rules-to-your-security-group">Add rules to your security group&lt;/h3>
@@ -8091,7 +8091,7 @@ Any execution of this data is recorded in the &lt;code>/var/log/cloud-init-outpu
 &lt;/div>
 &lt;h3 id="connecting-via-ssh">Connecting via SSH&lt;/h3>
 &lt;p>You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.&lt;/p>
-&lt;p>This section assumes that you have created or imported an SSH keypair named &lt;code>my-key&lt;/code> (see &lt;a href="#create-a-key-pair">instructions above&lt;/a>).
+&lt;p>This section assumes that you have created or imported an SSH key pair named &lt;code>my-key&lt;/code> (see &lt;a href="#create-a-key-pair">instructions above&lt;/a>).
 When running the EC2 instance, make sure to pass the &lt;code>--key-name&lt;/code> parameter to the command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --key-name my-key ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Once the instance is up and running, we can use the &lt;code>ssh&lt;/code> command to set up an SSH connection.
@@ -9908,7 +9908,7 @@ You can use the &lt;code>JobId&lt;/code> of the Job to download your archive wit
 Please not that currently, this operation is only mocked, and will create an empty file named &lt;code>my-archive.jpg&lt;/code>, not containing the contents of your archive.
 &lt;/div>
 &lt;/p>
-&lt;h3 id="retrieve-the-inventory-informations">Retrieve the inventory informations&lt;/h3>
+&lt;h3 id="retrieve-the-inventory-information">Retrieve the inventory information&lt;/h3>
 &lt;p>You can also initiate the retrieval of the inventory of a vault using the same &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-initiate-job-post.html">&lt;code>InitiateJob&lt;/code>&lt;/a> API.&lt;/p>
 &lt;p>Initiate a job of the specified type to get the details of the individual inventory items inside a Vault using the &lt;code>initiate-job&lt;/code> command:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier initiate-job --vault-name sample-vault --account-id - --job-parameters &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;inventory-retrieval&amp;#34;,&amp;#34;ArchiveId&amp;#34;:&amp;#34;d41d8cd98f00b204e9800998ecf8427e&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -9918,7 +9918,7 @@ Please not that currently, this operation is only mocked, and will create an emp
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;location&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;//vaults/sample-vault/jobs/P5972CSWFR803BHX48OD1A7JWNBFJUMYVWCMZWY55ZJPIJMG1XWFV9ISZPZH1X3LBF0UV3UG6ORETM0EHE5R86Z47B1F&amp;#34;&lt;/span>,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;jobId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;P5972CSWFR803BHX48OD1A7JWNBFJUMYVWCMZWY55ZJPIJMG1XWFV9ISZPZH1X3LBF0UV3UG6ORETM0EHE5R86Z47B1F&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the same fashion as the archive retrieval, you can now download the result of the inventory retrival job using &lt;code>GetJobOutput&lt;/code> using the &lt;code>JobId&lt;/code> from the result of the previous command:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the same fashion as the archive retrieval, you can now download the result of the inventory retrieval job using &lt;code>GetJobOutput&lt;/code> using the &lt;code>JobId&lt;/code> from the result of the previous command:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier get-job-output \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --vault-name sample-vault --account-id - --job-id P5972CSWFR803BHX48OD1A7JWNBFJUMYVWCMZWY55ZJPIJMG1XWFV9ISZPZH1X3LBF0UV3UG6ORETM0EHE5R86Z47B1F inventory.json&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
@@ -11258,7 +11258,7 @@ id="tabs-13-02" role="tabpanel" aria-labelled-by="tabs-13-02-tab">
 &lt;p>&lt;a href="https://docs.aws.amazon.com/cloudwatch/index.html">CloudWatch Logs&lt;/a> allows to store and retrieve logs. While some services automatically create and write logs (e.g. Lambda), logs can also be added manually.
 CloudWatch Logs is available in the Community version. However, some specific features are only available in Pro.&lt;/p>
 &lt;h2 id="subscription-filters">Subscription Filters&lt;/h2>
-&lt;p>Subscription filters can be used to forward logs to certain services, e.g. Kinesis, Lambda, and Kinesis Data Firehose. You can read upon details in the &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html">offical AWS docs&lt;/a>.&lt;/p>
+&lt;p>Subscription filters can be used to forward logs to certain services, e.g. Kinesis, Lambda, and Kinesis Data Firehose. You can read upon details in the &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html">official AWS docs&lt;/a>.&lt;/p>
 &lt;h3 id="subscription-filters-with-kinesis-example">Subscription Filters with Kinesis Example&lt;/h3>
 &lt;p>In the following we setup a little example on how to use subscription filters with kinesis.&lt;/p>
 &lt;p>First, we setup the required resources. Therefore, we create a kinesis stream, a log group and log stream. Then we can configure the subscription filter.
@@ -11321,7 +11321,7 @@ CloudWatch Logs is available in the Community version. However, some specific fe
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --start-time 1659621274 --end-time $end&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
 &lt;h3 id="filter-log-events">Filter Log Events&lt;/h3>
-&lt;p>Similary, you can use filter-pattern to filter logs, like here:
+&lt;p>Similarly, you can use filter-pattern to filter logs, like here:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p></description></item><item><title>User-Guide: Managed Blockchain (AMB)</title><link>/user-guide/aws/managed-blockchain/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/managed-blockchain/</guid><description>
 &lt;p>Managed Blockchain (AMB) is a managed service that enables the creation and management of blockchain networks, such as Hyperledger Fabric, Bitcoin, Polygon and Ethereum. Blockchain enables the development of applications in which multiple entities can conduct transactions and exchange data securely and transparently, eliminating the requirement for a central, trusted authority.&lt;/p>
