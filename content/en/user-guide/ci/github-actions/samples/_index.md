@@ -347,9 +347,21 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Python 3.9
+        id: setup-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          pip install awscli-local
 
       - name: Deploy Preview
         uses: LocalStack/setup-localstack/preview@main
@@ -364,11 +376,7 @@ jobs:
           preview-cmd: |
             # Add your custom deployment commands here. 
             # Below is an example for the Image resizer application.
-            bin/deploy.sh
-
-            pip install awscli-local[ver1]
-            apiId=$(awslocal apigatewayv2 get-apis| jq -r '.Items[0].ApiId')
-            echo "Open URL: $AWS_ENDPOINT_URL/restapis/$apiId/dev/_user_request_/"  
+            bin/deploy.sh  
 ```
 
 ### Attach preview URL
@@ -385,6 +393,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - name: Finalize PR comment
         uses: LocalStack/setup-localstack/finish@main
