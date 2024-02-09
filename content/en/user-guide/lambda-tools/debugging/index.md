@@ -125,7 +125,7 @@ You do not need to change the `LAMBDA_DOCKER_FLAGS` when debugging with PyCharm 
 
 #### Configuring PyCharm for remote Python debugging
 
-You can [follow the steps in the offical docs](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config), which will come down to:
+You can [follow the steps in the official docs](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config), which will come down to:
 
 * Create a debug configuration with the IDE host name `localhost` and the debug port `19891`. 
 * Add path mapping with your project files on the host and map it to the remote directory `/var/task`.

@@ -21,7 +21,7 @@ non-relational databases, also known as NoSQL databases.
 DocumentDB currently uses the default configuration of the
 latest [MongoDB Docker image](https://hub.docker.com/_/mongo). 
 
-When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the correspoding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`. 
+When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`. 
 
 
 {{< alert title="Note" >}}

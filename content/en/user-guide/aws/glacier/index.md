@@ -135,7 +135,7 @@ $ awslocal glacier get-job-output --vault-name sample-vault --account-id - --job
 Please not that currently, this operation is only mocked, and will create an empty file named `my-archive.jpg`, not containing the contents of your archive. 
 {{< /alert >}}
 
-### Retrieve the inventory informations
+### Retrieve the inventory information
 
 You can also initiate the retrieval of the inventory of a vault using the same [`InitiateJob`](https://docs.aws.amazon.com/amazonglacier/latest/dev/api-initiate-job-post.html) API.
 
@@ -153,7 +153,7 @@ On successful execution of the command, you will see the following output:
 }
 ```
 
-In the same fashion as the archive retrieval, you can now download the result of the inventory retrival job using `GetJobOutput` using the `JobId` from the result of the previous command:
+In the same fashion as the archive retrieval, you can now download the result of the inventory retrieval job using `GetJobOutput` using the `JobId` from the result of the previous command:
 {{< command >}}
 $ awslocal glacier get-job-output \
    --vault-name sample-vault --account-id - --job-id P5972CSWFR803BHX48OD1A7JWNBFJUMYVWCMZWY55ZJPIJMG1XWFV9ISZPZH1X3LBF0UV3UG6ORETM0EHE5R86Z47B1F inventory.json

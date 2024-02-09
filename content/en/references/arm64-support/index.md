@@ -67,7 +67,7 @@ you might need to configure cross-platform emulation on your system.
 You can do so by installing the `bin_fmt` emulator with the following command:
 
 {{< alert title="Warning" color="warning" >}}
-The following command installs additionals emulators on your host system.
+The following command installs additional emulators on your host system.
 {{< /alert >}}
 
 {{< command >}}
