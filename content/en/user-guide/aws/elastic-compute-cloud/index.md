@@ -45,7 +45,7 @@ You can assign necessary permissions to the key pair file using the following co
 $ chmod 400 key.pem
 {{< /command >}}
 
-Alternatively, we can import an existing keypair, for example if you have an SSH public key in your home directory under `~/.ssh/id_rsa.pub`:
+Alternatively, we can import an existing key pair, for example if you have an SSH public key in your home directory under `~/.ssh/id_rsa.pub`:
 {{< command >}}
 $ awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub
 {{< /command >}}
@@ -158,7 +158,7 @@ Any execution of this data is recorded in the `/var/log/cloud-init-output.log` f
 
 You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.
 
-This section assumes that you have created or imported an SSH keypair named `my-key` (see [instructions above](#create-a-key-pair)).
+This section assumes that you have created or imported an SSH key pair named `my-key` (see [instructions above](#create-a-key-pair)).
 When running the EC2 instance, make sure to pass the `--key-name` parameter to the command:
 
 {{< command >}}

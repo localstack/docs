@@ -159,9 +159,9 @@ The LocalStack Web Application provides a Route53 for creating hosted zones and 
 
 The Resource Browser allows you to perform the following actions:
 
-- **Create Hosted Zone**: Create a hosted zone for a domain name by clicking on the **Create Hosted Zone** button. This will open a modal where you can enter the name, VPC, and other paramteres and click on the **Submit** button to create the hosted zone.
+- **Create Hosted Zone**: Create a hosted zone for a domain name by clicking on the **Create Hosted Zone** button. This will open a modal where you can enter the name, VPC, and other parameters and click on the **Submit** button to create the hosted zone.
 - **View Hosted Zone**: View the details of a hosted zone by clicking on the specific hosted zone name. This will open a modal where you can view the hosted zone details.
-- **Create Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking **Create Record** to create a record for the hosted zone. This will open a modal where you can enter the name, type, and other paramteres and click on the **Submit** button to create the record.
+- **Create Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking **Create Record** to create a record for the hosted zone. This will open a modal where you can enter the name, type, and other parameters and click on the **Submit** button to create the record.
 - **Edit Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking **Edit** on the specific record to edit the record. This will open a modal where you can edit the record details and click on the **Submit** button to save the changes.s
 - **View Records**: Click on the **Records** button on the individual hosted zone page, followed by clicking on the specific record to view the record details. This will open a modal where you can view the record details.
 - **Delete Hosted Zone**: Select the hosted zones you want to delete by clicking on the checkbox next to the hosted zone name, followed by clicking on the **Actions** button and then clicking on **Remove Selected**.

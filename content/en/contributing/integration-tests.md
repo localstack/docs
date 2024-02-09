@@ -167,6 +167,6 @@ Once you're confident your test is reliably working against AWS you can add the 
 
 Once you verified that your test is running against AWS, you can record snapshots for the test run. A snapshot records the response from AWS and can be later on used to compare the response of LocalStack. 
 
-Snapshot tests helps to increase the parity with AWS and to raise the confidence in the service implementations. Therefore, snapshot tests are prefered over normal integrations tests. 
+Snapshot tests helps to increase the parity with AWS and to raise the confidence in the service implementations. Therefore, snapshot tests are preferred over normal integrations tests. 
 
 Please check our subsequent guide on [Parity Testing]({{< ref "parity-testing" >}}) for a detailed explanation on how to write AWS validated snapshot tests.

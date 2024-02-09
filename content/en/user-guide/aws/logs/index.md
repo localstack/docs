@@ -11,7 +11,7 @@ aliases:
 CloudWatch Logs is available in the Community version. However, some specific features are only available in Pro.
 
 ## Subscription Filters
-Subscription filters can be used to forward logs to certain services, e.g. Kinesis, Lambda, and Kinesis Data Firehose. You can read upon details in the [offical AWS docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html).
+Subscription filters can be used to forward logs to certain services, e.g. Kinesis, Lambda, and Kinesis Data Firehose. You can read upon details in the [official AWS docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html).
 
 ### Subscription Filters with Kinesis Example
 In the following we setup a little example on how to use subscription filters with kinesis.
@@ -91,7 +91,7 @@ awslocal cloudwatch get-metric-statistics --namespace MyNamespace \
 {{< / command >}}
 
 ### Filter Log Events
-Similary, you can use filter-pattern to filter logs, like here:
+Similarly, you can use filter-pattern to filter logs, like here:
 {{< command >}}
 $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern "{$.foo = \"bar\"}"
 {{< / command >}}

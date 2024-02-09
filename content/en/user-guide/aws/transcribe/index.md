@@ -127,7 +127,7 @@ The following input media formats are supported:
 
 ### Supported Languages
 
-The following langauges and dialects are supported:
+The following languages and dialects are supported:
 
 | Language         | Language Code |
 | ---------------- | ------------- |
