@@ -1,23 +1,12 @@
 ---
-title: "Setup GitHub Action workflow that starts up LocalStack and deploys the infrastructure"
-linkTitle: "Setup GitHub Action workflow that starts up LocalStack and deploys the infrastructure"
+title: "Security Testing with IAM Policy Stream"
+linkTitle: "Security Testing with IAM Policy Stream"
 weight: 6
 description: >
-  This video explores one of our many Developer Hub sample applications, a note-taking application. We'll take you
-  through the full process, from checking out the GitHub project, to running the functioning app on LocalStack. 
-length: 03:56
-leadimage: full-demo.png
-videoUrl: https://www.youtube.com/embed/cQxg3Dnteyc
+  In this video let’s discuss IAM policy Stream. So when we build an application, we usually require access to aws resrouces such as dynamodb, rds, etc. to provide access to these we create iam roles and attach permission to it in form of policies. Figuring out these policies can be cumbersome. IAM policy stream eases out this job for you. These streams can help you find the appropriate permissions for your cloud applications
+length: 02:56
+leadimage: iam-policy-stream.png
+videoUrl: https://www.youtube.com/embed/TOBLG2Z6xAM?si=Lk6P7j7VpMQoob0F
 type: lessons
-url: "/academy/localstack-101/full-project-demo/"
+url: "/academy/localstack-deployment/iam-policy-stream/"
 ---
-
-Discover the ins and outs of one of our Developer Hub's practical sample applications—a note-taking platform. 
-This video tutorial offers a comprehensive walk-through, beginning with the checkout of the GitHub project and
-culminating in deploying the operational application on LocalStack. Covering the essentials, we'll guide you
-through dependency installation, backend and frontend build, and a detailed exploration of the application's service
-diagram to unveil the integral components at play.
-
-Further exploring:
-
-- [LocalStack Developer Hub Applications](https://docs.localstack.cloud/applications)

@@ -3,9 +3,8 @@ title: "Development & Deployment with LocalStack"
 linkTitle: "Development & Deployment with LocalStack"
 weight: 6
 description: >
-  This LocalStack course will walk you through everything you need to know to get started using LocalStack
-  and on your way to becoming a more efficient and productive Cloud developer. Have fun exploring!
+  This LocalStack course will walk you through the different topics you need to know while developing and deploying your cloud application with LocalStack. In the course you get to know about Localstack integrations, CI workflow, deployment through terraform and cloudformation, IAM policy stream and LocalStack Cloudpod feature. Have fun exploring!
 type: academy
-thumbnail: localstack101.png
+thumbnail: course-thumbnail.png
 layout: single
 ---
