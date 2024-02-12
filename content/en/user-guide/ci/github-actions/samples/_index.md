@@ -64,17 +64,14 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Start LocalStack
+        uses: LocalStack/setup-localstack@main
+        with:
+          image-tag: 'latest'
+          use-pro: 'true'
+          configuration: LS_LOG=trace
+          install-awslocal: 'true'
         env:
           LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
-        run: |
-          pip install localstack awscli-local[ver1]
-          docker pull localstack/localstack-pro
-          # Start LocalStack in the background
-          LS_LOG=trace localstack start -d
-          # Wait 30 seconds for the LocalStack container to become ready before timing out
-          echo "Waiting for LocalStack startup..."
-          localstack wait -t 30
-          echo "Startup complete"
 
       - name: Deploy infrastructure
         run: |
@@ -164,17 +161,13 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Start LocalStack
+        uses: LocalStack/setup-localstack@main
+        with:
+          image-tag: ${{ inputs.release-tag || 'latest'}}
+          use-pro: 'true'
+          install-awslocal: 'true'
         env:
           LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
-        run: |
-          pip install localstack awscli-local[ver1]
-          docker pull localstack/localstack-pro:${{ inputs.release-tag || 'latest'}}
-          # Start LocalStack in the background
-          localstack start -d
-          # Wait 30 seconds for the LocalStack container to become ready before timing out
-          echo "Waiting for LocalStack startup..."
-          localstack wait -t 30
-          echo "Startup complete"
 
       - name: Deploy infrastructure
         run: |
@@ -274,19 +267,15 @@ jobs:
           python-version: '3.9'
 
       - name: Start LocalStack
+        uses: LocalStack/setup-localstack@main
+        with:
+          image-tag: ${{ matrix.tag }}
+          use-pro: 'true'
+          install-awslocal: 'true'
         env:
-          DEBUG: 1 
+          DEBUG: 1
           POD_LOAD_CLI_TIMEOUT: 300
           LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
-        run: |
-          pip install localstack awscli-local[ver1]
-          docker pull localstack/localstack-pro:${{ matrix.tag }}
-          # Start LocalStack in the background
-          localstack start -d
-          # Wait 30 seconds for the LocalStack container to become ready before timing out
-          echo "Waiting for LocalStack startup..."
-          localstack wait -t 30
-          echo "Startup complete"
 
       - name: Inject Pod
         env:
