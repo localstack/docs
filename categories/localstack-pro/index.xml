@@ -1743,8 +1743,8 @@ Keep in mind that these modifications apply to all instances launched within the
 Network access to EC2 instance is not possible on macOS.
 This is because Docker Desktop on macOS does not expose the bridge network to the host system.
 &lt;/div>
-&lt;p>Network addresses for Dockerized instances are allocated by the Docker daemon.
-These addresses are printed in the logs while the instance is being initialized.&lt;/p>
+&lt;p>Network addresses for Dockerized instances are allocated by the Docker daemon and can be obtained from the &lt;code>PublicIpAddress&lt;/code> attribute.
+These addresses are also printed in the logs while the instance is being initialized.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2022-03-21T14:46:49.540 INFO Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When instances are launched, LocalStack attempts to start SSH server &lt;code>/usr/sbin/sshd&lt;/code> in the Docker base image.
 If not found, it installs and starts the &lt;a href="https://github.com/mkj/dropbear">Dropbear&lt;/a> SSH server.&lt;/p>
