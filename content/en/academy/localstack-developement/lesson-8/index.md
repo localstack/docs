@@ -11,14 +11,14 @@ type: lessons
 url: "/academy/localstack-deployment/cloud-pods"
 ---
 
+By default, LocalStack operates as an ephemeral environment, meaning that once you terminate your LocalStack instance, all state will be discarded. However, with Cloud Pods, you can save LocalStack instances. Cloud pods are persistent state snapshots of your LocalStack instance that can easily be stored, versioned, shared, and restored. Cloud Pods can be used for various purposes, such as:
 
-In this video, we will see how LocalStack can be used with infrastructure-as-code (IaC) and continuous integration (CI) tools to manage and automate AWS resources more efficiently. Manually deploying resources can be error-prone and time-consuming, thus we will be using one such LocalStack integration as a solution. 
+- Save and manage snapshots of active LocalStack instances.
+- Share state snapshots with your team to debug collectively.
+- Automate your testing pipelines by pre-seeding CI environments.
+- Create reproducible development and testing environments locally.
 
-- Using Infrastructure as Code tools such as terraform or pulumi, helps in managing configuration with added benefits such as version control, ease of editing, and reproducibility.
-- LocalStack supports various integrations like Terraform and Pulumi, easing the automation of AWS resource deployment and management.
-- Further we will demonstrate how LocalStack works seamlessly with CI platform, to incorporate local cloud emulation in CI pipelines. We can use localstack in these pipelines to run tests before pushing to production.
-
-Towards the end we see a demo of how deploying PostgreSQL Aurora cluster on LocalStack using Terraform saves significant time and resources when deploying to using AWS directly. We've also mentioned some examples that you can refer to use localstack with Terraform and Pulumi.
+In this video we will be using quickstart guide, which you can access at [app.localstack.cloud/quickstart](https://app.localstack.cloud/quickstart). We will load cloudpods shared by our team member in our localstack instance. We will see how this helps us develop and deploy cloud applications locally.
 
 Further reading:
 
