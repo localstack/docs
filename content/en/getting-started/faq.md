@@ -44,6 +44,34 @@ You can also specify a particular digest to make sure you are using the correct 
 You can also use the our diagnose endpoint (`http://localhost:4566/_localstack/diagnose`) to get the specific image hashes and compare them with the current (latest) images on [Docker Hub](https://hub.docker.com/r/localstack/).
 The diagnose endpoint is only available if you run LocalStack with `DEBUG=1`.
 
+### What do the tags of the LocalStack Docker images mean?
+
+We do push a set of different image tags for the LocalStack Docker images.
+When using LocalStack, you can decide which tag you want to use.
+These tags have different semantics and will be updated on different occasions:
+- `latest` (default)
+  - This is our default tag.
+    It refers to the latest commit which has been fully tested using our extensive integration test suite.
+  - This also entails changes that are part of major releases, which means that this tag can contain breaking changes.
+  - This tag should be used if you want to stay up-to-date with the latest changes.
+- `stable`
+  - This tag refers to the latest tagged release.
+    It will be updated with every release of LocalStack.
+  - This also entails major releases, which means that this tag can contain breaking changes.
+  - This tag should be used if you want to stay up-to-date with releases, but don't necessarily need the latest and greatest changes right away.
+- `<major>` (e.g. `3`)
+  - These tags can be used to refer to the latest release of a specific major release.
+    It will be updated with every minor and patch release within this major release.
+  - This tag should be used if you want to avoid any potential breaking changes.
+- `<major>.<minor>` (e.g. `3.0`)
+  - These tags can be used to refer to the latest release of a specific minor release.
+    It will be updated with every patch release within this minor release.
+  - This tag can be used if you want to avoid any bigger changes, like new features, but still want to update to the latest bugfix release.
+- `<major>.<minor>.<patch>` (e.g. `3.0.2`)
+  - These tags can be used if you want to use a very specific release.
+    It will not be updated.
+  - This tag can be used if you really want to avoid any changes to the image (not even minimal bug fixes).
+
 ### How can I access LocalStack from an alternative computer?
 
 You can access LocalStack from an alternative computer, by exposing port `4566` to the public network interface (`0.0.0.0` instead of `127.0.0.1`) in your `docker-compose.yml` configuration.
