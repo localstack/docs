@@ -255,8 +255,8 @@ Network access to EC2 instance is not possible on macOS.
 This is because Docker Desktop on macOS does not expose the bridge network to the host system.
 {{< /alert >}}
 
-Network addresses for Dockerized instances are allocated by the Docker daemon.
-These addresses are printed in the logs while the instance is being initialized.
+Network addresses for Dockerized instances are allocated by the Docker daemon and can be obtained from the `PublicIpAddress` attribute.
+These addresses are also printed in the logs while the instance is being initialized.
 
 ```bash
 2022-03-21T14:46:49.540  INFO  Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705
