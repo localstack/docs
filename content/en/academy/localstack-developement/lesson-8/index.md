@@ -22,8 +22,8 @@ Towards the end we see a demo of how deploying PostgreSQL Aurora cluster on Loca
 
 Further reading:
 
-- [LocalStack Integrations](https://docs.localstack.cloud/user-guide/integrations/)
-- [LocalStack Pulumi Examples](https://github.com/localstack-samples/localstack-pulumi-samples)
-- [LocalStack Terraform Examples](https://github.com/localstack-samples/localstack-terraform-samples)
-- [LocalStack Continuous Integration](https://docs.localstack.cloud/user-guide/ci/)
-- [LocalStack Screencasts](https://www.youtube.com/watch?v=JyQzr-i2E_k&list=PLTew28KOwGxMcBhN5_ds9ghlR-8QXEIJb)
+- [State Management](https://docs.localstack.cloud/user-guide/state-management/)
+- [LocalStack Cloud Pods Docs](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/)
+- [Persistence](https://docs.localstack.cloud/user-guide/state-management/persistence/)
+- [LocalStack Cloud Pods CLI](https://docs.localstack.cloud/user-guide/state-management/pods-cli/)
+- [Cloud Pods Launchpad ](https://docs.localstack.cloud/user-guide/state-management/launchpad/)

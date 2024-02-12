@@ -11,18 +11,16 @@ type: lessons
 url: "/academy/localstack-deployment/github-action-ls"
 ---
 
-In this video, we will see how LocalStack can be used with infrastructure-as-code (IaC) and continuous integration (CI) tools to manage and automate AWS resources more efficiently. Manually deploying resources can be error-prone and time-consuming, thus we will be using one such LocalStack integration as a solution. 
+LocalStack enables organizations to automate their application testing and integration process through continuous integration (CI).You can easily integrate LocalStack with your existing CI platform. LocalStack provide native plugins for CircleCI and a generic driver for any other CI platform you might use. This enables you to incorporate LocalStack’s local AWS cloud emulation in your CI pipelines, use advanced features like Cloud Pods and CI analytics, and run your test & integration suite before pushing to production.
 
-- Using Infrastructure as Code tools such as terraform or pulumi, helps in managing configuration with added benefits such as version control, ease of editing, and reproducibility.
-- LocalStack supports various integrations like Terraform and Pulumi, easing the automation of AWS resource deployment and management.
-- Further we will demonstrate how LocalStack works seamlessly with CI platform, to incorporate local cloud emulation in CI pipelines. We can use localstack in these pipelines to run tests before pushing to production.
+In this video, we will use localstack CI Integration - Github action, it  makes it easy to automate all your software workflows. The objective of this video is to use Localstack Integration Github action to deploy infrastructure of our demo application on localstack and run a diagnostic test to verify the deployment. Thus ensuring that the code to be merged in the main repo would work on the actual AWS infra that will be deployed. 
 
-Towards the end we see a demo of how deploying PostgreSQL Aurora cluster on LocalStack using Terraform saves significant time and resources when deploying to using AWS directly. We've also mentioned some examples that you can refer to use localstack with Terraform and Pulumi.
+- We will go through the `main.yml` in `.github` folder. This file runs the github action that deploys localstack on github runner, installs `awslocal`, `tflocal` and deploys the infrastructure resources there. 
+- Then we use `awslocal` to verify the deployed resources and finally run a diagnostic test on localstack to confirm everything’s working fine.
 
 Further reading:
 
-- [LocalStack Integrations](https://docs.localstack.cloud/user-guide/integrations/)
-- [LocalStack Pulumi Examples](https://github.com/localstack-samples/localstack-pulumi-samples)
-- [LocalStack Terraform Examples](https://github.com/localstack-samples/localstack-terraform-samples)
+- [LocalStack GitHub Action](https://docs.localstack.cloud/user-guide/ci/github-actions/)
+- [LocalStack CI Analytics](https://docs.localstack.cloud/user-guide/ci/ci-analytics/)
+- [CI Keys](https://docs.localstack.cloud/user-guide/ci/ci-keys/)
 - [LocalStack Continuous Integration](https://docs.localstack.cloud/user-guide/ci/)
-- [LocalStack Screencasts](https://www.youtube.com/watch?v=JyQzr-i2E_k&list=PLTew28KOwGxMcBhN5_ds9ghlR-8QXEIJb)
