@@ -172,6 +172,24 @@ The Resource Browser allows you to perform the following actions:
 - **View State Machines**: View a list of all state machines you have created locally.
 - **View Executions and Flow Chart**: View a list of all executions for a given state machine and the flow chart for each execution. You can also check the Execution Status, Timestamp, and Type for each execution.
 
+## Supported services and operations
+
+Step Functions integrates with AWS services, allowing you to invoke API actions for each service within your workflow. LocalStack's Step Functions emulation supports the following AWS services:
+
+-   Lambda
+-   SQS
+-   StepFunctions
+-   DynamoDB
+-   API Gateway
+-   SNS
+-   Events
+
+The supported operations include:
+
+-   `waitForTaskToken`
+-   `sync`
+-   `sync2`
+
 ## Examples
 
 The following code snippets and sample applications provide practical examples of how to use Step Functions in LocalStack for various use cases:
