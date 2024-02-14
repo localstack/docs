@@ -176,19 +176,16 @@ The Resource Browser allows you to perform the following actions:
 
 Step Functions integrates with AWS services, allowing you to invoke API actions for each service within your workflow. LocalStack's Step Functions emulation supports the following AWS services:
 
--   Lambda
--   SQS
--   StepFunctions
--   DynamoDB
--   API Gateway
--   SNS
--   Events
-
-The supported operations include:
-
--   `waitForTaskToken`
--   `sync`
--   `sync2`
+| Supported service integrations | Service                 | Request Response | Run a Job (.sync) | Run a Job (.sync2) | Wait for Callback (.waitForTaskToken) |
+|--------------------------------|-------------------------|:---:             |:---:              |:---:               |:---:                                  |
+| Optimized integrations         | Lambda                  | &#10003;         |                   |                    | &#10003;                              |
+|                                | DynamoDB                | &#10003;         |                   |                    |                                       |
+|                                | Amazon SNS              | &#10003;         |                   |                    | &#10003;                              |
+|                                | Amazon SQS              | &#10003;         |                   |                    | &#10003;                              |
+|                                | API Gateway             | &#10003;         |                   |                    | &#10003;                              |
+|                                | Amazon EventBridge      | &#10003;         |                   |                    | &#10003;                              |
+|                                | AWS Step Functions      | &#10003;         | &#10003;          | &#10003;           | &#10003;                              |
+| AWS SDK integrations           | All LocalStack services | &#10003;         |                   |                    | &#10003;                              |
 
 ## Examples
 
