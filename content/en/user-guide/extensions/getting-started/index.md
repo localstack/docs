@@ -1,7 +1,7 @@
 ---
 title: "Getting started"
 linkTitle: "Getting started"
-weight: 3
+weight: 1
 description: >
   Get started with LocalStack extensions by installing and using the official MailHog extension.
 ---
