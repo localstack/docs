@@ -57,6 +57,21 @@ In the given example, two domains are specified as `Aliases` for a distribution.
 --distribution-config {...'Aliases':'{'Quantity':2, 'Items': ['custom.domain.one', 'customDomain.two']}'...}
 {{< / command >}}
 
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for CloudFront, which allows you to view and manage your CloudFront distributions. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **CloudFront** under the **Analytics** section.
+
+<img src="cloudfront-resource-browser.png" alt="CloudFront Resource Browser" title="CloudFront Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Distribution**: Create a new CloudFront distribution by specifying the **Origins** and other settings.
+- **List Distributions**: View a list of all CloudFront distributions.
+- **Edit Distribution**: Modify the settings of an existing CloudFront distribution by opening the distribution's details page and clicking on the **Edit Distribution** button.
+- **Delete Distribution**: Delete an existing CloudFront distribution by selecting the distribution, click on **Actions**, and then click on **Remove Selected**.
+
 ## Examples
 
 The following code snippets and sample applications provide practical examples of how to use CloudFront in LocalStack for various use cases:
