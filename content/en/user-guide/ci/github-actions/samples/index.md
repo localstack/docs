@@ -1,7 +1,7 @@
 ---
 title: "Sample"
 linkTitle: "Sample"
-weight: 1
+weight: 5
 description: >
   Localstack Sample Project in Github Actions
 aliases:
@@ -17,7 +17,7 @@ Find code in repo [here](https://github.com/localstack-samples/sample-serverless
 
 ## Integration testing
 A build matrix for Ubuntu and MacOS to run integration tests triggered by various ways.
-In case of failure the pipeline dumps the logs of Localstack and preserve them as artifacts for further investigations.
+In case of failure the pipeline dumps the logs of Localstack and preserves them as artifacts for further investigations.
 
 ```
 name: Run Integration Tests
@@ -119,10 +119,11 @@ jobs:
 
 ## Cloud pod testing
 Cloud pods providing a quick and easy way to test newly written tests against existing infrastructure or deployed code.
+This can be stored locally, like we did below, or remotely in our Web Application.
 Find more information on them [here](/user-guide/state-management/cloud-pods/).
 
 ### Create pods
-Preserving infrastructure and deployed code for different versions.
+Preserves infrastructure and deployed code for different versions.
 
 ```
 on:
@@ -321,7 +322,9 @@ jobs:
 ```
 
 ## Preview application
-Application Preview allows you to generate an preview environment from GitHub Pull Request (PR) builds. For more information please read the related section [here](https://docs.localstack.cloud/user-guide/cloud-sandbox/application-previews/).
+Application Preview allows you to generate an preview environment from GitHub Pull Request (PR) builds.
+To communicate with the ephemeral instance use it's address as an AWS endpoint URL from your local environment.
+For more information please read the related section [here](https://docs.localstack.cloud/user-guide/cloud-sandbox/application-previews/).
 
 ### Create preview
 The pipeline creates a preview environment by deploying the application for every pull requests.
