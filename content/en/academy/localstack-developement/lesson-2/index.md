@@ -3,7 +3,7 @@ title: "Deploy a full fledged containerised application using LocalStack"
 linkTitle: "Deploy a full fledged containerised application using LocalStack"
 weight: 2
 description: >
-  In this video we will do a walkthrough of the web application we are going to deploy. This application mimics a real world application’s complexity to some extent. We will try adding data to the dynamodb through the web application and then query the same data from the Localstack resource browser. We will see how Localstack has improved the developer experience of cloud applications. Post this we will discuss the architecture diagram and explain how the whole application flow goes through each of these AWS services. Towards the end we will try to manually create a few resources for the project, such as DynamoDB table.
+  In this video, we'll guide you through deploying a real-world application that uses various AWS services, such as DynamoDB, ECS, API Gateway, and more. We'll attempt to input data into DynamoDB using the deployed application and then retrieve the same data using the Localstack's DynamoDB resource browser to demonstrate how Localstack enhances the developer experience for cloud applications.
 length: 08:03
 leadimage: deploy-app.png
 videoUrl: https://www.youtube.com/embed/qIB79b-iw2U?si=n7j8WgvZZPoV95KD
@@ -11,7 +11,7 @@ type: lessons
 url: "/academy/localstack-deployment/deploy-app-ls/"
 ---
 
-- In this lesson, we'll do a walkthrough of the application we are going to deploy. We will be deploying the [application](https://github.com/localstack/localstack-workshop/tree/main/02-serverless-api-ecs-apigateway) that mimics a real world application’s complexity to some extent. We are using the following AWS services and their features to build our infrastructure:
+In this lesson, we'll guide you through deploying a [continer-based application](https://github.com/localstack/localstack-workshop/tree/main/02-serverless-api-ecs-apigateway), which mimics the complexity of a real-world application to a certain degree. We are using the following AWS services and their features to build our infrastructure:
 
   - [Elastic Container Service](https://docs.localstack.cloud/user-guide/aws/elastic-container-service/) to create and deploy our containerized application.
   - [DynamoDB](https://docs.localstack.cloud/user-guide/aws/dynamodb/) as a key-value and document database to persist our data.
@@ -21,14 +21,6 @@ url: "/academy/localstack-deployment/deploy-app-ls/"
   - [S3](https://docs.localstack.cloud/user-guide/aws/s3/) to deploy the Amplify application to make the web application available to users.
   - [IAM](https://docs.localstack.cloud/user-guide/aws/iam/) to create policies to specify roles and permissions for various AWS services.
 
-- Further, we will explore the Resource Browser that allow you to view, manage, and deploy AWS resources locally while building & testing their cloud applications locally.
+Additionally, we'll explore the [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/), that enables you to perform basic management operations for the locally deployed AWS resources during the development and testing process, in a fashion similar to the AWS Management Console.
 
-- Towards the end we will manually create some resources using awslocal, a thin wrapper over awscli, into localstack.
-
-Further reading:
-
-- [An overview of LocalStack](https://localstack.cloud/)
-- [LocalStack Documentation](https://docs.localstack.cloud/overview)
-- [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/)
-- [LocalStack 101](https://docs.localstack.cloud/academy/localstack-101/)
-- [LocalStack AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+Finally, we'll manually generate certain resources using [`awslocal`](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal), a wrapper over the `aws` CLI which re-routes requests to LocalStack, to demonstrate how LocalStack can be used to create and manage resources locally.
