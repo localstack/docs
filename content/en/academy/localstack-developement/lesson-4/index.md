@@ -11,7 +11,7 @@ type: lessons
 url: "/academy/localstack-deployment/infra-terraform/"
 ---
 
-In this video, we'll utilize Terraform to deploy AWS resources locally through LocalStack. These resources include DynamoDB tables, API Gateway, and VPC. We'll use `tflocal`, a wrapper CLI that serves as a wrapper on the `terraform` CLI to execute Terraform commands against LocalStack.
+In this video, we'll utilize Terraform to deploy AWS resources locally through LocalStack. These resources include DynamoDB tables, API Gateway, and VPC. We'll use [`tflocal`](https://docs.localstack.cloud/user-guide/integrations/terraform/#tflocal-wrapper-script), a wrapper CLI that serves as a wrapper on the `terraform` CLI to execute Terraform commands against LocalStack.
 
 Here's a breakdown of the steps we'll take:
 
