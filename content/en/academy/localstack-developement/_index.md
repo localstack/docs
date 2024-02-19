@@ -3,7 +3,7 @@ title: "Development & Deployment with LocalStack"
 linkTitle: "Development & Deployment with LocalStack"
 weight: 8
 description: >
-  This LocalStack course will walk you through developing and deploying applications using LocalStack. We will be covering topics like Localstack integrations, deployment via Terraform and CloudFormation and CI workflow. You'll also learn about IAM Policy Stream for creating necessary IAM policies and LocalStack Cloud Pod for collaborative work. Dive into real-world application complexities and have fun exploring!
+  This course on LocalStack guides you in creating and deploying applications using LocalStack. We cover scenarios around deploying applications with various integrations, such as Terraform and CloudFormation, and integrating CI workflows for your AWS applications. In addition, you will learn about IAM Policy Stream for automatically generating required IAM policies and Cloud Pods for team collaboration & debugging. Explore real-world application complexities and enjoy the learning process!
 type: academy
 thumbnail: course-thumbnail.png
 layout: single
