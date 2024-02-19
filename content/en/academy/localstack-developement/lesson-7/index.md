@@ -3,7 +3,7 @@ title: "Setup GitHub Action workflow that starts up LocalStack and deploys the i
 linkTitle: "Setup GitHub Action workflow that starts up LocalStack and deploys the infrastructure"
 weight: 7
 description: >
-  In this video, we'll use LocalStack's GitHub Actions integration to deploy the infrastructure of our application on LocalStack. Furthermore, we'll execute a diagnostic test to validate the deployment, ensuring that our infrastructure is successfully deployed, allowing you to further execute cloud integration tests for your application & infrastructure.
+  In this video, we will employ LocalStack's GitHub Actions integration to deploy our application's infrastructure on LocalStack. Additionally, we will perform a diagnostic test to validate the deployment, ensuring that the infrastructure is set up correctly. This will enable you to conduct cloud integration tests for your application and infrastructure.
 length: 03:22
 leadimage: github-action.png
 videoUrl: https://www.youtube.com/embed/XNh8aSaT9v0?si=do2ZMVfb6F6Tmzby

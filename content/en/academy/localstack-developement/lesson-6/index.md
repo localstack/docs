@@ -3,7 +3,7 @@ title: "Security Testing with IAM Policy Stream"
 linkTitle: "Security Testing with IAM Policy Stream"
 weight: 6
 description: >
-  In this video, we'll talk about IAM policy Stream. When developing an application, we often need access to AWS resources like DynamoDB, RDS, etc. To grant this access, we create IAM roles and assign permissions through policies. Determining these policies can be challenging — IAM policy stream simplifies this task by identifying the necessary permissions for your cloud applications.
+  In this video, we'll talk about the IAM policy Stream. When developing an application, we often need access to AWS resources like DynamoDB, RDS, etc. To grant this access, we create IAM roles and assign permissions through policies. Determining these policies can be challenging — the IAM policy stream simplifies this task by identifying the necessary permissions for your cloud applications.
 length: 02:56
 leadimage: iam-policy-stream.png
 videoUrl: https://www.youtube.com/embed/TOBLG2Z6xAM?si=Lk6P7j7VpMQoob0F
@@ -11,11 +11,11 @@ type: lessons
 url: "/academy/localstack-deployment/iam-policy-stream/"
 ---
 
-In this video, we'll explore IAM Policy Stream that assists in assigning precise IAM permissions to a resource. This ensures accurate and secure access to the resource.
+In this video, we'll explore the IAM Policy Stream that assists in assigning precise IAM permissions to a resource. This ensures accurate and secure access to the resource.
 
 Here's a breakdown of the steps we'll take:
 
 1.  Enable IAM Policy Stream from the LocalStack Web Application.
 2.  Attempt an AWS API request from the CLI, triggering the generation of the necessary policy for the request.
 3.  Submit another request to generate the corresponding policy for the resource.
-4.  Explore the 'Summary Policy' section to view the consolidated policy for both requests.
+4.  Explore the **Summary Policy** section to view the consolidated policy for both requests.
