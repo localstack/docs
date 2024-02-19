@@ -21,6 +21,13 @@ In this lesson, we'll guide you through deploying a [continer-based application]
   - [S3](https://docs.localstack.cloud/user-guide/aws/s3/) to deploy the Amplify application to make the web application available to users.
   - [IAM](https://docs.localstack.cloud/user-guide/aws/iam/) to create policies to specify roles and permissions for various AWS services.
 
-Additionally, we'll explore the [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/), that enables you to perform basic management operations for the locally deployed AWS resources during the development and testing process, in a fashion similar to the AWS Management Console.
+Additionally, we'll explore the **Resource Browser**, that enables you to perform basic management operations for the locally deployed AWS resources during the development and testing process, in a fashion similar to the AWS Management Console.
 
-Finally, we'll manually generate certain resources using [`awslocal`](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal), a wrapper over the `aws` CLI which re-routes requests to LocalStack, to demonstrate how LocalStack can be used to create and manage resources locally.
+Finally, we'll manually generate certain resources using `awslocal`, a wrapper over the `aws` CLI which re-routes requests to LocalStack, to demonstrate how LocalStack can be used to create and manage resources locally.
+
+Further reading:
+
+- [Field Notes: Serverless Container-based APIs with Amazon ECS and Amazon API Gateway](https://aws.amazon.com/blogs/architecture/field-notes-serverless-container-based-apis-with-amazon-ecs-and-amazon-api-gateway/)
+- [What is `awslocal` CLI?](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+- [LocalStack Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/)
+

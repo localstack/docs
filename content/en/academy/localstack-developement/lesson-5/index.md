@@ -18,3 +18,9 @@ Here's a breakdown of the steps we'll take:
 - We'll guide you through the entire CloudFormation Stack, demonstrating various configuration options for creating the infrastructure for our application.
 - After deploying the CloudFormation Stack, we'll examine some outputted resources, including API URLs, ECS cluster names, VPC ID, and more.
 - Finally, we'll verify the deployment and confirm the creation of resources using the Resource Browser.
+
+Further reading:
+
+- [What is AWS CloudFormation?](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
+- [What features are supported in LocalStack CloudFormation?](https://docs.localstack.cloud/user-guide/aws/cloudformation/#feature-coverage)
+- [LocalStack CloudFormation Coverage](https://docs.localstack.cloud/references/coverage/coverage_cloudformation/)

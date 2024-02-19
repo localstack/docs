@@ -15,4 +15,10 @@ LocalStack integrates with various Infrastructure as Code tools like [Terraform]
 
 We discuss how LocalStack integrates with infrastructure-as-code (IaC) and continuous integration (CI) tools. Towards the end, we'll demonstrate a [Terraform deployment of a PostgreSQL Aurora cluster](https://github.com/terraform-aws-modules/terraform-aws-rds-aurora/tree/v8.1.1/examples/postgresql) on LocalStack, highlighting the time and resource savings compared to deploying directly on AWS. 
 
-Additionally, we'll provide examples of using LocalStack with [Terraform](https://github.com/localstack-samples/localstack-terraform-samples) and [Pulumi](https://github.com/localstack-samples/localstack-pulumi-samples) for reference.
+Additionally, we'll provide examples of using LocalStack with Terraform and Pulumi for reference.
+
+Further reading:
+
+- [Terraform samples](https://github.com/localstack-samples/localstack-terraform-samples)
+- [Pulumi samples](https://github.com/localstack-samples/localstack-pulumi-samples)
+- [Infrastructure as Code with LocalStack](https://youtu.be/bx2XpR9xLFA)
