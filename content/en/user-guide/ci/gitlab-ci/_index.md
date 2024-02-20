@@ -95,3 +95,13 @@ test:
 ```
 
 You can check the logs of the LocalStack container to see if the activation was successful. If the CI key activation fails, LocalStack container will exit with an error code.
+
+## Best practices and known issues
+
+- Localstack must be able to reach a docker socket to provision containers for certain services, ie Lambda, EKS, ECS...etc
+- the runner should be able to resolve the Localstack domain (by default _localhost.localstack.cloud_), see the sample pipelines for a possible solution
+- we do NOT recommend to setup Localstack as a service for **Pro+ customers**, because the API key/auth token as a security best practice should be stored as CI secrets, however we've found with the current version of Gitlab, at the time of writing v16.10, is not expanding CI/CD variables for service containers eventhough the documentation states it as an option
+- to be able to separate steps into their own jobs (something like deploy, test...etc) one must preserve Localstack's state, as Gitlab is not preserving job related containers/services during the pipelines
+This can be done by **Pro+ customers** by using cloud pods, state exports in combination with CI artifacts/cache or ephemeral instances (beta).
+**Free tier customers** must merge their steps into a single job as the above mentioned state preservation methods are not available for them.
+- to start up Localstack images with docker tools are necessary, in our examples we use the official Alpine based dind images, however for many users might be easier to build their own images for convenience
