@@ -22,7 +22,7 @@ Cloud pods providing a quick and easy way to break the pipeline into multiple st
 This can be stored locally, like we did below, or remotely in our Web Application.
 Find more information on them [here](/user-guide/state-management/cloud-pods/).
 
-In case of failure the pipeline dumps the logs of Localstack and preserves them as artifacts for further investigations.
+After each run the runner dumps all relevant logs into the console for debugging purposes.
 
 ```
 image: docker:20.10.16-dind
@@ -64,6 +64,11 @@ default:
     - localstack start -d
     - localstack wait -t 30
     - (test -f ./ls-state-pod.zip && localstack state import ./ls-state-pod.zip) || true
+  after_script:
+    - docker ps | tee docker_ps.log
+    - docker inspect localstack-main | tee docker_inspect.log
+    - curl ${AWS_ENDPOINT_URL}:4566/_localstack/diagnose | tee ls_diagnose.log
+    - localstack logs | tee ls_runlogs.log
   cache:
     paths:
       - $CI_PROJECT_DIR/.cache/pip
@@ -85,15 +90,4 @@ test:
     - python3 -m pip install -r requirements-dev.txt
   script:
     - python3 -m pytest tests
-  after_script:
-    - docker ps | tee docker_ps.log
-    - docker inspect localstack-main | tee docker_inspect.log
-    - curl ${AWS_ENDPOINT_URL}:4566/_localstack/diagnose | tee ls_diagnose.log
-    - localstack logs | tee ls_runlogs.log
-  artifacts:
-    when: on_failure
-    name: logs
-    paths:
-      - *.log
-    expire_in: 30 days
 ```
