@@ -151,7 +151,7 @@ For comprehensive instructions, navigate to our [Command-Line Interface (CLI) Gu
 
 ## Web Application
 
-The LocalStack Web Application enables you to export your infrastructure state to a Cloud Pod and import it into another LocalStack instance. 
+The LocalStack Web Application enables you to export your infrastructure state to a Cloud Pod and import it into another LocalStack instance.
 
 <img src="export-import-state-cloud-pod.png" alt="LocalStack Export/Import State Cloud Pod Mode" title="LocalStack Export/Import State Cloud Pod Mode" width="900" />
 
@@ -183,7 +183,7 @@ In addition to loading Cloud Pods through the Command-Line Interface (CLI) or th
 
 ### Environmental variables
 
-To automatically load a Cloud Pod at startup, utilize the `AUTO_LOAD_POD` [configuration variable](https://docs.localstack.cloud/references/configuration/). 
+To automatically load a Cloud Pod at startup, utilize the `AUTO_LOAD_POD` [configuration variable](https://docs.localstack.cloud/references/configuration/).
 
 `AUTO_LOAD_POD` can accept multiple Cloud Pod names separated by commas. To autoload multiple Cloud Pods, such as `foo-pod` and `bar-pod`, use: `AUTO_LOAD_POD=foo-pod,bar-pod`. The order of Cloud Pods in `AUTO_LOAD_POD` dictates their loading sequence. When autoloading multiple Cloud Pods, later pods might overwrite the state of earlier ones if they share the same service, account, and region.
 
@@ -277,7 +277,7 @@ Cloud Pods command-line interface (CLI) allows you to create, delete, and list r
 
 {{< command >}}
 $ localstack pod remote --help
-<disable-copy> 
+<disable-copy>
 Usage: localstack pod remote [OPTIONS] COMMAND [ARGS]...
 
   Manage cloud pod remotes
@@ -296,6 +296,10 @@ Commands:
 
 The S3 remote enables you to store Cloud Pod assets in an existing S3 bucket within an actual AWS account. The initial step is to export the necessary AWS credentials within the terminal session.
 
+{{< alert title="Note" >}}
+The Cloud Pods S3 remote is currently _only_ available when [installing the `localstack` CLI via `pip`](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), and not for the binary CLI distribution.
+{{< /alert >}}
+
 ```bash
 export AWS_ACCESS_KEY_ID=...
 export AWS_SECRET_ACCESS_KEY=...
@@ -303,7 +307,7 @@ export AWS_SECRET_ACCESS_KEY=...
 
 A possible option is to obtain credentials via [AWS SSO CLI](https://github.com/synfinatic/aws-sso-cli).
 
-Next, we establish a new remote specifically designed for an S3 bucket. By running the following command, we create a remote named `s3-storage-aws` responsible for storing Cloud Pod artifacts in an S3 bucket called `ls-pods-bucket-test`. 
+Next, we establish a new remote specifically designed for an S3 bucket. By running the following command, we create a remote named `s3-storage-aws` responsible for storing Cloud Pod artifacts in an S3 bucket called `ls-pods-bucket-test`.
 
 The `access_key_id` and `secret_access_key` placeholders ensure the correct transmission of AWS credentials to the container.
 
