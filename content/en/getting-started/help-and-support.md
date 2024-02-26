@@ -48,9 +48,9 @@ You can use GitHub Issue to:
 
 Make sure to follow the issue templates and provide as much information as possible. If you have discovered outdated documentation, please on our [documentation](https://github.com/localstack/docs).
 
-## Pro support
+## Dedicated support
 
-LocalStack Support Team provides comprehensive support for all the Pro users, including the Team and Enterprise plans.
+Dedicated customer support is available to all the LocalStack users with an active subscription.
 
 The support team is available to help you with:
 
@@ -59,7 +59,7 @@ The support team is available to help you with:
 - Providing guidance on how to use LocalStack
 - Providing guidance on how to integrate LocalStack with your application
 
-However, Pro support does not include:
+However, dedicated support does not include:
 
 - Support for AWS services
 - General troubleshooting of your application
@@ -67,14 +67,14 @@ However, Pro support does not include:
 
 If you have questions about billing, account issues, or other questions that are not technical, please contact us at [support@localstack.cloud](mailto:support@localstack.cloud) or through our [contact form](https://localstack.cloud/contact/).
 
-You can avail Pro support through the following channels:
+You can avail dedicated support through the following channels:
 
 - [LocalStack Slack Bot](https://localstack.cloud/slack)
 - [LocalStack Web Application](mailto:http://app.localstack.cloud)
 
 ### LocalStack Slack Bot
 
-LocalStack Slack Bot is available to all Pro users. To create a support ticket:
+LocalStack Slack Bot is available to all licensed users. To create a support ticket:
 
 - Search for the **LocalStack Pro Support** in our [Slack Community](https://localstack.cloud/slack).
 - Navigate to **Messages** and type your message to LocalStack Pro Support.
@@ -83,7 +83,7 @@ Sending a message to LocalStack Pro Support will create a support ticket, and ou
 
 ### LocalStack Web Application
 
-LocalStack Web Application is available to all Pro users. To create a support ticket:
+LocalStack Web Application is available to all licensed users. To create a support ticket:
 
 - Navigate to the [LocalStack Web Application](http://app.localstack.cloud).
 - Click on the chat icon in the bottom right corner of the page.
@@ -98,7 +98,7 @@ In many scenarios, we ask our customers to use Diagnosis endpoint to help us ret
 - Set the environment variable `LS_LOG=trace`
 - Start LocalStack
 - Run the affected task(s)
-- Call the diagnostic endpoint  `curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz`  (Endpoint URL depends on your configuration)
+- Call the diagnostic endpoint  `curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz` (Endpoint URL depends on your configuration)
 - Send the output file to our Slack chat
 
 Ensure that you avoid sending the diagnostic output to public channels or forums, as it may contain sensitive information.
