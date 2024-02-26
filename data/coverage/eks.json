@@ -174,11 +174,11 @@
       "DeleteFargateProfile": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -677,31 +677,7 @@
   ],
   "details": {
     "CreateCluster": {
-      "clientRequestToken, name, resourcesVpcConfig, roleArn, tags": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eks_fargate_cluster",
-            "test": "test_eks_fargate_cluster",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
-      "clientRequestToken, name, resourcesVpcConfig, roleArn, tags, version": {
+      "clientRequestToken, kubernetesNetworkConfig, name, resourcesVpcConfig, roleArn, tags, version": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
@@ -712,6 +688,34 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          }
+        ]
+      },
+      "clientRequestToken, name, resourcesVpcConfig, roleArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eks_fargate_cluster",
+            "test": "test_eks_fargate_cluster",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
+      "clientRequestToken, name, resourcesVpcConfig, roleArn, tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
+            "test": "test_create_app_in_k3s_cluster",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       }
@@ -794,22 +798,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          }
-        ]
-      }
-    },
-    "DeleteFargateProfile": {
-      "clusterName, fargateProfileName": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eks_fargate_cluster",
-            "test": "test_eks_fargate_cluster",
-            "response": "404",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       }
@@ -907,17 +895,17 @@
             "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eks_fargate_cluster",
             "test": "test_eks_fargate_cluster",
-            "response": "200",
-            "error": "",
+            "response": "404",
+            "error": "ResourceNotFoundException",
             "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       }
