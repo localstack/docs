@@ -231,7 +231,7 @@ This behaviour can be controlled using the `EC2_DOWNLOAD_DEFAULT_IMAGES` configu
 
 {{< alert title="Note" >}}
 LocalStack will no longer provide the Ubuntu 20.04 Docker AMI by default in the next major release. It can still be manually added.
-{{< /alert >}
+{{< /alert >}}
 
 All LocalStack-managed Docker AMIs bear the resource tag `ec2_vm_manager:docker`.
 These AMIs can be listed using:
