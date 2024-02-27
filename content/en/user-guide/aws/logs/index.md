@@ -93,7 +93,7 @@ awslocal cloudwatch get-metric-statistics --namespace MyNamespace \
 ### Filter Log Events
 Similarly, you can use filter-pattern to filter logs with different kinds of patterns as described by [AWS](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html).
 
-#### JSON Filter Patterns
+#### JSON Filter Pattern
 For purely JSON structured log messages, you can use JSON filter patterns to traverse the JSON object.
 Enclose your pattern in curly braces, like this: 
 {{< command >}}
@@ -101,16 +101,16 @@ $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern 
 {{< / command >}}
 This returns all events whose top level "foo" key has the "bar" value.
 
-#### Regular Experession Filter Patterns:
+#### Regular Expression Filter Pattern:
 You can use a simplified regex syntax for regular expression matching.
 Enclose your pattern in percentage signs like this:
 {{< command >}}
 $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern "\%[fF]oo\%"
 {{< / command >}}
 This returns all events containing "Foo" or "foo".
-For a complete set of the supported syntax, check [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html#regex-expressions)
+For a complete set of the supported syntax, check [the official AWS documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html#regex-expressions)
 
-#### Unstructued Filter Patterns:
+#### Unstructured Filter Pattern:
 If not specified otherwise in the pattern, we look for a match in the whole event message:
 {{< command >}}
 $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern "foo"
