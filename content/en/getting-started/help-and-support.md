@@ -46,7 +46,7 @@ You can use GitHub Issue to:
 - [Request new features](https://github.com/localstack/localstack/issues/new?assignees=&labels=type%3A+feature%2Cstatus%3A+triage+needed&template=feature-request.yml&title=feature+request%3A+%3Ctitle%3E)
 - [Report existing bugs](https://github.com/localstack/localstack/issues/new?assignees=&labels=type%3A+bug%2Cstatus%3A+triage+needed&template=bug-report.yml&title=bug%3A+%3Ctitle%3E)
 
-Make sure to follow the issue templates and provide as much information as possible. If you have discovered outdated documentation, please on our [documentation](https://github.com/localstack/docs).
+Make sure to follow the issue templates and provide as much information as possible. If you have encountered outdated documentation, please report it on our [documentation GitHub page](https://github.com/localstack/docs).
 
 ## Dedicated support
 
