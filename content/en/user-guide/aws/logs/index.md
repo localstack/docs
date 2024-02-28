@@ -101,7 +101,7 @@ $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern 
 {{< / command >}}
 This returns all events whose top level "foo" key has the "bar" value.
 
-#### Regular Expression Filter Pattern:
+#### Regular Expression Filter Pattern
 You can use a simplified regex syntax for regular expression matching.
 Enclose your pattern in percentage signs like this:
 {{< command >}}
@@ -110,7 +110,7 @@ $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern 
 This returns all events containing "Foo" or "foo".
 For a complete set of the supported syntax, check [the official AWS documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html#regex-expressions)
 
-#### Unstructured Filter Pattern:
+#### Unstructured Filter Pattern
 If not specified otherwise in the pattern, we look for a match in the whole event message:
 {{< command >}}
 $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern "foo"
