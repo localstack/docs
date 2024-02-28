@@ -155,6 +155,11 @@ You can also view the push commands to push an image to the repository by clicki
 
 ## Examples
 
+You can discover reference architectures that offer insights into how ECR can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="ecr">}}
+<br><br>
+
 The following code snippets and sample applications provide practical examples of how to use ECR in LocalStack for various use cases:
 
 - [Amazon RDS initialization using CDK, Lambda, ECR, and Secrets Manager](https://github.com/localstack/amazon-rds-init-cdk)

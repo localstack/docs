@@ -309,6 +309,10 @@ The Resource Browser allows you to perform the following actions:
 
 ## Examples
 
+You can discover reference architectures that offer insights into how Cognito can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="cgn">}}
+<br><br>
 The following code snippets and sample applications provide practical examples of how to use Cognito in LocalStack for various use cases:
 
 - [Running Cognito authentication and user pools locally](https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt)

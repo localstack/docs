@@ -243,7 +243,11 @@ However, the new provider still supports the following configuration options:
 
 ## Examples
 
-The following code snippets and sample applications provide practical examples of how to use Lambda in LocalStack for various use cases:
+You can discover reference architectures that offer insights into how Lambda can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="lmb">}}
+<br><br>
+The following code snippets provide practical examples of how to use Lambda in LocalStack for various use cases:
 
 - [Lambda Hot Reloading](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-hot-reloading) shows how to use hot reloading to update function code and layers without having to redeploy them.
 - [Lambda Code Mounting and Debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging) demonstrates how to debug Lambda functions locally using code mounting.

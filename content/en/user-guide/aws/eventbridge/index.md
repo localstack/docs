@@ -128,3 +128,9 @@ The Resource Browser allows you to perform the following actions:
 - **Create Event Rule**: You can create a new Event Rule by specifying **Name**, **Description**, **Event Pattern**, **Schedule Expressions**, **State**, **Role ARN**, and **Tags**.
 - **Trigger Event**: You can trigger an Event by specifying the **Entries** and **Endpoint Id**. While creating an Entry, you must specify **Source**, **Event Bus Name**, **Detail**, **Resources**, **Detail Type**, and **Trace Header**.
 - **Remove Selected**: You can remove the selected EventBridge Bus.
+
+## Examples
+
+You can discover reference architectures that offer insights into how EventBridge can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="ebr">}}

@@ -369,6 +369,10 @@ You can also use the Resource Browser to check out the **Authorizers**, **Models
 
 ## Examples
 
+You can discover reference architectures that offer insights into how API Gateway can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="agw">}}
+<br><br>
 The following code snippets and sample applications provide practical examples of how to use API Gateway in LocalStack for various use cases:
 
 - [API Gateway with Custom Domains over our LocalStack Pro samples](https://github.com/localstack/localstack-pro-samples/tree/master/apigw-custom-domain)

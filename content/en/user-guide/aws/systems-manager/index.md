@@ -125,3 +125,8 @@ The other limitations of LocalStack SSM are:
 -   Commands returning non-zero codes won't capture standard output or error streams, leaving them empty.
 -   Shell constructs such as job controls (`&&`, `||`), and redirection (`>`) are not supported.
 
+## Examples
+
+You can discover reference architectures that offer insights into how Systems Manager can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="ssm">}}
