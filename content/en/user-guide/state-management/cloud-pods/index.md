@@ -102,7 +102,7 @@ $ localstack pod list
 {{< / command >}}
 
 With the `save` command you can create multiple versions of a Cloud Pod.
-For instance, let us create a SQS queue and create second version for `s3-test`.
+For instance, let us create a SQS queue and second version of `s3-test`.
 
 {{< command >}}
 $ awslocal sqs create-queue --queue-name test-queue
@@ -150,7 +150,8 @@ $ awslocal s3 ls s3://test/
 </disable-copy>
 {{< / command >}}
 
-You can ask for a specific version to be loaded by appending a version number to the pod name after a colon.
+You can also load a specific version by appending a version number to the pod name after a colon.
+If not specified, the latest version will be loaded.
 {{< command >}}
 $ localstack pod load s3-test:1
 <disable-copy>
@@ -158,7 +159,7 @@ Cloud Pod s3-test:1 successfully loaded
 </disable-copy>
 {{< / command >}}
 
-After loading the Cloud Pod's content, we can use the `state inspect` command to observe the state in the running LocalStack instance.
+After loading the Cloud Pod's content, you can use the `state inspect` command to observe the state of the running LocalStack instance.
 
 {{< command >}}
 $ localstack state inspect --format json
