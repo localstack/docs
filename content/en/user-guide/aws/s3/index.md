@@ -132,7 +132,7 @@ However, if the endpoint is not prefixed by `s3.`, LocalStack will not be able t
 You can either change the endpoint to an S3-specific one, or configure your SDK to use **Path style** requests instead.
 Check out our [SDK documentation](https://docs.localstack.cloud/user-guide/integrations/sdks/) to learn how you can configure language SDKs to access LocalStack and S3.
 
-{{< alert title="S3 Force Path Style" >}}
+{{< alert title="Note" >}}
 While using [AWS language SDKs](https://aws.amazon.com/developer/tools/#SDKs), you would need to configure the `ForcePathStyle` parameter to `true` in the S3 client configuration to use **Path style** requests. If you want to use virtual host addressing of buckets, you can remove `ForcePathStyle` from the configuration.
 The `ForcePathStyle` parameter name can vary between SDK and languages, please check our [SDK documentation](https://docs.localstack.cloud/user-guide/integrations/sdks/)
 {{< /alert >}}

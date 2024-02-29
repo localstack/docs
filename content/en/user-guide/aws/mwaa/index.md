@@ -57,9 +57,9 @@ LocalStack will create the Airflow environment and print the Airflow UI URL and 
 
 LocalStack supports the following versions of Apache Airflow:
 
-- `1.10.12`
-- `2.0.2`
-- `2.2.2`
+- `1.10.12` (deprecated)
+- `2.0.2` (deprecated)
+- `2.2.2` (deprecated)
 - `2.4.3`
 - `2.5.1`
 - `2.6.3`
