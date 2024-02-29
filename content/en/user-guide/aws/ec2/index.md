@@ -10,7 +10,7 @@ aliases:
 
 ## Introduction
 
-EC2 (Elastic Compute Cloud) is a core service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources.
+Elastic Compute Cloud (EC2) is a core service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources.
 EC2 enables users to launch and manage virtual servers, commonly referred to as instances.
 Users can create a range computing environments tailored to specific needs by employing a wide array of configurations, enabling users to select the desired combination of computing power, memory, storage, and networking capabilities.
 

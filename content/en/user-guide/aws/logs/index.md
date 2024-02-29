@@ -1,6 +1,6 @@
 ---
 title: "CloudWatch Logs"
-linkTitle: "Logs"
+linkTitle: "CloudWatch Logs"
 description: Get started with AWS CloudWatch Logs on LocalStack
 categories: ["LocalStack Community"]
 aliases:

@@ -1,6 +1,6 @@
 ---
-title: "Elastic Load Balancing"
-linkTitle: "Elastic Load Balancing"
+title: "Elastic Load Balancing (ELB)"
+linkTitle: "Elastic Load Balancing (ELB)"
 description: Get started with Elastic Load Balancing (ELB) on LocalStack
 aliases:
 - /user-guide/aws/elastic-load-balancing/

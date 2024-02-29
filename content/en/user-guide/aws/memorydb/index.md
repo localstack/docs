@@ -1,6 +1,6 @@
 ---
 title: "MemoryDB for Redis"
-linkTitle: "MemoryDB"
+linkTitle: "MemoryDB for Redis"
 categories: ["LocalStack Pro"]
 description: >
   Get started with AWS MemoryDB on LocalStack

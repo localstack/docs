@@ -11,7 +11,7 @@ aliases:
 
 ## Introduction
 
-Amazon EMR (Elastic MapReduce) is a fully managed big data processing service that allows developers to effortlessly create, deploy, and manage big data applications. EMR supports various big data processing frameworks, including Hadoop MapReduce, Apache Spark, Apache Hive, and Apache Pig. Developers can leverage these frameworks and their rich ecosystem of tools and libraries to perform complex data transformations, machine learning tasks, and real-time data processing.
+Amazon Elastic MapReduce (EMR) is a fully managed big data processing service that allows developers to effortlessly create, deploy, and manage big data applications. EMR supports various big data processing frameworks, including Hadoop MapReduce, Apache Spark, Apache Hive, and Apache Pig. Developers can leverage these frameworks and their rich ecosystem of tools and libraries to perform complex data transformations, machine learning tasks, and real-time data processing.
 
 LocalStack Pro supports EMR and allows developers to run data analytics workloads locally. EMR utilizes various tools in the [Hadoop](https://hadoop.apache.org/) and [Spark](https://spark.apache.org) ecosystem, and your EMR instance is automatically configured to connect seamlessly to LocalStack's S3 API. LocalStack also supports EMR Serverless to create applications and job runs, to run your Spark/PySpark jobs locally.
 

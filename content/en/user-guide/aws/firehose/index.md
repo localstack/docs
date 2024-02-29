@@ -7,6 +7,10 @@ aliases:
 - /user-guide/aws/kinesis-firehose/
 ---
 
+{{< alert title="Note">}}
+Amazon recently renamed Kinesis Data Firehose to Data Firehose.
+{{< /alert >}}
+
 ## Introduction
 
 Kinesis Data Firehose is a service provided by AWS that allows you to extract, transform and load streaming data into various destinations, such as Amazon S3, Amazon Redshift, and Elasticsearch. With Kinesis Data Firehose, you can ingest and deliver real-time data from different sources as it automates data delivery, handles buffering and compression, and scales according to the data volume.
