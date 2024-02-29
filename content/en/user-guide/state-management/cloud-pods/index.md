@@ -101,12 +101,68 @@ $ localstack pod list
 </disable-copy>
 {{< / command >}}
 
-### Inspect the contents of a Cloud Pod
-
-You can inspect the contents of a Cloud Pod using the `inspect` command:
+With the `save` command you can create multiple versions of a Cloud Pod.
+For instance, let us create a SQS queue and second version of `s3-test`.
 
 {{< command >}}
-$ localstack pod inspect s3-test --format json
+$ awslocal sqs create-queue --queue-name test-queue
+
+$ localstack pod save s3-test
+<disable-copy>
+Cloud Pod `s3-test` successfully created ✅
+Version: 2
+Remote: platform
+Services: s3,sqs
+</disable-copy>
+{{< /command >}}
+
+We can now use the command `versions` to list all the created version for a Cloud Pod.
+
+{{< command >}}
+$ localstack pod versions s3-test
+<disable-copy>
+┏━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━┓
+┃ Version ┃ Creation Date       ┃ LocalStack Version      ┃ Services ┃ Description ┃
+┡━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━┩
+│ 1       │ 2024-01-04 11:03:00 │ 3.1.1.                  │ s3       │             │
+│ 2       │ 2024-02-28 14:01:45 │ 3.1.1.                  │ s3,sqs   │             │
+└─────────┴─────────────────────┴─────────────────────────┴──────────┴─────────────┘
+</disable-copy>
+{{< /command >}}
+
+### Pull your Pod state
+
+On a separate machine, start LocalStack while ensuring the auth token is properly configured. Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
+
+{{< command >}}
+$ localstack pod load s3-test
+<disable-copy>
+Cloud Pod s3-test successfully loaded
+</disable-copy>
+{{< / command >}}
+
+You can examine the S3 buckets within the Cloud Pod:
+
+{{< command >}}
+$ awslocal s3 ls s3://test/
+<disable-copy>
+2022-10-04 22:33:54         12 hello-world
+</disable-copy>
+{{< / command >}}
+
+You can also load a specific version by appending a version number to the pod name after a colon.
+If not specified, the latest version will be loaded.
+{{< command >}}
+$ localstack pod load s3-test:1
+<disable-copy>
+Cloud Pod s3-test:1 successfully loaded
+</disable-copy>
+{{< / command >}}
+
+After loading the Cloud Pod's content, you can use the `state inspect` command to observe the state of the running LocalStack instance.
+
+{{< command >}}
+$ localstack state inspect --format json
 <disable-copy>
 {
     "000000000000": {
@@ -127,27 +183,14 @@ $ localstack pod inspect s3-test --format json
 </disable-copy>
 {{< / command >}}
 
-### Pull your Pod state
-
- On a separate machine, start LocalStack while ensuring the auth token is properly configured. Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
-
-{{< command >}}
-$ localstack pod load s3-test
-<disable-copy>
-Cloud Pod s3-test successfully loaded
-</disable-copy>
-{{< / command >}}
-
-You can examine the S3 buckets within the Cloud Pod:
-
-{{< command >}}
-$ awslocal s3 ls s3://test/
-<disable-copy>
-2022-10-04 22:33:54         12 hello-world
-</disable-copy>
-{{< / command >}}
-
 For comprehensive instructions, navigate to our [Command-Line Interface (CLI) Guide]({{< ref "pods-cli" >}}). To access your Cloud Pods through the LocalStack Web Application, navigate to the [Cloud Pods browser](https://app.localstack.cloud/pods).
+
+{{< alert title="Note" >}}
+Permission on Cloud Pods are assigned at organization level.
+This means that every individual in the organization can view, load, and delete Cloud Pods created by other team members.
+Similarly, everyone can save a new version of a Cloud Pod on top of a Pod originally created by someone else.
+{{< /alert >}}
+
 
 ## Web Application
 
