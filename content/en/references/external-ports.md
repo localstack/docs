@@ -7,7 +7,7 @@ description: >
 
 ## Introduction
 
-LocalStack provides local cloud services, such as [OpenSearch]({{< ref "opensearch" >}}) or [Elasticsearch]({{< ref "elasticsearch" >}}), which might utilize external software bound to specific ports.
+LocalStack provides local cloud services, such as [OpenSearch]({{< ref "opensearch" >}}) or [Elasticsearch]({{< ref "es" >}}), which might utilize external software bound to specific ports.
 This documentation discusses two approaches to access these external services within LocalStack and explores the concept of an _external service port range_.
 
 ## Proxy Functionality for External Services
