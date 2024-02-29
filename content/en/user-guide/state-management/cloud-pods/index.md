@@ -191,6 +191,11 @@ This means that every individual in the organization can view, load, and delete 
 Similarly, everyone can save a new version of a Cloud Pod on top of a Pod originally created by someone else.
 {{< /alert >}}
 
+{{< alert title="Note" >}}
+Permission on Cloud Pods are assigned at organization level.
+This means that every individual in the organization can view, load, and delete Cloud Pods created by other team members.
+Similarly, everyone can save a new version of a Cloud Pod on top of a Pod originally created by someone else.
+{{< /alert >}}
 
 ## Web Application
 
@@ -420,3 +425,20 @@ Custom remote configurations are stored within the [LocalStack volume directory]
 [Persistence]({{< ref "persistence" >}}) ensures that the service state persists across container restarts. You can enable persistence via a LocalStack config flag `PERSISTENCE=1` to restore your local resources, in case you’re stopping and re-starting the LocalStack instance on the same machine.
 
 In contrast, Cloud Pods provide more detailed control over your state. Rather than just restoring a state during LocalStack restarts, Cloud Pods enable you to capture snapshots of your local instance using the `save` command and inject these snapshots into a running instance using the `load` command, all without needing to perform a full restart.
+
+### Limitations
+
+Cloud Pods (and state manager in general), come with a few limitation.
+In particular, Cloud Pods states might not be correctly restored if the LocalStack version used to create the pod and the target one differ.
+We detect version miss-matches when using the `pod load` and prompt a confirmation message to the user.
+
+{{< command >}}
+$ localstack pod load old-pod
+<disable-copy>
+This Cloud Pod was created with LocalStack 2.1.0. but you are running LocalStack 3.2.1. Cloud Pods might be incompatible across different LocalStack versions.
+Loading a Cloud Pod with mismatching version might lead to a corrupted state of the emulator. Do you want to continue? [y/N]:
+</disable-copy>
+{{< / command >}}
+
+We are working to extend Cloud Pods support to all AWS services emulated in LocalStack.
+However, state management might not yet work reliably for every service.
