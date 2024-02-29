@@ -65,9 +65,47 @@ These Cloud Pods are securely stored within an AWS storage backend, where each u
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ s3-test │ 1 │ 2024-01-04 11:03:00 │
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>└──────────────────────────────┴─────────────┴─────────────────────┘
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="inspect-the-contents-of-a-cloud-pod">Inspect the contents of a Cloud Pod&lt;/h3>
-&lt;p>You can inspect the contents of a Cloud Pod using the &lt;code>inspect&lt;/code> command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod inspect s3-test --format json
+&lt;p>With the &lt;code>save&lt;/code> command you can create multiple versions of a Cloud Pod.
+For instance, let us create a SQS queue and second version of &lt;code>s3-test&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs create-queue --queue-name test-queue
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save s3-test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cloud Pod `s3-test` successfully created ✅
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Version: 2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Remote: platform
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Services: s3,sqs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We can now use the command &lt;code>versions&lt;/code> to list all the created version for a Cloud Pod.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod versions s3-test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>┏━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━┓
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>┃ Version ┃ Creation Date ┃ LocalStack Version ┃ Services ┃ Description ┃
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>┡━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━┩
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ 1 │ 2024-01-04 11:03:00 │ 3.1.1. │ s3 │ │
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ 2 │ 2024-02-28 14:01:45 │ 3.1.1. │ s3,sqs │ │
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>└─────────┴─────────────────────┴─────────────────────────┴──────────┴─────────────┘
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="pull-your-pod-state">Pull your Pod state&lt;/h3>
+&lt;p>On a separate machine, start LocalStack while ensuring the auth token is properly configured. Then, retrieve the previously created Cloud Pod by employing the &lt;code>load&lt;/code> command, specifying the Cloud Pod name as the first argument:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod load s3-test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cloud Pod s3-test successfully loaded
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can examine the S3 buckets within the Cloud Pod:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls s3://test/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2022-10-04 22:33:54 12 hello-world
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can also load a specific version by appending a version number to the pod name after a colon.
+If not specified, the latest version will be loaded.
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod load s3-test:1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cloud Pod s3-test:1 successfully loaded
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>After loading the Cloud Pod&amp;rsquo;s content, you can use the &lt;code>state inspect&lt;/code> command to observe the state of the running LocalStack instance.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack state inspect --format json
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;000000000000&amp;#34;: {
@@ -86,18 +124,13 @@ These Cloud Pods are securely stored within an AWS storage backend, where each u
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="pull-your-pod-state">Pull your Pod state&lt;/h3>
-&lt;p>On a separate machine, start LocalStack while ensuring the auth token is properly configured. Then, retrieve the previously created Cloud Pod by employing the &lt;code>load&lt;/code> command, specifying the Cloud Pod name as the first argument:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod load s3-test
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cloud Pod s3-test successfully loaded
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can examine the S3 buckets within the Cloud Pod:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls s3://test/
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2022-10-04 22:33:54 12 hello-world
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>For comprehensive instructions, navigate to our &lt;a href="/user-guide/state-management/pods-cli/">Command-Line Interface (CLI) Guide&lt;/a>. To access your Cloud Pods through the LocalStack Web Application, navigate to the &lt;a href="https://app.localstack.cloud/pods">Cloud Pods browser&lt;/a>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Permission on Cloud Pods are assigned at organization level.
+This means that every individual in the organization can view, load, and delete Cloud Pods created by other team members.
+Similarly, everyone can save a new version of a Cloud Pod on top of a Pod originally created by someone else.
+&lt;/div>
 &lt;h2 id="web-application">Web Application&lt;/h2>
 &lt;p>The LocalStack Web Application enables you to export your infrastructure state to a Cloud Pod and import it into another LocalStack instance.&lt;/p>
 &lt;img src="export-import-state-cloud-pod.png" alt="LocalStack Export/Import State Cloud Pod Mode" title="LocalStack Export/Import State Cloud Pod Mode" width="900" />
@@ -123,34 +156,34 @@ These Cloud Pods are securely stored within an AWS storage backend, where each u
 &lt;h3 id="environmental-variables">Environmental variables&lt;/h3>
 &lt;p>To automatically load a Cloud Pod at startup, utilize the &lt;code>AUTO_LOAD_POD&lt;/code> &lt;a href="https://docs.localstack.cloud/references/configuration/">configuration variable&lt;/a>.&lt;/p>
 &lt;p>&lt;code>AUTO_LOAD_POD&lt;/code> can accept multiple Cloud Pod names separated by commas. To autoload multiple Cloud Pods, such as &lt;code>foo-pod&lt;/code> and &lt;code>bar-pod&lt;/code>, use: &lt;code>AUTO_LOAD_POD=foo-pod,bar-pod&lt;/code>. The order of Cloud Pods in &lt;code>AUTO_LOAD_POD&lt;/code> dictates their loading sequence. When autoloading multiple Cloud Pods, later pods might overwrite the state of earlier ones if they share the same service, account, and region.&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-11" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-15" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-bash"
-id="tabs-11-00-tab" data-toggle="tab" href="#tabs-11-00" role="tab"
-onclick="persistLang(&amp;#34;bash&amp;#34;);"aria-controls="tabs-11-00" aria-selected="false">
+id="tabs-15-00-tab" data-toggle="tab" href="#tabs-15-00" role="tab"
+onclick="persistLang(&amp;#34;bash&amp;#34;);"aria-controls="tabs-15-00" aria-selected="false">
 LocalStack CLI
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-yaml"
-id="tabs-11-01-tab" data-toggle="tab" href="#tabs-11-01" role="tab"
-onclick="persistLang(&amp;#34;yaml&amp;#34;);"aria-controls="tabs-11-01" aria-selected="false">
+id="tabs-15-01-tab" data-toggle="tab" href="#tabs-15-01" role="tab"
+onclick="persistLang(&amp;#34;yaml&amp;#34;);"aria-controls="tabs-15-01" aria-selected="false">
 Docker Compose
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-11-02-tab" data-toggle="tab" href="#tabs-11-02" role="tab"
-aria-controls="tabs-11-02" aria-selected="false">
+id="tabs-15-02-tab" data-toggle="tab" href="#tabs-15-02" role="tab"
+aria-controls="tabs-15-02" aria-selected="false">
 Docker
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-11-content">
+&lt;div class="tab-content" id="tabs-15-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-11-00" role="tabpanel" aria-labelled-by="tabs-11-00-tab">
+id="tabs-15-00" role="tabpanel" aria-labelled-by="tabs-15-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">AUTO_LOAD_POD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>foo-pod localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-11-01" role="tabpanel" aria-labelled-by="tabs-11-01-tab">
+id="tabs-15-01" role="tabpanel" aria-labelled-by="tabs-15-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;3.8&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -169,7 +202,7 @@ id="tabs-11-01" role="tabpanel" aria-labelled-by="tabs-11-01-tab">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/var/run/docker.sock:/var/run/docker.sock&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-11-02" role="tabpanel" aria-labelled-by="tabs-11-02-tab">
+id="tabs-15-02" role="tabpanel" aria-labelled-by="tabs-15-02-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker run &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -e &lt;span style="color:#000">LOCALSTACK_AUTH_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">LOCALSTACK_AUTH_TOKEN&lt;/span>&lt;span style="color:#000;font-weight:bold">:?&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -e &lt;span style="color:#000">AUTO_LOAD_POD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>foo-pod &lt;span style="color:#4e9a06">\
