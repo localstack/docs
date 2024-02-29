@@ -191,12 +191,6 @@ This means that every individual in the organization can view, load, and delete 
 Similarly, everyone can save a new version of a Cloud Pod on top of a Pod originally created by someone else.
 {{< /alert >}}
 
-{{< alert title="Note" >}}
-Permission on Cloud Pods are assigned at organization level.
-This means that every individual in the organization can view, load, and delete Cloud Pods created by other team members.
-Similarly, everyone can save a new version of a Cloud Pod on top of a Pod originally created by someone else.
-{{< /alert >}}
-
 ## Web Application
 
 The LocalStack Web Application enables you to export your infrastructure state to a Cloud Pod and import it into another LocalStack instance.
