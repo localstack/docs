@@ -298,7 +298,7 @@ When utilizing the Community Edition, any resources within the stack that are no
 | AWS::AppSync::FunctionConfiguration             |      ✅ |      ✅ |      - |
 | AWS::AppSync::GraphQLApi                        |      ✅ |      ✅ |      - |
 | AWS::AppSync::GraphQLSchema                     |      ✅ |      ✅ |      - |
-| AWS::AppSync::Resolver                          |      ✅ |      ✅ |      - |
+| AWS::AppSync::Resolver                          |      ✅ |      ✅ |      ✅ |
 | AWS::ApplicationAutoScaling::ScalableTarget     |      ✅ |      ✅ |      - |
 | AWS::ApplicationAutoScaling::ScalingPolicy      |      ✅ |      ✅ |      - |
 | AWS::Athena::DataCatalog                        |      ✅ |      ✅ |      - |
@@ -395,5 +395,5 @@ When utilizing the Community Edition, any resources within the stack that are no
 | AWS::Route53::HostedZone                        |      ✅ |      ✅ |      - |
 | AWS::SES::ReceiptRule                           |      ✅ |      ✅ |      - |
 | AWS::SES::ReceiptRuleSet                        |      ✅ |      ✅ |      - |
-| AWS::SES::Template                              |      ✅ |      ✅ |      - |
+| AWS::SES::Template                              |      ✅ |      ✅ |      ✅ |
 | AWS::SecretsManager::SecretTargetAttachment     |      ✅ |      ✅ |      - |
