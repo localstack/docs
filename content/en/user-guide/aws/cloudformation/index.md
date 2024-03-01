@@ -159,6 +159,7 @@ When utilizing the Community Edition, any resources within the stack that are no
 
 #### Community Edition
 
+
 | Resource                                    | Create | Delete | Update |
 |---------------------------------------------|-------:|-------:|-------:|
 | AWS::Amplify::Branch                        |      ✅ |      ✅ |      - |
@@ -180,13 +181,16 @@ When utilizing the Community Edition, any resources within the stack that are no
 | AWS::AutoScaling::LaunchConfiguration       |      ✅ |      ✅ |      - |
 | AWS::CDK::Metadata                          |      ✅ |      ✅ |      ✅ |
 | AWS::CertificateManager::Certificate        |      ✅ |      ✅ |      - |
+| AWS::CloudFormation::Macro                  |      ✅ |      ✅ |      - |
 | AWS::CloudFormation::Stack                  |      ✅ |      ✅ |      - |
+| AWS::CloudFormation::WaitCondition          |      ✅ |      ✅ |      - |
+| AWS::CloudFormation::WaitConditionHandle    |      ✅ |      ✅ |      - |
 | AWS::CloudWatch::Alarm                      |      ✅ |      ✅ |      - |
 | AWS::CloudWatch::CompositeAlarm             |      ✅ |      ✅ |      - |
 | AWS::DynamoDB::GlobalTable                  |      ✅ |      ✅ |      - |
 | AWS::DynamoDB::Table                        |      ✅ |      ✅ |      - |
 | AWS::EC2::DHCPOptions                       |      ✅ |      ✅ |      - |
-| AWS::EC2::Instance                          |      ✅ |      ✅ |      - |
+| AWS::EC2::Instance                          |      ✅ |      ✅ |      ✅ |
 | AWS::EC2::InternetGateway                   |      ✅ |      ✅ |      - |
 | AWS::EC2::KeyPair                           |      ✅ |      ✅ |      - |
 | AWS::EC2::NatGateway                        |      ✅ |      ✅ |      - |
@@ -201,6 +205,7 @@ When utilizing the Community Edition, any resources within the stack that are no
 | AWS::EC2::VPC                               |      ✅ |      ✅ |      - |
 | AWS::EC2::VPCGatewayAttachment              |      ✅ |      ✅ |      - |
 | AWS::ECR::Repository                        |      ✅ |      ✅ |      - |
+| AWS::Elasticsearch::Domain                  |      ✅ |      ✅ |      - |
 | AWS::Events::Connection                     |      ✅ |      ✅ |      - |
 | AWS::Events::EventBus                       |      ✅ |      ✅ |      - |
 | AWS::Events::EventBusPolicy                 |      ✅ |      ✅ |      - |
@@ -233,11 +238,14 @@ When utilizing the Community Edition, any resources within the stack that are no
 | AWS::Logs::SubscriptionFilter               |      ✅ |      ✅ |      - |
 | AWS::OpenSearchService::Domain              |      ✅ |      ✅ |      - |
 | AWS::Redshift::Cluster                      |      ✅ |      ✅ |      - |
+| AWS::ResourceGroups::Group                  |      ✅ |      ✅ |      - |
 | AWS::Route53::HealthCheck                   |      ✅ |      ✅ |      - |
 | AWS::Route53::RecordSet                     |      ✅ |      ✅ |      - |
 | AWS::S3::Bucket                             |      ✅ |      ✅ |      - |
 | AWS::S3::BucketPolicy                       |      ✅ |      ✅ |      - |
+| AWS::SNS::Subscription                      |      ✅ |      ✅ |      - |
 | AWS::SNS::Topic                             |      ✅ |      ✅ |      - |
+| AWS::SNS::TopicPolicy                       |      ✅ |      ✅ |      - |
 | AWS::SQS::Queue                             |      ✅ |      ✅ |      ✅ |
 | AWS::SQS::QueuePolicy                       |      ✅ |      ✅ |      - |
 | AWS::SSM::MaintenanceWindow                 |      ✅ |      ✅ |      - |
