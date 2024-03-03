@@ -1481,6 +1481,19 @@ CloudWatch Logs is available in the Community version. However, some specific fe
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --start-time 1659621274 --end-time $end&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
 &lt;h3 id="filter-log-events">Filter Log Events&lt;/h3>
-&lt;p>Similarly, you can use filter-pattern to filter logs, like here:
+&lt;p>Similarly, you can use filter-pattern to filter logs with different kinds of patterns as described by &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">AWS&lt;/a>.&lt;/p>
+&lt;h4 id="json-filter-pattern">JSON Filter Pattern&lt;/h4>
+&lt;p>For purely JSON structured log messages, you can use JSON filter patterns to traverse the JSON object.
+Enclose your pattern in curly braces, like this:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+This returns all events whose top level &amp;ldquo;foo&amp;rdquo; key has the &amp;ldquo;bar&amp;rdquo; value.&lt;/p>
+&lt;h4 id="regular-expression-filter-pattern">Regular Expression Filter Pattern&lt;/h4>
+&lt;p>You can use a simplified regex syntax for regular expression matching.
+Enclose your pattern in percentage signs like this:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;\%[fF]oo\%&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+This returns all events containing &amp;ldquo;Foo&amp;rdquo; or &amp;ldquo;foo&amp;rdquo;.
+For a complete set of the supported syntax, check &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html#regex-expressions">the official AWS documentation&lt;/a>&lt;/p>
+&lt;h4 id="unstructured-filter-pattern">Unstructured Filter Pattern&lt;/h4>
+&lt;p>If not specified otherwise in the pattern, we look for a match in the whole event message:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;foo&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p></description></item></channel></rss>

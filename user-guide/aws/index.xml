@@ -11697,8 +11697,21 @@ CloudWatch Logs is available in the Community version. However, some specific fe
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --start-time 1659621274 --end-time $end&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
 &lt;h3 id="filter-log-events">Filter Log Events&lt;/h3>
-&lt;p>Similarly, you can use filter-pattern to filter logs, like here:
+&lt;p>Similarly, you can use filter-pattern to filter logs with different kinds of patterns as described by &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">AWS&lt;/a>.&lt;/p>
+&lt;h4 id="json-filter-pattern">JSON Filter Pattern&lt;/h4>
+&lt;p>For purely JSON structured log messages, you can use JSON filter patterns to traverse the JSON object.
+Enclose your pattern in curly braces, like this:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+This returns all events whose top level &amp;ldquo;foo&amp;rdquo; key has the &amp;ldquo;bar&amp;rdquo; value.&lt;/p>
+&lt;h4 id="regular-expression-filter-pattern">Regular Expression Filter Pattern&lt;/h4>
+&lt;p>You can use a simplified regex syntax for regular expression matching.
+Enclose your pattern in percentage signs like this:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;\%[fF]oo\%&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+This returns all events containing &amp;ldquo;Foo&amp;rdquo; or &amp;ldquo;foo&amp;rdquo;.
+For a complete set of the supported syntax, check &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html#regex-expressions">the official AWS documentation&lt;/a>&lt;/p>
+&lt;h4 id="unstructured-filter-pattern">Unstructured Filter Pattern&lt;/h4>
+&lt;p>If not specified otherwise in the pattern, we look for a match in the whole event message:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;foo&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p></description></item><item><title>User-Guide: Managed Blockchain (AMB)</title><link>/user-guide/aws/managed-blockchain/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/managed-blockchain/</guid><description>
 &lt;p>Managed Blockchain (AMB) is a managed service that enables the creation and management of blockchain networks, such as Hyperledger Fabric, Bitcoin, Polygon and Ethereum. Blockchain enables the development of applications in which multiple entities can conduct transactions and exchange data securely and transparently, eliminating the requirement for a central, trusted authority.&lt;/p>
 &lt;p>LocalStack supports AMB via the Pro/Team offering, allowing you to use the AMB APIs to develop and deploy decentralized applications in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_managedblockchain/">API Coverage Page&lt;/a>, which provides information on the extent of AMB integration with LocalStack.&lt;/p>
