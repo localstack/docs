@@ -1,6 +1,6 @@
 ---
 title: "CloudWatch Logs"
-linkTitle: "Logs"
+linkTitle: "CloudWatch Logs"
 description: Get started with AWS CloudWatch Logs on LocalStack
 categories: ["LocalStack Community"]
 aliases:
@@ -99,6 +99,7 @@ Enclose your pattern in curly braces, like this:
 {{< command >}}
 $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern "{$.foo = \"bar\"}"
 {{< / command >}}
+
 This returns all events whose top level "foo" key has the "bar" value.
 
 #### Regular Expression Filter Pattern
