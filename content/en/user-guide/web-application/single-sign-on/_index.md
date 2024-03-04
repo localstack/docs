@@ -3,7 +3,7 @@ title: "Single-Sign On"
 tags: ["LocalStack Pro", "SSO"]
 weight: 200
 description: >
-  Configuring Custom Single-Sign On (SSO) Providers in LocalStack Enterprise
+  Configuring Custom Single-Sign On (SSO) Providers in LocalStack Web Application
 tags: ["Enterprise"]
 ---
 
