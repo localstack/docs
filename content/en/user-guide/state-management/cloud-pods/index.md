@@ -6,6 +6,7 @@ aliases:
   - /user-guide/cloud-pods/getting-started/
   - /user-guide/tools/cloud-pods/auto-load/
   - /user-guide/tools/cloud-pods/remotes/
+tags: ["Teams"]
 ---
 
 ## Introduction
@@ -18,10 +19,6 @@ Cloud pods are persistent state snapshots of your LocalStack instance that can e
 -  Create reproducible development and testing environments locally.
 
 <img src="pods-ui.png" alt="Cloud Pods Web UI" title="Cloud Pods Web UI" width="800px" />
-
-{{< alert title="Note" >}}
-Cloud Pods is only available to LocalStack Team users. LocalStack Pro users can access other state management features, such as [Persistence]({{< ref "persistence" >}}) and [State Export & Import]({{< ref "export-import-state" >}}).
-{{< /alert >}}
 
 ## Installation
 
