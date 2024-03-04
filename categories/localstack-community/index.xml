@@ -1134,7 +1134,90 @@ This sample demonstrates how we can take an existing Web application, without an
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/cloudwatch-metrics-aws">Creating Cloudwatch metric alarms&lt;/a> to demonstrate a simple example for creating CloudWatch metric alarm based on the metrics of a failing Lambda function.&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo">Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3&lt;/a> to deploy a recruiting agency application with a job listings website and view the CloudWatch logs.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Elasticsearch Service</title><link>/user-guide/aws/elasticsearch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elasticsearch/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: CloudWatch Logs</title><link>/user-guide/aws/logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/logs/</guid><description>
+&lt;p>&lt;a href="https://docs.aws.amazon.com/cloudwatch/index.html">CloudWatch Logs&lt;/a> allows to store and retrieve logs. While some services automatically create and write logs (e.g. Lambda), logs can also be added manually.
+CloudWatch Logs is available in the Community version. However, some specific features are only available in Pro.&lt;/p>
+&lt;h2 id="subscription-filters">Subscription Filters&lt;/h2>
+&lt;p>Subscription filters can be used to forward logs to certain services, e.g. Kinesis, Lambda, and Kinesis Data Firehose. You can read upon details in the &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html">official AWS docs&lt;/a>.&lt;/p>
+&lt;h3 id="subscription-filters-with-kinesis-example">Subscription Filters with Kinesis Example&lt;/h3>
+&lt;p>In the following we setup a little example on how to use subscription filters with kinesis.&lt;/p>
+&lt;p>First, we setup the required resources. Therefore, we create a kinesis stream, a log group and log stream. Then we can configure the subscription filter.
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis create-stream --stream-name &amp;#34;logtest&amp;#34; --shard-count 1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kinesis_arn=$(awslocal kinesis describe-stream --stream-name &amp;#34;logtest&amp;#34; | jq -r .StreamDescription.StreamARN)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs create-log-group --log-group-name test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs create-log-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name test \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-stream-name test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-subscription-filter \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name &amp;#34;test&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-name &amp;#34;kinesis_test&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-pattern &amp;#34;&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination-arn $kinesis_arn \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-arn &amp;#34;arn:aws:iam::000000000000:role/kinesis_role&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>Next, we can add a log event, that will be forwarded to kinesis.
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>timestamp=$(($(date +&amp;#39;%s * 1000 + %-N / 1000000&amp;#39;)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-log-events --log-group-name test --log-stream-name test --log-events &amp;#34;[{\&amp;#34;timestamp\&amp;#34;: ${timestamp} , \&amp;#34;message\&amp;#34;: \&amp;#34;hello from cloudwatch\&amp;#34;}]&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>Now we can retrieve the data. In our example, there will only be one record. The data record is base64 encoded and compressed in gzip format:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>shard_iterator=$(awslocal kinesis get-shard-iterator --stream-name logtest --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON | jq -r .ShardIterator)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>record=$(awslocal kinesis get-records --limit 10 --shard-iterator $shard_iterator | jq -r &amp;#39;.Records[0].Data&amp;#39;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo $record | base64 -d | zcat&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;h2 id="filter-pattern-pro-only">Filter Pattern (Pro only)&lt;/h2>
+&lt;p>&lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">Filter patterns&lt;/a> can be used to select certain logs only.&lt;/p>
+&lt;p>LocalStack currently supports simple json-property filter.&lt;/p>
+&lt;h3 id="metric-filter-example">Metric Filter Example&lt;/h3>
+&lt;p>Metric filters can be used to automatically create CloudWatch metrics.&lt;/p>
+&lt;p>In the following example we are interested in logs that include a key-value pair &lt;code>&amp;quot;foo&amp;quot;: &amp;quot;bar&amp;quot;&lt;/code> and create a metric filter.
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs create-log-group --log-group-name test-filter
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs create-log-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name test-filter \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-stream-name test-filter-stream
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-metric-filter \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name test-filter \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-name my-filter \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --metric-transformations \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> metricName=MyMetric,metricNamespace=MyNamespace,metricValue=1,defaultValue=0&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>Next, we can insert some values:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>timestamp=$(($(date +&amp;#39;%s * 1000 + %-N / 1000000&amp;#39;)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-log-events --log-group-name test-filter \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-stream-name test-filter-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-events \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timestamp=$timestamp,message=&amp;#39;&amp;#34;{\&amp;#34;foo\&amp;#34;:\&amp;#34;bar\&amp;#34;, \&amp;#34;hello\&amp;#34;: \&amp;#34;world\&amp;#34;}&amp;#34;&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timestamp=$timestamp,message=&amp;#34;my test event&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timestamp=$timestamp,message=&amp;#39;&amp;#34;{\&amp;#34;foo\&amp;#34;:\&amp;#34;nomatch\&amp;#34;}&amp;#34;&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>Now we can check that the metric was indeed created:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>end=$(date +%s)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>awslocal cloudwatch get-metric-statistics --namespace MyNamespace \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --metric-name MyMetric --statistics Sum --period 3600 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --start-time 1659621274 --end-time $end&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;h3 id="filter-log-events">Filter Log Events&lt;/h3>
+&lt;p>Similarly, you can use filter-pattern to filter logs with different kinds of patterns as described by &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">AWS&lt;/a>.&lt;/p>
+&lt;h4 id="json-filter-pattern">JSON Filter Pattern&lt;/h4>
+&lt;p>For purely JSON structured log messages, you can use JSON filter patterns to traverse the JSON object.
+Enclose your pattern in curly braces, like this:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>This returns all events whose top level &amp;ldquo;foo&amp;rdquo; key has the &amp;ldquo;bar&amp;rdquo; value.&lt;/p>
+&lt;h4 id="regular-expression-filter-pattern">Regular Expression Filter Pattern&lt;/h4>
+&lt;p>You can use a simplified regex syntax for regular expression matching.
+Enclose your pattern in percentage signs like this:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;\%[fF]oo\%&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+This returns all events containing &amp;ldquo;Foo&amp;rdquo; or &amp;ldquo;foo&amp;rdquo;.
+For a complete set of the supported syntax, check &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html#regex-expressions">the official AWS documentation&lt;/a>&lt;/p>
+&lt;h4 id="unstructured-filter-pattern">Unstructured Filter Pattern&lt;/h4>
+&lt;p>If not specified otherwise in the pattern, we look for a match in the whole event message:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;foo&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p></description></item><item><title>User-Guide: Elasticsearch Service</title><link>/user-guide/aws/es/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/es/</guid><description>
 &lt;p>The Elasticsearch Service in LocalStack lets you create one or more single-node Elasticsearch/OpenSearch cluster that behaves like the &lt;a href="https://aws.amazon.com/opensearch-service/the-elk-stack/what-is-elasticsearch/">Amazon Elasticsearch Service&lt;/a>.
 This service is, like its AWS counterpart, heavily linked with the &lt;a href="../opensearch">OpenSearch Service&lt;/a>.
 Any cluster created with the Elasticsearch Service will show up in the OpenSearch Service and vice versa.&lt;/p>
@@ -1414,86 +1497,4 @@ Note that only a single backend can be configured, meaning that you will get a s
 &lt;li>By default, AWS only sets the &lt;code>Endpoint&lt;/code> attribute of the cluster status once the cluster is up.
 LocalStack will return the endpoint immediately, but keep &lt;code>Processing = &amp;quot;true&amp;quot;&lt;/code> until the cluster has been started.&lt;/li>
 &lt;li>The &lt;code>CustomEndpointOptions&lt;/code> allows arbitrary endpoint URLs, which is not allowed in AWS&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: CloudWatch Logs</title><link>/user-guide/aws/logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/logs/</guid><description>
-&lt;p>&lt;a href="https://docs.aws.amazon.com/cloudwatch/index.html">CloudWatch Logs&lt;/a> allows to store and retrieve logs. While some services automatically create and write logs (e.g. Lambda), logs can also be added manually.
-CloudWatch Logs is available in the Community version. However, some specific features are only available in Pro.&lt;/p>
-&lt;h2 id="subscription-filters">Subscription Filters&lt;/h2>
-&lt;p>Subscription filters can be used to forward logs to certain services, e.g. Kinesis, Lambda, and Kinesis Data Firehose. You can read upon details in the &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html">official AWS docs&lt;/a>.&lt;/p>
-&lt;h3 id="subscription-filters-with-kinesis-example">Subscription Filters with Kinesis Example&lt;/h3>
-&lt;p>In the following we setup a little example on how to use subscription filters with kinesis.&lt;/p>
-&lt;p>First, we setup the required resources. Therefore, we create a kinesis stream, a log group and log stream. Then we can configure the subscription filter.
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis create-stream --stream-name &amp;#34;logtest&amp;#34; --shard-count 1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kinesis_arn=$(awslocal kinesis describe-stream --stream-name &amp;#34;logtest&amp;#34; | jq -r .StreamDescription.StreamARN)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs create-log-group --log-group-name test
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs create-log-stream \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name test \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-stream-name test
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-subscription-filter \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name &amp;#34;test&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-name &amp;#34;kinesis_test&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-pattern &amp;#34;&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination-arn $kinesis_arn \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-arn &amp;#34;arn:aws:iam::000000000000:role/kinesis_role&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;p>Next, we can add a log event, that will be forwarded to kinesis.
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>timestamp=$(($(date +&amp;#39;%s * 1000 + %-N / 1000000&amp;#39;)))
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-log-events --log-group-name test --log-stream-name test --log-events &amp;#34;[{\&amp;#34;timestamp\&amp;#34;: ${timestamp} , \&amp;#34;message\&amp;#34;: \&amp;#34;hello from cloudwatch\&amp;#34;}]&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;p>Now we can retrieve the data. In our example, there will only be one record. The data record is base64 encoded and compressed in gzip format:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>shard_iterator=$(awslocal kinesis get-shard-iterator --stream-name logtest --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON | jq -r .ShardIterator)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>record=$(awslocal kinesis get-records --limit 10 --shard-iterator $shard_iterator | jq -r &amp;#39;.Records[0].Data&amp;#39;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo $record | base64 -d | zcat&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;h2 id="filter-pattern-pro-only">Filter Pattern (Pro only)&lt;/h2>
-&lt;p>&lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">Filter patterns&lt;/a> can be used to select certain logs only.&lt;/p>
-&lt;p>LocalStack currently supports simple json-property filter.&lt;/p>
-&lt;h3 id="metric-filter-example">Metric Filter Example&lt;/h3>
-&lt;p>Metric filters can be used to automatically create CloudWatch metrics.&lt;/p>
-&lt;p>In the following example we are interested in logs that include a key-value pair &lt;code>&amp;quot;foo&amp;quot;: &amp;quot;bar&amp;quot;&lt;/code> and create a metric filter.
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs create-log-group --log-group-name test-filter
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs create-log-stream \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name test-filter \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-stream-name test-filter-stream
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-metric-filter \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name test-filter \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-name my-filter \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --metric-transformations \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> metricName=MyMetric,metricNamespace=MyNamespace,metricValue=1,defaultValue=0&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;p>Next, we can insert some values:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>timestamp=$(($(date +&amp;#39;%s * 1000 + %-N / 1000000&amp;#39;)))
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-log-events --log-group-name test-filter \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-stream-name test-filter-stream \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-events \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timestamp=$timestamp,message=&amp;#39;&amp;#34;{\&amp;#34;foo\&amp;#34;:\&amp;#34;bar\&amp;#34;, \&amp;#34;hello\&amp;#34;: \&amp;#34;world\&amp;#34;}&amp;#34;&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timestamp=$timestamp,message=&amp;#34;my test event&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timestamp=$timestamp,message=&amp;#39;&amp;#34;{\&amp;#34;foo\&amp;#34;:\&amp;#34;nomatch\&amp;#34;}&amp;#34;&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;p>Now we can check that the metric was indeed created:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>end=$(date +%s)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>awslocal cloudwatch get-metric-statistics --namespace MyNamespace \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --metric-name MyMetric --statistics Sum --period 3600 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --start-time 1659621274 --end-time $end&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;h3 id="filter-log-events">Filter Log Events&lt;/h3>
-&lt;p>Similarly, you can use filter-pattern to filter logs with different kinds of patterns as described by &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">AWS&lt;/a>.&lt;/p>
-&lt;h4 id="json-filter-pattern">JSON Filter Pattern&lt;/h4>
-&lt;p>For purely JSON structured log messages, you can use JSON filter patterns to traverse the JSON object.
-Enclose your pattern in curly braces, like this:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-This returns all events whose top level &amp;ldquo;foo&amp;rdquo; key has the &amp;ldquo;bar&amp;rdquo; value.&lt;/p>
-&lt;h4 id="regular-expression-filter-pattern">Regular Expression Filter Pattern&lt;/h4>
-&lt;p>You can use a simplified regex syntax for regular expression matching.
-Enclose your pattern in percentage signs like this:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;\%[fF]oo\%&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-This returns all events containing &amp;ldquo;Foo&amp;rdquo; or &amp;ldquo;foo&amp;rdquo;.
-For a complete set of the supported syntax, check &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html#regex-expressions">the official AWS documentation&lt;/a>&lt;/p>
-&lt;h4 id="unstructured-filter-pattern">Unstructured Filter Pattern&lt;/h4>
-&lt;p>If not specified otherwise in the pattern, we look for a match in the whole event message:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;foo&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>

@@ -1164,74 +1164,7 @@ This will prepend this line in the resolv.conf file even after changes.&lt;/p>
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Using these options, every DNS request is forwarded to LocalStack, which will forward queries it does not need to modify (in essence all but certain AWS domains).
 LocalStack does not share or store any forwarded DNS requests, except for local exception logging in debug mode.
-&lt;/div></description></item><item><title>User-Guide: Organizations</title><link>/user-guide/aws/organization/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/organization/</guid><description>
-&lt;p>Amazon Web Services Organizations is an account management service that allows you to consolidate multiple different AWS accounts into an organization. It allows you to manage different accounts in a single organization and consolidate billing. With Organizations, you can also attach different policies to your organizational units (OUs) or individual accounts in your organization.&lt;/p>
-&lt;p>Organizations is available over LocalStack Pro and the supported APIs are available over our &lt;a href="/references/configuration/">configuration page&lt;/a>.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>In this getting started guide, you&amp;rsquo;ll learn how to create your local AWS Organization and configure it with member accounts. This guide is intended for users who wish to get more acquainted with Organizations, and assumes you have basic knowledge of the AWS CLI (and our &lt;code>awslocal&lt;/code> wrapper script). To get started, start your LocalStack instance using your preferred method:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>Create a new local AWS Organization with the feature set flag set to &lt;code>ALL&lt;/code>:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-organization --feature-set ALL&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>You can now run the &lt;code>describe-organization&lt;/code> command to see the details of your organization:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations describe-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>You can now create an AWS account that would be a member of your organization:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-account \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --email example@example.com \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --account-name &amp;#34;Test Account&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-Since LocalStack essentially mocks AWS, the account creation is instantaneous. You can now run the &lt;code>list-accounts&lt;/code> command to see the details of your organization:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-accounts&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>You can also remove a member account from your organization:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations remove-account-from-organization --account-id &amp;lt;ACCOUNT_ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>To close an account in your organization, you can run the &lt;code>close-account&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations close-account --account-id 000000000000&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>You can use organizational units (OUs) to group accounts together to administer as a single unit. To create an OU, you can run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-roots
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-children \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --parent-id &amp;lt;PARENT-ID&amp;gt; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --child-type ORGANIZATIONAL_UNIT
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-organizational-unit \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --parent-id &amp;lt;PARENT-ID&amp;gt; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name New-Child-OU&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Before you can create and attach a policy to your organization, you must enable a policy type. To enable a policy type, you can run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations enable-policy-type \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --root-id &amp;lt;ROOT-ID&amp;gt; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy-type BACKUP_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-To disable a policy type, you can run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations disable-policy-type \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --root-id &amp;lt;ROOT-ID&amp;gt; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy-type BACKUP_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>To view the policies that are attached to your organization, you can run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-policies --filter SERVICE_CONTROL_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>To delete an organization, you can run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations delete-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;/ol></description></item><item><title>User-Guide: DocumentDB (DocDB)</title><link>/user-guide/aws/docdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/docdb/</guid><description>
+&lt;/div></description></item><item><title>User-Guide: DocumentDB (DocDB)</title><link>/user-guide/aws/docdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/docdb/</guid><description>
 &lt;p>LocalStack Pro supports a basic version of &lt;a href="https://aws.amazon.com/documentdb/">Amazon DocumentDB&lt;/a> for testing.
 LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it
 can be accessed from localhost.&lt;/p>
@@ -1554,9 +1487,9 @@ In the lambda, you can then retrieve the secret details like this:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> body: JSON.stringify({ error: error.message }),
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Compute Cloud (EC2)</title><link>/user-guide/aws/elastic-compute-cloud/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-compute-cloud/</guid><description>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Compute Cloud (EC2)</title><link>/user-guide/aws/ec2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ec2/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>EC2 (Elastic Compute Cloud) is a core service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources.
+&lt;p>Elastic Compute Cloud (EC2) is a core service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources.
 EC2 enables users to launch and manage virtual servers, commonly referred to as instances.
 Users can create a range computing environments tailored to specific needs by employing a wide array of configurations, enabling users to select the desired combination of computing power, memory, storage, and networking capabilities.&lt;/p>
 &lt;p>LocalStack supports a mock implementation of EC2 via the Community offering while a fully-emulated implementation is available in the Pro/Team offering, allowing you to use the EC2 APIs in your local environment to create and manage your EC2 instances.
@@ -1827,7 +1760,7 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 &lt;li>&lt;strong>Terminate Instance&lt;/strong>: Terminate an EC2 instance by selecting the Instance ID, and clicking on the &lt;strong>ACTIONS&lt;/strong> button followed by clicking on &lt;strong>Terminate Selected&lt;/strong>.&lt;/li>
 &lt;li>&lt;strong>Start Instance&lt;/strong>: Start a stopped EC2 instance by selecting the Instance ID, and clicking on the &lt;strong>ACTIONS&lt;/strong> button followed by clicking on &lt;strong>Start Selected&lt;/strong>.&lt;/li>
 &lt;li>&lt;strong>Stop Instance&lt;/strong>: Stop a running EC2 instance by selecting the Instance ID, and clicking on the &lt;strong>ACTIONS&lt;/strong> button followed by clicking on &lt;strong>Stop Selected&lt;/strong>.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Elastic Container Service (ECS)</title><link>/user-guide/aws/elastic-container-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-container-service/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Elastic Container Service (ECS)</title><link>/user-guide/aws/ecs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ecs/</guid><description>
 &lt;p>LocalStack Pro version provides a basic support for creating and deploying containerized apps using &lt;a href="https://aws.amazon.com/ecs">Amazon ECS&lt;/a>. LocalStack offers the basic APIs locally, including creation of ECS task definitions, services, and tasks.&lt;/p>
 &lt;p>By default, the &lt;strong>ECS Fargate&lt;/strong> launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
@@ -1860,9 +1793,9 @@ For more information regarding the configuration of LocalStack, please check the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">volumes&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;host&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;sourcePath&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;/host/path&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>, &lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;test-volume&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}]&lt;/span>,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic MapReduce (EMR)</title><link>/user-guide/aws/elastic-mapreduce/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-mapreduce/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic MapReduce (EMR)</title><link>/user-guide/aws/emr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/emr/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Amazon EMR (Elastic MapReduce) is a fully managed big data processing service that allows developers to effortlessly create, deploy, and manage big data applications. EMR supports various big data processing frameworks, including Hadoop MapReduce, Apache Spark, Apache Hive, and Apache Pig. Developers can leverage these frameworks and their rich ecosystem of tools and libraries to perform complex data transformations, machine learning tasks, and real-time data processing.&lt;/p>
+&lt;p>Amazon Elastic MapReduce (EMR) is a fully managed big data processing service that allows developers to effortlessly create, deploy, and manage big data applications. EMR supports various big data processing frameworks, including Hadoop MapReduce, Apache Spark, Apache Hive, and Apache Pig. Developers can leverage these frameworks and their rich ecosystem of tools and libraries to perform complex data transformations, machine learning tasks, and real-time data processing.&lt;/p>
 &lt;p>LocalStack Pro supports EMR and allows developers to run data analytics workloads locally. EMR utilizes various tools in the &lt;a href="https://hadoop.apache.org/">Hadoop&lt;/a> and &lt;a href="https://spark.apache.org">Spark&lt;/a> ecosystem, and your EMR instance is automatically configured to connect seamlessly to LocalStack&amp;rsquo;s S3 API. LocalStack also supports EMR Serverless to create applications and job runs, to run your Spark/PySpark jobs locally.&lt;/p>
 &lt;p>The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_emr/">API coverage page&lt;/a>, which provides information on the extent of EMR&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
@@ -2150,7 +2083,74 @@ Additionally, container mode is beneficial for independently examining the logs 
 &lt;li>SSL&lt;/li>
 &lt;li>Migrations&lt;/li>
 &lt;li>Service integration (e.g., CloudWatch/Kinesis log delivery, SNS notifications) or facilitate related testing.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Quantum Ledger Database (QLDB)</title><link>/user-guide/aws/qldb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/qldb/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Organizations</title><link>/user-guide/aws/organizations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/organizations/</guid><description>
+&lt;p>Amazon Web Services Organizations is an account management service that allows you to consolidate multiple different AWS accounts into an organization. It allows you to manage different accounts in a single organization and consolidate billing. With Organizations, you can also attach different policies to your organizational units (OUs) or individual accounts in your organization.&lt;/p>
+&lt;p>Organizations is available over LocalStack Pro and the supported APIs are available over our &lt;a href="/references/configuration/">configuration page&lt;/a>.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>In this getting started guide, you&amp;rsquo;ll learn how to create your local AWS Organization and configure it with member accounts. This guide is intended for users who wish to get more acquainted with Organizations, and assumes you have basic knowledge of the AWS CLI (and our &lt;code>awslocal&lt;/code> wrapper script). To get started, start your LocalStack instance using your preferred method:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Create a new local AWS Organization with the feature set flag set to &lt;code>ALL&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-organization --feature-set ALL&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>You can now run the &lt;code>describe-organization&lt;/code> command to see the details of your organization:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations describe-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>You can now create an AWS account that would be a member of your organization:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-account \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --email example@example.com \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --account-name &amp;#34;Test Account&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+Since LocalStack essentially mocks AWS, the account creation is instantaneous. You can now run the &lt;code>list-accounts&lt;/code> command to see the details of your organization:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-accounts&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>You can also remove a member account from your organization:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations remove-account-from-organization --account-id &amp;lt;ACCOUNT_ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>To close an account in your organization, you can run the &lt;code>close-account&lt;/code> command:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations close-account --account-id 000000000000&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>You can use organizational units (OUs) to group accounts together to administer as a single unit. To create an OU, you can run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-roots
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-children \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --parent-id &amp;lt;PARENT-ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --child-type ORGANIZATIONAL_UNIT
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-organizational-unit \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --parent-id &amp;lt;PARENT-ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name New-Child-OU&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Before you can create and attach a policy to your organization, you must enable a policy type. To enable a policy type, you can run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations enable-policy-type \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --root-id &amp;lt;ROOT-ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy-type BACKUP_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+To disable a policy type, you can run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations disable-policy-type \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --root-id &amp;lt;ROOT-ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy-type BACKUP_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>To view the policies that are attached to your organization, you can run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-policies --filter SERVICE_CONTROL_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>To delete an organization, you can run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations delete-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>User-Guide: Quantum Ledger Database (QLDB)</title><link>/user-guide/aws/qldb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/qldb/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Quantum Ledger Database (QLDB) is supported by LocalStack only in the Pro version.&lt;/p>
 &lt;p>Amazon Quantum Ledger Database is a fully managed ledger database service offered by Amazon Web
