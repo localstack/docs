@@ -4,9 +4,10 @@ tags: ["LocalStack Pro", "SSO"]
 weight: 200
 description: >
   Configuring Custom Single-Sign On (SSO) Providers in LocalStack Enterprise
+tags: ["Enterprise"]
 ---
 
-LocalStack Enterprise allows to enable custom Single-Sign On (SSO) Identity providers, to facilitate the process of quickly onboarding team members from your organization.
+Custom Single-Sign On (SSO) Identity providers, can be enabled to facilitate the process of quickly onboarding team members from your organization.
 
 In order to configure SSO access, first sign in to the LocalStack Web application under [app.localstack.cloud](https://app.localstack.cloud/).
 In your profile settings, navigate to the Single Sign-on tab which will list existing SSO Identity Providers (if any exist).
