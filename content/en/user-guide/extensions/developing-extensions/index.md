@@ -1,9 +1,9 @@
 ---
 title: "Developing extensions"
-tags: ["extensions"]
 weight: 3
 description: >
   How to develop your own extensions
+tags: ["Pro image"]
 ---
 
 ## Introduction
