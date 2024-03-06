@@ -2,6 +2,7 @@
 title: "Athena"
 linkTitle: "Athena"
 description: Get started with Athena on LocalStack
+tags: ["Pro image"]
 ---
 
 Athena is an interactive query service provided by Amazon Web Services (AWS) that enables you to analyze data stored in S3 using standard SQL queries.
