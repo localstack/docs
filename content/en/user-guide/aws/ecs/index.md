@@ -20,7 +20,7 @@ ECS eliminates the need for you to install, operate, and scale your own cluster 
 This guide is designed for users new to ECS and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method.
-We will demonstrate how to create an ECS serivce using the AWS CLI
+We will demonstrate how to create an ECS service using the AWS CLI
 
 ### Create a cluster
 
@@ -28,7 +28,7 @@ We will demonstrate how to create an ECS serivce using the AWS CLI
 By default, the **ECS Fargate** launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.
 {{< /alert >}}
 
-ECS tasks and services run on a Cluster.
+ECS tasks and services run on a cluster.
 Execute the following command to create an ECS cluster named `mycluster`:
 
 {{< command >}}
@@ -124,7 +124,7 @@ Task definitions are immutable, and are identified by their `family` field, and 
 ### Launch a service
 
 Finally we launch an ECS service using the task definition above.
-This will create a number of containers in replica mode meaning they are distributed over the nodes of the cluster, or with the case of Fargate, over availability zones within the region of the cluster. To create a service, execute the following command:
+This will create a number of containers in replica mode meaning they are distributed over the nodes of the cluster, or in the case of Fargate, over availability zones within the region of the cluster. To create a service, execute the following command:
 
 
 {{< command >}}
@@ -202,18 +202,6 @@ For more information regarding the configuration of LocalStack, please check the
 To enable a remote debugging port for your ECS tasks, set the environment variable `ECS_DOCKER_FLAGS="-p 0:<debugger port>"` to expose your debugger on a random port on your host.
 You can then use this port to remote attach your debugger.
 Or if you are working with a single container, you can set `ECS_DOCKER_FLAGS="-p <debugger port>:<debugger port>"` to expose the debugger port to your host system.
-
-<!--
-
-## Executing ECS tasks in Docker
-
-Task instances are started in a local Docker engine, which needs to be accessible to the LocalStack container. The name pattern for task containers is `localstack_<family>_<revision>`, where `<family>` refers to the task family and `<revision>` refers to a task revision (for example, `localstack_nginx_1`).
-
-You can use the configuration option `LAMBDA_DOCKER_NETWORK` to specify the network the ECS containers are started in.
-If your ECS containers depend on LocalStack services, this should be the network the LocalStack container is located in.
-For more information regarding the configuration of LocalStack, please check the [LocalStack configuration]({{< ref "configuration" >}}) section.
-If you are running LocalStack through a `docker run` command, do not forget to enable the communication from the container to the Docker Engine API. You can provide the access by adding the following option `-v /var/run/docker.sock:/var/run/docker.sock`.
--->
 
 ## Mounting local directories for ECS tasks
 
