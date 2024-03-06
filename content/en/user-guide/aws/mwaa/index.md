@@ -47,7 +47,7 @@ $ awslocal mwaa create-environment --dag-s3-path /dags \
 
 ### Access the Airflow UI
 
-Airflow UI can be accessed at the URL in the `WebserverUrl` attribute of the response of `GetEnvironment` operation.
+The Airflow UI can be accessed via the URL in the `WebserverUrl` attribute of the response of the `GetEnvironment` operation.
 The username and password are always set to `localstack`.
 
 {{< command >}}
