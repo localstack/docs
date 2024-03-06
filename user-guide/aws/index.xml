@@ -11901,8 +11901,12 @@ Run the following command, by specifying the bucket ARN we created earlier:&lt;/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --airflow-configuration-options agent.code=007,agent.name=bond \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name my-mwaa-env&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="access-the-airflow-ui">Access the Airflow UI&lt;/h3>
-&lt;p>LocalStack will create the Airflow environment and print the Airflow UI URL and access credentials in the logs:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2022-11-30T17:58:36.533 DEBUG --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>functhread13&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.services.mwaa.provider : Airflow available at http://localhost.localstack.cloud:4510 with &lt;span style="color:#000">username&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>localstack and &lt;span style="color:#000">password&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>localstack
+&lt;p>The Airflow UI can be accessed via the URL in the &lt;code>WebserverUrl&lt;/code> attribute of the response of the &lt;code>GetEnvironment&lt;/code> operation.
+The username and password are always set to &lt;code>localstack&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mwaa get-environment --name my-mwaa-env --query Environment.WebserverUrl
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;http://localhost.localstack.cloud:4510&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>LocalStack also prints this information in the logs:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2024-03-06T14:54:47.070 INFO --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>functhread10&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.services.mwaa.provider : Airflow environment &lt;span style="color:#4e9a06">&amp;#39;my-mwaa-env&amp;#39;&lt;/span> available at http://localhost.localstack.cloud:4510 with username &lt;span style="color:#4e9a06">&amp;#39;localstack&amp;#39;&lt;/span> and password &lt;span style="color:#4e9a06">&amp;#39;localstack&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="airflow-versions">Airflow versions&lt;/h2>
 &lt;p>LocalStack supports the following versions of Apache Airflow:&lt;/p>
 &lt;ul>
