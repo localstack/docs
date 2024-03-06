@@ -2,11 +2,12 @@
 title: "AppConfig"
 linkTitle: "AppConfig"
 description: Get started with AppConfig on LocalStack
+tags: ["Pro image"]
 ---
 
 AppConfig is a service provided by Amazon Web Services (AWS) that simplifies the process of managing and deploying application configurations. AppConfig offers centralized management of configuration data and the ability to create, manage, and deploy configuration changes separately. It allows you to avoid deploying the service repeatedly for smaller changes, enables controlled deployments to applications and includes built-in validation checks & monitoring.
 
-LocalStack supports AppConfig via the Pro/Team offering, allowing you to use the AppConfig APIs in your local environment to define configurations for different environments and deploy them to your applications as needed. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_appconfig/), which provides information on the extent of AppConfig's integration with LocalStack.
+LocalStack allows you to use the AppConfig APIs in your local environment to define configurations for different environments and deploy them to your applications as needed. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_appconfig/), which provides information on the extent of AppConfig's integration with LocalStack.
 
 ## Getting started
 
