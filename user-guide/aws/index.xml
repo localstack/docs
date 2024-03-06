@@ -8761,18 +8761,164 @@ You can also view the push commands to push an image to the repository by clicki
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image">Lambda Container Images with ECR&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/ecs-ecr-container-app">Pushing Docker images to ECR and running them locally on ECS&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: Elastic Container Service (ECS)</title><link>/user-guide/aws/ecs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ecs/</guid><description>
-&lt;p>LocalStack Pro version provides a basic support for creating and deploying containerized apps using &lt;a href="https://aws.amazon.com/ecs">Amazon ECS&lt;/a>. LocalStack offers the basic APIs locally, including creation of ECS task definitions, services, and tasks.&lt;/p>
-&lt;p>By default, the &lt;strong>ECS Fargate&lt;/strong> launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service provided by Amazon Web Services (AWS).
+It allows you to run, stop, and manage Docker containers on a cluster.
+ECS eliminates the need for you to install, operate, and scale your own cluster management infrastructure.&lt;/p>
+&lt;h2 id="getting-started">Getting Started&lt;/h2>
+&lt;p>This guide is designed for users new to ECS and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method.
+We will demonstrate how to create an ECS service using the AWS CLI&lt;/p>
+&lt;h3 id="create-a-cluster">Create a cluster&lt;/h3>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-More complex features like integration of application load balancers (ALBs) are currently not available. Nonetheless, they are being developed and will be available in the near future.
+By default, the &lt;strong>ECS Fargate&lt;/strong> launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.
 &lt;/div>
-&lt;h2 id="executing-ecs-tasks-in-docker">Executing ECS tasks in Docker&lt;/h2>
-&lt;p>Task instances are started in a local Docker engine, which needs to be accessible to the LocalStack container. The name pattern for task containers is &lt;code>localstack_&amp;lt;family&amp;gt;_&amp;lt;revision&amp;gt;&lt;/code>, where &lt;code>&amp;lt;family&amp;gt;&lt;/code> refers to the task family and &lt;code>&amp;lt;revision&amp;gt;&lt;/code> refers to a task revision (for example, &lt;code>localstack_nginx_1&lt;/code>).&lt;/p>
-&lt;p>You can use the configuration option &lt;code>LAMBDA_DOCKER_NETWORK&lt;/code> to specify the network the ECS containers are started in.
-If your ECS containers depend on LocalStack services, this should be the network the LocalStack container is located in.
-For more information regarding the configuration of LocalStack, please check the &lt;a href="/references/configuration/">LocalStack configuration&lt;/a> section.&lt;/p>
-&lt;p>If you are running LocalStack through a &lt;code>docker run&lt;/code> command, do not forget to enable the communication from the container to the Docker Engine API. You can provide the access by adding the following option &lt;code>-v /var/run/docker.sock:/var/run/docker.sock&lt;/code>.&lt;/p>
+&lt;p>ECS tasks and services run on a cluster.
+Execute the following command to create an ECS cluster named &lt;code>mycluster&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecs create-cluster --cluster-name mycluster
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cluster&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;clusterArn&amp;#34;: &amp;#34;arn:aws:ecs:us-east-1:000000000000:cluster/mycluster&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;clusterName&amp;#34;: &amp;#34;mycluster&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;status&amp;#34;: &amp;#34;ACTIVE&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;registeredContainerInstancesCount&amp;#34;: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;runningTasksCount&amp;#34;: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;pendingTasksCount&amp;#34;: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;activeServicesCount&amp;#34;: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;settings&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;containerInsights&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;value&amp;#34;: &amp;#34;disabled&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-a-task-definition">Create a task definition&lt;/h3>
+&lt;p>Containers within tasks are defined by a task definition that is managed outside of the context of a cluster.
+To create a task definition that runs an &lt;code>ubuntu&lt;/code> container forever (by running &lt;code>sleep infinity&lt;/code> on startup), create the following file as &lt;code>task_definition.json&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;containerDefinitions&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;server&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;image&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ubuntu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;cpu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;memory&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;command&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;sleep&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;infinity&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;essential&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;family&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;myfamily&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>and then run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecs register-task-definition --cli-input-json file://task_definition.json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;taskDefinition&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;taskDefinitionArn&amp;#34;: &amp;#34;arn:aws:ecs:us-east-1:000000000000:task-definition/myfamily:1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;containerDefinitions&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;server&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;image&amp;#34;: &amp;#34;ubuntu&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cpu&amp;#34;: 10,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;memory&amp;#34;: 10,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;portMappings&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;essential&amp;#34;: true,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;command&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;sleep&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;infinity&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;environment&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mountPoints&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;volumesFrom&amp;#34;: []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;family&amp;#34;: &amp;#34;myfamily&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;networkMode&amp;#34;: &amp;#34;bridge&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;revision&amp;#34;: 1,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;volumes&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;status&amp;#34;: &amp;#34;ACTIVE&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;placementConstraints&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;compatibilities&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EXTERNAL&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EC2&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;registeredAt&amp;#34;: 1709242097.870379
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Task definitions are immutable, and are identified by their &lt;code>family&lt;/code> field, and calling &lt;code>register-task-definition&lt;/code> again with the same &lt;code>family&lt;/code> value creates a new &lt;em>version&lt;/em> of a task definition.&lt;/p>
+&lt;h3 id="launch-a-service">Launch a service&lt;/h3>
+&lt;p>Finally we launch an ECS service using the task definition above.
+This will create a number of containers in replica mode meaning they are distributed over the nodes of the cluster, or in the case of Fargate, over availability zones within the region of the cluster. To create a service, execute the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecs create-service --service-name myservice --cluster mycluster --task-definition myfamily --desired-count 1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;service&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;serviceArn&amp;#34;: &amp;#34;arn:aws:ecs:us-east-1:000000000000:service/mycluster/myservice&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;serviceName&amp;#34;: &amp;#34;myservice&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;clusterArn&amp;#34;: &amp;#34;arn:aws:ecs:us-east-1:000000000000:cluster/mycluster&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;loadBalancers&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;serviceRegistries&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;status&amp;#34;: &amp;#34;ACTIVE&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;desiredCount&amp;#34;: 1,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;runningCount&amp;#34;: 1,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;pendingCount&amp;#34;: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;launchType&amp;#34;: &amp;#34;EC2&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;taskDefinition&amp;#34;: &amp;#34;arn:aws:ecs:us-east-1:000000000000:task-definition/myfamily:1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;deploymentConfiguration&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;deploymentCircuitBreaker&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;enable&amp;#34;: false,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;rollback&amp;#34;: false
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;maximumPercent&amp;#34;: 200,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;minimumHealthyPercent&amp;#34;: 100
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;deployments&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;id&amp;#34;: &amp;#34;ecs-svc/49976591540684372&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;status&amp;#34;: &amp;#34;PRIMARY&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;taskDefinition&amp;#34;: &amp;#34;arn:aws:ecs:us-east-1:000000000000:task-definition/myfamily:1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;desiredCount&amp;#34;: 1,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;pendingCount&amp;#34;: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;runningCount&amp;#34;: 1,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;failedTasks&amp;#34;: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;createdAt&amp;#34;: 1709242525.05109,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;updatedAt&amp;#34;: 1709242525.051093,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;launchType&amp;#34;: &amp;#34;EC2&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;rolloutState&amp;#34;: &amp;#34;IN_PROGRESS&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;rolloutStateReason&amp;#34;: &amp;#34;ECS deployment ecs-svc/49976591540684372 in progress.&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;events&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;createdAt&amp;#34;: 1709242525.051096,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;placementStrategy&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;schedulingStrategy&amp;#34;: &amp;#34;REPLICA&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;createdBy&amp;#34;: &amp;#34;arn:aws:iam::000000000000:user/test&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should see a new docker container has been created, using the &lt;code>ubuntu:latest&lt;/code> image, and running the command &lt;code>sleep infinity&lt;/code>.&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ docker ps
+CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+a0dfa7a2cdd5 ubuntu &amp;#34;sleep infinity&amp;#34; About a minute ago Up About a minute ls-ecs-mycluster-a2fda12e-6a02-4eaa-a977-ded467a0227d-0-8ba33dc8
+66fcc01adb99 localstack/localstack-pro &amp;#34;docker-entrypoint.sh&amp;#34; 18 minutes ago Up 18 minutes (healthy) 127.0.0.1:53-&amp;gt;53/tcp, 127.0.0.1:443-&amp;gt;443/tcp, 127.0.0.1:4510-4560-&amp;gt;4510-4560/tcp, 127.0.0.1:4566-&amp;gt;4566/tcp, 127.0.0.1:53-&amp;gt;53/udp, 5678/tcp localstack-main
+&lt;/code>&lt;/pre>&lt;h2 id="localstack-ecs-behavior">LocalStack ECS behavior&lt;/h2>
+&lt;p>You can use the configuration option &lt;code>MAIN_DOCKER_NETWORK&lt;/code> to specify the network the ECS containers are started in.
+Otherwise, your ECS containers will be created in the same Docker network that LocalStack is in.
+If your ECS containers depend on LocalStack services, your ECS task network should be the same as the LocalStack container network.&lt;/p>
+&lt;p>If you are running LocalStack through a &lt;code>docker run&lt;/code> command, do not forget to enable the communication from the container to the Docker Engine API.
+You can provide the access by adding the following option &lt;code>-v /var/run/docker.sock:/var/run/docker.sock&lt;/code>.&lt;/p>
+&lt;p>For more information regarding the configuration of LocalStack, please check the &lt;a href="/references/configuration/">LocalStack configuration&lt;/a> section.&lt;/p>
+&lt;h2 id="remote-debugging">Remote debugging&lt;/h2>
+&lt;p>To enable a remote debugging port for your ECS tasks, set the environment variable &lt;code>ECS_DOCKER_FLAGS=&amp;quot;-p 0:&amp;lt;debugger port&amp;gt;&amp;quot;&lt;/code> to expose your debugger on a random port on your host.
+You can then use this port to remote attach your debugger.
+Or if you are working with a single container, you can set &lt;code>ECS_DOCKER_FLAGS=&amp;quot;-p &amp;lt;debugger port&amp;gt;:&amp;lt;debugger port&amp;gt;&amp;quot;&lt;/code> to expose the debugger port to your host system.&lt;/p>
 &lt;h2 id="mounting-local-directories-for-ecs-tasks">Mounting local directories for ECS tasks&lt;/h2>
 &lt;p>In some cases, it can be useful to mount code from the host filesystem into the ECS container. For example, to enable a quick debugging loop where you can test changes without having to build and redeploy the task&amp;rsquo;s Docker image each time - similar to the &lt;a href="/user-guide/lambda-tools/hot-reloading/">Lambda Hot Reloading&lt;/a> feature in LocalStack.&lt;/p>
 &lt;p>In order to leverage code mounting, we can use the ECS bind mounts feature, which is covered in the &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/bind-mounts.html">AWS Bind mounts documentation&lt;/a>.&lt;/p>
