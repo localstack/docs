@@ -1,10 +1,9 @@
 ---
 title: "Elastic Container Registry (ECR)"
 linkTitle: "Elastic Container Registry (ECR)"
-aliases:
-- /user-guide/aws/elastic-container-registry
 description: >
   Get started with Elastic Container Registry (ECR) on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -13,7 +12,7 @@ Elastic Container Registry (ECR) is a fully managed container registry service p
 ECR enables you to store, manage, and deploy Docker container images to build, store, and deploy containerized applications.
 ECR integrates with other AWS services, such as Lambda, ECS, and EKS.
 
-LocalStack supports Elastic Container Registry via the Pro/Team offering, allowing you to use the ECR APIs in your local environment to build & push Docker images to a local ECR registry.
+LocalStack allows you to use the ECR APIs in your local environment to build & push Docker images to a local ECR registry.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ecr/), which provides information on the extent of ECR's integration with LocalStack.
 
 ## Getting started
