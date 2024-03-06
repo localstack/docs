@@ -4,7 +4,7 @@ tags: ["LocalStack Pro", "SSO"]
 weight: 200
 description: >
   Configuring Custom Single-Sign On (SSO) Providers in LocalStack Web Application
-tags: ["Enterprise"]
+tags: ["Enterprise plan"]
 ---
 
 Custom Single-Sign On (SSO) Identity providers, can be enabled to facilitate the process of quickly onboarding team members from your organization.

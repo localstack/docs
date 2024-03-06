@@ -6,7 +6,7 @@ description: >
 aliases:
   - /localstack/persistence-mechanism/
   - /references/persistence-mechanism/
-tags: ["Pro"]
+tags: ["Pro image"]
 ---
 
 ## Introduction

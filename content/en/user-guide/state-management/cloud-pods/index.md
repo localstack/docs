@@ -6,7 +6,7 @@ aliases:
   - /user-guide/cloud-pods/getting-started/
   - /user-guide/tools/cloud-pods/auto-load/
   - /user-guide/tools/cloud-pods/remotes/
-tags: ["Teams"]
+tags: ["Teams plan"]
 ---
 
 ## Introduction
