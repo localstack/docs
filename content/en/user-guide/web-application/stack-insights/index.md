@@ -1,6 +1,6 @@
 ---
 title: "Stack Insights"
-tags: ["LocalStack Pro", "Stack Insights"]
+tags: ["Pro image"]
 weight: 140
 description: >
   Stack Insights enable users to report AWS API usage telemetry of LocalStack runs to their LocalStack account.
