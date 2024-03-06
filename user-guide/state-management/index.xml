@@ -382,7 +382,7 @@ This is a compromise between &lt;code>ON_REQUEST&lt;/code> and &lt;code>ON_SHUTD
 &lt;li>&lt;strong>&lt;code>MANUAL&lt;/code>&lt;/strong>: Turns off automatic snapshotting and gives you control through the internal state endpoints.&lt;/li>
 &lt;/ul>
 &lt;h3 id="load-strategies">Load Strategies&lt;/h3>
-&lt;p>You can also configure when LocalStack should restore the state snapshots.&lt;/p>
+&lt;p>Similarly, you can configure when LocalStack should restore the state snapshots, by using &lt;code>SNAPSHOT_LOAD_STRATEGY=&amp;lt;strategy&amp;gt;&lt;/code>.&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>&lt;code>ON_REQUEST&lt;/code>&lt;/strong>: (&lt;strong>default&lt;/strong>) The state is loaded lazily when the service is requested. This maintains LocalStack&amp;rsquo;s lazy-loading behavior for AWS services.&lt;/li>
 &lt;li>&lt;strong>&lt;code>ON_STARTUP&lt;/code>&lt;/strong>: The state of all services in the snapshot is restored when LocalStack starts up. This means that services that have stored state are also started on LocalStack start, which will increase the startup time, but also give you immediate feedback whether the state was restored correctly.&lt;/li>
