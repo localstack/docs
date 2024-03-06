@@ -3,15 +3,14 @@ title: "Kinesis Data Analytics"
 linkTitle: "Kinesis Data Analytics"
 description: >
   Get started with Kinesis Data Analytics on LocalStack
-aliases:
-- /user-guide/aws/kinesis-analytics/
+tags: ["Pro image"]
 ---
 
 Kinesis Data Analytics is a service offered by Amazon Web Services (AWS) that enables you to process and analyze streaming data in real-time.
 Kinesis Data Analytics allows you to apply transformations, filtering, and enrichment to streaming data using standard SQL syntax.
 You can also run Java or Scala programs against streaming sources to perform various operations on the data using Apache Flink.
 
-LocalStack supports Kinesis Data Analytics via the Pro/Team offering, allowing you to use the Kinesis Data Analytics APIs in your local environment to run continuous SQL queries directly over your Kinesis data streams.
+LocalStack allows you to use the Kinesis Data Analytics APIs in your local environment to run continuous SQL queries directly over your Kinesis data streams.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/), which provides information on the extent of Kinesis Data Analytics integration with LocalStack.
 
 ## Getting started
