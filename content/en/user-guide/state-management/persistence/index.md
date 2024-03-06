@@ -62,7 +62,7 @@ You can select a particular save strategy by setting `SNAPSHOT_SAVE_STRATEGY=<st
 
 ### Load Strategies
 
-You can also configure when LocalStack should restore the state snapshots.
+Similarly, you can configure when LocalStack should restore the state snapshots, by using `SNAPSHOT_LOAD_STRATEGY=<strategy>`.
 
 * **`ON_REQUEST`**: (**default**) The state is loaded lazily when the service is requested. This maintains LocalStack's lazy-loading behavior for AWS services.
 * **`ON_STARTUP`**: The state of all services in the snapshot is restored when LocalStack starts up. This means that services that have stored state are also started on LocalStack start, which will increase the startup time, but also give you immediate feedback whether the state was restored correctly.
