@@ -1,6 +1,6 @@
 ---
-title: "AWS Certificate Manager (ACM)"
-linkTitle: "AWS Certificate Manager (ACM)"
+title: "Certificate Manager (ACM)"
+linkTitle: "Certificate Manager (ACM)"
 description: Get started with AWS Certificate Manager (ACM) on LocalStack
 ---
 

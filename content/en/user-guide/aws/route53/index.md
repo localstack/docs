@@ -1,6 +1,6 @@
 ---
-title: "Route53"
-linkTitle: "Route53"
+title: "Route 53"
+linkTitle: "Route 53"
 description: Get started with Route 53 on LocalStack
 ---
 

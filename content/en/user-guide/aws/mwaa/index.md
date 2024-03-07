@@ -47,10 +47,18 @@ $ awslocal mwaa create-environment --dag-s3-path /dags \
 
 ### Access the Airflow UI
 
-LocalStack will create the Airflow environment and print the Airflow UI URL and access credentials in the logs:
+The Airflow UI can be accessed via the URL in the `WebserverUrl` attribute of the response of the `GetEnvironment` operation.
+The username and password are always set to `localstack`.
+
+{{< command >}}
+$ awslocal mwaa get-environment --name my-mwaa-env --query Environment.WebserverUrl
+"http://localhost.localstack.cloud:4510"
+{{< /command >}}
+
+LocalStack also prints this information in the logs:
 
 ```bash
-2022-11-30T17:58:36.533 DEBUG --- [functhread13] l.services.mwaa.provider   : Airflow available at http://localhost.localstack.cloud:4510 with username=localstack and password=localstack
+2024-03-06T14:54:47.070  INFO --- [functhread10] l.services.mwaa.provider   : Airflow environment 'my-mwaa-env' available at http://localhost.localstack.cloud:4510 with username 'localstack' and password 'localstack'
 ```
 
 ## Airflow versions

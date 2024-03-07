@@ -1,6 +1,6 @@
 ---
-title: "RedShift"
-linkTitle: "RedShift"
+title: "Redshift"
+linkTitle: "Redshift"
 description: Get started with Redshift on LocalStack
 ---
 

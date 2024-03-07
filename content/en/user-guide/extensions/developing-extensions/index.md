@@ -1,7 +1,7 @@
 ---
 title: "Developing extensions"
 tags: ["extensions"]
-weight: 10
+weight: 3
 description: >
   How to develop your own extensions
 ---

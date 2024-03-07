@@ -1,7 +1,7 @@
 ---
-title: "Account"
-linkTitle: "Account"
-description: Get started with Account on LocalStack
+title: "Account Management"
+linkTitle: "Account Management"
+description: Get started with AWS Account Management on LocalStack
 ---
 
 ## Introduction
