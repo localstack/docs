@@ -4,9 +4,7 @@ linkTitle: "Transparent Endpoint Injection"
 weight: 10
 description: >
   Transparently resolve your AWS calls to LocalStack
-aliases:
-  - /tools/local-endpoint-injection/
-  - /user-guide/tools/transparent-endpoint-injection/patched-sdks/
+tags: ["Pro image"]
 ---
 
 LocalStack Pro provides Transparent Endpoint Injection,
