@@ -1599,12 +1599,6 @@ All restrictions associated with containers are also applicable to EC2 instances
 In order for LocalStack to function seamlessly, access to the Docker socket is essential, which can be facilitated by attaching the socket file during the launch process.&lt;/p>
 &lt;p>Instances encompass the mounted Docker socket (&lt;code>/var/run/docker.sock&lt;/code>), which facilitates scenarios involving Docker-in-Docker.
 This setup makes it feasible to engage in use cases that require interactions with Docker within the instances themselves.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-LocalStack does not clean up any Dockerized instances when shutting down.
-The Docker containers backing the EC2 instance continue running even after LocalStack is stopped.
-You need to explicitly call the &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html">&lt;code>TerminateInstances&lt;/code>&lt;/a> API to stop and remove these containers before stopping the LocalStack.
-&lt;/div>
 &lt;h3 id="operations">Operations&lt;/h3>
 &lt;p>The Docker backend supports the following operations:&lt;/p>
 &lt;table>
