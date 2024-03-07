@@ -108,7 +108,7 @@ You can manually set the Auth Token, or use the `export` command to establish th
 
 ## Licensing-related configuration
 
-To ensure that LocalStack only starts when you can activate LocalStack Pro/Team/Enterprise, set `ACTIVATE_PRO=1` in your environment. This is set to `true` by default if using the `localstack/localstack-pro` container image. If set to 1, LocalStack will fail to start if the license key activation did not work. If set to 0, an attempt is made to start LocalStack without any licensed features. 
+To ensure that LocalStack only starts with features available in [licensed tiers](https://www.localstack.cloud/pricing), set `ACTIVATE_PRO=1` in your environment. This is set to `true` by default if using the `localstack/localstack-pro` container image. If set to `1`, LocalStack will fail to start if the license key activation did not work. If set to `0`, an attempt is made to start LocalStack without any licensed features. 
 
 To avoid logging any licensing-related error messages, set `LOG_LICENSE_ISSUES=0` in your environment. Refer to our [configuration guide](https://docs.localstack.cloud/references/configuration/#localstack-pro) for more information.
 
