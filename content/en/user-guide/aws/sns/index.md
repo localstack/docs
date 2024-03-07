@@ -7,7 +7,7 @@ description: >
 
 Simple Notification Service (SNS) is a serverless messaging service that can distribute a massive number of messages to multiple subscribers and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints. SNS employs the Publish/Subscribe, an asynchronous messaging pattern that decouples services that produce events from services that process events.
 
-LocalStack supports SNS via the Community offering, allowing you to use the SNS APIs in your local environment to coordinate the delivery of messages to subscribing endpoints or clients. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sns/), which provides information on the extent of SNS's integration with LocalStack.
+LocalStack allows you to use the SNS APIs in your local environment to coordinate the delivery of messages to subscribing endpoints or clients. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sns/), which provides information on the extent of SNS's integration with LocalStack.
 
 ## Getting started
 

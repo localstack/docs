@@ -9,7 +9,7 @@ description: >
 
 Key Management Service (KMS) is a managed service that allows users to handle encryption keys within the Amazon Web Services ecosystem. KMS allows users to create, control, and utilize keys to encrypt and decrypt data, as well as to sign and verify messages. KMS allows you to create, delete, list, and update aliases, friendly names for your KMS keys, and tag them for identification and automation. You can check [the official AWS documentation](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html) to understand the basic terms and concepts used in the KMS.
 
-LocalStack supports Resource Groups via the Community offering, allowing you to use the KMS APIs in your local environment to create, edit, and view symmetric and asymmetric KMS keys, including HMAC keys. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kms/), which provides information on the extent of KMS's integration with LocalStack.
+LocalStack allows you to use the KMS APIs in your local environment to create, edit, and view symmetric and asymmetric KMS keys, including HMAC keys. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kms/), which provides information on the extent of KMS's integration with LocalStack.
 
 ## Getting started
 

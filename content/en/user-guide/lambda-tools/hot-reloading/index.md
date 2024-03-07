@@ -2,7 +2,6 @@
 title: "Hot Reloading"
 date: 2021-09-27
 weight: 1
-categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Hot code reloading continuously applies code changes to Lambda functions
 aliases:

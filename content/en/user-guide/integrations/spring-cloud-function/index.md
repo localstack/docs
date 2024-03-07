@@ -12,12 +12,6 @@ description: >
 In this guide, you will learn how to use LocalStack to test
 your serverless applications powered by Spring Cloud Function framework.
 
-| Complexity   | ★★★☆☆             |
-|--------------|-------------------|
-| Time to read | 30 minutes        |
-| Edition      | community [pro]   |
-| Platform     | x64_86 (-aarch64) |
-
 {{< alert title="Warning" color="warning" >}}
 Some features and services described in this document may not work properly on aarch64, including Apple's M1 silicon.
 {{< /alert >}}

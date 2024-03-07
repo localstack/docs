@@ -9,7 +9,7 @@ description: >
 
 Identity and Access Management (IAM) is a web service provided by Amazon Web Services (AWS) that enables users to control access to AWS resources securely. IAM allows organizations to create and manage AWS users, groups, and roles, defining granular permissions to access specific AWS services and resources. By centralizing access control, administrators can enforce the principle of least privilege, ensuring users have only the necessary permissions for their tasks.
 
-LocalStack supports IAM via the Community offering, allowing you to use the IAM APIs in your local environment to create and manage users, groups, and roles, granting permissions that adhere to the principle of least privilege. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iam/), which provides information on the extent of IAM's integration with LocalStack.
+LocalStack allows you to use the IAM APIs in your local environment to create and manage users, groups, and roles, granting permissions that adhere to the principle of least privilege. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iam/), which provides information on the extent of IAM's integration with LocalStack.
 
 ## Getting started
 

@@ -8,7 +8,7 @@ DynamoDB is a fully managed NoSQL database service provided by AWS.
 It offers a flexible and highly scalable way to store and retrieve data, making it suitable for a wide range of applications.
 DynamoDB provides a fast and scalable key-value datastore with support for replication, automatic scaling, data encryption at rest, and on-demand backup, among other capabilities.
 
-LocalStack supports DynamoDB via the Community offering, allowing you to use the DynamoDB APIs in your local environment to manage key-value and document data models.
+LocalStack allows you to use the DynamoDB APIs in your local environment to manage key-value and document data models.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_dynamodb/), which provides information on the extent of DynamoDB's integration with LocalStack.
 
 {{< alert title="Note">}}
