@@ -180,6 +180,7 @@ Step Functions integrates with AWS services, allowing you to invoke API actions 
 |--------------------------------|-------------------------|:---:             |:---:              |:---:               |:---:                                  |
 | Optimized integrations         | Lambda                  | &#10003;         |                   |                    | &#10003;                              |
 |                                | DynamoDB                | &#10003;         |                   |                    |                                       |
+|                                | Amazon ECS/AWS Fargate  | &#10003;         | &#10003;          |                    | &#10003;                              |
 |                                | Amazon SNS              | &#10003;         |                   |                    | &#10003;                              |
 |                                | Amazon SQS              | &#10003;         |                   |                    | &#10003;                              |
 |                                | API Gateway             | &#10003;         |                   |                    | &#10003;                              |
