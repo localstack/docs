@@ -120,6 +120,21 @@ $ localstack logs
 ...
 {{< /command >}}
 
+## Supported target types
+
+At this time LocalStack supports the following [target types](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-console-targets) for EventBridge rules:
+
+- Lambda function
+- SNS Topic
+- SQS queue
+- StepFunctions StateMachine
+- Firehose
+- Event bus
+- API destination
+- Kinesis
+- CloudWatch log group
+
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing EventBridge Buses. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **EventBridge** under the **App Integration** section.
