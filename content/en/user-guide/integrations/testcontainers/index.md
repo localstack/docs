@@ -43,6 +43,9 @@ go get github.com/testcontainers/testcontainers-go/modules/localstack
 {{< tab header="Java (Gradle)" lang="gradle">}}
 testImplementation 'org.testcontainers:localstack:1.18.0'
 {{< /tab >}}
+{{< tab header="NodeJS (npm)" lang="npm">}}
+npm i @testcontainers/localstack
+{{< /tab >}}
 {{< /tabpane >}}
 
 ### Obtaining a LocalStack container
@@ -58,7 +61,10 @@ await localStackContainer.StartAsync()
 container, err := localstack.StartContainer(ctx, localstack.NoopOverrideContainerRequest)
 {{< /tab >}}
 {{< tab header="Java" lang="java">}}
-LocalStackContainer localstack = new LocalStackContainer(DockerImageName.parse("localstack/localstack:2.0.0"));
+LocalStackContainer localstack = new LocalStackContainer(DockerImageName.parse("localstack/localstack:3"));
+{{< /tab >}}
+{{< tab header="NodeJS (typescript)" lang="typescript">}}
+const localstack = new LocalstackContainer("localstack/localstack:3").start()
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -120,6 +126,17 @@ S3Client s3 = S3Client.builder()
     .region(Region.of(localstack.getRegion()))
     .build();
 {{< /tab >}}
+{{< tab header="NodeJS (typescript)" lang="typescript">}}
+const awsConfig = {
+      endpoint: localstack.getConnectionUri(),
+      credentials: {
+        accessKeyId: "test",
+        secretAccessKey: "test",
+      },
+      region: "eu-central-1",
+    };
+const s3 = S3Client(awsConfig);
+{{< /tab >}}
 {{< /tabpane >}}
 
 ## Special Setup for using RDS
@@ -159,3 +176,5 @@ int mapped_port = localstack.getMappedPort(localstack_port);
 * https://www.testcontainers.org/modules/localstack (Java)
 * https://golang.testcontainers.org (Go)
 * https://golang.testcontainers.org/modules/localstack (Go)
+* https://node.testcontainers.org (NodeJs)
+* https://node.testcontainers.org/modules/localstack (NodeJs)
