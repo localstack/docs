@@ -122,7 +122,7 @@ $ localstack logs
 
 ## Supported target types
 
-At this time LocalStack supports the following target types for EventBridge rules:
+At this time LocalStack supports the following [target types](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-console-targets) for EventBridge rules:
 
 - Lambda function
 - SNS Topic
