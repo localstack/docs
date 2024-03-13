@@ -6,7 +6,7 @@ description: >
   Use LocalStack in [GitHub Actions](https://docs.github.com/en/actions)
 ---
 
-This page contains snippets to show you how to manage LocalStack in a Github Actions pipeline.
+This page contains easily customisable snippets to show you how to manage LocalStack in a GitHub Actions pipeline.
 
 ## Snippets
 
@@ -70,7 +70,9 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 
 ### Store Localstack state
 
-#### As an artifact
+You can preserve your AWS infrastructure with Localstack in various ways.
+
+#### Artifact
 ```yaml
 ...
 # Localstack is up and running already
@@ -103,7 +105,9 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 ...
 ```
 
-#### As cloud pods
+More information about state import and export [here](/user-guide/state-management/export-import-state).
+
+#### Cloud Pods
 ```yaml
 ...
 # Localstack is up and running already
@@ -126,7 +130,7 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 
 Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
 
-#### As ephemeral instance (Beta)
+#### Ephemeral Instance (Beta)
 
 Our Github Action contains the prebuilt functionality to spin up an ephemeral instance.
 
@@ -186,7 +190,7 @@ jobs:
           include-preview: true
 ```
 
-Find more information about ephemeral instances [here](/user-guide/cloud-sandbox/).
+Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 
 ## Known Issues and Limitations
 
