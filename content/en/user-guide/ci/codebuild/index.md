@@ -1,7 +1,7 @@
 ---
 title: "CodeBuild"
 linkTitle: "CodeBuild"
-weight: 5
+weight: 7
 description: Use LocalStack in CodeBuild
 ---
 
