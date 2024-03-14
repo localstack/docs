@@ -1,11 +1,8 @@
 ---
 title: "Elastic Compute Cloud (EC2)"
 linkTitle: "Elastic Compute Cloud (EC2)"
-categories: ["LocalStack Pro"]
+tags: ["Pro image"]
 description: Get started with Amazon Elastic Compute Cloud (Amazon EC2) on LocalStack
-aliases:
-  - /aws/elastic-compute-cloud/
-  - /user-guide/aws/elastic-compute-cloud/
 ---
 
 ## Introduction
@@ -14,8 +11,7 @@ Elastic Compute Cloud (EC2) is a core service within Amazon Web Services (AWS) t
 EC2 enables users to launch and manage virtual servers, commonly referred to as instances.
 Users can create a range computing environments tailored to specific needs by employing a wide array of configurations, enabling users to select the desired combination of computing power, memory, storage, and networking capabilities.
 
-LocalStack supports a mock implementation of EC2 via the Community offering while a fully-emulated implementation is available in the Pro/Team offering, allowing you to use the EC2 APIs in your local environment to create and manage your EC2 instances.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ec2/), which provides information on the extent of EC2's integration with LocalStack.
+LocalStack allows you to use the EC2 APIs in your local environment to create and manage your EC2 instances. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ec2/), which provides information on the extent of EC2's integration with LocalStack.
 
 ## Getting started
 
@@ -23,10 +19,6 @@ This guide is designed for users new to EC2 and assumes basic knowledge of the A
 
 Start your LocalStack container using your preferred method.
 We will demonstrate how to create an EC2 instance that runs a simple Python web server on port 8000 with the AWS CLI.
-
-{{< alert title="Note" >}}
-You need to use LocalStack Pro/Team to test the setup of the EC2 instance, since it uses [Docker Backend](#docker-backend) to emulate EC2 instances.
-{{< /alert >}}
 
 ### Create a Key Pair
 
