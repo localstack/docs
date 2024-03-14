@@ -1,7 +1,6 @@
 ---
 title: "CloudWatch"
 linkTitle: "CloudWatch"
-categories: ["LocalStack Community"]
 description: Get started with AWS CloudWatch on LocalStack
 aliases:
   - /aws/cloudwatch/

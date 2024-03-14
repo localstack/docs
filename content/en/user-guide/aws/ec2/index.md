@@ -234,7 +234,7 @@ $ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
 {{< /command >}}
 
 {{< alert title="Note" >}}
-All other AMIs that do not have the above tag are mocked and originate from the community edition of LocalStack.
+All other AMIs that do not have the above tag are mocked and originate from the Community image of LocalStack.
 Attempting to launch Dockerized instances using these specific AMIs will result in an `InvalidAMIID.NotFound` error.
 {{< /alert >}}
 

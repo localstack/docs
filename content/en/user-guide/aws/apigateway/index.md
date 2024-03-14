@@ -3,6 +3,7 @@ title: "API Gateway"
 linkTitle: "API Gateway"
 description: >
   Get started with API Gateway on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction

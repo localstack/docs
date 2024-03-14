@@ -154,10 +154,10 @@ Currently, support for `UPDATE` operations on resources is limited. Prefer stack
 ### Resources
 
 {{< alert title="Note">}}
-When utilizing the Community Edition, any resources within the stack that are not supported will be disregarded and won't be deployed.
+When utilizing the Community image, any resources within the stack that are not supported will be disregarded and won't be deployed.
 {{< /alert >}}
 
-#### Community Edition
+#### Community image
 
 
 | Resource                                    | Create | Delete | Update |
@@ -269,7 +269,7 @@ When utilizing the Community Edition, any resources within the stack that are no
 | AWS::Timestream::Table                      |      ✅ |      ✅ |      - |
 
 
-#### Pro Edition
+#### Pro image
 
 | Resource                                        | Create | Delete | Update |
 |-------------------------------------------------|-------:|-------:|-------:|

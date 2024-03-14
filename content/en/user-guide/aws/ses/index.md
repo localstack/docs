@@ -2,6 +2,7 @@
 title: "Simple Email Service (SES)"
 linkTitle: "Simple Email Service (SES)"
 description: Get started with Amazon Simple Email Service (SES) on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -9,8 +10,8 @@ description: Get started with Amazon Simple Email Service (SES) on LocalStack
 Simple Email Service (SES) is an emailing service that can be integrated with other cloud-based services.
 It provides API to facilitate email templating, sending bulk emails and more.
 
-LocalStack supports SES v1 in the Community edition, while the Pro edition also supports SES v2 and SMTP integration.
-The full list of supported APIs can be found on the API coverage pages: [SES v1](https://docs.localstack.cloud/references/coverage/coverage_ses/) and [SES v2](https://docs.localstack.cloud/references/coverage/coverage_sesv2/)
+LocalStack supports SES v1 in the Community image, while SES v2 and SMTP integration is supported in the Pro image.
+The supported APIs are available on the API coverage page for [SES v1](https://docs.localstack.cloud/references/coverage/coverage_ses/) and [SES v2](https://docs.localstack.cloud/references/coverage/coverage_sesv2/).
 
 ## Getting Started
 
@@ -52,9 +53,9 @@ $ awslocal ses send-email \
 }
 {{< /command >}}
 
-On LocalStack Community, this is a mock operation i.e. no actual email is sent.
-On LocalStack Pro, you can enable [SMTP Integration](#smtp-integration) to send real emails.
-
+{{< alert title="Note" >}}
+In the Community image, no emails are actually sent. Hence this operation is mocked. In the Pro image however, emails are sent via an SMTP server.
+{{< /alert >}}
 
 ## Sent Emails
 
@@ -97,16 +98,13 @@ $ curl --silent localhost.localstack.cloud:4566/_aws/ses?email=hello@example.com
 
 ## SMTP Integration
 
-LocalStack Pro ships with support for sending emails via an SMTP email server.
-
-Please refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`).
+The Pro image supports sending emails via an SMTP server. Refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`).
 
 {{< alert title="Hint" color="success">}}
 If you do not have access to a proper SMTP server, you can use tools like [MailDev](https://github.com/maildev/maildev) or [smtp4dev](https://github.com/rnwood/smtp4dev).
 These run as Docker containers on your local machine.
 Make sure they run in the same Docker network as the LocalStack container.
 {{< /alert >}}
-
 
 ## Resource Browser
 
