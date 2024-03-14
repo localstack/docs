@@ -1,7 +1,7 @@
 ---
 title: "Travis CI"
 tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
-weight: 6
+weight: 7
 description: >
   Use LocalStack in [Travis CI](https://www.travis-ci.com/)
 aliases:
