@@ -9,7 +9,7 @@ aliases:
 
 CloudWatch is a comprehensive monitoring and observability service that Amazon Web Services (AWS) provides. It allows you to collect and track metrics, collect and monitor log files, and set alarms. CloudWatch provides valuable insights into your AWS resources, applications, and services, enabling you to troubleshoot issues, optimize performance, and make informed decisions.
 
-LocalStack supports CloudWatch via its Community offering, allowing you to leverage CloudWatch functionalities on your local machine. With LocalStack, you can create and manage CloudWatch resources, such as custom metrics, alarms, and log groups, for local development and testing purposes. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/), which provides information on the extent of CloudWatch's integration with LocalStack.
+LocalStack allows you to use CloudWatch APIs on your local machine to create and manage CloudWatch resources, such as custom metrics, alarms, and log groups, for local development and testing purposes. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/), which provides information on the extent of CloudWatch's integration with LocalStack.
 
 {{< alert title="Note" >}}
 We have introduced an all-new LocalStack-native [CloudWatch provider](https://docs.localstack.cloud/user-guide/aws/cloudwatch/) is available behind a feature flag. You can activate it by configuring  `PROVIDER_OVERRIDE_CLOUDWATCH=v2` in your LocalStack configuration.
@@ -116,7 +116,9 @@ The output should look similar to the following:
 }
 ```
 
-You can use [filters](https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html) or [queries](https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html) with LocalStack Pro/Team to refine your results.
+{{< alert title="Note" >}}
+You can use [filters](https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html) or [queries](https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html) with the LocalStack Pro image to refine your results.
+{{< /alert >}}
 
 ## Metric Alarms
 
