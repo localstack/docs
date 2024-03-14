@@ -114,13 +114,8 @@ The product of 10 and 10 is 100%
 
 ## Lambda Layers (Pro)
 
-[Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) lets you include additional code and dependencies in your Lambda functions. 
-With LocalStack Pro/Team, you can deploy Lambda Layers locally to streamline your development and testing process.
-Community users can still create, update, and list Lambda layers.
+[Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) lets you include additional code and dependencies in your Lambda functions. LocalStack Pro image allows you to deploy Lambda Layers locally to streamline your development and testing process.
 However, the layers are not applied when invoking a Lambda function.
-
-To learn more about Lambda Layers, refer to the [AWS documentation on Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
-Here, we'll focus specifically on how to use Lambda Layers locally in LocalStack Pro/Team.
 
 ### Creating and using a Lambda Layer Locally
 
