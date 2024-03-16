@@ -1,9 +1,30 @@
 ---
-title: "Fault Injection Simulator Experiments"
-linkTitle: "Fault Injection Simulator Experiments"
-weight: 1
-description: Conduct experiments on your AWS infrastructure to simulate faults and understand their effects, enhancing application resilience.
+title: "Chaos Engineering: Running Experiments with Fault Injection Service"
+linkTitle: "Chaos Engineering: Running Experiments with Fault Injection Service"
+weight: 8
+description: >
+  Conduct experiments on your AWS infrastructure to simulate faults and understand their effects, enhancing application resilience.
+type: tutorials
+teaser: ""
+services:
+- fis
+- agw
+- ddb
+- lmb
+platform:
+- Java
+deployment:
+- awscli
+tags:
+- BASH
+- FIS
+- API Gateway
+- DynamoDB
+- Lambda
+pro: true
+leadimage: "fis-experiments.png"
 ---
+
 
 ## Introduction
 
@@ -43,13 +64,13 @@ Before starting any FIS experiments, it's important to verify that our applicati
 
 {{< command >}}
 $ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
-  --header 'Content-Type: application/json' \
-  --data '{
+--header 'Content-Type: application/json' \
+--data '{
     "id": "prod-2004",
     "name": "Ultimate Gadget",
     "price": "49.99",
     "description": "The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry. Compact, powerful, and loaded with features."
-  }'
+}'
 <disable-copy>
 Product added/updated successfully.
 </disable-copy>
@@ -80,11 +101,11 @@ $ cat experiment-ddb.json
 }
 ```
 
-This template is designed to target all APIs of the DynamoDB resource. While it's possible to specify particular operations like `PutItem` or `GetItem`, the objective here is to entirely disconnect the database. 
+This template is designed to target all APIs of the DynamoDB resource. While it's possible to specify particular operations like `PutItem` or `GetItem`, the objective here is to entirely disconnect the database.
 
 As a result, this configuration will cause all API calls to fail with a 100% failure rate, each resulting in an HTTP 500 status code and a `DynamoDbException`.
 
-{{< command >}}
+{{<command>}}
 $ awslocal fis create-experiment-template --cli-input-json file://experiment-ddb.json
 <disable-copy>
 {
@@ -107,14 +128,14 @@ $ awslocal fis create-experiment-template --cli-input-json file://experiment-ddb
             {
                 "source": "none"
             }
-        ],
+            ],
         "creationTime": 1699308754.415716,
         "lastUpdateTime": 1699308754.415716,
         "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
-    }
+    }   
 }
 </disable-copy>
-{{< /command >}}
+{{</ command >}}
 
 Take note of the `id` field in the response. This is the ID of the experiment template that will be used in the next step.
 
@@ -134,17 +155,17 @@ $ awslocal fis start-experiment --experiment-template-id <EXPERIMENT_TEMPLATE_ID
             "status": "running"
         },
         "actions": {
-            "Test action 1": {
-                "actionId": "localstack:generic:api-error",
-                "parameters": {
-                    "service": "dynamodb",
-                    "api": "all",
-                    "percentage": "100",
-                    "exception": "DynamoDbException",
-                    "errorCode": "500"
-                }
+        "Test action 1": {
+            "actionId": "localstack:generic:api-error",
+            "parameters": {
+                "service": "dynamodb",
+                "api": "all",
+                "percentage": "100",
+                "exception": "DynamoDbException",
+                "errorCode": "500"
             }
-        },
+        }
+    },
         "stopConditions": [
             {
                 "source": "none"
@@ -161,9 +182,9 @@ Replace the `<EXPERIMENT_TEMPLATE_ID>` placeholder with the ID of the experiment
 
 ### Simulating an outage
 
-Once the experiment starts, the database becomes inaccessible. This means users cannot retrieve or add new products, resulting in the API Gateway returning an Internal Server Error. Downtime and data loss are critical issues to avoid in enterprise applications. 
+Once the experiment starts, the database becomes inaccessible. This means users cannot retrieve or add new products, resulting in the API Gateway returning an Internal Server Error. Downtime and data loss are critical issues to avoid in enterprise applications.
 
-Fortunately, encountering this issue early in the development phase allows developers to implement effective error handling and develop mechanisms to prevent data loss during a database outage. 
+Fortunately, encountering this issue early in the development phase allows developers to implement effective error handling and develop mechanisms to prevent data loss during a database outage.
 
 It's important to note that this approach is not limited to DynamoDB; outages can be simulated for any storage resource.
 
@@ -175,13 +196,13 @@ A possible solution involves setting up an SNS topic, an SQS queue, and a Lambda
 
 {{< command >}}
 $ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
-  --header 'Content-Type: application/json' \
-  --data '{
+--header 'Content-Type: application/json' \
+--data '{
     "id": "prod-1003",
     "name": "Super Widget",
     "price": "29.99",
     "description": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
-  }'
+}'
 <disable-copy>                                      
 A DynamoDB error occurred. Message sent to queue.      
 </disable-copy>
@@ -250,34 +271,34 @@ $ awslocal dynamodb scan --table-name Products
 {
     "Items": [
         {
-            "name": {
-                "S": "Super Widget"
-            },
-            "description": {
-                "S": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
-            },
-            "id": {
-                "S": "prod-1003"
-            },
-            "price": {
-                "N": "29.99"
-            }
+        "name": {
+            "S": "Super Widget"
         },
-        {
-            "name": {
-                "S": "Ultimate Gadget"
-            },
-            "description": {
-                "S": "The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry. Compact, powerful, and loaded with features."
-            },
-            "id": {
-                "S": "prod-2004"
-            },
-            "price": {
-                "N": "49.99"
-            }
+        "description": {
+            "S": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
+        },
+        "id": {
+            "S": "prod-1003"
+        },
+        "price": {
+            "N": "29.99"
         }
-    ],
+    },
+    {
+        "name": {
+            "S": "Ultimate Gadget"
+        },
+        "description": {
+            "S": "The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry. Compact, powerful, and loaded with features."
+        },
+        "id": {
+        "S": "prod-2004"
+        },
+        "price": {
+            "N": "49.99"
+        }
+    }
+],
     "Count": 2,
     "ScannedCount": 2,
     "ConsumedCapacity": null
@@ -315,24 +336,24 @@ $ awslocal fis create-experiment-template --cli-input-json file://latency-experi
 <disable-copy>
 {
     "experimentTemplate": {
-        "id": "966f5632-4e2c-4567-b99c-436c333e523f",
-        "description": "template for testing delays in API calls",
-        "actions": {
-            "latency": {
-                "actionId": "localstack:generic:api-error",
-                "parameters": {
-                    "latency": "4"
-                }
+    "id": "966f5632-4e2c-4567-b99c-436c333e523f",
+    "description": "template for testing delays in API calls",
+    "actions": {
+        "latency": {
+            "actionId": "localstack:generic:api-error",
+            "parameters": {
+                "latency": "4"
             }
-        },
-        "stopConditions": [
-            {
-                "source": "none"
-            }
-        ],
-        "creationTime": 1699619228.208613,
-        "lastUpdateTime": 1699619228.208613,
-        "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
+        }
+    },
+    "stopConditions": [
+        {
+            "source": "none"
+        }
+    ],
+    "creationTime": 1699619228.208613,
+    "lastUpdateTime": 1699619228.208613,
+    "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
     }
 }
 </disable-copy>
@@ -345,13 +366,13 @@ While the experiment is active, you can use the same sample stack to observe and
 
 {{< command >}}
 $ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
-  --header 'Content-Type: application/json' \
-  --data '{
+--header 'Content-Type: application/json' \
+--data '{
     "id": "prod-1088",
     "name": "Super Widget",
     "price": "29.99",
     "description": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
-  }'
+}'
 <disable-copy>
 An error occurred (InternalError) when calling the GetResources operation (reached max retries: 4): Failing as per Fault Injection Simulator configuration
 </disable-copy>

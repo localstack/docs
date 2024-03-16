@@ -1,8 +1,30 @@
 ---
-title: "Route53 Failover with FIS"
-linkTitle: "Route53 Failover with FIS"
-weight: 3
-description: Integrate FIS with Route 53 to create a resilient, self-repairing infrastructure, which manages traffic effectively during simulated disruptions.
+title: "Chaos Engineering: Route53 Failover with FIS"
+linkTitle: "Chaos Engineering: Route53 Failover with FIS"
+weight: 9
+description: >
+  Integrate FIS with Route 53 to create a resilient, self-repairing infrastructure, which manages traffic effectively during simulated disruptions.
+type: tutorials
+teaser: ""
+services:
+- fis
+- agw
+- ddb
+- lmb
+- r53
+platform:
+- Java
+deployment:
+- awscli
+tags:
+- BASH
+- FIS
+- Route53
+- API Gateway
+- DynamoDB
+- Lambda
+pro: true
+leadimage: "route-53-failover.png"
 ---
 
 ## Introduction
@@ -42,7 +64,7 @@ The following diagram shows the architecture that this application builds and de
 
 {{< figure src="route53-failover-1.png" width="800">}}
 
-### Creating the resources 
+### Creating the resources
 
 To begin, deploy the same services in both `us-west-1` and `us-east-1` regions. The resources specified in the `init-resources.sh` file will be created when the LocalStack container starts, using Initialization Hooks and the `awslocal` CLI tool.
 
@@ -66,15 +88,15 @@ Then, define the health check ID for the API Gateway available in the `us-west-1
 
 {{< command >}}
 $ HEALTH_CHECK_ID=$(
-    awslocal route53 create-health-check \
-        --caller-reference foobar \
-        --health-check-config '{
-            "FullyQualifiedDomainName": "12345.execute-api.localhost.localstack.cloud",
-            "Port": 4566,
-            "ResourcePath": "/dev/healthcheck",
-            "Type": "HTTP",
-            "RequestInterval": 10
-        }' | jq -r .HealthCheck.Id
+awslocal route53 create-health-check \
+--caller-reference foobar \
+--health-check-config '{
+    "FullyQualifiedDomainName": "12345.execute-api.localhost.localstack.cloud",
+    "Port": 4566,
+    "ResourcePath": "/dev/healthcheck",
+    "Type": "HTTP",
+    "RequestInterval": 10
+}' | jq -r .HealthCheck.Id
 )
 {{< /command >}}
 
@@ -84,73 +106,73 @@ To update DNS records in the specified Route53 hosted zone (`$HOSTED_ZONE_ID`), 
 
 {{< command >}}
 $ awslocal route53 change-resource-record-sets \
-    --hosted-zone $HOSTED_ZONE_ID \
-    --change-batch '{
-        "Changes": [
-            {
-                "Action": "CREATE",
-                "ResourceRecordSet": {
-                    "Name": "12345.'$HOSTED_ZONE_NAME'",
-                    "Type": "CNAME",
-                    "TTL": 60,
-                    "ResourceRecords": [
-                        {"Value": "12345.execute-api.localhost.localstack.cloud"}
-                    ]
-                }
-            },
-            {
-                "Action": "CREATE",
-                "ResourceRecordSet": {
-                    "Name": "67890.'$HOSTED_ZONE_NAME'",
-                    "Type": "CNAME",
-                    "TTL": 60,
-                    "ResourceRecords": [
-                        {"Value": "67890.execute-api.localhost.localstack.cloud"}
-                    ]
-                }
-            }
-        ]
-    }'
+--hosted-zone $HOSTED_ZONE_ID \
+--change-batch '{
+    "Changes": [
+    {
+        "Action": "CREATE",
+        "ResourceRecordSet": {
+            "Name": "12345.'$HOSTED_ZONE_NAME'",
+            "Type": "CNAME",
+            "TTL": 60,
+            "ResourceRecords": [
+                {"Value": "12345.execute-api.localhost.localstack.cloud"}
+            ]
+        }
+    },
+    {
+        "Action": "CREATE",
+        "ResourceRecordSet": {
+            "Name": "67890.'$HOSTED_ZONE_NAME'",
+            "Type": "CNAME",
+            "TTL": 60,
+            "ResourceRecords": [
+                {"Value": "67890.execute-api.localhost.localstack.cloud"}
+            ]
+        }
+    }
+    ]
+}'
 {{< /command >}}
 
 Finally, we'll update the DNS records in the Route53 hosted zone identified by **`$HOSTED_ZONE_ID`**. We're adding two CNAME records for the subdomain `test.$HOSTED_ZONE_NAME`. The first record points to `12345.$HOSTED_ZONE_NAME` and is linked with the earlier created health check, designated as the primary failover target. The second record points to `67890.$HOSTED_ZONE_NAME` and is set as the secondary failover target.
 
 {{< command >}}
 $ awslocal route53 change-resource-record-sets \
-    --hosted-zone-id $HOSTED_ZONE_ID \
-    --change-batch '{
-        "Changes": [
-            {
-                "Action": "CREATE",
-                "ResourceRecordSet": {
-                    "Name": "test.'$HOSTED_ZONE_NAME'",
-                    "Type": "CNAME",
-                    "SetIdentifier": "12345",
-                    "AliasTarget": {
-                        "HostedZoneId": "'$HOSTED_ZONE_ID'",
-                        "DNSName": "12345.'$HOSTED_ZONE_NAME'",
-                        "EvaluateTargetHealth": true
-                    },
-                    "HealthCheckId": "'$HEALTH_CHECK_ID'",
-                    "Failover": "PRIMARY"
-                }
+--hosted-zone-id $HOSTED_ZONE_ID \
+--change-batch '{
+    "Changes": [
+    {
+        "Action": "CREATE",
+        "ResourceRecordSet": {
+            "Name": "test.'$HOSTED_ZONE_NAME'",
+            "Type": "CNAME",
+            "SetIdentifier": "12345",
+            "AliasTarget": {
+                "HostedZoneId": "'$HOSTED_ZONE_ID'",
+                "DNSName": "12345.'$HOSTED_ZONE_NAME'",
+                "EvaluateTargetHealth": true
             },
-            {
-                "Action": "CREATE",
-                "ResourceRecordSet": {
-                    "Name": "test.'$HOSTED_ZONE_NAME'",
-                    "Type": "CNAME",
-                    "SetIdentifier": "67890",
-                    "AliasTarget": {
-                        "HostedZoneId": "'$HOSTED_ZONE_ID'",
-                        "DNSName": "67890.'$HOSTED_ZONE_NAME'",
-                        "EvaluateTargetHealth": true
-                    },
-                    "Failover": "SECONDARY"
-                }
-            }
-        ]
-    }'
+            "HealthCheckId": "'$HEALTH_CHECK_ID'",
+            "Failover": "PRIMARY"
+        }
+    },
+    {
+        "Action": "CREATE",
+        "ResourceRecordSet": {
+            "Name": "test.'$HOSTED_ZONE_NAME'",
+            "Type": "CNAME",
+            "SetIdentifier": "67890",
+            "AliasTarget": {
+                "HostedZoneId": "'$HOSTED_ZONE_ID'",
+                "DNSName": "67890.'$HOSTED_ZONE_NAME'",
+                "EvaluateTargetHealth": true
+            },
+            "Failover": "SECONDARY"
+        }
+    }
+]
+}'
 {{< /command >}}
 
 This setup represents the basic failover configuration where traffic is redirected to different endpoints based on their health check status. To confirm that the CNAME record for `test.hello-localstack.com` points to `12345.execute-api.localhost.localstack.cloud`, you can use the following `dig` command:
@@ -176,18 +198,18 @@ Our setup is now complete and ready for testing. To mimic a regional outage in t
 $ cat region-outage-experiment.json
 <disable-copy>
 {
-  "description": "template for internal server error for few regions i.e. us-west-1",
-  "actions": {
-    "regionUnavailable-us-west-1": {
-      "actionId": "localstack:generic:api-error",
-      "parameters": {
-        "region": "us-west-1",
-        "errorCode": "503"
-      }
-    }
-  },
-  "stopConditions": [],
-  "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
+    "description": "template for internal server error for few regions i.e. us-west-1",
+    "actions": {
+        "regionUnavailable-us-west-1": {
+            "actionId": "localstack:generic:api-error",
+            "parameters": {
+                "region": "us-west-1",
+                "errorCode": "503"
+            }
+        }
+    },
+    "stopConditions": [],
+    "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
 }
 </disable-copy>               
 {{< /command >}}
@@ -205,24 +227,24 @@ $ awslocal fis start-experiment --experiment-template-id <EXPERIMENT_TEMPLATE_ID
 <disable-copy>
 {
     "experiment": {
-        "id": "651b5196-b244-4a8b-8ab6-d7b9e13998a0",
-        "experimentTemplateId": "d3a1a31b-c52e-49ec-8387-8f5eb75a11df",
-        "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole",
-        "state": {
-            "status": "running"
-        },
-        "actions": {
-            "regionUnavailable-us-east-1": {
-                "actionId": "localstack:generic:api-error",
-                "parameters": {
-                    "region": "us-west-1",
-                    "errorCode": "503"
-                }
+    "id": "651b5196-b244-4a8b-8ab6-d7b9e13998a0",
+    "experimentTemplateId": "d3a1a31b-c52e-49ec-8387-8f5eb75a11df",
+    "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole",
+    "state": {
+        "status": "running"
+    },
+    "actions": {
+        "regionUnavailable-us-east-1": {
+        "actionId": "localstack:generic:api-error",
+        "parameters": {
+            "region": "us-west-1",
+            "errorCode": "503"
             }
-        },
-        "stopConditions": [],
-        "creationTime": 1699902569.439826,
-        "startTime": 1699902569.439826
+        }
+    },
+    "stopConditions": [],
+    "creationTime": 1699902569.439826,
+    "startTime": 1699902569.439826
     }
 }
 </disable-copy>
@@ -286,8 +308,8 @@ Running the script will resolve the CNAME record for 'test.hello-localstack.com'
 {{< command >}}
 $ python3 dns-resolver.py
 <disable-copy>
-{"price":"29.99","name":"Super Widget","description":"A versatile widget that can be used for a variety of purposes.
- Durable, reliable, and affordable.","id":"prod-1088"}
+s{"price":"29.99","name":"Super Widget","description":"A versatile widget that can be used for a variety of purposes.
+Durable, reliable, and affordable.","id":"prod-1088"}
 </disable-copy>
 {{< /command >}}
 
