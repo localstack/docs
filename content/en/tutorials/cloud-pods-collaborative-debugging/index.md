@@ -12,7 +12,7 @@ services:
 - agw
 - lmb
 platform:
-- Shell
+- Java
 deployment:
 - Terraform
 tags:
@@ -23,6 +23,7 @@ tags:
 - Lambda
 - DynamoDb
 - IAM
+- CloudWatch
 pro: true
 leadimage: "collab-debugging-cloud-pod.png"
 ---
