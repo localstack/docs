@@ -3,7 +3,7 @@ title: "How To: Collaborative AWS local development with LocalStack’s Cloud Po
 linkTitle: "How To: Collaborative AWS local development with LocalStack’s Cloud Pods"
 weight: 7
 description: >
-  Replicating development environments ensures that all developers, regardless of their local machine configurations or operating systems, work within an environment that closely mirrors the production environment. This consistency helps identify and solve environment-specific issues early in the development cycle, reducing the "it works on my machine" problem where code behaves differently on different developers' machines.
+  Replicating development environments ensures that all developers, regardless of their local machine configurations or operating systems, work within an environment that closely mirrors production. This consistency helps identify and solve environment-specific issues early in the development cycle, reducing the "it works on my machine" problem where code behaves differently on different developers' machines.
 type: tutorials
 teaser: ""
 services:
@@ -32,10 +32,10 @@ leadimage: "collab-debugging-cloud-pod.png"
 
 By replicating environments, teams can share the exact conditions under which a bug occurs.
 
-For developing services for AWS locally, the tool of choice is obviously LocalStack, which can sustain a full-blown comprehensive stack,
-but when turbulent situations hit and engineers need a second opinion from a colleague, recreating the environment from scratch can leave
+For developing AWS applications locally, the tool of choice is obviously LocalStack, which can sustain a full-blown comprehensive stack.
+However, when turbulent situations occur, and engineers need a second opinion from a colleague, recreating the environment from scratch can leave
 details slipping through the cracks. This is where Cloud Pods come in, to encapsulate the state of the LocalStack instance and allow for seamless
-collaboration. While databases have snapshots, LocalStack uses Cloud Pods.
+collaboration. While databases have snapshots, LocalStack uses Cloud Pods for reproducing state and data.
 
 In this tutorial, we’ll examine a realistic scenario in which a simple IAM misconfiguration can lead to spending too much time looking for the
 right answer. We’ll also have a look at what’s the best solution to avoid that, and what are some of the options for Cloud Pod storage configuration.
@@ -45,7 +45,7 @@ The full sample application can be found [on GitHub](https://github.com/localsta
 
 - [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) (preferably using `pip`)
 - [Docker](https://docs.docker.com/engine/install/)
-- [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) and [terraform-local](https://docs.localstack.cloud/user-guide/integrations/terraform/#install-the-tflocal-wrapper-script)
+- [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) or [OpenTofu](https://opentofu.org/docs/intro/install/) and [terraform-local](https://docs.localstack.cloud/user-guide/integrations/terraform/#install-the-tflocal-wrapper-script)
 - Optional for Lambda build & editing: [Maven 3.9.4](https://maven.apache.org/install.html) & [Java 21](https://www.java.com/en/download/help/download_options.html)
 
 ### Nice to have
@@ -67,7 +67,7 @@ products from a DynamoDB database. IAM policies are enforced to ensure complianc
 
 ### Note
 
-This demo application is suitable for AWS and behaves the same as on LocalStack. You can try this out by running the Terraform configuration file to create the stack on AWS.
+This demo application is suitable for AWS and behaves the same as on LocalStack. You can try this out by running the Terraform configuration file against the real AWS.
 
 ![Application Diagram](cloud-pod-collab.png)
 
@@ -85,7 +85,7 @@ $ docker compose up
 
 ## 3. The Terraform Configuration File
 
-The entire Terraform configuration file for setting up the application stack is available in the application repository at
+The entire Terraform configuration file for setting up the application stack is available in the same repository at
 https://github.com/localstack-samples/cloud-pods-collaboration-demo/blob/main/terraform/main.tf. To deploy all the resources on LocalStack, 
 navigate to the project's root folder and use the following commands:
 
@@ -130,11 +130,12 @@ resource "aws_iam_policy" "lambda_dynamodb_policy" {
 }
 ```
 
-The person working on this has mistakenly used `dynamodb:Scan` and `dynamodb:Query` as a replacement.
+The new teammate working on this has mistakenly used `dynamodb:Scan` and `dynamodb:Query` as a replacement.
 
 ## **4. Reproducing the issue locally**
 
-Let’s test out the current state of the application. The Terraform configuration file outputs the REST API ID of the API Gateway. We can capture that value and use it further to invoke the `**add-product`** Lambda:
+Let’s test out the current state of the application. The Terraform configuration file outputs the REST API ID of the API Gateway.
+We can capture that value and use it further to invoke the **`add-product`** Lambda:
 
 {{< command >}}
 $ export rest_api_id=$(cd terraform; tflocal output --raw rest_api_id)
@@ -142,9 +143,9 @@ $ export rest_api_id=$(cd terraform; tflocal output --raw rest_api_id)
 
 The endpoint for the API Gateway is constructed similarly to the one on AWS:
 
-```bash
-**http://<apiId>.execute-api.localhost.localstack.cloud:4566/<stageId>/<path>**
-```
+**`
+https://<apiId>.execute-api.localhost.localstack.cloud:4566/<stageId>/<path>
+`**
 
 So adding two products to the database should be straightforward using `curl`:
 
@@ -175,6 +176,7 @@ However, retrieving one of the products does not return the desired result:
 {{< command >}}
 $ curl --location "http://$rest_api_id.execute-api.localhost.localstack.cloud:4566/dev/productApi?id=34534"
 {{</ command >}}
+
 ```bash
 Internal server error⏎  
 ```
@@ -250,17 +252,26 @@ By spotting the error message, there’s an instant starting point for checking 
 
 ## 4. Identifying the Misconfiguration
 
-At first glance, this error points to a permissions issue related to accessing DynamoDB. The action **`dynamodb:GetItem`** is not authorized for the role, preventing the retrieval of a product by its ID. This kind of error was not really foreseen as one of the exceptions to be handled in the application.
+At a first glance, this error points to a permissions issue related to accessing DynamoDB. The action **`dynamodb:GetItem`** is 
+not authorized for the role, preventing the retrieval of a product by its ID. This kind of error was not really foreseen as one 
+of the exceptions to be handled in the application. Honest mistake, IAM policies are not always easy and straightforward.
 
-To confirm the suspicion, adding and retrieving a product by ID is tested once more, and indeed, the action failed due to missing permission. This discovery leads to the next step in troubleshooting: **inspecting the Terraform configuration file** responsible for defining the permissions attached to the lambda role interacting with DynamoDB.
+To confirm the suspicion, adding and retrieving a product by ID is tested once more, and indeed, the action failed due to missing 
+permission. This discovery leads to the next step in troubleshooting: **inspecting the Terraform configuration file** responsible 
+for defining the permissions attached to the lambda role interacting with DynamoDB.
 
 ## 5. Fixing the Terraform Configuration
 
-Upon review, it is found that the Terraform configuration did not include the necessary permission **`dynamodb:GetItem`** in the policy attached to the lambda role. This oversight explains why the error was occurring. The Terraform configuration acts as a blueprint for AWS resource permissions, and any missing action can lead to unauthorized errors, just as observed.
+Upon review, it is found that the Terraform configuration did not include the necessary permission **`dynamodb:GetItem`** in the
+policy attached to the lambda role. This oversight explains why the error was occurring. The Terraform configuration file acts as a 
+blueprint for AWS resource permissions, and any missing action can lead to unauthorized errors, just like what happened here.
 
-This scenario underscores the importance of thorough review and testing of IAM roles and policies when working with AWS resources. It's easy to overlook a single action in a policy, but as we've seen, such an omission can significantly impact application functionality. By carefully checking the Terraform configuration files and ensuring that all necessary permissions are included, developers can avoid similar issues and ensure a smoother, error-free interaction with AWS services.
+This scenario underscores the importance of thorough review and testing of IAM roles and policies when working with AWS resources. 
+It's easy to overlook a single action in a policy, but as we've seen, such an omission can significantly impact application 
+functionality. By carefully checking the Terraform configuration files and ensuring that all necessary permissions are included, 
+developers can avoid similar issues and ensure a smoother, error-free interaction with AWS services.
 
-The allowed actions so far should look like the following list:
+The allowed actions should look like this list:
 
 ```bash
 resource "aws_iam_policy" "lambda_dynamodb_policy" {
@@ -292,8 +303,8 @@ misconfiguration:
 ## 6. Other Remote Options
 
 After seeing how LocalStack Cloud Pods help teams work together better, let's look at the other ways companies can keep their 
-snapshots safe. There are different storage options out there that help protect data, making it easy to keep everything secure 
-and accessible no matter what your needs are.
+snapshots in their own court. For environments with stricter security policies, there are a few storage options that help protect data,
+making it easy to keep everything secure and accessible no matter what your needs are.
 
 ### **1. S3 bucket remote storage**
 
@@ -318,11 +329,11 @@ $ localstack pod remote add s3-storage-aws 's3://ls-pods-bucket-test/?access_key
 
 ### Note
 
-When setting this up, you might encounter an error message like:
+When setting this up, we might encounter an error message like:
 `SSL validation failed for https://localstack-pod-storage.s3.amazonaws.com/ hostname.`
 
-To fix this, especially if you need some AWS URLs to point to the actual AWS instead of LocalStack, you can use a list 
-of exceptions by using the following configuration flag in your docker-compose file:
+To fix this, we can have a list of exceptions that point to AWS instead of LocalStack by using the following configuration
+flag in the docker-compose file:
 **`DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM=.*localstack-pod-storage.s3.amazonaws.com`**
 
 This setting is generally used for hybrid setups, where certain API calls target AWS, whereas other services will target LocalStack.
@@ -375,7 +386,7 @@ $ export ORAS_USERNAME=your_docker_hub_id
 $ export ORAS_PASSWORD=your_docker_hub_password
 {{</ command >}}
 
-You can now use the CLI to create a new remote called `oras-remote`
+We can now use the CLI to create a new remote called `oras-remote`
 
 {{< command >}}
 $ localstack pod remote add oras-remote 'oras://{oras_username}:{oras_password}@registry.hub.docker.com/<your_docker_hub_id>'
