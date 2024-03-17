@@ -82,7 +82,7 @@ Alternatively, you can also set the `AWS_PROFILE=localstack` environment variabl
 Install the `awslocal` command using the following command:
 
 {{< command >}}
-$ pip install awscli-local[ver1]
+$ pip install "awscli-local[ver1]"
 {{< / command >}}
 
 {{< alert title="Note" >}}
