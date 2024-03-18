@@ -7,6 +7,8 @@ aliases:
   - /developer-guide/multi-account-region-testing/
 ---
 
+LocalStack community supports multiple accounts and regions compatibity. This document describes how to test your changes against cross accounts and regions.
+
 We regularly run the circleci test jobs of the LocalStack community repository to check the compatibility of cross accounts against the changes. To achieve that, we have a [scheduled workflow](https://github.com/localstack/localstack/blob/master/.circleci/config.yml) on [LocalStack](https://github.com/localstack/localstack), which executes the tests with randomised account and region credenitals every night at 1:00am UTC.
 
 ## Manually trigger the scheduled workflow
