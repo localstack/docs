@@ -31,5 +31,5 @@ In order to test your changes on your machine for multi-accounts and region comp
 We can additionally prefer to create a commit eg: [da3f8d5](https://github.com/localstack/localstack/pull/9751/commits/da3f8d5f2328adb7c5c025722994fea4433c08ba) to test the pipeline for non-default credentials against your changes.
 
 {{< alert title="Note">}}
-Make sure to revert these chnages after the tests are completed. 
+Make sure to revert these changes after the tests are completed. 
 {{< /alert >}}
