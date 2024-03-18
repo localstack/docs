@@ -318,7 +318,7 @@ If you want to access our security documentation and test reports, please contac
 
 ### Does LocalStack provide offline capabilities?
 
-LocalStack Community and Pro image provide limited offline capabilities.
+LocalStack Community and Pro images provide limited offline capabilities.
 To use a fully-fledged offline mode, you may use LocalStack Enterprise, which can be used in air-gapped environments.
 The regular LocalStack Docker images may need to download additional dependencies for specific services (e.g., Elasticsearch, Big Data services) at runtime, while the offline image bakes all dependencies into the image, along with any other configuration that you might need.
 For more details, please take a look at our [Enterprise offering](https://localstack.cloud/pricing).
