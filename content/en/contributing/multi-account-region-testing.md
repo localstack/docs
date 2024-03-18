@@ -21,7 +21,7 @@ Make sure to change the value back to `false` after the tests are completed.
 
 ## Test changes locally with non-default credentials
 
-In order to test your changes on your machine for multi-accounts and region compatibility, i.e. for values other than `000000000000` for account ID or `us-east-1` for region, set the following environment variables to any random non-default values, for example:  
+In order to test your changes on your machine for multi-accounts and region compatibility, i.e. for non-default values other than `000000000000` for account ID or `us-east-1` for region, set the following environment variables to any random non-default values, for example:  
 
 - `TEST_AWS_ACCOUNT_ID=111111111111`
 - `TEST_AWS_ACCESS_KEY_ID=111111111111`
