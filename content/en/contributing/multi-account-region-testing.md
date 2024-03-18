@@ -1,13 +1,11 @@
 ---
-title: "Multiple account and region Testing"
+title: "Multi account and region testing"
 weight: 7
 description: >
   How to test multi-account and multi-region compatibility.
-aliases:
-  - /developer-guide/multi-account-region-testing/
 ---
 
-LocalStack community supports multiple accounts and regions compatibility. This document describes how to test your changes against cross accounts and regions.
+LocalStack community supports multi accounts and regions compatibility. This document describes how to test your changes against cross accounts and regions.
 
 We regularly run the circleci test jobs of the LocalStack community repository to check the compatibility of cross accounts against the changes. To achieve that, we have a [scheduled workflow](https://github.com/localstack/localstack/blob/master/.circleci/config.yml) on [LocalStack](https://github.com/localstack/localstack), which executes the tests with randomised account and region credenitals every night at 1:00am UTC.
 
@@ -28,7 +26,7 @@ In order to test your changes on your machine for multi-accounts and region comp
 - `TEST_AWS_REGION=us-west-1`
 - `TEST_AWS_SECRET_ACCESS_KEY=test1`
 
-We can additionally prefer to create a commit eg: [da3f8d5](https://github.com/localstack/localstack/pull/9751/commits/da3f8d5f2328adb7c5c025722994fea4433c08ba) to test the pipeline for non-default credentials against your changes.
+You can additionally prefer to create a commit eg: [da3f8d5](https://github.com/localstack/localstack/pull/9751/commits/da3f8d5f2328adb7c5c025722994fea4433c08ba) to test the pipeline for non-default credentials against your changes.
 
 {{< alert title="Note">}}
 Make sure to revert these changes after the tests are completed. 
