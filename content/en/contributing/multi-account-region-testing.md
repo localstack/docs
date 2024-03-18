@@ -11,7 +11,7 @@ We regularly run the circleci test jobs of the LocalStack community repository t
 
 ## Manually trigger the workflow
 
-To manually trigger the scheduled workflow, you can change set the value of `randomize-aws-credentials` to `true` in the [workflow](https://github.com/localstack/localstack/blob/master/.circleci/config.yml#L13). This will trigger the tests with randomised account and region credentials.
+To manually trigger the scheduled workflow in case you have the permissions, you can change set the value of `randomize-aws-credentials` to `true` in the [workflow](https://github.com/localstack/localstack/blob/master/.circleci/config.yml#L13). This will trigger the tests with randomised account and region credentials.
 
 {{< alert title="Note">}}
 Make sure to change the value back to `false` after the tests are completed. 
@@ -19,7 +19,7 @@ Make sure to change the value back to `false` after the tests are completed.
 
 ## Test changes locally with non-default credentials
 
-In order to test your changes on your machine for multi-accounts and region compatibility, i.e. for non-default values other than `000000000000` for account ID or `us-east-1` for region, set the following environment variables to any random non-default values, for example:  
+In order to test your changes on your machine for multi-accounts and region compatibility in case you have the permissions, i.e. for non-default values other than `000000000000` for account ID or `us-east-1` for region, set the following environment variables to any random non-default values, for example:  
 
 - `TEST_AWS_ACCOUNT_ID=111111111111`
 - `TEST_AWS_ACCESS_KEY_ID=111111111111`
