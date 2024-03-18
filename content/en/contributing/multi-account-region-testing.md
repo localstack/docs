@@ -25,4 +25,4 @@ In order to test your changes on your machine for multi-accounts and region comp
 - `TEST_AWS_REGION=us-west-1`
 - `TEST_AWS_SECRET_ACCESS_KEY=test1`
 
-We can additionally prefer to create a commit eg:[da3f8d5](https://github.com/localstack/localstack/pull/9751/commits/da3f8d5f2328adb7c5c025722994fea4433c08ba) to test the pipeline for non-default credentials.
+We can additionally prefer to create a commit eg: [da3f8d5](https://github.com/localstack/localstack/pull/9751/commits/da3f8d5f2328adb7c5c025722994fea4433c08ba) to test the pipeline for non-default credentials against your changes.
