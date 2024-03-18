@@ -11,7 +11,7 @@ LocalStack community supports multiple accounts and regions compatibity. This do
 
 We regularly run the circleci test jobs of the LocalStack community repository to check the compatibility of cross accounts against the changes. To achieve that, we have a [scheduled workflow](https://github.com/localstack/localstack/blob/master/.circleci/config.yml) on [LocalStack](https://github.com/localstack/localstack), which executes the tests with randomised account and region credenitals every night at 1:00am UTC.
 
-## Manually trigger the scheduled workflow
+## Manually trigger the workflow
 
 To manually trigger the scheduled workflow, you can change set the value of `randomize-aws-credentials` to `true` in the [workflow](https://github.com/localstack/localstack/blob/master/.circleci/config.yml#L13). This will trigger the tests with randomised account and region credentials.
 
