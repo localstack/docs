@@ -163,6 +163,7 @@ id="tabs-02-01" role="tabpanel" aria-labelled-by="tabs-02-01-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: LocalSurf</title><link>/user-guide/tools/localsurf/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/localsurf/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>LocalSurf is a Chrome browser plugin to repoint AWS service calls to &lt;a href="https://localstack.cloud/">LocalStack&lt;/a>. While developing and testing AWS cloud Web applications locally with LocalStack, we need to make the browser connect to the local endpoint (&lt;code>http://localhost:4566&lt;/code>) instead of the AWS production servers (&lt;code>*.amazonaws.com&lt;/code>). LocalSurf enables you to use the production code without changes, and have the browser make requests to LocalStack instead of AWS directly by explicitly setting the &lt;a href="https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/specifying-endpoints.html">&lt;code>endpoint&lt;/code> attribute&lt;/a> in the &lt;a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Endpoint.html">AWS JavaScript SDK&lt;/a>.&lt;/p>
 &lt;blockquote>
 &lt;p>This plugin is experimental and still under active development. Please report any issues or feature requests on our &lt;a href="https://github.com/localstack/local-surf">GitHub repository&lt;/a>.&lt;/p>
@@ -252,20 +253,19 @@ To install LocalStack Desktop, &lt;strong>Docker&lt;/strong> is the only prerequ
 &lt;h3 id="localstack-configurations">LocalStack configurations&lt;/h3>
 &lt;p>You can manage and use your profiles via configurations and create new configurations for your LocalStack container.&lt;/p>
 &lt;img src="localstack-docker-extension-configuration-profile.png" title="Create your configuration profiles within LocalStack's Extension to affect the state of LocalStack" width="900" /></description></item><item><title>User-Guide: Transparent Endpoint Injection</title><link>/user-guide/tools/transparent-endpoint-injection/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/transparent-endpoint-injection/</guid><description>
-&lt;p>LocalStack Pro provides Transparent Endpoint Injection,
+&lt;p>LocalStack provides Transparent Endpoint Injection,
 which enables seamless connectivity to LocalStack without modifying your application code targeting AWS.
 The &lt;a href="/user-guide/tools/dns-server/">DNS Server&lt;/a> resolves AWS domains such as &lt;code>*.amazonaws.com&lt;/code> including subdomains to the LocalStack container.
 Therefore, your application seamlessly accesses the LocalStack APIs instead of the real AWS APIs.
 For local testing, you might need to disable SSL validation as explained under &lt;a href="#self-signed-certificates">Self-signed certificates&lt;/a>.&lt;/p>
 &lt;h2 id="motivation">Motivation&lt;/h2>
-&lt;p>In the community (open source) edition, your application code targeting AWS needs to be modified to target LocalStack.
+&lt;p>Previously, your application code targeting AWS needs to be modified to target LocalStack.
 For example, the AWS SDK client for Python called boto3 needs to be configured using the environment variable &lt;code>AWS_ENDPOINT_URL&lt;/code>, which is available within Lambda functions in LocalStack:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lambda&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">os&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">environ&lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;AWS_ENDPOINT_URL&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">])&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For &lt;a href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html#ss-endpoints-sdk-compat">supported AWS SDKs&lt;/a>
 (including boto3 since &lt;a href="https://github.com/boto/boto3/blob/develop/CHANGELOG.rst#L892">1.28.0&lt;/a>),
 this configuration happens automatically without any custom code changes.&lt;/p>
-&lt;p>In LocalStack Pro,
-no application code changes are required to let your application connect to local cloud APIs because
+&lt;p>Currently, no application code changes are required to let your application connect to local cloud APIs because
 Transparent Endpoint Injection uses the integrated &lt;a href="/user-guide/tools/dns-server/">DNS Server&lt;/a> to resolve AWS API calls to target LocalStack.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;p>This section explains the most important configuration options summarized under &lt;a href="/references/configuration/#dns">Configuration&lt;/a>.&lt;/p>
@@ -305,7 +305,7 @@ Similar parameters are available for most other &lt;a href="https://docs.aws.ama
 Disabling SSL validation may have undesired side effects and security implications.
 Make sure to use this only for local testing, and never in production.
 &lt;/div></description></item><item><title>User-Guide: DNS Server</title><link>/user-guide/tools/dns-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/dns-server/</guid><description>
-&lt;p>LocalStack includes a DNS server that enables seamless connectivity to LocalStack from different environments using &lt;code>localhost.localstack.cloud&lt;/code> (Community + Pro).
+&lt;p>LocalStack includes a DNS server that enables seamless connectivity to LocalStack from different environments using &lt;code>localhost.localstack.cloud&lt;/code>.
 The DNS server is available on all IPv4 addresses within the LocalStack container (i.e., listening to &lt;code>0.0.0.0&lt;/code>) and resolves &lt;code>localhost.localstack.cloud&lt;/code> to the LocalStack container.
 Therefore, containers that are configured to use the DNS server can reach LocalStack using &lt;code>localhost.localstack.cloud&lt;/code>.
 This configuration happens automatically for containers created by LocalStack, including compute resources such as Lambda, ECS, and EC2.

@@ -43,8 +43,8 @@
 &lt;h2 id="aws-feature-coverage">AWS Feature Coverage&lt;/h2>
 &lt;p>In the coverage table below, the features are marked with their respective availability across different LocalStack versions:&lt;/p>
 &lt;ul>
-&lt;li>Community version (default, if not marked)&lt;/li>
-&lt;li>Pro version (marked with &lt;strong>Pro&lt;/strong>)&lt;/li>
+&lt;li>Community image (default, if not marked)&lt;/li>
+&lt;li>Pro image (marked with &lt;strong>Pro&lt;/strong>)&lt;/li>
 &lt;/ul>
 &lt;table>
 &lt;thead>
@@ -4341,7 +4341,7 @@ LocalStack&amp;rsquo;s Account provider is mock-only and does not support any re
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --title &amp;#34;Billing&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Amplify is a JavaScript-based development framework with libraries, UI components, and a standard CLI interface for building and deploying web and mobile applications. With Amplify, developers can build and host static websites, single-page applications, and full-stack serverless web applications using an abstraction layer over popular AWS services like DynamoDB, Cognito, AppSync, Lambda, S3, and more.&lt;/p>
-&lt;p>LocalStack supports Amplify via the Pro/Team offering, allowing you to use the Amplify APIs to build and test their Amplify applications locally. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_amplify/">API coverage page&lt;/a>, which provides information on the extent of Amplify&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Amplify APIs to build and test their Amplify applications locally. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_amplify/">API coverage page&lt;/a>, which provides information on the extent of Amplify&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 The &lt;code>amplifylocal&lt;/code> CLI and the Amplify JS library have been deprecated and are no longer supported. We recommend using the Amplify CLI with the Amplify LocalStack Plugin instead.
@@ -4367,11 +4367,8 @@ The &lt;code>amplifylocal&lt;/code> CLI and the Amplify JS library have been dep
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify push --use-localstack true&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: API Gateway</title><link>/user-guide/aws/apigateway/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/apigateway/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>API Gateway is a managed service that enables developers to create, deploy, and manage APIs (Application Programming Interfaces). It allows easy creation of REST, HTTP, and WebSocket APIs to securely access data, business logic, or functionality from backend services like AWS Lambda functions or EC2 instances. API Gateway supports standard HTTP methods such as &lt;code>GET&lt;/code>, &lt;code>POST&lt;/code>, &lt;code>PUT&lt;/code>, &lt;code>PATCH&lt;/code>, and &lt;code>DELETE&lt;/code> and integrates with various AWS services, including Lambda, Cognito, CloudWatch, and X-Ray.&lt;/p>
-&lt;p>LocalStack supports API Gateway V1 via the Community offering and API Gateway V2 via the Pro/Team offering, allowing you to use the API Gateway to create, deploy, and manage APIs on your local machine to invoke those exposed API endpoints. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_apigatewayv2/">API coverage page&lt;/a>, which provides information on the extent of API Gateway V2&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-The Pro/Team version supports API Gateway V2 and V1, enabling you to create local HTTP and WebSocket APIs that allow long-lived connections and bi-directional communication between the API and your clients.
-&lt;/div>
+&lt;p>LocalStack supports API Gateway V1 in the Community image and API Gateway V2 in the Pro image. LocalStack allows you to use the API Gateway APIs to create, deploy, and manage APIs on your local machine to invoke those exposed API endpoints.&lt;/p>
+&lt;p>The supported APIs are available on the API coverage page for &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_apigateway/">API Gateway V1&lt;/a> &amp;amp; &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_apigatewayv2/">API Gateway V2&lt;/a>, which provides information on the extent of API Gateway&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to API Gateway and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will use the Lambda proxy integration to integrate an API method with a Lambda function. The Lambda function will be invoked with a &lt;code>GET&lt;/code> request and return a response with a status code of &lt;code>200&lt;/code> and a body containing the string &lt;code>Hello from Lambda!&lt;/code>.&lt;/p>
@@ -4601,7 +4598,7 @@ Setting the API Gateway ID via &lt;code>_custom_id_&lt;/code> works only on the 
 &lt;li>For Terraform samples, check out the &lt;a href="https://github.com/localstack/localstack-terraform-samples">LocalStack Terraform examples&lt;/a> repository&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: AppConfig</title><link>/user-guide/aws/appconfig/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/appconfig/</guid><description>
 &lt;p>AppConfig is a service provided by Amazon Web Services (AWS) that simplifies the process of managing and deploying application configurations. AppConfig offers centralized management of configuration data and the ability to create, manage, and deploy configuration changes separately. It allows you to avoid deploying the service repeatedly for smaller changes, enables controlled deployments to applications and includes built-in validation checks &amp;amp; monitoring.&lt;/p>
-&lt;p>LocalStack supports AppConfig via the Pro/Team offering, allowing you to use the AppConfig APIs in your local environment to define configurations for different environments and deploy them to your applications as needed. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_appconfig/">API coverage page&lt;/a>, which provides information on the extent of AppConfig&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the AppConfig APIs in your local environment to define configurations for different environments and deploy them to your applications as needed. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_appconfig/">API coverage page&lt;/a>, which provides information on the extent of AppConfig&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to AppConfig and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an AppConfig application, environment, configuration profiles &amp;amp; feature flags, and deploy the configuration with the AWS CLI.&lt;/p>
@@ -4719,7 +4716,7 @@ Setting the API Gateway ID via &lt;code>_custom_id_&lt;/code> works only on the 
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Application Auto Scaling</title><link>/user-guide/aws/applicationautoscaling/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/applicationautoscaling/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Application Auto Scaling is a centralized solution for managing automatic scaling by defining scaling policies based on specific metrics. Based on CPU utilization or request rates, it automatically adjusts capacity in response to changes in workload. With Application Auto Scaling, you can configure automatic scaling for services such as DynamoDB, ECS, Lambda, ElastiCache, and more. Auto scaling uses CloudWatch under the hood to configure scalable targets which a service namespace, resource ID, and scalable dimension can uniquely identify.&lt;/p>
-&lt;p>LocalStack supports Application Auto Scaling via the Pro/Team offering, allowing you to use the Application Auto Scaling APIs in your local environment to scale different resources based on scaling policies and scheduled scaling. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_application-autoscaling/">API coverage page&lt;/a>, which provides information on the extent of Application Auto Scaling&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Application Auto Scaling APIs in your local environment to scale different resources based on scaling policies and scheduled scaling. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_application-autoscaling/">API coverage page&lt;/a>, which provides information on the extent of Application Auto Scaling&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting Started&lt;/h2>
 &lt;p>This guide is designed for users new to Application Auto Scaling and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how you can configure auto scaling to handle a heavy workload for your Lambda function.&lt;/p>
@@ -4780,7 +4777,7 @@ Setting the API Gateway ID via &lt;code>_custom_id_&lt;/code> works only on the 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --target-tracking-scaling-policy-configuration &amp;#39;{ &amp;#34;TargetValue&amp;#34;: 50.0, &amp;#34;PredefinedMetricSpecification&amp;#34;: { &amp;#34;PredefinedMetricType&amp;#34;: &amp;#34;predefinedmetric&amp;#34; }}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: AppSync</title><link>/user-guide/aws/appsync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/appsync/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>AppSync is a managed service provided by Amazon Web Services (AWS) that enables you to create serverless GraphQL APIs to query databases, microservices, and other APIs. AppSync allows you to define your data models and business logic using a declarative approach, and connect to various data sources, including other AWS services, relational databases, and custom data sources.&lt;/p>
-&lt;p>LocalStack supports AppSync via the Pro/Team offering, allowing you to use the AppSync APIs in your local environment to connect your applications and services to data and events. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_appsync/">API coverage page&lt;/a>, which provides information on the extent of AppSync&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the AppSync APIs in your local environment to connect your applications and services to data and events. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_appsync/">API coverage page&lt;/a>, which provides information on the extent of AppSync&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to AppSync and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an AppSync API with a DynamoDB data source using the AWS CLI.&lt;/p>
@@ -4997,7 +4994,7 @@ Setting the API Gateway ID via &lt;code>_custom_id_&lt;/code> works only on the 
 &lt;p>Athena is an interactive query service provided by Amazon Web Services (AWS) that enables you to analyze data stored in S3 using standard SQL queries.
 Athena allows users to create ad-hoc queries to perform data analysis, filter, aggregate, and join datasets stored in S3.
 It supports various file formats, such as JSON, Parquet, and CSV, making it compatible with a wide range of data sources.&lt;/p>
-&lt;p>LocalStack supports Athena via the Pro/Team offering, allowing you to configure the Athena APIs with a Hive metastore that can connect to the S3 API and query your data directly in your local environment.
+&lt;p>LocalStack allows you to configure the Athena APIs with a Hive metastore that can connect to the S3 API and query your data directly in your local environment.
 The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_athena/">API coverage page&lt;/a>, which provides information on the extent of Athena&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Athena and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
@@ -5138,7 +5135,7 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 &lt;/ul></description></item><item><title>User-Guide: Backup</title><link>/user-guide/aws/backup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/backup/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Backup is a centralized backup service provided by Amazon Web Services. It simplifies the process of backing up and restoring your data across various AWS services and resources. Backup supports a wide range of AWS resources, including Elastic Block Store (EBS) volumes, Relational Database Service (RDS) databases, DynamoDB tables, Elastic File System (EFS) file systems, and more. Backup enables you to set backup retention policies, allowing you to specify how long you want to retain your backup copies.&lt;/p>
-&lt;p>LocalStack supports Backup via the Pro/Team offering, allowing you to use the Backup APIs in your local environment to manage backup plans, create scheduled or on-demand backups of certain resource types. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_backup/">API coverage page&lt;/a>, which provides information on the extent of Backup&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Backup APIs in your local environment to manage backup plans, create scheduled or on-demand backups of certain resource types. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_backup/">API coverage page&lt;/a>, which provides information on the extent of Backup&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Backup and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create a backup job and specify a set of resources to the backup plan name and backup rules with the AWS CLI.&lt;/p>
@@ -5219,7 +5216,7 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 &lt;/ul></description></item><item><title>User-Guide: Batch</title><link>/user-guide/aws/batch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/batch/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Batch is a cloud-based service provided by Amazon Web Services (AWS) that simplifies the process of running batch computing workloads on the AWS cloud infrastructure. Batch allows you to efficiently process large volumes of data and run batch jobs without the need to manage and provision underlying compute resources.&lt;/p>
-&lt;p>LocalStack supports AWS Batch via the Pro/Team offering, allowing you to use the Batch APIs to automate and scale computational tasks in your local environment while handling batch workloads. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_batch/">API Coverage Page&lt;/a>, which provides information on the extent of Batch integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Batch APIs to automate and scale computational tasks in your local environment while handling batch workloads. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_batch/">API Coverage Page&lt;/a>, which provides information on the extent of Batch integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to AWS Batch and assumes basic knowledge of the AWS CLI and our &lt;code>awslocal&lt;/code> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method.
@@ -5323,7 +5320,7 @@ While an unmanaged compute environment has been specified, there is no need to p
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>&lt;a href="https://aws.amazon.com/certificate-manager/">AWS Certificate Manager (ACM)&lt;/a> is a service that enables you to create and manage SSL/TLS certificates that can be used to secure your applications and resources in AWS. You can use ACM to provision and deploy public or private certificates trusted by browsers and other clients.&lt;/p>
 &lt;p>ACM supports securing multiple domain names and subdomains and can create wildcard SSL certificates to protect an entire domain and its subdomains. You can also use ACM to import certificates from third-party certificate authorities or to generate private certificates for internal use.&lt;/p>
-&lt;p>LocalStack supports ACM via the Community offering, allowing you to use the ACM API to create, list, and delete certificates. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_acm/">API coverage page&lt;/a>, which provides information on the extent of ACM&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the ACM APIs to create, list, and delete certificates. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_acm/">API coverage page&lt;/a>, which provides information on the extent of ACM&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users who are new to ACM and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;h3 id="request-a-public-certificate">Request a public certificate&lt;/h3>
@@ -5346,101 +5343,6 @@ While an unmanaged compute environment has been specified, there is no need to p
 &lt;h3 id="delete-the-certificate">Delete the certificate&lt;/h3>
 &lt;p>Finally you can use the &lt;a href="https://docs.aws.amazon.com/acm/latest/APIReference/API_DeleteCertificate.html">&lt;code>DeleteCertificate&lt;/code> API&lt;/a> to delete a certificate from ACM, by passing the ARN of the certificate you want to delete. Here&amp;rsquo;s an example command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal acm delete-certificate --certificate-arn arn:aws:acm:&amp;lt;region&amp;gt;:account:certificate/&amp;lt;certificate_ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="acm-private-certificate-authority">ACM Private Certificate Authority&lt;/h2>
-&lt;p>AWS Private Certificate Authority (ACM PCA) is a managed private Certificate Authority (CA) service that manages the lifecycle of your private certificates.
-ACM PCA extends ACM&amp;rsquo;s certificate management capabilities to private certificates, enabling you to manage public and private certificates centrally.&lt;/p>
-&lt;p>LocalStack supports ACM PCA via the Pro/Team offering, allowing you to use the ACM PCA API to create, list, and delete private certificates.
-You can creating, describing, tagging, and listing tags for a CA using ACM PCA.
-The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_acm-pca/">API coverage page&lt;/a>, which provides information on the extent of ACM PCA&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;h3 id="create-a-certificate-authority-ca">Create a Certificate Authority (CA)&lt;/h3>
-&lt;p>Start by creating a new Certificate Authority with ACM PCA using the &lt;a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html">&lt;code>CreateCertificateAuthority&lt;/code>&lt;/a> API.
-This command sets up a new CA with specified configurations for key algorithm, signing algorithm, and subject information.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal acm-pca create-certificate-authority \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --certificate-authority-configuration &amp;#39;{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyAlgorithm&amp;#34;:&amp;#34;RSA_2048&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SigningAlgorithm&amp;#34;:&amp;#34;SHA256WITHRSA&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Subject&amp;#34;:{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Country&amp;#34;:&amp;#34;US&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Organization&amp;#34;:&amp;#34;Example Corp&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;OrganizationalUnit&amp;#34;:&amp;#34;Sales&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;:&amp;#34;WA&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Locality&amp;#34;:&amp;#34;Seattle&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CommonName&amp;#34;:&amp;#34;www.example.com&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --revocation-configuration &amp;#39;{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;OcspConfiguration&amp;#34;:{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Enabled&amp;#34;:true
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --certificate-authority-type &amp;#34;ROOT&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --tags Key=Name,Value=MyPCA
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CertificateAuthorityArn&amp;#34;: &amp;#34;arn:aws:acm-pca:us-east-1:000000000000:certificate-authority/f38ee966-bc23-40f8-8143-e981aee73600&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Note the &lt;code>CertificateAuthorityArn&lt;/code> from the output as it will be needed for subsequent commands.&lt;/p>
-&lt;h3 id="describe-the-certificate-authority">Describe the Certificate Authority&lt;/h3>
-&lt;p>To retrieve the detailed information about the created Certificate Authority, use the &lt;a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_DescribeCertificateAuthority.html">&lt;code>DescribeCertificateAuthority&lt;/code>&lt;/a> API.
-This command returns the detailed information about the CA, including the CA&amp;rsquo;s ARN, status, and configuration.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal acm-pca describe-certificate-authority \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --certificate-authority-arn arn:aws:acm-pca:us-east-1:000000000000:certificate-authority/f38ee966-bc23-40f8-8143-e981aee73600
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CertificateAuthority&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Arn&amp;#34;: &amp;#34;arn:aws:acm-pca:us-east-1:000000000000:certificate-authority/f38ee966-bc23-40f8-8143-e981aee73600&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;OwnerAccount&amp;#34;: &amp;#34;000000000000&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CreatedAt&amp;#34;: &amp;#34;2023-12-23T20:52:20.917796+05:30&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Type&amp;#34;: &amp;#34;ROOT&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Status&amp;#34;: &amp;#34;PENDING_CERTIFICATE&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CertificateAuthorityConfiguration&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyAlgorithm&amp;#34;: &amp;#34;RSA_2048&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SigningAlgorithm&amp;#34;: &amp;#34;SHA256WITHRSA&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Subject&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Country&amp;#34;: &amp;#34;US&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Organization&amp;#34;: &amp;#34;Example Corp&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;OrganizationalUnit&amp;#34;: &amp;#34;Sales&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;WA&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CommonName&amp;#34;: &amp;#34;www.example.com&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Locality&amp;#34;: &amp;#34;Seattle&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RevocationConfiguration&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;OcspConfiguration&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Enabled&amp;#34;: true
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyStorageSecurityStandard&amp;#34;: &amp;#34;FIPS_140_2_LEVEL_3_OR_HIGHER&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;UsageMode&amp;#34;: &amp;#34;SHORT_LIVED_CERTIFICATE&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="tag-the-certificate-authority">Tag the Certificate Authority&lt;/h3>
-&lt;p>Tagging resources in AWS helps in managing and identifying them. Use the &lt;a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_TagCertificateAuthority.html">&lt;code>TagCertificateAuthority&lt;/code>&lt;/a> API to tag the created Certificate Authority.
-This command adds the specified tags to the specified CA.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal acm-pca tag-certificate-authority \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --certificate-authority-arn arn:aws:acm-pca:us-east-1:000000000000:certificate-authority/f38ee966-bc23-40f8-8143-e981aee73600 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --tags Key=Admin,Value=Alice&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>After tagging your Certificate Authority, you may want to view these tags.
-You can use the &lt;a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_ListTags.html">&lt;code>ListTags&lt;/code>&lt;/a> API to list all the tags associated with the specified CA.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal acm-pca list-tags \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --certificate-authority-arn arn:aws:acm-pca:us-east-1:000000000000:certificate-authority/f38ee966-bc23-40f8-8143-e981aee73600 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --max-results 10
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Tags&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Key&amp;#34;: &amp;#34;Name&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Value&amp;#34;: &amp;#34;MyPCA&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Key&amp;#34;: &amp;#34;Admin&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Value&amp;#34;: &amp;#34;Alice&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="examples">Examples&lt;/h2>
 &lt;p>The following code snippets and sample applications provide practical examples of how to use ACM in LocalStack for various use cases:&lt;/p>
 &lt;ul>
@@ -5694,9 +5596,57 @@ Currently, support for &lt;code>UPDATE&lt;/code> operations on resources is limi
 &lt;h3 id="resources">Resources&lt;/h3>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-When utilizing the Community Edition, any resources within the stack that are not supported will be disregarded and won&amp;rsquo;t be deployed.
+When utilizing the Community image, any resources within the stack that are not supported will be disregarded and won&amp;rsquo;t be deployed.
 &lt;/div>
-&lt;h4 id="community-edition">Community Edition&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Resource&lt;/th>
+&lt;th style="text-align:right">Create&lt;/th>
+&lt;th style="text-align:right">Delete&lt;/th>
+&lt;th style="text-align:right">Update&lt;/th>
+&lt;th>Image&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>AWS::Amplify::App&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
+&lt;td style="text-align:right">-&lt;/td>
+&lt;td>Pro&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AWS::Amplify::Branch&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
+&lt;td style="text-align:right">-&lt;/td>
+&lt;td>Community&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AWS::ApiGateway::Account&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
+&lt;td style="text-align:right">-&lt;/td>
+&lt;td>Community&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AWS::ApiGateway::ApiKey&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
+&lt;td style="text-align:right">-&lt;/td>
+&lt;td>Community&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AWS::ApiGateway::Authorizer&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
+&lt;td style="text-align:right">-&lt;/td>
+&lt;td>Pro&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="community-image">Community image&lt;/h4>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -6339,7 +6289,7 @@ When utilizing the Community Edition, any resources within the stack that are no
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;h4 id="pro-edition">Pro Edition&lt;/h4>
+&lt;h4 id="pro-image">Pro image&lt;/h4>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -7098,7 +7048,7 @@ When utilizing the Community Edition, any resources within the stack that are no
 &lt;/table></description></item><item><title>User-Guide: CloudFront</title><link>/user-guide/aws/cloudfront/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudfront/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>CloudFront is a content delivery network (CDN) service provided by Amazon Web Services (AWS). CloudFront distributes its web content, videos, applications, and APIs with low latency and high data transfer speeds. CloudFront APIs allow you to configure distributions, customize cache behavior, secure content with access controls, and monitor the CDN&amp;rsquo;s performance through real-time metrics.&lt;/p>
-&lt;p>LocalStack supports CloudFront via the Pro/Team offering, allowing you to use the CloudFront APIs in your local environment to create local CloudFront distributions to transparently access your applications and file artifacts. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudfront/">API coverage page&lt;/a>, which provides information on the extent of CloudFront&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the CloudFront APIs in your local environment to create local CloudFront distributions to transparently access your applications and file artifacts. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudfront/">API coverage page&lt;/a>, which provides information on the extent of CloudFront&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is intended for users who wish to get more acquainted with CloudFront over LocalStack. It assumes you have basic knowledge of the AWS CLI (and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script).&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how you can create an S3 bucket, put a text file named &lt;code>hello.txt&lt;/code> to the bucket, and then create a CloudFront distribution which makes the file accessible via a &lt;code>https://abc123.cloudfront.net/hello.txt&lt;/code> proxy URL (where &lt;code>abc123&lt;/code> is a placeholder for the real distribution ID).&lt;/p>
@@ -7141,7 +7091,7 @@ Refer to the section on &lt;a href="/user-guide/tools/dns-server/#system-dns-con
 &lt;/ul></description></item><item><title>User-Guide: CloudTrail</title><link>/user-guide/aws/cloudtrail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudtrail/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>CloudTrail is a service provided by Amazon Web Services (AWS) that enables you to track and monitor all activities and events within your AWS environment. It records API calls and actions made on your AWS resources, offering an audit trail that helps you understand changes, diagnose issues, and maintain compliance.&lt;/p>
-&lt;p>LocalStack supports CloudTrail via the Pro/Team offering, allowing you to use the CloudTrail APIs in your local environment to create and manage Event history and trails. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudtrail/">API coverage page&lt;/a>, which provides information on the extent of CloudTrail&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the CloudTrail APIs in your local environment to create and manage Event history and trails. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudtrail/">API coverage page&lt;/a>, which provides information on the extent of CloudTrail&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to CloudTrail and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to enable S3 object logging to CloudTrail using AWS CLI.&lt;/p>
@@ -7212,7 +7162,7 @@ Refer to the section on &lt;a href="/user-guide/tools/dns-server/#system-dns-con
 &lt;li>&lt;strong>View Event History&lt;/strong>: View the event history of a CloudTrail trail, including the Event Id, Event time, Event source, and other parameters.&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: CloudWatch</title><link>/user-guide/aws/cloudwatch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudwatch/</guid><description>
 &lt;p>CloudWatch is a comprehensive monitoring and observability service that Amazon Web Services (AWS) provides. It allows you to collect and track metrics, collect and monitor log files, and set alarms. CloudWatch provides valuable insights into your AWS resources, applications, and services, enabling you to troubleshoot issues, optimize performance, and make informed decisions.&lt;/p>
-&lt;p>LocalStack supports CloudWatch via its Community offering, allowing you to leverage CloudWatch functionalities on your local machine. With LocalStack, you can create and manage CloudWatch resources, such as custom metrics, alarms, and log groups, for local development and testing purposes. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/">API coverage page&lt;/a>, which provides information on the extent of CloudWatch&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use CloudWatch APIs on your local machine to create and manage CloudWatch resources, such as custom metrics, alarms, and log groups, for local development and testing purposes. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/">API coverage page&lt;/a>, which provides information on the extent of CloudWatch&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;p>We have introduced an all-new LocalStack-native &lt;a href="https://docs.localstack.cloud/user-guide/aws/cloudwatch/">CloudWatch provider&lt;/a> is available behind a feature flag. You can activate it by configuring &lt;code>PROVIDER_OVERRIDE_CLOUDWATCH=v2&lt;/code> in your LocalStack configuration.&lt;/p>
@@ -7291,7 +7241,11 @@ Refer to the section on &lt;a href="/user-guide/tools/dns-server/#system-dns-con
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nextForwardToken&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;f/00000000000000000000000000000000000000000000000000000002&amp;#34;&lt;/span>,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nextBackwardToken&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;b/00000000000000000000000000000000000000000000000000000000&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can use &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html">filters&lt;/a> or &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html">queries&lt;/a> with LocalStack Pro/Team to refine your results.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+You can use &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html">filters&lt;/a> or &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html">queries&lt;/a> with the LocalStack Pro image to refine your results.
+&lt;/div>
 &lt;h2 id="metric-alarms">Metric Alarms&lt;/h2>
 &lt;p>Alarms in CloudWatch are crucial in monitoring specific data thresholds and automating actions based on those thresholds. To learn more about how alarms are evaluated in general, please refer to the &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation">AWS documentation&lt;/a>.&lt;/p>
 &lt;p>In LocalStack, you can use metric-alarm evaluation, explicitly utilizing the statistic and comparison-operator functionalities. These features enable you to define and evaluate alarms based on various statistical calculations and comparison operators.&lt;/p>
@@ -7445,7 +7399,7 @@ For a complete set of the supported syntax, check &lt;a href="https://docs.aws.a
 With CodeCommit, you can host private Git repositories with integrations to other AWS services.
 You can also use standard Git commands or CodeCommit APIs (using AWS CLI or SDKs) to manage your repositories.
 CodeCommit also uses identity-based policies, which can be attached to IAM users, groups, and roles, ensuring secure and granular access control.&lt;/p>
-&lt;p>LocalStack supports CodeCommit via the Pro/Team offering, allowing you to use the CodeCommit APIs in your local environment to create new repositories, push your commits, and manage the repositories.
+&lt;p>LocalStack allows you to use the CodeCommit APIs in your local environment to create new repositories, push your commits, and manage the repositories.
 The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_codecommit/">API coverage page&lt;/a>, which provides information on the extent of CodeCommit&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to CodeCommit and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
@@ -7497,7 +7451,7 @@ Then, you can use &lt;a href="https://git-scm.com/docs/git-commit">&lt;code>git 
 &lt;p>You can find a sample application illustrating the usage of the CodeCommit APIs locally in the &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/codecommit-git-repo">LocalStack Pro Samples&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Cognito</title><link>/user-guide/aws/cognito/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cognito/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Cognito is a managed identity service provided by AWS that is used for securing user authentication, authorization, and managing user identities in web and mobile applications. Cognito enables developers to add user sign-up, sign-in, and access control functionalities to their applications. Cognito supports various authentication methods, including social identity providers, SAML-based identity providers, and custom authentication flows.&lt;/p>
-&lt;p>LocalStack supports Cognito via the Pro/Team offering, allowing you to use the Cognito APIs in your local environment to manage authentication and access control for your local application and resources. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cognito-identity/">Cognito Identity coverage page&lt;/a> and &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cognito-idp/">Cognito User Pools coverage page&lt;/a>, which provides information on the extent of Cognito&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Cognito APIs in your local environment to manage authentication and access control for your local application and resources. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cognito-identity/">Cognito Identity coverage page&lt;/a> and &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cognito-idp/">Cognito User Pools coverage page&lt;/a>, which provides information on the extent of Cognito&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 By default, LocalStack&amp;rsquo;s Cognito does not send actual email messages. However, if you wish to enable this feature, you will need to provide an email address and configure the corresponding SMTP settings. The instructions on configuring the connection parameters of your SMTP server can be found in the &lt;a href="/references/configuration/#emails">Configuration&lt;/a> guide to allow your local Cognito environment to send email notifications.
@@ -7698,7 +7652,7 @@ Please note that a valid custom id must be in the format &lt;code>&amp;lt;region
 &lt;p>AWS Config is a service provided by Amazon Web Services (AWS) that enables you to assess, audit, and manage the configuration state of your AWS resources.
 Config provides a comprehensive view of the resource configuration across your AWS environment, helping you ensure compliance with security policies, track changes, and troubleshoot operational issues.
 Config continuously records configuration changes and allows you to retain a historical record of these changes.&lt;/p>
-&lt;p>LocalStack supports Config via the Community offering, allowing you to use the Config APIs in your local environment to assesses resource configurations and notifies you of any non-compliant items to mitigate potential security risks.
+&lt;p>LocalStack allows you to use the Config APIs in your local environment to assesses resource configurations and notifies you of any non-compliant items to mitigate potential security risks.
 The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_config/">API coverage page&lt;/a>, which provides information on the extent of Config&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Config and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
@@ -7757,7 +7711,7 @@ but LocalStack will currently not record any configuration changes to service re
 If you need this feature, please consider opening a &lt;a href="https://github.com/localstack/localstack/issues/new">feature request on GitHub&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Cost Explorer</title><link>/user-guide/aws/ce/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ce/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Cost Explorer is a service provided by Amazon Web Services (AWS) that enables you to visualize, analyze, and manage your AWS spending and usage. Cost Explorer offers options to filter and group data by dimensions such as service, region, instance type, and more. With Cost Explorer, you can forecast costs, track budget progress, and set up alerts to receive notifications when spending exceeds predefined thresholds.&lt;/p>
-&lt;p>LocalStack supports Cost Explorer via the Pro/Team offering, allowing you to use the Cost Explorer APIs in your local environment to create and manage cost category definition, cost anomaly monitors &amp;amp; subscriptions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_ce/">API coverage page&lt;/a>, which provides information on the extent of Cost Explorer&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Cost Explorer APIs in your local environment to create and manage cost category definition, cost anomaly monitors &amp;amp; subscriptions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_ce/">API coverage page&lt;/a>, which provides information on the extent of Cost Explorer&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 LocalStack&amp;rsquo;s Cost Explorer implementation cannot programmatically query your cost and usage data, or provide aggregated data such as total monthly costs or total daily usage. However, you can use the integrations to mock the Cost Explorer APIs and test your workflow locally.
@@ -8170,7 +8124,7 @@ In the lambda, you can then retrieve the secret details like this:&lt;/p>
 &lt;p>DynamoDB is a fully managed NoSQL database service provided by AWS.
 It offers a flexible and highly scalable way to store and retrieve data, making it suitable for a wide range of applications.
 DynamoDB provides a fast and scalable key-value datastore with support for replication, automatic scaling, data encryption at rest, and on-demand backup, among other capabilities.&lt;/p>
-&lt;p>LocalStack supports DynamoDB via the Community offering, allowing you to use the DynamoDB APIs in your local environment to manage key-value and document data models.
+&lt;p>LocalStack allows you to use the DynamoDB APIs in your local environment to manage key-value and document data models.
 The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_dynamodb/">API coverage page&lt;/a>, which provides information on the extent of DynamoDB&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
@@ -8330,7 +8284,7 @@ More information can be found in &lt;a href="https://github.com/localstack/local
 &lt;/ul></description></item><item><title>User-Guide: Elastic Beanstalk</title><link>/user-guide/aws/elasticbeanstalk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elasticbeanstalk/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Elastic Beanstalk (EB) is a managed platform-as-a-service (PaaS) provided by Amazon Web Services (AWS) that simplifies the process of deploying, managing, and scaling web applications and services. Elastic Beanstalk orchestrates various AWS services, including EC2, S3, SNS, and Elastic Load Balancers. Elastic Beanstalk also supports various application environments, such as Java, .NET, Node.js, PHP, Python, Ruby, Go, and Docker.&lt;/p>
-&lt;p>LocalStack supports Elastic Beanstalk via the Pro/Team offering, allowing you to use the Elastic Beanstalk APIs in your local environment to create and manage applications, environments and versions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_elasticbeanstalk/">API coverage page&lt;/a>, which provides information on the extent of Elastic Beanstalk&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Elastic Beanstalk APIs in your local environment to create and manage applications, environments and versions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_elasticbeanstalk/">API coverage page&lt;/a>, which provides information on the extent of Elastic Beanstalk&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 LocalStack&amp;rsquo;s Elastic Beanstalk implementation is limited and lacks support for installing application and running it in a local Elastic Beanstalk environment. LocalStack also does not support the &lt;a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html">&lt;code>eb&lt;/code>&lt;/a> CLI tool. However, you can use other integrations, such as AWS CLI &amp;amp; Terraform, to mock the Elastic Beanstalk APIs and test your workflow locally.
@@ -8390,16 +8344,11 @@ LocalStack&amp;rsquo;s Elastic Beanstalk implementation is limited and lacks sup
 &lt;p>Elastic Compute Cloud (EC2) is a core service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources.
 EC2 enables users to launch and manage virtual servers, commonly referred to as instances.
 Users can create a range computing environments tailored to specific needs by employing a wide array of configurations, enabling users to select the desired combination of computing power, memory, storage, and networking capabilities.&lt;/p>
-&lt;p>LocalStack supports a mock implementation of EC2 via the Community offering while a fully-emulated implementation is available in the Pro/Team offering, allowing you to use the EC2 APIs in your local environment to create and manage your EC2 instances.
-The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_ec2/">API coverage page&lt;/a>, which provides information on the extent of EC2&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the EC2 APIs in your local environment to create and manage your EC2 instances. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_ec2/">API coverage page&lt;/a>, which provides information on the extent of EC2&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to EC2 and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method.
 We will demonstrate how to create an EC2 instance that runs a simple Python web server on port 8000 with the AWS CLI.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-You need to use LocalStack Pro/Team to test the setup of the EC2 instance, since it uses &lt;a href="#docker-backend">Docker Backend&lt;/a> to emulate EC2 instances.
-&lt;/div>
 &lt;h3 id="create-a-key-pair">Create a Key Pair&lt;/h3>
 &lt;p>To create a key pair, you can use the &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html">&lt;code>CreateKeyPair&lt;/code>&lt;/a> API.
 Run the following command to create the key pair and pipe the output to a file named &lt;code>key.pem&lt;/code>:&lt;/p>
@@ -8559,7 +8508,7 @@ These AMIs can be listed using:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-All other AMIs that do not have the above tag are mocked and originate from the community edition of LocalStack.
+All other AMIs that do not have the above tag are mocked and originate from the Community image of LocalStack.
 Attempting to launch Dockerized instances using these specific AMIs will result in an &lt;code>InvalidAMIID.NotFound&lt;/code> error.
 &lt;/div>
 &lt;h3 id="configuration">Configuration&lt;/h3>
@@ -8657,7 +8606,7 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 &lt;p>Elastic Container Registry (ECR) is a fully managed container registry service provided by Amazon Web Services.
 ECR enables you to store, manage, and deploy Docker container images to build, store, and deploy containerized applications.
 ECR integrates with other AWS services, such as Lambda, ECS, and EKS.&lt;/p>
-&lt;p>LocalStack supports Elastic Container Registry via the Pro/Team offering, allowing you to use the ECR APIs in your local environment to build &amp;amp; push Docker images to a local ECR registry.
+&lt;p>LocalStack allows you to use the ECR APIs in your local environment to build &amp;amp; push Docker images to a local ECR registry.
 The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_ecr/">API coverage page&lt;/a>, which provides information on the extent of ECR&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Elastic Container Registry and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
@@ -8936,7 +8885,7 @@ Or if you are working with a single container, you can set &lt;code>ECS_DOCKER_F
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic File System (EFS)</title><link>/user-guide/aws/efs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/efs/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Elastic File System (EFS) is a fully managed file storage service provided by Amazon Web Services (AWS). EFS offers scalable and shared file storage that can be accessed by multiple EC2 instances and on-premises servers simultaneously. EFS utilizes the Network File System protocol to allow it to be used as a data source for various applications and workloads.&lt;/p>
-&lt;p>LocalStack supports EFS via the Pro/Team offering, allowing you to use the EFS APIs in your local environment to create local file systems, lifecycle configurations, and file system policies. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_efs/">API coverage page&lt;/a>, which provides information on the extent of EFS&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the EFS APIs in your local environment to create local file systems, lifecycle configurations, and file system policies. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_efs/">API coverage page&lt;/a>, which provides information on the extent of EFS&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for functionalities like creating mount targets, configuring access points, and generating tags. LocalStack uses Moto to emulate the EFS APIs, and efforts are underway to incorporate support for these features in upcoming updates.
@@ -8996,7 +8945,7 @@ LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for funct
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Kubernetes Service (EKS)</title><link>/user-guide/aws/eks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/eks/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Elastic Kubernetes Service (EKS) is a managed Kubernetes service that makes it easy to run Kubernetes on AWS without installing, operating, and maintaining your own Kubernetes control plane or worker nodes. Kubernetes is an open-source system for automating containerized applications&amp;rsquo; deployment, scaling, and management.&lt;/p>
-&lt;p>LocalStack supports Elastic Kubernetes Service via the Pro/Team offering, allowing you to use the EKS APIs in your local environment to spin up embedded Kubernetes clusters in your local Docker engine or use an existing Kubernetes installation you can access from your local machine (defined in &lt;code>$HOME/.kube/config&lt;/code>). The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_eks/">API coverage page&lt;/a>, which provides information on the extent of EKS&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the EKS APIs in your local environment to spin up embedded Kubernetes clusters in your local Docker engine or use an existing Kubernetes installation you can access from your local machine (defined in &lt;code>$HOME/.kube/config&lt;/code>). The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_eks/">API coverage page&lt;/a>, which provides information on the extent of EKS&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Elastic Kubernetes Service and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script. To interact with the Kubernetes cluster, you should also install &lt;a href="https://kubernetes.io/docs/tasks/tools/">&lt;code>kubectl&lt;/code>&lt;/a>.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how you can auto-install an embedded Kubernetes cluster, configure ingress, and deploy a sample service with ECR.&lt;/p>
@@ -9362,7 +9311,7 @@ Note that the tag was previously referred to as &lt;code>__k3d_volume_mount__&lt
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Load Balancing (ELB)</title><link>/user-guide/aws/elb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elb/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Elastic Load Balancing (ELB) is a service that allows users to distribute incoming traffic across multiple targets, such as EC2 instances, containers, IP addresses, and lambda functions and automatically scales its request handling capacity in response to incoming traffic. It also monitors the health of its registered targets and ensures that it routes traffic only to healthy targets. You can check &lt;a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html">the official AWS documentation&lt;/a> to understand the basic terms and concepts used in the ELB.&lt;/p>
-&lt;p>Localstack supports the Elastic Load Balancing via the Pro/Team offering, allowing you to use the Elastic Load Balancing APIs in your local environment to create, edit, and view load balancers, target groups, listeners, and rules. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_elbv2/">API coverage page&lt;/a>, which provides information on the extent of ELB&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>Localstack allows you to use the Elastic Load Balancing APIs in your local environment to create, edit, and view load balancers, target groups, listeners, and rules. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_elbv2/">API coverage page&lt;/a>, which provides information on the extent of ELB&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Elastic Load Balancing and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an Application Load Balancer, along with its target group, listener, and rule, and forward requests to an IP target.&lt;/p>
@@ -9482,7 +9431,7 @@ You will see a response similar to the following:&lt;/p>
 &lt;/ul></description></item><item><title>User-Guide: Elastic Transcoder</title><link>/user-guide/aws/elastictranscoder/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastictranscoder/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Elastic Transcoder is a managed service that facilitates the transcoding of multimedia files into various formats to ensure compatibility across devices. Elastic Transcoder manages the underlying resources, ensuring high availability and fault tolerance. It also supports a wide range of input and output formats, enabling users to efficiently process and deliver video content at scale.&lt;/p>
-&lt;p>LocalStack supports Elastic Transcoder via the Pro/Team offering, allowing you to mock the Elastic Transcoder APIs in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_elastictranscoder/">API coverage page&lt;/a>, which provides information on the extent of Elastic Transcoder&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to mock the Elastic Transcoder APIs in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_elastictranscoder/">API coverage page&lt;/a>, which provides information on the extent of Elastic Transcoder&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Elastic Transcoder and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an Elastic Transcoder pipeline, read the pipeline, and list all pipelines using the AWS CLI.&lt;/p>
@@ -9951,7 +9900,7 @@ LocalStack will return the endpoint immediately, but keep &lt;code>Processing = 
 &lt;p>MediaStore is a scalable and highly available object storage service designed specifically for media content.
 It provides a reliable way to store, manage, and serve media assets, such as audio, video, and images, with low latency and high performance.
 MediaStore seamlessly integrates with other AWS services like Elemental MediaConvert, Elemental MediaLive, Elemental MediaPackage, and CloudFront.&lt;/p>
-&lt;p>LocalStack supports Elemental MediaStore via the Pro/Team offering, allowing you to use the Elemental MediaStore APIs as a high-performance storage solution for media content in your local environment.
+&lt;p>LocalStack allows you to use the Elemental MediaStore APIs as a high-performance storage solution for media content in your local environment.
 The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_mediastore/">API Coverage Page&lt;/a>, which provides information on the extent of Elemental MediaStore integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Elemental MediaStore and assumes basic knowledge of the AWS CLI and our &lt;code>awslocal&lt;/code> wrapper script.&lt;/p>
@@ -10005,7 +9954,7 @@ Run the following command to download the file:&lt;/p>
 &lt;p>The Elemental MediaStore service requires the use of a custom HTTP/HTTPS endpoint. In case you encounter any issues, please consult our &lt;a href="/references/network-troubleshooting/">Networking documentation&lt;/a> for assistance.&lt;/p></description></item><item><title>User-Guide: EventBridge</title><link>/user-guide/aws/events/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/events/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>EventBridge provides a centralized mechanism to discover and communicate events across various AWS services and applications. EventBridge allows you to register, track, and resolve events, which indicates a change in the environment and then applies a rule to route the event to a target. EventBridge rules are tied to an Event Bus to manage event-driven workflows. You can use either identity-based or resource-based policies to control access to EventBridge resources, where the former can be attached to IAM users, groups, and roles, and the latter can be attached to specific AWS resources.&lt;/p>
-&lt;p>LocalStack supports EventBridge via the Community offering, allowing you to use the EventBridge APIs in your local environment to create rules that route events to a target. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_events/">API coverage page&lt;/a>, which provides information on the extent of EventBridge&amp;rsquo;s integration with LocalStack. For information on EventBridge Pipes, please refer to the &lt;a href="/user-guide/aws/pipes/">EventBridge Pipes&lt;/a> section.&lt;/p>
+&lt;p>LocalStack allows you to use the EventBridge APIs in your local environment to create rules that route events to a target. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_events/">API coverage page&lt;/a>, which provides information on the extent of EventBridge&amp;rsquo;s integration with LocalStack. For information on EventBridge Pipes, please refer to the &lt;a href="/user-guide/aws/pipes/">EventBridge Pipes&lt;/a> section.&lt;/p>
 &lt;h2 id="getting-started">Getting Started&lt;/h2>
 &lt;p>This guide is designed for users new to EventBridge and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate creating an EventBridge rule to run a Lambda function on a schedule.&lt;/p>
@@ -10091,7 +10040,7 @@ Run the following command to download the file:&lt;/p>
 &lt;/ul></description></item><item><title>User-Guide: EventBridge Pipes</title><link>/user-guide/aws/pipes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/pipes/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>EventBridge Pipes allows users to create point-to-point integrations between event producers and consumers with transform, filter and enrichment steps. Pipes are particularly useful for scenarios involving real-time data processing, application integration, and automated workflows, while simplifying the process of routing events between AWS services. Pipes offer a point-to-point connection from one source to one target (one-to-one). In contrast, EventBridge Event Bus offers a one-to-many integration where an event router delivers one event to zero or more destinations.&lt;/p>
-&lt;p>LocalStack supports EventBridge Pipes via the Pro/Team offering, allowing you to use the Pipes APIs in your local environment to create Pipes with SQS queues and Kinesis streams as source and target. You can also filter events using EventBridge event patterns and enrich events using Lambda.&lt;/p>
+&lt;p>LocalStack allows you to use the Pipes APIs in your local environment to create Pipes with SQS queues and Kinesis streams as source and target. You can also filter events using EventBridge event patterns and enrich events using Lambda.&lt;/p>
 &lt;p>The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_pipes/">API coverage page&lt;/a>, which provides information on the extent of Pipe&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
@@ -10169,7 +10118,7 @@ The implementation of EventBridge Pipes is currently in &lt;strong>Alpha&lt;/str
 &lt;p>Fault Injection Simulator (FIS) is a service provided by Amazon Web Services (AWS) that enables you to test the resilience of your applications and infrastructure by injecting faults and failures into your AWS resources.
 FIS inject faults such as network latency, resource unavailability, and service errors to assess the impact on your application&amp;rsquo;s performance and availability.
 The full list of such possible fault injections - called &lt;strong>actions&lt;/strong> - is available in the &lt;a href="https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html">AWS docs&lt;/a>.&lt;/p>
-&lt;p>LocalStack supports FIS APIs via the Pro/Team offering, allowing you to use the FIS APIs in your local environment to introduce faults in other services, in order to check how your setup behaves when parts of it stop working locally.
+&lt;p>LocalStack allows you to use the FIS APIs in your local environment to introduce faults in other services, in order to check how your setup behaves when parts of it stop working locally.
 The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_fis/">API coverage page&lt;/a>, which provides information on the extent of FIS API&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="fis-concepts">FIS Concepts&lt;/h2>
 &lt;p>In general, FIS calls contain the following details:&lt;/p>
@@ -10376,7 +10325,7 @@ It offers various retrieval options, different levels of retrieval speed, and mo
 Glacier uses a Vault container to store your data, similar to how S3 stores data in Buckets.
 A Vault further holds the data in an Archive, which can contain text, images, video, and audio files.
 Glacier uses Jobs to retrieve the data in an Archive or list the inventory of a Vault.&lt;/p>
-&lt;p>LocalStack provides Glacier support via our Pro/Team offering, allowing you to use the Glacier APIs in your local environment to manage Vaults and Archives.
+&lt;p>LocalStack allows you to use the Glacier APIs in your local environment to manage Vaults and Archives.
 You can use the Glacier API to configure and set up vaults where you can store archives and manage them.
 The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_glacier/">API coverage page&lt;/a>, which provides information on the extent of Glacier&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
@@ -10493,7 +10442,7 @@ Please not that currently, this operation is only mocked, and will create an emp
 &lt;/p></description></item><item><title>User-Guide: Glue</title><link>/user-guide/aws/glue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/glue/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>The Glue API in LocalStack Pro allows you to run ETL (Extract-Transform-Load) jobs locally, maintaining table metadata in the local Glue data catalog, and using the Spark ecosystem (PySpark/Scala) to run data processing workflows.&lt;/p>
-&lt;p>LocalStack supports Glue via the Pro/Team offering, allowing you to use the Glue APIs in your local environment.
+&lt;p>LocalStack allows you to use the Glue APIs in your local environment.
 The supported APIs are available on our &lt;a href="/references/coverage/coverage_glue/">API coverage page&lt;/a>, which provides information on the extent of Glue&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Glue and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
@@ -10864,7 +10813,7 @@ No tutorials available with the selected filters.
 &lt;p>Support for triggers is currently limited - the basic API endpoints are implemented, but triggers are currently still under development (more details coming soon).&lt;/p></description></item><item><title>User-Guide: Identity and Access Management (IAM)</title><link>/user-guide/aws/iam/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iam/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Identity and Access Management (IAM) is a web service provided by Amazon Web Services (AWS) that enables users to control access to AWS resources securely. IAM allows organizations to create and manage AWS users, groups, and roles, defining granular permissions to access specific AWS services and resources. By centralizing access control, administrators can enforce the principle of least privilege, ensuring users have only the necessary permissions for their tasks.&lt;/p>
-&lt;p>LocalStack supports IAM via the Community offering, allowing you to use the IAM APIs in your local environment to create and manage users, groups, and roles, granting permissions that adhere to the principle of least privilege. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_iam/">API coverage page&lt;/a>, which provides information on the extent of IAM&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the IAM APIs in your local environment to create and manage users, groups, and roles, granting permissions that adhere to the principle of least privilege. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_iam/">API coverage page&lt;/a>, which provides information on the extent of IAM&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to IAM and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how you can create a new user named &lt;code>test&lt;/code>, create an access key pair for the user, and assert that the user is recognized after the access keys are configured in the environment.&lt;/p>
@@ -10939,7 +10888,7 @@ No tutorials available with the selected filters.
 &lt;/ul></description></item><item><title>User-Guide: Identity Store</title><link>/user-guide/aws/identitystore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/identitystore/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Identity Store is a managed service that enables the creation and management of groups within your AWS environment. Groups are used to manage access to AWS resources, and Identity Store provides a central location to create and manage groups across your AWS accounts.&lt;/p>
-&lt;p>LocalStack supports Identity Store via the Pro/Team offering, allowing you to use the Identity Store APIs to create and manage groups in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_identitystore/">API Coverage Page&lt;/a>, which provides information on the extent of Identity Store integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Identity Store APIs to create and manage groups in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_identitystore/">API Coverage Page&lt;/a>, which provides information on the extent of Identity Store integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is aimed at users who are familiar with the AWS CLI and &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script. It will walk you through the basics of setting up and managing groups within the AWS Identity Store using LocalStack.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. This guide will demonstrate how to create a group within Identity Store, list all groups, and describe a specific group.&lt;/p>
@@ -11115,7 +11064,7 @@ The certificate is signed by the LocalStack root CA.&lt;/p>
 &lt;p>Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.&lt;/p></description></item><item><title>User-Guide: Key Management Service (KMS)</title><link>/user-guide/aws/kms/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kms/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Key Management Service (KMS) is a managed service that allows users to handle encryption keys within the Amazon Web Services ecosystem. KMS allows users to create, control, and utilize keys to encrypt and decrypt data, as well as to sign and verify messages. KMS allows you to create, delete, list, and update aliases, friendly names for your KMS keys, and tag them for identification and automation. You can check &lt;a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">the official AWS documentation&lt;/a> to understand the basic terms and concepts used in the KMS.&lt;/p>
-&lt;p>LocalStack supports Resource Groups via the Community offering, allowing you to use the KMS APIs in your local environment to create, edit, and view symmetric and asymmetric KMS keys, including HMAC keys. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_kms/">API coverage page&lt;/a>, which provides information on the extent of KMS&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the KMS APIs in your local environment to create, edit, and view symmetric and asymmetric KMS keys, including HMAC keys. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_kms/">API coverage page&lt;/a>, which provides information on the extent of KMS&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to KMS and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create a simple symmetric encryption key and use it to encrypt/decrypt data.&lt;/p>
@@ -11190,7 +11139,7 @@ The Resource Browser allows you to perform the following actions:
 &lt;p>In AWS KMS, &lt;a href="https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html#key-spec-sm:~:text=the%20message%20digest.-,SM2%20key%20spec%20(China%20Regions%20only),-The%20SM2%20key">SM2&lt;/a> is a supported key spec for asymmetric keys. However, LocalStack&amp;rsquo;s KMS implementation doesn&amp;rsquo;t support this key spec.&lt;/p></description></item><item><title>User-Guide: Kinesis</title><link>/user-guide/aws/kinesis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Kinesis is a platform provided by Amazon Web Services (AWS) that enables your application to ingest, buffer, and process data in real-time. Kinesis is suitable for applications that require processing and deriving insights from data streams such as logs, metrics, user interactions, and IoT sensor readings. Kinesis offers three main services: Kinesis Data Streams, Kinesis Data Firehose, and Kinesis Data Analytics. In this page, we take a look at Kinesis Data Streams which allows you to capture and store real-time data streams.&lt;/p>
-&lt;p>LocalStack supports Kinesis via the Community offering, allowing you to use the Kinesis APIs in your local environment from setting up data streams and configuring data processing to building real-time analytics applications. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_kinesis/">API coverage page&lt;/a>, which provides information on the extent of Kinesis&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Kinesis APIs in your local environment from setting up data streams and configuring data processing to building real-time analytics applications. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_kinesis/">API coverage page&lt;/a>, which provides information on the extent of Kinesis&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Kinesis and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create a Lambda function to consume events from a Kinesis stream with the AWS CLI.&lt;/p>
@@ -11338,7 +11287,7 @@ The Resource Browser allows you to perform the following actions:
 &lt;p>Kinesis Data Analytics is a service offered by Amazon Web Services (AWS) that enables you to process and analyze streaming data in real-time.
 Kinesis Data Analytics allows you to apply transformations, filtering, and enrichment to streaming data using standard SQL syntax.
 You can also run Java or Scala programs against streaming sources to perform various operations on the data using Apache Flink.&lt;/p>
-&lt;p>LocalStack supports Kinesis Data Analytics via the Pro/Team offering, allowing you to use the Kinesis Data Analytics APIs in your local environment to run continuous SQL queries directly over your Kinesis data streams.
+&lt;p>LocalStack allows you to use the Kinesis Data Analytics APIs in your local environment to run continuous SQL queries directly over your Kinesis data streams.
 The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/">API coverage page&lt;/a>, which provides information on the extent of Kinesis Data Analytics integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Kinesis Data Analytics and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
@@ -11457,7 +11406,7 @@ Amazon recently renamed Kinesis Data Firehose to Data Firehose.
 &lt;/div>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Kinesis Data Firehose is a service provided by AWS that allows you to extract, transform and load streaming data into various destinations, such as Amazon S3, Amazon Redshift, and Elasticsearch. With Kinesis Data Firehose, you can ingest and deliver real-time data from different sources as it automates data delivery, handles buffering and compression, and scales according to the data volume.&lt;/p>
-&lt;p>LocalStack supports Kinesis Data Firehose via the Community offering, allowing you to use the Kinesis Data Firehose APIs in your local environment to load and transform real-time data. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_firehose/">API coverage page&lt;/a>, which provides information on the extent of Kinesis Data Firehose&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Kinesis Data Firehose APIs in your local environment to load and transform real-time data. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_firehose/">API coverage page&lt;/a>, which provides information on the extent of Kinesis Data Firehose&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Kinesis Data Firehouse and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to use Firehose to load Kinesis data into Elasticsearch with S3 Backup with the AWS CLI.&lt;/p>
@@ -11540,7 +11489,7 @@ For users using AWS CLI v2, consider adding &lt;code>--cli-binary-format raw-in-
 &lt;/ul></description></item><item><title>User-Guide: Lambda</title><link>/user-guide/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/lambda/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>AWS Lambda is a Serverless Function as a Service (FaaS) platform that lets you run code in your preferred programming language on the AWS ecosystem. AWS Lambda automatically scales your code to meet demand and handles server provisioning, management, and maintenance. AWS Lambda allows you to break down your application into smaller, independent functions that integrate seamlessly with AWS services.&lt;/p>
-&lt;p>LocalStack supports Lambda via the Community &amp;amp; Pro/Team offering, allowing you to use the Lambda API to create, deploy, and test your Lambda functions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_lambda/">Lambda coverage page&lt;/a>, which provides information on the extent of Lambda&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the Lambda APIs to create, deploy, and test your Lambda functions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_lambda/">Lambda coverage page&lt;/a>, which provides information on the extent of Lambda&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Lambda and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create a Lambda function with a Function URL. With the Function URL property, you can call a Lambda Function via an HTTP API call.&lt;/p>
@@ -11620,12 +11569,8 @@ id="tabs-02-01" role="tabpanel" aria-labelled-by="tabs-02-01-tab">
 &lt;li>&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html">Simple Queue Service (SQS)&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="lambda-layers-pro">Lambda Layers (Pro)&lt;/h2>
-&lt;p>&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layers&lt;/a> lets you include additional code and dependencies in your Lambda functions.
-With LocalStack Pro/Team, you can deploy Lambda Layers locally to streamline your development and testing process.
-Community users can still create, update, and list Lambda layers.
+&lt;p>&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layers&lt;/a> lets you include additional code and dependencies in your Lambda functions. LocalStack Pro image allows you to deploy Lambda Layers locally to streamline your development and testing process.
 However, the layers are not applied when invoking a Lambda function.&lt;/p>
-&lt;p>To learn more about Lambda Layers, refer to the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS documentation on Lambda layers&lt;/a>.
-Here, we&amp;rsquo;ll focus specifically on how to use Lambda Layers locally in LocalStack Pro/Team.&lt;/p>
 &lt;h3 id="creating-and-using-a-lambda-layer-locally">Creating and using a Lambda Layer Locally&lt;/h3>
 &lt;p>To create a Lambda Layer locally, you can use the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html">&lt;code>PublishLayerVersion&lt;/code> API&lt;/a> in LocalStack. Here&amp;rsquo;s a simple example using Python:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mkdir -p /tmp/python/
@@ -11805,7 +11750,7 @@ id="tabs-13-02" role="tabpanel" aria-labelled-by="tabs-13-02-tab">
 &lt;h3 id="not-implemented-error">Not implemented error&lt;/h3>
 &lt;p>If you are using LocalStack versions prior to 2.0, and encounter a &lt;code>NotImplementedError&lt;/code> in the LocalStack logs and an &lt;code>InternalFailure (501) error&lt;/code> in the client while creating a Lambda function using the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html">&lt;code>CreateFunction&lt;/code> API&lt;/a>, check your &lt;code>PROVIDER_OVERRIDE_LAMBDA&lt;/code> configuration. You might encounter this error if it is set to &lt;code>legacy&lt;/code>.&lt;/p></description></item><item><title>User-Guide: Managed Blockchain (AMB)</title><link>/user-guide/aws/managedblockchain/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/managedblockchain/</guid><description>
 &lt;p>Managed Blockchain (AMB) is a managed service that enables the creation and management of blockchain networks, such as Hyperledger Fabric, Bitcoin, Polygon and Ethereum. Blockchain enables the development of applications in which multiple entities can conduct transactions and exchange data securely and transparently, eliminating the requirement for a central, trusted authority.&lt;/p>
-&lt;p>LocalStack supports AMB via the Pro/Team offering, allowing you to use the AMB APIs to develop and deploy decentralized applications in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_managedblockchain/">API Coverage Page&lt;/a>, which provides information on the extent of AMB integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the AMB APIs to develop and deploy decentralized applications in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_managedblockchain/">API Coverage Page&lt;/a>, which provides information on the extent of AMB integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to AMB and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create a blockchain network, a node, and a proposal.&lt;/p>
@@ -11899,7 +11844,7 @@ id="tabs-13-02" role="tabpanel" aria-labelled-by="tabs-13-02-tab">
 &lt;p>Replace the &lt;code>NetworkId&lt;/code> and &lt;code>MemberId&lt;/code> values in the above command with the values you copied in the previous step.&lt;/p></description></item><item><title>User-Guide: Managed Streaming for Kafka (MSK)</title><link>/user-guide/aws/msk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/msk/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Managed Streaming for Apache Kafka (MSK) is a fully managed Apache Kafka service that allows you to build and run applications that process streaming data. MSK offers a centralized platform to facilitate seamless communication between various AWS services and applications through event-driven architectures, facilitating data ingestion, processing, and analytics for various applications. MSK also features automatic scaling and built-in monitoring, allowing users to build robust, high-throughput data pipelines.&lt;/p>
-&lt;p>LocalStack supports Managed Streaming for Kafka via the Pro/Team offering, allowing you to use the MSK APIs in your local environment to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_kafka/">API coverage page&lt;/a>, which provides information on the extent of MSK&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>LocalStack allows you to use the MSK APIs in your local environment to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_kafka/">API coverage page&lt;/a>, which provides information on the extent of MSK&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Managed Streaming for Kafka and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to configure an MSK Cluster locally, create a Kafka topic, and produce and consume messages.&lt;/p>
@@ -12033,7 +11978,7 @@ The following step is optional and may not be required, depending on the operati
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Managed Workflows for Apache Airflow (MWAA) is a fully managed service by AWS that simplifies the deployment, management, and scaling of Apache Airflow workflows in the cloud.
 MWAA leverages the familiar Airflow features and integrations while integrating with S3, Glue, Redshift, Lambda, and other AWS services to build data pipelines and orchestrate data processing workflows in the cloud.&lt;/p>
-&lt;p>LocalStack supports Managed Workflows for Apache Airflow via the Pro/Team offering, allowing you to use the MWAA APIs in your local environment to allow the setup and operation of data pipelines.
+&lt;p>LocalStack allows you to use the MWAA APIs in your local environment to allow the setup and operation of data pipelines.
 The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_mwaa/">API coverage page&lt;/a>, which provides information on the extent of MWAA&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to Managed Workflows for Apache Airflow and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>

@@ -8,10 +8,6 @@
 &lt;li>Create reproducible development and testing environments locally.&lt;/li>
 &lt;/ul>
 &lt;img src="pods-ui.png" alt="Cloud Pods Web UI" title="Cloud Pods Web UI" width="800px" />
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Cloud Pods is only available to LocalStack Team users. LocalStack Pro users can access other state management features, such as &lt;a href="/user-guide/state-management/persistence/">Persistence&lt;/a> and &lt;a href="/user-guide/state-management/export-import-state/">State Export &amp;amp; Import&lt;/a>.
-&lt;/div>
 &lt;h2 id="installation">Installation&lt;/h2>
 &lt;p>You can save and load the persistent state of Cloud Pods, you can use the &lt;a href="/user-guide/state-management/pods-cli/">Cloud Pods command-line interface (CLI)&lt;/a>. LocalStack provides a remote storage backend that can be used to store the state of your running application and share it with your team members. You can interact with the Cloud Pods over the storage backend via the LocalStack Web Application.&lt;/p>
 &lt;p>Cloud Pods CLI is included in the &lt;a href="https://docs.localstack.cloud/getting-started/installation/#localstack-cli">LocalStack CLI installation&lt;/a>, so there&amp;rsquo;s no need for additional installations to begin using it. If you&amp;rsquo;re a licensed user, we suggest setting the &lt;code>LOCALSTACK_AUTH_TOKEN&lt;/code> as an environment variable. This enables you to access the complete range of LocalStack Cloud Pods features.&lt;/p>
@@ -156,34 +152,34 @@ Similarly, everyone can save a new version of a Cloud Pod on top of a Pod origin
 &lt;h3 id="environmental-variables">Environmental variables&lt;/h3>
 &lt;p>To automatically load a Cloud Pod at startup, utilize the &lt;code>AUTO_LOAD_POD&lt;/code> &lt;a href="https://docs.localstack.cloud/references/configuration/">configuration variable&lt;/a>.&lt;/p>
 &lt;p>&lt;code>AUTO_LOAD_POD&lt;/code> can accept multiple Cloud Pod names separated by commas. To autoload multiple Cloud Pods, such as &lt;code>foo-pod&lt;/code> and &lt;code>bar-pod&lt;/code>, use: &lt;code>AUTO_LOAD_POD=foo-pod,bar-pod&lt;/code>. The order of Cloud Pods in &lt;code>AUTO_LOAD_POD&lt;/code> dictates their loading sequence. When autoloading multiple Cloud Pods, later pods might overwrite the state of earlier ones if they share the same service, account, and region.&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-15" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-14" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-bash"
-id="tabs-15-00-tab" data-toggle="tab" href="#tabs-15-00" role="tab"
-onclick="persistLang(&amp;#34;bash&amp;#34;);"aria-controls="tabs-15-00" aria-selected="false">
+id="tabs-14-00-tab" data-toggle="tab" href="#tabs-14-00" role="tab"
+onclick="persistLang(&amp;#34;bash&amp;#34;);"aria-controls="tabs-14-00" aria-selected="false">
 LocalStack CLI
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-yaml"
-id="tabs-15-01-tab" data-toggle="tab" href="#tabs-15-01" role="tab"
-onclick="persistLang(&amp;#34;yaml&amp;#34;);"aria-controls="tabs-15-01" aria-selected="false">
+id="tabs-14-01-tab" data-toggle="tab" href="#tabs-14-01" role="tab"
+onclick="persistLang(&amp;#34;yaml&amp;#34;);"aria-controls="tabs-14-01" aria-selected="false">
 Docker Compose
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-15-02-tab" data-toggle="tab" href="#tabs-15-02" role="tab"
-aria-controls="tabs-15-02" aria-selected="false">
+id="tabs-14-02-tab" data-toggle="tab" href="#tabs-14-02" role="tab"
+aria-controls="tabs-14-02" aria-selected="false">
 Docker
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-15-content">
+&lt;div class="tab-content" id="tabs-14-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-15-00" role="tabpanel" aria-labelled-by="tabs-15-00-tab">
+id="tabs-14-00" role="tabpanel" aria-labelled-by="tabs-14-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">AUTO_LOAD_POD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>foo-pod localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-15-01" role="tabpanel" aria-labelled-by="tabs-15-01-tab">
+id="tabs-14-01" role="tabpanel" aria-labelled-by="tabs-14-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;3.8&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -202,7 +198,7 @@ id="tabs-15-01" role="tabpanel" aria-labelled-by="tabs-15-01-tab">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/var/run/docker.sock:/var/run/docker.sock&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-15-02" role="tabpanel" aria-labelled-by="tabs-15-02-tab">
+id="tabs-14-02" role="tabpanel" aria-labelled-by="tabs-14-02-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>docker run &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -e &lt;span style="color:#000">LOCALSTACK_AUTH_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">LOCALSTACK_AUTH_TOKEN&lt;/span>&lt;span style="color:#000;font-weight:bold">:?&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> -e &lt;span style="color:#000">AUTO_LOAD_POD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>foo-pod &lt;span style="color:#4e9a06">\

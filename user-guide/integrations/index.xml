@@ -918,7 +918,7 @@ LambdaTest provides specialized runners for LocalStack. The default runners don&
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The above minimal configuration file starts LocalStack and creates an S3 bucket, SQS queue, and SNS topic.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-To configure a LocalStack Auth Token to use Pro/Team features, you can append &lt;code>LOCALSTACK_AUTH_TOKEN=${{ .secrets.LOCALSTACK_AUTH_TOKEN }}&lt;/code> to the &lt;code>localstack start&lt;/code> command. Subsequently, you need to add your LocalStack Auth Token to your HyperExecute Portal as a secret.
+To use the LocalStack Pro image, configure a LocalStack Auth Token by appending &lt;code>LOCALSTACK_AUTH_TOKEN=${{ .secrets.LOCALSTACK_AUTH_TOKEN }}&lt;/code> to the &lt;code>localstack start&lt;/code> command. Subsequently, you need to add your LocalStack Auth Token to your HyperExecute Portal as a secret.
 &lt;/div>
 &lt;h3 id="enabling-test-execution-on-hyperexecute">Enabling test execution on HyperExecute&lt;/h3>
 &lt;p>To enable test execution on HyperExecute, you need to add the following content to your GitHub Actions workflow file:&lt;/p>
@@ -967,7 +967,7 @@ To configure a LocalStack Auth Token to use Pro/Team features, you can append &l
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"> --user {{ secrets.username }} \
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"> --key ${{ secrets.HE }} \
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"> --config he.yaml&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Add your username and access key to your GitHub repository secrets. You can find your access key in the HyperExecute Portal. If you are using LocalStack Pro/Team, you need to add your LocalStack Auth Token to your GitHub repository secrets.&lt;/p></description></item><item><title>User-Guide: OpenShift</title><link>/user-guide/integrations/openshift/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/openshift/</guid><description>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Add your username and access key to your GitHub repository secrets. You can find your access key in the HyperExecute Portal. If you are using the LocalStack Pro image, you need to add your LocalStack Auth Token to your GitHub repository secrets.&lt;/p></description></item><item><title>User-Guide: OpenShift</title><link>/user-guide/integrations/openshift/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/openshift/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>OpenShift is a container orchestration platform as a service designed to simplify the deployment, scaling, and management of containerized applications. Built on Kubernetes, OpenShift provides a comprehensive set of tools and features that facilitate the orchestration, automation, and monitoring of containerized workloads.&lt;/p>
 &lt;p>With OpenShift, you can deploy LocalStack on a managed Kubernetes cluster, as a cloud sandbox that emulates various AWS services &amp;amp; APIs. This guide demonstrates how you can deploy LocalStack on OpenShift using Devfile. You can use the deployed LocalStack container to create AWS resources that you can use for local development and testing purposes.&lt;/p>
@@ -1818,28 +1818,6 @@ Next, you need make minor adjustments to your function code in order to make you
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>In this guide, you will learn how to use LocalStack to test
 your serverless applications powered by Spring Cloud Function framework.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Complexity&lt;/th>
-&lt;th>★★★☆☆&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>Time to read&lt;/td>
-&lt;td>30 minutes&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Edition&lt;/td>
-&lt;td>community [pro]&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>Platform&lt;/td>
-&lt;td>x64_86 (-aarch64)&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Some features and services described in this document may not work properly on aarch64, including Apple&amp;rsquo;s M1 silicon.
@@ -2486,11 +2464,7 @@ defined &lt;code>SampleModel&lt;/code>:&lt;/p>
 &lt;/div>
 &lt;p>Note how we used Spring&amp;rsquo;s dependency injection to inject &lt;code>ObjectMapper&lt;/code> Bean we
 configured earlier.&lt;/p>
-&lt;h4 id="cold-start-and-warmup-pro">Cold Start and Warmup (PRO)&lt;/h4>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Please note that &lt;em>EVENTS&lt;/em> is a LocalStack PRO feature and is not supported in Community version.
-&lt;/div>
+&lt;h4 id="cold-start-and-warmup-pro">Cold Start and Warmup (Pro)&lt;/h4>
 &lt;p>We know Java&amp;rsquo;s cold start is always a pain.
 To minimize this pain, we will try to define a pre-warming endpoint within the Rest API.
 By invoking this function every 5-10 mins we can make sure Rest API lambda is always kept in a pre-warmed state.&lt;/p>
@@ -2643,30 +2617,30 @@ The &lt;code>Lambda-Events&lt;/code> package comes with a set of predefined wrap
 &lt;h2 id="setting-up-deployment">Setting up Deployment&lt;/h2>
 &lt;p>Check our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice">sample project&lt;/a>
 for usage examples.&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-15" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-14" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-yaml"
-id="tabs-15-00-tab" data-toggle="tab" href="#tabs-15-00" role="tab"
-onclick="persistLang(&amp;#34;yaml&amp;#34;);"aria-controls="tabs-15-00" aria-selected="false">
+id="tabs-14-00-tab" data-toggle="tab" href="#tabs-14-00" role="tab"
+onclick="persistLang(&amp;#34;yaml&amp;#34;);"aria-controls="tabs-14-00" aria-selected="false">
 Serverless
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-kotlin"
-id="tabs-15-01-tab" data-toggle="tab" href="#tabs-15-01" role="tab"
-onclick="persistLang(&amp;#34;kotlin&amp;#34;);"aria-controls="tabs-15-01" aria-selected="false">
+id="tabs-14-01-tab" data-toggle="tab" href="#tabs-14-01" role="tab"
+onclick="persistLang(&amp;#34;kotlin&amp;#34;);"aria-controls="tabs-14-01" aria-selected="false">
 AWS CDK
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-tf"
-id="tabs-15-02-tab" data-toggle="tab" href="#tabs-15-02" role="tab"
-onclick="persistLang(&amp;#34;tf&amp;#34;);"aria-controls="tabs-15-02" aria-selected="false">
+id="tabs-14-02-tab" data-toggle="tab" href="#tabs-14-02" role="tab"
+onclick="persistLang(&amp;#34;tf&amp;#34;);"aria-controls="tabs-14-02" aria-selected="false">
 Terraform
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-15-content">
+&lt;div class="tab-content" id="tabs-14-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-15-00" role="tabpanel" aria-labelled-by="tabs-15-00-tab">
+id="tabs-14-00" role="tabpanel" aria-labelled-by="tabs-14-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">service&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">localstack-sampleproject-serverless&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -2718,7 +2692,7 @@ id="tabs-15-00" role="tabpanel" aria-labelled-by="tabs-15-00-tab">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">FUNCTION_NAME&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">functionTwo&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-15-01" role="tabpanel" aria-labelled-by="tabs-15-01-tab">
+id="tabs-14-01" role="tabpanel" aria-labelled-by="tabs-14-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.cdkstack&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">java.util.UUID&lt;/span>
@@ -2792,7 +2766,7 @@ id="tabs-15-01" role="tabpanel" aria-labelled-by="tabs-15-01-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-15-02" role="tabpanel" aria-labelled-by="tabs-15-02-tab">
+id="tabs-14-02" role="tabpanel" aria-labelled-by="tabs-14-02-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-tf" data-lang="tf">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">variable&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;STAGE&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#c4a000">type&lt;/span> = &lt;span style="color:#000">string&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#c4a000">default&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span>
