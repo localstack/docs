@@ -1,17 +1,16 @@
 ---
 title: "Managed Streaming for Kafka (MSK)"
 linkTitle: "Managed Streaming for Kafka (MSK)"
-aliases:
-- /user-guide/aws/managed-streaming-for-kafka/
 description: >
-  Get started with AWS Managed Streaming for Kafka (MSK) on LocalStack
+  Get started with Managed Streaming for Kafka (MSK) on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 Managed Streaming for Apache Kafka (MSK) is a fully managed Apache Kafka service that allows you to build and run applications that process streaming data. MSK offers a centralized platform to facilitate seamless communication between various AWS services and applications through event-driven architectures, facilitating data ingestion, processing, and analytics for various applications. MSK also features automatic scaling and built-in monitoring, allowing users to build robust, high-throughput data pipelines.
 
-LocalStack supports Managed Streaming for Kafka via the Pro/Team offering, allowing you to use the MSK APIs in your local environment to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kafka/), which provides information on the extent of MSK's integration with LocalStack.
+LocalStack allows you to use the MSK APIs in your local environment to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kafka/), which provides information on the extent of MSK's integration with LocalStack.
 
 ## Getting started
 

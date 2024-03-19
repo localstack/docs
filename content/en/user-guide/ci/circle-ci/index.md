@@ -61,7 +61,7 @@ workflows:
 The above CircleCI job does the following:
 
 - Defines a job called `example-job` that installs the `localstack` CLI and `awslocal` wrapper script to execute AWS CLI commands against LocalStack.
-- Pulls the LocalStack Docker image depending on the product tier via the `localstack` CLI (For Community, the image is `localstack/localstack`, while for Pro+ it is `localstack/localstack-pro`).
+- Pulls the LocalStack Docker image depending on the product tier via the `localstack` CLI (For Community, the image is `localstack/localstack`, while for Pro it is `localstack/localstack-pro`).
 - Starts LocalStack in the background and waits for it to become ready. After 30 seconds, the job will execute basic AWS CLI commands against LocalStack.
 
 ## Configuring a CI key

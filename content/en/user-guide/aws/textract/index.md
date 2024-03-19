@@ -2,11 +2,12 @@
 title: "Textract"
 linkTitle: "Textract"
 description: Get started with Textract on LocalStack
+tags: ["Pro image"]
 ---
 
 Textract is a machine learning service that automatically extracts text, forms, and tables from scanned documents. It simplifies the process of extracting valuable information from a variety of document types, enabling applications to quickly analyze and understand document content.
 
-LocalStack supports Textract via the Pro/Team offering, allowing you to mock Textract APIs in your local environment. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_textract/), providing details on the extent of Textract's integration with LocalStack.
+LocalStack allows you to mock Textract APIs in your local environment. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_textract/), providing details on the extent of Textract's integration with LocalStack.
 
 ## Getting started
 

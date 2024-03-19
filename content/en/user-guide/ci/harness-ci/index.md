@@ -1,6 +1,5 @@
 ---
 title: "Harness CI"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 8
 description: >
   Use LocalStack in [Harness CI](https://harness.io/products/continuous-integration)

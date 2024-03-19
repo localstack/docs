@@ -15,7 +15,7 @@ You can revert to the old behavior in the meantime by setting `PROVIDER_OVERRIDE
 
 Step Functions is a serverless workflow engine that enables the orchestrating of multiple AWS services. It provides a JSON-based structured language called Amazon States Language (ASL) which allows to specify how to manage a sequence of tasks and actions that compose the application's workflow. Thus making it easier to build and maintain complex and distributed applications. Step Functions allows for the definition of both standard and express workflows for long-running and high-volume event processing.
 
-LocalStack supports Step Functions via the Community offering, allowing you to use the Step Functions APIs in your local environment to create, execute, update, and delete state machines locally. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_stepfunctions/), which provides information on the extent of Step Function's integration with LocalStack.
+LocalStack allows you to use the Step Functions APIs in your local environment to create, execute, update, and delete state machines locally. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_stepfunctions/), which provides information on the extent of Step Function's integration with LocalStack.
 
 ## Getting started
 

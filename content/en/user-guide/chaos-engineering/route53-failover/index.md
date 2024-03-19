@@ -3,6 +3,7 @@ title: "Route53 Failover with FIS"
 linkTitle: "Route53 Failover with FIS"
 weight: 3
 description: Integrate FIS with Route 53 to create a resilient, self-repairing infrastructure, which manages traffic effectively during simulated disruptions.
+tags: ["Enterprise plan"]
 ---
 
 ## Introduction

@@ -3,9 +3,6 @@ title: "ARM64 Support"
 weight: 50
 description: >
   Running LocalStack on ARM64 CPUs
-tags: ["apple", "silicon", "m1", "raspberry pi"]
-aliases:
-  - /localstack/arm64-support/
 ---
 
 Since [version 0.13](https://github.com/localstack/localstack/releases/tag/v0.13.0), LocalStack officially publishes a [multi-architecture Docker manifest](https://hub.docker.com/r/localstack/localstack).

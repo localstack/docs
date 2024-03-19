@@ -1,6 +1,6 @@
 ---
 title: "SSO for Azure AD"
-tags: ["LocalStack Pro", "SSO"]
+tags: ["Enterprise plan"]
 weight: 5
 description: >
   Configuring Azure AD for Single Sign-on in LocalStack Enterprise

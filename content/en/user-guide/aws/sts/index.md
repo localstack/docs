@@ -12,7 +12,7 @@ Security Token Service (STS) is a service provided by Amazon Web Services (AWS) 
 STS implements fine-grained access control and reduce the exposure of your long-term credentials.
 The temporary credentials, known as security tokens, can be used to access AWS services and resources based on the permissions specified in the associated policies.
 
-LocalStack supports STS via the Community offering, allowing you to use the STS APIs in your local environment to request security tokens, manage permissions, integrate with identity providers, and more.
+LocalStack allows you to use the STS APIs in your local environment to request security tokens, manage permissions, integrate with identity providers, and more.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sts/), which provides information on the extent of STS's integration with LocalStack.
 
 ## Getting started

@@ -3,13 +3,14 @@ title: "Cognito"
 linkTitle: "Cognito"
 description: >
   Get started with Cognito on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 Cognito is a managed identity service provided by AWS that is used for securing user authentication, authorization, and managing user identities in web and mobile applications. Cognito enables developers to add user sign-up, sign-in, and access control functionalities to their applications. Cognito supports various authentication methods, including social identity providers, SAML-based identity providers, and custom authentication flows.
 
-LocalStack supports Cognito via the Pro/Team offering, allowing you to use the Cognito APIs in your local environment to manage authentication and access control for your local application and resources. The supported APIs are available on our [Cognito Identity coverage page](https://docs.localstack.cloud/references/coverage/coverage_cognito-identity/) and [Cognito User Pools coverage page](https://docs.localstack.cloud/references/coverage/coverage_cognito-idp/), which provides information on the extent of Cognito's integration with LocalStack.
+LocalStack allows you to use the Cognito APIs in your local environment to manage authentication and access control for your local application and resources. The supported APIs are available on our [Cognito Identity coverage page](https://docs.localstack.cloud/references/coverage/coverage_cognito-identity/) and [Cognito User Pools coverage page](https://docs.localstack.cloud/references/coverage/coverage_cognito-idp/), which provides information on the extent of Cognito's integration with LocalStack.
 
 {{< alert title="Note">}}
 By default, LocalStack's Cognito does not send actual email messages. However, if you wish to enable this feature, you will need to provide an email address and configure the corresponding SMTP settings. The instructions on configuring the connection parameters of your SMTP server can be found in the [Configuration]({{< ref "configuration#emails" >}}) guide to allow your local Cognito environment to send email notifications.

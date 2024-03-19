@@ -2,13 +2,14 @@
 title: "Elastic Transcoder"
 linkTitle: "Elastic Transcoder"
 description: Get started with Elastic Transcoder on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 Elastic Transcoder is a managed service that facilitates the transcoding of multimedia files into various formats to ensure compatibility across devices. Elastic Transcoder manages the underlying resources, ensuring high availability and fault tolerance. It also supports a wide range of input and output formats, enabling users to efficiently process and deliver video content at scale.
 
-LocalStack supports Elastic Transcoder via the Pro/Team offering, allowing you to mock the Elastic Transcoder APIs in your local environment. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_elastictranscoder/), which provides information on the extent of Elastic Transcoder's integration with LocalStack.
+LocalStack allows you to mock the Elastic Transcoder APIs in your local environment. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_elastictranscoder/), which provides information on the extent of Elastic Transcoder's integration with LocalStack.
 
 ## Getting started
 

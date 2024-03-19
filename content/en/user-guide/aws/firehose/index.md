@@ -15,7 +15,7 @@ Amazon recently renamed Kinesis Data Firehose to Data Firehose.
 
 Kinesis Data Firehose is a service provided by AWS that allows you to extract, transform and load streaming data into various destinations, such as Amazon S3, Amazon Redshift, and Elasticsearch. With Kinesis Data Firehose, you can ingest and deliver real-time data from different sources as it automates data delivery, handles buffering and compression, and scales according to the data volume.
 
-LocalStack supports Kinesis Data Firehose via the Community offering, allowing you to use the Kinesis Data Firehose APIs in your local environment to load and transform real-time data. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_firehose/), which provides information on the extent of Kinesis Data Firehose's integration with LocalStack.
+LocalStack allows you to use the Kinesis Data Firehose APIs in your local environment to load and transform real-time data. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_firehose/), which provides information on the extent of Kinesis Data Firehose's integration with LocalStack.
 
 ## Getting started
 

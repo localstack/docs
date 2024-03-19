@@ -9,7 +9,7 @@ description: >
 
 Kinesis is a platform provided by Amazon Web Services (AWS) that enables your application to ingest, buffer, and process data in real-time. Kinesis is suitable for applications that require processing and deriving insights from data streams such as logs, metrics, user interactions, and IoT sensor readings. Kinesis offers three main services: Kinesis Data Streams, Kinesis Data Firehose, and Kinesis Data Analytics. In this page, we take a look at Kinesis Data Streams which allows you to capture and store real-time data streams.
 
-LocalStack supports Kinesis via the Community offering, allowing you to use the Kinesis APIs in your local environment from setting up data streams and configuring data processing to building real-time analytics applications. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kinesis/), which provides information on the extent of Kinesis's integration with LocalStack.
+LocalStack allows you to use the Kinesis APIs in your local environment from setting up data streams and configuring data processing to building real-time analytics applications. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kinesis/), which provides information on the extent of Kinesis's integration with LocalStack.
 
 ## Getting started
 

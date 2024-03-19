@@ -1,7 +1,6 @@
 ---
 title: ".NET"
 categories: []
-tags: ["sdk"]
 description: >
   How to use the .NET AWS SDK with LocalStack.
 aliases:

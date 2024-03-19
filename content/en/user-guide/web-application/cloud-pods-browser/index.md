@@ -1,6 +1,6 @@
 ---
 title: "Cloud Pods Browser"
-tags: ["LocalStack Team", "LocalStack Enterprise"]
+tags: ["Teams plan"]
 weight: 120
 description: >
     The Cloud Pods Browser allows you to view, manage, and explore your Cloud Pods through the LocalStack Web Application.

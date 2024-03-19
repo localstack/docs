@@ -1,15 +1,11 @@
 ---
 title: "DNS Server"
-categories: ["LocalStack Pro", "Tools", "DNS"]
 weight: 11
 description: >
   Use LocalStack as DNS server to resolve AWS queries to LocalStack
-aliases:
-  - /tools/local-endpoint-injection/dns-server/
-  - /user-guide/tools/transparent-endpoint-injection/dns-server/
 ---
 
-LocalStack includes a DNS server that enables seamless connectivity to LocalStack from different environments using `localhost.localstack.cloud` (Community + Pro).
+LocalStack includes a DNS server that enables seamless connectivity to LocalStack from different environments using `localhost.localstack.cloud`.
 The DNS server is available on all IPv4 addresses within the LocalStack container (i.e., listening to `0.0.0.0`) and resolves `localhost.localstack.cloud` to the LocalStack container.
 Therefore, containers that are configured to use the DNS server can reach LocalStack using `localhost.localstack.cloud`.
 This configuration happens automatically for containers created by LocalStack, including compute resources such as Lambda, ECS, and EC2.

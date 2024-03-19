@@ -1,6 +1,5 @@
 ---
 title: "Resource Browser"
-tags: ["LocalStack Pro"]
 weight: 100
 description: >
     The Resource Browser allows you to view and manage your local AWS resources through the LocalStack Web Application.

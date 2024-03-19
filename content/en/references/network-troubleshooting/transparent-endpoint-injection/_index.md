@@ -1,5 +1,6 @@
 ---
 title: Transparent endpoint injection
+tags: ["Pro image"]
 weight: 2
 tags:
 - troubleshooting
@@ -20,7 +21,7 @@ You need to make two changes:
 
 For more details, see your [DNS server documentation]({{<ref "dns-server">}}).
 
-For the community edition of LocalStack, you can employ your own DNS server to achieve a similar outcome, but it won't be managed by LocalStack.
+For the community image of LocalStack, you can employ your own DNS server to achieve a similar outcome, but it won't be managed by LocalStack.
 Note that in both cases, SSL verification must be disabled.
 
 ## From a lambda function

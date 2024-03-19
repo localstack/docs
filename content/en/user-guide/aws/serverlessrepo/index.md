@@ -3,6 +3,7 @@ title: "Serverless Application Repository"
 linkTitle: "Serverless Application Repository"
 description: >
   Get started with Serverless Application Repository on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -11,7 +12,7 @@ description: >
 Using Serverless Application Repository, developers can build & publish applications and components once and share them across the community and organizations, making them accessible to others.
 Serverless Application Repository provides a user-friendly interface to search, filter, and browse through a diverse catalog of serverless applications.
 
-LocalStack supports Serverless Application Repository via the Pro/Team offering, allowing you to use the Serverless Application Repository APIs in your local environment to create, update, delete, and list serverless applications and components.
+LocalStack allows you to use the Serverless Application Repository APIs in your local environment to create, update, delete, and list serverless applications and components.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_serverlessrepo/), which provides information on the extent of Serverless Application Repository's integration with LocalStack.
 
 ## Getting started

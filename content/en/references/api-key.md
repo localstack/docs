@@ -117,5 +117,5 @@ There are several reasons a key activation can fail:
 * Invalid key: there is no valid license associated with the key, for example because the license has expired.
 * License server cannot be reached: LocalStack will try to perform an offline license activation if the license server cannot be reached, but will require a re-activation every 24 hours.
 
-If you are using the `localstack/localstack-pro` image, but cannot activate your license key, we recommend falling back to the community version `localstack/localstack`.
+If you are using the `localstack/localstack-pro` image, but cannot activate your license key, we recommend falling back to the community image `localstack/localstack`.
 If that is not an option, you can set `ACTIVATE_PRO=0` which will attempt to start LocalStack without pro features.

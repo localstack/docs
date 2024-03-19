@@ -1,6 +1,5 @@
 ---
 title: "Workspaces"
-tags: ["LocalStack Pro", "Accounts"]
 weight: 20
 description: >
   A workspace is the base organizational unit in the LocalStack web application.

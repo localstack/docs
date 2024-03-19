@@ -2,8 +2,7 @@
 title: "X-Ray"
 linkTitle: "X-Ray"
 description: Get started with X-Ray on LocalStack
-aliases:
-  - /aws/xray-tracing/
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -17,7 +16,7 @@ the [AWS Distro for OpenTelemetry (ADOT)](https://docs.aws.amazon.com/xray/lates
 raw trace segment data from the X-Ray SDK and relays it to the AWS X-Ray API.
 The X-Ray API can then be used to retrieve traces originating from different application components.
 
-LocalStack supports X-Ray via the Pro/Team offering, allowing
+LocalStack allows
 you to use the X-Ray APIs to send and retrieve trace segments in your local environment.
 The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_xray/),
 which provides information on the extent of X-Ray integration with LocalStack.
