@@ -189,23 +189,6 @@ These restrictions include elements like root access and networking.
 
 All launched EC2 instances have the Docker socket mounted inside them at `/var/run/docker.sock` to make Docker-in-Docker usecases possible.
 
-#### Operations
-
-The following table explains the emulated action for every API operation.
-
-| Operation       | Notes                                                                                        |
-|:----------------|:---------------------------------------------------------------------------------------------|
-| `CreateImage` | Uses Docker commit to capture a snapshot of a running instance into a new AMI |
-| `CopyImage` | ... |
-| `DescribeImages` | Retrieves a list of Docker images that can be used as AMIs |
-| `ImportImage` | ... |
-| `RegisterImage` | ... |
-| `DescribeInstances`| Describes both mocked and Docker-backed instances. Docker-backed instances are marked with the resource tag `ec2_vm_manager:docker` |
-| `RunInstances` | Creates and runs Docker containers that back instances |
-| `StopInstances` | Pauses the Docker containers that back instances |
-| `StartInstances` | Resumes the Docker containers that back instances |
-| `TerminateInstances` | Stops the Docker containers that back instances |
-
 #### Instances and AMIs
 
 LocalStack utilizes a specific naming scheme to recognize and manage associated containers and images.
@@ -353,6 +336,24 @@ If you would like support for more metadata categories, please make a feature re
 {{< alert title="Note" >}}
 IMDS IPv6 endpoint is currently not supported.
 {{< /alert >}}
+
+#### Operations
+
+The following table explains the emulated action for every API operation.
+
+| Operation       | Notes                                                                                        |
+|:----------------|:---------------------------------------------------------------------------------------------|
+| `CreateImage` | Uses Docker commit to capture a snapshot of a running instance into a new AMI |
+| `CopyImage` | ... |
+| `DescribeImages` | Retrieves a list of Docker images that can be used as AMIs |
+| `ImportImage` | ... |
+| `RegisterImage` | ... |
+| `DescribeInstances`| Describes both mocked and Docker-backed instances. Docker-backed instances are marked with the resource tag `ec2_vm_manager:docker` |
+| `RunInstances` | Creates and runs Docker containers that back instances |
+| `StopInstances` | Pauses the Docker containers that back instances |
+| `StartInstances` | Resumes the Docker containers that back instances |
+| `TerminateInstances` | Stops the Docker containers that back instances |
+
 
 
 ### Libvirt
