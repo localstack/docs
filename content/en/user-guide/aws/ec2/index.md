@@ -2,7 +2,7 @@
 title: "Elastic Compute Cloud (EC2)"
 linkTitle: "Elastic Compute Cloud (EC2)"
 tags: ["Pro image"]
-description: Get started with Amazon Elastic Compute Cloud (Amazon EC2) on LocalStack
+description: Get started with Amazon Elastic Compute Cloud (EC2) on LocalStack
 ---
 
 ## Introduction
@@ -173,7 +173,7 @@ If the `ssh` command throws an error like "Identity file not accessible" or "bad
 ## VM Managers
 
 LocalStack Pro comes with emulation capability for certain EC2 resources making them behave like AWS.
-This is top of the mock CRUD capabilities, making it possible to implement advanced local setups.
+This works on top of the mock/CRUD capabilities and makes it possible to implement advanced local setups.
 
 The underlying method for emulation can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
 
@@ -221,12 +221,6 @@ All other AMIs that do not have the above tag are mocked and originate from the 
 Attempting to launch Dockerized instances using these specific AMIs will result in an `InvalidAMIID.NotFound` error.
 {{< /alert >}}
 
-#### Configuration
-
-You can use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) LocalStack configuration variable to pass supplementary flags to Docker during the initiation of containerized instances.
-This allows for fine-tuned behaviours, for example, running containers in privileged mode using `--privileged` or specifying an alternate CPU platform with `--platform`.
-Keep in mind that this will apply to all instances that are launched in the LocalStack session.
-
 #### Networking
 
 {{< alert title="Note" >}}
@@ -269,13 +263,15 @@ The port mapping details are provided in the logs during the instance initializa
 2022-12-20T19:43:44.544  INFO  Instance i-1d6327abf04e31be6 port mappings (container -> host): {'8080/tcp': 51747, '22/tcp': 55705}
 ```
 
+
 #### Elastic Block Store
 
 A common use case is to attach an EBS block device to an EC2 instance, which can then be used to create a custom filesystem for additional storage.
 This section illustrates how this functionality can be achieved with EC2 Docker instances in LocalStack.
 
 {{< alert title="Note" >}}
-This feature is disabled by default, please configure `EC2_MOUNT_BLOCK_DEVICES=1` in your LocalStack environment to enable it.
+This feature is disabled by default.
+Please set the [`EC2_MOUNT_BLOCK_DEVICES`]({{< ref "configuration#ec2" >}}) configuration option to enable it.
 {{< /alert >}}
 
 First, we create a user data script `init.sh` which creates an ext3 file system on the block device `/ebs-dev/sda1` and mounts it under `/ebs-mounted`:
@@ -298,7 +294,7 @@ $ awslocal ec2 run-instances --image-id ami-ff0fea8310f3 --count 1 --instance-ty
 {{< /command >}}
 
 Please note that, whereas real AWS uses GiB for volume sizes, LocalStack uses MiB as the unit for `VolumeSize` in the command above (to avoid creating huge files locally).
-Also, by default block device images are limited to 1GB in size, but this can be customized by setting the `EC2_EBS_MAX_VOLUME_SIZE` config variable (defaults to `1000`).
+Also, by default block device images are limited to 1 GiB in size, but this can be customized by setting the [`EC2_EBS_MAX_VOLUME_SIZE`]({{< ref "configuration#ec2" >}}) config variable (defaults to `1000`).
 
 Once the instance is successfully started and initialized, we can first determine the container ID via `docker ps`, and then list the contents of the mounted filesystem `/ebs-mounted`, which should contain our test file named `my-test-file`:
 {{< command >}}
@@ -337,6 +333,14 @@ If you would like support for more metadata categories, please make a feature re
 IMDS IPv6 endpoint is currently not supported.
 {{< /alert >}}
 
+
+#### Configuration
+
+You can use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) LocalStack configuration variable to pass supplementary flags to Docker during the initiation of containerized instances.
+This allows for fine-tuned behaviours, for example, running containers in privileged mode using `--privileged` or specifying an alternate CPU platform with `--platform`.
+Keep in mind that this will apply to all instances that are launched in the LocalStack session.
+
+
 #### Operations
 
 The following table explains the emulated action for every API operation.
@@ -359,7 +363,7 @@ The following table explains the emulated action for every API operation.
 ### Libvirt
 
 {{< alert title="Note" >}}
-This feature is in preview.
+The Libvirt VM manager is a preview feature.
 {{< /alert >}}
 
 The Libvirt VM manager uses the [Libvirt](https://libvirt.org/index.html) API to create fully virtualized EC2 resources.
@@ -374,6 +378,10 @@ LocalStack Pro supports the QEMU/KVM hypervisor.
 #### Instances
 
 (Describe virtual domains)
+
+#### Networking
+
+(Talk about the methods of accessing the instance)
 
 #### Elastic Block Stores
 
