@@ -172,9 +172,11 @@ If the `ssh` command throws an error like "Identity file not accessible" or "bad
 
 ## VM Managers
 
-LocalStack Pro comes with emulation capability for certain EC2 resources.
-On top of the mock CRUD capabilities, this makes the resources behave like true AWS.
-The underlying engine that is used to achieve this can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
+LocalStack Pro comes with emulation capability for certain EC2 resources making them behave like AWS.
+This is top of the mock CRUD capabilities, making it possible to implement advanced local setups.
+
+The underlying method for emulation can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
+
 
 ### Docker
 
@@ -185,13 +187,11 @@ The Docker socket from the host machine must be mounted inside the LocalStack co
 All restrictions associated with containers are also applicable to EC2 instances managed by the Docker manager.
 These restrictions include elements like root access and networking.
 
-
-All launched EC2 instances also have the Docker socket mounted inside them at `/var/run/docker.sock` to make Docker-in-Docker usecases possible.
-
+All launched EC2 instances have the Docker socket mounted inside them at `/var/run/docker.sock` to make Docker-in-Docker usecases possible.
 
 #### Operations
 
-The Docker backend supports the following operations:
+The following table explains the emulated action for every API operation.
 
 | Operation       | Notes                                                                                        |
 |:----------------|:---------------------------------------------------------------------------------------------|
@@ -360,7 +360,31 @@ IMDS IPv6 endpoint is currently not supported.
 {{< alert title="Note" >}}
 This feature is in preview.
 {{< /alert >}}
-...
+
+The Libvirt VM manager uses the [Libvirt](https://libvirt.org/index.html) API to create fully virtualized EC2 resources.
+LocalStack Pro supports the QEMU/KVM hypervisor.
+
+(Add Libvirt setup, KVM/QEMU installation and socket mounting info)
+
+#### AMIs
+
+(Talk about the bring-your-own-image model, storage pools, volumes)
+
+#### Instances
+
+(Describe virtual domains)
+
+#### Elastic Block Stores
+
+(Describe volumes)
+
+#### Operations
+
+The following table explains the emulated action for every API operation.
+
+| Operation       | Notes                                                                                        |
+|:----------------|:---------------------------------------------------------------------------------------------|
+|  |  |
 
 
 ## Resource Browser
