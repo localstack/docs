@@ -172,7 +172,9 @@ If the `ssh` command throws an error like "Identity file not accessible" or "bad
 
 ## VM Managers
 
-...
+LocalStack Pro comes with emulation capability for certain EC2 resources.
+On top of the mock CRUD capabilities, this makes the resources behave like true AWS.
+The underlying engine that is used to achieve this can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
 
 ### Docker
 
