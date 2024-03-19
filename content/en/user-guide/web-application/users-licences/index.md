@@ -3,7 +3,6 @@ title: "Managing Users and Licenses"
 weight: 30
 description: >
   Invite new users and manage a user's license and legacy API key.
-tags: ["Pro image"]
 ---
 
 Within a workspace, users and their associated licenses are managed on the <a href="https://app.localstack.cloud/workspace/members">Users &amp; Licenses</a> page.

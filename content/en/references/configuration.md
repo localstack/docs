@@ -407,7 +407,6 @@ These configurations have already been removed and **won't have any effect** on 
 | `LEGACY_DIRECTORIES` | 2.0.0 | `0` (default) | Use legacy method of managing internal filesystem layout. See [Filesystem Layout]({{< ref "filesystem" >}}). |
 | `LEGACY_INIT_DIR` | 2.0.0 | `1` \| `0`(default) | Used with `INIT_SCRIPTS_PATH`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
 | `MULTI_ACCOUNTS` | 2.0.0 | `0` (default) | Enable multi-accounts (preview) |
-| `REQUIRE_PRO` | 2.0.0 | 0 (default) | Whether to require license activation to succeed to start LocalStack. If set to 0 (default) LocalStack will start as Community image if the license cannot be activated. |
 | `SQS_PROVIDER` | 2.0.0 |  `moto` (default) and `elasticmq` | |
 | `SYNCHRONOUS_API_GATEWAY_EVENTS` | 2.0.0 | `1` (default) \| `0` | Whether or not to handle API Gateway Lambda event sources as synchronous invocations. |
 | `SYNCHRONOUS_DYNAMODB_EVENTS` | 2.0.0 | `1` (default) \| `0` | Whether or not to handle DynamoDB Lambda event sources as synchronous invocations. |
