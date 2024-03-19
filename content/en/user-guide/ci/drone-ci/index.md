@@ -1,10 +1,8 @@
 ---
 title: "Drone CI"
-weight: 5
+weight: 7
 description: >
   Use LocalStack in [Drone CI](https://drone.io/)
-aliases:
-  - /ci/drone-ci/
 ---
 
 This guide shows you how to start LocalStack in a Drone CI pipeline.

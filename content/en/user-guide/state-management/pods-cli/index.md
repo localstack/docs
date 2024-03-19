@@ -194,7 +194,6 @@ The `inspect` command simply lets the user inspect the content of a Cloud Pod.
 
 {{< command >}}
 <disable-copy>
-```
 Usage: pod list [OPTIONS] [REMOTE]
 
   List all the Cloud Pods available for a single user, or for an entire
