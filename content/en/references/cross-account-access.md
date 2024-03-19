@@ -1,8 +1,6 @@
 ---
 title: "Cross-Account and Cross-Region Access"
 linkTitle: "Cross-Account and Cross-Region Access"
-categories: ["LocalStack"]
-tags: ["multi-tenant", "multi-account", "namespaces"]
 weight: 50
 description: >
   Accessing resources in another account or region

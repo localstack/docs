@@ -1,6 +1,5 @@
 ---
 title: "GitLab CI"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 7
 description: >
   Use LocalStack in [GitLab CI](https://docs.gitlab.com/ee/ci/)

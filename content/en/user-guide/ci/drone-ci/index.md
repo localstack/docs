@@ -1,6 +1,5 @@
 ---
 title: "Drone CI"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 5
 description: >
   Use LocalStack in [Drone CI](https://drone.io/)

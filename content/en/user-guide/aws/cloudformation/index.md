@@ -157,6 +157,15 @@ Currently, support for `UPDATE` operations on resources is limited. Prefer stack
 When utilizing the Community image, any resources within the stack that are not supported will be disregarded and won't be deployed.
 {{< /alert >}}
 
+| Resource                                        | Create | Delete | Update | Image     |
+|-------------------------------------------------|-------:|-------:|-------:|-----------|
+| AWS::Amplify::App                               | ✅     | ✅     | -      | Pro       |
+| AWS::Amplify::Branch                            | ✅     | ✅     | -      | Community |
+| AWS::ApiGateway::Account                        | ✅     | ✅     | -      | Community |
+| AWS::ApiGateway::ApiKey                         | ✅     | ✅     | -      | Community |
+| AWS::ApiGateway::Authorizer                     | ✅     | ✅     | -      | Pro       |
+
+
 #### Community image
 
 
