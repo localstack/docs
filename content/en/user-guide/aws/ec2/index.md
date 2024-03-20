@@ -17,7 +17,7 @@ The list of supported APIs can be found on the [API coverage page](https://docs.
 
 This guide is designed for users new to EC2 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method.
+Start your LocalStack Pro container using your preferred method.
 We will demonstrate how to create an EC2 instance that runs a simple Python web server on port 8000 with the AWS CLI.
 
 ### Create a Key Pair
@@ -226,6 +226,7 @@ Attempting to launch Dockerized instances using these specific AMIs will result 
 {{< alert title="Note" >}}
 Network access to EC2 instance is not possible on macOS. 
 This is because Docker Desktop on macOS does not expose the bridge network to the host system.
+See [Docker Desktop Known Limitations](https://docs.docker.com/desktop/networking/#known-limitations).
 {{< /alert >}}
 
 Network addresses for Dockerized instances are allocated by the Docker daemon and can be obtained from the `PublicIpAddress` attribute.
@@ -308,7 +309,7 @@ my-test-file
 
 #### Instance Metadata Service
 
-The Docker VM manager supports the [Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) which is used to retrieve information about the running instance.
+The Docker VM manager supports the [Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) which provides information about the running instance.
 
 Both IMDSv1 and IMDSv2 can be used.
 LocalStack does not strictly enforce either versions.
