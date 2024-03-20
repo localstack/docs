@@ -60,10 +60,10 @@ To achieve that, we have a [scheduled workflow](https://github.com/localstack/lo
 To manually trigger the scheduled workflow through circleci UI(in case you have the permissions), in order to test your changes with randomised account and region credentials, you can perform the following steps: 
 - Go to the [localStack](https://app.circleci.com/pipelines/github/localstack/localstack) project repository on circleci UI.
 - Select a branch for which you want to trigger the scheduled workflow from the filters section.
-- Now click on the `Trigger pipeline` button on the right and add the following parameter:
-    1. `Parameter type`: `string`
-    2. `Name`: `randomize-aws-credentials`
-    3. `Value`: `true`
+- Now click on the `Trigger pipeline` button on the right and add the following variables:
+    1. Parameter type to `string`
+    2. Name to `randomize-aws-credentials`
+    3. Value to `true`
 
 and press the `Trigger pipeline` button to trigger the workflow.
 
