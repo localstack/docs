@@ -13,11 +13,11 @@ This document describes how to test your changes for compatibility with cross-ac
 In order to make your changes compatible with multi-account and multi-region, you should follow the below tips:
 
 - For cross-account, in inter-service-communication for many integrations, you can specify a role, with which permissions the source service makes a request to the target service, to access another service's resource. 
-This role should be in source account. 
+This role should be in the source account.
 When writing an AWS validated test case, you need to properly configure IAM roles.
 
     For example: 
-    In the test case `test_api_gateway_kinesis_integration` we have specified a [role](https://github.com/localstack/localstack/blob/ae31f63bb6d8254edc0c85a66e3c36cd0c7dc7b0/tests/aws/services/apigateway/test_apigateway_basic.py#L2017-L2022) in the apigateway which has permissions to access the target kinesis account.
+    In the test case [`test_api_gateway_kinesis_integration`](https://github.com/localstack/localstack/blob/0c2d8a103a9a06ade4ef1c18eacf5888d2b8adcf/tests/aws/services/apigateway/test_apigateway_basic.py#L2047) we have specified a [role](https://github.com/localstack/localstack/blob/ae31f63bb6d8254edc0c85a66e3c36cd0c7dc7b0/tests/aws/services/apigateway/test_apigateway_basic.py#L2017-L2022) which has permissions to access the target kinesis account.
     ```python
     result = self.connect_api_gateway_to_kinesis(
             client,
@@ -54,18 +54,17 @@ When writing an AWS validated test case, you need to properly configure IAM role
 
 ## Test changes in CI with non-default credentials
 
-We regularly run the circleci test jobs of the LocalStack community repository to check the compatibility of cross-account against the changes. 
-To achieve that, we have a [scheduled workflow](https://github.com/localstack/localstack/blob/master/.circleci/config.yml) on [LocalStack](https://github.com/localstack/localstack), which executes the tests with randomised account and region credentials every night at 1:00am UTC.
+We regularly run the CircleCI test jobs of the LocalStack repository to check the compatibility of cross-account against the changes. 
+To achieve that, we have a [scheduled workflow](https://github.com/localstack/localstack/blob/master/.circleci/config.yml) on [LocalStack](https://github.com/localstack/localstack), which executes the tests with randomized account and region credentials every night at 1:00am UTC.
 
-To manually trigger the scheduled workflow through circleci UI(in case you have the permissions), in order to test your changes with randomised account and region credentials, you can perform the following steps: 
-- Go to the [localStack](https://app.circleci.com/pipelines/github/localstack/localstack) project repository on circleci UI.
-- Select a branch for which you want to trigger the scheduled workflow from the filters section.
+To manually trigger the workflow through the webinterface of CircleCI (in case you have the permissions), in order to test your changes with randomized account and region credentials, you can perform the following steps: 
+- Go to the [localStack](https://app.circleci.com/pipelines/github/localstack/localstack) project repository on CircleCI.
+- Select a branch for which you want to trigger the workflow from the filters section.
 - Now click on the `Trigger pipeline` button on the right and add the following variables:
     1. Parameter type to `string`
     2. Name to `randomize-aws-credentials`
     3. Value to `true`
-
-and press the `Trigger pipeline` button to trigger the workflow.
+- Press the `Trigger pipeline` button to trigger the workflow.
 
 ## Test changes locally with non-default credentials
 
