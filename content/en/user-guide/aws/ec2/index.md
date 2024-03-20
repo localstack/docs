@@ -308,7 +308,7 @@ my-test-file
 
 #### Instance Metadata Service
 
-LocalStack Pro supports the [Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) which is used to retrieve information about the running instance.
+The Docker VM manager supports the [Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) which is used to retrieve information about the running instance.
 
 Both IMDSv1 and IMDSv2 can be used.
 LocalStack does not strictly enforce either versions.
@@ -371,21 +371,32 @@ LocalStack Pro supports the QEMU/KVM hypervisor.
 
 (Add Libvirt setup, KVM/QEMU installation and socket mounting info)
 
+
 #### AMIs
 
 (Talk about the bring-your-own-image model, storage pools, volumes)
+
 
 #### Instances
 
 (Describe virtual domains)
 
+
 #### Networking
 
 (Talk about the methods of accessing the instance)
 
+
 #### Elastic Block Stores
 
 (Describe volumes)
+
+
+#### Instance Metadata Service
+
+The Libvirt VM manager does not support the Instance Metadata Service.
+Please express your interest for this feature in [this](#TODO) backlog issue.
+
 
 #### Operations
 
