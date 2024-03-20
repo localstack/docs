@@ -62,7 +62,7 @@ To manually trigger the scheduled workflow through circleci UI(in case you have 
 - Select a branch for which you want to trigger the scheduled workflow from the filters section.
 - Now click on the `Trigger pipeline` button on the right and add the following parameter:
     1. `Parameter type`: `string`
-    2.  `Name`: `randomize-aws-credentials`
+    2. `Name`: `randomize-aws-credentials`
     3. `Value`: `true`
 
 and press the `Trigger pipeline` button to trigger the workflow.
