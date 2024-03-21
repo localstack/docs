@@ -32,7 +32,7 @@ Fault Injection Simulator (FIS) is a service designed for conducting controlled 
 
 ## Getting started
 
-This guide is designed for users new to the Fault Injection Simulator and assumes basic knowledge of the AWS CLI and our
+This tutorial is designed for users new to the Fault Injection Simulator and assumes basic knowledge of the AWS CLI and our
 [`awslocal`](https://github.com/localstack/awscli-local) wrapper script. In this example, we will use the FIS to create controlled outages in a DynamoDB database. The aim is to test the software's behavior and error handling capabilities.
 
 For this particular example, we'll be using a [sample application repository](https://github.com/localstack-samples/samples-chaos-engineering/tree/main/FIS-experiments). Clone the repository, and follow the instructions below to get started.
@@ -41,8 +41,8 @@ For this particular example, we'll be using a [sample application repository](ht
 
 The general prerequisites for this guide are:
 
-- LocalStack Pro with [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
-- [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+- LocalStack Pro with [LocalStack Auth Token]({{<ref "getting-started/auth-token">}})
+- [AWS CLI]({{<ref "user-guide/integrations/aws-cli">}}) with the [`awslocal` wrapper]({{<ref "user-guide/integrations/aws-cli#localstack-aws-cli-awslocal">}})
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 
 Start LocalStack by using the `docker-compose.yml` file from the repository. Ensure to set your Auth Token as an environment variable during this process. The cloud resources will be automatically created upon the LocalStack start.
