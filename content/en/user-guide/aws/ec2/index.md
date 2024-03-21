@@ -176,7 +176,12 @@ LocalStack Pro comes with emulation capability for certain EC2 resources making 
 This works on top of the mock/CRUD capabilities and makes it possible to implement advanced local setups.
 
 The underlying method for emulation can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
+You may choose between virtualisation, containerisation or plain mocked.
 
+### Mock
+
+This is the default method in LocalStack Community edition.
+All resources are mocked as in-memory representation only.
 
 ### Docker
 
