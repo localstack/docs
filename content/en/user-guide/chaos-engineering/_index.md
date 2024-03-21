@@ -9,8 +9,9 @@ cascade:
 ---
 
 The best way to understand concepts is through practice, so dive into our chaos engineering tutorials. Learn how to [build resilient software
-by detecting potential outages with the Fault Injection Service]({{< ref "tutorials/fault-injection-service-experiments" >}}) and creating a 
-[strong architecture through Route53 failover experiments]({{< ref "tutorials/route53-failover-with-fis" >}}).
+by detecting potential outages with the Fault Injection Service]({{< ref "tutorials/fault-injection-service-experiments" >}}), create a 
+[strong architecture through Route53 failover experiments]({{< ref "tutorials/route53-failover-with-fis" >}}), and
+[simulate outages in your application stack]({{< ref "tutorials/simulating-outages-in-your-application-stack" >}}) .
 
 ## Introduction
 
