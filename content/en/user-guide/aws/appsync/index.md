@@ -2,13 +2,14 @@
 title: "AppSync"
 linkTitle: "AppSync"
 description: Get started with AppSync on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 AppSync is a managed service provided by Amazon Web Services (AWS) that enables you to create serverless GraphQL APIs to query databases, microservices, and other APIs. AppSync allows you to define your data models and business logic using a declarative approach, and connect to various data sources, including other AWS services, relational databases, and custom data sources.
 
-LocalStack supports AppSync via the Pro/Team offering, allowing you to use the AppSync APIs in your local environment to connect your applications and services to data and events. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_appsync/), which provides information on the extent of AppSync's integration with LocalStack.
+LocalStack allows you to use the AppSync APIs in your local environment to connect your applications and services to data and events. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_appsync/), which provides information on the extent of AppSync's integration with LocalStack.
 
 ## Getting started
 

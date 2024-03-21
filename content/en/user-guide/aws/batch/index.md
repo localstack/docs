@@ -2,13 +2,14 @@
 title: Batch
 linkTitle: Batch
 description: Get started with Batch on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 Batch is a cloud-based service provided by Amazon Web Services (AWS) that simplifies the process of running batch computing workloads on the AWS cloud infrastructure. Batch allows you to efficiently process large volumes of data and run batch jobs without the need to manage and provision underlying compute resources.
 
-LocalStack supports AWS Batch via the Pro/Team offering, allowing you to use the Batch APIs to automate and scale computational tasks in your local environment while handling batch workloads. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_batch/), which provides information on the extent of Batch integration with LocalStack.
+LocalStack allows you to use the Batch APIs to automate and scale computational tasks in your local environment while handling batch workloads. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_batch/), which provides information on the extent of Batch integration with LocalStack.
 
 ## Getting started
 

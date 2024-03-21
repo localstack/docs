@@ -2,13 +2,14 @@
 title: "Pinpoint"
 linkTitle: "Pinpoint"
 description: Get started with Pinpoint on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 Pinpoint is a customer engagement service to facilitate communication across multiple channels, including email, SMS, and push notifications. Pinpoint allows developers to create and manage customer segments based on various attributes, such as user behavior and demographics, while integrating with other AWS services to send targeted messages to customers.
 
-LocalStack supports Pinpoint via the Pro/Team offering, allowing you to mock the Pinpoint APIs in your local environment. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_pinpoint/), which provides information on the extent of Pinpoint's integration with LocalStack.
+LocalStack allows you to mock the Pinpoint APIs in your local environment. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_pinpoint/), which provides information on the extent of Pinpoint's integration with LocalStack.
 
 ## Getting started
 

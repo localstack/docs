@@ -407,7 +407,6 @@ These configurations have already been removed and **won't have any effect** on 
 | `LEGACY_DIRECTORIES` | 2.0.0 | `0` (default) | Use legacy method of managing internal filesystem layout. See [Filesystem Layout]({{< ref "filesystem" >}}). |
 | `LEGACY_INIT_DIR` | 2.0.0 | `1` \| `0`(default) | Used with `INIT_SCRIPTS_PATH`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
 | `MULTI_ACCOUNTS` | 2.0.0 | `0` (default) | Enable multi-accounts (preview) |
-| `REQUIRE_PRO` | 2.0.0 | 0 (default) | Whether to require license activation to succeed to start LocalStack. If set to 0 (default) LocalStack will start as community version if the license cannot be activated. |
 | `SQS_PROVIDER` | 2.0.0 |  `moto` (default) and `elasticmq` | |
 | `SYNCHRONOUS_API_GATEWAY_EVENTS` | 2.0.0 | `1` (default) \| `0` | Whether or not to handle API Gateway Lambda event sources as synchronous invocations. |
 | `SYNCHRONOUS_DYNAMODB_EVENTS` | 2.0.0 | `1` (default) \| `0` | Whether or not to handle DynamoDB Lambda event sources as synchronous invocations. |
@@ -415,8 +414,8 @@ These configurations have already been removed and **won't have any effect** on 
 | `SYNCHRONOUS_SNS_EVENTS` | 2.0.0 | `1`  \| `0` (default) | Whether or not to handle SNS Lambda event sources as synchronous invocations. |
 | `TMPDIR`| 2.0.0 | `/tmp` (default) |  Temporary folder on the host running the CLI and inside the LocalStack container .|
 | `USE_LIGHT_IMAGE` | 2.0.0 | `1` (default) | Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
-| `LEGACY_PERSISTENCE` | 1.0.0 | `true` (default) | Whether to enable legacy persistence mechanism based on API calls record & replay. Only relevant for Community version, not relevant for advanced persistence mechanism in Pro. |
-| `PERSISTENCE_SINGLE_FILE` | 1.0.0 | `true` (default)| Specify if persistence files should be combined (only relevant for legacy persistence in Community version, not relevant for advanced persistence in Pro version). |
+| `LEGACY_PERSISTENCE` | 1.0.0 | `true` (default) | Whether to enable legacy persistence mechanism based on API calls record & replay. Only relevant for Community image, not relevant for advanced persistence mechanism in Pro. |
+| `PERSISTENCE_SINGLE_FILE` | 1.0.0 | `true` (default)| Specify if persistence files should be combined (only relevant for legacy persistence in Community image, not relevant for advanced persistence in Pro version). |
 | `PORT_WEB_UI` | 0.12.8 | `8080` (default) | Port for the legacy Web UI. Replaced by our [Web Application](https://app.localstack.cloud) |
 
 ## Profiles

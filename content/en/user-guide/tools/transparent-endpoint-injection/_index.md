@@ -4,12 +4,10 @@ linkTitle: "Transparent Endpoint Injection"
 weight: 10
 description: >
   Transparently resolve your AWS calls to LocalStack
-aliases:
-  - /tools/local-endpoint-injection/
-  - /user-guide/tools/transparent-endpoint-injection/patched-sdks/
+tags: ["Pro image"]
 ---
 
-LocalStack Pro provides Transparent Endpoint Injection,
+LocalStack provides Transparent Endpoint Injection,
 which enables seamless connectivity to LocalStack without modifying your application code targeting AWS.
 The [DNS Server]({{< ref "dns-server" >}}) resolves AWS domains such as `*.amazonaws.com` including subdomains to the LocalStack container.
 Therefore, your application seamlessly accesses the LocalStack APIs instead of the real AWS APIs.
@@ -17,7 +15,7 @@ For local testing, you might need to disable SSL validation as explained under [
 
 ## Motivation
 
-In the community (open source) edition, your application code targeting AWS needs to be modified to target LocalStack.
+Previously, your application code targeting AWS needs to be modified to target LocalStack.
 For example, the AWS SDK client for Python called boto3 needs to be configured using the environment variable `AWS_ENDPOINT_URL`, which is available within Lambda functions in LocalStack:
 
 ```python
@@ -28,8 +26,7 @@ For [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature
 (including boto3 since [1.28.0](https://github.com/boto/boto3/blob/develop/CHANGELOG.rst#L892)),
 this configuration happens automatically without any custom code changes.
 
-In LocalStack Pro,
-no application code changes are required to let your application connect to local cloud APIs because
+Currently, no application code changes are required to let your application connect to local cloud APIs because
 Transparent Endpoint Injection uses the integrated [DNS Server]({{< ref "dns-server" >}}) to resolve AWS API calls to target LocalStack.
 
 ## Configuration

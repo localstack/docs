@@ -3,6 +3,7 @@ title: "Using the Fault Injection Service"
 linkTitle: "Using the Fault Injection Service"
 weight: 1
 description: Use LocalStack Outages Extension to mimic service outages by testing your infrastructure's ability to deploy robustly and recover from unexpected events.
+tags: ["Pro image"]
 ---
 
 ## Introduction

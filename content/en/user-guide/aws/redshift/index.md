@@ -2,6 +2,7 @@
 title: "Redshift"
 linkTitle: "Redshift"
 description: Get started with Redshift on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -10,7 +11,7 @@ RedShift is a cloud-based data warehouse solution which allows end users to aggr
 RedShift is fully managed by AWS and serves as a petabyte-scale service which allows users to create visualization reports and critically analyze collected data. 
 The query results can be saved to an S3 Data Lake while additional analytics can be provided by Athena or SageMaker.
 
-LocalStack supports RedShift via the Pro/Team offering, allowing you to use the RedShift APIs in your local environment to analyze structured and semi-structured data across local data warehouses and data lakes. 
+LocalStack allows you to use the RedShift APIs in your local environment to analyze structured and semi-structured data across local data warehouses and data lakes. 
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_redshift/), which provides information on the extent of RedShift's integration with LocalStack.
 
 ## Getting started

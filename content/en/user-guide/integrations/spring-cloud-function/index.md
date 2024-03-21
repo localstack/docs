@@ -12,12 +12,6 @@ description: >
 In this guide, you will learn how to use LocalStack to test
 your serverless applications powered by Spring Cloud Function framework.
 
-| Complexity   | ★★★☆☆             |
-|--------------|-------------------|
-| Time to read | 30 minutes        |
-| Edition      | community [pro]   |
-| Platform     | x64_86 (-aarch64) |
-
 {{< alert title="Warning" color="warning" >}}
 Some features and services described in this document may not work properly on aarch64, including Apple's M1 silicon.
 {{< /alert >}}
@@ -471,11 +465,7 @@ class SampleApi(private val objectMapper: ObjectMapper) {
 Note how we used Spring's dependency injection to inject `ObjectMapper` Bean we
 configured earlier.
 
-#### Cold Start and Warmup (PRO)
-
-{{< alert title="Note">}}
-Please note that *EVENTS* is a LocalStack PRO feature and is not supported in Community version.
-{{< /alert >}}
+#### Cold Start and Warmup (Pro)
 
 We know Java's cold start is always a pain.
 To minimize this pain, we will try to define a pre-warming endpoint within the Rest API.

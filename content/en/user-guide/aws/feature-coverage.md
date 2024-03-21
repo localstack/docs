@@ -34,8 +34,8 @@ LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS
 
 In the coverage table below, the features are marked with their respective availability across different LocalStack versions:
 
-* Community version (default, if not marked)
-* Pro version (marked with **Pro**)
+* Community image (default, if not marked)
+* Pro image (marked with **Pro**)
 
 | Service / Feature                                                  | Coverage Level    | Emulation Level | Notes |
 |--------------------------------------------------------------------|-------------------|-----------------|-------|

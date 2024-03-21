@@ -1,6 +1,5 @@
 ---
 title: "Accounts"
-tags: ["LocalStack Pro", "Accounts"]
 weight: 10
 description: >
   The LocalStack accounts gives users access to the features in the web app like the resource browser, Stack Insight, Cloud pods, extensions and more.

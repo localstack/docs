@@ -8,7 +8,7 @@ description: Get started with Amazon Transcribe on LocalStack
 
 Transcribe is a service provided by Amazon Web Services (AWS) that offers automatic speech recognition (ASR) capabilities. It enables developers to convert spoken language into written text, making it valuable for a wide range of applications, from transcription services to voice analytics. 
 
-LocalStack supports Transcribe via the Community offering, allowing you to use the Transcribe APIs for offline speech-to-text jobs in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_transcribe/), which provides information on the extent of Transcribe integration with LocalStack.
+LocalStack allows you to use the Transcribe APIs for offline speech-to-text jobs in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_transcribe/), which provides information on the extent of Transcribe integration with LocalStack.
 
 {{< alert title="Note">}}
 LocalStack's Transcribe relies on the offline speech-to-text service called [Vosk](https://alphacephei.com/vosk/). Therefore, LocalStack requires an internet connection during the initial creation of a transcription job for a specific language. This initial connection is required to download and cache the language model.

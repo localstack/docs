@@ -2,13 +2,14 @@
 title: "Athena"
 linkTitle: "Athena"
 description: Get started with Athena on LocalStack
+tags: ["Pro image"]
 ---
 
 Athena is an interactive query service provided by Amazon Web Services (AWS) that enables you to analyze data stored in S3 using standard SQL queries.
 Athena allows users to create ad-hoc queries to perform data analysis, filter, aggregate, and join datasets stored in S3.
 It supports various file formats, such as JSON, Parquet, and CSV, making it compatible with a wide range of data sources.
 
-LocalStack supports Athena via the Pro/Team offering, allowing you to configure the Athena APIs with a Hive metastore that can connect to the S3 API and query your data directly in your local environment.
+LocalStack allows you to configure the Athena APIs with a Hive metastore that can connect to the S3 API and query your data directly in your local environment.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_athena/), which provides information on the extent of Athena's integration with LocalStack.
 
 ## Getting started

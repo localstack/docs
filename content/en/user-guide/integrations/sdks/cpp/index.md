@@ -1,7 +1,6 @@
 ---
 title: "C++"
 categories: []
-tags: ["sdk"]
 description: >
   How to use the C++ AWS SDK with LocalStack.
 ---

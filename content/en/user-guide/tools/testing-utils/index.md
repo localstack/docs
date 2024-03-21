@@ -1,7 +1,6 @@
 ---
 title: "Testing Utils"
 weight: 5
-categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Tools to simplify application testing on LocalStack
 aliases:
