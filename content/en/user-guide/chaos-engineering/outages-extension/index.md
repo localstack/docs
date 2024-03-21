@@ -77,13 +77,31 @@ In the given example, the services and regions affected include:
 - S3 in all US regions, including us-east-1, us-east-2, us-west-1, us-west-2, us-gov-east-1, and us-gov-west-1
 - Lambda across all regions
 
+To demonstrate this works as expected, we can try to create an S3 bucket in a US-based region:
+
+{{< command >}}
+$ awslocal s3 mb s3://test-bucket --region us-east-1
+<disable-copy>
+make_bucket failed: s3://test-bucket An error occurred (ServiceUnavailableException) when calling the CreateBucket operation (reached max retries: 4): Service 's3' not accessible in 'us-east-1' region due to an outage
+</disable-copy>
+{{< /command >}}
+
+However, the same command executed for `eu-central-1` is unaffected:
+
+{{< command >}}
+$ awslocal s3 mb s3://test-bucket --region eu-central-1
+<disable-copy>
+make_bucket: test-bucket
+</disable-copy>
+{{< /command >}}
+
 Outages may be stopped by using empty list in the configuration. The following request will clear the current configuration:
 
 {{< command >}}
 curl --location --request POST 'http://outages.localhost.localstack.cloud:4566/outages' \
 --header 'Content-Type: application/json' \
 --data '[]'
-{{</ command >}}
+{{< /command >}}
 
 To retrieve the current configuration, make the following GET call:
 
