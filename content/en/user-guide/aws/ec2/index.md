@@ -191,7 +191,7 @@ LocalStack Pro supports the Docker VM manager which uses the [Docker Engine](htt
 This VM manager requires the Docker socket from the host machine to be mounted inside the LocalStack container at `/var/run/docker.sock`.
 
 You may set [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) to `docker` to use this VM manager.
-Please note that is the default VM manager in LocalStack Pro.
+Please note that this is the default VM manager in LocalStack Pro.
 
 All restrictions associated with containers are also applicable to EC2 instances managed by the Docker manager.
 These restrictions include elements like root access and networking.
@@ -229,8 +229,8 @@ $ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
 {{< /command >}}
 
 {{< alert title="Note" >}}
-All other AMIs that do not have the above tag are mocked and originate from the Community image of LocalStack.
-Attempting to launch Dockerized instances using these specific AMIs will result in an `InvalidAMIID.NotFound` error.
+AMIs that do not have the `ec2_vm_manager:docker` tag are mocked.
+Attempting to launch Dockerized instances using these AMIs will result in an `InvalidAMIID.NotFound` error.
 {{< /alert >}}
 
 ### Networking
