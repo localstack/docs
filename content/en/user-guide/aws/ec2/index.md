@@ -20,7 +20,7 @@ This guide is designed for users new to EC2 and assumes basic knowledge of the A
 Start your LocalStack Pro container using your preferred method.
 We will demonstrate how to create an EC2 instance that runs a simple Python web server on port 8000 with the AWS CLI.
 
-### Create a Key Pair
+### Create a key pair
 
 To create a key pair, you can use the [`CreateKeyPair`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html) API.
 Run the following command to create the key pair and pipe the output to a file named `key.pem`:
@@ -108,7 +108,7 @@ $ awslocal ec2 run-instances \
     --user-data file://./user_script.sh
 {{< /command >}}
 
-### Test the Python Web Server
+### Test the Python web server
 
 You can now open the LocalStack logs to find the IP address of the locally emulated EC2 instance.
 Run the following command to open the LocalStack logs:
@@ -178,14 +178,14 @@ This works on top of the mock/CRUD capabilities and makes it possible to impleme
 The underlying method for emulation can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
 You may choose between virtualized, containerized or plain mocked resources.
 
-## Mock
+## Mock VM Manager
 
 This is the default method in LocalStack Community edition.
 All resources are mocked as in-memory representation only.
 
-To use this VM manager, set [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) to `mock`.
+To use this VM manager in LocalStack Pro, set [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) to `mock`.
 
-## Docker
+## Docker VM Manager
 
 LocalStack Pro supports the Docker VM manager which uses the [Docker Engine](https://docs.docker.com/engine/) to emulate EC2 instances.
 This VM manager requires the Docker socket from the host machine to be mounted inside the LocalStack container at `/var/run/docker.sock`.
@@ -373,7 +373,7 @@ The following table explains the emulated action for every API operation.
 
 
 
-## Libvirt
+## Libvirt VM Manager
 
 {{< alert title="Note" >}}
 The Libvirt VM manager is a preview feature.
@@ -389,6 +389,27 @@ LocalStack Pro supports the QEMU/KVM hypervisor.
 ### AMIs
 
 (Talk about the bring-your-own-image model, storage pools, volumes)
+
+{{< tabpane text=true >}}
+
+{{< tab header="Ubuntu" >}}
+https://cloud-images.ubuntu.com/
+{{< /tab >}}
+
+{{< tab header="Debian" >}}
+http://cdimage.debian.org/cdimage/cloud/
+{{< /tab >}}
+
+{{< tab header="Fedora" >}}
+https://fedoraproject.org/cloud/download
+{{< /tab >}}
+
+{{< tab header="Windows" >}}
+https://cloudbase.it/windows-cloud-images/  Cloudbase Solutions provides the last available trial version of Windows Server 2012 R2.
+{{< /tab >}}
+
+{{< /tabpane >}}
+
 
 
 ### Instances
