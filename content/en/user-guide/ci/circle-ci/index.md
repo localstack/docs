@@ -220,7 +220,7 @@ Cloud pods providing an easy solution to persist Localstack's state, even betwee
 
 Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
 
-#### Multiple projects
+##### Multiple projects
 Update cloud pod in it's own project (ie IaC repo).
 
 _Note: If there is a previously created cloud pod, this step can be skipped._
@@ -272,7 +272,7 @@ workflows:
       - localstack-use-cloud-pod
 ```
 
-#### Same project
+##### Same project
 To use a dynamically updated cloud pod in multiple workflows in the same project, you must eliminate the race conditions between the update workflow and the others.
 
 Before you are able to use any stored artifacts in your pipeline, you must provide either a valid [project API token](https://circleci.com/docs/managing-api-tokens/#creating-a-project-api-token) or a [personal API token](https://circleci.com/docs/managing-api-tokens/#creating-a-personal-api-token) to CircleCI.
