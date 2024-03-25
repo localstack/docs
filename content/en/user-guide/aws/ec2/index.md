@@ -178,6 +178,8 @@ This works on top of the mock/CRUD capabilities and makes it possible to impleme
 The underlying method for emulation can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
 You may choose between virtualized, containerized or plain mocked resources.
 
+(clarify that certain VM managers do not support persistence)
+
 ## Mock VM Manager
 
 This is the default method in LocalStack Community edition.
@@ -415,6 +417,7 @@ https://cloudbase.it/windows-cloud-images/  Cloudbase Solutions provides the las
 ### Instances
 
 (Describe virtual domains)
+(explain the shutdown behaviour of VMs when LS shuts down, incl. how EBS volumes are affected.)
 
 
 ### Networking
