@@ -61,7 +61,7 @@ To manually trigger the workflow through the webinterface of CircleCI (in case y
 - Go to the [localStack](https://app.circleci.com/pipelines/github/localstack/localstack) project repository on CircleCI.
 - Select a branch for which you want to trigger the workflow from the filters section.
 - Now click on the `Trigger pipeline` button on the right and add the following variables:
-    1. Parameter type to `string`
+    1. Parameter type to `boolean`
     2. Name to `randomize-aws-credentials`
     3. Value to `true`
 - Press the `Trigger pipeline` button to trigger the workflow.
