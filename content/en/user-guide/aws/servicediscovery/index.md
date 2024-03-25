@@ -175,3 +175,30 @@ $ awslocal servicediscovery list-instances \
 The output will consist of the resource ID, and you can further use the [`DiscoverInstances`](https://docs.aws.amazon.com/cloud-map/latest/api/API_DiscoverInstances.html) API. This API allows you to query the DNS records associated with the service and perform various operations.
 
 To explore the DNS records of your service and perform other operations, refer to the [AWS CLI documentation](https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/index.html) for comprehensive instructions and examples.
+
+### Using filters
+Filters can be used to narrow down the results of a list operation. Filters are supported for the following operations:
+
+- list-namespaces
+- list-services
+- discover-instances
+
+Using `list-namespaces` you can filter for the parameters `TYPE`, `NAME`, `HTTP_NAME`. Using `list-services` it is only possible to filter for `NAMESPACE_ID`.
+Both `list-services` and `list-namespaces` support `EQ` (default condition if not specified) and `BEGINS_WITH` as conditions. Both conditions and only support a single value to match by. The following examples demonstrate how to use filters with these operations:
+
+{{< command >}}
+awslocal servicediscovery list-namespaces --filters "Name=HTTP_NAME,Values=['example-namespace'],Condition=EQ"
+awslocal servicediscovery list-services --filters "Name=NAMESPACE_ID,Values=['id_to_match']"
+{{< /command >}}
+
+The command `discover-instance` supports parameters and optional parameters as filter criteria. Conditions in parameters must match return values, while if one ore more conditions in optional parameters match, the subset is returned, if no conditions in optional parameters match, all unfiltered results are returned.
+
+This command will only return instances where the parameter `env` is equal to `fuu`:
+{{< command >}}
+aws servicediscovery discover-instances --namespace-name example-namespace --service-name example-service --query-parameters "env"="fuu"
+{{< /command >}}
+
+This command instead will return all instances where the optional parameter `env` is equal to `bar`, but if no instances match, all instances are returned:
+{{< command >}}
+aws servicediscovery discover-instances --namespace-name example-namespace --service-name example-service --optional-parameters "env"="bar"
+{{< /command >}}
