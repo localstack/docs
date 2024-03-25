@@ -8,7 +8,7 @@
         "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -56,7 +56,7 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -104,7 +104,7 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -140,9 +140,9 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
-        "snapshot_tested": false,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -199,8 +199,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -272,7 +272,7 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -368,7 +368,7 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -404,7 +404,7 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -416,7 +416,7 @@
         "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -452,7 +452,7 @@
         "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -499,8 +499,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -547,8 +547,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -584,9 +584,9 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "terraform_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     }
@@ -628,9 +628,9 @@
             "test": "test_create_trail",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -684,6 +684,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_trail_operations_with_arn",
+            "test": "test_trail_operations_with_arn",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_wrong_arn_for_trail_ops",
+            "test": "test_wrong_arn_for_trail_ops",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_invalid_config",
             "test": "test_invalid_config",
             "response": "400",
@@ -716,6 +736,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_trail_s3_key_prefix",
+            "test": "test_trail_s3_key_prefix",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -758,9 +788,9 @@
             "test": "test_create_trail",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -814,13 +844,43 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_trail_operations_with_arn",
+            "test": "test_trail_operations_with_arn",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_trail_s3_key_prefix",
+            "test": "test_trail_s3_key_prefix",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_wrong_arn_for_trail_ops",
+            "test": "test_wrong_arn_for_trail_ops",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_create_trail",
             "test": "test_create_trail",
             "response": "400",
             "error": "TrailNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -862,6 +922,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_trail_operations_with_arn",
+            "test": "test_trail_operations_with_arn",
+            "response": "400",
+            "error": "TrailNotFoundException",
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -884,9 +954,9 @@
             "test": "test_create_trail",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -920,9 +990,19 @@
             "test": "test_create_trail",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_trail_operations_with_arn",
+            "test": "test_trail_operations_with_arn",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -969,6 +1049,46 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_trail_operations_with_arn",
+            "test": "test_trail_operations_with_arn",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_wrong_arn_for_trail_ops",
+            "test": "test_wrong_arn_for_trail_ops",
+            "response": "400",
+            "error": "TrailNotFoundException",
+            "snapshot_skipped": "['$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_wrong_arn_for_trail_ops",
+            "test": "test_wrong_arn_for_trail_ops",
+            "response": "400",
+            "error": "CloudTrailARNInvalidException",
+            "snapshot_skipped": "['$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_wrong_arn_for_trail_ops",
+            "test": "test_wrong_arn_for_trail_ops",
+            "response": "400",
+            "error": "InvalidTrailNameException",
+            "snapshot_skipped": "['$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -1018,9 +1138,9 @@
             "test": "test_create_trail",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1154,9 +1274,9 @@
             "test": "test_create_trail",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1188,6 +1308,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_trail_operations_with_arn",
+            "test": "test_trail_operations_with_arn",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -1200,9 +1330,9 @@
             "test": "test_create_trail",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1224,6 +1354,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_trail_operations_with_arn",
+            "test": "test_trail_operations_with_arn",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -1236,9 +1376,19 @@
             "test": "test_create_trail",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_trail_operations_with_arn",
+            "test": "test_trail_operations_with_arn",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HasCustomEventSelectors', '$..HasInsightSelectors', '$..HomeRegion', '$..IncludeGlobalServiceEvents', '$..IsMultiRegionTrail', '$..IsOrganizationTrail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
