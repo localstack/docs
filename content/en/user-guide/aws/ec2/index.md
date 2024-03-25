@@ -229,7 +229,7 @@ $ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
 {{< /command >}}
 
 {{< alert title="Note" >}}
-AMIs that do not have the `ec2_vm_manager:docker` tag are mocked.
+If an AMI does have the `ec2_vm_manager:docker` tag, it means that it is mocked.
 Attempting to launch Dockerized instances using these AMIs will result in an `InvalidAMIID.NotFound` error.
 {{< /alert >}}
 
