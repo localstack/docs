@@ -113,6 +113,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `DYNAMODB_CORS` | `*` | Enable CORS support for specific allow-list list the domains separated by `,` use `*` for public access (default is `*`) |
 | `DYNAMODB_REMOVE_EXPIRED_ITEMS` | `0`\|`1` | Enables [Time to Live (TTL)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html) feature |
 
+### ECR 
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `ECR_ENDPOINT_STRATEGY` | `domain` (default)\|`off`\| | Governs how the default ECR endpoints are returned |
+
 ### ECS
 
 | Variable | Example Values | Description |
