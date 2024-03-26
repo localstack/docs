@@ -76,7 +76,7 @@ If you operate behind an enterprise proxy and wish to customize the domain name 
 check out the [Configuration]({{< ref "configuration#core" >}}) `LOCALSTACK_HOST`.
 
 If you wish to customize internal LocalStack DNS routing of `localhost.localstack.cloud`,
-refer to the instructions in the [Route53 documentation]({{< ref "route53#customizing-internal-endpoint-resolution" >}}).
+refer to the instructions in the [Route53 documentation]({{< ref "user-guide/aws/route53#customizing-internal-endpoint-resolution" >}}).
 
 
 ## DNS rebind protection
