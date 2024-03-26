@@ -212,6 +212,9 @@ The following examples demonstrate how to use filters with these operations:
 {{< command >}}
 $ awslocal servicediscovery list-namespaces \
     --filters "Name=HTTP_NAME,Values=['example-namespace'],Condition=EQ"
+{{< /command >}}
+
+{{< command >}}
 $ awslocal servicediscovery list-services \
     --filters "Name=NAMESPACE_ID,Values=['id_to_match']"
 {{< /command >}}
