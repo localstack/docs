@@ -257,8 +257,8 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | - | - | - |
 | `SQS_DELAY_PURGE_RETRY` | `0` (default) | Used to toggle PurgeQueueInProgress errors when making more than one PurgeQueue call within 60 seconds. |
 | `SQS_DELAY_RECENTLY_DELETED` | `0` (default) | Used to toggle QueueDeletedRecently errors when re-creating a queue within 60 seconds of deleting it. |
-| `SQS_ENABLE_MESSAGE_RETENTION_PERIOD`| `0` (default) \| `1` | Used to toggle the MessageRetentionPeriod feature (see [Enabling `MessageRetentionPeriod`]({{< ref "sqs#enabling-messageretentionperiod" >}})) |
-| `SQS_ENDPOINT_STRATEGY`| `standard` (default) \| `domain` \| `path` \| `off` | Configures the format of Queue URLs (see [SQS Queue URLs]({{< ref "sqs#queue-urls" >}})) |
+| `SQS_ENABLE_MESSAGE_RETENTION_PERIOD`| `0` (default) \| `1` | Used to toggle the MessageRetentionPeriod feature (see [Enabling `MessageRetentionPeriod`](https://docs.localstack.cloud/user-guide/aws/sqs/#enabling-messageretentionperiod) |
+| `SQS_ENDPOINT_STRATEGY`| `standard` (default) \| `domain` \| `path` \| `off` | Configures the format of Queue URLs (see [SQS Queue URLs](https://docs.localstack.cloud/user-guide/aws/sqs/#queue-urls) |
 | `SQS_DISABLE_CLOUDWATCH_METRICS` | `0` (default) | Disables the CloudWatch Metrics for SQS when set to `1` |
 | `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL` | `60` (default) | Configures the report interval (in seconds) for `Approximate*` metrics that are sent to CloudWatch periodically. Sending will be disabled if `SQS_DISABLE_CLOUDWATCH_METRICS=1` |
 
