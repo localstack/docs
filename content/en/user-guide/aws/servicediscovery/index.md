@@ -187,18 +187,26 @@ Using `list-namespaces` you can filter for the parameters `TYPE`, `NAME`, `HTTP_
 Both `list-services` and `list-namespaces` support `EQ` (default condition if not specified) and `BEGINS_WITH` as conditions. Both conditions and only support a single value to match by. The following examples demonstrate how to use filters with these operations:
 
 {{< command >}}
-awslocal servicediscovery list-namespaces --filters "Name=HTTP_NAME,Values=['example-namespace'],Condition=EQ"
-awslocal servicediscovery list-services --filters "Name=NAMESPACE_ID,Values=['id_to_match']"
+awslocal servicediscovery list-namespaces \
+    --filters "Name=HTTP_NAME,Values=['example-namespace'],Condition=EQ"
+awslocal servicediscovery list-services \
+    --filters "Name=NAMESPACE_ID,Values=['id_to_match']"
 {{< /command >}}
 
 The command `discover-instance` supports parameters and optional parameters as filter criteria. Conditions in parameters must match return values, while if one ore more conditions in optional parameters match, the subset is returned, if no conditions in optional parameters match, all unfiltered results are returned.
 
 This command will only return instances where the parameter `env` is equal to `fuu`:
 {{< command >}}
-aws servicediscovery discover-instances --namespace-name example-namespace --service-name example-service --query-parameters "env"="fuu"
+aws servicediscovery discover-instances \
+    --namespace-name example-namespace \
+    --service-name example-service \
+    --query-parameters "env"="fuu"
 {{< /command >}}
 
 This command instead will return all instances where the optional parameter `env` is equal to `bar`, but if no instances match, all instances are returned:
 {{< command >}}
-aws servicediscovery discover-instances --namespace-name example-namespace --service-name example-service --optional-parameters "env"="bar"
+aws servicediscovery discover-instances \
+    --namespace-name example-namespace \
+    --service-name example-service \
+    --optional-parameters "env"="bar"
 {{< /command >}}
