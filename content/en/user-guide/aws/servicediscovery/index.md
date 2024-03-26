@@ -199,9 +199,9 @@ To explore the DNS records of your service and perform other operations, refer t
 Filters can be used to narrow down the results of a list operation.
 Filters are supported for the following operations:
 
-- list-namespaces
-- list-services
-- discover-instances
+- [`list-namespaces`](https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/list-namespaces.html)
+- [`list-services`](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-services.html)
+- [`discover-instances`](https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/discover-instances.html)
 
 Using `list-namespaces` you can filter for the parameters `TYPE`, `NAME`, `HTTP_NAME`.
 Using `list-services` it is only possible to filter for `NAMESPACE_ID`.
