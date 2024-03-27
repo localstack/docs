@@ -142,9 +142,9 @@ Additionally, you can create the remote SQS queue on the real AWS cloud to test 
 
 Use the following command to set up the SQS queue on AWS:
 
-```bash 
+{{< command >}}
 $ aws sqs create-queue --queue-name test-local-proxy
-```
+{{< /command >}}
 
 ## Invoke the Lambda function 
 
