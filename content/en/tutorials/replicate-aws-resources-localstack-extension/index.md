@@ -150,12 +150,12 @@ $ aws sqs create-queue --queue-name test-local-proxy
 
 Before invoking, set up an event source mapping between the SQS queue and the Lambda function. Configure the queue for Lambda using the following command:
 
-```bash 
+{{< command >}}
 $ awslocal lambda create-event-source-mapping \
     --function-name func1 \
     --batch-size 1 \
     --event-source-arn arn:aws:sqs:us-east-1:000000000000:test-local-proxy
-```
+{{< /command >}}
 
 The following output would be retrieved:
 
