@@ -24,12 +24,13 @@ This allows you to work on and test your cloud-based solutions without needing t
 However, sometimes you might need to smoothly switch between your local setup and actual cloud resources, especially in hybrid scenarios.
 This could be useful, for example, if you want to share a database with your local Lambda function, or if you require access to S3 files stored remotely while running a Glue ETL job locally.
 
-The AWS Replicator extension enables the replication of your AWS cloud resources to your local machine at the API level.
-This means your local setup can interact with real cloud resources.
-The AWS Replicator extension allows you to forward specific requests from LocalStack to AWS, eliminating the need for a complex proxy setup through AWS SSM or comparable tools.
+With the [AWS Replicator extension](https://github.com/localstack/localstack-extensions/tree/main/aws-replicator), you can:
 
-In this tutorial, you will go through an example where you will trigger a local Lambda function with a message sent to a remote SQS queue.
-Additionally, you will also learn how to install the AWS Replicator extension and utilize its different modes to seamlessly work in a hybrid environment.
+- Enable your local environment to mirror AWS cloud resources at the API level, allowing for direct interaction with cloud services.
+- Facilitate the forwarding of specific requests from LocalStack to AWS without the need for complex proxy setups.
+- Support scenarios that require a combination of local and cloud resources, such as testing cloud services with local databases or functions.
+
+In this tutorial, you will learn how to install the AWS Replicator extension and utilize its different modes to seamlessly work in a hybrid environment.
 
 ## Prerequisites
 
@@ -66,7 +67,7 @@ $ localstack extensions list
 
 After verifying the successful installation, you can shut down the LocalStack container to re-start it with additional configuration variables.
 
-## Create the Lambda function
+## Tutorial: Working with the AWS Replicator Extension
 
 In this tutorial, you will set up a basic example consisting of:
 
@@ -75,6 +76,8 @@ In this tutorial, you will set up a basic example consisting of:
 -   An event source mapping that triggers the Lambda function when a message is sent to the SQS queue.
 
 In this scenario, you will create the SQS queue on your local machine and the remote cloud to showcase how you can switch between the two with the AWS Replicator extension. 
+
+### Create the Lambda function
 
 Begin by running your LocalStack container with the following configuration:
 
@@ -122,7 +125,7 @@ Once the Lambda function is successfully created, you will see output similar to
 }
 ```
 
-## Create the SQS queue
+### Create the SQS queue
 
 You can create the local SQS queue named `test-local-proxy` by executing the following command:
 
@@ -146,7 +149,7 @@ Use the following command to set up the SQS queue on AWS:
 $ aws sqs create-queue --queue-name test-local-proxy
 {{< /command >}}
 
-## Invoke the Lambda function 
+### Invoke the Lambda function 
 
 Before invoking, set up an event source mapping between the SQS queue and the Lambda function. Configure the queue for Lambda using the following command:
 
@@ -195,7 +198,7 @@ In the LocalStack logs, you will see confirmation of the Lambda function invocat
 2024-03-26T07:23:47.842 DEBUG --- [5119b27cdf1e] l.s.l.i.version_manager    : [func1-381c6f7c-3ad8-4c79-aad8-5119b27cdf1e] END RequestId: 381c6f7c-3ad8-4c79-aad8-5119b27cdf1e
 ```
 
-## Run the AWS Replicator extension
+### Run the AWS Replicator extension
 
 To run the AWS Replicator extension:
 
