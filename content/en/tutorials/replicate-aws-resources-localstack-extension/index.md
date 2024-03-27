@@ -78,11 +78,11 @@ In this scenario, you'll create the SQS queue on your local machine and the remo
 
 Begin by running your LocalStack container with the following configuration:
 
-```bash 
-EXTRA_CORS_ALLOWED_ORIGINS=https://aws-replicator.localhost.localstack.cloud:4566 \
+{{< command >}}
+$ EXTRA_CORS_ALLOWED_ORIGINS=https://aws-replicator.localhost.localstack.cloud:4566 \
 DEBUG=1 \
 localstack start
-```
+{{< /command >}}
 
 In the above command:
 
