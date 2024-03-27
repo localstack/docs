@@ -68,7 +68,7 @@ After verifying the successful installation, you can shut down the LocalStack co
 
 ## Create the Lambda function
 
-In this tutorial, you'll set up a basic example consisting of:
+In this tutorial, you will set up a basic example consisting of:
 
 -   A Lambda function named `func1` that prints a simple statement when invoked.
 -   An SQS queue named `test-local-proxy` where messages are sent.
