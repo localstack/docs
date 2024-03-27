@@ -13,9 +13,6 @@ platform:
 - Python
 deployment:
 - AWS CLI
-tags:
-- replicator-extension
-- localstack-extensions
 pro: true
 leadimage: ""
 ---
@@ -29,7 +26,6 @@ This could be useful, for example, if you want to share a database with your loc
 
 The AWS Replicator extension enables the replication of your AWS cloud resources to your local machine at the API level.
 This means your local setup can interact with real cloud resources.
-
 The AWS Replicator extension allows you to forward specific requests from LocalStack to AWS, eliminating the need for a complex proxy setup through AWS SSM or comparable tools.
 
 In this tutorial, you will go through an example where you will trigger a local Lambda function with a message sent to a remote SQS queue.
@@ -39,7 +35,7 @@ Additionally, you will also learn how to install the AWS Replicator extension an
 
 -   [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)  with  [`LOCALSTACK_AUTH_TOKEN`](https://docs.localstack.cloud/getting-started/auth-token/)
 -   [Docker](https://docs.localstack.cloud/getting-started/auth-token/)
--   [AWS](https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html)  CLI with  [`awslocal`  wrapper](https://github.com/localstack/awscli-local)
+-   [AWS CLI](https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html) with  [`awslocal` wrapper](https://github.com/localstack/awscli-local)
 -   [LocalStack Web Application account](https://app.localstack.cloud/sign-up) 
 -   [AWS Account](https://aws.amazon.com/) with an [`AWS_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY`](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey)
 
@@ -49,20 +45,24 @@ To install the AWS Replicator Extension, follow these steps:
 
 1.  Launch your LocalStack container using the `localstack` CLI, ensuring that `LOCALSTACK_AUTH_TOKEN` is available in the environment.
 2.  Visit the [Extensions library](https://app.localstack.cloud/extensions/library) page on the LocalStack Web Application.
+  <img src="extensions-library.png" alt="Extensions Library" title="Extensions Library" width="900" />
 3.  Scroll down to find the **AWS replicator** card, then click on the **Install on Instance** button.
+  <img src="installing-aws-replicator-extensions.png" alt="Installing AWS Replicator extension" title="Installing AWS Replicator extension" width="900" />
 
 Once the installation is complete, you will notice that your LocalStack container has restarted with the AWS Replicator extension successfully installed.
 To confirm the installation, execute the following command:
 
-```bash 
+{{< command >}}
 $ localstack extensions list
+<disable-copy>
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
 ┃ Name                         ┃ Summary                      ┃ Version ┃ Author          ┃ Plugin name    ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━┩
 │ localstack-extension-aws-re… │ LocalStack Extension: AWS    │ 0.1.11  │ LocalStack Team │ aws-replicator │
 │                              │ replicator                   │         │                 │                │
 └──────────────────────────────┴──────────────────────────────┴─────────┴─────────────────┴────────────────┘
-```
+</disable-copy>
+{{< /command >}}
 
 After verifying the successful installation, you can shut down the LocalStack container to re-start it with additional configuration variables.
 
@@ -74,7 +74,7 @@ In this tutorial, you will set up a basic example consisting of:
 -   An SQS queue named `test-local-proxy` where messages are sent.
 -   An event source mapping that triggers the Lambda function when a message is sent to the SQS queue.
 
-In this scenario, you'll create the SQS queue on your local machine and the remote cloud to showcase how you can switch between the two with the AWS Replicator extension. 
+In this scenario, you will create the SQS queue on your local machine and the remote cloud to showcase how you can switch between the two with the AWS Replicator extension. 
 
 Begin by running your LocalStack container with the following configuration:
 
@@ -108,7 +108,7 @@ $ awslocal lambda create-function \
     --zip-file fileb://./testlambda.zip
 {{< /command >}}
 
-Once the Lambda function is successfully created, you'll see output similar to this:
+Once the Lambda function is successfully created, you will see output similar to this:
 
 ```bash 
 {
@@ -178,7 +178,7 @@ awslocal sqs send-message \
     --message-body '{}'
 {{< /command >}}
 
-Upon successful execution, you'll receive a message ID and MD5 hash of the message body.
+Upon successful execution, you will receive a message ID and MD5 hash of the message body.
 
 ```bash 
 {
@@ -187,7 +187,7 @@ Upon successful execution, you'll receive a message ID and MD5 hash of the messa
 }
 ```
 
-In the LocalStack logs, you'll see confirmation of the Lambda function invocation along with any debug messages.
+In the LocalStack logs, you will see confirmation of the Lambda function invocation along with any debug messages.
 
 ```bash
 2024-03-26T07:23:47.842 DEBUG --- [5119b27cdf1e] l.s.l.i.version_manager    : [func1-381c6f7c-3ad8-4c79-aad8-5119b27cdf1e] START RequestId: 381c6f7c-3ad8-4c79-aad8-5119b27cdf1e Version: $LATEST
@@ -200,6 +200,7 @@ In the LocalStack logs, you'll see confirmation of the Lambda function invocatio
 To run the AWS Replicator extension:
 
 -   Access [`https://aws-replicator.localhost.localstack.cloud:4566`](https://aws-replicator.localhost.localstack.cloud:4566/) via your web browser.
+  <img src="aws-replicator-extension.png" alt="AWS Replicator extension" title="AWS Replicator extension" width="900" />
 -   Provide your AWS Credentials: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and optionally `AWS_SESSION_TOKEN`.
 - Add a new YAML-based Proxy configuration to proxy requests for specific resources to AWS. For this scenario, configure it to proxy requests for the SQS queue created earlier.
   ```yaml 
@@ -208,7 +209,8 @@ To run the AWS Replicator extension:
       resources:
         - '.*:test-local-proxy'
    ```
-- Save the configuration to enable the AWS Replicator extension. Once enabled, you'll see the proxy status as **Enabled**.
+- Save the configuration to enable the AWS Replicator extension. Once enabled, you will see the proxy status as **enabled**.
+  <img src="enabled-aws-replicator-extension.png" alt="Enabled AWS Replicator extension" title="Enabled AWS Replicator extension" width="900" />
 
 To invoke the local Lambda function with the remote SQS queue:
 
