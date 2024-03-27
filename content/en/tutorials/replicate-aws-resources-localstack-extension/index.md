@@ -210,7 +210,7 @@ To invoke the local Lambda function with the remote SQS queue:
 -   Select the **test-local-proxy** queue.
 -   Send a message with a body (e.g., `Hello LocalStack`) by clicking **Send Message**.
 
-You'll observe the local Lambda function being invoked once again, with corresponding debug messages visible in the logs.
+You will observe the local Lambda function being invoked once again, with corresponding debug messages visible in the logs.
 
 ```bash 
 2024-03-26T07:45:16.524 DEBUG --- [db58fad602e5] l.s.l.i.version_manager    : [func1-ed938bb0-e1ee-41fb-a844-db58fad602e5] START RequestId: ed938bb0-e1ee-41fb-a844-db58fad602e5 Version: $LATEST
