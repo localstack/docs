@@ -25,7 +25,7 @@ After a successful test run, you can execute the more expensive AWS CodeBuild pi
 
 ## CI integrations
 
-The steps required for the integration differ slightly depending on your preferred CI platform. Please refer to the relevant sections CI keys settings page](https://app.localstack.cloud/workspace/ci-keys) in the [LocalStack Web app](https://app.localstack.cloud).
+The steps required for the integration differ slightly depending on your preferred CI platform. Please refer to the relevant sections of the [CI keys settings page](https://app.localstack.cloud/workspace/ci-keys) in the [LocalStack Web app](https://app.localstack.cloud).
 
 ## CI images
 
