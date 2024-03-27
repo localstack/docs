@@ -1,5 +1,5 @@
 ---
-title: "Replicating AWS resources locally with LocalStack Replicator extension"
+title: "Replicating AWS resources locally with LocalStack's replicator extension"
 linkTitle: "Replicating AWS resources locally with LocalStack Replicator extension"
 weight: 7
 description: >
