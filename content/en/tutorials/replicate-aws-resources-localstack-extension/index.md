@@ -98,7 +98,7 @@ def handler(*args, **kwargs):
 
 Execute the following commands to create the local Lambda function:
 
-```bash 
+{{< command >}}
 $ (zip testlambda.zip testlambda.py)
 $ awslocal lambda create-function \
     --function-name func1 \
@@ -106,7 +106,7 @@ $ awslocal lambda create-function \
     --role arn:aws:iam::000000000000:role/r1 --handler testlambda.handler \
     --timeout 30 \
     --zip-file fileb://./testlambda.zip
-```
+{{< /command >}}
 
 Once the Lambda function is successfully created, you'll see output similar to this:
 
