@@ -22,7 +22,10 @@ leadimage: ""
 
 ## Introduction
 
-LocalStack's core cloud emulator enables you to emulate various cloud services on your own local machine. This allows you to work on and test your cloud-based solutions without needing to connect to a remote cloud. However, sometimes you might need to smoothly switch between your local setup and actual cloud resources, especially in hybrid scenarios. This could be useful, for instance, if you want to share a database that your local Lambda function interacts with, or if you need to access S3 files stored remotely while running a Glue ETL job locally.
+LocalStack's core cloud emulator enables you to emulate various cloud services on your own local machine.
+This allows you to work on and test your cloud-based solutions without needing to connect to a remote cloud.
+However, sometimes you might need to smoothly switch between your local setup and actual cloud resources, especially in hybrid scenarios.
+This could be useful, for example, if you want to share a database with your local Lambda function, or if you require access to S3 files stored remotely while running a Glue ETL job locally.
 
 The AWS Replicator extension enables the replication of your AWS cloud resources to your local machine at the API level.
 This means your local setup can interact with real cloud resources.
