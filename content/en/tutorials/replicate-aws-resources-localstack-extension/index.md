@@ -24,7 +24,10 @@ leadimage: ""
 
 LocalStack's core cloud emulator enables you to emulate various cloud services on your own local machine. This allows you to work on and test your cloud-based solutions without needing to connect to a remote cloud. However, sometimes you might need to smoothly switch between your local setup and actual cloud resources, especially in hybrid scenarios. This could be useful, for instance, if you want to share a database that your local Lambda function interacts with, or if you need to access S3 files stored remotely while running a Glue ETL job locally.
 
-The LocalStack Replicator extension lets you replicate your cloud resources from AWS to your local machine, on the API level. This means your local setup can interact with real cloud resources. With the Replicator extension, you can make certain requests in LocalStack that will be forwarded to AWS without having to set up a complex proxy system using AWS SSM or similar tools.
+The AWS Replicator extension enables the replication of your AWS cloud resources to your local machine at the API level.
+This means your local setup can interact with real cloud resources.
+
+The AWS Replicator extension allows you to forward specific requests from LocalStack to AWS, eliminating the need for a complex proxy setup through AWS SSM or comparable tools.
 
 In this tutorial, you'll go through an example where you'll trigger a local Lambda function with a message sent to a remote SQS queue. You'll also learn how to install the Replicator extension and use its different modes to seamlessly work in a hybrid environment.
 
