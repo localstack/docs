@@ -2,25 +2,25 @@
 title: "Elastic Compute Cloud (EC2)"
 linkTitle: "Elastic Compute Cloud (EC2)"
 tags: ["Pro image"]
-description: Get started with Amazon Elastic Compute Cloud (Amazon EC2) on LocalStack
+description: Get started with Amazon Elastic Compute Cloud (EC2) on LocalStack
 ---
 
 ## Introduction
 
 Elastic Compute Cloud (EC2) is a core service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources.
-EC2 enables users to launch and manage virtual servers, commonly referred to as instances.
-Users can create a range computing environments tailored to specific needs by employing a wide array of configurations, enabling users to select the desired combination of computing power, memory, storage, and networking capabilities.
+EC2 enables users to launch and manage virtual machines, referred to as instances.
 
-LocalStack allows you to use the EC2 APIs in your local environment to create and manage your EC2 instances. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ec2/), which provides information on the extent of EC2's integration with LocalStack.
+LocalStack allows you to use the EC2 APIs in your local environment to create and manage EC2 instances and related resources such as VPCs, EBS volumes, etc.
+The list of supported APIs can be found on the [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ec2/).
 
 ## Getting started
 
 This guide is designed for users new to EC2 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method.
+Start your LocalStack Pro container using your preferred method.
 We will demonstrate how to create an EC2 instance that runs a simple Python web server on port 8000 with the AWS CLI.
 
-### Create a Key Pair
+### Create a key pair
 
 To create a key pair, you can use the [`CreateKeyPair`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html) API.
 Run the following command to create the key pair and pipe the output to a file named `key.pem`:
@@ -108,7 +108,7 @@ $ awslocal ec2 run-instances \
     --user-data file://./user_script.sh
 {{< /command >}}
 
-### Test the Python Web Server
+### Test the Python web server
 
 You can now open the LocalStack logs to find the IP address of the locally emulated EC2 instance.
 Run the following command to open the LocalStack logs:
@@ -169,38 +169,41 @@ $ ssh -p 12862 -i key.pem root@127.0.0.1
 If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here](#create-a-key-pair).
 {{< /alert >}}
 
-## Docker Backend
 
-LocalStack Pro supports the Docker backend, enabling the execution of emulated EC2 instances.
-The Docker backend employs the [Docker Engine](https://docs.docker.com/engine/) to simulate EC2 instances.
+## VM Managers
+
+LocalStack Pro comes with emulation capability for certain EC2 resources making them behave like AWS.
+This works on top of the mock/CRUD capabilities and makes it possible to implement advanced local setups.
+
+The underlying method for emulation can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
+You may choose between virtualized, containerized or plain mocked resources.
+
+(clarify that certain VM managers do not support persistence)
+
+## Mock VM Manager
+
+This is the default method in LocalStack Community edition.
+All resources are mocked as in-memory representation only.
+
+To use this VM manager in LocalStack Pro, set [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) to `mock`.
+
+## Docker VM Manager
+
+LocalStack Pro supports the Docker VM manager which uses the [Docker Engine](https://docs.docker.com/engine/) to emulate EC2 instances.
+This VM manager requires the Docker socket from the host machine to be mounted inside the LocalStack container at `/var/run/docker.sock`.
+
+You may set [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) to `docker` to use this VM manager.
+Please note that this is the default VM manager in LocalStack Pro.
+
 All restrictions associated with containers are also applicable to EC2 instances managed by the Docker manager.
+These restrictions include elements like root access and networking.
 
-
-These restrictions encompass elements like root access and networking.
-In order for LocalStack to function seamlessly, access to the Docker socket is essential, which can be facilitated by attaching the socket file during the launch process.
-
-Instances encompass the mounted Docker socket (`/var/run/docker.sock`), which facilitates scenarios involving Docker-in-Docker.
-This setup makes it feasible to engage in use cases that require interactions with Docker within the instances themselves.
-
-
-### Operations
-
-The Docker backend supports the following operations:
-
-| Operation       | Notes                                                                                        |
-|:----------------|:---------------------------------------------------------------------------------------------|
-| `CreateImage`   | Utilizes Docker commit to capture a snapshot of a running instance into a new AMI          |
-| `DescribeImages`| Retrieves a list of Docker images available for use within LocalStack                        |
-| `DescribeInstances`| Provides information about both 'mock' instances and Docker-backed instances. Docker-backed instances are marked with the resource tag `ec2_vm_manager:docker` |
-| `RunInstances`  | Initiates the start of a container                                                          |
-| `StopInstances` | Initiates the pause of a container                                                          |
-| `StartInstances`| Initiates the resumption of a paused container                                               |
-| `TerminateInstances`| Initiates the termination of a container                                                 |
+All launched EC2 instances have the Docker socket mounted inside them at `/var/run/docker.sock` to make Docker-in-Docker usecases possible.
 
 ### Instances and AMIs
 
-LocalStack utilizes a specific naming convention for recognition and management of its associated containers and images.
-Docker containers that back EC2 instances are named `localstack-ec2.<InstanceId>`
+LocalStack utilizes a specific naming scheme to recognize and manage associated containers and images.
+Docker containers that back EC2 instances are named `localstack-ec2.<InstanceId>`.
 Similarly, Docker base images which are tagged with the scheme `localstack-ec2/<AmiName>:<AmiId>` are recognized as Amazon Machine Images (AMIs).
 
 You can mark any Docker base image as AMI using the below command:
@@ -212,12 +215,12 @@ $ docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001
 The above example will make LocalStack treat the `ubuntu:focal` Docker image as an AMI with name `ubuntu-focal-ami` and ID `ami-000001`.
 
 At startup, LocalStack downloads the following AMIs that can be used to launch Dockerized instances.
-This behaviour can be controlled using the `EC2_DOWNLOAD_DEFAULT_IMAGES` configuration variable.
+- Ubuntu 20.04 `ami-ff0fea8310f3` (deprecated and marked for removal in the next major release)
 - Ubuntu 22.04 `ami-df5de72bdb3b`
 - Amazon Linux 2023 `ami-024f768332f0`
 
 {{< alert title="Note" >}}
-LocalStack will no longer provide the Ubuntu 20.04 Docker AMI by default in the next major release. It can still be manually added.
+The auto download of Docker images to be used as AMIs can be disabled using the `EC2_DOWNLOAD_DEFAULT_IMAGES=0` configuration variable.
 {{< /alert >}}
 
 All LocalStack-managed Docker AMIs bear the resource tag `ec2_vm_manager:docker`.
@@ -228,21 +231,16 @@ $ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
 {{< /command >}}
 
 {{< alert title="Note" >}}
-All other AMIs that do not have the above tag are mocked and originate from the Community image of LocalStack.
-Attempting to launch Dockerized instances using these specific AMIs will result in an `InvalidAMIID.NotFound` error.
+If an AMI does have the `ec2_vm_manager:docker` tag, it means that it is mocked.
+Attempting to launch Dockerized instances using these AMIs will result in an `InvalidAMIID.NotFound` error.
 {{< /alert >}}
-
-### Configuration
-
-You can also use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) LocalStack configuration variable to convey supplementary flags to Docker during the initiation of containerized instances.
-This allows for adjustments such as commencing the container in privileged mode using `--privileged` or specifying an alternate CPU platform with `--platform`, and more.
-Keep in mind that these modifications apply to all instances launched within the LocalStack session.
 
 ### Networking
 
 {{< alert title="Note" >}}
 Network access to EC2 instance is not possible on macOS. 
 This is because Docker Desktop on macOS does not expose the bridge network to the host system.
+See [Docker Desktop Known Limitations](https://docs.docker.com/desktop/networking/#known-limitations).
 {{< /alert >}}
 
 Network addresses for Dockerized instances are allocated by the Docker daemon and can be obtained from the `PublicIpAddress` attribute.
@@ -280,13 +278,15 @@ The port mapping details are provided in the logs during the instance initializa
 2022-12-20T19:43:44.544  INFO  Instance i-1d6327abf04e31be6 port mappings (container -> host): {'8080/tcp': 51747, '22/tcp': 55705}
 ```
 
-### EBS Block Devices
+
+### Elastic Block Store
 
 A common use case is to attach an EBS block device to an EC2 instance, which can then be used to create a custom filesystem for additional storage.
 This section illustrates how this functionality can be achieved with EC2 Docker instances in LocalStack.
 
 {{< alert title="Note" >}}
-This feature is disabled by default, please configure `EC2_MOUNT_BLOCK_DEVICES=1` in your LocalStack environment to enable it.
+This feature is disabled by default.
+Please set the [`EC2_MOUNT_BLOCK_DEVICES`]({{< ref "configuration#ec2" >}}) configuration option to enable it.
 {{< /alert >}}
 
 First, we create a user data script `init.sh` which creates an ext3 file system on the block device `/ebs-dev/sda1` and mounts it under `/ebs-mounted`:
@@ -308,8 +308,8 @@ $ awslocal ec2 run-instances --image-id ami-ff0fea8310f3 --count 1 --instance-ty
     --user-data file://init.sh
 {{< /command >}}
 
-Please note that, whereas real AWS uses GB for volume sizes, we use MB as the unit for `VolumeSize` in the command above (to avoid creating huge files locally).
-Also, by default block device images are limited to 1GB in size, but this can be customized by setting the `EC2_EBS_MAX_VOLUME_SIZE` config variable (defaults to `1000`).
+Please note that, whereas real AWS uses GiB for volume sizes, LocalStack uses MiB as the unit for `VolumeSize` in the command above (to avoid creating huge files locally).
+Also, by default block device images are limited to 1 GiB in size, but this can be customized by setting the [`EC2_EBS_MAX_VOLUME_SIZE`]({{< ref "configuration#ec2" >}}) config variable (defaults to `1000`).
 
 Once the instance is successfully started and initialized, we can first determine the container ID via `docker ps`, and then list the contents of the mounted filesystem `/ebs-mounted`, which should contain our test file named `my-test-file`:
 {{< command >}}
@@ -323,7 +323,7 @@ my-test-file
 
 ### Instance Metadata Service
 
-LocalStack Pro supports the [Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) which is used to retrieve information about the running instance.
+The Docker VM manager supports the [Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) which provides information about the running instance.
 
 Both IMDSv1 and IMDSv2 can be used.
 LocalStack does not strictly enforce either versions.
@@ -347,6 +347,158 @@ If you would like support for more metadata categories, please make a feature re
 {{< alert title="Note" >}}
 IMDS IPv6 endpoint is currently not supported.
 {{< /alert >}}
+
+
+### Configuration
+
+You can use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) LocalStack configuration variable to pass supplementary flags to Docker during the initiation of containerized instances.
+This allows for fine-tuned behaviours, for example, running containers in privileged mode using `--privileged` or specifying an alternate CPU platform with `--platform`.
+Keep in mind that this will apply to all instances that are launched in the LocalStack session.
+
+
+### Operations
+
+The following table explains the emulated action for various API operations.
+
+| Operation             | Notes                                                                                        |
+|:----------------------|:---------------------------------------------------------------------------------------------|
+| `CreateImage`         | Uses Docker commit to capture a snapshot of a running instance into a new AMI |
+| `CopyImage`           | ... |
+| `DescribeImages`      | Retrieves a list of Docker images that can be used as AMIs |
+| `ImportImage`         | ... |
+| `RegisterImage`       | ... |
+| `DescribeInstances`   | Describes both mocked and Docker-backed instances. Docker-backed instances are marked with the resource tag `ec2_vm_manager:docker` |
+| `RunInstances`        | Creates and runs Docker containers that back instances |
+| `StopInstances`       | Pauses the Docker containers that back instances |
+| `StartInstances`      | Resumes the Docker containers that back instances |
+| `TerminateInstances`  | Stops the Docker containers that back instances |
+
+
+
+## Libvirt VM Manager
+
+{{< alert title="Note" >}}
+The Libvirt VM manager is a preview feature.
+{{< /alert >}}
+
+The Libvirt VM manager uses the [Libvirt](https://libvirt.org/index.html) API to create fully virtualized EC2 resources.
+LocalStack Pro supports the KVM-accelerated QEMU hypervisor on Linux hosts.
+
+Installation steps for QEMU/KVM will vary based on the Linux distribution on the host machine.
+On Debian/Ubuntu-based distributions, you can run:
+
+{{< command >}}
+$ sudo apt install -y qemu-kvm libvirt-daemon-system
+{{< /command >}}
+
+To check CPU support for virtualization, run:
+{{< command >}}
+$ kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+{{< /command >}}
+
+{{< alert title="Hint" color="success" >}}
+You may also need to enable virtualization support at hardware level.
+This is often labelled as 'Enable Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
+{{< /alert >}}
+
+LocalStack requires the Libvirt socket file on the host to be mounted inside the container.
+This can be done by including the volume mounts when the LocalStack container is started.
+
+If you are using the [Docker Compose template]({{< ref "installation#starting-localstack-with-docker-compose" >}}), include the following line in `services.localstack.volumes` list:
+
+```text
+"/var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock"
+```
+
+If you are using [Docker CLI]({{< ref "installation#starting-localstack-with-docker" >}}), include the following parameter in `docker run`:
+
+```text
+-v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock
+```
+
+
+### AMIs
+
+All qcow2 images with cloud-init support can be used as AMIs.
+
+You can download the images for some OSs below:
+
+{{< tabpane text=true >}}
+
+{{% tab "Ubuntu" %}}
+Canonical provides official Ubuntu images at [cloud-images.ubuntu.com](https://cloud-images.ubuntu.com/).
+
+Please use the images in qcow2 format ending in `.img`.
+The default login account is `ubuntu`.
+{{% /tab %}}
+
+{{< tab "Debian" >}}
+<p>
+Debian provides cloud images for direct download at <a href="http://cdimage.debian.org/cdimage/cloud/">cdimage.debian.org/cdimage/cloud</a>.
+</p>
+
+<p>
+Please use the <code>genericcloud</code> image in qcow2 format. The default login account is <code>debian</code>.
+</p>
+{{< /tab >}}
+
+{{< tab "Fedora" >}}
+<p>
+The Fedora project maintains the official cloud images at <a href="https://fedoraproject.org/cloud/download">fedoraproject.org/cloud/download</a>.
+</p>
+
+<p>
+Please use the qcow2 images. The default login account is <code>fedora</code>.
+</p>
+{{< /tab >}}
+
+{{% tab "Microsoft Windows" %}}
+An evaluation version of Windows Server 2012 R2 is provided by [Cloudbase Solutions](https://cloudbase.it/windows-cloud-images/).
+{{% /tab %}}
+
+{{< /tabpane >}}
+
+
+(Talk about the bring-your-own-image model, storage pools, volumes)
+
+### Instances
+
+(Describe virtual domains)
+(explain the shutdown behaviour of VMs when LS shuts down, incl. how EBS volumes are affected.)
+
+
+### Networking
+
+(Talk about the methods of accessing the instance)
+
+
+### Elastic Block Stores
+
+(Describe volumes)
+
+
+### Instance Metadata Service
+
+The Libvirt VM manager does not support the Instance Metadata Service.
+Please express your interest for this feature in [this](#TODO) backlog issue.
+
+
+### Operations
+
+The following table explains the emulated action for various API operations.
+
+| Operation             | Notes                                                                                        |
+|:----------------------|:---------------------------------------------------------------------------------------------|
+| `DescribeImages`      |  |
+| `RunInstances`        |  |
+| `StartInstances`      |  |
+| `StopInstances`       |  |
+| `RebootInstances`     |  |
+| `TerminateInstances`  |  |
+| `CreateVolume`        |  |
+
 
 ## Resource Browser
 
