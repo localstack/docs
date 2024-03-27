@@ -317,3 +317,7 @@ LocalStack Community and Pro images provide limited offline capabilities.
 To use a fully-fledged offline mode, you may use LocalStack Enterprise, which can be used in air-gapped environments.
 The regular LocalStack Docker images may need to download additional dependencies for specific services (e.g., Elasticsearch, Big Data services) at runtime, while the offline image bakes all dependencies into the image, along with any other configuration that you might need.
 For more details, please take a look at our [Enterprise offering](https://localstack.cloud/pricing).
+
+### How does the LocalStack Web Application communicate with the LocalStack container?
+
+The LocalStack Web Application connects to your LocalStack container running on your local machine and retrieves the information directly via the `localhost` without using the internet. Features such as Resource Browsers, IAM Policy Stream, Chaos Engineering dashboard, and others communicate directly with the LocalStack container using your browser. None of the information is sent to the internet, or stored on any external servers maintained by LocalStack.
