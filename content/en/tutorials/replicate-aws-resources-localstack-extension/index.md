@@ -220,7 +220,9 @@ You will observe the local Lambda function being invoked once again, with corres
 
 You can even run the standard `awslocal` commands in your terminal that would query the remote cloud resources, instead of the local ones.
 
-Upon completion, you can click **Disable** on the Replicator extension web interface to deactivate the proxy configuration. Additionally, you can delete the remote SQS queue to avoid AWS billing for long-running resources. To remove local resources, stop the LocalStack container to clear the local Lambda function and SQS queue.
+Upon completion, you can click **Disable** on the Replicator extension web interface to deactivate the proxy configuration.
+Additionally, you can delete the remote SQS queue to avoid AWS billing for long-running resources.
+To remove local resources, stop the LocalStack container to clear the local Lambda function and SQS queue.
 
 ## Conclusion 
 
