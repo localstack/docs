@@ -39,7 +39,7 @@ Additionally, you will also learn how to install the AWS Replicator extension an
 -   [LocalStack Web Application account](https://app.localstack.cloud/sign-up) 
 -   [AWS Account](https://aws.amazon.com/) with an [`AWS_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY`](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey)
 
-## Install the Replicator extension
+## Install the AWS Replicator extension
 
 To install the AWS Replicator Extension, follow these steps:
 
