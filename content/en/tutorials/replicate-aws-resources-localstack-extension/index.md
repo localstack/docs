@@ -233,7 +233,8 @@ To remove local resources, stop the LocalStack container to clear the local Lamb
 
 ## Conclusion 
 
-In this tutorial, you've discovered how the Replicator extension bridges the gap between local and remote cloud resources by mirroring resources from real AWS accounts into your LocalStack instance. You can explore additional use-cases with the Replicator extension, such as:
+In this tutorial, you've discovered how the Replicator extension bridges the gap between local and remote cloud resources by mirroring resources from real AWS accounts into your LocalStack instance.
+You can explore additional use-cases with the Replicator extension, such as:
 
 -   Developing a local Lambda function that interacts with a remote DynamoDB table
 -   Executing a local Athena SQL query in LocalStack, accessing files in a real S3 bucket on AWS
