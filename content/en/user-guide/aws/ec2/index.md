@@ -358,20 +358,20 @@ Keep in mind that this will apply to all instances that are launched in the Loca
 
 ### Operations
 
-The following table explains the emulated action for every API operation.
+The following table explains the emulated action for various API operations.
 
-| Operation       | Notes                                                                                        |
-|:----------------|:---------------------------------------------------------------------------------------------|
-| `CreateImage` | Uses Docker commit to capture a snapshot of a running instance into a new AMI |
-| `CopyImage` | ... |
-| `DescribeImages` | Retrieves a list of Docker images that can be used as AMIs |
-| `ImportImage` | ... |
-| `RegisterImage` | ... |
-| `DescribeInstances`| Describes both mocked and Docker-backed instances. Docker-backed instances are marked with the resource tag `ec2_vm_manager:docker` |
-| `RunInstances` | Creates and runs Docker containers that back instances |
-| `StopInstances` | Pauses the Docker containers that back instances |
-| `StartInstances` | Resumes the Docker containers that back instances |
-| `TerminateInstances` | Stops the Docker containers that back instances |
+| Operation             | Notes                                                                                        |
+|:----------------------|:---------------------------------------------------------------------------------------------|
+| `CreateImage`         | Uses Docker commit to capture a snapshot of a running instance into a new AMI |
+| `CopyImage`           | ... |
+| `DescribeImages`      | Retrieves a list of Docker images that can be used as AMIs |
+| `ImportImage`         | ... |
+| `RegisterImage`       | ... |
+| `DescribeInstances`   | Describes both mocked and Docker-backed instances. Docker-backed instances are marked with the resource tag `ec2_vm_manager:docker` |
+| `RunInstances`        | Creates and runs Docker containers that back instances |
+| `StopInstances`       | Pauses the Docker containers that back instances |
+| `StartInstances`      | Resumes the Docker containers that back instances |
+| `TerminateInstances`  | Stops the Docker containers that back instances |
 
 
 
@@ -427,42 +427,37 @@ You can download the images for some OSs below:
 
 {{< tabpane text=true >}}
 
-{{< tab header="Ubuntu" >}}
-    <p>
-    Canonical provides official Ubuntu images at <a href="https://cloud-images.ubuntu.com/">cloud-images.ubuntu.com</a>.
-    </p>
+{{% tab "Ubuntu" %}}
+Canonical provides official Ubuntu images at [cloud-images.ubuntu.com](https://cloud-images.ubuntu.com/).
 
-    <p>
-    Please use the images in qcow2 format ending in <code>.img</code>.
-    The default login account is <code>ubuntu</code>.
-    </p>
+Please use the images in qcow2 format ending in `.img`.
+The default login account is `ubuntu`.
+{{% /tab %}}
+
+{{< tab "Debian" >}}
+<p>
+Debian provides cloud images for direct download at <a href="http://cdimage.debian.org/cdimage/cloud/">cdimage.debian.org/cdimage/cloud</a>.
+</p>
+
+<p>
+Please use the <code>genericcloud</code> image in qcow2 format. The default login account is <code>debian</code>.
+</p>
 {{< /tab >}}
 
-{{< tab header="Debian" >}}
-    <p>
-    Debian provides cloud images for direct download at <a href="http://cdimage.debian.org/cdimage/cloud/">cdimage.debian.org/cdimage/cloud</a>.
-    </p>
+{{< tab "Fedora" >}}
+<p>
+The Fedora project maintains the official cloud images at <a href="https://fedoraproject.org/cloud/download">fedoraproject.org/cloud/download</a>.
+</p>
 
-    <p>
-    Please use the <code>genericcloud</code> image in qcow2 format. The default login account is <code>debian</code>.
-    </p>
+<p>
+Please use the qcow2 images. The default login account is <code>fedora</code>.
+</p>
 {{< /tab >}}
 
-    {{< tab header="Fedora" >}}
-    <p>
-    The Fedora project maintains the official cloud images at <a href="https://fedoraproject.org/cloud/download">fedoraproject.org/cloud/download</a>.
-    </p>
+{{% tab "Microsoft Windows" %}}
+An evaluation version of Windows Server 2012 R2 is provided by [Cloudbase Solutions](https://cloudbase.it/windows-cloud-images/).
+{{% /tab %}}
 
-    <p>
-    Please use the qcow2 images. The default login account is <code>fedora</code>.
-    </p>
-    {{< /tab >}}
-
-    {{< tab header="Microsoft Windows" >}}
-    <p>
-    An evaluation version of Windows Server 2012 R2 is provided by <a href="https://cloudbase.it/windows-cloud-images/">Cloudbase Solutions</a>.
-    </p>
-    {{< /tab >}}
 {{< /tabpane >}}
 
 
@@ -492,11 +487,17 @@ Please express your interest for this feature in [this](#TODO) backlog issue.
 
 ### Operations
 
-The following table explains the emulated action for every API operation.
+The following table explains the emulated action for various API operations.
 
-| Operation       | Notes                                                                                        |
-|:----------------|:---------------------------------------------------------------------------------------------|
-|  |  |
+| Operation             | Notes                                                                                        |
+|:----------------------|:---------------------------------------------------------------------------------------------|
+| `DescribeImages`      |  |
+| `RunInstances`        |  |
+| `StartInstances`      |  |
+| `StopInstances`       |  |
+| `RebootInstances`     |  |
+| `TerminateInstances`  |  |
+| `CreateVolume`        |  |
 
 
 ## Resource Browser
