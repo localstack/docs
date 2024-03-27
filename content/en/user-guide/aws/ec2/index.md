@@ -382,37 +382,91 @@ The Libvirt VM manager is a preview feature.
 {{< /alert >}}
 
 The Libvirt VM manager uses the [Libvirt](https://libvirt.org/index.html) API to create fully virtualized EC2 resources.
-LocalStack Pro supports the QEMU/KVM hypervisor.
+LocalStack Pro supports the KVM-accelerated QEMU hypervisor on Linux hosts.
 
-(Add Libvirt setup, KVM/QEMU installation and socket mounting info)
-(Document about creating the storage pool directory)
+Installation steps for QEMU/KVM will vary based on the Linux distribution on the host machine.
+On Debian/Ubuntu-based distributions, you can run:
+
+{{< command >}}
+$ sudo apt install -y qemu-kvm libvirt-daemon-system
+{{< /command >}}
+
+To check CPU support for virtualization, run:
+{{< command >}}
+$ kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+{{< /command >}}
+
+{{< alert title="Hint" color="success" >}}
+You may also need to enable virtualization support at hardware level.
+This is often labelled as 'Enable Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
+{{< /alert >}}
+
+LocalStack requires the Libvirt socket file on the host to be mounted inside the container.
+This can be done by including the volume mounts when the LocalStack container is started.
+
+If you are using the [Docker Compose template]({{< ref "installation#starting-localstack-with-docker-compose" >}}), include the following line in `services.localstack.volumes` list:
+
+```text
+"/var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock"
+```
+
+If you are using [Docker CLI]({{< ref "installation#starting-localstack-with-docker" >}}), include the following parameter in `docker run`:
+
+```text
+-v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock
+```
 
 
 ### AMIs
 
-(Talk about the bring-your-own-image model, storage pools, volumes)
+All qcow2 images with cloud-init support can be used as AMIs.
+
+You can download the images for some OSs below:
 
 {{< tabpane text=true >}}
 
 {{< tab header="Ubuntu" >}}
-https://cloud-images.ubuntu.com/
+    <p>
+    Canonical provides official Ubuntu images at <a href="https://cloud-images.ubuntu.com/">cloud-images.ubuntu.com</a>.
+    </p>
+
+    <p>
+    Please use the images in qcow2 format ending in <code>.img</code>.
+    The default login account is <code>ubuntu</code>.
+    </p>
 {{< /tab >}}
 
 {{< tab header="Debian" >}}
-http://cdimage.debian.org/cdimage/cloud/
+    <p>
+    Debian provides cloud images for direct download at <a href="http://cdimage.debian.org/cdimage/cloud/">cdimage.debian.org/cdimage/cloud</a>.
+    </p>
+
+    <p>
+    Please use the <code>genericcloud</code> image in qcow2 format. The default login account is <code>debian</code>.
+    </p>
 {{< /tab >}}
 
-{{< tab header="Fedora" >}}
-https://fedoraproject.org/cloud/download
-{{< /tab >}}
+    {{< tab header="Fedora" >}}
+    <p>
+    The Fedora project maintains the official cloud images at <a href="https://fedoraproject.org/cloud/download">fedoraproject.org/cloud/download</a>.
+    </p>
 
-{{< tab header="Windows" >}}
-https://cloudbase.it/windows-cloud-images/  Cloudbase Solutions provides the last available trial version of Windows Server 2012 R2.
-{{< /tab >}}
+    <p>
+    Please use the qcow2 images. The default login account is <code>fedora</code>.
+    </p>
+    {{< /tab >}}
 
+    {{< tab header="Microsoft Windows" >}}
+    <p>
+    An evaluation version of Windows Server 2012 R2 is provided by <a href="https://cloudbase.it/windows-cloud-images/">Cloudbase Solutions</a>.
+    </p>
+    {{< /tab >}}
 {{< /tabpane >}}
 
 
+(Talk about the bring-your-own-image model, storage pools, volumes)
 
 ### Instances
 
