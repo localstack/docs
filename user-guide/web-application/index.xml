@@ -68,69 +68,201 @@ A user can find their personal auth token either in the &amp;lsquo;Auth Token&am
 &lt;h3 id="sunsetting-legacy-api-keys">Sunsetting legacy API keys&lt;/h3>
 &lt;p>In this transition period we continue to support legacy API keys.
 We will gradually phase them out over the next months, helping customers to smoothly transition over to the new license management.&lt;/p></description></item><item><title>User-Guide: Resource Browser</title><link>/user-guide/web-application/resource-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/resource-browser/</guid><description>
-&lt;p>The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building &amp;amp; testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources locally in a LocalStack container on your local machine.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building &amp;amp; testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources in a LocalStack container on your local machine.&lt;/p>
 &lt;img src="resource-browser.png" alt="LocalStack Web Application's Resource Browsers outlining various local AWS services" title="Resource Browser" width="900" />
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
-&lt;ul>
-&lt;li>If you encounter a &lt;code>Network Failure&lt;/code> error message while accessing the Resource Browser, it is likely that the LocalStack container is not running or the instance is not reachable at the endpoint specified in the instance bookmark.&lt;/li>
-&lt;/ul>
-&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-&lt;ul>
-&lt;li>
-&lt;p>An AWS region dropdown menu in the dashboard is located on the top right of the page. You can select your desired region to ensure that you can view your resources. If you cannot view resources that you have recently created, you should verify that you are checking the resources in the correct region.&lt;/p>
-&lt;/li>
-&lt;li>
 &lt;p>The Resource Browser provide an experience similar to the AWS Management Console. However, the Resource Browser is not a replacement for the AWS Management Console and only replicate some of the features of the AWS Management Console. We recommend using our &lt;a href="https://docs.localstack.cloud/user-guide/integrations/">integrations&lt;/a> to create your resources, with the Resource Browser being used for quick viewing and management of your resources.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>To view the running services in your LocalStack container, you can use the &lt;a href="https://app.localstack.cloud/status">System Status&lt;/a>. This view provides a quick overview of the running services in your LocalStack container. To get a detailed telemetry of your API calls to your LocalStack containers, check out &lt;a href="https://docs.localstack.cloud/user-guide/web-application/stack-insights/">Stack Insights&lt;/a>.&lt;/p>
-&lt;/li>
-&lt;/ul>
+&lt;p>The LocalStack Web Application connects to your LocalStack container and retrieves the information about your local resources directly via &lt;code>localhost&lt;/code> without using the internet. None of the information is sent to the internet, or stored on any external servers maintained by LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Switching AWS regions&lt;/h4>
+An AWS region dropdown menu in the dashboard is located on the top right of the page. You can select your desired region to ensure that you can view your resources. If you cannot view resources that you have recently created, you should verify that you are checking the resources in the correct region.
 &lt;/div>
 &lt;h2 id="supported-services">Supported services&lt;/h2>
-&lt;p>We currently support the following local AWS services in our Resource Browser:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/application-autoscaling">Application Auto Scaling&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/apigateway/">API Gateway&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/athena/databases">Athena&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/appsync">AppSync&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/athena/databases">Athena&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/backup/plans">Backup&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/cloudformation/stacks">CloudFormation&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/cloudfront/distributions">CloudFront&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/cloudtrail/events">CloudTrail&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/events">CloudWatch Events&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/cloudwatch/groups">CloudWatch Logs&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/monitoring">CloudWatch Metrics&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/cognito-idp">Cognito&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/dynamodb">DynamoDB&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/ec2">EC2&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/ecr/repositories">ECR&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/ecs">ECS&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/elasticache">ElastiCache&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/eventbridge">EventBridge&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/glue">Glue&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/iam">IAM&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/kafka">Kafka&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/kinesis">Kinesis&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/kms">KMS&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/lambda/functions">Lambda&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/opensearch/domains">OpenSearch&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/route53">Route 53&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/rds">RDS&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/sagemaker/models">Sagemaker&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/s3">S3&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/ses/">SES&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/sqs">SQS&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/sns">SNS&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/secretsmanager">Secrets Manager&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/stepfunctions">Step Functions&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/ssm">Systems Manager&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://app.localstack.cloud/inst/default/resources/timestream">TimestreamDB&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Custom local endpoint</title><link>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</guid><description>
+&lt;p>The Resource Browser supports the following AWS services:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Resource Group&lt;/th>
+&lt;th>Service&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>App Integration&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/apigateway">API Gateway&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/mq/brokers">Amazon MQ&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/mwaa/environments">Amazon MWAA&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/sns">Amazon SNS&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/sqs">Amazon SQS&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/application-autoscaling">Application Auto Scaling&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/stepfunctions">AWS Step Functions&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Compute&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/ec2">Amazon EC2&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/ecs">Amazon ECS&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/ecr/repositories">Amazon ECR&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/eks/clusters">Amazon EKS&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/lambda/functions">AWS Lambda&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Management/Governance&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/cloudformation">AWS CloudFormation&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/cloudwatch">Amazon CloudWatch&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/cloudtrail/events">Amazon CloudTrail&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/events">Amazon EventBridge (CloudWatch Events)&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/ssm">AWS Systems Manager (SSM)&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Business Applications&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/ses">Amazon SES&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Developer Tools&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/appconfig/applications">AWS AppConfig&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/codecommit/repositories">AWS CodeCommit&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Front-end Web &amp;amp; Mobile&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/amplify/apps">AWS Amplify&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/appsync">AWS AppSync&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Security Identity Compliance&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/acm/certificates">AWS ACM (Certificate Manager)&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/cognito-idp">Amazon Cognito Identity&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/iam">AWS IAM (Identity and Access Management)&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/kms">AWS Key Management Service (KMS)&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/secretsmanager">AWS Secrets Manager&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Storage&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/s3">Amazon S3&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/backup/plans">AWS Backup&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Machine Learning&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/sagemaker/models">Amazon SageMaker&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/transcribe/transcriptionjobs">Amazon Transcribe&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Database&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/dynamodb">Amazon DynamoDB&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/rds">Amazon RDS&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/elasticache">Amazon ElastiCache&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/qldb/ledgers">Amazon QLDB&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/docdb/clusters">Amazon DocumentDB&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Analytics&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/athena/databases">Amazon Athena&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/kinesis">Amazon Kinesis&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/kafka">Amazon MSK (Managed Streaming for Kafka)&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/glue">AWS Glue&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/route53">Amazon Route 53&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/cloudfront/distributions">Amazon CloudFront&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;a href="https://app.localstack.cloud/inst/default/resources/opensearch/domains">Amazon OpenSearch Service&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
+&lt;p>If you encounter a &lt;code>Network Failure&lt;/code> error message while accessing the Resource Browser, it is likely that the LocalStack container is not running or the instance is not reachable at the endpoint specified in the instance bookmark.&lt;/p></description></item><item><title>User-Guide: Custom local endpoint</title><link>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</guid><description>
 &lt;p>To connect the LocalStack web app to a LocalStack instance running on a custom local endpoint, configure the endpoint in the instance bookmarks on the &lt;a href="https://app.localstack.cloud/instances">LocalStack Instances&lt;/a> page.&lt;/p>
 &lt;h2 id="connecting-to-a-localstack-instance-on-a-different-machine">Connecting to a LocalStack instance on a different machine&lt;/h2>
 &lt;p>To ensure that the Web user interface can connect with your running LocalStack instance, you would need to configure the endpoint URL so that the server&amp;rsquo;s SSL certificate matches the hostname/IP address of the endpoint URL. This situation arises when users configure the endpoint URL to be something like &lt;code>https://myhost:4566&lt;/code> or use an IP address like &lt;code>https://1.2.3.4:4566&lt;/code>. Websites with an &lt;code>https://...&lt;/code> URL can only request other endpoints using HTTPS (i.e., not on &lt;code>http://&lt;/code>). Additionally, while requesting an HTTPS page, the SSL certificate must match the hostname (i.e., &lt;code>localhost.localstack.cloud&lt;/code> in our case).&lt;/p>
