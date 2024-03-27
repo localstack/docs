@@ -171,11 +171,11 @@ The following output would be retrieved:
 
 You can then send a message to the SQS queue to trigger the local Lambda function:
 
-```bash 
+{{< command >}}
 awslocal sqs send-message \
     --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/test-local-proxy \
     --message-body '{}'
-```
+{{< /command >}}
 
 Upon successful execution, you'll receive a message ID and MD5 hash of the message body.
 
