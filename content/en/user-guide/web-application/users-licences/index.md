@@ -17,6 +17,10 @@ To invite a user, provide the user's name and email address.
 If the invitee does not have a LocalStack account yet, an invitation to create an account will be sent to the provided email address.
 The user's name is used as placeholder for easier managing and will be replaced by the actual username once the account is created.
 
+{{< alert title="Note" >}}
+Administrators can invite users to a workspace, and can freely assign and unassign licenses or legacy API keys to users. LocalStack automatically assigns a license to the user who is making the purchase, which can be reassigned again with no restrictions.
+{{< /alert >}}
+
 ### Removing Users
 A user can be removed from a workspace by clicking the user entry in the list to show the user's details.
 This users detail view also shows the 'Remove User from Workspace' button.
