@@ -32,7 +32,8 @@ This means your local setup can interact with real cloud resources.
 
 The AWS Replicator extension allows you to forward specific requests from LocalStack to AWS, eliminating the need for a complex proxy setup through AWS SSM or comparable tools.
 
-In this tutorial, you'll go through an example where you'll trigger a local Lambda function with a message sent to a remote SQS queue. You'll also learn how to install the Replicator extension and use its different modes to seamlessly work in a hybrid environment.
+In this tutorial, you will go through an example where you will trigger a local Lambda function with a message sent to a remote SQS queue.
+Additionally, you will also learn how to install the Replicator extension and utilize its different modes to seamlessly work in a hybrid environment.
 
 ## Prerequisites
 
