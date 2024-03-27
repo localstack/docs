@@ -51,7 +51,8 @@ To install the Replicator Extension, follow these steps:
 2.  Visit the [Extensions library](https://app.localstack.cloud/extensions/library) page on the LocalStack Web Application.
 3.  Scroll down to find the **AWS replicator** card, then click on the **Install on Instance** button.
 
-Once the installation is complete, you'll notice that your LocalStack container has restarted with the Replicator extension successfully installed. To confirm the installation, execute the following command:
+Once the installation is complete, you will notice that your LocalStack container has restarted with the Replicator extension successfully installed.
+To confirm the installation, execute the following command:
 
 ```bash 
 $ localstack extensions list
