@@ -126,9 +126,9 @@ Once the Lambda function is successfully created, you'll see output similar to t
 
 You can create the local SQS queue named `test-local-proxy` by executing the following command:
 
-```bash 
+{{< command >}}
 $ awslocal sqs create-queue --queue-name test-local-proxy
-```
+{{< /command >}}
 
 The output will display the Queue URL:
 
