@@ -209,7 +209,7 @@ The command provided includes several flags to create the Lambda function. Here'
 - `package-type`: Sets the package type to Image to indicate that the Lambda function will be created using a container image.
 - `function-name`: Specifies the name of the Lambda function you want to create.
 - `runtime`: Defines the runtime environment for the Lambda function. In this case, it's specified as provided, indicating that the container image will provide the runtime.
-- `role`: Sets the IAM role ARN that the Lambda function should assume. In the example, a mock role ARN is used. For an actual role, please refer to the [IAM documentation]({{< ref "iam" >}}).
+- `role`: Sets the IAM role ARN that the Lambda function should assume. In the example, a mock role ARN is used. For an actual role, please refer to the [IAM documentation]({{< ref "user-guide/aws/iam" >}}).
 
 To invoke the Lambda function, you can use the `invoke` command:
 
