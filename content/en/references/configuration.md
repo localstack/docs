@@ -113,6 +113,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `DYNAMODB_CORS` | `*` | Enable CORS support for specific allow-list list the domains separated by `,` use `*` for public access (default is `*`) |
 | `DYNAMODB_REMOVE_EXPIRED_ITEMS` | `0`\|`1` | Enables [Time to Live (TTL)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html) feature |
 
+### ECR 
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `ECR_ENDPOINT_STRATEGY` | `domain` (default)\|`off`\| | Governs how the default ECR endpoints are returned |
+
 ### ECS
 
 | Variable | Example Values | Description |
@@ -120,6 +126,7 @@ This section covers configuration options that are specific to certain AWS servi
 | `ECS_REMOVE_CONTAINERS` | `0`\|`1` (default) | Remove Docker containers associated with ECS tasks after execution. Disabling this and dumping container logs might help with troubleshooting failing ECS tasks. |
 | `ECS_DOCKER_FLAGS` | `--privileged`, `--dns 1.2.3.4` | Additional flags passed to Docker when creating ECS task containers. Same restrictions as `LAMBDA_DOCKER_FLAGS`. |
 | `ECS_DISABLE_AWS_ENDPOINT_URL` | `0` (default) \| `1` | Whether to disable injecting the environment variable `AWS_ENDPOINT_URL`, which automatically configures [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html). |
+| `ECS_TASK_EXECUTOR` | `kubernetes` | Whether to run  ECS tasks when LocalStack is deployed on Kubernetes. Tasks are added to ELB load balancer target groups. |
 
 ### EC2
 
