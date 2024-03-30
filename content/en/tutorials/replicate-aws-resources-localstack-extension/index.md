@@ -72,10 +72,14 @@ After verifying the successful installation, you can shut down the LocalStack co
 In this tutorial, you will set up a basic example consisting of:
 
 -   A Lambda function named `func1` that prints a simple statement when invoked.
--   An SQS queue named `test-local-proxy` where messages are sent.
+-   An SQS queue named `test-queue` where messages are sent.
 -   An event source mapping that triggers the Lambda function when a message is sent to the SQS queue.
 
-In this scenario, you will create the SQS queue on your local machine and the remote cloud to showcase how you can switch between the two with the AWS Replicator extension. 
+The basic architecture for the scenario is outlined in the figure below. It shows the relationship between the resources deployed in the LocalStack container, the LocalStack AWS Proxy, and the remote AWS account.
+
+<img src="aws-proxy-sqs-lambda-sample.png" alt="AWS Replicator sample use case" title="AWS Replicator sample use case" width="500" />
+
+In the following sections, you will create the SQS queue on your local machine and the remote cloud to showcase how you can switch between the two with the AWS Replicator extension.
 
 ### Create the Lambda function
 
@@ -127,17 +131,17 @@ Once the Lambda function is successfully created, you will see output similar to
 
 ### Create the SQS queue
 
-You can create the local SQS queue named `test-local-proxy` by executing the following command:
+You can create the local SQS queue named `test-queue` by executing the following command:
 
 {{< command >}}
-$ awslocal sqs create-queue --queue-name test-local-proxy
+$ awslocal sqs create-queue --queue-name test-queue
 {{< /command >}}
 
 The output will display the Queue URL:
 
 ```bash 
 {
-    "QueueUrl": "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/test-local-proxy"
+    "QueueUrl": "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/test-queue"
 }
 ```
 
@@ -146,7 +150,7 @@ Additionally, you can create the remote SQS queue on the real AWS cloud to test 
 Use the following command to set up the SQS queue on AWS:
 
 {{< command >}}
-$ aws sqs create-queue --queue-name test-local-proxy
+$ aws sqs create-queue --queue-name test-queue
 {{< /command >}}
 
 ### Invoke the Lambda function 
@@ -157,7 +161,7 @@ Before invoking, set up an event source mapping between the SQS queue and the La
 $ awslocal lambda create-event-source-mapping \
     --function-name func1 \
     --batch-size 1 \
-    --event-source-arn arn:aws:sqs:us-east-1:000000000000:test-local-proxy
+    --event-source-arn arn:aws:sqs:us-east-1:000000000000:test-queue
 {{< /command >}}
 
 The following output would be retrieved:
@@ -166,7 +170,7 @@ The following output would be retrieved:
 {
     ...
     "MaximumBatchingWindowInSeconds": 0,
-    "EventSourceArn": "arn:aws:sqs:us-east-1:000000000000:test-local-proxy",
+    "EventSourceArn": "arn:aws:sqs:us-east-1:000000000000:test-queue",
     "FunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:func1",
     ..
     "FunctionResponseTypes": []
@@ -177,7 +181,7 @@ You can then send a message to the SQS queue to trigger the local Lambda functio
 
 {{< command >}}
 awslocal sqs send-message \
-    --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/test-local-proxy \
+    --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/test-queue \
     --message-body '{}'
 {{< /command >}}
 
@@ -210,7 +214,7 @@ To run the AWS Replicator extension:
   services:
     sqs:
       resources:
-        - '.*:test-local-proxy'
+        - '.*:test-queue'
    ```
 - Save the configuration to enable the AWS Replicator extension. Once enabled, you will see the proxy status as **enabled**.
   <img src="enabled-aws-replicator-extension.png" alt="Enabled AWS Replicator extension" title="Enabled AWS Replicator extension" width="900" />
@@ -218,7 +222,7 @@ To run the AWS Replicator extension:
 To invoke the local Lambda function with the remote SQS queue:
 
 -   Navigate to your AWS Management Console and access **Simple Queue Service**.
--   Select the **test-local-proxy** queue.
+-   Select the **test-queue** queue.
 -   Send a message with a body (e.g., `Hello LocalStack`) by clicking **Send Message**.
 
 You will observe the local Lambda function being invoked once again, with corresponding debug messages visible in the logs.
