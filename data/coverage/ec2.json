@@ -1078,7 +1078,7 @@
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": true,
-        "snapshot_tested": true,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -2637,8 +2637,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -3496,6 +3496,18 @@
     },
     {
       "DescribeLockedSnapshots": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DescribeMacHosts": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -6260,7 +6272,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -6871,8 +6883,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -7524,98 +7536,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -7695,7 +7617,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -7852,98 +7774,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8063,7 +7895,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -8210,98 +8042,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8578,6 +8320,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
             "test": "test_describe",
             "response": "200",
@@ -8654,98 +8406,8 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8783,7 +8445,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -9260,98 +8922,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -9420,98 +8992,8 @@
       "ClientToken, VpcId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -9526,98 +9008,8 @@
       "CidrBlock, Egress, NetworkAclId, Protocol, RuleAction, RuleNumber": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -9817,7 +9209,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -10008,98 +9400,8 @@
       "DestinationCidrBlock, GatewayId, RouteTableId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -10112,98 +9414,8 @@
       "DestinationCidrBlock, NatGatewayId, RouteTableId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -10273,7 +9485,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -10496,98 +9708,8 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -10904,98 +10026,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -11094,6 +10126,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
             "test": "test_describe",
             "response": "200",
@@ -11155,7 +10197,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -11594,76 +10636,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
             "response": "200",
@@ -11680,26 +10652,6 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -12184,76 +11136,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
             "response": "200",
@@ -12270,26 +11152,6 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -12349,7 +11211,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -12721,7 +11583,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -12878,8 +11740,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13148,8 +12010,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13216,8 +12078,8 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13267,7 +12129,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -13277,7 +12139,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -13985,7 +12847,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -14095,7 +12957,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -14105,7 +12967,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -14115,7 +12977,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -14125,7 +12987,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -14292,8 +13154,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -15410,8 +14272,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -15468,6 +14340,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/redshift/test_redshift.py::TestRedshift::test_create_cluster",
+            "test": "test_create_cluster",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       }
@@ -15501,7 +14383,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -15878,8 +14760,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16061,7 +14943,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -16558,8 +15440,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16744,13 +15626,13 @@
       "AttributeNames": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaRuntimesCommon::test_echo_invoke[nodejs20.x]",
-            "test": "test_echo_invoke[nodejs20.x]",
+            "node_id": "LocalStack Community: tests/aws/services/opensearch/test_opensearch.py::TestOpensearchProvider::test_list_versions",
+            "test": "test_list_versions",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -17021,7 +15903,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -17442,98 +16324,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17552,8 +16344,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17713,7 +16505,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -18059,7 +16851,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -18237,7 +17029,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -18633,7 +17425,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -18965,7 +17757,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -19362,16 +18154,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_rds_cluster_with_kms",
-            "test": "test_rds_cluster_with_kms",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_redshift.py::TestCfnRedshiftSubnet::test_docdb_resources",
             "test": "test_docdb_resources",
             "response": "200",
@@ -19584,6 +18366,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsMysql::test_create_mysql[False-5.7.39-MariaDB]",
             "test": "test_create_mysql[False-5.7.39-MariaDB]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsMysql::test_create_mysql[True-8.0.30-MySQL Community Server]",
+            "test": "test_create_mysql[True-8.0.30-MySQL Community Server]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -19882,6 +18674,26 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresCrossAccount::test_create_restore_snapshot_cluster_cross_account",
+            "test": "test_create_restore_snapshot_cluster_cross_account",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresCrossAccount::test_create_restore_snapshot_instance_cross_account",
+            "test": "test_create_restore_snapshot_instance_cross_account",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresLambdaExtensions::test_lambda_extensions[10.23]",
             "test": "test_lambda_extensions[10.23]",
             "response": "200",
@@ -19984,6 +18796,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMysql::test_data_api[False]",
             "test": "test_data_api[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMysql::test_data_api[True]",
+            "test": "test_data_api[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..columnMetadata..precision']",
@@ -20121,7 +18943,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           }
@@ -20628,6 +19450,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -20914,6 +19746,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_private_hosted_zone",
             "test": "test_dns_namespace_private_hosted_zone",
             "response": "200",
@@ -21068,16 +19910,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_rds_cluster_with_kms",
-            "test": "test_rds_cluster_with_kms",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
             "test": "test_create_misc_resources",
             "response": "200",
@@ -21170,6 +20002,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
             "test": "test_route53_elb_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -21878,6 +20720,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsMysql::test_create_mysql[True-8.0.30-MySQL Community Server]",
+            "test": "test_create_mysql[True-8.0.30-MySQL Community Server]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_add_role_to_db_cluster",
             "test": "test_add_role_to_db_cluster",
             "response": "200",
@@ -22158,6 +21010,26 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresCrossAccount::test_create_restore_snapshot_cluster_cross_account",
+            "test": "test_create_restore_snapshot_cluster_cross_account",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresCrossAccount::test_create_restore_snapshot_instance_cross_account",
+            "test": "test_create_restore_snapshot_instance_cross_account",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgresLambdaExtensions::test_lambda_extensions[10.23]",
             "test": "test_lambda_extensions[10.23]",
             "response": "200",
@@ -22260,6 +21132,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMysql::test_data_api[False]",
             "test": "test_data_api[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMysql::test_data_api[True]",
+            "test": "test_data_api[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..columnMetadata..precision']",
@@ -22427,7 +21309,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -22704,98 +21586,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
-            "test": "test_create_task_with_secrets[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[True]",
-            "test": "test_create_task_with_secrets[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_environment_variable_expansion",
-            "test": "test_environment_variable_expansion",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..cpu', '$..memory', '$..registeredBy', '$..requiresAttributes', '$..containerDefinitions..systemControls', '$.environment.AWS_ACCESS_KEY_ID', '$.environment.AWS_ENDPOINT_URL', '$.environment.AWS_SECRET_ACCESS_KEY', '$.environment.LOCALSTACK_HOSTNAME', '$.environment.AWS_CONTAINER_CREDENTIALS_RELATIVE_URI', '$.environment.ECS_AGENT_URI', '$.environment.ECS_CONTAINER_METADATA_URI', '$.environment.ECS_CONTAINER_METADATA_URI_V4', '$.environment.HOSTNAME']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_get_aws_execution_env_from_task[FARGATE]",
-            "test": "test_get_aws_execution_env_from_task[FARGATE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-False]",
-            "test": "test_read_from_json_secret[False-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[False-True]",
-            "test": "test_read_from_json_secret[False-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_read_from_json_secret[True-False]",
-            "test": "test_read_from_json_secret[True-False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..imageDigest', '$..managedAgents', '$..name', '$..networkInterfaces', '$..runtimeId', '$..attachments..details', '$..attachments..details..value', '$..attachments..status', '$..availabilityZone', '$..enableExecuteCommand', '$..executionStoppedAt', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..startedBy', '$..version', '$..desiredStatus', '$..stoppedReason', '$..stopCode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_run_simple_task",
             "test": "test_run_simple_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -22921,7 +21713,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -22951,7 +21743,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -23108,8 +21900,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -23395,7 +22187,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -23455,7 +22247,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -23465,7 +22257,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -23475,7 +22267,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -23485,7 +22277,7 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -23652,8 +22444,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -24424,6 +23216,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[ec2_ssh_connection2]",
+            "test": "test_connect_to_localstack[ec2_ssh_connection2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_ssh_key_pairs[ec2_ssh_connection0]",
             "test": "test_ssh_key_pairs[ec2_ssh_connection0]",
             "response": "200",
@@ -24549,7 +23351,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -24812,8 +23614,8 @@
       "AllocationId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_healthcheck_interval[TCP_UDP-False]",
+            "test": "test_target_group_healthcheck_interval[TCP_UDP-False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -26312,6 +25114,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[ec2_ssh_connection1]",
             "test": "test_connect_to_localstack[ec2_ssh_connection1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[ec2_ssh_connection2]",
+            "test": "test_connect_to_localstack[ec2_ssh_connection2]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
