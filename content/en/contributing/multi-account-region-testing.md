@@ -31,7 +31,7 @@ When writing an AWS validated test case, you need to properly configure IAM role
 
     For example:
     ```python
-    connect_to.with_assumed_role(role_arn="role-arn", service_principal=ServicePrincial.service_name, region_name="us-east-1").lambda_
+    connect_to.with_assumed_role(role_arn="role-arn", service_principal=ServicePrincial.service_name, region_name=region_name).lambda_
     ```
     
 - When there is no role specified, you should use the source arn conceptually if cross-account is allowed. 
