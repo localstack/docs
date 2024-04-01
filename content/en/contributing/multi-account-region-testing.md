@@ -17,28 +17,21 @@ This role should be in the source account.
 When writing an AWS validated test case, you need to properly configure IAM roles.
 
     For example: 
-    In the test case [`test_api_gateway_kinesis_integration`](https://github.com/localstack/localstack/blob/0c2d8a103a9a06ade4ef1c18eacf5888d2b8adcf/tests/aws/services/apigateway/test_apigateway_basic.py#L2047) we have specified a [role](https://github.com/localstack/localstack/blob/ae31f63bb6d8254edc0c85a66e3c36cd0c7dc7b0/tests/aws/services/apigateway/test_apigateway_basic.py#L2017-L2022) which has permissions to access the target kinesis account.
+    In the test case [`test_apigateway_with_step_function_integration`](https://github.com/localstack/localstack/blob/628b96b44a4fc63d880a4c1238a4f15f5803a3f2/tests/aws/services/apigateway/test_apigateway_basic.py#L999) we have specified a [role](https://github.com/localstack/localstack/blob/628b96b44a4fc63d880a4c1238a4f15f5803a3f2/tests/aws/services/apigateway/test_apigateway_basic.py#L1029-L1034) which has permissions to access the target step function account.
     ```python
-    result = self.connect_api_gateway_to_kinesis(
-            client,
-            api_name,
-            stream_name,
-            region_name,
-            role_arn,
-        )
+    role_arn = create_iam_role_with_policy(
+        RoleName=f"sfn_role-{short_uid()}",
+        PolicyName=f"sfn-role-policy-{short_uid()}",
+        RoleDefinition=STEPFUNCTIONS_ASSUME_ROLE_POLICY,
+        PolicyDefinition=APIGATEWAY_LAMBDA_POLICY,
+    )
     ```
 
 - While having an inter service communication in cross-account, you can create the client using `with_assumed_role(…)`:
 
     For example:
     ```python
-    result = self.connect_api_gateway_to_kinesis(
-            client,
-            api_name,
-            stream_name,
-            region_name,
-            role_arn,
-        )
+    connect_to.with_assumed_role(role_arn="role-arn", service_principal=ServicePrincial.service_name, region_name="us-east-1").lambda_
     ```
     
 - When there is no role specified, you should use the source arn conceptually if cross-account is allowed. 
