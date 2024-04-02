@@ -3910,7 +3910,7 @@
             "test": "test_rotate_secret_with_lambda_success[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3920,7 +3920,7 @@
             "test": "test_rotate_secret_with_lambda_success[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -5610,7 +5610,7 @@
             "test": "test_rotate_secret_with_lambda_success[None]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -5620,7 +5620,7 @@
             "test": "test_rotate_secret_with_lambda_success[True]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -12042,7 +12042,7 @@
             "test": "test_rotate_secret_with_lambda_success[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -12052,7 +12052,7 @@
             "test": "test_rotate_secret_with_lambda_success[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13662,7 +13662,7 @@
             "test": "test_rotate_secret_with_lambda_success[None]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13672,7 +13672,7 @@
             "test": "test_rotate_secret_with_lambda_success[True]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -15180,16 +15180,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_lambda_iam",
-            "test": "test_lambda_iam",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_lambda_sqs_destination",
             "test": "test_lambda_sqs_destination",
             "response": "200",
@@ -16503,7 +16493,7 @@
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_lambda_invoke",
             "test": "test_lambda_invoke",
             "response": "400",
-            "error": "ResourceAlreadyExistsException",
+            "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -16637,6 +16627,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_lambda_iam",
+            "test": "test_lambda_iam",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -18840,7 +18840,7 @@
             "test": "test_rotate_secret_with_lambda_success[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18850,7 +18850,7 @@
             "test": "test_rotate_secret_with_lambda_success[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19544,6 +19544,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_s3_bucket_deployed",
+            "test": "test_s3_bucket_deployed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_basic.py::TestAPIGateway::test_api_gateway_lambda_asynchronous_invocation",
@@ -23372,16 +23382,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_sqs_cross_account_receive",
-            "test": "test_sqs_cross_account_receive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.Message', '$..Error.Detail']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_assume_role_cw_logs",
             "test": "test_assume_role_cw_logs",
             "response": "200",
@@ -23417,6 +23417,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -23504,6 +23514,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_lambda_sqs_destination",
             "test": "test_lambda_sqs_destination",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_firehose",
+            "test": "test_sns_firehose",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -25000,16 +25020,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_sqs_cross_account_receive",
-            "test": "test_sqs_cross_account_receive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.Message', '$..Error.Detail']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_assume_role_cw_logs",
             "test": "test_assume_role_cw_logs",
             "response": "200",
@@ -25045,6 +25055,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26474,6 +26494,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaCallingLocalstack::test_manual_endpoint_injection[java11]",
             "test": "test_manual_endpoint_injection[java11]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaCallingLocalstack::test_manual_endpoint_injection[java17]",
+            "test": "test_manual_endpoint_injection[java17]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -28156,7 +28186,7 @@
             "test": "test_rotate_secret_with_lambda_success[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -28166,7 +28196,7 @@
             "test": "test_rotate_secret_with_lambda_success[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Versions..KmsKeyIds']",
+            "snapshot_skipped": "['$..VersionIdsToStages', '$..Versions', '$..VersionId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31244,21 +31274,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_sqs_cross_account_receive",
-            "test": "test_sqs_cross_account_receive",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..Error.Message', '$..Error.Detail']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_lambda_invoke",
-            "test": "test_lambda_invoke",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
