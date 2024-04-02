@@ -3,14 +3,21 @@ title: "CircleCI"
 linkTitle: "CircleCI"
 weight: 4
 description: >
-  Use LocalStack in [Circle CI](https://circleci.com)
+  Use LocalStack in Circle CI
 ---
 
-This page contains easily customisable snippets to show you how to manage Localstack in a Circle CI workflow.
+This page contains easily customisable snippets to show you how to manage LocalStack in a [Circle CI](https://circleci.com) workflow.
+
+
+## Introduction
+
+Circle CI is a continuous integration and continuous delivery (CI/CD) platform which uses a configuration file (usually named `.circleci/config.yml`) to define the build, test, and deployment workflows.
+LocalStack supports CircleCI out of the box and can be easily integrated into your pipeline to run your tests against a local cloud emulator.
+
 
 ## Snippets
 
-### Start up Localstack
+### Start up LocalStack
 
 #### Default
 ```yaml
@@ -49,9 +56,9 @@ workflows:
 ```
 
 ### Configuration
-To configure localstack use `environment` key on the job level or a shell command, where the latter takes higher precedence.
+To configure LocalStack use the `environment` key on the job level or a shell command, where the latter takes higher precedence.
 
-Read more about the config options [here](/references/configuration/).
+Read more about the config options of LocalStack [here](/references/configuration/).
 
 #### Job level
 ```yaml
@@ -74,14 +81,14 @@ jobs:
     executor: localstack/default
     steps:
       - run:
-          name: Configure Localstack
+          name: Configure LocalStack
           command: echo 'export DEBUG=1' >> "$BASH_ENV"
 ...
 ```
 
 ### Configuring a CI key
 
-To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables.
+To enable LocalStack Pro+, you need to add your LocalStack CI key to the project's environment variables.
 The LocalStack container will automatically pick it up and activate the licensed features. 
 
 Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key.
@@ -95,9 +102,9 @@ To add the CI key to your CircleCI project, follow these steps:
 
 <img src="circleci-env-config.png" width="800px" alt="Adding the LocalStack CI key in CircleCI" />
 
-After the above steps, just start up Localstack usign our official orb as usual.
+After the above steps, just start up LocalStack using our official orb as usual.
 
-### Dump Localstack logs
+### Dump LocalStack logs
 ```yaml
 ...
 jobs:
@@ -106,7 +113,7 @@ jobs:
     steps:
 ...
       - run:
-          name: Dump Localstack logs
+          name: Dump LocalStack logs
           command: localstack logs | tee localstack.log
       - store_artifacts:
           path: localstack.log
@@ -114,15 +121,15 @@ jobs:
 ...
 ```
 
-### Store Localstack state
+### Store LocalStack state
 
-You can preserve your AWS infrastructure with Localstack in various ways.
+You can preserve your AWS infrastructure with LocalStack in various ways.
 To be able to use any of the below samples, you must [set a valid CI key](#configuring-a-ci-key).
 
 _Note: For best result we recommend to use a combination of the below techniques and you should familiarise yourself with CircleCI's data persistance approach, see official documentation [here](https://circleci.com/docs/persist-data/)._
 
 #### Workspace
-This strategy persist Localstack's state between jobs for the current workflow.
+This strategy persist LocalStack's state between jobs for the current workflow.
 
 ```yaml
 ...
@@ -131,7 +138,7 @@ jobs:
     executor: localstack/default
     steps:
       ...
-      # Localstack already running and deployed infrastructure
+      # LocalStack already running and deployed infrastructure
       - run:
           name: Export state
           command: localstack state export ls-state.zip
@@ -147,7 +154,7 @@ jobs:
     executor: localstack/default
     steps:
       ...
-      # Localstack already running
+      # LocalStack already running
       - attach_workspace:
           at: .
       - run:
@@ -165,7 +172,7 @@ More information about state import and export [here](/user-guide/state-manageme
 
 #### Cache
 To preserve state between workflow runs, you can take leverage of CircleCI's caching too.
-This strategy will persist Localstack's state for every workflow re-runs, but not for different workflows.
+This strategy will persist LocalStack's state for every workflow re-runs, but not for different workflows.
 
 ```yaml
 ...
@@ -174,8 +181,8 @@ jobs:
     executor: localstack/default
     steps:
       ...
-      # Localstack already running
-      # Let's restore previous workflow run's Localstack state
+      # LocalStack already running
+      # Let's restore previous workflow run's LocalStack state
       - restore_cache:
           # Use latest "ls-state" prefixed cache
           key: ls-state-
@@ -184,7 +191,7 @@ jobs:
           command: test -f ls-state.zip && localstack state import ls-state.zip
       ...
       # Infrastructure had been updated
-      # Let's update cached Localstack state
+      # Let's update cached LocalStack state
       - run:
           name: Export state
           command: localstack state export ls-state.zip
@@ -195,7 +202,7 @@ jobs:
   localstack-do-work:
     executor: localstack/default
     steps:
-      # Localstack already running
+      # LocalStack already running
       - restore_cache:
           # Use latest "ls-state" prefixed cache
           key: ls-state-
@@ -216,14 +223,14 @@ workflows:
 More information about state management [here](/user-guide/state-management/export-import-state).
 
 #### Cloud Pods
-Cloud pods providing an easy solution to persist Localstack's state, even between workflows or projects.
+Cloud pods providing an easy solution to persist LocalStack's state, even between workflows or projects.
 
 Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
 
 ##### Multiple projects
-Update cloud pod in it's own project (ie IaC repo).
+Update or create the cloud pod in it's own project (ie in a separate Infrastructure as Code repo), this would create a base/"golden" cloud pod, which you can use in the future without any configuration or deployment.
 
-_Note: If there is a previously created cloud pod, this step can be skipped._
+_Note: If there is a previously created cloud pod which doesn't need updating this step can be skipped._
 
 ```yaml
 ...
@@ -232,7 +239,7 @@ jobs:
     executor: localstack/default
     steps:
       ...
-      # Localstack already running
+      # LocalStack already running
       - run:
         name: Load state if exists
         command: localstack pod load <POD_NAME> || true
@@ -250,7 +257,7 @@ workflows:
       - localstack-update-cloud-pod
 ```
 
-In a separate project use the "golden" cloud pod as below:
+In a separate project use the previously created "golden" cloud pod as below:
 
 ```yaml
 ...
@@ -259,7 +266,7 @@ jobs:
     executor: localstack/default
     steps:
       ...
-      # Localstack already running
+      # LocalStack already running
       - run:
         name: Load state if exists
         command: localstack pod load <POD_NAME>
@@ -273,7 +280,7 @@ workflows:
 ```
 
 ##### Same project
-To use a dynamically updated cloud pod in multiple workflows in the same project, you must eliminate the race conditions between the update workflow and the others.
+To use a dynamically updated cloud pod in multiple workflows but in the same project, you must eliminate the race conditions between the update workflow and the others.
 
 Before you are able to use any stored artifacts in your pipeline, you must provide either a valid [project API token](https://circleci.com/docs/managing-api-tokens/#creating-a-project-api-token) or a [personal API token](https://circleci.com/docs/managing-api-tokens/#creating-a-personal-api-token) to CircleCI.
 
@@ -299,7 +306,7 @@ jobs:
     executor: localstack/default
     steps:
       ...
-      # Localstack already running
+      # LocalStack already running
       - run:
         name: Load state if exists
         command: localstack pod load <POD_NAME>
@@ -324,7 +331,7 @@ jobs:
     executor: localstack/default
     steps:
       ...
-      # Localstack already running
+      # LocalStack already running
       - run:
         name: Load state if exists
         command: localstack pod load <POD_NAME> || true
