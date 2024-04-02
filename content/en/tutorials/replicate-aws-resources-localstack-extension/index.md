@@ -14,7 +14,7 @@ platform:
 deployment:
 - AWS CLI
 pro: true
-leadimage: ""
+leadimage: "aws-replicator-extension-tutorial-cover.png"
 ---
 
 ## Introduction
@@ -77,7 +77,7 @@ In this tutorial, you will set up a basic example consisting of:
 
 The basic architecture for the scenario is outlined in the figure below. It shows the relationship between the resources deployed in the LocalStack container, the LocalStack AWS Proxy, and the remote AWS account.
 
-<img src="aws-proxy-sqs-lambda-sample.png" alt="AWS Replicator sample use case" title="AWS Replicator sample use case" width="500" />
+<img src="aws-proxy-sqs-lambda-sample.png" alt="AWS Replicator sample use case" title="AWS Replicator sample use case" width="700" />
 
 In the following sections, you will create the SQS queue on your local machine and the remote cloud to showcase how you can switch between the two with the AWS Replicator extension.
 
