@@ -2621,4 +2621,162 @@ alt="State Merge mechanisms with LocalStack Cloud Pods" width="80%"/>
 &lt;h2 id="conclusion">Conclusion&lt;/h2>
 &lt;p>In this tutorial, we have demonstrated how to deploy a containerized service locally using Amazon ECS, ECR, and LocalStack. We have also shown how you can use CloudFormation templates with the awslocal CLI to deploy your local AWS infrastructure.&lt;/p>
 &lt;p>With LocalStack, you can easily mount code from your host filesystem into the ECS container, allowing for a quicker debugging loop that doesn&amp;rsquo;t require rebuilding and redeploying the task&amp;rsquo;s Docker image for each change.&lt;/p>
-&lt;p>To try out this tutorial for yourself, you can find the code in our LocalStack Pro samples on &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/ecs-ecr-container-app">LocalStack Pro samples&lt;/a> over GitHub, including a &lt;code>Makefile&lt;/code> to execute each step of the process.&lt;/p></description></item></channel></rss>
+&lt;p>To try out this tutorial for yourself, you can find the code in our LocalStack Pro samples on &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/ecs-ecr-container-app">LocalStack Pro samples&lt;/a> over GitHub, including a &lt;code>Makefile&lt;/code> to execute each step of the process.&lt;/p></description></item><item><title>Tutorials: Replicating cloud resources locally with LocalStack's AWS Replicator extension</title><link>/tutorials/replicate-aws-resources-localstack-extension/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tutorials/replicate-aws-resources-localstack-extension/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>LocalStack&amp;rsquo;s core cloud emulator enables you to emulate various cloud services on your own local machine.
+This allows you to work on and test your cloud-based solutions without needing to connect to a remote cloud.
+However, sometimes you might need to smoothly switch between your local setup and actual cloud resources, especially in hybrid scenarios.
+This could be useful, for example, if you want to share a database with your local Lambda function, or if you require access to S3 files stored remotely while running a Glue ETL job locally.&lt;/p>
+&lt;p>With the &lt;a href="https://github.com/localstack/localstack-extensions/tree/main/aws-replicator">AWS Replicator extension&lt;/a>, you can:&lt;/p>
+&lt;ul>
+&lt;li>Enable your local environment to mirror AWS cloud resources at the API level, allowing for direct interaction with cloud services.&lt;/li>
+&lt;li>Facilitate the forwarding of specific requests from LocalStack to AWS without the need for complex proxy setups.&lt;/li>
+&lt;li>Support scenarios that require a combination of local and cloud resources, such as testing cloud services with local databases or functions.&lt;/li>
+&lt;/ul>
+&lt;p>In this tutorial, you will learn how to install the AWS Replicator extension and utilize its different modes to seamlessly work in a hybrid environment.&lt;/p>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.localstack.cloud/getting-started/installation/#localstack-cli">LocalStack CLI&lt;/a> with &lt;a href="https://docs.localstack.cloud/getting-started/auth-token/">&lt;code>LOCALSTACK_AUTH_TOKEN&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.localstack.cloud/getting-started/auth-token/">Docker&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html">AWS CLI&lt;/a> with &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code> wrapper&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/sign-up">LocalStack Web Application account&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://aws.amazon.com/">AWS Account&lt;/a> with an &lt;a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey">&lt;code>AWS_ACCESS_KEY_ID&lt;/code> &amp;amp; &lt;code>AWS_SECRET_ACCESS_KEY&lt;/code>&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="install-the-aws-replicator-extension">Install the AWS Replicator extension&lt;/h2>
+&lt;p>To install the AWS Replicator Extension, follow these steps:&lt;/p>
+&lt;ol>
+&lt;li>Launch your LocalStack container using the &lt;code>localstack&lt;/code> CLI, ensuring that &lt;code>LOCALSTACK_AUTH_TOKEN&lt;/code> is available in the environment.&lt;/li>
+&lt;li>Visit the &lt;a href="https://app.localstack.cloud/extensions/library">Extensions library&lt;/a> page on the LocalStack Web Application.
+&lt;img src="extensions-library.png" alt="Extensions Library" title="Extensions Library" width="900" />&lt;/li>
+&lt;li>Scroll down to find the &lt;strong>AWS replicator&lt;/strong> card, then click on the &lt;strong>Install on Instance&lt;/strong> button.
+&lt;img src="installing-aws-replicator-extensions.png" alt="Installing AWS Replicator extension" title="Installing AWS Replicator extension" width="900" />&lt;/li>
+&lt;/ol>
+&lt;p>Once the installation is complete, you will notice that your LocalStack container has restarted with the AWS Replicator extension successfully installed.
+To confirm the installation, execute the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions list
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>┃ Name ┃ Summary ┃ Version ┃ Author ┃ Plugin name ┃
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━┩
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ localstack-extension-aws-re… │ LocalStack Extension: AWS │ 0.1.11 │ LocalStack Team │ aws-replicator │
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ replicator │ │ │ │
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>└──────────────────────────────┴──────────────────────────────┴─────────┴─────────────────┴────────────────┘
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After verifying the successful installation, you can shut down the LocalStack container to re-start it with additional configuration variables.&lt;/p>
+&lt;h2 id="tutorial-working-with-the-aws-replicator-extension">Tutorial: Working with the AWS Replicator Extension&lt;/h2>
+&lt;p>In this tutorial, you will set up a basic example consisting of:&lt;/p>
+&lt;ul>
+&lt;li>A Lambda function named &lt;code>func1&lt;/code> that prints a simple statement when invoked.&lt;/li>
+&lt;li>An SQS queue named &lt;code>test-queue&lt;/code> where messages are sent.&lt;/li>
+&lt;li>An event source mapping that triggers the Lambda function when a message is sent to the SQS queue.&lt;/li>
+&lt;/ul>
+&lt;p>The basic architecture for the scenario is outlined in the figure below. It shows the relationship between the resources deployed in the LocalStack container, the LocalStack AWS Proxy, and the remote AWS account.&lt;/p>
+&lt;img src="aws-proxy-sqs-lambda-sample.png" alt="AWS Replicator sample use case" title="AWS Replicator sample use case" width="700" />
+&lt;p>In the following sections, you will create the SQS queue on your local machine and the remote cloud to showcase how you can switch between the two with the AWS Replicator extension.&lt;/p>
+&lt;h3 id="create-the-lambda-function">Create the Lambda function&lt;/h3>
+&lt;p>Begin by running your LocalStack container with the following configuration:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>EXTRA_CORS_ALLOWED_ORIGINS=https://aws-replicator.localhost.localstack.cloud:4566 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DEBUG=1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>In the above command:&lt;/p>
+&lt;ul>
+&lt;li>The &lt;code>EXTRA_CORS_ALLOWED_ORIGINS&lt;/code> variable allows the AWS Replicator extension&amp;rsquo;s web interface to connect with the LocalStack container.&lt;/li>
+&lt;li>The &lt;code>DEBUG&lt;/code> variable enables verbose logging allowing you to see the printed statements from the Lambda function.&lt;/li>
+&lt;/ul>
+&lt;p>Next, create a file named &lt;code>testlambda.py&lt;/code> and add the following Python code to it:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">*&lt;/span>&lt;span style="color:#000">args&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">**&lt;/span>&lt;span style="color:#000">kwargs&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Debug output from Lambda function&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Execute the following commands to create the local Lambda function:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>(zip testlambda.zip testlambda.py)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name func1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime python3.8 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/r1 --handler testlambda.handler \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --timeout 30 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zip-file fileb://./testlambda.zip&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Once the Lambda function is successfully created, you will see output similar to this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;FunctionName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;func1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;FunctionArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:lambda:us-east-1:000000000000:function:func1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Runtime&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;python3.8&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Role&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:role/r1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Handler&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;testlambda.handler&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CodeSize&amp;#34;&lt;/span>: 250,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-the-sqs-queue">Create the SQS queue&lt;/h3>
+&lt;p>You can create the local SQS queue named &lt;code>test-queue&lt;/code> by executing the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs create-queue --queue-name test-queue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The output will display the Queue URL:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;QueueUrl&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/test-queue&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Additionally, you can create the remote SQS queue on the real AWS cloud to test invocation after starting the AWS Replicator extension.&lt;/p>
+&lt;p>Use the following command to set up the SQS queue on AWS:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws sqs create-queue --queue-name test-queue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="invoke-the-lambda-function">Invoke the Lambda function&lt;/h3>
+&lt;p>Before invoking, set up an event source mapping between the SQS queue and the Lambda function. Configure the queue for Lambda using the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-event-source-mapping \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name func1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --batch-size 1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --event-source-arn arn:aws:sqs:us-east-1:000000000000:test-queue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;MaximumBatchingWindowInSeconds&amp;#34;&lt;/span>: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;EventSourceArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:sqs:us-east-1:000000000000:test-queue&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;FunctionArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:lambda:us-east-1:000000000000:function:func1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ..
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;FunctionResponseTypes&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can then send a message to the SQS queue to trigger the local Lambda function:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal sqs send-message \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/test-queue \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message-body &amp;#39;{}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Upon successful execution, you will receive a message ID and MD5 hash of the message body.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;MD5OfMessageBody&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;99914b932bd37a50b983c5e7c90ae93b&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;MessageId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;64e8297c-f0b2-4b68-a482-6cd3317f5096&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the LocalStack logs, you will see confirmation of the Lambda function invocation along with any debug messages.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2024-03-26T07:23:47.842 DEBUG --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>5119b27cdf1e&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.s.l.i.version_manager : &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>func1-381c6f7c-3ad8-4c79-aad8-5119b27cdf1e&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> START RequestId: 381c6f7c-3ad8-4c79-aad8-5119b27cdf1e Version: &lt;span style="color:#000">$LATEST&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2024-03-26T07:23:47.842 DEBUG --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>5119b27cdf1e&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.s.l.i.version_manager : &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>func1-381c6f7c-3ad8-4c79-aad8-5119b27cdf1e&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> Debug output from Lambda &lt;span style="color:#204a87;font-weight:bold">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2024-03-26T07:23:47.842 DEBUG --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>5119b27cdf1e&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.s.l.i.version_manager : &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>func1-381c6f7c-3ad8-4c79-aad8-5119b27cdf1e&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> END RequestId: 381c6f7c-3ad8-4c79-aad8-5119b27cdf1e
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="run-the-aws-replicator-extension">Run the AWS Replicator extension&lt;/h3>
+&lt;p>To run the AWS Replicator extension:&lt;/p>
+&lt;ul>
+&lt;li>Access &lt;a href="https://aws-replicator.localhost.localstack.cloud:4566/">&lt;code>https://aws-replicator.localhost.localstack.cloud:4566&lt;/code>&lt;/a> via your web browser.
+&lt;img src="aws-replicator-extension.png" alt="AWS Replicator extension" title="AWS Replicator extension" width="900" />&lt;/li>
+&lt;li>Provide your AWS Credentials: &lt;code>AWS_ACCESS_KEY_ID&lt;/code>, &lt;code>AWS_SECRET_ACCESS_KEY&lt;/code>, and optionally &lt;code>AWS_SESSION_TOKEN&lt;/code>.&lt;/li>
+&lt;li>Add a new YAML-based Proxy configuration to proxy requests for specific resources to AWS. For this scenario, configure it to proxy requests for the SQS queue created earlier.
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">sqs&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">resources&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#39;.*:test-queue&amp;#39;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>Save the configuration to enable the AWS Replicator extension. Once enabled, you will see the proxy status as &lt;strong>enabled&lt;/strong>.
+&lt;img src="enabled-aws-replicator-extension.png" alt="Enabled AWS Replicator extension" title="Enabled AWS Replicator extension" width="900" />&lt;/li>
+&lt;/ul>
+&lt;p>To invoke the local Lambda function with the remote SQS queue:&lt;/p>
+&lt;ul>
+&lt;li>Navigate to your AWS Management Console and access &lt;strong>Simple Queue Service&lt;/strong>.&lt;/li>
+&lt;li>Select the &lt;strong>test-queue&lt;/strong> queue.&lt;/li>
+&lt;li>Send a message with a body (e.g., &lt;code>Hello LocalStack&lt;/code>) by clicking &lt;strong>Send Message&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;p>You will observe the local Lambda function being invoked once again, with corresponding debug messages visible in the logs.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2024-03-26T07:45:16.524 DEBUG --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>db58fad602e5&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.s.l.i.version_manager : &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>func1-ed938bb0-e1ee-41fb-a844-db58fad602e5&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> START RequestId: ed938bb0-e1ee-41fb-a844-db58fad602e5 Version: &lt;span style="color:#000">$LATEST&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2024-03-26T07:45:16.524 DEBUG --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>db58fad602e5&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.s.l.i.version_manager : &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>func1-ed938bb0-e1ee-41fb-a844-db58fad602e5&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> Debug output from Lambda &lt;span style="color:#204a87;font-weight:bold">function&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2024-03-26T07:45:16.524 DEBUG --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>db58fad602e5&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.s.l.i.version_manager : &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>func1-ed938bb0-e1ee-41fb-a844-db58fad602e5&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> END RequestId: ed938bb0-e1ee-41fb-a844-db58fad602e5
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can even run the standard &lt;code>awslocal&lt;/code> commands in your terminal that would query the remote cloud resources, instead of the local ones.&lt;/p>
+&lt;p>Upon completion, you can click &lt;strong>Disable&lt;/strong> on the AWS Replicator extension web interface to deactivate the proxy configuration.
+Additionally, you can delete the remote SQS queue to avoid AWS billing for long-running resources.
+To remove local resources, stop the LocalStack container to clear the local Lambda function and SQS queue.&lt;/p>
+&lt;h2 id="conclusion">Conclusion&lt;/h2>
+&lt;p>In this tutorial, you&amp;rsquo;ve discovered how the AWS Replicator extension bridges the gap between local and remote cloud resources by mirroring resources from real AWS accounts into your LocalStack instance.
+You can explore additional use-cases with the AWS Replicator extension, such as:&lt;/p>
+&lt;ul>
+&lt;li>Developing a local Lambda function that interacts with a remote DynamoDB table&lt;/li>
+&lt;li>Executing a local Athena SQL query in LocalStack, accessing files in a real S3 bucket on AWS&lt;/li>
+&lt;li>Testing a local Terraform script with SSM parameters from a real AWS account&lt;/li>
+&lt;li>And many more!&lt;/li>
+&lt;/ul></description></item></channel></rss>
