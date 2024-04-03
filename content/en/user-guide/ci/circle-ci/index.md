@@ -3,15 +3,13 @@ title: "CircleCI"
 linkTitle: "CircleCI"
 weight: 4
 description: >
-  Use LocalStack in Circle CI
+  Use LocalStack in CircleCI
 ---
-
-This page contains easily customisable snippets to show you how to manage LocalStack in a [Circle CI](https://circleci.com) workflow.
 
 
 ## Introduction
 
-Circle CI is a continuous integration and continuous delivery (CI/CD) platform which uses a configuration file (usually named `.circleci/config.yml`) to define the build, test, and deployment workflows.
+[CircleCI](https://circleci.com) is a continuous integration and continuous delivery (CI/CD) platform which uses a configuration file (usually named `.circleci/config.yml`) to define the build, test, and deployment workflows.
 LocalStack supports CircleCI out of the box and can be easily integrated into your pipeline to run your tests against a local cloud emulator.
 
 
@@ -58,7 +56,7 @@ workflows:
 ### Configuration
 To configure LocalStack use the `environment` key on the job level or a shell command, where the latter takes higher precedence.
 
-Read more about the config options of LocalStack [here](/references/configuration/).
+Read more about the [configuration options](/references/configuration/) of LocalStack.
 
 #### Job level
 ```yaml
@@ -126,7 +124,7 @@ jobs:
 You can preserve your AWS infrastructure with LocalStack in various ways.
 To be able to use any of the below samples, you must [set a valid CI key](#configuring-a-ci-key).
 
-_Note: For best result we recommend to use a combination of the below techniques and you should familiarise yourself with CircleCI's data persistance approach, see official documentation [here](https://circleci.com/docs/persist-data/)._
+_Note: For best result we recommend to use a combination of the below techniques and you should familiarise yourself with CircleCI's data persistance approach, see their [official documentation](https://circleci.com/docs/persist-data/)._
 
 #### Workspace
 This strategy persist LocalStack's state between jobs for the current workflow.
@@ -168,7 +166,7 @@ jobs:
       - localstack-save-state
       - localstack-load-state
 ```
-More information about state import and export [here](/user-guide/state-management/export-import-state).
+More information about Localstack's [state import/export](/user-guide/state-management/export-import-state).
 
 #### Cache
 To preserve state between workflow runs, you can take leverage of CircleCI's caching too.
@@ -220,17 +218,17 @@ workflows:
       - localstack-do-work
       ...
 ```
-More information about state management [here](/user-guide/state-management/export-import-state).
+More information about [state management](/user-guide/state-management/export-import-state).
 
 #### Cloud Pods
-Cloud pods providing an easy solution to persist LocalStack's state, even between workflows or projects.
+Cloud Pods providing an easy solution to persist LocalStack's state, even between workflows or projects.
 
-Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
+Find more information about [Cloud Pods](/user-guide/state-management/cloud-pods/).
 
 ##### Multiple projects
-Update or create the cloud pod in it's own project (ie in a separate Infrastructure as Code repo), this would create a base/"golden" cloud pod, which you can use in the future without any configuration or deployment.
+Update or create the Cloud Pod in it's own project (ie in a separate Infrastructure as Code repo), this would create a base Cloud Pod, which you can use in the future without any configuration or deployment.
 
-_Note: If there is a previously created cloud pod which doesn't need updating this step can be skipped._
+_Note: If there is a previously created Cloud Pod which doesn't need updating this step can be skipped._
 
 ```yaml
 ...
@@ -257,7 +255,7 @@ workflows:
       - localstack-update-cloud-pod
 ```
 
-In a separate project use the previously created "golden" cloud pod as below:
+In a separate project use the previously created base Cloud Pod as below:
 
 ```yaml
 ...
@@ -280,7 +278,7 @@ workflows:
 ```
 
 ##### Same project
-To use a dynamically updated cloud pod in multiple workflows but in the same project, you must eliminate the race conditions between the update workflow and the others.
+To use a dynamically updated Cloud Pod in multiple workflows but in the same project, you must eliminate the race conditions between the update workflow and the others.
 
 Before you are able to use any stored artifacts in your pipeline, you must provide either a valid [project API token](https://circleci.com/docs/managing-api-tokens/#creating-a-project-api-token) or a [personal API token](https://circleci.com/docs/managing-api-tokens/#creating-a-personal-api-token) to CircleCI.
 
@@ -357,7 +355,7 @@ workflows:
 ```
 
 #### Ephemeral Instance (Beta)
-Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
+Find out more about [Ephemeral Instances](/user-guide/cloud-sandbox/).
 
 ##### Same job 
 ```yaml
@@ -373,7 +371,7 @@ jobs:
             -H 'ls-api-key: $LOCALSTACK_API_KEY' \
             -H 'authorization: token $LOCALSTACK_API_KEY' \
             -H 'content-type: application/json' \
-            https://api.localstack.cloud/v1/previews/my-gitlab-state)
+            https://api.localstack.cloud/v1/previews/my-localstack-state)
           
           if [ "$endpointUrl" = "null" ] || [ "$endpointUrl" = "" ]; then
             echo "Unable to create preview environment. API response: $response"
@@ -410,7 +408,7 @@ jobs:
             -H 'ls-api-key: $LOCALSTACK_API_KEY' \
             -H 'authorization: token $LOCALSTACK_API_KEY' \
             -H 'content-type: application/json' \
-            https://api.localstack.cloud/v1/previews/my-gitlab-state)
+            https://api.localstack.cloud/v1/previews/my-localstack-state)
           
           if [ "$endpointUrl" = "null" ] || [ "$endpointUrl" = "" ]; then
             echo "Unable to create preview environment. API response: $response"
