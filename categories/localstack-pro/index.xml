@@ -740,9 +740,14 @@ The certificate is signed by the LocalStack root CA.&lt;/p>
 &lt;li>&lt;code>$aws/events/thing/&amp;lt;thingName&amp;gt;/deleted&lt;/code>: when a thing is deleted&lt;/li>
 &lt;/ul>
 &lt;h2 id="topic-rules">Topic Rules&lt;/h2>
-&lt;p>It is also possible to use advanced features like SQL queries for IoT topic rules.&lt;/p>
+&lt;p>It is possible to use actions with SQL queries for IoT Topic Rules.&lt;/p>
 &lt;p>For example, you can use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html">&lt;code>CreateTopicRule&lt;/code>&lt;/a> operation to define a topic rule with a SQL query &lt;code>SELECT * FROM 'my/topic' where attr=123&lt;/code> which will execute a trigger whenever a message with attribute &lt;code>attr=123&lt;/code> is received on the MQTT topic &lt;code>my/topic&lt;/code>.&lt;/p>
-&lt;p>Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.&lt;/p></description></item><item><title>User-Guide: MemoryDB for Redis</title><link>/user-guide/aws/memorydb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/memorydb/</guid><description>
+&lt;p>Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.&lt;/p>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>LocalStack MQTT broker does not support multi-account/multi-region namespacing.
+Internally, the MQTT messages are not routed to the appropriate account ID/region even though the endpoint URL may suggest otherwise.
+All messages will be routed to the &lt;code>000000000000&lt;/code> account and the &lt;code>us-east-1&lt;/code> region.
+This prevents features such as topic rules from working properly when not using the this account ID or region.&lt;/p></description></item><item><title>User-Guide: MemoryDB for Redis</title><link>/user-guide/aws/memorydb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/memorydb/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>MemoryDB is a fully managed, Redis-compatible, in-memory database tailored for workloads demanding ultra-fast, primary database functionality.
 It streamlines the deployment and management of in-memory databases within the AWS cloud environment, acting as a replacement for using a cache in front of a database for improved durability and performance.&lt;/p>
