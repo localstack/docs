@@ -180,7 +180,7 @@ You can then subscribe or use topic rules on the follow topics:
 
 ## Topic Rules
 
-It is also possible to use advanced features like SQL queries for IoT topic rules.
+It is possible to use actions with SQL queries for IoT Topic Rules.
 
 For example, you can use the [`CreateTopicRule`](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html) operation to define a topic rule with a SQL query `SELECT * FROM 'my/topic' where attr=123` which will execute a trigger whenever a message with attribute `attr=123` is received on the MQTT topic `my/topic`.
 
