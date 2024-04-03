@@ -129,17 +129,17 @@ This means that the bucket name has to be globally unique.
 
 ### Secrets Manager
 
-- `GetSecretValue`
-- `PutSecretValue`
-- `DescribeSecret`
-- `UpdateSecret`
 - `DeleteSecret`
-- `RestoreSecret`
-- `ListSecretVersionIds`
+- `DescribeSecret`
 - `GetResourcePolicy`
+- `GetSecretValue`
+- `ListSecretVersionIds`
 - `PutResourcePolicy`
+- `PutSecretValue`
+- `RestoreSecret`
 - `TagResource`
 - `UntagResource`
+- `UpdateSecret`
 
 ### SNS topics
 
