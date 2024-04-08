@@ -10,10 +10,6 @@ tags: ["Enterprise plan"]
 
 [LocalStack Outages Extension](https://pypi.org/project/localstack-extension-outages/) can simulate outages for any AWS region or service. You can install and use the Outages Extension through [LocalStack Extension mechanism](https://docs.localstack.cloud/user-guide/extensions/) to test infrastructure resilience by intentionally causing service outages and observing the system's recovery in scenarios with incomplete infrastructure is an effective approach. This method evaluates the system's deployment mechanisms and its ability to handle and recover from infrastructure anomalies, a critical aspect of chaos engineering.
 
-{{< alert title="Note">}}
-Outages Extension is currently available as part of the **LocalStack Enterprise** plan. If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /alert >}}
-
 ## Getting started
 
 This guide is designed for users who are new to Outages Extension. We'll simulate partial outages by interrupting specific services, such as halting an ECS instance creation or disrupting a database service. By closely watching Terraform's responses and the status of AWS resources, you'll learn how Terraform manages these disruptions.
