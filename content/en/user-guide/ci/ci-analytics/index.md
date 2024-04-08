@@ -3,6 +3,7 @@ title: "CI Analytics"
 linkTitle: "CI Analytics"
 weight: 1
 description: Get insights into your continuous integration (CI) builds with LocalStack CI Analytics
+tags: ["Enterprise plan"]
 ---
 
 ## Introduction
@@ -15,7 +16,7 @@ CI Analytics is a feature of LocalStack Web Application that allows users to get
 - **Cloud Pod State**: Allows viewing the state of LocalStack resources for a specific CI build, accessible via a Cloud Pod.
 - **Stack Insights**: Displays a log of AWS API usage telemetry in your application stack, allowing you to examine the most frequently used services and API calls.
 
-CI Analytics integrates with all of the popular CI/CD tools, including GitHub Actions, GitLab CI, CircleCI, to gather pipeline metrics that track the performance and results of your cloud infrastructure deployments. CI Analytics is available as part of the LocalStack Enterprise plan.
+CI Analytics integrates with all of the popular CI/CD tools, including GitHub Actions, GitLab CI, CircleCI, to gather pipeline metrics that track the performance and results of your cloud infrastructure deployments.
 
 {{< alert title="Note">}}
 CI Analytics is currently in **private beta**. If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
