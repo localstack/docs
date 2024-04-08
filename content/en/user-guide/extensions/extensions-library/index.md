@@ -1,8 +1,10 @@
 ---
 title: "Extensions Library"
-weight: 110
+weight: 4
 description: Extend LocalStack by adding new services and features as extensions
 tags: ["Pro image"]
+aliases:
+    - /user-guide/web-application/extensions-library/
 ---
 
 ## Introduction
