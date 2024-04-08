@@ -165,7 +165,7 @@ Assuming the instance is available under `127.0.0.1:12862` (as per the LocalStac
 $ ssh -p 12862 -i key.pem root@127.0.0.1
 {{< /command >}}
 
-{{< alert title="Hint" color="success">}}
+{{< alert title="Tip" color="success">}}
 If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here](#create-a-key-pair).
 {{< /alert >}}
 
@@ -398,7 +398,7 @@ INFO: /dev/kvm exists
 KVM acceleration can be used
 {{< /command >}}
 
-{{< alert title="Hint" color="success" >}}
+{{< alert title="Tip" color="success" >}}
 You may also need to enable virtualization support at hardware level.
 This is often labelled as 'Enable Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
 {{< /alert >}}
@@ -418,6 +418,12 @@ If you are using [Docker CLI]({{< ref "installation#starting-localstack-with-doc
 -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock
 ```
 
+The initial access to the EC2 API with the Libvirt VM manager may take a while as LocalStack installs all dependencies.
+Subsequent accesses will be faster.
+
+{{< alert title="Tip" color="success" >}}
+You could opt to enable [`EAGER_SERVICE_LOADING`]({{< ref "configuration#core" >}}) to avoid the delay.
+{{< /alert >}}
 
 ### AMIs
 
