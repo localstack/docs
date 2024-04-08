@@ -10,6 +10,10 @@ tags: ["Enterprise plan"]
 
 LocalStack allows you to integrate & test [Fault Injection Simulator (FIS)](https://docs.localstack.cloud/user-guide/aws/fis/) with [Route53](https://docs.localstack.cloud/user-guide/aws/route53/) to automatically divert users to a healthy secondary zone if the primary region fails, ensuring system availability and responsiveness. Route53's health checks and traffic redirection enhance architecture resilience and ensure service continuity during regional outages, crucial for uninterrupted user experiences.
 
+{{< alert title="Note">}}
+Route53 Failover with FIS is currently available as part of the **LocalStack Enterprise** plan. If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
+{{< /alert >}}
+
 ## Getting started
 
 This guide is designed for users new to the Route53 and FIS services. In this example, there's an active-primary and passive-standby configuration. Route53 routes traffic to the primary region, which processes product-related requests through API Gateway and Lambda functions, with data stored in DynamoDB. If the primary region fails, Route53 redirects to the standby region, maintained in sync by a replication Lambda function.
