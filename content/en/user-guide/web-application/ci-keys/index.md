@@ -1,8 +1,10 @@
 ---
 title: "CI Keys"
 linkTitle: "CI Keys"
-weight: 40
+weight: 160
 description: A CI key is used to access LocalStack in CI or other machine environments.
+aliases:
+  - /user-guide/ci/ci-keys/
 ---
 
 LocalStack requires a **CI Key** for use in Continuous Integration (CI) or similar machine environments. Each instance startup in a CI or comparable environment consumes one CI token.
