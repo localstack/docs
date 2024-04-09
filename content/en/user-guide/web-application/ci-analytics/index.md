@@ -1,9 +1,11 @@
 ---
 title: "CI Analytics"
 linkTitle: "CI Analytics"
-weight: 1
+weight: 150
 description: Get insights into your continuous integration (CI) builds with LocalStack CI Analytics
 tags: ["Enterprise plan"]
+aliases:
+  - /user-guide/ci/ci-analytics/
 ---
 
 ## Introduction

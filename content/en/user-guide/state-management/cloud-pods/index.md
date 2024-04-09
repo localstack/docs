@@ -190,12 +190,35 @@ Similarly, everyone can save a new version of a Cloud Pod on top of a Pod origin
 
 ## Web Application
 
-The LocalStack Web Application enables you to export your infrastructure state to a Cloud Pod and import it into another LocalStack instance.
+The LocalStack Web Application enables you to :
+
+- Browse your Cloud Pods and access your version history.
+- Export & import Cloud Pods to and from LocalStack instances.
+
+### Browse Cloud Pods
+
+[Cloud Pods Browser](https://app.localstack.cloud/pods) allows you to view, manage, and explore your Cloud Pods through the LocalStack Web Application.
+With Cloud Pods, you can have individual or shared ownership of a snapshot of your LocalStack instance.
+
+<img src="cloud-pods-browser.png" alt="LocalStack Web Application's Cloud Pods Browser outlining various saved Clod Pods" title="Cloud Pods Browser" width="900" />
+<br><br>
+
+The Cloud Pods Browser provides the following functionalities:
+
+- **View Cloud Pods**: View all Cloud Pods saved by you or your organization.
+- **View Versions**: View the version history of a Cloud Pod and access previous versions of specific Cloud Pods by clicking on the Cloud Pod's name.
+- **View Cloud Pod Details**: View the details of a specific Cloud Pod version by clicking on the version.
+- **View Cloud Pod storage**: View the organization storage usage and user storage usage on top of the Cloud Pods Browser.
+- **Delete Cloud Pod**: Delete a Cloud Pod by selecting the Cloud Pod and navigating to the **Actions** button, followed by **Delete**.
+
+### Export & Import Cloud Pods
+
+You can export and import your LocalStack infrastructure state as a Cloud Pod using the LocalStack Web Application.
+This feature is particularly useful when you need to use a user-friendly interface to manage your Cloud Pods, without the need to interact with the CLI.
 
 <img src="export-import-state-cloud-pod.png" alt="LocalStack Export/Import State Cloud Pod Mode" title="LocalStack Export/Import State Cloud Pod Mode" width="900" />
 
-
-### Export the State
+#### Export the State
 
 To export the state, follow these steps:
 
@@ -204,9 +227,10 @@ To export the state, follow these steps:
 3. Enter the Pod name and toggle between the **New Pod** and **Existing Pod** options.
 4. Click on **Create New Pod**.
 
-A new Cloud Pod will be created and will be available for import into another LocalStack instance. You can check out the list of available Cloud Pods in the [Cloud Pod](https://app.localstack.cloud/pods) page.
+A new Cloud Pod will be created and will be available for import into another LocalStack instance.
+You can check out the list of available Cloud Pods in the [Cloud Pod](https://app.localstack.cloud/pods) page.
 
-### Import the State
+#### Import the State
 
 To import the state, follow these steps:
 

@@ -240,6 +240,12 @@ For more details visit [Docker WSL documentation](https://docs.docker.com/deskto
 
 ## LocalStack Platform FAQs
 
+### Where are my Cloud Pods stored?
+
+LocalStack provides a secure storage mechanism to store Cloud Pods on the Web Application.
+When you push a Cloud Pod, it is stored securely in our storage backend in AWS, with each user/organization receiving a dedicated, isolated S3 bucket.
+Pushing and pulling a Cloud Pod from our Web Application is facilitated by using secure S3 pre-signed URLs for the Cloud Pods CLI to interact directly with the S3 bucket, rather than piping the state files through our LocalStack Platform APIs.
+
 ### How do I check if my license is valid and activated?
 
 The easiest way to check if LocalStack Pro or Enterprise is activated is to check the health endpoint of LocalStack for a list of the running services:
