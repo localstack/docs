@@ -128,9 +128,29 @@ This means that every individual in the organization can view, load, and delete 
 Similarly, everyone can save a new version of a Cloud Pod on top of a Pod originally created by someone else.
 &lt;/div>
 &lt;h2 id="web-application">Web Application&lt;/h2>
-&lt;p>The LocalStack Web Application enables you to export your infrastructure state to a Cloud Pod and import it into another LocalStack instance.&lt;/p>
+&lt;p>The LocalStack Web Application enables you to :&lt;/p>
+&lt;ul>
+&lt;li>Browse your Cloud Pods and access your version history.&lt;/li>
+&lt;li>Export &amp;amp; import Cloud Pods to and from LocalStack instances.&lt;/li>
+&lt;/ul>
+&lt;h3 id="browse-cloud-pods">Browse Cloud Pods&lt;/h3>
+&lt;p>&lt;a href="https://app.localstack.cloud/pods">Cloud Pods Browser&lt;/a> allows you to view, manage, and explore your Cloud Pods through the LocalStack Web Application.
+With Cloud Pods, you can have individual or shared ownership of a snapshot of your LocalStack instance.&lt;/p>
+&lt;img src="cloud-pods-browser.png" alt="LocalStack Web Application's Cloud Pods Browser outlining various saved Clod Pods" title="Cloud Pods Browser" width="900" />
+&lt;br>&lt;br>
+&lt;p>The Cloud Pods Browser provides the following functionalities:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>View Cloud Pods&lt;/strong>: View all Cloud Pods saved by you or your organization.&lt;/li>
+&lt;li>&lt;strong>View Versions&lt;/strong>: View the version history of a Cloud Pod and access previous versions of specific Cloud Pods by clicking on the Cloud Pod&amp;rsquo;s name.&lt;/li>
+&lt;li>&lt;strong>View Cloud Pod Details&lt;/strong>: View the details of a specific Cloud Pod version by clicking on the version.&lt;/li>
+&lt;li>&lt;strong>View Cloud Pod storage&lt;/strong>: View the organization storage usage and user storage usage on top of the Cloud Pods Browser.&lt;/li>
+&lt;li>&lt;strong>Delete Cloud Pod&lt;/strong>: Delete a Cloud Pod by selecting the Cloud Pod and navigating to the &lt;strong>Actions&lt;/strong> button, followed by &lt;strong>Delete&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;h3 id="export--import-cloud-pods">Export &amp;amp; Import Cloud Pods&lt;/h3>
+&lt;p>You can export and import your LocalStack infrastructure state as a Cloud Pod using the LocalStack Web Application.
+This feature is particularly useful when you need to use a user-friendly interface to manage your Cloud Pods, without the need to interact with the CLI.&lt;/p>
 &lt;img src="export-import-state-cloud-pod.png" alt="LocalStack Export/Import State Cloud Pod Mode" title="LocalStack Export/Import State Cloud Pod Mode" width="900" />
-&lt;h3 id="export-the-state">Export the State&lt;/h3>
+&lt;h4 id="export-the-state">Export the State&lt;/h4>
 &lt;p>To export the state, follow these steps:&lt;/p>
 &lt;ol>
 &lt;li>Navigate to the &lt;strong>Cloud Pod&lt;/strong> tab within the &lt;a href="https://app.localstack.cloud/inst/default/state">Export/Import State&lt;/a> page.&lt;/li>
@@ -138,8 +158,9 @@ Similarly, everyone can save a new version of a Cloud Pod on top of a Pod origin
 &lt;li>Enter the Pod name and toggle between the &lt;strong>New Pod&lt;/strong> and &lt;strong>Existing Pod&lt;/strong> options.&lt;/li>
 &lt;li>Click on &lt;strong>Create New Pod&lt;/strong>.&lt;/li>
 &lt;/ol>
-&lt;p>A new Cloud Pod will be created and will be available for import into another LocalStack instance. You can check out the list of available Cloud Pods in the &lt;a href="https://app.localstack.cloud/pods">Cloud Pod&lt;/a> page.&lt;/p>
-&lt;h3 id="import-the-state">Import the State&lt;/h3>
+&lt;p>A new Cloud Pod will be created and will be available for import into another LocalStack instance.
+You can check out the list of available Cloud Pods in the &lt;a href="https://app.localstack.cloud/pods">Cloud Pod&lt;/a> page.&lt;/p>
+&lt;h4 id="import-the-state">Import the State&lt;/h4>
 &lt;p>To import the state, follow these steps:&lt;/p>
 &lt;ol>
 &lt;li>Navigate to the &lt;strong>Cloud Pod&lt;/strong> tab within the &lt;a href="https://app.localstack.cloud/inst/default/state">Export/Import State&lt;/a> page.&lt;/li>
@@ -629,22 +650,4 @@ The &lt;code>state&lt;/code> group offers two commands to export and import the 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> the state of all running services is reset.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Cloud Pods Browser</title><link>/user-guide/web-application/cloud-pods-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/cloud-pods-browser/</guid><description>
-&lt;p>&lt;a href="https://app.localstack.cloud/pods">The Cloud Pods Browser&lt;/a> lets you access and manage all your Cloud Pods. The Cloud Pods Browser is a feature of our LocalStack Web Application that is exclusive to &lt;strong>LocalStack Team &amp;amp; Enterprise users&lt;/strong>.&lt;/p>
-&lt;p>With Cloud Pods, you can have individual or shared ownership of a snapshot of your LocalStack instance.&lt;/p>
-&lt;img src="cloud-pods-browser.png" alt="LocalStack Web Application's Cloud Pods Browser outlining various saved Clod Pods" title="Cloud Pods Browser" width="900" />
-&lt;h2 id="usage">Usage&lt;/h2>
-&lt;p>You can use &lt;a href="/user-guide/state-management/cloud-pods/">Cloud Pods&lt;/a> to manage your local AWS infrastructure and collaborate with others:&lt;/p>
-&lt;ul>
-&lt;li>Cloud Pods are accessible to all LocalStack Team users in your organization namespace. Public Cloud Pods are accessible to all LocalStack users.&lt;/li>
-&lt;li>Cloud Pods version history is available, which allows you to view the version history of a Cloud Pod and access previous versions of specific Cloud Pods.&lt;/li>
-&lt;li>Cloud Pods can be made public, injected into a running LocalStack container, or deleted - all from the LocalStack Web Application.&lt;/li>
-&lt;/ul>
-&lt;h2 id="access-the-version-history">Access the version history&lt;/h2>
-&lt;p>To view the version history of a Cloud Pod, click on the Cloud Pod&amp;rsquo;s name in the Cloud Pods Browser. You will be able to see a list of all versions, and view details of a specific version, in JSON format, by clicking on it.&lt;/p>
-&lt;img src="cloud-pods-version-history.png" alt="LocalStack Web Application's Cloud Pods Browser outlining the versions of the Clod Pod" title="Cloud Pods Browser displaying the version history of the Cloud Pod" width="900" />
-&lt;p>To create a new version of a Cloud Pod, refer to the &lt;a href="https://docs.localstack.cloud/user-guide/cloud-pods/pods-cli/">Cloud Pods CLI&lt;/a> documentation.&lt;/p>
-&lt;h2 id="save-a-cloud-pod">Save a Cloud Pod&lt;/h2>
-&lt;p>Users do not need to upload their Cloud Pod to the LocalStack Web Application since the Cloud Pods CLI automatically uploads pods via the &lt;code>save&lt;/code> operation. Similarly, the Cloud Pods CLI automatically injects the Cloud Pod into a running LocalStack container via the &lt;code>load&lt;/code> operation after specifying the Cloud Pod&amp;rsquo;s name. You can alternatively select a Cloud Pod on the Cloud Pods Browser and inject it into a running LocalStack container.&lt;/p>
-&lt;img src="cloud-pod-inject.png" alt="Inject a Cloud Pod through the Cloud Pods Browser" title="Inject a Cloud Pod through the Cloud Pods Browser" width="900" />
-&lt;p>We use a secure storage mechanism to store Cloud Pods on the LocalStack Web Application. When you push a Cloud Pod, it is stored securely in our storage backend in AWS, with each user/organization receiving a dedicated, isolated S3 bucket. Pushing and pulling a Cloud Pod from our Web Application is facilitated by using secure S3 pre-signed URLs for the Cloud Pods CLI to interact directly with the S3 bucket, rather than piping the state files through our LocalStack Platform APIs.&lt;/p></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
