@@ -212,7 +212,8 @@ The Cloud Pods Browser provides the following functionalities:
 
 ### Export & Import Cloud Pods
 
-You can export and import your LocalStack infrastructure state as a Cloud Pod using the LocalStack Web Application. This feature is particularly useful when you need to use a user-friendly interface to manage your Cloud Pods, without the need to interact with the CLI.
+You can export and import your LocalStack infrastructure state as a Cloud Pod using the LocalStack Web Application.
+This feature is particularly useful when you need to use a user-friendly interface to manage your Cloud Pods, without the need to interact with the CLI.
 
 <img src="export-import-state-cloud-pod.png" alt="LocalStack Export/Import State Cloud Pod Mode" title="LocalStack Export/Import State Cloud Pod Mode" width="900" />
 
