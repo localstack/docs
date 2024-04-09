@@ -225,7 +225,8 @@ To export the state, follow these steps:
 3. Enter the Pod name and toggle between the **New Pod** and **Existing Pod** options.
 4. Click on **Create New Pod**.
 
-A new Cloud Pod will be created and will be available for import into another LocalStack instance. You can check out the list of available Cloud Pods in the [Cloud Pod](https://app.localstack.cloud/pods) page.
+A new Cloud Pod will be created and will be available for import into another LocalStack instance.
+You can check out the list of available Cloud Pods in the [Cloud Pod](https://app.localstack.cloud/pods) page.
 
 #### Import the State
 
