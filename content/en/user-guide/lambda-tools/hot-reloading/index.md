@@ -419,7 +419,7 @@ $ curl -X GET "$function_url"
 The response should be:
 
 ```bash
-{"error":"Only JSON payload is accepted"}
+{"error":"Only JSON payloads are accepted"}
 ```
 
 Go to `src/api.ts` and make the `errorResponse` function return `"Only JSON payload is accepted"` instead of `"Only JSON payloads are accepted"`. Save the file and run the last `curl` command again. 
