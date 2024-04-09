@@ -197,7 +197,8 @@ The LocalStack Web Application enables you to :
 
 ### Browse Cloud Pods
 
-[Cloud Pods Browser](https://app.localstack.cloud/pods) allows you to view, manage, and explore your Cloud Pods through the LocalStack Web Application. With Cloud Pods, you can have individual or shared ownership of a snapshot of your LocalStack instance.
+[Cloud Pods Browser](https://app.localstack.cloud/pods) allows you to view, manage, and explore your Cloud Pods through the LocalStack Web Application.
+With Cloud Pods, you can have individual or shared ownership of a snapshot of your LocalStack instance.
 
 <img src="cloud-pods-browser.png" alt="LocalStack Web Application's Cloud Pods Browser outlining various saved Clod Pods" title="Cloud Pods Browser" width="900" />
 <br><br>
