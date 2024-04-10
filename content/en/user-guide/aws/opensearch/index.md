@@ -7,7 +7,11 @@ description: >
 
 ## Introduction
 
-OpenSearch Service is an open-source search and analytics engine, offering developers and organizations advanced search capabilities, robust data analysis, and insightful visualizations. OpenSearch Service also offers log analytics, real-time application monitoring, and clickstream analysis. The following versions of OpenSearch Service are supported by LocalStack:
+OpenSearch Service is an open-source search and analytics engine, offering developers and organizations advanced search capabilities, robust data analysis, and insightful visualizations. OpenSearch Service also offers log analytics, real-time application monitoring, and clickstream analysis.
+
+LocalStack allows you to use the OpenSearch Service APIs in your local environment to create, manage, and operate the OpenSearch clusters. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_opensearch/), which provides information on the extent of OpenSearch's integration with LocalStack.
+
+The following versions of OpenSearch Service are supported by LocalStack:
 
 - 1.0
 - 1.1
@@ -15,9 +19,8 @@ OpenSearch Service is an open-source search and analytics engine, offering devel
 - 1.3
 - 2.3
 - 2.7
-- 2.9 (**default**)
-
-LocalStack supports OpenSearch Service via the Community offering, allowing you to use the OpenSearch Service APIs in your local environment to create, manage, and operate the OpenSearch clusters. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_opensearch/), which provides information on the extent of OpenSearch's integration with LocalStack. 
+- 2.9
+- 2.11 (**default**)
 
 OpenSearch is closely coupled with the [Elasticsearch Service](../elasticsearch). Clusters generated through the OpenSearch Service will be visible within the Elasticsearch Service interface, and vice versa. You can select an Elasticsearch version with the `--engine-version` parameter while creating an OpenSearch Service domain.
 

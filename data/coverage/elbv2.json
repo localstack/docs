@@ -202,7 +202,7 @@
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": true,
-        "snapshot_tested": false,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -234,7 +234,7 @@
       "DescribeRules": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": false,
@@ -286,7 +286,7 @@
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": true,
-        "snapshot_tested": false,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -533,8 +533,32 @@
   ],
   "details": {
     "CreateListener": {
+      "Certificates, DefaultActions, LoadBalancerArn, Port, Protocol": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_redirect_listener",
+            "test": "test_redirect_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "DefaultActions, LoadBalancerArn, Port, Protocol": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
@@ -543,6 +567,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -566,6 +600,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_redirect_listener",
+            "test": "test_redirect_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_loadbalancer_rule",
             "test": "test_create_loadbalancer_rule",
             "response": "200",
@@ -578,6 +622,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
             "test": "test_route53_elb_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -668,6 +722,16 @@
       "Name, Scheme, SecurityGroups, Subnets, Type": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
@@ -682,7 +746,7 @@
             "test": "test_elbv2_loadbalancer_resource",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput']",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -712,6 +776,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_redirect_listener",
+            "test": "test_redirect_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_load_balancer",
             "test": "test_create_load_balancer",
             "response": "200",
@@ -734,6 +808,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
             "test": "test_route53_elb_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -796,6 +880,16 @@
       "Actions, Conditions, ListenerArn, Priority": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
@@ -821,6 +915,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Rules..Actions..TargetGroupArn', '$..Rules..Conditions..Values', '$..LoadBalancers..AvailabilityZones..LoadBalancerAddresses', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -897,6 +1001,16 @@
       },
       "HealthCheckIntervalSeconds, HealthCheckPath, HealthCheckProtocol, HealthCheckTimeoutSeconds, HealthyThresholdCount, Name, Port, Protocol, TargetType, UnhealthyThresholdCount, VpcId": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
@@ -1060,6 +1174,20 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          }
+        ]
+      },
+      "HealthCheckPath, Name, Port, Protocol, TargetType, VpcId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       },
@@ -1758,6 +1886,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_redirect_listener",
+            "test": "test_redirect_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_loadbalancer_rule",
             "test": "test_create_loadbalancer_rule",
             "response": "200",
@@ -1778,6 +1916,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "400",
@@ -1785,6 +1943,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -1803,6 +1971,16 @@
     "DeleteLoadBalancer": {
       "LoadBalancerArn": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigateway.py::test_vpc_link",
             "test": "test_vpc_link",
@@ -1838,7 +2016,7 @@
             "test": "test_elbv2_loadbalancer_resource",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput']",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1894,6 +2072,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_redirect_listener",
+            "test": "test_redirect_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_load_balancer",
             "test": "test_create_load_balancer",
             "response": "200",
@@ -1932,6 +2120,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -1939,6 +2137,26 @@
     "DeleteRule": {
       "RuleArn": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
             "test": "test_load_balancing",
@@ -1958,6 +2176,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
+            "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -1966,6 +2194,16 @@
       "TargetGroupArn": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
@@ -1973,6 +2211,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -2562,6 +2810,16 @@
       "TargetGroupArn, Targets": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
@@ -2588,24 +2846,14 @@
       "LoadBalancerArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
-            "test": "test_create_service_run_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -2627,8 +2875,18 @@
       }
     },
     "DescribeLoadBalancers": {
-      "- (without any parameters)": {
+      "LoadBalancerArns": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigateway.py::test_vpc_link",
             "test": "test_vpc_link",
@@ -2664,10 +2922,20 @@
             "test": "test_elbv2_loadbalancer_resource",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput']",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_record_set_with_alias_record",
@@ -2688,20 +2956,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          }
-        ]
-      },
-      "LoadBalancerArns": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
-            "test": "test_elbv2_loadbalancer_resource",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_load_balancers",
@@ -2709,6 +2963,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers..State.Code']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
+            "response": "400",
+            "error": "ValidationError",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2784,25 +3048,35 @@
         ]
       }
     },
-    "DescribeRules": {
-      "ListenerArn": {
+    "DescribeTargetGroups": {
+      "TargetGroupArns": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
-            "test": "test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
     },
-    "DescribeTargetGroups": {
-      "- (without any parameters)": {
+    "DescribeTargetHealth": {
+      "TargetGroupArn": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
@@ -2814,29 +3088,13 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
-            "test": "test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticloadbalancingv2.py::test_elbv2_loadbalancer_resource",
+            "test": "test_elbv2_loadbalancer_resource",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          }
-        ]
-      }
-    },
-    "DescribeTargetHealth": {
-      "TargetGroupArn": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -2876,6 +3134,16 @@
       "Attributes, LoadBalancerArn": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigateway.py::test_vpc_link",
             "test": "test_vpc_link",
             "response": "200",
@@ -2910,7 +3178,7 @@
             "test": "test_elbv2_loadbalancer_resource",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput']",
+            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2951,6 +3219,16 @@
     "ModifyTargetGroupAttributes": {
       "Attributes, TargetGroupArn": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
@@ -3337,6 +3615,16 @@
     "RegisterTargets": {
       "TargetGroupArn, Targets": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
+            "test": "test_infra",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",

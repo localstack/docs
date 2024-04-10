@@ -12,7 +12,7 @@ Simple Queue Service (SQS) is a managed messaging service offered by AWS.
 It allows you to decouple different components of your applications by enabling asynchronous communication through message queues.
 SQS allows you to reliably send, store, and receive messages with support for standard and FIFO queues.
 
-LocalStack supports SQS via the Community offering, allowing you to use the SQS APIs in your local environment to integrate and decouple distributed systems via hosted queues.
+LocalStack allows you to use the SQS APIs in your local environment to integrate and decouple distributed systems via hosted queues.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sqs/), which provides information on the extent of SQS's integration with LocalStack.
 
 ## Getting started
@@ -254,12 +254,13 @@ The response will be in JSON format:
 
 You can control the format of the generated Queue URLs by setting the environment variable `SQS_ENDPOINT_STRATEGY` when starting LocalStack to one of the following values.
 
-| Value    | URL format                                                                 | Description                                                                                                                                                                                                                                                         |
-| -------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `standard` | `sqs.<region>.localhost.localstack.cloud:4566/<account_id>/<queue_name>` | Default. This strategy resembles AWS the closest (see [Identifiers for Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-message-identifiers.html#sqs-general-identifiers)) and comes with full multi-account and multi-region support. |
-| `domain` | `<region>.queue.localhost.localstack.cloud:4566/<account_id>/<queue_name>` | This strategy behaves like the [SQS legacy service endpoints](https://docs.aws.amazon.com/general/latest/gr/sqs-service.html#sqs_region), and uses `localhost.localstack.cloud` to resolve to localhost. While using the `us-east-1` region, the `<region>.` prefix is omitted. |
-| `path`   | `localhost:4566/queue/<region>/<account_id>/<queue_name>`                  | An alternative that can be useful if you cannot resolve LocalStack's `localhost` domain.                                                                                                                                                                               |
-| `off`    | `localhost:4566/<account_id>/<queue_name>`                                 | It is the current default for maintaining backward compatibility. However, this format does not encode the region information. As a result, you will encounter limitations when querying queues with the same name that exist in different regions.                                                                               |
+| Value      | URL format                                                                 | Description                                                                                                                                                                                                                                                                            |
+|------------|----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `standard` | `sqs.<region>.localhost.localstack.cloud:4566/<account_id>/<queue_name>`   | Default. This strategy resembles AWS the closest (see [Identifiers for Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-message-identifiers.html#sqs-general-identifiers)) and comes with full multi-account and multi-region support. |
+| `domain`   | `<region>.queue.localhost.localstack.cloud:4566/<account_id>/<queue_name>` | This strategy behaves like the [SQS legacy service endpoints](https://docs.aws.amazon.com/general/latest/gr/sqs-service.html#sqs_region), and uses `localhost.localstack.cloud` to resolve to localhost. While using the `us-east-1` region, the `<region>.` prefix is omitted.        |
+| `path`     | `localhost:4566/queue/<region>/<account_id>/<queue_name>`                  | An alternative that can be useful if you cannot resolve LocalStack's `localhost` domain.                                                                                                                                                                                               |
+| `dynamic`  | either of the above, using the hostname used from the request              | Based on the format of the hostname used by the client to call localstack, the URL will be constructed accordingly. The URL will also use the hostname specified in the request to make sure the client will be able to reach the URl.                                                 |
+| `off`      | `localhost:4566/<account_id>/<queue_name>`                                 | It is the current default for maintaining backward compatibility. However, this format does not encode the region information. As a result, you will encounter limitations when querying queues with the same name that exist in different regions.                                    |
 
 ### Enabling `PurgeQueue` errors
 
@@ -286,8 +287,8 @@ You can enable this behavior in LocalStack by setting the `SQS_ENABLE_MESSAGE_RE
 In AWS, valid values for message retention range from 60 (1 minute) to 1,209,600 (14 days).
 In LocalStack, we do not put constraints on the value which can be helpful for test scenarios.
 
-{{<alert>}}
-Note that, if you enable this option, [persistence]({{< ref "persistence-mechanism" >}}) or [cloud pods]({{<ref "/user-guide/cloud-pods/" >}}) for SQS may not work as expected.
+{{<alert title="Note">}}
+Note that, if you enable this option, [persistence]({{< ref "persistence" >}}) or [cloud pods]({{<ref "user-guide/state-management/cloud-pods" >}}) for SQS may not work as expected.
 The reason is that, LocalStack does not adjust timestamps when restoring a state, so time appears to pass between LocalStack runs.
 Consequently, when you restart LocalStack after a period that is longer than the message retention period, LocalStack will remove all those messages when SQS starts.
 {{</alert>}}
@@ -639,5 +640,4 @@ The following code snippets and sample applications provide practical examples o
 
 ## Limitations
 
-* A message's `ApproximateReceiveCount` attribute will be reset to 0 when the message moves to a DLQ.
 * Updating a queue's `MessageRetentionPeriod` currently has no effect on existing messages

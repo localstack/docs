@@ -7,9 +7,9 @@ description: >
 
 ## Introduction
 
-SWF (Simple Workflow Service) is a fully managed service offered by Amazon Web Services (AWS) that enables you to build and manage applications with distributed components and complex workflows. SWF allows you to define workflows in a way that's separate from the actual application code, making it easier to modify and adapt workflows without changing the application logic. SWF also provides a programming framework to design, coordinate, and execute workflows that involve multiple tasks, steps, and decision points.
+Simple Workflow Service (SWF) is a fully managed service offered by Amazon Web Services (AWS) that enables you to build and manage applications with distributed components and complex workflows. SWF allows you to define workflows in a way that's separate from the actual application code, making it easier to modify and adapt workflows without changing the application logic. SWF also provides a programming framework to design, coordinate, and execute workflows that involve multiple tasks, steps, and decision points.
 
-LocalStack supports Simple Workflow Service via the Community offering, allowing you to use the SWF APIs in your local environment to monitor and manage workflow design, task coordination, activity implementation, and error handling. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_swf/), which provides information on the extent of SWF's integration with LocalStack.
+LocalStack allows you to use the SWF APIs in your local environment to monitor and manage workflow design, task coordination, activity implementation, and error handling. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_swf/), which provides information on the extent of SWF's integration with LocalStack.
 
 ## Getting started
 

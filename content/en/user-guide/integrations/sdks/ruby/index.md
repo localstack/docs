@@ -1,7 +1,6 @@
 ---
 title: "Ruby"
 categories: []
-tags: ["sdk", "ruby"]
 description: >
   How to use the AWS SDK for Ruby with LocalStack.
 ---

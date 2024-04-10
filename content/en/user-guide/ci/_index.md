@@ -19,14 +19,14 @@ Let's assume that your team has an automated CI workflow into which you want to 
 
 {{< figure src="localstack-in-ci.svg" alt="An example CI/CD workflow using LocalStack" width="90%">}}
 
-The CI build is triggered by pushing code to a version control repository, like GitHub. The CI runner starts LocalStack and executes the test suite. You can also use the same Infrastructure-as-Code (IaC) configuration that you use to set up AWS in your production environment to set up LocalStack in the CI environment. You can also pre-seed state into the local AWS services (e.g., DynamoDB entries or S3 files) provided by LocalStack in your CI environment via [Cloud Pods]({{< ref "user-guide/cloud-pods" >}}).
+The CI build is triggered by pushing code to a version control repository, like GitHub. The CI runner starts LocalStack and executes the test suite. You can also use the same Infrastructure-as-Code (IaC) configuration that you use to set up AWS in your production environment to set up LocalStack in the CI environment. You can also pre-seed state into the local AWS services (e.g., DynamoDB entries or S3 files) provided by LocalStack in your CI environment via [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}}).
 
 After a successful test run, you can execute the more expensive AWS CodeBuild pipeline for deploying your application. You can enrich the test reports created by your testing framework with traces and analytics generated inside LocalStack.
 
 ## CI integrations
 
-The steps required for the integration differ slightly depending on your preferred CI platform. Please refer to the relevant sections CI keys settings page](https://app.localstack.cloud/workspace/ci-keys) in the [LocalStack Web app](https://app.localstack.cloud).
+The steps required for the integration differ slightly depending on your preferred CI platform. Please refer to the relevant sections of the [CI keys settings page](https://app.localstack.cloud/workspace/ci-keys) in the [LocalStack Web app](https://app.localstack.cloud).
 
 ## CI images
 
-LocalStack Docker images can be used in your CI environment by adding a CI Key. The images are available on [Docker Hub](https://hub.docker.com/r/localstack/localstack/tags), and comprehensive documentation is available on our [Docker images](https://docs.localstack.cloud/references/docker-images/) documentation. Community users can use the `localstack/localstack` image, while Pro and Team users can use the `localstack/localstack-pro` image. For Big Data jobs that require services such as EMR, Athena, and Glue, we provide a mono-container that uses the `localstack/localstack-pro:2.0.2-bigdata` image, which bakes in the required dependencies, such as Hadoop, Hive, Presto, into the LocalStack image.
+LocalStack Docker images can be used in your CI environment by adding a CI Key. The images are available on [Docker Hub](https://hub.docker.com/r/localstack/localstack/tags), and comprehensive documentation is available on our [Docker images](https://docs.localstack.cloud/references/docker-images/) documentation. Community users can use the `localstack/localstack` image, while licensed users can use the `localstack/localstack-pro` image. For Big Data jobs that require services such as EMR, Athena, and Glue, we provide a mono-container that uses the `localstack/localstack-pro:2.0.2-bigdata` image, which bakes in the required dependencies, such as Hadoop, Hive, Presto, into the LocalStack image.

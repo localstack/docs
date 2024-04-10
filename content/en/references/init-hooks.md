@@ -106,7 +106,8 @@ which returns either `true` or `false`.
 
 ## Usage example
 
-If you have more complex state,  [Cloud Pods](https://docs.localstack.cloud/user-guide/cloud-pods/)  and  [how to auto-load them on startup](https://docs.localstack.cloud/user-guide/cloud-pods/auto-load/)  may be a good option to look into!
+A common use case for init hooks is pre-seeding LocalStack with custom state.
+If you have more complex state, [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}})  and  [how to auto-load them on startup]({{< ref "user-guide/state-management/cloud-pods#auto-loading-cloud-pods" >}})  may be a good option to look into!
 
 But for simple state, for example if you want to have a certain S3 bucket or DynamoDB table created when starting LocalStack, init hooks can be very useful.
 

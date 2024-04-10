@@ -15,7 +15,7 @@ You can revert to the old behavior in the meantime by setting `PROVIDER_OVERRIDE
 
 Step Functions is a serverless workflow engine that enables the orchestrating of multiple AWS services. It provides a JSON-based structured language called Amazon States Language (ASL) which allows to specify how to manage a sequence of tasks and actions that compose the application's workflow. Thus making it easier to build and maintain complex and distributed applications. Step Functions allows for the definition of both standard and express workflows for long-running and high-volume event processing.
 
-LocalStack supports Step Functions via the Community offering, allowing you to use the Step Functions APIs in your local environment to create, execute, update, and delete state machines locally. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_stepfunctions/), which provides information on the extent of Step Function's integration with LocalStack.
+LocalStack allows you to use the Step Functions APIs in your local environment to create, execute, update, and delete state machines locally. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_stepfunctions/), which provides information on the extent of Step Function's integration with LocalStack.
 
 ## Getting started
 
@@ -171,6 +171,22 @@ The Resource Browser allows you to perform the following actions:
 
 - **View State Machines**: View a list of all state machines you have created locally.
 - **View Executions and Flow Chart**: View a list of all executions for a given state machine and the flow chart for each execution. You can also check the Execution Status, Timestamp, and Type for each execution.
+
+## Supported services and operations
+
+Step Functions integrates with AWS services, allowing you to invoke API actions for each service within your workflow. LocalStack's Step Functions emulation supports the following AWS services:
+
+| Supported service integrations | Service                 | Request Response | Run a Job (.sync) | Run a Job (.sync2) | Wait for Callback (.waitForTaskToken) |
+|--------------------------------|-------------------------|:---:             |:---:              |:---:               |:---:                                  |
+| Optimized integrations         | Lambda                  | &#10003;         |                   |                    | &#10003;                              |
+|                                | DynamoDB                | &#10003;         |                   |                    |                                       |
+|                                | Amazon ECS/AWS Fargate  | &#10003;         | &#10003;          |                    | &#10003;                              |
+|                                | Amazon SNS              | &#10003;         |                   |                    | &#10003;                              |
+|                                | Amazon SQS              | &#10003;         |                   |                    | &#10003;                              |
+|                                | API Gateway             | &#10003;         |                   |                    | &#10003;                              |
+|                                | Amazon EventBridge      | &#10003;         |                   |                    | &#10003;                              |
+|                                | AWS Step Functions      | &#10003;         | &#10003;          | &#10003;           | &#10003;                              |
+| AWS SDK integrations           | All LocalStack services | &#10003;         |                   |                    | &#10003;                              |
 
 ## Examples
 

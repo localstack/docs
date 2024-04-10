@@ -6,6 +6,7 @@ description: >
   Connect the web app to instances running on custom local endpoints
 aliases:
   - /localstack/custom-local-endpoint/
+tags: ["Pro image"]
 ---
 
 To connect the LocalStack web app to a LocalStack instance running on a custom local endpoint, configure the endpoint in the instance bookmarks on the [LocalStack Instances](https://app.localstack.cloud/instances) page.

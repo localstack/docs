@@ -226,7 +226,7 @@ It will detect whether the AWS account ID is `000000000000`, which is the defaul
 
 Cloud Development Kit for Terraform (CDKTF) allows you to use general-purpose programming languages, such as TypeScript, Python, Java, and more, to create infrastructure declaratively. It allows you to create, update, and delete AWS infrastructure by leveraging a Terraform backend without manually configuring Terraform using HCL and [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) to translate your code into infrastructure configuration files for Terraform. CDKTF supports every Terraform provider and module available on the [Terraform Registry](https://registry.terraform.io/).
 
-### Conifguration
+### Configuration
 
 To configure your existing CDKTF configuration to work with LocalStack, manually configure the local service endpoints and credentials. It includes:
 
@@ -475,6 +475,22 @@ $ awslocal s3 ls
 {{< /command >}}
 
 Your CDKTF stack is now successfully deployed to LocalStack. You can now start using CDKTF to create and manage your AWS resources on LocalStack.
+
+## OpenTofu
+
+OpenTofu is an open-source fork of Terraform acting as a drop-in replacement for Terraform, as it's compatible with Terraform versions 1.5.x and most of 1.6.x. You can use OpenTofu with LocalStack to create and manage your AWS resources with your pre-existing Terraform configurations. You can use the `TF_CMD` environment variable with `tflocal` to specify the `tofu` binary to call, or setup a manual configuration to point the individual services to LocalStack.
+
+{{< command >}}
+$ TF_CMD=tofu tflocal --help
+<disable-copy>
+Usage: tofu [global options] <subcommand> [args]
+
+The available commands for execution are listed below.
+The primary workflow commands are given first, followed by
+less common or more advanced commands.
+...
+</disable-copy>
+{{< /command >}}
 
 ## Examples
 

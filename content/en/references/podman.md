@@ -3,9 +3,6 @@ title: "Podman"
 weight: 50
 description: >
   Running LocalStack inside Podman
-tags: ["podman", "docker"]
-aliases:
-  - /localstack/podman/
 ---
 
 ## Overview

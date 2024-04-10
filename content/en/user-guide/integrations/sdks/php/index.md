@@ -1,7 +1,6 @@
 ---
 title: "PHP"
 categories: []
-tags: ["sdk"]
 description: >
   How to use the PHP AWS SDK with LocalStack.
 aliases:

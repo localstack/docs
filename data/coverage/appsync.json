@@ -43,8 +43,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -56,7 +56,7 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -139,8 +139,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -152,7 +152,7 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -319,8 +319,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -383,6 +383,18 @@
         "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "GetGraphqlApiEnvironmentVariables": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -452,7 +464,7 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -579,6 +591,18 @@
       }
     },
     {
+      "PutGraphqlApiEnvironmentVariables": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "StartDataSourceIntrospection": {
         "implemented": false,
         "availability": "",
@@ -655,8 +679,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -667,8 +691,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -703,7 +727,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -717,8 +741,8 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -924,11 +948,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1030,6 +1064,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::TestExpandedScenario::test_deploy_scenario[\\n        query VTLDynamoResolver {\\n            vtl {\\n                dynamoResult\\n            }\\n        }\\n        ]",
             "test": "test_deploy_scenario[\\n        query VTLDynamoResolver {\\n            vtl {\\n                dynamoResult\\n            }\\n        }\\n        ]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1276,11 +1320,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1376,6 +1430,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::TestExpandedScenario::test_deploy_scenario[\\n        query VTLDynamoResolver {\\n            vtl {\\n                dynamoResult\\n            }\\n        }\\n        ]",
             "test": "test_deploy_scenario[\\n        query VTLDynamoResolver {\\n            vtl {\\n                dynamoResult\\n            }\\n        }\\n        ]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1508,6 +1572,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       },
@@ -1551,6 +1625,82 @@
       }
     },
     "CreateGraphqlApi": {
+      "apiType, authenticationType, name": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::TestExpandedScenario::test_deploy_scenario[\\n        query VTLDynamoResolver {\\n            vtl {\\n                dynamoResult\\n            }\\n        }\\n        ]",
+            "test": "test_deploy_scenario[\\n        query VTLDynamoResolver {\\n            vtl {\\n                dynamoResult\\n            }\\n        }\\n        ]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_graphql_schema",
+            "test": "test_graphql_schema",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..type.format', '$..type.definition', '$..SchemaRef']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
+      "apiType, authenticationType, name, tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_graphqlapi",
+            "test": "test_graphqlapi",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..graphqlApi.xrayEnabled', '$..graphqlApi.arn', '$..graphqlApi.dns', '$..graphqlApi.introspectionConfig', '$..graphqlApi.owner', '$..graphqlApi.queryDepthLimit', '$..graphqlApi.resolverCountLimit', '$..graphqlApi.uris.REALTIME', '$..graphqlApi.visibility']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
+      "apiType, authenticationType, name, userPoolConfig": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_websocket_subscriptions_relay_sample",
+            "test": "test_websocket_subscriptions_relay_sample",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
+      "authenticationType, introspectionConfig, name, userPoolConfig, visibility": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
+            "test": "test_appsync_deployed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
       "authenticationType, lambdaAuthorizerConfig, name": {
         "ls_pro": [
           {
@@ -1718,11 +1868,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1888,36 +2048,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::TestExpandedScenario::test_deploy_scenario[\\n        query VTLDynamoResolver {\\n            vtl {\\n                dynamoResult\\n            }\\n        }\\n        ]",
-            "test": "test_deploy_scenario[\\n        query VTLDynamoResolver {\\n            vtl {\\n                dynamoResult\\n            }\\n        }\\n        ]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_graphql_schema",
-            "test": "test_graphql_schema",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..type.format', '$..type.definition', '$..SchemaRef']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_graphqlapi",
-            "test": "test_graphqlapi",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..graphqlApi.tags', '$..graphqlApi.xrayEnabled', '$..graphqlApi.arn']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_resource_share",
             "test": "test_create_resource_share",
             "response": "200",
@@ -1994,35 +2124,25 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_websocket_subscriptions_relay_sample",
-            "test": "test_websocket_subscriptions_relay_sample",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          }
-        ]
-      },
-      "authenticationType, name, userPoolConfig, visibility": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
-            "test": "test_appsync_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ]
       }
     },
     "CreateResolver": {
+      "apiId, code, dataSourceName, fieldName, kind, runtime, typeName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "apiId, code, fieldName, kind, pipelineConfig, runtime, typeName": {
         "ls_pro": [
           {
@@ -2088,6 +2208,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::TestExpandedScenario::test_deploy_scenario[\\n        query VTLDynamoResolver {\\n            vtl {\\n                dynamoResult\\n            }\\n        }\\n        ]",
             "test": "test_deploy_scenario[\\n        query VTLDynamoResolver {\\n            vtl {\\n                dynamoResult\\n            }\\n        }\\n        ]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2224,11 +2354,11 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2468,11 +2598,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2570,6 +2710,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::TestExpandedScenario::test_deploy_scenario[\\n        query Full {\\n            vtl {\\n                dynamoResult\\n            }\\n            js {\\n                result\\n            }\\n        }\\n            ]",
             "test": "test_deploy_scenario[\\n        query Full {\\n            vtl {\\n                dynamoResult\\n            }\\n            js {\\n                result\\n            }\\n        }\\n            ]",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
             "response": "404",
             "error": "NotFoundException",
             "snapshot_skipped": "",
@@ -2674,11 +2824,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2746,6 +2906,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::TestExpandedScenario::test_deploy_scenario[\\n        query Full {\\n            vtl {\\n                dynamoResult\\n            }\\n            js {\\n                result\\n            }\\n        }\\n            ]",
             "test": "test_deploy_scenario[\\n        query Full {\\n            vtl {\\n                dynamoResult\\n            }\\n            js {\\n                result\\n            }\\n        }\\n            ]",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
             "response": "404",
             "error": "NotFoundException",
             "snapshot_skipped": "",
@@ -2828,6 +2998,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::TestExpandedScenario::test_deploy_scenario[\\n        query Full {\\n            vtl {\\n                dynamoResult\\n            }\\n            js {\\n                result\\n            }\\n        }\\n            ]",
             "test": "test_deploy_scenario[\\n        query Full {\\n            vtl {\\n                dynamoResult\\n            }\\n            js {\\n                result\\n            }\\n        }\\n            ]",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
             "response": "404",
             "error": "NotFoundException",
             "snapshot_skipped": "",
@@ -3032,11 +3212,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3246,7 +3436,17 @@
             "test": "test_graphqlapi",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..graphqlApi.tags', '$..graphqlApi.xrayEnabled', '$..graphqlApi.arn']",
+            "snapshot_skipped": "['$..graphqlApi.xrayEnabled', '$..graphqlApi.arn', '$..graphqlApi.dns', '$..graphqlApi.introspectionConfig', '$..graphqlApi.owner', '$..graphqlApi.queryDepthLimit', '$..graphqlApi.resolverCountLimit', '$..graphqlApi.uris.REALTIME', '$..graphqlApi.visibility']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3348,11 +3548,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3410,6 +3620,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::TestExpandedScenario::test_deploy_scenario[\\n        query Full {\\n            vtl {\\n                dynamoResult\\n            }\\n            js {\\n                result\\n            }\\n        }\\n            ]",
             "test": "test_deploy_scenario[\\n        query Full {\\n            vtl {\\n                dynamoResult\\n            }\\n            js {\\n                result\\n            }\\n        }\\n            ]",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
             "response": "404",
             "error": "NotFoundException",
             "snapshot_skipped": "",
@@ -3502,11 +3722,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3526,7 +3756,7 @@
             "test": "test_graphqlapi",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..graphqlApi.tags', '$..graphqlApi.xrayEnabled', '$..graphqlApi.arn']",
+            "snapshot_skipped": "['$..graphqlApi.xrayEnabled', '$..graphqlApi.arn', '$..graphqlApi.dns', '$..graphqlApi.introspectionConfig', '$..graphqlApi.owner', '$..graphqlApi.queryDepthLimit', '$..graphqlApi.resolverCountLimit', '$..graphqlApi.uris.REALTIME', '$..graphqlApi.visibility']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3740,11 +3970,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3865,6 +4105,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..type.format', '$..type.definition', '$..SchemaRef']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4182,11 +4432,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source",
-            "test": "test_lambda_data_source",
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
+            "test": "test_lambda_data_source[JS]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..body.data.create.request.domainName', '$..body.data.create.request.headers', '$..info.selectionSetList']",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[VTL]",
+            "test": "test_lambda_data_source[VTL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.data.create.ctx.request.domainName', '$..body.data.create.ctx.request.headers', '$..body.data.create.context.request.domainName', '$..body.data.create.context.request.headers', '$..info.selectionSetList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4312,6 +4572,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_appsync.py::test_s3_code_locations",
+            "test": "test_s3_code_locations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
             "test": "test_appsync_deployed",
             "response": "200",
@@ -4384,6 +4654,20 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          }
+        ]
+      },
+      "apiId, dataSourceName, fieldName, requestMappingTemplate, responseMappingTemplate, typeName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_websocket_subscriptions_relay_sample",
+            "test": "test_websocket_subscriptions_relay_sample",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }

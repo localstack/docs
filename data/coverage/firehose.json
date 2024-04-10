@@ -43,7 +43,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -200,6 +200,16 @@
       "DeliveryStreamName, DeliveryStreamType, ExtendedS3DestinationConfiguration, KinesisStreamSourceConfiguration": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/scenario/kinesis_firehose/test_kinesis_firehose.py::TestKinesisFirehoseScenario::test_kinesis_firehose_s3",
+            "test": "test_kinesis_firehose_s3",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_firehose.py::test_firehose_stack_with_kinesis_as_source",
             "test": "test_firehose_stack_with_kinesis_as_source",
             "response": "200",
@@ -210,8 +220,42 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_delivery_stream_with_kinesis_as_source",
-            "test": "test_delivery_stream_with_kinesis_as_source",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_kinesis_as_source",
+            "test": "test_kinesis_firehose_kinesis_as_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_kinesis_as_source_multiple_delivery_streams",
+            "test": "test_kinesis_firehose_kinesis_as_source_multiple_delivery_streams",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "DeliveryStreamName, DeliveryStreamType, KinesisStreamSourceConfiguration, RedshiftDestinationConfiguration": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/kinesis_firehose_redshift/test_kinesis_firehose_redshift.py::TestKinesisFirehoseScenario::test_kinesis_firehose_redshift",
+            "test": "test_kinesis_firehose_redshift",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_firehose_redshift_as_target",
+            "test": "test_firehose_redshift_as_target",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -312,8 +356,8 @@
       "DeliveryStreamName, HttpEndpointDestinationConfiguration": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_firehose_http[False]",
-            "test": "test_firehose_http[False]",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_kinesis_firehose_http[False]",
+            "test": "test_kinesis_firehose_http[False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -322,8 +366,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_firehose_http[True]",
-            "test": "test_firehose_http[True]",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_kinesis_firehose_http[True]",
+            "test": "test_kinesis_firehose_http[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -336,7 +380,7 @@
       "DeliveryStreamName, S3DestinationConfiguration": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_with_target_firehose",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_integrations.py::test_put_events_with_target_firehose",
             "test": "test_put_events_with_target_firehose",
             "response": "200",
             "error": "",
@@ -390,6 +434,16 @@
       "DeliveryStreamName": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/scenario/kinesis_firehose/test_kinesis_firehose.py::TestKinesisFirehoseScenario::test_kinesis_firehose_s3",
+            "test": "test_kinesis_firehose_s3",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_firehose.py::test_firehose_stack_with_kinesis_as_source",
             "test": "test_firehose_stack_with_kinesis_as_source",
             "response": "200",
@@ -410,7 +464,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_with_target_firehose",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_integrations.py::test_put_events_with_target_firehose",
             "test": "test_put_events_with_target_firehose",
             "response": "200",
             "error": "",
@@ -420,13 +474,23 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_delivery_stream_with_kinesis_as_source",
-            "test": "test_delivery_stream_with_kinesis_as_source",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_kinesis_as_source",
+            "test": "test_kinesis_firehose_kinesis_as_source",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_kinesis_as_source_multiple_delivery_streams",
+            "test": "test_kinesis_firehose_kinesis_as_source_multiple_delivery_streams",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -460,8 +524,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_firehose_http[False]",
-            "test": "test_firehose_http[False]",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_kinesis_firehose_http[False]",
+            "test": "test_kinesis_firehose_http[False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -470,8 +534,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_firehose_http[True]",
-            "test": "test_firehose_http[True]",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_kinesis_firehose_http[True]",
+            "test": "test_kinesis_firehose_http[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -531,6 +595,26 @@
           }
         ],
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/kinesis_firehose_redshift/test_kinesis_firehose_redshift.py::TestKinesisFirehoseScenario::test_kinesis_firehose_redshift",
+            "test": "test_kinesis_firehose_redshift",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_firehose_redshift_as_target",
+            "test": "test_firehose_redshift_as_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_events_firehose",
             "test": "test_events_firehose",
@@ -568,6 +652,16 @@
       "DeliveryStreamName": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/scenario/kinesis_firehose/test_kinesis_firehose.py::TestKinesisFirehoseScenario::test_kinesis_firehose_s3",
+            "test": "test_kinesis_firehose_s3",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_firehose.py::test_firehose_stack_with_kinesis_as_source",
             "test": "test_firehose_stack_with_kinesis_as_source",
             "response": "200",
@@ -600,16 +694,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kinesis.py::test_cfn_handle_kinesis_firehose_resources",
             "test": "test_cfn_handle_kinesis_firehose_resources",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_delivery_stream_with_kinesis_as_source",
-            "test": "test_delivery_stream_with_kinesis_as_source",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -625,6 +709,26 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_kinesis_as_source",
+            "test": "test_kinesis_firehose_kinesis_as_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_kinesis_as_source_multiple_delivery_streams",
+            "test": "test_kinesis_firehose_kinesis_as_source_multiple_delivery_streams",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -658,8 +762,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_firehose_http[False]",
-            "test": "test_firehose_http[False]",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_kinesis_firehose_http[False]",
+            "test": "test_kinesis_firehose_http[False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -668,8 +772,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_firehose_http[True]",
-            "test": "test_firehose_http[True]",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_kinesis_firehose_http[True]",
+            "test": "test_kinesis_firehose_http[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -738,6 +842,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/scenario/kinesis_firehose/test_kinesis_firehose.py::TestKinesisFirehoseScenario::test_kinesis_firehose_s3",
+            "test": "test_kinesis_firehose_s3",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_firehose.py::test_firehose_stack_with_kinesis_as_source",
             "test": "test_firehose_stack_with_kinesis_as_source",
             "response": "400",
@@ -759,6 +873,26 @@
           }
         ],
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/kinesis_firehose_redshift/test_kinesis_firehose_redshift.py::TestKinesisFirehoseScenario::test_kinesis_firehose_redshift",
+            "test": "test_kinesis_firehose_redshift",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_firehose_redshift_as_target",
+            "test": "test_firehose_redshift_as_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_events_firehose",
             "test": "test_events_firehose",
@@ -788,6 +922,16 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/kinesis_firehose_redshift/test_kinesis_firehose_redshift.py::TestKinesisFirehoseScenario::test_kinesis_firehose_redshift",
+            "test": "test_kinesis_firehose_redshift",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
@@ -868,7 +1012,7 @@
       "DeliveryStreamName, Record": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_with_target_firehose",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_integrations.py::test_put_events_with_target_firehose",
             "test": "test_put_events_with_target_firehose",
             "response": "200",
             "error": "",
@@ -918,8 +1062,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_firehose_http[False]",
-            "test": "test_firehose_http[False]",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_kinesis_firehose_http[False]",
+            "test": "test_kinesis_firehose_http[False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -928,8 +1072,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_firehose_http[True]",
-            "test": "test_firehose_http[True]",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_kinesis_firehose_http[True]",
+            "test": "test_kinesis_firehose_http[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1036,8 +1180,8 @@
       "CurrentDeliveryStreamVersionId, DeliveryStreamName, DestinationId, HttpEndpointDestinationUpdate": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_firehose_http[False]",
-            "test": "test_firehose_http[False]",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_kinesis_firehose_http[False]",
+            "test": "test_kinesis_firehose_http[False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1046,8 +1190,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_firehose_http[True]",
-            "test": "test_firehose_http[True]",
+            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::test_kinesis_firehose_http[True]",
+            "test": "test_kinesis_firehose_http[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",

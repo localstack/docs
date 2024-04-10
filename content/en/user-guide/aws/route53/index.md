@@ -1,6 +1,6 @@
 ---
-title: "Route53"
-linkTitle: "Route53"
+title: "Route 53"
+linkTitle: "Route 53"
 description: Get started with Route 53 on LocalStack
 ---
 
@@ -8,7 +8,7 @@ description: Get started with Route 53 on LocalStack
 
 Route 53 is a highly scalable and reliable domain name system (DNS) web service provided by Amazon Web Services. Route 53 allows you to register domain names, and associate them with IP addresses or other resources. In addition to basic DNS functionality, Route 53 offers advanced features like health checks and DNS failover. Route 53 integrates seamlessly with other AWS services, such as route traffic to CloudFront distributions, S3 buckets configured for static website hosting, EC2 instances, and more.
 
-LocalStack supports Route53 via the Community offering, allowing you to use the Route53 APIs in your local environment to create hosted zones and to manage DNS entries.
+LocalStack allows you to use the Route53 APIs in your local environment to create hosted zones and to manage DNS entries.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53/), which provides information on the extent of Route53's integration with LocalStack.
 
 Our Pro offering integrates with our DNS server to respond to DNS queries with these domains.
@@ -159,9 +159,9 @@ The LocalStack Web Application provides a Route53 for creating hosted zones and 
 
 The Resource Browser allows you to perform the following actions:
 
-- **Create Hosted Zone**: Create a hosted zone for a domain name by clicking on the **Create Hosted Zone** button. This will open a modal where you can enter the name, VPC, and other paramteres and click on the **Submit** button to create the hosted zone.
+- **Create Hosted Zone**: Create a hosted zone for a domain name by clicking on the **Create Hosted Zone** button. This will open a modal where you can enter the name, VPC, and other parameters and click on the **Submit** button to create the hosted zone.
 - **View Hosted Zone**: View the details of a hosted zone by clicking on the specific hosted zone name. This will open a modal where you can view the hosted zone details.
-- **Create Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking **Create Record** to create a record for the hosted zone. This will open a modal where you can enter the name, type, and other paramteres and click on the **Submit** button to create the record.
+- **Create Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking **Create Record** to create a record for the hosted zone. This will open a modal where you can enter the name, type, and other parameters and click on the **Submit** button to create the record.
 - **Edit Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking **Edit** on the specific record to edit the record. This will open a modal where you can edit the record details and click on the **Submit** button to save the changes.s
 - **View Records**: Click on the **Records** button on the individual hosted zone page, followed by clicking on the specific record to view the record details. This will open a modal where you can view the record details.
 - **Delete Hosted Zone**: Select the hosted zones you want to delete by clicking on the checkbox next to the hosted zone name, followed by clicking on the **Actions** button and then clicking on **Remove Selected**.

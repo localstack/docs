@@ -3,6 +3,7 @@ title: "Neptune"
 linkTitle: "Neptune"
 description: >
   Get started with Neptune on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -11,8 +12,19 @@ Neptune is a fully managed, highly available, and scalable graph database servic
 It is designed for storing and querying highly connected data for applications that require complex relationship modeling, such as social networks, recommendation engines, and fraud detection.
 Neptune supports popular graph query languages like Gremlin and SPARQL, making it compatible with a wide range of graph applications and tools.
 
-LocalStack supports Neptune via the Pro/Team offering, allowing you to use the Neptune APIs in your local environment  to support both property graph and RDF graph models.
+LocalStack allows you to use the Neptune APIs in your local environment  to support both property graph and RDF graph models.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_neptune/), which provides information on the extent of Neptune's integration with LocalStack.
+
+ The following versions of Neptune engine are supported by LocalStack:
+
+| Engine Version | Tinkerpop Version |
+|-----------------|---------------------|
+| `1.1.0.0`       | `3.4.11`            |
+| `1.1.1.0`       | `3.5.2`             |
+| `1.2.0.0`       | `3.5.2`             |
+| `1.2.0.1`       | `3.5.2`             |
+| `1.2.0.2`       | `3.5.2`             |
+| `1.2.1.0`       | `3.6.2`             |
 
 ## Getting started
 

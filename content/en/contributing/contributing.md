@@ -64,7 +64,7 @@ We would recommend:
 
 Atomic commits correspond to the smallest, most meaningful change you can make to the code. You can keep your pull request as a draft if you are still working on it. Upon completion, you can mark the pull request is ready to review for further comments and feedback.
 
-Every PR should demonstrate that the change works. Tests play an especially important role when we develop AWS service emulators. To get started with writing LocalStack tests, have a look at our testing guide. We would also like if tests are using [snapshot testing](https://localstack.cloud/blog/2022-08-04-parity-explained/#parity-tests-with-snapshot-testing). Additonally, 
+Every PR should demonstrate that the change works. Tests play an especially important role when we develop AWS service emulators. To get started with writing LocalStack tests, have a look at our testing guide. We would also like if tests are using [snapshot testing](https://localstack.cloud/blog/2022-08-04-parity-explained/#parity-tests-with-snapshot-testing). Additionally, 
 run formatting and linting locally: `make format` and `make lint` on your changes to ensure that the linting checks don't fail.
 
 ### Reviewing pull requests

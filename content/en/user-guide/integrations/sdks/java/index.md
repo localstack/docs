@@ -1,7 +1,6 @@
 ---
 title: "Java"
 categories: []
-tags: ["sdk"]
 description: >
     How to use the AWS Java SDK with LocalStack.
 aliases:
@@ -165,7 +164,7 @@ final String SECRET_KEY = "test";
     // Building a basic credentials object.
 BasicAWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
 
-    // Creating the DynamoDB client using the credentials, specific region and an enpoint configured for LocalStack.
+    // Creating the DynamoDB client using the credentials, specific region and an endpoint configured for LocalStack.
 private static AmazonDynamoDB dynamoDBClient = AmazonDynamoDBClientBuilder.standard()
     .withCredentials(new AWSStaticCredentialsProvider(credentials))
     .withEndpointConfiguration(

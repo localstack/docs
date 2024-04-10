@@ -2,14 +2,15 @@
 title: "CloudFront"
 linkTitle: "CloudFront"
 description: >
-  Get started with AWS CloudFront on LocalStack
+  Get started with CloudFront on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 CloudFront is a content delivery network (CDN) service provided by Amazon Web Services (AWS). CloudFront distributes its web content, videos, applications, and APIs with low latency and high data transfer speeds. CloudFront APIs allow you to configure distributions, customize cache behavior, secure content with access controls, and monitor the CDN's performance through real-time metrics.
 
-LocalStack supports CloudFront via the Pro/Team offering, allowing you to use the CloudFront APIs in your local environment to create local CloudFront distributions to transparently access your applications and file artifacts. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudfront/), which provides information on the extent of CloudFront's integration with LocalStack.
+LocalStack allows you to use the CloudFront APIs in your local environment to create local CloudFront distributions to transparently access your applications and file artifacts. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudfront/), which provides information on the extent of CloudFront's integration with LocalStack.
 
 ## Getting started
 
@@ -56,6 +57,21 @@ In the given example, two domains are specified as `Aliases` for a distribution.
 {{< command >}}
 --distribution-config {...'Aliases':'{'Quantity':2, 'Items': ['custom.domain.one', 'customDomain.two']}'...}
 {{< / command >}}
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for CloudFront, which allows you to view and manage your CloudFront distributions. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **CloudFront** under the **Analytics** section.
+
+<img src="cloudfront-resource-browser.png" alt="CloudFront Resource Browser" title="CloudFront Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Distribution**: Create a new CloudFront distribution by specifying the **Origins** and other settings.
+- **List Distributions**: View a list of all CloudFront distributions.
+- **Edit Distribution**: Modify the settings of an existing CloudFront distribution by opening the distribution's details page and clicking on the **Edit Distribution** button.
+- **Delete Distribution**: Delete an existing CloudFront distribution by selecting the distribution, click on **Actions**, and then click on **Remove Selected**.
 
 ## Examples
 

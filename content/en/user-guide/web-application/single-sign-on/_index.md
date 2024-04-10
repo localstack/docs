@@ -1,12 +1,12 @@
 ---
 title: "Single-Sign On"
-tags: ["LocalStack Pro", "SSO"]
 weight: 200
 description: >
-  Configuring Custom Single-Sign On (SSO) Providers in LocalStack Enterprise
+  Configuring Custom Single-Sign On (SSO) Providers in LocalStack Web Application
+tags: ["Enterprise plan"]
 ---
 
-LocalStack Enterprise allows to enable custom Single-Sign On (SSO) Identity providers, to facilitate the process of quickly onboarding team members from your organization.
+Custom Single-Sign On (SSO) Identity providers, can be enabled to facilitate the process of quickly onboarding team members from your organization.
 
 In order to configure SSO access, first sign in to the LocalStack Web application under [app.localstack.cloud](https://app.localstack.cloud/).
 In your profile settings, navigate to the Single Sign-on tab which will list existing SSO Identity Providers (if any exist).
@@ -66,6 +66,6 @@ After configuring the base details for your Identity Provider (IdP), the followi
 For each new member that joins your org, you can specify user roles and permissions that should be assigned to them.
 -   **Default User Role**:  The Role that should be assigned to users of your organization signing up via SSO. In most cases, this should be a Member.
 -   **Default User Permissions**: Use this to define which permissions should be assigned to users of your organization signing up via SSO.
-    -   Tip: In order to enable self-serve licences (i.e., allowing your users to request their own license), make sure to select the **Allow member to issue a license for themselves (or a legacy API key)** permission.
+    -   Tip: In order to enable self-serve licences (i.e., allowing your users to allocate themselves their own license), make sure to select the **Allow member to issue a license for themselves (or a legacy API key)** permission.
 
 <img src="roles-permissions.png" width="600px" alt="User Roles and Permissions">

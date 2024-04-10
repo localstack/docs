@@ -34,5 +34,5 @@ Witness firsthand how they empower developers in various scenarios, especially f
 <br/>
 Further reading:
 
-- [Cloud Pods Documentation]({{< ref "user-guide/cloud-pods" >}})
+- [Cloud Pods Documentation]({{< ref "user-guide/state-management/cloud-pods" >}})
 - [Cloud Pods Browser](https://docs.localstack.cloud/user-guide/web-application/cloud-pods-browser/)

@@ -2,13 +2,14 @@
 title: "MQ"
 linkTitle: "MQ"
 description: Get started with MQ on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 MQ is a managed message broker service offered by Amazon Web Services (AWS). It facilitates the exchange of messages between various components of distributed applications, enabling reliable and scalable communication. AWS MQ supports popular messaging protocols like MQTT, AMQP, and STOMP, making it suitable for a wide range of messaging use cases.
 
-LocalStack supports MQ via the Pro/Team offering, allowing you to use the MQ APIs to implement pub/sub messaging, request/response patterns, or distributed event-driven architectures in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_mq/), which provides information on the extent of MQ integration with LocalStack.
+LocalStack allows you to use the MQ APIs to implement pub/sub messaging, request/response patterns, or distributed event-driven architectures in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_mq/), which provides information on the extent of MQ integration with LocalStack.
 
 ## Getting started
 
@@ -87,7 +88,7 @@ The following code snippets and sample applications provide practical examples o
 
 Currently, our MQ emulation offers only fundamental capabilities, and it comes with certain limitations:
 
-- **ActiveMQ Version Limitation:** Presently, only ActiveMQ version 5.16.6 is supported.
+- **ActiveMQ Version Limitation:** Presently, only ActiveMQ version 5.16.6 is supported. RabbitMQ is not supported at this time.
 - **IAM User Management:** IAM Users are not actively enforced, although they are necessary for making correct calls within the system.
 - **Configuration Enforcement:** While it is feasible to create configurations, they are not actively enforced within the broker. 
 - **Persistence and Cloud Pods:** LocalStack does not provide support for Persistence and Cloud Pods at this time.

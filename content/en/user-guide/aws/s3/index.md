@@ -1,15 +1,15 @@
 ---
-title: "S3"
-linkTitle: "S3"
+title: "Simple Storage Service (S3)"
+linkTitle: "Simple Storage Service (S3)"
 description: >
-  Get started with S3 on LocalStack
+  Get started with Amazon S3 on LocalStack
 ---
 
 ## Introduction
 
-S3 (Simple Storage Service) is an object storage service that provides a highly scalable and durable solution for storing and retrieving data. In S3, a bucket represents a directory, while an object corresponds to a file. Each object or file within S3 encompasses essential attributes such as a unique key denoting its name, the actual content it holds, a version ID for versioning support, and accompanying metadata. S3 can store unlimited objects, allowing you to store, retrieve, and manage your data in a highly adaptable and reliable manner.
+Simple Storage Service (S3) is an object storage service that provides a highly scalable and durable solution for storing and retrieving data. In S3, a bucket represents a directory, while an object corresponds to a file. Each object or file within S3 encompasses essential attributes such as a unique key denoting its name, the actual content it holds, a version ID for versioning support, and accompanying metadata. S3 can store unlimited objects, allowing you to store, retrieve, and manage your data in a highly adaptable and reliable manner.
 
-LocalStack supports S3 via the Community offering, allowing you to use the S3 APIs in your local environment to create new buckets, manage your S3 objects, and test your S3 configurations locally. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_s3/), which provides information on the extent of S3's integration with LocalStack.
+LocalStack allows you to use the S3 APIs in your local environment to create new buckets, manage your S3 objects, and test your S3 configurations locally. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_s3/), which provides information on the extent of S3's integration with LocalStack.
 
 ## Getting started
 
@@ -131,6 +131,11 @@ However, if the endpoint is not prefixed by `s3.`, LocalStack will not be able t
 
 You can either change the endpoint to an S3-specific one, or configure your SDK to use **Path style** requests instead.
 Check out our [SDK documentation](https://docs.localstack.cloud/user-guide/integrations/sdks/) to learn how you can configure language SDKs to access LocalStack and S3.
+
+{{< alert title="Note" >}}
+While using [AWS language SDKs](https://aws.amazon.com/developer/tools/#SDKs), you would need to configure the `ForcePathStyle` parameter to `true` in the S3 client configuration to use **Path style** requests. If you want to use virtual host addressing of buckets, you can remove `ForcePathStyle` from the configuration.
+The `ForcePathStyle` parameter name can vary between SDK and languages, please check our [SDK documentation](https://docs.localstack.cloud/user-guide/integrations/sdks/)
+{{< /alert >}}
 
 If your endpoint is not prefixed with `s3.`, all requests are treated as **Path style** requests.
 Using the `s3.localhost.localstack.cloud` endpoint URL is recommended for all requests aimed at S3.

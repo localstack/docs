@@ -2,7 +2,8 @@
 title: "Managed Workflows for Apache Airflow (MWAA)"
 linkTitle: "Managed Workflows for Apache Airflow (MWAA)"
 description: >
-    Get started with Amazon Managed Workflows for Apache Airflow on LocalStack
+    Get started with Managed Workflows for Apache Airflow (MWAA) on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -10,7 +11,7 @@ description: >
 Managed Workflows for Apache Airflow (MWAA) is a fully managed service by AWS that simplifies the deployment, management, and scaling of Apache Airflow workflows in the cloud.
 MWAA leverages the familiar Airflow features and integrations while integrating with S3, Glue, Redshift, Lambda, and other AWS services to build data pipelines and orchestrate data processing workflows in the cloud.
 
-LocalStack supports Managed Workflows for Apache Airflow via the Pro/Team offering, allowing you to use the MWAA APIs in your local environment to allow the setup and operation of data pipelines.
+LocalStack allows you to use the MWAA APIs in your local environment to allow the setup and operation of data pipelines.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_mwaa/), which provides information on the extent of MWAA's integration with LocalStack.
 
 ## Getting started
@@ -47,21 +48,31 @@ $ awslocal mwaa create-environment --dag-s3-path /dags \
 
 ### Access the Airflow UI
 
-LocalStack will create the Airflow environment and print the Airflow UI URL and access credentials in the logs:
+The Airflow UI can be accessed via the URL in the `WebserverUrl` attribute of the response of the `GetEnvironment` operation.
+The username and password are always set to `localstack`.
+
+{{< command >}}
+$ awslocal mwaa get-environment --name my-mwaa-env --query Environment.WebserverUrl
+"http://localhost.localstack.cloud:4510"
+{{< /command >}}
+
+LocalStack also prints this information in the logs:
 
 ```bash
-2022-11-30T17:58:36.533 DEBUG --- [functhread13] l.services.mwaa.provider   : Airflow available at http://localhost.localstack.cloud:4510 with username=localstack and password=localstack
+2024-03-06T14:54:47.070  INFO --- [functhread10] l.services.mwaa.provider   : Airflow environment 'my-mwaa-env' available at http://localhost.localstack.cloud:4510 with username 'localstack' and password 'localstack'
 ```
 
 ## Airflow versions
 
 LocalStack supports the following versions of Apache Airflow:
 
-- `1.10.12`
-- `2.0.2`
-- `2.2.2`
+- `1.10.12` (deprecated)
+- `2.0.2` (deprecated)
+- `2.2.2` (deprecated)
 - `2.4.3`
-- `2.5.1` (default)
+- `2.5.1`
+- `2.6.3`
+- `2.7.2` (default)
 
 ## Airflow configuration options
 

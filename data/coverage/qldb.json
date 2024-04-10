@@ -76,8 +76,8 @@
     },
     {
       "ExportJournalToS3": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -174,7 +174,7 @@
       "ListTagsForResource": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -245,18 +245,42 @@
   ],
   "details": {
     "CreateLedger": {
-      "Name, PermissionsMode": {
+      "DeletionProtection, Name, PermissionsMode": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_qldb.py::test_create_ledgers",
-            "test": "test_create_ledgers",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/qldb/aws_qldb_ledger/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[False]",
+            "test": "test_create_ledger_response[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[True]",
+            "test": "test_create_ledger_response[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "Name, PermissionsMode": {
+        "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestHistoryQueries::test_query_history",
             "test": "test_query_history",
@@ -295,6 +319,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[None]",
+            "test": "test_create_ledger_response[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -416,20 +450,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          }
-        ]
-      },
-      "Name, PermissionsMode, Tags": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_qldb.py::test_create_ledgers",
-            "test": "test_create_ledgers",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -438,13 +458,13 @@
       "Name": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_qldb.py::test_create_ledgers",
-            "test": "test_create_ledgers",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/qldb/aws_qldb_ledger/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -485,6 +505,36 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[False]",
+            "test": "test_create_ledger_response[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[None]",
+            "test": "test_create_ledger_response[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[True]",
+            "test": "test_create_ledger_response[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -606,6 +656,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/qldb/aws_qldb_ledger/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
+            "response": "404",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_describe_and_delete_ledger",
@@ -624,14 +684,24 @@
       "Name": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_qldb.py::test_create_ledgers",
-            "test": "test_create_ledgers",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/qldb/aws_qldb_ledger/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/qldb/aws_qldb_ledger/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestHistoryQueries::test_query_history",
@@ -671,6 +741,36 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[False]",
+            "test": "test_create_ledger_response[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[None]",
+            "test": "test_create_ledger_response[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[True]",
+            "test": "test_create_ledger_response[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -788,6 +888,16 @@
             "test": "test_update_query_response",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/qldb/aws_qldb_ledger/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
+            "response": "404",
+            "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -810,34 +920,8 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_qldb.py::test_create_ledgers",
-            "test": "test_create_ledgers",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_list_ledgers",
             "test": "test_list_ledgers",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "ListTagsForResource": {
-      "ResourceArn": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_qldb.py::test_create_ledgers",
-            "test": "test_create_ledgers",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -868,16 +952,6 @@
       "DeletionProtection, Name": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_qldb.py::test_create_ledgers",
-            "test": "test_create_ledgers",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestHistoryQueries::test_query_history",
             "test": "test_query_history",
             "response": "200",
@@ -915,6 +989,26 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[None]",
+            "test": "test_create_ledger_response[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/qldb/test_qldb.py::TestQLDB::test_create_ledger_response[True]",
+            "test": "test_create_ledger_response[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..State']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {

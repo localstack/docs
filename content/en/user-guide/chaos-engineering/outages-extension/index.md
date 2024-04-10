@@ -3,6 +3,7 @@ title: "Outages Extension"
 linkTitle: "Outages Extension"
 weight: 2 
 description: Use LocalStack Outages Extension to mimic service outages by testing your infrastructure's ability to deploy robustly and recover from unexpected events.
+tags: ["Enterprise plan"]
 ---
 
 ## Introduction

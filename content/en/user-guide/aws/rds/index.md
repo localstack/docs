@@ -3,13 +3,14 @@ title: "Relational Database Service (RDS)"
 linkTitle: "Relational Database Service (RDS)"
 description: >
   Get started with Relational Database Service (RDS) on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
-RDS (Relational Database Service) is a managed database service provided by Amazon Web Services (AWS) that allows users to setup, operate, and scale relational databases in the cloud. RDS allows you to deploy and manage various relational database engines like MySQL, PostgreSQL, MariaDB, and Microsoft SQL Server. RDS handles routine database tasks such as provisioning, patching, backup, recovery, and scaling.
+Relational Database Service (RDS) is a managed database service provided by Amazon Web Services (AWS) that allows users to setup, operate, and scale relational databases in the cloud. RDS allows you to deploy and manage various relational database engines like MySQL, PostgreSQL, MariaDB, and Microsoft SQL Server. RDS handles routine database tasks such as provisioning, patching, backup, recovery, and scaling.
 
-LocalStack supports RDS via the Pro/Team offering, allowing you to use the RDS APIs in your local environment to create and manage RDS clusters and instances for testing & integration purposes. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_rds/), which provides information on the extent of RDS's integration with LocalStack.
+LocalStack allows you to use the RDS APIs in your local environment to create and manage RDS clusters and instances for testing & integration purposes. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_rds/), which provides information on the extent of RDS's integration with LocalStack.
 
 ## Getting started
 

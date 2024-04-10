@@ -19,7 +19,7 @@ The Auth Token remains unchanged unless manually rotated by the user, regardless
 
 ## Managing your License
 
-To use LocalStack, a license is required. You can get a license by registering on the [LocalStack Web Application](https://app.localstack.cloud/sign-up).Choose between a 14-day trial or explore additional features with our [paid offerring](https://app.localstack.cloud/pricing). During the trial period, you are welcome to use all the features of LocalStack.
+To use LocalStack, a license is required. You can get a license by registering on the [LocalStack Web Application](https://app.localstack.cloud/sign-up).Choose between a 14-day trial or explore additional features with our [paid offering](https://app.localstack.cloud/pricing). During the trial period, you are welcome to use all the features of LocalStack.
 
 After initiating your trial or acquiring a license, proceed to assign it to a user by following the steps outlined below:
 
@@ -107,8 +107,6 @@ environment:
 You can manually set the Auth Token, or use the `export` command to establish the Auth Token in your current shell session. This ensures the Auth Token is transmitted to your LocalStack container, enabling key activation.
 
 ## Licensing-related configuration
-
-To ensure that LocalStack only starts when you can activate LocalStack Pro/Team/Enterprise, set `ACTIVATE_PRO=1` in your environment. This is set to `true` by default if using the `localstack/localstack-pro` container image. If set to 1, LocalStack will fail to start if the license key activation did not work. If set to 0, an attempt is made to start LocalStack without any licensed features. 
 
 To avoid logging any licensing-related error messages, set `LOG_LICENSE_ISSUES=0` in your environment. Refer to our [configuration guide](https://docs.localstack.cloud/references/configuration/#localstack-pro) for more information.
 

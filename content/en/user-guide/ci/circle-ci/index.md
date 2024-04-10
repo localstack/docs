@@ -6,69 +6,91 @@ description: >
   Use LocalStack in CircleCI
 ---
 
+
 ## Introduction
 
-[Circle CI](https://circleci.com) is a continuous integration and continuous delivery (CI/CD) platform which uses a configuration file (usually named `.circleci/config.yml`) to define the build, test, and deployment workflows. LocalStack supports CircleCI out of the box and can be easily integrated into your pipeline to run your tests against a local cloud emulator.
+[CircleCI](https://circleci.com) is a continuous integration and continuous delivery (CI/CD) platform which uses a configuration file (usually named `.circleci/config.yml`) to define the build, test, and deployment workflows.
+LocalStack supports CircleCI out of the box and can be easily integrated into your pipeline to run your tests against a local cloud emulator.
 
-## Getting started
 
-This guide is designed for users new to CircleCI and assumes basic knowledge of YAML and LocalStack tooling. To create a CircleCI job that uses LocalStack, follow these steps:
+## Snippets
 
-- Under the "Projects" tab, find your project and click "Set Up Project"
-- You'll be prompted to add a configuration. You can add the configuration manually or choose a starter pipeline.
-- If you choose the starter CI pipeline, a sample `config.yml` file is created and committed to a `circleci-project-setup` branch in your repo.
-- You can add the following configuration to the `config.yml` file to start LocalStack and run your tests against it.
+### Start up LocalStack
 
-```yml
-version: 2.1
-
+#### Default
+```yaml
+version: '2.1'
 orbs:
-  python: circleci/python@2.0.3
-
+  localstack: localstack/platform@2.1
 jobs:
-  example-job:
-    machine:
-      image: ubuntu-2004:2022.04.1
-
+  localstack-test:
+    executor: localstack/default
     steps:
-      - checkout
-
-      - run:
-          name: Start LocalStack
-          command: |
-            pip3 install localstack awscli-local[ver1]
-            docker pull localstack/localstack
-            localstack start -d                     
-
-            echo "Waiting for LocalStack startup..."  
-            localstack wait -t 30                     
-            echo "Startup complete"
-            
-      - run:
-          name: Run AWS CLI commands against LocalStack
-          command: |
-            awslocal s3 mb s3://test-bucket
-            awslocal sqs create-queue --queue-name test-queue
-            awslocal sns create-topic --name test-topic
-
+      - localstack/startup
+      ...
 workflows:
-  version: 2
-  build:
+  localstack-test:
     jobs:
-      - example-job
+      - localstack-test
+
 ```
 
-The above CircleCI job does the following:
+#### Async
+```yaml
+version: '2.1'
+orbs:
+  localstack: localstack/platform@2.1
+jobs:
+  localstack-test:
+    executor: localstack/default
+    steps:
+      - localstack/start
+      ...
+      - localstack/wait
+workflows:
+  localstack-test:
+    jobs:
+      - localstack-test
+```
 
-- Defines a job called `example-job` that installs the `localstack` CLI and `awslocal` wrapper script to execute AWS CLI commands against LocalStack.
-- Pulls the LocalStack Docker image depending on the product tier via the `localstack` CLI (For Community, the image is `localstack/localstack`, while for Pro+ it is `localstack/localstack-pro`).
-- Starts LocalStack in the background and waits for it to become ready. After 30 seconds, the job will execute basic AWS CLI commands against LocalStack.
+### Configuration
+To configure LocalStack use the `environment` key on the job level or a shell command, where the latter takes higher precedence.
 
-## Configuring a CI key
+Read more about the [configuration options](/references/configuration/) of LocalStack.
 
-To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables. The LocalStack container will automatically pick it up and activate the licensed features. 
+#### Job level
+```yaml
+...
+jobs:
+  localstack-test:
+    executor: localstack/default
+    environment:
+      DEBUG: 1
+    steps:
+      - localstack/startup
+...
+```
 
-Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key. To add the CI key to your CircleCI project, follow these steps:
+#### Shell command
+```yaml
+...
+jobs:
+  localstack-test:
+    executor: localstack/default
+    steps:
+      - run:
+          name: Configure LocalStack
+          command: echo 'export DEBUG=1' >> "$BASH_ENV"
+...
+```
+
+### Configuring a CI key
+
+To enable LocalStack Pro+, you need to add your LocalStack CI key to the project's environment variables.
+The LocalStack container will automatically pick it up and activate the licensed features. 
+
+Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key.
+To add the CI key to your CircleCI project, follow these steps:
 
 - Click on **Project Settings**.
 - Select **Environment Variables** from the left side menu.
@@ -77,3 +99,346 @@ Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and
 - Paste your CI key into the input field.
 
 <img src="circleci-env-config.png" width="800px" alt="Adding the LocalStack CI key in CircleCI" />
+
+After the above steps, just start up LocalStack using our official orb as usual.
+
+### Dump LocalStack logs
+```yaml
+...
+jobs:
+  localstack-test:
+    executor: localstack/default
+    steps:
+...
+      - run:
+          name: Dump LocalStack logs
+          command: localstack logs | tee localstack.log
+      - store_artifacts:
+          path: localstack.log
+          name: localstack-logs
+...
+```
+
+### Store LocalStack state
+
+You can preserve your AWS infrastructure with LocalStack in various ways.
+To be able to use any of the below samples, you must [set a valid CI key](#configuring-a-ci-key).
+
+_Note: For best result we recommend to use a combination of the below techniques and you should familiarise yourself with CircleCI's data persistance approach, see their [official documentation](https://circleci.com/docs/persist-data/)._
+
+#### Workspace
+This strategy persist LocalStack's state between jobs for the current workflow.
+
+```yaml
+...
+jobs:
+  localstack-save-state:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running and deployed infrastructure
+      - run:
+          name: Export state
+          command: localstack state export ls-state.zip
+      - persist_to_workspace:
+        paths:
+          - ls-state.zip
+      # Store state as artifact for local debugging
+      - store_artifact:
+          key: ls-state
+          paths: ls-state.zip
+...
+  localstack-load-state:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running
+      - attach_workspace:
+          at: .
+      - run:
+          name: Import state
+          command: |
+            test -f ls-state.zip && localstack state import ls-state.zip
+...
+  workflows:
+  localstack-build:
+    jobs:
+      - localstack-save-state
+      - localstack-load-state
+```
+More information about Localstack's [state import/export](/user-guide/state-management/export-import-state).
+
+#### Cache
+To preserve state between workflow runs, you can take leverage of CircleCI's caching too.
+This strategy will persist LocalStack's state for every workflow re-runs, but not for different workflows.
+
+```yaml
+...
+jobs:
+  localstack-update-state:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running
+      # Let's restore previous workflow run's LocalStack state
+      - restore_cache:
+          # Use latest "ls-state" prefixed cache
+          key: ls-state-
+      - run:
+          name: Import state
+          command: test -f ls-state.zip && localstack state import ls-state.zip
+      ...
+      # Infrastructure had been updated
+      # Let's update cached LocalStack state
+      - run:
+          name: Export state
+          command: localstack state export ls-state.zip
+      - save_cache:
+          key: ls-state-{{checksum ls-state.zip}}
+          paths: ls-state.zip
+  ...
+  localstack-do-work:
+    executor: localstack/default
+    steps:
+      # LocalStack already running
+      - restore_cache:
+          # Use latest "ls-state" prefixed cache
+          key: ls-state-
+      - run:
+          name: Import state
+          command: test -f ls-state.zip && localstack state import ls-state.zip
+      ...
+
+
+# Example workflows
+workflows:
+  localstack-build:
+    jobs:
+      - localstack-update-state
+      - localstack-do-work
+      ...
+```
+More information about [state management](/user-guide/state-management/export-import-state).
+
+#### Cloud Pods
+Cloud Pods providing an easy solution to persist LocalStack's state, even between workflows or projects.
+
+Find more information about [Cloud Pods](/user-guide/state-management/cloud-pods/).
+
+##### Multiple projects
+Update or create the Cloud Pod in it's own project (ie in a separate Infrastructure as Code repo), this would create a base Cloud Pod, which you can use in the future without any configuration or deployment.
+
+_Note: If there is a previously created Cloud Pod which doesn't need updating this step can be skipped._
+
+```yaml
+...
+jobs:
+  localstack-update-cloud-pod:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running
+      - run:
+        name: Load state if exists
+        command: localstack pod load <POD_NAME> || true
+      ...
+      # Deploy infrastructure changes
+      ...
+      - run:
+          name: Export state updated state
+          command: localstack pod save <POD_NAME>
+
+
+workflows:
+  localstack-build:
+    jobs:
+      - localstack-update-cloud-pod
+```
+
+In a separate project use the previously created base Cloud Pod as below:
+
+```yaml
+...
+jobs:
+  localstack-use-cloud-pod:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running
+      - run:
+        name: Load state if exists
+        command: localstack pod load <POD_NAME>
+      ...
+      # Run some tests
+
+workflows:
+  localstack-build:
+    jobs:
+      - localstack-use-cloud-pod
+```
+
+##### Same project
+To use a dynamically updated Cloud Pod in multiple workflows but in the same project, you must eliminate the race conditions between the update workflow and the others.
+
+Before you are able to use any stored artifacts in your pipeline, you must provide either a valid [project API token](https://circleci.com/docs/managing-api-tokens/#creating-a-project-api-token) or a [personal API token](https://circleci.com/docs/managing-api-tokens/#creating-a-personal-api-token) to CircleCI.
+
+```yaml
+...
+parameters:
+  run_workflow_build:
+    default: true
+    type: boolean
+
+  run_workflow_test1:
+    default: false
+    type: boolean
+
+  run_workflow_test2:
+    default: false
+    type: boolean
+...
+
+
+jobs:
+  localstack-update-state:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running
+      - run:
+        name: Load state if exists
+        command: localstack pod load <POD_NAME>
+      ...
+      # Deploy infrastructure
+      ...
+      - run:
+          name: Export state updated state
+          command: localstack pod save <POD_NAME>
+      - run:
+          name: Trigger other workflows
+          # Replace placeholders with right values
+          command: |
+            curl --request POST \
+              --url https://circleci.com/api/v2/project/<vcs-slug>/<org-name>/<repo-name>/pipeline \
+              --header 'Circle-Token: $CIRCLECI_TOKEN' \
+              --header 'content-type: application/json' \
+              --data '{"parameters":{"run_workflow_build":false, "run_workflow_test1":true, "run_workflow_test2":true}}'
+
+
+  localstack-use-state:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running
+      - run:
+        name: Load state if exists
+        command: localstack pod load <POD_NAME> || true
+      ...
+
+
+# Example workflows
+workflows:
+  localstack-build:
+    when: << pipeline.parameters.run_workflow_build >>
+    jobs:
+      - localstack-update-state
+  localstack-test1:
+    when: << pipeline.parameters.run_workflow_test1 >>
+    jobs:
+      - localstack-use-state
+      ...
+  localstack-test2:
+    when: << pipeline.parameters.run_workflow_test2 >>
+    jobs:
+      - localstack-use-state
+      ...
+```
+
+#### Ephemeral Instance (Beta)
+Find out more about [Ephemeral Instances](/user-guide/cloud-sandbox/).
+
+##### Same job 
+```yaml
+...
+jobs:
+  do-work:
+    docker:
+      - image: cimg/base:2024.02
+    steps:
+      - run:
+        command: |
+          response=$(curl -X POST -d '{"auto_load_pod": "false"}' \
+            -H 'ls-api-key: $LOCALSTACK_API_KEY' \
+            -H 'authorization: token $LOCALSTACK_API_KEY' \
+            -H 'content-type: application/json' \
+            https://api.localstack.cloud/v1/previews/my-localstack-state)
+          
+          if [ "$endpointUrl" = "null" ] || [ "$endpointUrl" = "" ]; then
+            echo "Unable to create preview environment. API response: $response"
+            exit 1
+          fi
+          echo "Created preview environment with endpoint URL: $endpointUrl"
+
+          echo "export AWS_ENDPOINT_URL=$endpointUrl" >> "$BASH_ENV"
+
+      - run:
+        name: Output the ephemeral instance address
+        command: echo "$AWS_ENDPOINT_URL"
+...
+workflows:
+  use-ephemeral-instance:
+    jobs:
+      - do-work
+...
+```
+
+##### Multiple jobs
+```yaml
+...
+jobs:
+  setup-instance:
+    docker:
+      - image: cimg/base:2024.02
+    steps:
+      - run:
+        name: Set up ephemeral instance
+        command: |
+          pip install localstack
+          response=$(curl -X POST -d '{"auto_load_pod": "false"}' \
+            -H 'ls-api-key: $LOCALSTACK_API_KEY' \
+            -H 'authorization: token $LOCALSTACK_API_KEY' \
+            -H 'content-type: application/json' \
+            https://api.localstack.cloud/v1/previews/my-localstack-state)
+          
+          if [ "$endpointUrl" = "null" ] || [ "$endpointUrl" = "" ]; then
+            echo "Unable to create preview environment. API response: $response"
+            exit 1
+          fi
+          echo "Created preview environment with endpoint URL: $endpointUrl"
+
+          echo "export AWS_ENDPOINT_URL=$endpointUrl" >> ls-env-vars
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ls-env-vars
+
+  run-test:
+    docker:
+      - image: cimg/aws:2024.03
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+        name: Set up LS env variables
+        command: cat ./ls-env-vars >> $BASH_ENV
+      - run:
+        name: Output the ephemeral instance address
+        command: echo "$AWS_ENDPOINT_URL"
+...
+workflows:
+  use-ephemeral-instance:
+    jobs:
+      - setup-instance
+      - run-test
+...
+```
