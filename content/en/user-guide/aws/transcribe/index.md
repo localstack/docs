@@ -22,16 +22,6 @@ This guide is designed for users new to Transcribe and assumes basic knowledge o
 
 Start your LocalStack container using your preferred method. We will demonstrate how to create a transcription job and view the transcript in an S3 bucket using the AWS CLI.
 
-{{< alert title="Note" >}}
-This service offers limited support for aarch64/Apple Silicon platforms.
-
-If you encounter errors like `cannot load library *.so`, we recommend trying the AMD64 build of LocalStack as an alternative solution. Run the following command to pull the AMD64 build of LocalStack:
-
-{{< command >}}
-$ docker pull localstack/localstack:2.0.0 --platform amd64
-{{< /command >}}
-{{< /alert >}}
-
 ### Create an S3 bucket
 
 You can create an S3 bucket using the [`mb`](https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html) command. Run the following command to create a bucket named `foo` to upload a sample audio file named `example.wav`:
