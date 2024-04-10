@@ -32,6 +32,8 @@ In some cases, it can be useful to mount code from the host filesystem into the 
 
 In order to leverage code mounting, we can use the ECS bind mounts feature, which is covered in the [AWS Bind mounts documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/bind-mounts.html).
 
+
+### Boto3 example
 For example, the Python sample code below registers a task definition, mounting a host path `/host/path` into the container under `/container/path`:
 
 ```bash
@@ -50,5 +52,27 @@ ecs_client.register_task_definition(
         }
     ],
     volumes=[{"host": {"sourcePath": "/host/path"}, "name": "test-volume"}],
+)
+```
+
+### CDK example
+
+The same functionality can be achieved in CDK following this example:
+
+```python
+task_definition = ecs.TaskDefinition(
+        ...
+        volumes=[
+                ecs.Volume(name="test-volume", host=ecs.Host(source_path="/host/path"))
+        ]
+)
+
+container = task_def.add_container(...)
+
+container.add_mount_points(
+        ecs.MountPoint(
+                container_path="/container/path",
+                source_volume="test-volume",
+        ),
 )
 ```
