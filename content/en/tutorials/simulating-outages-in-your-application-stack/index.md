@@ -3,7 +3,7 @@ title: "Chaos Engineering: Simulating outages in your application stack"
 linkTitle: "Chaos Engineering: Simulating outages in your application stack"
 weight: 10
 description: >
-  Utilize the LocalStack Outages Extension to simulate service disruptions and assess how well your infrastructure can deploy and recover from unexpected situations. This tool helps you test the resilience of your system by creating controlled outage scenarios, allowing you to identify and improve upon weaknesses. By doing so, you enhance your infrastructure's ability to withstand and quickly bounce back from various challenges, ensuring a more robust and reliable system.
+  Utilize the LocalStack Outages Extension to simulate service disruptions and assess how well your infrastructure can deploy and recover from unexpected situations. This tool helps you test the resilience of your system by creating controlled outage scenarios, allowing you to identify and improve upon weaknesses.
 type: tutorials
 teaser: ""
 services:
