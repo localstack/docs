@@ -514,7 +514,7 @@ Let's now add some latency to our DynamoDB API calls. First the definition of a 
       "actionId": "localstack:generic:latency",
       "parameters": {
         "region": "us-east-1",
-        "latencyMilliseconds": 50000
+        "latencyMilliseconds": 5000
       }
     }
   },
