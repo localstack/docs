@@ -234,22 +234,21 @@ ecs_client.register_task_definition(
 
 ### CDK example
 
-The same functionality can be achieved in CDK following this example:
+The same functionality can be achieved with the AWS CDK following this (Python) example:
 
 ```python
 task_definition = ecs.TaskDefinition(
-        ...
-        volumes=[
-                ecs.Volume(name="test-volume", host=ecs.Host(source_path="/host/path"))
-        ]
+    ...
+    volumes=[
+        ecs.Volume(name="test-volume", host=ecs.Host(source_path="/host/path"))
+    ]
 )
 
 container = task_def.add_container(...)
 
 container.add_mount_points(
-        ecs.MountPoint(
-                container_path="/container/path",
-                source_volume="test-volume",
-        ),
+    ecs.MountPoint(
+        container_path="/container/path",
+        source_volume="test-volume",
+    ),
 )
-```
