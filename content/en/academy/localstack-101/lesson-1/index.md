@@ -10,5 +10,5 @@ length: 01:47
 leadimage: overview.png
 videoUrl: https://www.youtube.com/embed/VLL-BI1AWcc
 type: lessons
-url: /academy/localstack-101/course-overview/
+URL: "/academy/localstack-101/course-overview/"
 ---
