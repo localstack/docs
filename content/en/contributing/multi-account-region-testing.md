@@ -2,75 +2,70 @@
 title: "Multi-account and Multi-region Testing"
 weight: 8
 description: >
-  How to test multi-account and multi-region compatibility.
+  Make sure contributions are multi-account and multi-region compatible.
 ---
 
-LocalStack supports multi-account and multi-region compatibility. 
-This document describes how to test your changes for compatibility with cross-account and cross-region requests.
+LocalStack has multi-account and multi-region support (see [Multi-Account Setups]({{< ref "references/multi-account-setups" >}}) and [Cross-Account and Cross-Region Access]({{< ref "references/cross-account-access" >}})). 
+This document contains some tips to make sure that your contributions are compatible with this functionality.
 
-## Tips to make your changes compatible with multi-account and multi-region
+## Overview
 
-In order to make your changes compatible with multi-account and multi-region, you should follow the below tips:
-
-- For cross-account, in inter-service-communication for many integrations, you can specify a role, with which permissions the source service makes a request to the target service, to access another service's resource. 
+For cross-account inter-service access, specify a role with which permissions the source service makes a request to the target service to access another service's resource. 
 This role should be in the source account.
 When writing an AWS validated test case, you need to properly configure IAM roles.
 
-    For example: 
-    In the test case [`test_apigateway_with_step_function_integration`](https://github.com/localstack/localstack/blob/628b96b44a4fc63d880a4c1238a4f15f5803a3f2/tests/aws/services/apigateway/test_apigateway_basic.py#L999) we have specified a [role](https://github.com/localstack/localstack/blob/628b96b44a4fc63d880a4c1238a4f15f5803a3f2/tests/aws/services/apigateway/test_apigateway_basic.py#L1029-L1034) which has permissions to access the target step function account.
-    ```python
-    role_arn = create_iam_role_with_policy(
-        RoleName=f"sfn_role-{short_uid()}",
-        PolicyName=f"sfn-role-policy-{short_uid()}",
-        RoleDefinition=STEPFUNCTIONS_ASSUME_ROLE_POLICY,
-        PolicyDefinition=APIGATEWAY_LAMBDA_POLICY,
-    )
-    ```
+For example: 
+The test case [`test_apigateway_with_step_function_integration`](https://github.com/localstack/localstack/blob/628b96b44a4fc63d880a4c1238a4f15f5803a3f2/tests/aws/services/apigateway/test_apigateway_basic.py#L999) specifies a [role](https://github.com/localstack/localstack/blob/628b96b44a4fc63d880a4c1238a4f15f5803a3f2/tests/aws/services/apigateway/test_apigateway_basic.py#L1029-L1034) which has permissions to access the target step function account.
+```python
+role_arn = create_iam_role_with_policy(
+    RoleName=f"sfn_role-{short_uid()}",
+    PolicyName=f"sfn-role-policy-{short_uid()}",
+    RoleDefinition=STEPFUNCTIONS_ASSUME_ROLE_POLICY,
+    PolicyDefinition=APIGATEWAY_LAMBDA_POLICY,
+)
+```
 
-- While having an inter service communication in cross-account, you can create the client using `with_assumed_role(…)`:
-
-    For example:
-    ```python
-    connect_to.with_assumed_role(role_arn="role-arn", service_principal=ServicePrincial.service_name, region_name=region_name).lambda_
-    ```
+For cross-account inter-service access, you can create the client using `connect_to.with_assumed_role(...)`.
+For example:
+```python
+connect_to.with_assumed_role(
+    role_arn="role-arn",
+    service_principal=ServicePrincial.service_name,
+    region_name=region_name,
+).lambda_
+```
     
-- When there is no role specified, you should use the source arn conceptually if cross-account is allowed. 
+When there is no role specified, you should use the source arn conceptually if cross-account is allowed. 
+This can be seen in a case where `account_id` was added [added](https://github.com/localstack/localstack/blob/ae31f63bb6d8254edc0c85a66e3c36cd0c7dc7b0/localstack/utils/aws/message_forwarding.py#L42) to [send events to the target](https://github.com/localstack/localstack/blob/ae31f63bb6d8254edc0c85a66e3c36cd0c7dc7b0/localstack/utils/aws/message_forwarding.py#L31) service like SQS, SNS, Lambda, etc. 
 
-    For example:
-    This can be seen in a case where we [added](https://github.com/localstack/localstack/blob/ae31f63bb6d8254edc0c85a66e3c36cd0c7dc7b0/localstack/utils/aws/message_forwarding.py#L42) `account_id` to [send events to the target](https://github.com/localstack/localstack/blob/ae31f63bb6d8254edc0c85a66e3c36cd0c7dc7b0/localstack/utils/aws/message_forwarding.py#L31) service like sqs, sns, lambda, etc. 
-
-- You should always refer the official AWS API docs and check how the the application is communicating to each other. 
-    
-    For example: 
-    Firehose to s3 refer to [Offical AWS Docs](https://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#cross-account-delivery-s3).
+Always refer to the official AWS documentation and investigate how the the services communicate with each other. 
+For example, here are the [AWS Firehose docs](https://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#cross-account-delivery-s3) explaining Firehose and S3 integration.
 
 
-## Test changes in CI with non-default credentials
+## Test changes in CI with random credentials
 
-We regularly run the CircleCI test jobs of the LocalStack repository to check the compatibility of cross-account against the changes. 
-To achieve that, we have a [scheduled workflow](https://github.com/localstack/localstack/blob/master/.circleci/config.yml) on [LocalStack](https://github.com/localstack/localstack), which executes the tests with randomized account and region credentials every night at 1:00am UTC.
+We regularly run the test suite in CircleCI to check the multi-account and multi-region feature compatibility. 
+There is a [scheduled CircleCI workflow](https://github.com/localstack/localstack/blob/master/.circleci/config.yml) which executes the tests with randomized account ID and region at 01:00 UTC daily.
 
-To manually trigger the workflow through the webinterface of CircleCI (in case you have the permissions), in order to test your changes with randomized account and region credentials, you can perform the following steps: 
-- Go to the [localStack](https://app.circleci.com/pipelines/github/localstack/localstack) project repository on CircleCI.
-- Select a branch for which you want to trigger the workflow from the filters section.
-- Now click on the `Trigger pipeline` button on the right and add the following variables:
-    1. Parameter type to `boolean`
-    2. Name to `randomize-aws-credentials`
-    3. Value to `true`
-- Press the `Trigger pipeline` button to trigger the workflow.
+If you have permissions, this workflow can be manually triggered on CircleCI as follows:
+1. Go to the [LocalStack project on CircleCI](https://app.circleci.com/pipelines/github/localstack/localstack).
+1. Select a branch for which you want to trigger the workflow from the filters section.
+1. Click on the **Trigger Pipeline** button on the right and use the following values:
+    1. Set **Parameter type** to `boolean`
+    1. Set **Name** to `randomize-aws-credentials`
+    1. Set **Value** to `true`
+1. Click the **Trigger Pipeline** button to commence the workflow.
 
-## Test changes locally with non-default credentials
+![CircleCI Trigger Pipeline](../randomize-aws-credentials.png)
 
-In order to test your changes on your machine for multi-account and multi-region compatibility in case you have the permissions, i.e. for non-default values other than `000000000000` for account ID or `us-east-1` for region, set the following environment variables to any random non-default values, for example:  
+## Test changes locally with random credentials
 
-- `TEST_AWS_ACCOUNT_ID=111111111111`
-- `TEST_AWS_ACCESS_KEY_ID=111111111111`
-- `TEST_AWS_REGION=us-west-1`
-- `TEST_AWS_SECRET_ACCESS_KEY=test1`
+To test changes locally for multi-account and multi-region compatibility, set the environment config values as follows:
 
-You can additionally prefer to create a commit eg: [da3f8d5](https://github.com/localstack/localstack/pull/9751/commits/da3f8d5f2328adb7c5c025722994fea4433c08ba) to test the pipeline for non-default credentials against your changes. 
-Note that within the tests we must use `account_id`, `secondary_account_id`, `region_name`, `secondary_region_name` fixtures and avoid importing `localstack.constants.TEST_*` values. 
+- `TEST_AWS_ACCOUNT_ID` (Any value except `000000000000`)
+- `TEST_AWS_ACCESS_KEY_ID` (Any value except `000000000000`)
+- `TEST_AWS_REGION` (Any value except `us-east-1`)
 
-{{< alert title="Note">}}
-Make sure to revert these changes after the tests are completed. 
-{{< /alert >}}
+You may also opt to create a commit (for example: [`da3f8d5`](https://github.com/localstack/localstack/pull/9751/commits/da3f8d5f2328adb7c5c025722994fea4433c08ba)) to test the pipeline for non-default credentials against your changes. 
+Note that within all tests you must use `account_id`, `secondary_account_id`, `region_name`, `secondary_region_name` fixtures.
+Importing and using `localstack.constants.TEST_` values is not advised.
