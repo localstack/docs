@@ -1,6 +1,6 @@
 ---
-title: "Subsequent Configurations"
-linkTitle: "Subsequent Configurations"
+title: "Special Configurations"
+linkTitle: "Special Configurations"
 weight: 4
 description: Set up LocalStack for chaos engineering using environment variables.
 tags: ["Enterprise plan"]
