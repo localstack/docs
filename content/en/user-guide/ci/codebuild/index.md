@@ -15,7 +15,7 @@ LocalStack supports CodeBuild out of the box and can be easily integrated into y
 
 ## Snippets
 
-CodeBuild has the capability to use our Github Action, however as AWS states in its documentation this is not available for **webhook triggered open Git repositories**.
+CodeBuild has the capability to use our GitHub Action, however as AWS states in its documentation this is not available for **webhook triggered open Git repositories**.
 Additinally be aware that you can only use either the _Native Runner_ or the _GitHub Actions Runner_ snippets in the same phase.
 
 
@@ -302,11 +302,11 @@ Find out more about [ephemeral instances](/user-guide/cloud-sandbox/).
 
 ## Limitations and known issues
 - We recommend using the `public.ecr.aws/localstack/localstack:latest` image to start LocalStack, instead of the `localstack/localstack:latest` image. LocalStack mirrors the Docker Hub image to the public ECR repository.
-You can use the Docker Hub image as well, though you may run into the following error:
-```bash
-toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit
-```
-To resolve this use your docker hub account credentials.
+  You can use the Docker Hub image as well, though you may run into the following error:
+  ```bash
+  toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit
+  ```
+  To resolve this use your Docker Hub account credentials.
 - LocalStack depends on the Docker socket to emulate your infrastructure.
   To enable it, update your project by ticking **Environment > Additional Configuration > Privileged > Enable this flag if you want to build Docker Images or want your builds to get elevated privileges**.
 
