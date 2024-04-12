@@ -15,9 +15,7 @@ LocalStack supports CodeBuild out of the box and can be easily integrated into y
 
 ## Snippets
 
-CodeBuild has the capability to use our GitHub Action, however as AWS states in its documentation this is not available for **webhook triggered open Git repositories**.
-Additinally be aware that you can only use either the _Native Runner_ or the _GitHub Actions Runner_ snippets in the same phase.
-
+CodeBuild has the capability to use LocalStack's GitHub Action.
 
 ### Start up LocalStack
 
@@ -306,7 +304,9 @@ Find out more about [ephemeral instances](/user-guide/cloud-sandbox/).
   ```bash
   toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit
   ```
-  To resolve this use your Docker Hub account credentials.
+  To resolve this use your Docker Hub account credentials to pull the image.
 - LocalStack depends on the Docker socket to emulate your infrastructure.
   To enable it, update your project by ticking **Environment > Additional Configuration > Privileged > Enable this flag if you want to build Docker Images or want your builds to get elevated privileges**.
-
+- AWS states in its [documentation](https://docs.aws.amazon.com/codebuild/latest/userguide/action-runner-buildspec.html#action-runner-limitations) GitHub Actions Runners are not available for **webhook triggered open Git repositories**.
+- Be aware that you can only use either the _Native Runner_ or the _GitHub Actions Runner_ snippets in the same phase
+For further information see the official CodeBuild [documentation](https://docs.aws.amazon.com/codebuild/latest/userguide/action-runner-buildspec.html).
