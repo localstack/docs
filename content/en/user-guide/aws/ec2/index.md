@@ -378,11 +378,12 @@ The following table explains the emulated action for various API operations.
 ## Libvirt VM Manager
 
 {{< alert title="Note" >}}
-The Libvirt VM manager is a preview feature.
+The Libvirt VM manager is currently a preview feature and will be part of the Enterprise Plan upon release.
 {{< /alert >}}
 
 The Libvirt VM manager uses the [Libvirt](https://libvirt.org/index.html) API to create fully virtualized EC2 resources.
-LocalStack Pro supports the KVM-accelerated QEMU hypervisor on Linux hosts.
+This lets you create EC2 setups which closely resemble AWS EC2.
+Currently LocalStack Pro supports the KVM-accelerated QEMU hypervisor on Linux hosts.
 
 Installation steps for QEMU/KVM will vary based on the Linux distribution on the host machine.
 On Debian/Ubuntu-based distributions, you can run:
@@ -400,12 +401,11 @@ KVM acceleration can be used
 
 {{< alert title="Tip" color="success" >}}
 You may also need to enable virtualization support at hardware level.
-This is often labelled as 'Enable Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
+This is often labelled as 'Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
 {{< /alert >}}
 
-LocalStack requires the Libvirt socket file on the host to be mounted inside the container.
+LocalStack requires the Libvirt socket on the host to be mounted inside the container.
 This can be done by including the volume mounts when the LocalStack container is started.
-
 If you are using the [Docker Compose template]({{< ref "installation#starting-localstack-with-docker-compose" >}}), include the following line in `services.localstack.volumes` list:
 
 ```text
