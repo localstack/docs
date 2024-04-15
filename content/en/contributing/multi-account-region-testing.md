@@ -50,6 +50,7 @@ There is a [scheduled CircleCI workflow](https://github.com/localstack/localstac
 If you have permissions, this workflow can be manually triggered on CircleCI as follows:
 1. Go to the [LocalStack project on CircleCI](https://app.circleci.com/pipelines/github/localstack/localstack).
 1. Select a branch for which you want to trigger the workflow from the filters section.
+    - For PRs coming from forks, you can select the branch by using the PR number like this: `pull/<pr-number>`
 1. Click on the **Trigger Pipeline** button on the right and use the following values:
     1. Set **Parameter type** to `boolean`
     1. Set **Name** to `randomize-aws-credentials`
