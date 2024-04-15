@@ -172,33 +172,40 @@ If the `ssh` command throws an error like "Identity file not accessible" or "bad
 
 ## VM Managers
 
-LocalStack Pro comes with emulation capability for certain EC2 resources making them behave like AWS.
-This works on top of the mock/CRUD capabilities and makes it possible to implement advanced local setups.
+LocalStack EC2 supports multiple methods to simulate the EC2 service.
+All tiers support the mock/CRUD capability.
+For advanced setups, LocalStack Pro comes with emulation capability for certain resource types so that they behave more closely like AWS.
 
-The underlying method for emulation can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
-You may choose between virtualized, containerized or plain mocked resources.
+The underlying method for this can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
+You may choose between plain mocked resources, containerized or virtualized.
 
-(clarify that certain VM managers do not support persistence)
 
 ## Mock VM Manager
 
-This is the default method in LocalStack Community edition.
-All resources are mocked as in-memory representation only.
+With the Mock VM manager, all resources are stored as in-memory representation.
+This only offers the CRUD capability.
 
+This is the default VM manager in LocalStack Community edition.
 To use this VM manager in LocalStack Pro, set [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) to `mock`.
+
+This serves as the fallback manager if an operation is not implemented in other VM managers.
+
 
 ## Docker VM Manager
 
 LocalStack Pro supports the Docker VM manager which uses the [Docker Engine](https://docs.docker.com/engine/) to emulate EC2 instances.
 This VM manager requires the Docker socket from the host machine to be mounted inside the LocalStack container at `/var/run/docker.sock`.
 
-You may set [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) to `docker` to use this VM manager.
-Please note that this is the default VM manager in LocalStack Pro.
-
-All restrictions associated with containers are also applicable to EC2 instances managed by the Docker manager.
-These restrictions include elements like root access and networking.
+This is the default VM manager in LocalStack Pro.
+You may set [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) to `docker` to explicitly use this VM manager.
 
 All launched EC2 instances have the Docker socket mounted inside them at `/var/run/docker.sock` to make Docker-in-Docker usecases possible.
+
+All limitations associated with containers are also applicable to EC2 instances managed by the Docker manager.
+These restrictions include things like root access and networking.
+
+Please note that this VM manager does not fully support persistence.
+While the records of resources will be persisted, the instances or AMIs themselves (i.e. Docker containers and Docker images) will not be persisted.
 
 ### Instances and AMIs
 
@@ -233,6 +240,7 @@ $ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
 {{< alert title="Note" >}}
 If an AMI does have the `ec2_vm_manager:docker` tag, it means that it is mocked.
 Attempting to launch Dockerized instances using these AMIs will result in an `InvalidAMIID.NotFound` error.
+See [Mock VM manager](#mock-vm-manager).
 {{< /alert >}}
 
 ### Networking
@@ -359,6 +367,7 @@ Keep in mind that this will apply to all instances that are launched in the Loca
 ### Operations
 
 The following table explains the emulated action for various API operations.
+Any operation not listed below will use the mock VM manager.
 
 | Operation             | Notes                                                                                        |
 |:----------------------|:---------------------------------------------------------------------------------------------|
@@ -424,6 +433,8 @@ Subsequent accesses will be faster.
 {{< alert title="Tip" color="success" >}}
 You could opt to enable [`EAGER_SERVICE_LOADING`]({{< ref "configuration#core" >}}) to avoid the delay.
 {{< /alert >}}
+
+(clarify persistence support)
 
 ### AMIs
 
@@ -494,16 +505,17 @@ Please express your interest for this feature in [this](#TODO) backlog issue.
 ### Operations
 
 The following table explains the emulated action for various API operations.
+Any operation not listed below will use the mock VM manager.
 
 | Operation             | Notes                                                                                        |
 |:----------------------|:---------------------------------------------------------------------------------------------|
-| `DescribeImages`      |  |
-| `RunInstances`        |  |
-| `StartInstances`      |  |
-| `StopInstances`       |  |
-| `RebootInstances`     |  |
-| `TerminateInstances`  |  |
-| `CreateVolume`        |  |
+| `DescribeImages`      | ... |
+| `RunInstances`        | ... |
+| `StartInstances`      | ... |
+| `StopInstances`       | ... |
+| `RebootInstances`     | ... |
+| `TerminateInstances`  | ... |
+| `CreateVolume`        | ... |
 
 
 ## Resource Browser
@@ -511,9 +523,9 @@ The following table explains the emulated action for various API operations.
 The LocalStack Web Application provides a Resource Browser for managing EC2 instances.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **EC2** under the **Compute** section.
 
+<p>
 <img src="ec2-resource-browser.png" alt="EC2 Resource Browser" title="EC2 Resource Browser" width="900" />
-<br>
-<br>
+</p>
 
 The Resource Browser allows you to perform the following actions:
 - **Create Instance**: Create a new EC2 instance by clicking the **Launch Instance** button and specifying the AMI ID, instance type, and other parameters.
