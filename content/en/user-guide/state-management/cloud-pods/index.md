@@ -71,7 +71,7 @@ $ awslocal s3 ls s3://test/
 
 ### Save your Cloud Pod state
 
-You can now your Pod state using the `save` command, specifying the desired Cloud Pod name as the first argument. This action will save the pod and register it with the LocalStack Web Application:
+You can now save your Pod state using the `save` command, specifying the desired Cloud Pod name as the first argument. This action will save the pod and register it with the LocalStack Web Application:
 
 {{< command >}}
 $ localstack pod save s3-test
