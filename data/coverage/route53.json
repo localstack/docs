@@ -1070,7 +1070,7 @@
             "test": "test_create_private_hosted_zone",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..HostedZone.CallerReference']",
+            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..MaxItems']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1085,6 +1085,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_private_hostedzone",
+            "test": "test_private_hostedzone",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -1219,8 +1229,8 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -1229,8 +1239,18 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_hostedzone_without_comment",
+            "test": "test_hostedzone_without_comment",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..DelegationSet.Id', '$..HostedZone.Id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -1331,6 +1351,20 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
+      "CallerReference, Name, VPC": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_hosted_zone_in_non_existent_vpc",
+            "test": "test_create_hosted_zone_in_non_existent_vpc",
+            "response": "400",
+            "error": "InvalidVPCId",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -1448,7 +1482,7 @@
             "test": "test_create_private_hosted_zone",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..HostedZone.CallerReference']",
+            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..MaxItems']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1491,8 +1525,8 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -1501,8 +1535,8 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -1511,6 +1545,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..HostedZone.CallerReference', '$..DelegationSet.Id', '$..HostedZone.Id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_hostedzone_without_comment",
+            "test": "test_hostedzone_without_comment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..DelegationSet.Id', '$..HostedZone.Id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_private_hostedzone",
+            "test": "test_private_hostedzone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1902,7 +1956,7 @@
             "test": "test_create_private_hosted_zone",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..HostedZone.CallerReference']",
+            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..MaxItems']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1915,6 +1969,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..HostedZone.CallerReference', '$..DelegationSet.Id', '$..HostedZone.Id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_hostedzone_without_comment",
+            "test": "test_hostedzone_without_comment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..DelegationSet.Id', '$..HostedZone.Id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_private_hostedzone",
+            "test": "test_private_hostedzone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2060,6 +2134,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_private_hosted_zone",
+            "test": "test_create_private_hosted_zone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..MaxItems']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -2352,6 +2436,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_private_hostedzone",
+            "test": "test_private_hostedzone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -2403,6 +2497,28 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_private_hosted_zone",
+            "test": "test_create_private_hosted_zone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..MaxItems']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_private_hostedzone",
+            "test": "test_private_hostedzone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
