@@ -205,6 +205,7 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::EC2::VPCGatewayAttachment              |      ✅ |      ✅ |      - |
 | AWS::ECR::Repository                        |      ✅ |      ✅ |      - |
 | AWS::Elasticsearch::Domain                  |      ✅ |      ✅ |      - |
+| AWS::Events::ApiDestination                 |      ✅ |      ✅ |      - |
 | AWS::Events::Connection                     |      ✅ |      ✅ |      - |
 | AWS::Events::EventBus                       |      ✅ |      ✅ |      - |
 | AWS::Events::EventBusPolicy                 |      ✅ |      ✅ |      - |
