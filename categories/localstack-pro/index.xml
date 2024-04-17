@@ -359,7 +359,7 @@ Execute the following command to create an ECS cluster named &lt;code>mycluster&
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="create-a-task-definition">Create a task definition&lt;/h3>
 &lt;p>Containers within tasks are defined by a task definition that is managed outside of the context of a cluster.
-To create a task definition that runs an &lt;code>ubuntu&lt;/code> container forever (by running &lt;code>sleep infinity&lt;/code> on startup), create the following file as &lt;code>task_definition.json&lt;/code>:&lt;/p>
+To create a task definition that runs an &lt;code>ubuntu&lt;/code> container forever (by running an infinite loop printing &amp;ldquo;Running&amp;rdquo; on startup), create the following file as &lt;code>task_definition.json&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;containerDefinitions&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
@@ -368,10 +368,20 @@ To create a task definition that runs an &lt;code>ubuntu&lt;/code> container for
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;cpu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;memory&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;command&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;sleep&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;infinity&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;sh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;-c&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;while true; do echo running; sleep 1; done&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;essential&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;essential&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;logConfiguration&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;logDriver&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;awslogs&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;options&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;awslogs-create-group&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;true&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;awslogs-group&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;myloggroup&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;awslogs-stream-prefix&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;myprefix&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;awslogs-region&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;family&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;myfamily&amp;#34;&lt;/span>
@@ -391,12 +401,22 @@ To create a task definition that runs an &lt;code>ubuntu&lt;/code> container for
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;portMappings&amp;#34;: [],
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;essential&amp;#34;: true,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;command&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;sleep&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;infinity&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;sh&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;-c&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;while true; do echo running; sleep 1; done&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;environment&amp;#34;: [],
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;mountPoints&amp;#34;: [],
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;volumesFrom&amp;#34;: []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;volumesFrom&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;logConfiguration&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;logDriver&amp;#34;: &amp;#34;awslogs&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;options&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;awslogs-create-group&amp;#34;: &amp;#34;true&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;awslogs-group&amp;#34;: &amp;#34;myloggroup&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;awslogs-stream-prefix&amp;#34;: &amp;#34;myprefix&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;awslogs-region&amp;#34;: &amp;#34;us-east-1&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;family&amp;#34;: &amp;#34;myfamily&amp;#34;,
@@ -409,11 +429,12 @@ To create a task definition that runs an &lt;code>ubuntu&lt;/code> container for
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EXTERNAL&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EC2&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;registeredAt&amp;#34;: 1709242097.870379
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;registeredAt&amp;#34;: 1713364207.068659
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Task definitions are immutable, and are identified by their &lt;code>family&lt;/code> field, and calling &lt;code>register-task-definition&lt;/code> again with the same &lt;code>family&lt;/code> value creates a new &lt;em>version&lt;/em> of a task definition.&lt;/p>
+&lt;p>This task definition creates a CloudWatch Logs log group and log stream for the container so you can view the service logs.&lt;/p>
 &lt;h3 id="launch-a-service">Launch a service&lt;/h3>
 &lt;p>Finally we launch an ECS service using the task definition above.
 This will create a number of containers in replica mode meaning they are distributed over the nodes of the cluster, or in the case of Fargate, over availability zones within the region of the cluster. To create a service, execute the following command:&lt;/p>
@@ -464,12 +485,39 @@ This will create a number of containers in replica mode meaning they are distrib
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You should see a new docker container has been created, using the &lt;code>ubuntu:latest&lt;/code> image, and running the command &lt;code>sleep infinity&lt;/code>.&lt;/p>
+&lt;p>You should see a new docker container has been created, using the &lt;code>ubuntu:latest&lt;/code> image, and running the infinite loop command:&lt;/p>
 &lt;pre tabindex="0">&lt;code>$ docker ps
 CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
-a0dfa7a2cdd5 ubuntu &amp;#34;sleep infinity&amp;#34; About a minute ago Up About a minute ls-ecs-mycluster-a2fda12e-6a02-4eaa-a977-ded467a0227d-0-8ba33dc8
-66fcc01adb99 localstack/localstack-pro &amp;#34;docker-entrypoint.sh&amp;#34; 18 minutes ago Up 18 minutes (healthy) 127.0.0.1:53-&amp;gt;53/tcp, 127.0.0.1:443-&amp;gt;443/tcp, 127.0.0.1:4510-4560-&amp;gt;4510-4560/tcp, 127.0.0.1:4566-&amp;gt;4566/tcp, 127.0.0.1:53-&amp;gt;53/udp, 5678/tcp localstack-main
-&lt;/code>&lt;/pre>&lt;h2 id="localstack-ecs-behavior">LocalStack ECS behavior&lt;/h2>
+5dfeb9376391 ubuntu &amp;#34;sh -c &amp;#39;while true; …&amp;#34; 3 minutes ago Up 3 minutes ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d
+9967fe5300cc localstack/localstack-pro &amp;#34;docker-entrypoint.sh&amp;#34; 5 minutes ago Up 5 minutes (healthy) 0.0.0.0:443-&amp;gt;443/tcp, 0.0.0.0:4510-4560-&amp;gt;4510-4560/tcp, 53/tcp, 5678/tcp, 0.0.0.0:4566-&amp;gt;4566/tcp localstack-main
+&lt;/code>&lt;/pre>&lt;h3 id="collect-container-logs">Collect container logs&lt;/h3>
+&lt;p>To access the generated logs from the container, run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal logs filter-log-events --log-group-name myloggroup --query &amp;#39;events[].message&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name myloggroup | head -n 20
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;events&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;logStreamName&amp;#34;: &amp;#34;myprefix/ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d/75f0515e-0364-4ee5-9828-19026140c91a&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;timestamp&amp;#34;: 1713364216375,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;message&amp;#34;: &amp;#34;running&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ingestionTime&amp;#34;: 1713364216704,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;eventId&amp;#34;: &amp;#34;0&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;logStreamName&amp;#34;: &amp;#34;myprefix/ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d/75f0515e-0364-4ee5-9828-19026140c91a&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;timestamp&amp;#34;: 1713364216440,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;message&amp;#34;: &amp;#34;running&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ingestionTime&amp;#34;: 1713364216704,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;eventId&amp;#34;: &amp;#34;1&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;logStreamName&amp;#34;: &amp;#34;myprefix/ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d/75f0515e-0364-4ee5-9828-19026140c91a&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;timestamp&amp;#34;: 1713364216505,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;message&amp;#34;: &amp;#34;running&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>See our &lt;a href="/user-guide/aws/logs/">CloudWatch Logs user guide&lt;/a> for more details.&lt;/p>
+&lt;h2 id="localstack-ecs-behavior">LocalStack ECS behavior&lt;/h2>
 &lt;p>You can use the configuration option &lt;code>MAIN_DOCKER_NETWORK&lt;/code> to specify the network the ECS containers are started in.
 Otherwise, your ECS containers will be created in the same Docker network that LocalStack is in.
 If your ECS containers depend on LocalStack services, your ECS task network should be the same as the LocalStack container network.&lt;/p>
