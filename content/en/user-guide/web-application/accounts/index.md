@@ -1,6 +1,5 @@
 ---
 title: "Accounts"
-tags: ["LocalStack Pro", "Accounts"]
 weight: 10
 description: >
   The LocalStack accounts gives users access to the features in the web app like the resource browser, Stack Insight, Cloud pods, extensions and more.
@@ -12,7 +11,7 @@ A LocalStack account is required to access features in the web app, and to acces
 Visit [**app.localstack.cloud/sign-up**](https://app.localstack.cloud/sign-up) to create a user account for LocalStack.
 You can sign up with your email address or one of our supported social identity providers (such as GitHub).
 
-The Terms and Conditions can be found at <a href="https://app.localstack.cloud/terms" target="_blank">https://app.localstack.cloud/terms</a> and our privacy policy can be found at <a href="https://app.localstack.cloud/privacy" target="_blank">https://app.localstack.cloud/privacy</a>
+The Terms and Conditions can be found at <a href="https://www.localstack.cloud/legal/tos" target="_blank">https://www.localstack.cloud/legal/tos</a> and our privacy policy can be found at <a href="https://www.localstack.cloud/legal/privacy-policy" target="_blank">https://www.localstack.cloud/legal/privacy-policy</a>
 
 <img src="signup.PNG" width="550px" alt="A screenshot of the sign up form" title="Sign-up form">
 

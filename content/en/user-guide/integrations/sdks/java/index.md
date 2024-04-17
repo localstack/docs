@@ -1,7 +1,6 @@
 ---
 title: "Java"
 categories: []
-tags: ["sdk"]
 description: >
     How to use the AWS Java SDK with LocalStack.
 aliases:

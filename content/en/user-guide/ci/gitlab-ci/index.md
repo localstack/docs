@@ -1,11 +1,8 @@
 ---
 title: "GitLab CI"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 6
 description: >
   Use LocalStack in [GitLab CI](https://docs.gitlab.com/ee/ci/)
-aliases:
-  - /ci/gitlab-ci/
 ---
 
 This page contains easily customisable snippets to show you how to manage LocalStack in a GitLab CI pipeline.

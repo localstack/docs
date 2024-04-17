@@ -8,7 +8,7 @@ description: Get started with Amazon Transcribe on LocalStack
 
 Transcribe is a service provided by Amazon Web Services (AWS) that offers automatic speech recognition (ASR) capabilities. It enables developers to convert spoken language into written text, making it valuable for a wide range of applications, from transcription services to voice analytics. 
 
-LocalStack supports Transcribe via the Community offering, allowing you to use the Transcribe APIs for offline speech-to-text jobs in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_transcribe/), which provides information on the extent of Transcribe integration with LocalStack.
+LocalStack allows you to use the Transcribe APIs for offline speech-to-text jobs in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_transcribe/), which provides information on the extent of Transcribe integration with LocalStack.
 
 {{< alert title="Note">}}
 LocalStack's Transcribe relies on the offline speech-to-text service called [Vosk](https://alphacephei.com/vosk/). Therefore, LocalStack requires an internet connection during the initial creation of a transcription job for a specific language. This initial connection is required to download and cache the language model.
@@ -21,16 +21,6 @@ Once the language model is cached, subsequent transcriptions for the same langua
 This guide is designed for users new to Transcribe and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local)  wrapper script.
 
 Start your LocalStack container using your preferred method. We will demonstrate how to create a transcription job and view the transcript in an S3 bucket using the AWS CLI.
-
-{{< alert title="Note" >}}
-This service offers limited support for aarch64/Apple Silicon platforms.
-
-If you encounter errors like `cannot load library *.so`, we recommend trying the AMD64 build of LocalStack as an alternative solution. Run the following command to pull the AMD64 build of LocalStack:
-
-{{< command >}}
-$ docker pull localstack/localstack:2.0.0 --platform amd64
-{{< /command >}}
-{{< /alert >}}
 
 ### Create an S3 bucket
 

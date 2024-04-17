@@ -1,7 +1,6 @@
 ---
 title: "Elasticsearch Service"
 linkTitle: "Elasticsearch Service"
-categories: ["LocalStack Community"]
 description: >
   Get started with Amazon Elasticsearch Service (ES) on LocalStack
 aliases:

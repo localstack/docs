@@ -2,13 +2,14 @@
 title: "Backup"
 linkTitle: "Backup"
 description: Get started with Backup on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 Backup is a centralized backup service provided by Amazon Web Services. It simplifies the process of backing up and restoring your data across various AWS services and resources. Backup supports a wide range of AWS resources, including Elastic Block Store (EBS) volumes, Relational Database Service (RDS) databases, DynamoDB tables, Elastic File System (EFS) file systems, and more. Backup enables you to set backup retention policies, allowing you to specify how long you want to retain your backup copies.
 
-LocalStack supports Backup via the Pro/Team offering, allowing you to use the Backup APIs in your local environment to manage backup plans, create scheduled or on-demand backups of certain resource types. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_backup/), which provides information on the extent of Backup's integration with LocalStack.
+LocalStack allows you to use the Backup APIs in your local environment to manage backup plans, create scheduled or on-demand backups of certain resource types. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_backup/), which provides information on the extent of Backup's integration with LocalStack.
 
 ## Getting started
 

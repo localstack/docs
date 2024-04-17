@@ -5,39 +5,25 @@ weight: 7
 description: Use LocalStack in CodeBuild
 ---
 
+
 ## Introduction
 
-CodeBuild is a managed AWS service for the build and testing phases of software development. CodeBuild allows you to define your build project, set the source code location, and handles the building and testing, while supporting various programming languages, build tools, and runtime environments. LocalStack supports CodeBuild out of the box and can be easily integrated into your pipeline to run your tests against a cloud emulator.
+[AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) is a managed AWS service for the build and testing phases of software development.
+CodeBuild allows you to define your build project, set the source code location, and handles the building and testing, while supporting various programming languages, build tools, and runtime environments.
+LocalStack supports CodeBuild out of the box and can be easily integrated into your pipeline to run your tests against a cloud emulator.
 
-## Getting started
 
-This guide is designed for users new to CodeBuild and assumes basic knowledge of YAML and LocalStack tooling. In this guide, we will show you how to set up a CodeBuild project that uses LocalStack to run basic S3 tests against it.
+## Snippets
 
-### Configure your CodeBuild project
+CodeBuild has the capability to use LocalStack's GitHub Action.
 
-Navigate to the AWS Management Console and open the [CodeBuild console](https://console.aws.amazon.com/codesuite/codebuild/home).
+### Start up LocalStack
 
-Click on **Create build project**. In the **Create build project** page, enter the following details:
-
-- **Project name**: Enter a name for your build project.
-- **Source**: Select the source code provider and repository details. For this example, we will use the the **No Source** option.
-- **Operating system**: Select the operating system for your build environment. For this example, we will use **Ubuntu**.
-- **Runtime**: Select the runtime for your build environment. For this example, we will use **Standard**.
-- **Image**: Select the image for your build environment. For this example, we will use **aws/codebuild/standard:7.0**.
-- **Service Role**: Select the service role for your build environment. For this example, we will use the **New service role** option.
-- **Additional Configuration**: Click on it and select **Enable this flag if you want to build Docker images or want your builds to get elevated privileges** under the **Privileges** section.
-- **Buildspec**: Select **Insert build commands** and add `uname -a` to the build commands for testing purposes.
-- **Logs**: Select **CloudWatch** for the logs.
-
-Click on **Create build project** to create your build project.
-
-### Configure your buildspec file
-
-On the project dashboard, click on **Edit** to open the dropdown and select **Buildspec**. On the **Edit Buildspec** page, enter the following build commands:
+#### Native Runner
 
 ```yml
 version: 0.2
-
+...
 phases:
   pre_build:
     commands:
@@ -45,56 +31,84 @@ phases:
       - docker pull public.ecr.aws/localstack/localstack:latest	
       - localstack start -d
       - localstack wait -t 30
-  build:
-    commands:
-      - export AWS_ACCESS_KEY_ID="test"
-      - export AWS_SECRET_ACCESS_KEY="test"
-      - export AWS_DEFAULT_REGION="us-east-1"
-      - curl http://0.0.0.0:4566/_localstack/health | jq
-      - aws s3 mb s3://test --endpoint-url=http://0.0.0.0:4566
-      - aws s3 ls --endpoint-url=http://0.0.0.0:4566
 ```
 
-Click on **Update buildspec** to save your buildspec file.
+#### GitHub Actions Runner
 
-{{< alert title="Note">}}
-In the above buildspec file, we are using the `public.ecr.aws/localstack/localstack:latest` image to start LocalStack, instead of the `localstack/localstack:latest` image. LocalStack mirrors the Docker Hub image to the public ECR repository. You can use the Docker Hub image as well, though you may run into the following error:
-```bash
-toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit
-```
-{{< /alert >}}
+```yml
+version: 0.2
 
-### Start your build
-
-Click on **Start build** to start your build. After the build is complete, you can view the build logs and the build status.
-
-```bash
-[Container] 2024/02/07 09:19:25.791565 Running command aws s3 mb s3://test --endpoint-url=http://0.0.0.0:4566
-make_bucket: test
-
-[Container] 2024/02/07 09:19:26.849784 Running command aws s3 ls --endpoint-url=http://0.0.0.0:4566
-2024-02-07 09:19:26 test
-
-[Container] 2024/02/07 09:19:27.305446 Phase complete: BUILD State: SUCCEEDED
-[Container] 2024/02/07 09:19:27.305465 Phase context status code:  Message: 
-[Container] 2024/02/07 09:19:27.343546 Entering phase POST_BUILD
-[Container] 2024/02/07 09:19:27.345126 Phase complete: POST_BUILD State: SUCCEEDED
-[Container] 2024/02/07 09:19:27.345139 Phase context status code:  Message: 
+phases:
+  pre_build:
+    steps:
+      - run: docker pull public.ecr.aws/localstack/localstack:latest
+      - run: docker image tag public.ecr.aws/localstack/localstack-pro:latest localstack/localstack:latest
+      - name: Start LocalStack
+        uses: LocalStack/setup-localstack@main
+        with:
+          image-tag: 'latest'
+          install-awslocal: 'true'
 ```
 
-## Configuring a CI key
 
-To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables. The LocalStack container will automatically pick it up and activate the licensed features.
+### Configuration
 
-Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key. To add the CI key to your CodeBuild project, follow these steps:
+Get know more about the LocalStack [config options](/references/configuration/).
+
+#### Native Runner
+```yml
+version: 0.2
+
+env:
+  variables:
+    DEBUG: 1
+...
+phases:
+...
+```
+
+#### GitHub Actions Runner
+
+```yml
+version: 0.2
+
+env:
+  variables:
+    DEBUG: 1
+...
+
+phases:
+  pre_build:
+    steps:
+      ...
+      - name: Start LocalStack
+        uses: LocalStack/setup-localstack@main
+        with:
+          image-tag: 'latest'
+          configuration: LS_LOG=trace
+...
+```
+
+
+### Configuring a CI key
+
+To enable LocalStack Pro features, you need to add your LocalStack CI API key to the project's environment variables.
+The LocalStack container will automatically pick it up and activate the licensed features.
+
+Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key.
+To add the CI key to your CodeBuild project, follow these steps:
 
 - Navigate to your project dashboard, click **Edit** to open the dropdown, and select **Environment**.
 - Click on **Additional configuration** and navigate to the **Environment variables** section.
-- Specify **Name** as `LOCALSTACK_API_KEY` and **Value** as your CI key. Specify **Type** as per your requirement.
+- Specify **Name** as `LOCALSTACK_API_KEY` and **Value** as your CI key.
+Specify **Type** as per your requirement.
 
-Click on **Update environment** to save your environment variables. Navigate to the buildspec file and change the Docker image to `public.ecr.aws/localstack/localstack-pro:latest`:
+Click on **Update environment** to save your environment variables.
+Navigate to the buildspec file and change the Docker image to `public.ecr.aws/localstack/localstack-pro:latest`:
 
-```bash
+#### Native Runner
+
+```yaml
 ...
 phases:
   pre_build:
@@ -103,3 +117,196 @@ phases:
       - docker pull public.ecr.aws/localstack/localstack-pro:latest	
 ...
 ```
+
+#### GitHub Actions Runner
+
+```yml
+...
+phases:
+  pre_build:
+    steps:
+      - run: docker pull public.ecr.aws/localstack/localstack-pro:latest
+      - run: docker image tag public.ecr.aws/localstack/localstack-pro:latest localstack/localstack-pro:latest
+      - name: Start LocalStack
+        uses: LocalStack/setup-localstack@main
+        with:
+          image-tag: 'latest'
+          use-pro: 'true'
+...
+```
+
+
+### Dump LocalStack logs
+```yaml
+...
+artifacts:
+  files:
+    - localstack.log
+
+phases:
+  pre_build:
+    commands:
+      # Starts up LocalStack
+    ...
+  build:
+    commands:
+      # Run some commands which might fail
+      ...
+  post_build:
+    commands:
+      # Dump logs on build fail
+      - '[ ${CODEBUILD_BUILD_SUCCEEDING:-0} -eq 0 ] (localstack logs | tee localstack.log) || true'
+...
+# Optionally store dumped logs as artifact
+artifact:
+  files:
+    - localstack.log
+```
+
+
+### Store LocalStack state
+
+#### Artifact
+
+Find out more about [state management](/user-guide/state-management/export-import-state/).
+
+```yml
+...
+phases:
+  pre_build:
+  # LocalStack is up and running already
+  - (test -f ./ls-state-pod.zip && localstack state import ./ls-state-pod.zip) || true
+  ...
+  - localstack state export ./ls-state-pod.zip
+...
+artifact:
+  files:
+    - ls-state-pod.zip
+```
+Alternatively save as a secondary artifact:
+```yml
+...
+artifact:
+  ...
+  secondary-artifacts:
+    ls-state:
+      files:
+        - ls-state-pod.zip
+    ...
+```
+To use previously stored artifacts as inputs, set them as a source in the project.
+
+#### Cache
+
+Additional information about [state export and import](/user-guide/state-management/export-import-state/).
+
+##### Native Runner
+```yml
+...
+phases:
+  pre_build:
+    commands:
+    # LocalStack is up and running already
+      - (test -f ./ls-state-pod.zip && localstack state import ./ls-state-pod.zip) || true
+      ...
+      - localstack state export ./ls-state-pod.zip
+...
+cache:
+  paths:
+    - 'ls-state-pod.zip'
+```
+
+##### GitHub Actions Runner
+```yml
+...
+phases:
+  pre_build:
+    steps:
+      - run: (test -f ./ls-state-pod.zip && localstack state import ./ls-state-pod.zip) || true
+      ...
+      - run: localstack state export ./ls-state-pod.zip
+...
+cache:
+  paths:
+    - 'ls-state-pod.zip'
+```
+
+#### Cloud Pods
+
+Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
+
+##### Native Runner
+```yml
+...
+phases:
+  pre_build:
+    commands:
+      ...
+      # LocalStack is up and running already
+      - localstack pod load <POD_NAME> || true
+      ...
+      - localstack pod save <POD_NAME>
+      ...
+```
+
+##### GitHub Actions Runner
+
+```yml
+...
+phases:
+  pre_build:
+    steps:
+      # LocalStack is up and running already
+      - name: Load the Cloud Pod 
+        continue-on-error: true  # Allow it to fail as pod does not exist at first run
+        uses: LocalStack/setup-localstack/cloud-pods@main
+        with:
+          name: <cloud-pod-name>
+          action: load
+      ...
+      - name: Save the Cloud Pod 
+        uses: LocalStack/setup-localstack/cloud-pods@main
+        with:
+          name: <cloud-pod-name>
+          action: save
+      ...
+```
+
+#### Ephemeral Instances (Beta)
+```yml
+...
+phases:
+  pre_build:
+    commands:
+      ...
+      - |
+          response=$(curl -X POST -d '{"auto_load_pod": "false"}' \
+            -H 'ls-api-key: $LOCALSTACK_API_KEY' \
+            -H 'authorization: token $LOCALSTACK_API_KEY' \
+            -H 'content-type: application/json' \
+            https://api.localstack.cloud/v1/previews/my-localstack-state)
+          
+          if [ "$endpointUrl" = "null" ] || [ "$endpointUrl" = "" ]; then
+            echo "Unable to create preview environment. API response: $response"
+            exit 1
+          fi
+          echo "Created preview environment with endpoint URL: $endpointUrl"
+
+          export AWS_ENDPOINT_URL=$endpointUrl
+      ...
+```
+
+Find out more about [ephemeral instances](/user-guide/cloud-sandbox/).
+
+## Limitations and known issues
+- We recommend using the `public.ecr.aws/localstack/localstack:latest` image to start LocalStack, instead of the `localstack/localstack:latest` image. LocalStack mirrors the Docker Hub image to the public ECR repository.
+  You can use the Docker Hub image as well, though you may run into the following error:
+  ```bash
+  toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit
+  ```
+  To resolve this use your Docker Hub account credentials to pull the image.
+- LocalStack depends on the Docker socket to emulate your infrastructure.
+  To enable it, update your project by ticking **Environment > Additional Configuration > Privileged > Enable this flag if you want to build Docker Images or want your builds to get elevated privileges**.
+- AWS states in its [documentation](https://docs.aws.amazon.com/codebuild/latest/userguide/action-runner-buildspec.html#action-runner-limitations) GitHub Actions Runners are not available for **webhook triggered open Git repositories**.
+- Be aware that you can only use either the _Native Runner_ or the _GitHub Actions Runner_ snippets in the same phase
+For further information see the official CodeBuild [documentation](https://docs.aws.amazon.com/codebuild/latest/userguide/action-runner-buildspec.html).

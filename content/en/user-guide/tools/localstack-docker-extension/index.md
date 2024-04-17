@@ -3,7 +3,6 @@ title: "LocalStack Docker Extension"
 weight: 8
 description: >
   Getting started with LocalStack Extension for Docker Desktop
-tags: ["docker-desktop", "docker"]
 aliases:
   - /tools/docker-desktop-extension/
   - /user-guide/tools/docker-desktop-extension/

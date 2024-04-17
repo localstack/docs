@@ -2,7 +2,6 @@
 title: "Hot Reloading"
 date: 2021-09-27
 weight: 1
-categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Hot code reloading continuously applies code changes to Lambda functions
 aliases:
@@ -241,9 +240,16 @@ LocalStack's Lambda container.
 
 ### Hot reloading for TypeScript Lambdas
 
-You can hot-reload your [TypeScript Lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html). We will check-out a simple example to create a simple `Hello World!` Lambda function using TypeScript.
+You can hot-reload your [TypeScript Lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html). You can use the following options to build your TypeScript code:
 
-#### Setting up the Lambda function
+- ESbuild
+- Webpack
+
+#### ESbuild
+
+We will check-out a simple example to create a simple `Hello World!` Lambda function using TypeScript and ESbuild.
+
+##### Setting up the Lambda function
 
 Create a new Node.js project with `npm` or an alternative package manager:
 
@@ -290,7 +296,7 @@ You can now run the build script to create the `dist/index.js` file:
 $ npm run build
 {{< / command >}}
 
-#### Creating the Lambda Function
+##### Creating the Lambda Function
 
 To create the Lambda function, you need to take care of two things:
 
@@ -345,7 +351,7 @@ The `output.txt` file contains the following:
 {"statusCode":200,"body":"{\"message\":\"Hello World!\"}"}
 ```
 
-#### Changing the Lambda Function
+##### Changing the Lambda Function
 
 The Lambda function is now mounted as a file in the executing container, hence any change that we save on the file will be there in an instant.
 
@@ -354,6 +360,77 @@ Change the `Hello World!` message to `Hello LocalStack!` and run `npm run build`
 ```sh
 {"statusCode":200,"body":"{\"message\":\"Hello LocalStack!\"}"}
 ```
+
+#### Webpack
+
+In this example, you can use our public [Webpack example](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-hot-reloading/lambda-typescript-webpack) to create a simple Lambda function using TypeScript and Webpack. To use the example, run the following commands:
+
+{{< command >}}
+cd /tmp
+git clone https://github.com/localstack-samples/localstack-pro-samples.git
+cd lambda-hot-reloading/lambda-typescript-webpack
+{{< / command >}}
+
+##### Setting up the build
+
+Before you can build the Lambda function, you need to install the dependencies:
+
+{{< command >}}
+$ yarn install
+{{< / command >}}
+
+Next, you can build the Lambda function:
+
+{{< command >}}
+$ yarn run build
+{{< / command >}}
+
+The `build` script in the `package.json` file uses Nodemon to watch for changes in the `src` directory and rebuild the Lambda. This is enabled using the [`nodemon-webpack-plugin`](https://www.npmjs.com/package/nodemon-webpack-plugin)  plugin, which has been pre-configured in the `webpack.config.js`  file.
+
+##### Creating the Lambda Function
+
+You can now create the Lambda function using the `awslocal` CLI:
+
+{{< command >}}
+$ awslocal lambda create-function \
+    --function-name localstack-example \
+    --runtime nodejs18.x \
+    --role arn:aws:iam::000000000000:role/lambda-ex \
+    --code S3Bucket="hot-reload",S3Key="$(PWD)/dist" \
+    --handler api.default
+{{< / command >}}
+
+Additionally, you can create a Lambda Function URL with the following command:
+
+{{< command >}}
+$ function_url=$(awslocal lambda create-function-url-config \
+    --function-name localstack-example \
+    --auth-type NONE | jq -r '.FunctionUrl')
+{{< / command >}}
+
+##### Trigger the Hot Reload
+
+Before triggering the Lambda function, you can check the current response by running the following command:
+
+{{< command >}}
+$ curl -X GET "$function_url"
+{{< / command >}}
+
+The response should be:
+
+```bash
+{"error":"Only JSON payloads are accepted"}
+```
+
+Go to `src/api.ts` and make the `errorResponse` function return `"Only JSON payload is accepted"` instead of `"Only JSON payloads are accepted"`. Save the file and run the last `curl` command again. 
+
+The output should now be:
+
+```bash
+{"error":"Only JSON payload is accepted"}
+```
+
+You can now see that the changes are applied without redeploying the Lambda function.
 
 ## Deployment Configuration Examples
 

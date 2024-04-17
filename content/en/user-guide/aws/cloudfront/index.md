@@ -2,14 +2,15 @@
 title: "CloudFront"
 linkTitle: "CloudFront"
 description: >
-  Get started with AWS CloudFront on LocalStack
+  Get started with CloudFront on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 CloudFront is a content delivery network (CDN) service provided by Amazon Web Services (AWS). CloudFront distributes its web content, videos, applications, and APIs with low latency and high data transfer speeds. CloudFront APIs allow you to configure distributions, customize cache behavior, secure content with access controls, and monitor the CDN's performance through real-time metrics.
 
-LocalStack supports CloudFront via the Pro/Team offering, allowing you to use the CloudFront APIs in your local environment to create local CloudFront distributions to transparently access your applications and file artifacts. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudfront/), which provides information on the extent of CloudFront's integration with LocalStack.
+LocalStack allows you to use the CloudFront APIs in your local environment to create local CloudFront distributions to transparently access your applications and file artifacts. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudfront/), which provides information on the extent of CloudFront's integration with LocalStack.
 
 ## Getting started
 

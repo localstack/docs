@@ -11,7 +11,7 @@ Secrets Manager is a service provided by Amazon Web Services (AWS) that enables 
 Secrets Manager integrates seamlessly with AWS services, making it easier to manage secrets used by various applications and services.
 Secrets Manager supports automatic secret rotation, replacing long-term secrets with short-term ones to mitigate the risk of compromise without requiring application updates.
 
-LocalStack supports Secrets Manager via the Community offering, allowing you to use the Secrets Manager APIs in your local environment to manage, retrieve, and rotate secrets.
+LocalStack allows you to use the Secrets Manager APIs in your local environment to manage, retrieve, and rotate secrets.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_secretsmanager/), which provides information on the extent of Secrets Manager's integration with LocalStack.
 
 ## Getting started

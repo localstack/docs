@@ -3,6 +3,7 @@ title: "Fault Injection Simulator (FIS)"
 linkTitle: "Fault Injection Simulator (FIS)"
 description: >
   Get started with Fault Injection Simulator (FIS) on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -11,7 +12,7 @@ Fault Injection Simulator (FIS) is a service provided by Amazon Web Services (AW
 FIS inject faults such as network latency, resource unavailability, and service errors to assess the impact on your application's performance and availability.
 The full list of such possible fault injections - called **actions** - is available in the [AWS docs](https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html).
 
-LocalStack supports FIS APIs via the Pro/Team offering, allowing you to use the FIS APIs in your local environment to introduce faults in other services, in order to check how your setup behaves when parts of it stop working locally.
+LocalStack allows you to use the FIS APIs in your local environment to introduce faults in other services, in order to check how your setup behaves when parts of it stop working locally.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_fis/), which provides information on the extent of FIS API's integration with LocalStack.
 
 ## FIS Concepts

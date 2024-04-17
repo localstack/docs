@@ -2,15 +2,14 @@
 title: "Elastic Load Balancing (ELB)"
 linkTitle: "Elastic Load Balancing (ELB)"
 description: Get started with Elastic Load Balancing (ELB) on LocalStack
-aliases:
-- /user-guide/aws/elastic-load-balancing/
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 Elastic Load Balancing (ELB) is a service that allows users to distribute incoming traffic across multiple targets, such as EC2 instances, containers, IP addresses, and lambda functions and automatically scales its request handling capacity in response to incoming traffic. It also monitors the health of its registered targets and ensures that it routes traffic only to healthy targets. You can check [the official AWS documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html) to understand the basic terms and concepts used in the ELB.
 
-Localstack supports the Elastic Load Balancing via the Pro/Team offering, allowing you to use the Elastic Load Balancing APIs in your local environment to create, edit, and view load balancers, target groups, listeners, and rules. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_elbv2/), which provides information on the extent of ELB's integration with LocalStack.
+Localstack allows you to use the Elastic Load Balancing APIs in your local environment to create, edit, and view load balancers, target groups, listeners, and rules. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_elbv2/), which provides information on the extent of ELB's integration with LocalStack.
 
 ## Getting started
 

@@ -2,13 +2,14 @@
 title: "Web Application Firewall (WAF)"
 linkTitle: "Web Application Firewall (WAF)"
 description: Get started with Web Application Firewall (WAF) on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 Web Application Firewall (WAF) is a service provided by Amazon Web Services (AWS) that helps protect your web applications from common web exploits that could affect application availability, compromise security, or consume excessive resources. WAFv2 is the latest version of WAF, and it allows you to specify a single set of rules to protect your web applications, APIs, and mobile applications from common attack patterns, such as SQL injection and cross-site scripting.
 
-LocalStack supports WAFv2 via the Pro/Team offering, allowing you to use the WAFv2 APIs for offline web application firewall jobs in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_wafv2/), which provides information on the extent of WAFv2 integration with LocalStack.
+LocalStack allows you to use the WAFv2 APIs for offline web application firewall jobs in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_wafv2/), which provides information on the extent of WAFv2 integration with LocalStack.
 
 ## Getting started
 

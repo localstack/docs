@@ -6,6 +6,7 @@ description: >
 aliases:
   - /localstack/persistence-mechanism/
   - /references/persistence-mechanism/
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -115,7 +116,7 @@ Persistence for services that are _not_ listed here _may_ work correctly, but ar
 * AppSync
 * CloudWatch
 * Cognito
-* DynamodDB
+* DynamoDB
 * IAM
 * Kinesis
 * KMS
@@ -123,7 +124,7 @@ Persistence for services that are _not_ listed here _may_ work correctly, but ar
 * RDS: Postgres, MariaDB, MySQL
 * Route53
 * S3
-* SecresManager
+* SecretsManager
 * SNS
 * SQS
 * SSM

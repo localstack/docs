@@ -6,6 +6,7 @@ aliases:
   - /user-guide/cloud-pods/getting-started/
   - /user-guide/tools/cloud-pods/auto-load/
   - /user-guide/tools/cloud-pods/remotes/
+tags: ["Teams plan"]
 ---
 
 ## Introduction
@@ -18,10 +19,6 @@ Cloud pods are persistent state snapshots of your LocalStack instance that can e
 -  Create reproducible development and testing environments locally.
 
 <img src="pods-ui.png" alt="Cloud Pods Web UI" title="Cloud Pods Web UI" width="800px" />
-
-{{< alert title="Note" >}}
-Cloud Pods is only available to LocalStack Team users. LocalStack Pro users can access other state management features, such as [Persistence]({{< ref "persistence" >}}) and [State Export & Import]({{< ref "export-import-state" >}}).
-{{< /alert >}}
 
 ## Installation
 
@@ -74,7 +71,7 @@ $ awslocal s3 ls s3://test/
 
 ### Save your Cloud Pod state
 
-You can now your Pod state using the `save` command, specifying the desired Cloud Pod name as the first argument. This action will save the pod and register it with the LocalStack Web Application:
+You can now save your Pod state using the `save` command, specifying the desired Cloud Pod name as the first argument. This action will save the pod and register it with the LocalStack Web Application:
 
 {{< command >}}
 $ localstack pod save s3-test
@@ -193,12 +190,35 @@ Similarly, everyone can save a new version of a Cloud Pod on top of a Pod origin
 
 ## Web Application
 
-The LocalStack Web Application enables you to export your infrastructure state to a Cloud Pod and import it into another LocalStack instance.
+The LocalStack Web Application enables you to :
+
+- Browse your Cloud Pods and access your version history.
+- Export & import Cloud Pods to and from LocalStack instances.
+
+### Browse Cloud Pods
+
+[Cloud Pods Browser](https://app.localstack.cloud/pods) allows you to view, manage, and explore your Cloud Pods through the LocalStack Web Application.
+With Cloud Pods, you can have individual or shared ownership of a snapshot of your LocalStack instance.
+
+<img src="cloud-pods-browser.png" alt="LocalStack Web Application's Cloud Pods Browser outlining various saved Clod Pods" title="Cloud Pods Browser" width="900" />
+<br><br>
+
+The Cloud Pods Browser provides the following functionalities:
+
+- **View Cloud Pods**: View all Cloud Pods saved by you or your organization.
+- **View Versions**: View the version history of a Cloud Pod and access previous versions of specific Cloud Pods by clicking on the Cloud Pod's name.
+- **View Cloud Pod Details**: View the details of a specific Cloud Pod version by clicking on the version.
+- **View Cloud Pod storage**: View the organization storage usage and user storage usage on top of the Cloud Pods Browser.
+- **Delete Cloud Pod**: Delete a Cloud Pod by selecting the Cloud Pod and navigating to the **Actions** button, followed by **Delete**.
+
+### Export & Import Cloud Pods
+
+You can export and import your LocalStack infrastructure state as a Cloud Pod using the LocalStack Web Application.
+This feature is particularly useful when you need to use a user-friendly interface to manage your Cloud Pods, without the need to interact with the CLI.
 
 <img src="export-import-state-cloud-pod.png" alt="LocalStack Export/Import State Cloud Pod Mode" title="LocalStack Export/Import State Cloud Pod Mode" width="900" />
 
-
-### Export the State
+#### Export the State
 
 To export the state, follow these steps:
 
@@ -207,9 +227,10 @@ To export the state, follow these steps:
 3. Enter the Pod name and toggle between the **New Pod** and **Existing Pod** options.
 4. Click on **Create New Pod**.
 
-A new Cloud Pod will be created and will be available for import into another LocalStack instance. You can check out the list of available Cloud Pods in the [Cloud Pod](https://app.localstack.cloud/pods) page.
+A new Cloud Pod will be created and will be available for import into another LocalStack instance.
+You can check out the list of available Cloud Pods in the [Cloud Pod](https://app.localstack.cloud/pods) page.
 
-### Import the State
+#### Import the State
 
 To import the state, follow these steps:
 
@@ -410,7 +431,7 @@ $ localstack pod load my-pod oras-remote
 
 ### Miscellaneous
 
-Unless explicitly specified, all Cloud Pods commands default to targeting the LocalStack Platform as the storage remote. It's important to note that the CLI must be authenticated correctly with our Platform, and a Team/Enterprise subscription is mandatory.
+Unless explicitly specified, all Cloud Pods commands default to targeting the LocalStack Platform as the storage remote. It's important to note that the CLI must be authenticated correctly with our Platform.
 
 Custom remote configurations are stored within the [LocalStack volume directory](https://docs.localstack.cloud/references/filesystem/#localstack-volume-directory) and are managed by the LocalStack container. Consequently, when sharing Cloud Pods among your team using a custom remote, each team member must define the identical remote configuration. Once added, a remote persists even after LocalStack restarts.
 

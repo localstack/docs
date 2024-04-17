@@ -1,17 +1,16 @@
 ---
 title: "Application Auto Scaling"
 linkTitle: "Application Auto Scaling"
-aliases:
-- /user-guide/aws/application-autoscaling
 description: >
   Get started with Application Auto Scaling on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 Application Auto Scaling is a centralized solution for managing automatic scaling by defining scaling policies based on specific metrics. Based on CPU utilization or request rates, it automatically adjusts capacity in response to changes in workload. With Application Auto Scaling, you can configure automatic scaling for services such as DynamoDB, ECS, Lambda, ElastiCache, and more. Auto scaling uses CloudWatch under the hood to configure scalable targets which a service namespace, resource ID, and scalable dimension can uniquely identify.
 
-LocalStack supports Application Auto Scaling via the Pro/Team offering, allowing you to use the Application Auto Scaling APIs in your local environment to scale different resources based on scaling policies and scheduled scaling. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_application-autoscaling/), which provides information on the extent of Application Auto Scaling's integration with LocalStack.
+LocalStack allows you to use the Application Auto Scaling APIs in your local environment to scale different resources based on scaling policies and scheduled scaling. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_application-autoscaling/), which provides information on the extent of Application Auto Scaling's integration with LocalStack.
 
 ## Getting Started
 

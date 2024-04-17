@@ -14,7 +14,7 @@ Resource Groups allow for a unified view of their resources allowing developers 
 Resource Groups in AWS provide two types of queries that developers can use to build groups: Tag-based queries and CloudFormation stack-based queries.
 With Tag-based queries, developers can organize resources based on common attributes or characteristics, while CloudFormation stack-based queries allow developers to group resources that are deployed together as part of a CloudFormation stack.
 
-LocalStack supports Resource Groups via the Community offering, allowing you to use the Resource Groups APIs in your local environment to group and categorize resources based on criteria such as tags, resource types, regions, or custom attributes.
+LocalStack allows you to use the Resource Groups APIs in your local environment to group and categorize resources based on criteria such as tags, resource types, regions, or custom attributes.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_resource-groups/), which provides information on the extent of Resource Group's integration with LocalStack.
 
 ## Getting Started

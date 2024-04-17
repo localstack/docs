@@ -1,17 +1,16 @@
 ---
 title: "Cost Explorer"
 linkTitle: "Cost Explorer"
-aliases:
-- /user-guide/aws/cost-explorer
 description: >
   Get started with Cost Explorer on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
 
 Cost Explorer is a service provided by Amazon Web Services (AWS) that enables you to visualize, analyze, and manage your AWS spending and usage. Cost Explorer offers options to filter and group data by dimensions such as service, region, instance type, and more. With Cost Explorer, you can forecast costs, track budget progress, and set up alerts to receive notifications when spending exceeds predefined thresholds.
 
-LocalStack supports Cost Explorer via the Pro/Team offering, allowing you to use the Cost Explorer APIs in your local environment to create and manage cost category definition, cost anomaly monitors & subscriptions. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ce/), which provides information on the extent of Cost Explorer's integration with LocalStack.
+LocalStack allows you to use the Cost Explorer APIs in your local environment to create and manage cost category definition, cost anomaly monitors & subscriptions. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ce/), which provides information on the extent of Cost Explorer's integration with LocalStack.
 
 {{< alert title="Note">}}
 LocalStack's Cost Explorer implementation cannot programmatically query your cost and usage data, or provide aggregated data such as total monthly costs or total daily usage. However, you can use the integrations to mock the Cost Explorer APIs and test your workflow locally.

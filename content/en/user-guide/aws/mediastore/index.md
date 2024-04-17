@@ -2,6 +2,7 @@
 title: Elemental MediaStore
 linkTitle: Elemental MediaStore
 description: Get started with Elemental MediaStore on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -10,7 +11,7 @@ MediaStore is a scalable and highly available object storage service designed sp
 It provides a reliable way to store, manage, and serve media assets, such as audio, video, and images, with low latency and high performance. 
 MediaStore seamlessly integrates with other AWS services like Elemental MediaConvert, Elemental MediaLive, Elemental MediaPackage, and CloudFront.
 
-LocalStack supports Elemental MediaStore via the Pro/Team offering, allowing you to use the Elemental MediaStore APIs as a high-performance storage solution for media content in your local environment.
+LocalStack allows you to use the Elemental MediaStore APIs as a high-performance storage solution for media content in your local environment.
 The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_mediastore/), which provides information on the extent of Elemental MediaStore integration with LocalStack.
 
 ## Getting started

@@ -1,8 +1,9 @@
 ---
 title: "Chaos Engineering Dashboard"
 linkTitle: "Chaos Engineering Dashboard"
-weight: 5
+weight: 2
 description: Effortlessly design, activate, and manage fault injection experiments with the LocalStack user-friendly dashboard.
+tags: ["Pro image"]
 ---
 
 ## Introduction

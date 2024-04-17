@@ -79,7 +79,7 @@ Here is an example of AWS API call metadata:
 }
 ```
 
-For the community version, we only track service, operation, status code, and how often the combination of those occurred.
+For the community image, we only track service, operation, status code, and how often the combination of those occurred.
 
 ### CLI invocations
 

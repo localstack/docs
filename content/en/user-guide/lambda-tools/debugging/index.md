@@ -1,7 +1,6 @@
 ---
 title: "Remote Debugging"
 weight: 2
-categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Attach a debugger to your Lambda functions from within your IDE
 aliases:

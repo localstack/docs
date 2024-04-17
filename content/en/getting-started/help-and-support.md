@@ -70,7 +70,7 @@ If you have questions about billing, account issues, or other questions that are
 You can avail dedicated support through the following channels:
 
 - [LocalStack Slack Bot](https://localstack.cloud/slack)
-- [LocalStack Web Application](mailto:http://app.localstack.cloud)
+- [LocalStack Web Application](https://app.localstack.cloud)
 
 ### LocalStack Slack Bot
 

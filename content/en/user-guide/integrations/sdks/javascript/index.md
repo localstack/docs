@@ -1,7 +1,6 @@
 ---
 title: "JavaScript"
 categories: []
-tags: ["sdk"]
 description: >
   How to use the JavaScript AWS SDK with LocalStack.
 aliases:

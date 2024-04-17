@@ -8,5 +8,5 @@ length: 02:05
 leadimage: overview.png
 videoUrl: https://www.youtube.com/embed/XDIat6laW28?si=dHaNCDWnCCZ7eYP8
 type: lessons
-url: /academy/localstack-deployment/course-overview/
+URL: "/academy/localstack-deployment/course-overview/"
 ---
