@@ -71,7 +71,16 @@ To create a task definition that runs an `ubuntu` container forever (by running 
         "sleep",
         "infinity"
       ],
-      "essential": true
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "myloggroup",
+          "awslogs-stream-prefix": "myprefix",
+          "awslogs-region": "us-east-1"
+        }
+      }
     }
   ],
   "family": "myfamily"
@@ -85,7 +94,7 @@ $ awslocal ecs register-task-definition --cli-input-json file://task_definition.
 <disable-copy>
 {
     "taskDefinition": {
-        "taskDefinitionArn": "arn:aws:ecs:us-east-1:000000000000:task-definition/myfamily:1",
+        "taskDefinitionArn": "arn:aws:ecs:us-east-1:000000000000:task-definition/myfamily:2",
         "containerDefinitions": [
             {
                 "name": "server",
@@ -94,18 +103,23 @@ $ awslocal ecs register-task-definition --cli-input-json file://task_definition.
                 "memory": 10,
                 "portMappings": [],
                 "essential": true,
-                "command": [
-                    "sleep",
-                    "infinity"
-                ],
                 "environment": [],
                 "mountPoints": [],
-                "volumesFrom": []
+                "volumesFrom": [],
+                "logConfiguration": {
+                    "logDriver": "awslogs",
+                    "options": {
+                        "awslogs-create-group": "true",
+                        "awslogs-group": "myloggroup",
+                        "awslogs-stream-prefix": "myprefix",
+                        "awslogs-region": "us-east-1"
+                    }
+                }
             }
         ],
         "family": "myfamily",
         "networkMode": "bridge",
-        "revision": 1,
+        "revision": 2,
         "volumes": [],
         "status": "ACTIVE",
         "placementConstraints": [],
@@ -120,6 +134,8 @@ $ awslocal ecs register-task-definition --cli-input-json file://task_definition.
 {{< / command >}}
 
 Task definitions are immutable, and are identified by their `family` field, and calling `register-task-definition` again with the same `family` value creates a new _version_ of a task definition.
+
+This task definition creates a CloudWatch Logs log group and log stream for the container so you can view the service logs.
 
 ### Launch a service
 
