@@ -7,28 +7,19 @@ aliases:
   - /developer-guide/development-environment-setup/
 ---
 
-{{< alert title="Note" >}}
-We have recently added a couple of refactorings and enhancements in the core framework and application architecture, hence this page is no longer fully up to date. We're planning to publish an updated version soon.
-{{< /alert >}}
-
-Before you get started with contributing to LocalStack, make sure you’ve familiarized yourself with LocalStack from the perspective of a user. You can follow our [getting started guide](https://docs.localstack.cloud/get-started/). Once LocalStack runs in your Docker environment and you’ve played around with the LocalStack and `awslocal` CLI, you can move forward to set up your developer environment.
+Before you get started with contributing to LocalStack, make sure you’ve familiarized yourself with LocalStack from the perspective of a user.
+You can follow our [getting started guide](https://docs.localstack.cloud/get-started/).
+Once LocalStack runs in your Docker environment and you’ve played around with the LocalStack and `awslocal` CLI, you can move forward to set up your developer environment.
 
 ## Development requirements
 
 You will need the following tools for the local development of LocalStack.
 
-* [Python 3.11+](https://www.python.org/downloads/)
-* `pip`
-* [`virtualenv`](https://pypi.org/project/virtualenv/)
-* [OpenJDK](https://openjdk.org/install/)
-* [NodeJS & npm](https://nodejs.org/en/download/)
-* [Maven](https://maven.apache.org/download.cgi)
-* [Gradle](https://gradle.org/install/)
-* [Terraform](https://www.terraform.io/downloads)
+* [Python 3.11+](https://www.python.org/downloads/) and `pip`
 * [Docker](https://docs.docker.com/desktop/)
-* [Docker-Compose](https://docs.docker.com/compose/install/)
 
-We recommend you to individually install the above tools using your favorite package manager. For example, on macOS, you can use [Homebrew](https://brew.sh/) to install the above tools.
+We recommend you to individually install the above tools using your favorite package manager.
+For example, on macOS, you can use [Homebrew](https://brew.sh/) to install the above tools.
 
 ### Setting up the Development Environment
 
@@ -50,16 +41,13 @@ The basic steps include:
 
 ### Building the Docker image for Development
 
-Please note that there are a few commands we need to run on the host to prepare the local environment for the Docker build - specifically,
-downloading some dependencies like the StepFunctions local binary. Therefore, simply running `docker build .` in a fresh clone of the repo may not work.
-
-We generally recommend using this command to build the Docker image locally (works on Linux/MacOS):
+We generally recommend using this command to build the `localstack/localstack` Docker image locally (works on Linux/MacOS):
 
 {{< command >}}
 $ make docker-build
 {{< / command >}}
 
-### Specific Dependencies for Host Mode
+### Additional Dependencies for running LocalStack in Host Mode
 
 In host mode, additional dependencies (e.g., Java) are required for developing certain AWS-emulated services (e.g., StepFunctions).
 The required dependencies vary depending on the service, [Configuration](https://docs.localstack.cloud/references/configuration/), operating system, and system architecture (i.e., x86 vs ARM).
@@ -73,6 +61,16 @@ Refer to our official [Dockerfile](https://github.com/localstack/localstack/blob
 * [libvirt-python](https://pypi.org/project/libvirt-python/) requires `libvirt-dev` on Debian or `libvirt` on macOS/Brew to fix `Package libvirt was not found in the pkg-config search path.`
   * Used in EC2 to access Libvirt inside the LocaStack container
   * Introduced in [localstack-ext#2827](https://github.com/localstack/localstack-ext/pull/2827)
+
+#### Uncategorized
+
+Some services or tests might need some of these dependencies (not yet categorized):
+
+* [OpenJDK](https://openjdk.org/install/)
+* [NodeJS & npm](https://nodejs.org/en/download/)
+* [Maven](https://maven.apache.org/download.cgi)
+* [Gradle](https://gradle.org/install/)
+* [Terraform](https://www.terraform.io/downloads)
 
 #### Lambda
 
