@@ -30,37 +30,28 @@ You will need the following tools for the local development of LocalStack.
 
 We recommend you to individually install the above tools using your favorite package manager. For example, on macOS, you can use [Homebrew](https://brew.sh/) to install the above tools.
 
-### Setting up Development Environment
+### Setting up the Development Environment
 
-To make contributions to LocalStack, you need to be able to run LocalStack in host mode from your IDE, and be able to attach a debugger to the running LocalStack instance. We have a basic tutorial to cover how you can do that.
+To make contributions to LocalStack, you need to be able to run LocalStack in host mode from your IDE, and be able to attach a debugger to the running LocalStack instance.
+We have a basic tutorial to cover how you can do that.
 
 The basic steps include:
 
-*   Clone the localstack repository, and optionally our fork of `moto`:
-    -   [https://github.com/localstack/localstack/](https://github.com/localstack/localstack/)
-    -   [https://github.com/localstack/moto](https://github.com/localstack/moto)
-*   Make sure you have `javac`, `node`, `npm`, and Python 3.10 installed.
-*   Most of the contributors use the free community version [PyCharm](https://www.jetbrains.com/pycharm/).
+1. Fork the localstack repository on GitHub [https://github.com/localstack/localstack/](https://github.com/localstack/localstack/)
+2. Clone the forked localstack repository `git clone git@github.com:<GITHUB_USERNAME>/localstack.git`
+3. Ensure you have `python` and `pip` installed.
+   > You might also need `node`, `npm`, and `javac` for some emulated services.
+4. Install the Python dependencies using `make install`.
+   > This will install the required pip dependencies in a local Python `virtualenv` directory `.venv` (your global python packages will remain untouched).
+   > Depending on your system, some `pip`/`npm` modules may require additional native libs installed. 
+5. Start localstack in host mode using `make start`
 
 {{< youtube XHLBy6VKuCM >}}
 
-If you pull the repo in order to extend/modify LocalStack, run this command to install all the dependencies:
-
-{{< command >}}
-$ make install
-{{< /command >}}
-
-This will install the required pip dependencies in a local Python `virtualenv` directory `.venv` (your global python packages will remain untouched), as well as some node modules in `./localstack/node_modules/`. Depending on your system, some `pip`/`npm` modules may require additional native libs installed.
-
-The Makefile contains a start command to conveniently start:
-
-{{< command >}}
-$ make start
-{{< / command >}}
-
 ### Building the Docker image for Development
 
-Please note that there are a few commands we need to run on the host to prepare the local environment for the Docker build - specifically, downloading some dependencies like the StepFunctions local binary. Therefore, simply running `docker build .` in a fresh clone of the repo may not work.
+Please note that there are a few commands we need to run on the host to prepare the local environment for the Docker build - specifically,
+downloading some dependencies like the StepFunctions local binary. Therefore, simply running `docker build .` in a fresh clone of the repo may not work.
 
 We generally recommend using this command to build the Docker image locally (works on Linux/MacOS):
 
@@ -68,8 +59,51 @@ We generally recommend using this command to build the Docker image locally (wor
 $ make docker-build
 {{< / command >}}
 
+### Specific Dependencies for Host Mode
+
+In host mode, additional dependencies (e.g., Java) are required for developing certain AWS-emulated services (e.g., StepFunctions).
+The required dependencies vary depending on the service, [Configuration](https://docs.localstack.cloud/references/configuration/), operating system, and system architecture (i.e., x86 vs ARM).
+Refer to our official [Dockerfile](https://github.com/localstack/localstack/blob/master/Dockerfile) and our [package installer LPM](./Concepts/index.md#packages-and-installers) for more details.
+
+#### Python Dependencies
+
+* [JPype1](https://pypi.org/project/JPype1/) might require `g++` to fix a compile error on ARM Linux `gcc: fatal error: cannot execute ‘cc1plus’`
+  * Used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping for a Java-based event ruler via the opt-in configuration `EVENT_RULE_ENGINE=java`
+  * Introduced in [#10615](https://github.com/localstack/localstack/pull/10615)
+* [libvirt-python](https://pypi.org/project/libvirt-python/) requires `libvirt-dev` on Debian or `libvirt` on macOS/Brew to fix `Package libvirt was not found in the pkg-config search path.`
+  * Used in EC2 to access Libvirt inside the LocaStack container
+  * Introduced in [localstack-ext#2827](https://github.com/localstack/localstack-ext/pull/2827)
+
+#### Lambda
+
+* macOS users need to configure `LAMBDA_DEV_PORT_EXPOSE=1` such that the host can reach Lambda containers via IPv4 in bridge mode (see [#7367](https://github.com/localstack/localstack/pull/7367)).  
+
+#### EVENT_RULE_ENGINE=java
+
+* Requires Java to execute to invoke the AWS [event-ruler](https://github.com/aws/event-ruler) using [JPype](https://github.com/jpype-project/jpype), a Python to Java bridge.
+* Set `JAVA_HOME` to a JDK installation. For example: `JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2`
+
+### Changing our fork of moto
+
+1. Fork our moto repository on GitHub [https://github.com/localstack/moto](https://github.com/localstack/moto)
+2. Clone the forked moto repository `git clone git@github.com:<GITHUB_USERNAME>/moto.git` (using the `localstack` branch)
+3. Within the localstack repository, install moto in **editable** mode:
+
+```sh
+# Assuming the following directory structure:
+#.
+#├── localstack
+#└── moto
+
+cd localstack
+source .venv/bin/activate
+
+pip install -e ../moto
+```
+
 ### Tips
 
+* Most of the contributors use the free community version of [PyCharm](https://www.jetbrains.com/pycharm/).
 * If `virtualenv` chooses system python installations before your pyenv installations, manually initialize `virtualenv` before running `make install`: `virtualenv -p ~/.pyenv/shims/python3.10 .venv` .
 * Terraform needs version <0.14 to work currently. Use `tfenv` (<https://github.com/tfutils/tfenv>) to manage terraform versions comfortable. Quick start: `tfenv install 0.13.7 && tfenv use 0.13.7`
 * Set env variable `LS_LOG='trace'` to print every `http` request sent to localstack and their responses. It is useful for debugging certain issues.
