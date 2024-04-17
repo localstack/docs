@@ -372,9 +372,7 @@ Any operation not listed below will use the mock VM manager.
 | Operation             | Notes                                                                                        |
 |:----------------------|:---------------------------------------------------------------------------------------------|
 | `CreateImage`         | Uses Docker commit to capture a snapshot of a running instance into a new AMI |
-| `CopyImage`           | ... |
 | `DescribeImages`      | Retrieves a list of Docker images that can be used as AMIs |
-| `ImportImage`         | ... |
 | `RegisterImage`       | ... |
 | `DescribeInstances`   | Describes both mocked and Docker-backed instances. Docker-backed instances are marked with the resource tag `ec2_vm_manager:docker` |
 | `RunInstances`        | Creates and runs Docker containers that back instances |
@@ -429,14 +427,7 @@ If you are using [Docker CLI]({{< ref "installation#starting-localstack-with-doc
 -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock
 ```
 
-The initial access to the EC2 API with the Libvirt VM manager may take a while as LocalStack installs all dependencies.
-Subsequent accesses will be faster.
-
-{{< alert title="Tip" color="success" >}}
-You could opt to enable [`EAGER_SERVICE_LOADING`]({{< ref "configuration#core" >}}) to avoid the startup delay.
-{{< /alert >}}
-
-The Libvirt VM manager does not have full support for persistence.
+The Libvirt VM manager currently does not have full support for persistence.
 Underlying virtual machines and volumes are not persisted, instead only their mock respresentations are.
 
 ### AMIs
