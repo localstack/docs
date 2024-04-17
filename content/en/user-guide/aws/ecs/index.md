@@ -57,7 +57,7 @@ $ awslocal ecs create-cluster --cluster-name mycluster
 ### Create a task definition
 
 Containers within tasks are defined by a task definition that is managed outside of the context of a cluster.
-To create a task definition that runs an `ubuntu` container forever (by running `sleep infinity` on startup), create the following file as `task_definition.json`:
+To create a task definition that runs an `ubuntu` container forever (by running an infinite loop printing "Running" on startup), create the following file as `task_definition.json`:
 
 ```json
 {
@@ -68,10 +68,20 @@ To create a task definition that runs an `ubuntu` container forever (by running 
       "cpu": 10,
       "memory": 10,
       "command": [
-        "sleep",
-        "infinity"
+        "sh",
+        "-c",
+        "while true; do echo running; sleep 1; done"
       ],
-      "essential": true
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "myloggroup",
+          "awslogs-stream-prefix": "myprefix",
+          "awslogs-region": "us-east-1"
+        }
+      }
     }
   ],
   "family": "myfamily"
@@ -95,12 +105,22 @@ $ awslocal ecs register-task-definition --cli-input-json file://task_definition.
                 "portMappings": [],
                 "essential": true,
                 "command": [
-                    "sleep",
-                    "infinity"
+                    "sh",
+                    "-c",
+                    "while true; do echo running; sleep 1; done"
                 ],
                 "environment": [],
                 "mountPoints": [],
-                "volumesFrom": []
+                "volumesFrom": [],
+                "logConfiguration": {
+                    "logDriver": "awslogs",
+                    "options": {
+                        "awslogs-create-group": "true",
+                        "awslogs-group": "myloggroup",
+                        "awslogs-stream-prefix": "myprefix",
+                        "awslogs-region": "us-east-1"
+                    }
+                }
             }
         ],
         "family": "myfamily",
@@ -113,13 +133,15 @@ $ awslocal ecs register-task-definition --cli-input-json file://task_definition.
             "EXTERNAL",
             "EC2"
         ],
-        "registeredAt": 1709242097.870379
+        "registeredAt": 1713364207.068659
     }
 }
 </disable-copy>
 {{< / command >}}
 
 Task definitions are immutable, and are identified by their `family` field, and calling `register-task-definition` again with the same `family` value creates a new _version_ of a task definition.
+
+This task definition creates a CloudWatch Logs log group and log stream for the container so you can view the service logs.
 
 ### Launch a service
 
@@ -177,14 +199,47 @@ $ awslocal ecs create-service --service-name myservice --cluster mycluster --tas
 </disable-copy>
 {{< / command >}}
 
-You should see a new docker container has been created, using the `ubuntu:latest` image, and running the command `sleep infinity`.
+You should see a new docker container has been created, using the `ubuntu:latest` image, and running the infinite loop command:
 
 ```
 $ docker ps
-CONTAINER ID   IMAGE                       COMMAND                  CREATED              STATUS                    PORTS                                                                                                                                        NAMES
-a0dfa7a2cdd5   ubuntu                      "sleep infinity"         About a minute ago   Up About a minute                                                                                                                                                      ls-ecs-mycluster-a2fda12e-6a02-4eaa-a977-ded467a0227d-0-8ba33dc8
-66fcc01adb99   localstack/localstack-pro   "docker-entrypoint.sh"   18 minutes ago       Up 18 minutes (healthy)   127.0.0.1:53->53/tcp, 127.0.0.1:443->443/tcp, 127.0.0.1:4510-4560->4510-4560/tcp, 127.0.0.1:4566->4566/tcp, 127.0.0.1:53->53/udp, 5678/tcp   localstack-main
+CONTAINER ID   IMAGE                       COMMAND                  CREATED         STATUS                   PORTS                                                                                              NAMES
+5dfeb9376391   ubuntu                      "sh -c 'while true; …"   3 minutes ago   Up 3 minutes                                                                                                                ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d
+9967fe5300cc   localstack/localstack-pro   "docker-entrypoint.sh"   5 minutes ago   Up 5 minutes (healthy)   0.0.0.0:443->443/tcp, 0.0.0.0:4510-4560->4510-4560/tcp, 53/tcp, 5678/tcp, 0.0.0.0:4566->4566/tcp   localstack-main
 ```
+
+### Collect container logs
+
+To access the generated logs from the container, run the following command:
+
+{{< command >}}
+awslocal logs filter-log-events --log-group-name myloggroup --query 'events[].message'
+<disable-copy>
+$ awslocal logs filter-log-events --log-group-name myloggroup | head -n 20
+{
+    "events": [
+        {
+            "logStreamName": "myprefix/ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d/75f0515e-0364-4ee5-9828-19026140c91a",
+            "timestamp": 1713364216375,
+            "message": "running",
+            "ingestionTime": 1713364216704,
+            "eventId": "0"
+        },
+        {
+            "logStreamName": "myprefix/ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d/75f0515e-0364-4ee5-9828-19026140c91a",
+            "timestamp": 1713364216440,
+            "message": "running",
+            "ingestionTime": 1713364216704,
+            "eventId": "1"
+        },
+        {
+            "logStreamName": "myprefix/ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d/75f0515e-0364-4ee5-9828-19026140c91a",
+            "timestamp": 1713364216505,
+            "message": "running",
+</disable-copy>
+{{< / command >}}
+
+See our [CloudWatch Logs user guide]({{< ref "user-guide/aws/logs" >}}) for more details.
 
 ## LocalStack ECS behavior
 
