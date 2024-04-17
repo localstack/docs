@@ -433,10 +433,11 @@ The initial access to the EC2 API with the Libvirt VM manager may take a while a
 Subsequent accesses will be faster.
 
 {{< alert title="Tip" color="success" >}}
-You could opt to enable [`EAGER_SERVICE_LOADING`]({{< ref "configuration#core" >}}) to avoid the delay.
+You could opt to enable [`EAGER_SERVICE_LOADING`]({{< ref "configuration#core" >}}) to avoid the startup delay.
 {{< /alert >}}
 
-(clarify persistence support)
+The Libvirt VM manager does not have full support for persistence.
+Underlying virtual machines and volumes are not persisted, instead only their mock respresentations are.
 
 ### AMIs
 
@@ -499,16 +500,28 @@ When instances are launched, LocalStack uses the [NoCloud](https://cloudinit.rea
 The login user is created with the username `localstack` and password `localstack`.
 If a key pair is provided, it will added as an authorised SSH key for this user.
 
-(Talk about VNC access)
-
 LocalStack shuts down all virtual machines when it terminates.
 The Libvirt domains and volumes are left defined and can be used for debugging, etc.
 
 {{< alert title="Tip" color="success">}}
-You can use [virsh](https://www.libvirt.org/manpages/virsh.html) or [virt-manager](https://virt-manager.org/) to manage the virtual machines outside of LocalStack.
+You can use [virsh](https://www.libvirt.org/manpages/virsh.html) or [Virtual Machine Manager](https://virt-manager.org/) to manage the virtual machines outside of LocalStack.
 {{< /alert >}}
 
 The Libvirt VM manager currently does not support user data.
+
+To connect to the graphical display of the instance, first obtain the VNC address using:
+
+{{< command >}}
+$ virsh vncdisplay <instance ID>
+127.0.0.1:0
+{{< /command >}}
+
+You can then use a compatible VNC client (e.g. [TigerVNC](https://tigervnc.org/)) to connect and interact with the virtual machine.
+
+<p>
+<img src="tiger-vnc.png" alt="Tiger VNC" title="Tiger VNC"/>
+</p>
+
 
 ### Networking
 
@@ -517,7 +530,11 @@ The Libvirt VM manager currently does not support user data.
 
 ### Elastic Block Stores
 
-(Describe volumes)
+LocalStack clones the AMI into an EBS volume when the instance is initialised.
+LocalStack does not resize the instance root volume, instead it inherits the properties of the AMI.
+
+Currently it is not possible to attach additional EBS volumes to instances.
+
 
 
 ### Instance Metadata Service
