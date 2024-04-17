@@ -387,7 +387,9 @@ Any operation not listed below will use the mock VM manager.
 ## Libvirt VM Manager
 
 {{< alert title="Note" >}}
-The Libvirt VM manager is currently a preview feature and will be part of the Enterprise Plan upon release.
+The Libvirt VM manager is currently in preview phase and will be part of the Enterprise Plan upon release.
+It is under active development.
+If a certain functionality is missing, please create a feature request on the [GitHub issue tracker](https://github.com/localstack/localstack/issues/new/choose).
 {{< /alert >}}
 
 The Libvirt VM manager uses the [Libvirt](https://libvirt.org/index.html) API to create fully virtualized EC2 resources.
@@ -440,7 +442,8 @@ You could opt to enable [`EAGER_SERVICE_LOADING`]({{< ref "configuration#core" >
 
 All qcow2 images with cloud-init support can be used as AMIs.
 
-You can download the images for some OSs below:
+LocalStack does not come preloaded with any AMIs.
+You can find the download links for images of popular OSs below:
 
 {{< tabpane text=true >}}
 
@@ -448,7 +451,6 @@ You can download the images for some OSs below:
 Canonical provides official Ubuntu images at [cloud-images.ubuntu.com](https://cloud-images.ubuntu.com/).
 
 Please use the images in qcow2 format ending in `.img`.
-The default login account is `ubuntu`.
 {{% /tab %}}
 
 {{< tab "Debian" >}}
@@ -457,7 +459,7 @@ Debian provides cloud images for direct download at <a href="http://cdimage.debi
 </p>
 
 <p>
-Please use the <code>genericcloud</code> image in qcow2 format. The default login account is <code>debian</code>.
+Please use the <code>genericcloud</code> image in qcow2 format.
 </p>
 {{< /tab >}}
 
@@ -467,7 +469,7 @@ The Fedora project maintains the official cloud images at <a href="https://fedor
 </p>
 
 <p>
-Please use the qcow2 images. The default login account is <code>fedora</code>.
+Please use the qcow2 images.
 </p>
 {{< /tab >}}
 
@@ -477,14 +479,36 @@ An evaluation version of Windows Server 2012 R2 is provided by [Cloudbase Soluti
 
 {{< /tabpane >}}
 
+Compatible qcow2 images must be placed at the default Libvirt storage pool at `/var/lib/libvirt/images`.
+Images must be named with the prefix `ami-` followed by at least 8 hexadecimal characters without an extension, e.g. `ami-1234abcd`.
+Only the images that follow this naming scheme will be recognised by LocalStack as AMIs.
 
-(Talk about the bring-your-own-image model, storage pools, volumes)
+AMIs recognised by LocalStack as suitable for use with the Libvirt VM manager have the resource tag `ec2_vm_manager:libvirt`.
+
+{{< command >}}
+awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=libvirt
+{{< /command >}}
+
 
 ### Instances
 
-(Describe virtual domains)
-(explain the shutdown behaviour of VMs when LS shuts down, incl. how EBS volumes are affected.)
+Fully virtualised instances can be launched with `RunInstances` operation and specifying a compatible AMI.
+LocalStack will create and start a Libvirt domain to represent the instance.
 
+When instances are launched, LocalStack uses the [NoCloud](https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html) datasource to customize the virtual machine.
+The login user is created with the username `localstack` and password `localstack`.
+If a key pair is provided, it will added as an authorised SSH key for this user.
+
+(Talk about VNC access)
+
+LocalStack shuts down all virtual machines when it terminates.
+The Libvirt domains and volumes are left defined and can be used for debugging, etc.
+
+{{< alert title="Tip" color="success">}}
+You can use [virsh](https://www.libvirt.org/manpages/virsh.html) or [virt-manager](https://virt-manager.org/) to manage the virtual machines outside of LocalStack.
+{{< /alert >}}
+
+The Libvirt VM manager currently does not support user data.
 
 ### Networking
 
@@ -498,8 +522,7 @@ An evaluation version of Windows Server 2012 R2 is provided by [Cloudbase Soluti
 
 ### Instance Metadata Service
 
-The Libvirt VM manager does not support the Instance Metadata Service.
-Please express your interest for this feature in [this](#TODO) backlog issue.
+The Libvirt VM manager does not support the Instance Metadata Service endpoints.
 
 
 ### Operations
@@ -509,13 +532,13 @@ Any operation not listed below will use the mock VM manager.
 
 | Operation             | Notes                                                                                        |
 |:----------------------|:---------------------------------------------------------------------------------------------|
-| `DescribeImages`      | ... |
-| `RunInstances`        | ... |
-| `StartInstances`      | ... |
-| `StopInstances`       | ... |
-| `RebootInstances`     | ... |
-| `TerminateInstances`  | ... |
-| `CreateVolume`        | ... |
+| `DescribeImages`      | Returns all mock and Libvirt AMIs |
+| `RunInstances`        | Defines and starts a Libvirt domain |
+| `StartInstances`      | Starts an already defined Libvirt domain |
+| `StopInstances`       | Stops a running Libvirt domain |
+| `RebootInstances`     | Restarts a Libvirt domain |
+| `TerminateInstances`  | Stops and undefines a Libvirt domain |
+| `CreateVolume`        | Creates a sparse Libvirt volume |
 
 
 ## Resource Browser
