@@ -49,32 +49,27 @@ $ make docker-build
 
 ### Additional Dependencies for running LocalStack in Host Mode
 
-In host mode, additional dependencies (e.g., Java) are required for developing certain AWS-emulated services (e.g., StepFunctions).
-The required dependencies vary depending on the service, [Configuration](https://docs.localstack.cloud/references/configuration/), operating system, and system architecture (i.e., x86 vs ARM).
-Refer to our official [Dockerfile](https://github.com/localstack/localstack/blob/master/Dockerfile) and our [package installer LPM](./Concepts/index.md#packages-and-installers) for more details.
+In host mode, additional dependencies (e.g., Java) are required for developing certain AWS-emulated services (e.g., DynamoDB).
+The required dependencies vary depending on the service, [Configuration]({{< ref "configuration" >}}), operating system, and system architecture (i.e., x86 vs ARM).
+Refer to our official [Dockerfile](https://github.com/localstack/localstack/blob/master/Dockerfile) and our [package installer LPM]({{< ref "contributing/concepts#packages-and-installers" >}}) for more details.
 
 #### Python Dependencies
 
 * [JPype1](https://pypi.org/project/JPype1/) might require `g++` to fix a compile error on ARM Linux `gcc: fatal error: cannot execute ‘cc1plus’`
   * Used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping for a Java-based event ruler via the opt-in configuration `EVENT_RULE_ENGINE=java`
   * Introduced in [#10615](https://github.com/localstack/localstack/pull/10615)
-* [libvirt-python](https://pypi.org/project/libvirt-python/) requires `libvirt-dev` on Debian or `libvirt` on macOS/Brew to fix `Package libvirt was not found in the pkg-config search path.`
-  * Used in EC2 to access Libvirt inside the LocaStack container
-  * Introduced in [localstack-ext#2827](https://github.com/localstack/localstack-ext/pull/2827)
 
-#### Uncategorized
-
-Some services or tests might need some of these dependencies (not yet categorized):
+#### DynamoDB
 
 * [OpenJDK](https://openjdk.org/install/)
+
+#### Kinesis
+
 * [NodeJS & npm](https://nodejs.org/en/download/)
-* [Maven](https://maven.apache.org/download.cgi)
-* [Gradle](https://gradle.org/install/)
-* [Terraform](https://www.terraform.io/downloads)
 
 #### Lambda
 
-* macOS users need to configure `LAMBDA_DEV_PORT_EXPOSE=1` such that the host can reach Lambda containers via IPv4 in bridge mode (see [#7367](https://github.com/localstack/localstack/pull/7367)).  
+* macOS users need to configure `LAMBDA_DEV_PORT_EXPOSE=1` such that the host can reach Lambda containers via IPv4 in bridge mode (see [#7367](https://github.com/localstack/localstack/pull/7367)).
 
 #### EVENT_RULE_ENGINE=java
 
@@ -101,7 +96,6 @@ pip install -e ../moto
 
 ### Tips
 
-* Most of the contributors use the free community version of [PyCharm](https://www.jetbrains.com/pycharm/).
 * If `virtualenv` chooses system python installations before your pyenv installations, manually initialize `virtualenv` before running `make install`: `virtualenv -p ~/.pyenv/shims/python3.10 .venv` .
 * Terraform needs version <0.14 to work currently. Use `tfenv` (<https://github.com/tfutils/tfenv>) to manage terraform versions comfortable. Quick start: `tfenv install 0.13.7 && tfenv use 0.13.7`
 * Set env variable `LS_LOG='trace'` to print every `http` request sent to localstack and their responses. It is useful for debugging certain issues.
