@@ -16,6 +16,7 @@ Once LocalStack runs in your Docker environment and you’ve played around with 
 You will need the following tools for the local development of LocalStack.
 
 * [Python 3.11+](https://www.python.org/downloads/) and `pip`
+* [Node.js & npm](https://nodejs.org/en/download/)
 * [Docker](https://docs.docker.com/desktop/)
 
 We recommend you to individually install the above tools using your favorite package manager.
@@ -30,8 +31,8 @@ The basic steps include:
 
 1. Fork the localstack repository on GitHub [https://github.com/localstack/localstack/](https://github.com/localstack/localstack/)
 2. Clone the forked localstack repository `git clone git@github.com:<GITHUB_USERNAME>/localstack.git`
-3. Ensure you have `python` and `pip` installed.
-   > You might also need `node`, `npm`, and `java` for some emulated services.
+3. Ensure you have `python`, `pip`, `node`, and `npm` installed.
+   > You might also need `java` for some emulated services.
 4. Install the Python dependencies using `make install`.
    > This will install the required pip dependencies in a local Python 3 `venv` directory called `.venv` (your global python packages will remain untouched).
    > Depending on your system, some `pip` modules may require additional native libs installed. 
@@ -58,6 +59,10 @@ Refer to our official [Dockerfile](https://github.com/localstack/localstack/blob
 * [JPype1](https://pypi.org/project/JPype1/) might require `g++` to fix a compile error on ARM Linux `gcc: fatal error: cannot execute ‘cc1plus’`
   * Used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping for a Java-based event ruler via the opt-in configuration `EVENT_RULE_ENGINE=java`
   * Introduced in [#10615](https://github.com/localstack/localstack/pull/10615)
+
+#### Test Dependencies
+
+* Node.js is required for running LocalStack tests because the test fixture for CDK-based tests needs Node.js
 
 #### DynamoDB
 
