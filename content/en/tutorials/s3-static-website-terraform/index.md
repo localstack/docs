@@ -123,7 +123,7 @@ If you are deploying a static website using S3 on real AWS cloud, your S3 websit
 - `http://<BUCKET_NAME>.s3-website-<REGION>.amazonaws.com`
 - `http://<BUCKET_NAME>.s3-website.<REGION>.amazonaws.com`
 
-In LocalStack, the S3 website endpoint follows the following format: `http://<BUCKET_NAME>.s3-website.localhost.localstack.cloud:4566`. You can navigate to [`http://testwebsite.s3-website.localhost.localstack.cloud:4566/`](http://testwebsite.s3-website.localhost.localstack.cloud:4566/) to view your static website.
+In LocalStack, the S3 website endpoint follows the following format: `http://<BUCKET_NAME>.s3-website.localhost.localstack.cloud:4566`. You can navigate to [`https://testwebsite.s3-website.localhost.localstack.cloud:4566/s3-static-website-localstack/`](https://testwebsite.s3-website.localhost.localstack.cloud:4566/s3-static-website-localstack/) to view your static website.
 
 ## Orchestrating infrastructure using Terraform
 
