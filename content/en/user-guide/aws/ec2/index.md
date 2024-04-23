@@ -471,11 +471,22 @@ An evaluation version of Windows Server 2012 R2 is provided by [Cloudbase Soluti
 
 {{< /tabpane >}}
 
-Compatible qcow2 images must be placed at the default Libvirt storage pool at `/var/lib/libvirt/images`.
+Compatible qcow2 images must be placed at the default Libvirt storage pool at `/var/lib/libvirt/images` on the host machine.
 Images must be named with the prefix `ami-` followed by at least 8 hexadecimal characters without an extension, e.g. `ami-1234abcd`.
-Only the images that follow this naming scheme will be recognised by LocalStack as AMIs.
+You may need run the following command to make sure the image is registered with Libvirt:
 
-AMIs recognised by LocalStack as suitable for use with the Libvirt VM manager have the resource tag `ec2_vm_manager:libvirt`.
+{{< command >}}
+$ virsh pool-refresh default
+Pool default refreshed
+
+$ virsh vol-list --pool default
+ Name                                    Path
+--------------------------------------------------------------------------------------------------------
+ ami-1234abcd                            /var/lib/libvirt/images/ami-1234abcd
+{{< /command >}}
+
+Only the images that follow the above naming scheme will be recognised by LocalStack as AMIs suitable for launching virtualised instances.
+These AMIs will also have the resource tag `ec2_vm_manager:libvirt`.
 
 {{< command >}}
 awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=libvirt
@@ -484,7 +495,7 @@ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=libvirt
 
 ### Instances
 
-Fully virtualised instances can be launched with `RunInstances` operation and specifying a compatible AMI.
+Virtualised instances can be launched with `RunInstances` operation and specifying a compatible AMI.
 LocalStack will create and start a Libvirt domain to represent the instance.
 
 When instances are launched, LocalStack uses the [NoCloud](https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html) datasource to customize the virtual machine.
@@ -495,10 +506,10 @@ LocalStack shuts down all virtual machines when it terminates.
 The Libvirt domains and volumes are left defined and can be used for debugging, etc.
 
 {{< alert title="Tip" color="success">}}
-You can use [virsh](https://www.libvirt.org/manpages/virsh.html) or [Virtual Machine Manager](https://virt-manager.org/) to manage the virtual machines outside of LocalStack.
+Use [Virtual Machine Manager](https://virt-manager.org/) or [virsh](https://www.libvirt.org/manpages/virsh.html) to manage the virtual machines outside of LocalStack.
 {{< /alert >}}
 
-The Libvirt VM manager currently does not support user data.
+The Libvirt VM manager currently does not support instance user data.
 
 To connect to the graphical display of the instance, first obtain the VNC address using:
 
