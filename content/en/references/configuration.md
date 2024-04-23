@@ -314,7 +314,7 @@ To learn more about these configuration options, see [Persistence]({{< ref "pers
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `EVENT_RULE_ENGINE` (experimental) | `python` (default) \| `java` | Engine for [event pattern matching](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html) used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping. Set it `java` to use the AWS [event-ruler](https://github.com/aws/event-ruler) offering better parity. See [localstack#10615](https://github.com/localstack/localstack/pull/10615). |
+| `EVENT_RULE_ENGINE` (experimental) | `python` (default) \| `java` | Engine for [event pattern matching](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html) used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping. Set it `java` to use the AWS [event-ruler](https://github.com/aws/event-ruler) offering better parity. |
 | `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud |
 | `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud |
 | `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins |
