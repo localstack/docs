@@ -16,7 +16,7 @@ The LocalStack Extension for Docker Desktop enables developers working with Loca
 
 ## Installation
 
-To utilize LocalStack's Docker Extension, it is necessary to have a recent version of Docker Desktop (v4.8 or higher) installed on the local machine. To enable the extension, access the **Extensions** tab and select the **Enable Docker Extensions** and **Show Docker Extensions system containers** option within the **Extensions** tab.
+To utilize LocalStack's Docker Extension, it is necessary to have a recent version of Docker Desktop (v4.8 or higher) installed on the local machine. To enable the extension, access the **Extensions** tab and select the **Enable Docker Extensions** and **Show Docker Extensions system containers** option.
 
 <img src="localstack-docker-extension-preferences.png" title="Enable Docker Extensions in the Preferences within the Extensions tab" width="800px"   />
 <br></br>
@@ -44,7 +44,7 @@ LocalStack's Docker Extension helps users to manage their LocalStack container w
 
 You can start, stop, and restart LocalStack from the Docker Desktop. You can also see the current status of your LocalStack container and navigate to LocalStack Web Application.
 
-<img src="localstack-docker-extension-start.png" title="Start and Stop your LocalStack container with a single click of a button with LocalStack's extension" width="800"  />
+<img src="localstack-docker-extension-start.png" title="Start and Stop your LocalStack container with a single click of a button with LocalStack's extension" width="800px"  />
 
 ### Container logs
 
