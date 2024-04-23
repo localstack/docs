@@ -373,7 +373,6 @@ Any operation not listed below will use the mock VM manager.
 |:----------------------|:---------------------------------------------------------------------------------------------|
 | `CreateImage`         | Uses Docker commit to capture a snapshot of a running instance into a new AMI |
 | `DescribeImages`      | Retrieves a list of Docker images that can be used as AMIs |
-| `RegisterImage`       | ... |
 | `DescribeInstances`   | Describes both mocked and Docker-backed instances. Docker-backed instances are marked with the resource tag `ec2_vm_manager:docker` |
 | `RunInstances`        | Creates and runs Docker containers that back instances |
 | `StopInstances`       | Pauses the Docker containers that back instances |
@@ -385,9 +384,9 @@ Any operation not listed below will use the mock VM manager.
 ## Libvirt VM Manager
 
 {{< alert title="Note" >}}
-The Libvirt VM manager is currently in preview phase and will be part of the Enterprise Plan upon release.
-It is under active development.
-If a certain functionality is missing, please create a feature request on the [GitHub issue tracker](https://github.com/localstack/localstack/issues/new/choose).
+The Libvirt VM manager is under active development.
+It is currently offered as a preview and will be part of the Enterprise Plan upon release.
+If a functionality you desire is missing, please create a feature request on the [GitHub issue tracker](https://github.com/localstack/localstack/issues/new/choose).
 {{< /alert >}}
 
 The Libvirt VM manager uses the [Libvirt](https://libvirt.org/index.html) API to create fully virtualized EC2 resources.
@@ -527,7 +526,8 @@ You can then use a compatible VNC client (e.g. [TigerVNC](https://tigervnc.org/)
 
 ### Networking
 
-(Talk about the methods of accessing the instance)
+Currently all instances are behind a NAT network.
+Instances can access the internet but are inaccessible from the host machine.
 
 
 ### Elastic Block Stores
