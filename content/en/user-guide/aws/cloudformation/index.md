@@ -243,11 +243,11 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::Route53::RecordSet                     |      ✅ |      ✅ |      - |
 | AWS::S3::Bucket                             |      ✅ |      ✅ |      - |
 | AWS::S3::BucketPolicy                       |      ✅ |      ✅ |      - |
-| AWS::SNS::Subscription                      |      ✅ |      ✅ |      - |
+| AWS::SNS::Subscription                      |      ✅ |      ✅ |      ✅ |
 | AWS::SNS::Topic                             |      ✅ |      ✅ |      - |
 | AWS::SNS::TopicPolicy                       |      ✅ |      ✅ |      - |
 | AWS::SQS::Queue                             |      ✅ |      ✅ |      ✅ |
-| AWS::SQS::QueuePolicy                       |      ✅ |      ✅ |      - |
+| AWS::SQS::QueuePolicy                       |      ✅ |      ✅ |      ✅ |
 | AWS::SSM::MaintenanceWindow                 |      ✅ |      ✅ |      - |
 | AWS::SSM::MaintenanceWindowTarget           |      ✅ |      ✅ |      - |
 | AWS::SSM::MaintenanceWindowTask             |      ✅ |      ✅ |      - |
