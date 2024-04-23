@@ -222,6 +222,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | Variable | Example Values | Description |
 | - | - | - |
 | `NEPTUNE_DB_TYPE` | `neo4j`\|`tinkerpop` (default) | Starts Neptune DB as traditional netpune with Tinkerpop/Gremlin (default) or in Neo4J mode. |
+| `NEPTUNE_USE_SSL` | `1`\|`0` (default) | Whether to start the Neptune server with SSL configuration, which will enable wss protocol. This setting is only valid for Tinkerpop/Gremlin. By default SSL is not enabled. |
 
 ### OpenSearch
 
