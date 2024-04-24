@@ -363,6 +363,7 @@ In the coverage table below, the features are marked with their respective avail
 | Replays                                                            | \-             |                 |       |
 | Rules                                                              | ⭐⭐⭐⭐       | Emulated                |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
+| **EventBridge Pipes (Pipes)**                                      | [Details 🔍]({{< ref "references/coverage/coverage_pipes" >}}) |                 |       |
 | **Firehose**                                                       | [Details 🔍]({{< ref "references/coverage/coverage_firehose" >}}) |                 |       |
 | Delivery Streams                                                   | ⭐⭐⭐⭐       | Emulated        |       |
 | Destinations                                                       | ⭐⭐⭐⭐       | Emulated        |       |
