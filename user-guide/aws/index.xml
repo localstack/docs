@@ -2001,6 +2001,12 @@
 &lt;td>&lt;/td>
 &lt;/tr>
 &lt;tr>
+&lt;td>&lt;strong>EventBridge Pipes (Pipes)&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="/references/coverage/coverage_pipes/">Details 🔍&lt;/a>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
 &lt;td>&lt;strong>Firehose&lt;/strong>&lt;/td>
 &lt;td>&lt;a href="/references/coverage/coverage_firehose/">Details 🔍&lt;/a>&lt;/td>
 &lt;td>&lt;/td>
@@ -10074,10 +10080,10 @@ Run the following command to download the file:&lt;/p>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>EventBridge Pipes allows users to create point-to-point integrations between event producers and consumers with transform, filter and enrichment steps. Pipes are particularly useful for scenarios involving real-time data processing, application integration, and automated workflows, while simplifying the process of routing events between AWS services. Pipes offer a point-to-point connection from one source to one target (one-to-one). In contrast, EventBridge Event Bus offers a one-to-many integration where an event router delivers one event to zero or more destinations.&lt;/p>
 &lt;p>LocalStack allows you to use the Pipes APIs in your local environment to create Pipes with SQS queues and Kinesis streams as source and target. You can also filter events using EventBridge event patterns and enrich events using Lambda.&lt;/p>
-&lt;p>The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_pipes/">API coverage page&lt;/a>, which provides information on the extent of Pipe&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;p>The supported APIs are available on our &lt;a href="/references/coverage/coverage_pipes/">API coverage page&lt;/a>, which provides information on the extent of Pipe&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-The implementation of EventBridge Pipes is currently in &lt;strong>Alpha&lt;/strong> stage and under active development. If you would like support for more APIs or report bugs, please make an issue on &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub&lt;/a>.
+The implementation of EventBridge Pipes is currently in &lt;strong>preview&lt;/strong> stage and under active development. If you would like support for more APIs or report bugs, please make an issue on &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub&lt;/a>.
 &lt;/div>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to EventBridge Pipes and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
@@ -10137,15 +10143,51 @@ The implementation of EventBridge Pipes is currently in &lt;strong>Alpha&lt;/str
 &lt;p>You can fetch the message from the target queue using the &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html">&lt;code>ReceiveMessage&lt;/code>&lt;/a> API:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs receive-message \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/target-queue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="supported-sources">Supported sources&lt;/h2>
+&lt;p>LocalStack supports the following &lt;a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-source.html">sources&lt;/a> for Pipes:&lt;/p>
+&lt;ul>
+&lt;li>Amazon DynamoDB stream&lt;/li>
+&lt;li>Amazon Kinesis stream&lt;/li>
+&lt;li>Amazon SQS queue&lt;/li>
+&lt;/ul>
+&lt;p>Please create a feature request on &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub&lt;/a> if you miss support for
+Amazon MQ broker,
+Amazon MSK stream,
+or Apache Kafka stream.&lt;/p>
+&lt;h2 id="supported-targets">Supported targets&lt;/h2>
+&lt;p>LocalStack supports the following &lt;a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html">targets&lt;/a> for Pipes:&lt;/p>
+&lt;ul>
+&lt;li>EventBride bus&lt;/li>
+&lt;li>Kinesis stream&lt;/li>
+&lt;li>Lambda function (SYNC or ASYNC)&lt;/li>
+&lt;li>Amazon SNS topic&lt;/li>
+&lt;li>Amazon SQS queue&lt;/li>
+&lt;li>Step Functions state machine
+&lt;ul>
+&lt;li>Standard workflows (ASYNC)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>Please create a feature request on &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub&lt;/a> if you miss support for
+API destination,
+API Gateway,
+Batch job queue,
+CloudWatch log group,
+ECS task,
+Firehose delivery stream,
+Inspector assessment template,
+Redshift cluster data API queries,
+SageMaker Pipeline,
+or Step Functions state machine: Express workflows (SYNC or ASYNC).&lt;/p>
 &lt;h2 id="limitations">Limitations&lt;/h2>
-&lt;p>The EventBridge Pipes implementation in LocalStack is currently in alpha and has the following limitations:&lt;/p>
+&lt;p>The EventBridge Pipes implementation in LocalStack is currently in preview stage and has the following limitations:&lt;/p>
 &lt;ul>
 &lt;li>Lack of input transformers.&lt;/li>
 &lt;li>Absence of failure handling mechanisms.&lt;/li>
 &lt;li>No provision for handling partial batch failures.&lt;/li>
 &lt;li>Batch handling may have parity issues.&lt;/li>
 &lt;li>Lack of concurrency support, resulting in slower processing of numerous events.&lt;/li>
-&lt;li>Lack of lifecycle management for pipe states, such as inadequate locking and basic state transition testing.&lt;/li>
+&lt;li>Lack of lifecycle management for pipe states, such as inadequate locking and state transition testing.&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: Fault Injection Simulator (FIS)</title><link>/user-guide/aws/fis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/fis/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Fault Injection Simulator (FIS) is a service provided by Amazon Web Services (AWS) that enables you to test the resilience of your applications and infrastructure by injecting faults and failures into your AWS resources.
