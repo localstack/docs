@@ -331,7 +331,7 @@ In the coverage table below, the features are marked with their respective avail
 | Rules                                                              | ⭐⭐⭐         | CRUD            |       |
 | Target groups                                                      | ⭐⭐⭐         | CRUD            |       |
 | Listener certificates                                              | ⭐⭐⭐         | CRUD            |       |
-| [**Elastic Load Balancing v2 (ELBv2)**]({{< ref "elastic-load-balancing" >}}) (Pro) | [Details 🔍]({{< ref "references/coverage/coverage_elbv2" >}}) |                 |       |
+| [**Elastic Load Balancing v2 (ELBv2)**]({{< ref "elb" >}}) (Pro) | [Details 🔍]({{< ref "references/coverage/coverage_elbv2" >}}) |                 |       |
 | Listeners                                                          | ⭐⭐⭐         | CRUD            |       |
 | Load balancers                                                     | ⭐⭐⭐         | CRUD            |       |
 | Rules                                                              | ⭐⭐⭐         | CRUD            |       |
