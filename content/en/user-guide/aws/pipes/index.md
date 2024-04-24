@@ -11,7 +11,7 @@ EventBridge Pipes allows users to create point-to-point integrations between eve
 
 LocalStack allows you to use the Pipes APIs in your local environment to create Pipes with SQS queues and Kinesis streams as source and target. You can also filter events using EventBridge event patterns and enrich events using Lambda.
 
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_pipes/), which provides information on the extent of Pipe's integration with LocalStack. 
+The supported APIs are available on our [API coverage page]({{< ref "coverage_pipes" >}}), which provides information on the extent of Pipe's integration with LocalStack. 
 
 {{< alert title="Note" color="info" >}}
 The implementation of EventBridge Pipes is currently in **preview** stage and under active development. If you would like support for more APIs or report bugs, please make an issue on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
@@ -117,22 +117,40 @@ $ awslocal sqs receive-message \
 
 ## Supported sources
 
-At this time, LocalStack supports the following (sources)[https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-source.html) for Pipes:
+LocalStack supports the following [sources](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-source.html) for Pipes:
 
-* DynamoDB Table
-* Kinesis Data Stream
-* SQS Queue
+* Amazon DynamoDB stream
+* Amazon Kinesis stream
+* Amazon SQS queue
+
+Please create a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose) if you miss support for
+Amazon MQ broker,
+Amazon MSK stream,
+or Apache Kafka stream.      
 
 ## Supported targets
 
-At this time, LocalStack supports the following (targets)[https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html) for Pipes:
+LocalStack supports the following [targets](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html) for Pipes:
 
-* Event Bridge Bus
-* Kinesis Data Stream
-* Lambda Function
-* SNS Topic
-* SQS Queue
-* StepFunctions StateMachine
+* EventBride bus
+* Kinesis stream
+* Lambda function (SYNC or ASYNC)
+* Amazon SNS topic
+* Amazon SQS queue
+* Step Functions state machine
+  * Standard workflows (ASYNC)
+
+Please create a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose) if you miss support for
+API destination,
+API Gateway,
+Batch job queue,
+CloudWatch log group,
+ECS task,
+Firehose delivery stream,
+Inspector assessment template,
+Redshift cluster data API queries,
+SageMaker Pipeline,
+or Step Functions state machine: Express workflows (SYNC or ASYNC).
 
 ## Limitations
 
@@ -143,4 +161,4 @@ The EventBridge Pipes implementation in LocalStack is currently in preview stage
 * No provision for handling partial batch failures.
 * Batch handling may have parity issues.
 * Lack of concurrency support, resulting in slower processing of numerous events.
-* Lack of lifecycle management for pipe states, such as inadequate locking and basic state transition testing.
+* Lack of lifecycle management for pipe states, such as inadequate locking and state transition testing.
