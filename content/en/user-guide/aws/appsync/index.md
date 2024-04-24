@@ -239,12 +239,10 @@ There are three configurable strategies that govern how GraphQL API endpoints ar
 
 ## Resolver evaluation endpoints
 
-Starting with version 3.4.0, LocalStack supports the resolver evaluation endpoints: [`EvaluateCode`](https://docs.aws.amazon.com/appsync/latest/APIReference/API_EvaluateCode.html) and [`EvaluateMappingTemplate`](https://docs.aws.amazon.com/appsync/latest/APIReference/API_EvaluateMappingTemplate.html).
+LocalStack supports the resolver evaluation endpoints: [`EvaluateCode`](https://docs.aws.amazon.com/appsync/latest/APIReference/API_EvaluateCode.html) and [`EvaluateMappingTemplate`](https://docs.aws.amazon.com/appsync/latest/APIReference/API_EvaluateMappingTemplate.html).
 
 Resolver code can be either passed in as a string, or from a file with the `file://` prefix for the `--template/--code` arguments.
 See the AWS documentation for [`evaluate-mapping-template`](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/appsync/evaluate-mapping-template.html) and [`evaluate-code`](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/appsync/evaluate-code.html) for more details.
-
-Example usage:
 
 ### VTL resolver templates
 
