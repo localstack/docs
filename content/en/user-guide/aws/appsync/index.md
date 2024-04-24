@@ -237,6 +237,46 @@ There are three configurable strategies that govern how GraphQL API endpoints ar
 | `path`   | `localhost:4566/appsync-api/<api-id>/graphql`         | An alternative strategy that can be beneficial if you're unable to resolve LocalStack's `localhost` domain. |
 | `legacy` | `localhost:4566/graphql/<api-id>`                    | This strategy represents the old endpoint format, which is currently the default but will eventually be phased out. |
 
+## Resolver evaluation endpoints
+
+Starting with version 3.4.0, LocalStack supports the resolver evaluation endpoints: [`EvaluateCode`](https://docs.aws.amazon.com/appsync/latest/APIReference/API_EvaluateCode.html) and [`EvaluateMappingTemplate`](https://docs.aws.amazon.com/appsync/latest/APIReference/API_EvaluateMappingTemplate.html).
+
+Resolver code can be either passed in as a string, or from a file with the `file://` prefix for the `--template/--code` arguments.
+See the AWS documentation for [`evaluate-mapping-template`](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/appsync/evaluate-mapping-template.html) and [`evaluate-code`](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/appsync/evaluate-code.html) for more details.
+
+Example usage:
+
+### VTL resolver templates
+
+{{< command >}}
+awslocal appsync evaluate-mapping-template \
+    --template '$ctx.result' \
+    --context '{"result":"ok"}'
+<disable-copy>
+{
+    "evaluationResult": "ok",
+    "logs": []
+}
+</disable-copy>
+{{< / command >}}
+
+### JavaScript resolvers
+
+{{< command >}}
+awslocal appsync evaluate-code \
+    --runtime name=APPSYNC_JS,runtimeVersion=1.0.0 \
+    --function request \
+    --code 'export function request(ctx) { return ctx.result; }; export function response(ctx) {};' \
+    --context '{"result": "ok"}'
+<disable-copy>
+{
+    "evaluationResult": "ok",
+    "logs": []
+}
+</disable-copy>
+{{< / command >}}
+
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing AppSync APIs, Data Sources, Schema, Query, Types, Resolvers, Functions and API keys. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **AppSync** under the **App Integration** section.
