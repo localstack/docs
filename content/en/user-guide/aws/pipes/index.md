@@ -115,6 +115,17 @@ $ awslocal sqs receive-message \
     --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/target-queue
 {{< /command >}}
 
+## Supported targets
+
+At this time, LocalStack supports the following (targets)[https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html) for Pipes:
+
+* Event Bridge Bus
+* Kinesis Data Stream
+* Lambda Function
+* SNS Topic
+* SQS Queue
+* StepFunctions StateMachine
+
 ## Limitations
 
 The EventBridge Pipes implementation in LocalStack is currently in alpha and has the following limitations:
