@@ -115,6 +115,14 @@ $ awslocal sqs receive-message \
     --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/target-queue
 {{< /command >}}
 
+## Supported sources
+
+At this time, LocalStack supports the following (sources)[https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-source.html) for Pipes:
+
+* DynamoDB Table
+* Kinesis Data Stream
+* SQS Queue
+
 ## Supported targets
 
 At this time, LocalStack supports the following (targets)[https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html) for Pipes:
