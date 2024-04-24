@@ -14,7 +14,7 @@ LocalStack allows you to use the Pipes APIs in your local environment to create 
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_pipes/), which provides information on the extent of Pipe's integration with LocalStack. 
 
 {{< alert title="Note" color="info" >}}
-The implementation of EventBridge Pipes is currently in **Alpha** stage and under active development. If you would like support for more APIs or report bugs, please make an issue on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
+The implementation of EventBridge Pipes is currently in **preview** stage and under active development. If you would like support for more APIs or report bugs, please make an issue on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
 {{< /alert >}}
 
 ## Getting started
@@ -136,7 +136,7 @@ At this time, LocalStack supports the following (targets)[https://docs.aws.amazo
 
 ## Limitations
 
-The EventBridge Pipes implementation in LocalStack is currently in alpha and has the following limitations:
+The EventBridge Pipes implementation in LocalStack is currently in preview stage and has the following limitations:
 
 * Lack of input transformers.
 * Absence of failure handling mechanisms.
