@@ -183,6 +183,7 @@ LocalStack provides various tools to help you develop, debug, and test your AWS 
 * **Hot reloading**: With Lambda hot reloading, you can continuously apply code changes to your Lambda functions without needing to redeploy them manually. To learn more about how to use hot reloading with LocalStack, check out our [hot reloading documentation]({{< ref "hot-reloading" >}}).
 * **Remote debugging**: LocalStack's remote debugging functionality allows you to attach a debugger to your Lambda function using your preferred IDE. To get started with remote debugging in LocalStack, see our [debugging documentation]({{< ref "debugging" >}}).
 * **Lambda VS Code Extension**: LocalStack's Lambda VS Code Extension supports deploying and invoking Python Lambda functions through AWS SAM or AWS CloudFormation. To get started with the Lambda VS Code Extension, see our [Lambda VS Code Extension documentation]({{< ref "user-guide/lambda-tools/vscode-extension" >}}).
+* **API for querying Lambda runtimes**: LocalStack offers a metadata API to query the list of Lambda runtimes via `GET http://localhost.localstack.cloud:4566/_aws/lambda/runtimes`. It returns the [Supported Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) matching AWS parity (i.e., excluding deprecated runtimes) and offers additional filters for `deprecated` runtimes and `all` runtimes (`GET /_aws/lambda/runtimes?filter=all`).
 
 ## Resource Browser
 
