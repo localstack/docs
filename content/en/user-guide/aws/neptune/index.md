@@ -129,6 +129,26 @@ if __name__ == '__main__':
     print(result)
 ```
 
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing Neptune databases and clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Neptune** under the **Database** section.
+
+<img src="neptune-resource-browser.png" alt="Neptune Resource Browser" title="Neptune Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+* **Create Cluster**: Create a new Neptune cluster by clicking on **Create Cluster** under the **Clusters** tab and providing the required parameters.
+* **List Clusters**: View a list of all Neptune clusters in your LocalStack environment by clicking on the **Clusters** tab.
+* **View Cluster Details**: Click on a cluster name to view detailed information about the cluster, including its status, endpoint, and other configuration details.
+* **Graph Browser**: Access the Neptune Graph Browser by clicking on the **Graph Browser** tab in the cluster details. The Graph Browser allows you to interactively query and visualize the graph data stored in your Neptune cluster.
+* **Quick Actions**: Perform quick actions on the cluster, such as adding a new Node, modifying an existing one or creating a new Edge between 2 nodes. You can access the **Quick Actions** by clicking in the respective tab from the cluster details page.
+* **Create instance**: Create a new Neptune database by clicking on **Create Instance** under the **Instances** tab and providing the required parameters.
+* **List Instances**: View a list of all Neptune databases in your LocalStack environment by clicking on the **Instances** tab.
+* **View Instance Details**: Click on a database name to view detailed information about the database, including its status, endpoint, and other configuration details.
+* **Edit Instance**: Edit the configuration of a Neptune database by clicking on the **Edit Instance** button in the instance details.
+
 ## Examples 
 
 The following code snippets and sample applications provide practical examples of how to use Neptune in LocalStack for various use cases:
