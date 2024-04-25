@@ -88,6 +88,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `BIGDATA_DOCKER_NETWORK` | | Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
 | `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
 
+### CloudFormation
+| Variable | Example Values | Description |
+| - | - | - |
+| `CFN_PER_RESOURCE_TIMEOUT` | `300` (default) | Set the timeout to deploy each individual CloudFormation resource.
+| `CFN_VERBOSE_ERRORS` | `0` (default) | Set the timeout to deploy each individual CloudFormation resource.
+
 ### CloudWatch
 
 | Variable | Example Values | Description |
