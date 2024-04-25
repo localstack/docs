@@ -4344,7 +4344,19 @@ LocalStack&amp;rsquo;s Account provider is mock-only and does not support any re
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --email-address &amp;#34;bill@ing.com&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name &amp;#34;Bill Ing&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --phone-number &amp;#34;+1 555-555-5555&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --title &amp;#34;Billing&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --title &amp;#34;Billing&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing contact information &amp;amp; alternate accounts for the Account service. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the Resources section, and then clicking on &lt;strong>Account&lt;/strong> under the &lt;strong>Management &amp;amp; Governance&lt;/strong> section.&lt;/p>
+&lt;img src="account-resource-browser.png" alt="Account Resource Browser" title="Account Resource Browser" width="900" />
+&lt;br>&lt;br>
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create Contact Information&lt;/strong>: Add the contact information for your mocked AWS account by clicking on the &lt;strong>Create&lt;/strong> button in the contact information section.&lt;/li>
+&lt;li>&lt;strong>Create Alternate Contact&lt;/strong>: Add an alternate contact for your mocked AWS account by clicking on the &lt;strong>Create&lt;/strong> button in the alternate contacts section.&lt;/li>
+&lt;li>&lt;strong>View Contact Information&lt;/strong>: View the contact information for your mocked AWS account by clicking on the contact information.&lt;/li>
+&lt;li>&lt;strong>Update Contact Information&lt;/strong>: Update the contact information for your mocked AWS account by clicking on the contact information.&lt;/li>
+&lt;li>&lt;strong>Filter&lt;/strong>: Filter the contact information and alternate contacts by types, such as &lt;code>BILLING&lt;/code>, &lt;code>OPERATIONS&lt;/code>, and &lt;code>SECURITY&lt;/code>.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Amplify is a JavaScript-based development framework with libraries, UI components, and a standard CLI interface for building and deploying web and mobile applications. With Amplify, developers can build and host static websites, single-page applications, and full-stack serverless web applications using an abstraction layer over popular AWS services like DynamoDB, Cognito, AppSync, Lambda, S3, and more.&lt;/p>
 &lt;p>LocalStack allows you to use the Amplify APIs to build and test their Amplify applications locally. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_amplify/">API coverage page&lt;/a>, which provides information on the extent of Amplify&amp;rsquo;s integration with LocalStack.&lt;/p>
@@ -4976,6 +4988,32 @@ Setting the API Gateway ID via &lt;code>_custom_id_&lt;/code> works only on the 
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;h2 id="resolver-evaluation-endpoints">Resolver evaluation endpoints&lt;/h2>
+&lt;p>LocalStack supports the resolver evaluation endpoints: &lt;a href="https://docs.aws.amazon.com/appsync/latest/APIReference/API_EvaluateCode.html">&lt;code>EvaluateCode&lt;/code>&lt;/a> and &lt;a href="https://docs.aws.amazon.com/appsync/latest/APIReference/API_EvaluateMappingTemplate.html">&lt;code>EvaluateMappingTemplate&lt;/code>&lt;/a>.&lt;/p>
+&lt;p>Resolver code can be either passed in as a string, or from a file with the &lt;code>file://&lt;/code> prefix for the &lt;code>--template/--code&lt;/code> arguments.
+See the AWS documentation for &lt;a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/appsync/evaluate-mapping-template.html">&lt;code>evaluate-mapping-template&lt;/code>&lt;/a> and &lt;a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/appsync/evaluate-code.html">&lt;code>evaluate-code&lt;/code>&lt;/a> for more details.&lt;/p>
+&lt;h3 id="vtl-resolver-templates">VTL resolver templates&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal appsync evaluate-mapping-template \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --template &amp;#39;$ctx.result&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --context &amp;#39;{&amp;#34;result&amp;#34;:&amp;#34;ok&amp;#34;}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;evaluationResult&amp;#34;: &amp;#34;ok&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;logs&amp;#34;: []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="javascript-resolvers">JavaScript resolvers&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal appsync evaluate-code \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime name=APPSYNC_JS,runtimeVersion=1.0.0 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function request \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code &amp;#39;export function request(ctx) { return ctx.result; }; export function response(ctx) {};&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --context &amp;#39;{&amp;#34;result&amp;#34;: &amp;#34;ok&amp;#34;}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;evaluationResult&amp;#34;: &amp;#34;ok&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;logs&amp;#34;: []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="resource-browser">Resource Browser&lt;/h2>
 &lt;p>The LocalStack Web Application provides a Resource Browser for managing AppSync APIs, Data Sources, Schema, Query, Types, Resolvers, Functions and API keys. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>AppSync&lt;/strong> under the &lt;strong>App Integration&lt;/strong> section.&lt;/p>
 &lt;img src="appsync-resource-browser.png" alt="AppSync Resource Browser" title="AppSync Resource Browser" width="900" />
@@ -6111,7 +6149,7 @@ When utilizing the Community image, any resources within the stack that are not 
 &lt;td>AWS::SNS::Subscription&lt;/td>
 &lt;td style="text-align:right">✅&lt;/td>
 &lt;td style="text-align:right">✅&lt;/td>
-&lt;td style="text-align:right">-&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>AWS::SNS::Topic&lt;/td>
@@ -6135,7 +6173,7 @@ When utilizing the Community image, any resources within the stack that are not 
 &lt;td>AWS::SQS::QueuePolicy&lt;/td>
 &lt;td style="text-align:right">✅&lt;/td>
 &lt;td style="text-align:right">✅&lt;/td>
-&lt;td style="text-align:right">-&lt;/td>
+&lt;td style="text-align:right">✅&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>AWS::SSM::MaintenanceWindow&lt;/td>
@@ -7770,7 +7808,16 @@ LocalStack&amp;rsquo;s Cost Explorer implementation cannot programmatically quer
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: DocumentDB (DocDB)</title><link>/user-guide/aws/docdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/docdb/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing cost category definitions for the Cost Explorer service. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the Resources section, and then clicking on &lt;strong>Cost Explorer&lt;/strong> under the &lt;strong>Storage&lt;/strong> section.&lt;/p>
+&lt;img src="cost-explorer-resource-browser.png" alt="Cost Explorer Resource Browser" title="Cost Explorer Resource Browser" width="900" />
+&lt;br>&lt;br>
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create Cost Category definition&lt;/strong>: Create a new Cost Category definition by clicking on the &lt;strong>Create&lt;/strong> button and providing the required details.&lt;/li>
+&lt;li>&lt;strong>View Cost Category definition&lt;/strong>: View the details of a Cost Category definition by clicking on the Cost Category definition.&lt;/li>
+&lt;li>&lt;strong>Delete Cost Category definition&lt;/strong>: Delete a Cost Category definition by selecting on the Cost Categorty definition, and then clicking on the &lt;strong>Actions&lt;/strong> button followed by &lt;strong>Remove Selected&lt;/strong>.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: DocumentDB (DocDB)</title><link>/user-guide/aws/docdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/docdb/</guid><description>
 &lt;p>LocalStack Pro supports a basic version of &lt;a href="https://aws.amazon.com/documentdb/">Amazon DocumentDB&lt;/a> for testing.
 LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it
 can be accessed from localhost.&lt;/p>

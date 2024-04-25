@@ -2045,6 +2045,32 @@ Setting the API Gateway ID via &lt;code>_custom_id_&lt;/code> works only on the 
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;h2 id="resolver-evaluation-endpoints">Resolver evaluation endpoints&lt;/h2>
+&lt;p>LocalStack supports the resolver evaluation endpoints: &lt;a href="https://docs.aws.amazon.com/appsync/latest/APIReference/API_EvaluateCode.html">&lt;code>EvaluateCode&lt;/code>&lt;/a> and &lt;a href="https://docs.aws.amazon.com/appsync/latest/APIReference/API_EvaluateMappingTemplate.html">&lt;code>EvaluateMappingTemplate&lt;/code>&lt;/a>.&lt;/p>
+&lt;p>Resolver code can be either passed in as a string, or from a file with the &lt;code>file://&lt;/code> prefix for the &lt;code>--template/--code&lt;/code> arguments.
+See the AWS documentation for &lt;a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/appsync/evaluate-mapping-template.html">&lt;code>evaluate-mapping-template&lt;/code>&lt;/a> and &lt;a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/appsync/evaluate-code.html">&lt;code>evaluate-code&lt;/code>&lt;/a> for more details.&lt;/p>
+&lt;h3 id="vtl-resolver-templates">VTL resolver templates&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal appsync evaluate-mapping-template \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --template &amp;#39;$ctx.result&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --context &amp;#39;{&amp;#34;result&amp;#34;:&amp;#34;ok&amp;#34;}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;evaluationResult&amp;#34;: &amp;#34;ok&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;logs&amp;#34;: []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="javascript-resolvers">JavaScript resolvers&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal appsync evaluate-code \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime name=APPSYNC_JS,runtimeVersion=1.0.0 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function request \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code &amp;#39;export function request(ctx) { return ctx.result; }; export function response(ctx) {};&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --context &amp;#39;{&amp;#34;result&amp;#34;: &amp;#34;ok&amp;#34;}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;evaluationResult&amp;#34;: &amp;#34;ok&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;logs&amp;#34;: []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="resource-browser">Resource Browser&lt;/h2>
 &lt;p>The LocalStack Web Application provides a Resource Browser for managing AppSync APIs, Data Sources, Schema, Query, Types, Resolvers, Functions and API keys. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>AppSync&lt;/strong> under the &lt;strong>App Integration&lt;/strong> section.&lt;/p>
 &lt;img src="appsync-resource-browser.png" alt="AppSync Resource Browser" title="AppSync Resource Browser" width="900" />
@@ -2858,7 +2884,16 @@ LocalStack&amp;rsquo;s Cost Explorer implementation cannot programmatically quer
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Beanstalk</title><link>/user-guide/aws/elasticbeanstalk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elasticbeanstalk/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing cost category definitions for the Cost Explorer service. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the Resources section, and then clicking on &lt;strong>Cost Explorer&lt;/strong> under the &lt;strong>Storage&lt;/strong> section.&lt;/p>
+&lt;img src="cost-explorer-resource-browser.png" alt="Cost Explorer Resource Browser" title="Cost Explorer Resource Browser" width="900" />
+&lt;br>&lt;br>
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create Cost Category definition&lt;/strong>: Create a new Cost Category definition by clicking on the &lt;strong>Create&lt;/strong> button and providing the required details.&lt;/li>
+&lt;li>&lt;strong>View Cost Category definition&lt;/strong>: View the details of a Cost Category definition by clicking on the Cost Category definition.&lt;/li>
+&lt;li>&lt;strong>Delete Cost Category definition&lt;/strong>: Delete a Cost Category definition by selecting on the Cost Categorty definition, and then clicking on the &lt;strong>Actions&lt;/strong> button followed by &lt;strong>Remove Selected&lt;/strong>.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Elastic Beanstalk</title><link>/user-guide/aws/elasticbeanstalk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elasticbeanstalk/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Elastic Beanstalk (EB) is a managed platform-as-a-service (PaaS) provided by Amazon Web Services (AWS) that simplifies the process of deploying, managing, and scaling web applications and services. Elastic Beanstalk orchestrates various AWS services, including EC2, S3, SNS, and Elastic Load Balancers. Elastic Beanstalk also supports various application environments, such as Java, .NET, Node.js, PHP, Python, Ruby, Go, and Docker.&lt;/p>
 &lt;p>LocalStack allows you to use the Elastic Beanstalk APIs in your local environment to create and manage applications, environments and versions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_elasticbeanstalk/">API coverage page&lt;/a>, which provides information on the extent of Elastic Beanstalk&amp;rsquo;s integration with LocalStack.&lt;/p>
@@ -5419,7 +5454,24 @@ Run the following command to create a Neptune instance:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;marko_knows_older_30&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">marko_knows_older_30&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="examples">Examples&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing Neptune databases and clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>Neptune&lt;/strong> under the &lt;strong>Database&lt;/strong> section.&lt;/p>
+&lt;img src="neptune-resource-browser.png" alt="Neptune Resource Browser" title="Neptune Resource Browser" width="900" />
+&lt;br>
+&lt;br>
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create Cluster&lt;/strong>: Create a new Neptune cluster by clicking on &lt;strong>Create Cluster&lt;/strong> under the &lt;strong>Clusters&lt;/strong> tab and providing the required parameters.&lt;/li>
+&lt;li>&lt;strong>List Clusters&lt;/strong>: View a list of all Neptune clusters in your LocalStack environment by clicking on the &lt;strong>Clusters&lt;/strong> tab.&lt;/li>
+&lt;li>&lt;strong>View Cluster Details&lt;/strong>: Click on a cluster name to view detailed information about the cluster, including its status, endpoint, and other configuration details.&lt;/li>
+&lt;li>&lt;strong>Graph Browser&lt;/strong>: Access the Neptune Graph Browser by clicking on the &lt;strong>Graph Browser&lt;/strong> tab in the cluster details. The Graph Browser allows you to interactively query and visualize the graph data stored in your Neptune cluster.&lt;/li>
+&lt;li>&lt;strong>Quick Actions&lt;/strong>: Perform quick actions on the cluster, such as adding a new Node, modifying an existing one or creating a new Edge between 2 nodes. You can access the &lt;strong>Quick Actions&lt;/strong> by clicking in the respective tab from the cluster details page.&lt;/li>
+&lt;li>&lt;strong>Create instance&lt;/strong>: Create a new Neptune database by clicking on &lt;strong>Create Instance&lt;/strong> under the &lt;strong>Instances&lt;/strong> tab and providing the required parameters.&lt;/li>
+&lt;li>&lt;strong>List Instances&lt;/strong>: View a list of all Neptune databases in your LocalStack environment by clicking on the &lt;strong>Instances&lt;/strong> tab.&lt;/li>
+&lt;li>&lt;strong>View Instance Details&lt;/strong>: Click on a database name to view detailed information about the database, including its status, endpoint, and other configuration details.&lt;/li>
+&lt;li>&lt;strong>Edit Instance&lt;/strong>: Edit the configuration of a Neptune database by clicking on the &lt;strong>Edit Instance&lt;/strong> button in the instance details.&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
 &lt;p>The following code snippets and sample applications provide practical examples of how to use Neptune in LocalStack for various use cases:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/neptune-graph-db">Neptune Graph Database Demo&lt;/a>&lt;/li>
