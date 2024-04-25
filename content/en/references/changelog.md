@@ -16,6 +16,7 @@ This page documents the release notes for official LocalStack major and minor re
 
 | Version  | Release Date       | Release Notes                                                                                      |
 |----------|--------------------|----------------------------------------------------------------------------------------------------|
+| `v3.4.0` | April 25, 2024        | [v3.4.0](https://discuss.localstack.cloud/t/localstack-release-v3-4-0/871)                         |
 | `v3.3.0` | March 28, 2024     | [v3.3.0](https://discuss.localstack.cloud/t/localstack-release-v3-3-0/828)                         |
 | `v3.2.0` | February 29, 2024  | [v3.2.0](https://discuss.localstack.cloud/t/localstack-release-v3-2-0/782/)                        |
 | `v3.1.0` | January 25, 2024   | [v3.1.0](https://discuss.localstack.cloud/t/localstack-release-v3-1-0/713/)                        |
