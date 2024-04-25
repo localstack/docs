@@ -16,9 +16,10 @@ The list of supported APIs can be found on the [API coverage page](https://docs.
 ## Getting started
 
 This guide is designed for users new to EC2 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+We will demonstrate how to create an EC2 instance that runs a simple Python web server.
+LocalStack Pro running on a Linux host is required as network access to containers is not possible on macOS.
 
-Start your LocalStack Pro container using your preferred method.
-We will demonstrate how to create an EC2 instance that runs a simple Python web server on port 8000 with the AWS CLI.
+Start your LocalStack container using your preferred method.
 
 ### Create a key pair
 
