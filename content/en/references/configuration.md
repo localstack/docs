@@ -92,7 +92,7 @@ This section covers configuration options that are specific to certain AWS servi
 | Variable | Example Values | Description |
 | - | - | - |
 | `CFN_PER_RESOURCE_TIMEOUT` | `300` (default) | Set the timeout to deploy each individual CloudFormation resource.
-| `CFN_VERBOSE_ERRORS` | `0` (default) | Set the timeout to deploy each individual CloudFormation resource.
+| `CFN_VERBOSE_ERRORS` | `0` (default) | Show exceptions for CloudFormation deploy errors
 
 ### CloudWatch
 
