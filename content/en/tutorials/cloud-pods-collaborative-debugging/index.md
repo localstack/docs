@@ -172,7 +172,7 @@ However, retrieving one of the products does not return the desired result:
 $ curl --location "http://$rest_api_id.execute-api.localhost.localstack.cloud:4566/dev/productApi?id=34534"
 <disable-copy>
 Internal server error⏎  
-</ disable-copy>
+</disable-copy>
 {{</ command >}}
 
 
