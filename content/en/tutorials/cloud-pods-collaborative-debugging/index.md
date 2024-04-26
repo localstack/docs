@@ -29,7 +29,6 @@ leadimage: "collab-debugging-cloud-pod.png"
 
 # **Introduction**
 
-
 By replicating environments, teams can share the exact conditions under which a bug occurs.
 
 For developing AWS applications locally, the tool of choice is LocalStack, which can sustain a full-blown comprehensive stack.
@@ -53,15 +52,12 @@ The full sample application can be found [on GitHub](https://github.com/localsta
 - Basic knowledge of AWS services (API Gateway, Lambda, DynamoDB, IAM)
 - Basic understanding of Terraform for provisioning AWS resources
 
-### Intro
 
 In this demo scenario, a new colleague, Bob, joins the company, clones the application repository, and starts working on the Lambda code. He will add the necessary 
 resources in the Terraform configuration file and some IAM policies that the functions need in order to access the database. 
 He is following good practice rules, where the resource has only the necessary permissions. However, Bob encounters an error despite this.
 
-# Reproducing the issue locally
-
-## 1. Architecture Overview
+### Architecture Overview
 
 The stack consists of an API Gateway that exposes endpoints and integrates with two Lambda functions responsible for adding and fetching
 products from a DynamoDB database. IAM policies are enforced to ensure compliance with the
@@ -73,9 +69,9 @@ This demo application is suitable for AWS and behaves the same as on LocalStack.
 
 ![Application Diagram](cloud-pod-collab.png)
 
-## 2. Starting LocalStack
+### Starting LocalStack
 
-In the root directory, there is a `docker-compose.yml` file that will spin up version 3.2.0 of LocalStack, with an 
+In the root directory, there is a `docker-compose.yml` file that will spin up version 3.3.0 of LocalStack, with an 
 important configuration flag, `ENFORCE_IAM=1`, which will facilitate IAM policy evaluation and enforcement. For this 
 example, a `LOCALSTACK_AUTH_TOKEN` is needed, which you can find in the LocalStack web app on the 
 [Getting Started](https://app.localstack.cloud/getting-started) page.
@@ -85,7 +81,7 @@ $ export LOCALSTACK_AUTH_TOKEN=<YOUR_LOCALSTACK_AUTH_TOKEN>
 $ docker compose up
 {{</ command >}}
 
-## 3. The Terraform Configuration File
+### The Terraform Configuration File
 
 The entire Terraform configuration file for setting up the application stack is available in the same repository at
 https://github.com/localstack-samples/cloud-pods-collaboration-demo/blob/main/terraform/main.tf. To deploy all the resources on LocalStack, 
@@ -132,9 +128,9 @@ resource "aws_iam_policy" "lambda_dynamodb_policy" {
 }
 ```
 
-Bob has mistakenly used `dynamodb:Scan` and `dynamodb:Query` as a replacement.
+Bob has mistakenly used `dynamodb:Scan` and `dynamodb:Query`, but missed adding the `dynamodb:GetItem` action to the policy document above.
 
-## **4. Reproducing the issue locally**
+### Reproducing the issue locally
 
 Let’s test out the current state of the application. The Terraform configuration file outputs the REST API ID of the API Gateway.
 We can capture that value and use it further to invoke the **`add-product`** Lambda:
@@ -177,31 +173,30 @@ However, retrieving one of the products does not return the desired result:
 
 {{< command >}}
 $ curl --location "http://$rest_api_id.execute-api.localhost.localstack.cloud:4566/dev/productApi?id=34534"
+<disable-copy>
+Internal server error⏎  
+</ disable-copy>
 {{</ command >}}
 
-```bash
-Internal server error⏎  
-```
 
 An `Internal server error⏎`  does not give out too much information. Bob does not know for sure what could be 
 causing this. The Lambda code and the configurations look fine to him.
 
-# **Using Cloud Pods for fast collaborative debugging**
+## Using Cloud Pods for fast collaborative debugging
 
-## 1. Creating a Cloud Pod
+### Creating a Cloud Pod
 
 To share this exact environment and issue with Alice, a more experienced colleague, Bob only needs to run a simple `localstack pod` command:
 
 {{< command >}}
 $ localstack pod save cloud-pod-product-app
-{{</ command >}}
-
-```bash
+<disable-copy>
 Cloud Pod `cloud-pod-product-app` successfully created ✅
 Version: 1
 Remote: platform
 Services: sts,iam,apigateway,dynamodb,lambda,s3,cloudwatch,logs
-```
+</disable-copy>
+{{</ command >}}
 
 LocalStack provides a remote storage backend that can be used to store the state of your application and share it with your team members.
 
@@ -229,7 +224,7 @@ Commands:
 
 ```
 
-## 2. Pulling and Loading the Cloud Pod
+### Pulling and Loading the Cloud Pod
 
 The workflow between Alice and Bob is incredibly easy:
 
@@ -240,12 +235,12 @@ same organization:
 
 {{< command >}}
 $ localstack pod load  cloud-pod-product-app
-{{</ command >}}
-```bash
+<disable-copy>
 Cloud Pod cloud-pod-product-app successfully loaded
-```
+</disable-copy>
+{{</ command >}}
 
-## **3. Debugging and Resolving the Issue**
+### Debugging and Resolving the Issue
 
 Not only can Alice easily reproduce the bug now, but she also has access to the state and data of the services 
 involved, meaning that the Lambda logs are still in the CloudWatch log groups.
@@ -256,7 +251,7 @@ By spotting the error message, there’s an instant starting point for checking 
 
 `"Error: User: arn:aws:sts::000000000000:assumed-role/productRole/get-product is not authorized to perform: dynamodb:GetItem on resource: arn:aws:dynamodb:us-east-1:000000000000:table/Products because no identity-based policy allows the dynamodb:GetItem action (Service: DynamoDb, Status Code: 400, Request ID: d50e9dad-a01a-4860-8c21-e844a930ba7d)"`
 
-## 4. Identifying the Misconfiguration
+### Identifying the Misconfiguration
 
 The error points to a permissions issue related to accessing DynamoDB. The action **`dynamodb:GetItem`** is 
 not authorized for the role, preventing the retrieval of a product by its ID. This kind of error was not foreseen as one 
@@ -267,7 +262,7 @@ To confirm the finding, Alice now has the exact same environment to reproduces t
 no other manual changes. This leads to the next step in troubleshooting: **inspecting the Terraform configuration file** responsible 
 for defining the permissions attached to the Lambda role for interacting with DynamoDB.
 
-## 5. Fixing the Terraform Configuration
+### Fixing the Terraform Configuration
 
 Upon review, Alice discovers that the Terraform configuration does not include the necessary permission **`dynamodb:GetItem`** in the
 policy attached to the Lambda role. This oversight explains the error message. The Terraform configuration file acts as a 
@@ -307,16 +302,16 @@ misconfiguration:
 
 ![AWS CloudWatch Logs](aws-cloudwatch-logs.png)
 
-## 6. Impact on the team
+### Impact on the team
 
 Alice has updated the infrastructure and deployed a new version of the Cloud Pod with the necessary fixes. Bob will 
 access the updated infrastructure and proceed with his tasks. Meanwhile, Carol is developing integration tests for the 
 CI pipeline. She will use the stable version of the infrastructure to ensure that the workflows function effectively from 
 start to finish.
 
-![Carol writes tests](carol-bob-alice-cloud-pod-collab.drawio.png)
+![Carol writes tests](carol-bob-alice-cloud-pod-collab.png)
 
-## 7. Other Remote Options
+### Other Remote Options
 
 For organizations with specific data regulations, LocalStack offers multiple remote storage options for Cloud Pods,
 allowing full control with on-premises storage if needed.
