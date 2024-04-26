@@ -47,11 +47,8 @@ The full sample application can be found [on GitHub](https://github.com/localsta
 - [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) or [OpenTofu](https://opentofu.org/docs/intro/install/) and [terraform-local](https://docs.localstack.cloud/user-guide/integrations/terraform/#install-the-tflocal-wrapper-script)
 - Optional for Lambda build & editing: [Maven 3.9.4](https://maven.apache.org/install.html) & [Java 21](https://www.java.com/en/download/help/download_options.html)
 
-### Nice to have
-
 - Basic knowledge of AWS services (API Gateway, Lambda, DynamoDB, IAM)
 - Basic understanding of Terraform for provisioning AWS resources
-
 
 In this demo scenario, a new colleague, Bob, joins the company, clones the application repository, and starts working on the Lambda code. He will add the necessary 
 resources in the Terraform configuration file and some IAM policies that the functions need in order to access the database. 
@@ -147,7 +144,7 @@ https://<apiId>.execute-api.localhost.localstack.cloud:4566/<stageId>/<path>
 
 So adding two products to the database is straightforward using `curl`:
 
-```bash
+{{< command >}}
 $ curl --location "http://$rest_api_id.execute-api.localhost.localstack.cloud:4566/dev/productApi" \
 --header 'Content-Type: application/json' \
 --data '{
@@ -165,7 +162,7 @@ $ curl --location "http://$rest_api_id.execute-api.localhost.localstack.cloud:45
   "description": "This sustainable hydration flask is engineered to maintain your beverages at the ideal temperature—cold for 24 hours and hot for 12 hours. Constructed with premium, food-grade stainless steel, it offers an environmentally friendly solution to stay hydrated throughout the day.",
   "price": "31.50"
 }'
-```
+{{</ command >}}
 
 The response is the one that we expect: `Product added/updated successfully.`
 
@@ -182,7 +179,7 @@ Internal server error⏎
 An `Internal server error⏎`  does not give out too much information. Bob does not know for sure what could be 
 causing this. The Lambda code and the configurations look fine to him.
 
-## Using Cloud Pods for fast collaborative debugging
+## Using Cloud Pods for collaborative debugging
 
 ### Creating a Cloud Pod
 
@@ -205,8 +202,9 @@ The `LOCALSTACK_AUTH_TOKEN` needs to be set as an environment variable.
 
 Additionally, there are other commands for managing Cloud Pods included in the CLI:
 
-```bash
+{{< command >}}
 $ localstack pod --help
+<disable-copy>
 Usage: localstack pod [OPTIONS] COMMAND [ARGS]...
 
   Manage the state of your instance via Cloud Pods.
@@ -217,12 +215,13 @@ Options:
 Commands:
   delete    Delete a Cloud Pod
   list      List all available Cloud Pods
-  load      Load the state of a Cloud Pod into the application runtime/ Users can import Cloud Pods from...
+  load      Load the state of a Cloud Pod into the application runtime
   remote    Manage Cloud Pod remotes
   save      Create a new Cloud Pod
   versions  List all available versions for a Cloud Pod
+</disable-copy>
+{{</ command >}}
 
-```
 
 ### Pulling and Loading the Cloud Pod
 
@@ -275,7 +274,7 @@ developers can avoid similar issues and ensure a smoother, error-free interactio
 
 The action list should now look like this:
 
-```bash
+{{< command >}}
 resource "aws_iam_policy" "lambda_dynamodb_policy" {
   name        = "LambdaDynamoDBAccess"
   description = "IAM policy for accessing DynamoDB from Lambda"
@@ -294,8 +293,8 @@ resource "aws_iam_policy" "lambda_dynamodb_policy" {
       },
     ]
   })
-}
-```
+} 
+{{</ command >}}
 
 To double-check, Alice creates the stack on AWS, and observes that the issue is the same, related to policy 
 misconfiguration:
