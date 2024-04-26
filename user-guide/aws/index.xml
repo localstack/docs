@@ -11184,6 +11184,10 @@ The certificate is signed by the LocalStack root CA.&lt;/p>
 &lt;p>It is possible to use actions with SQL queries for IoT Topic Rules.&lt;/p>
 &lt;p>For example, you can use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html">&lt;code>CreateTopicRule&lt;/code>&lt;/a> operation to define a topic rule with a SQL query &lt;code>SELECT * FROM 'my/topic' where attr=123&lt;/code> which will execute a trigger whenever a message with attribute &lt;code>attr=123&lt;/code> is received on the MQTT topic &lt;code>my/topic&lt;/code>.&lt;/p>
 &lt;p>Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.&lt;/p>
+&lt;h2 id="device-shadows">Device Shadows&lt;/h2>
+&lt;p>LocalStack supports unnamed (classic) device shadows.&lt;/p>
+&lt;p>You can use AWS CLI and &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html">MQTT topics&lt;/a> to get, update or delete device shadow state information.&lt;/p>
+&lt;p>The endpoint as returned by &lt;code>DescribeEndpoint&lt;/code> currently does not support the &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-rest-api.html#API_GetThingShadow">device shadow REST API&lt;/a>&lt;/p>
 &lt;h2 id="limitations">Limitations&lt;/h2>
 &lt;p>LocalStack MQTT broker does not support multi-account/multi-region namespacing.
 Internally, the MQTT messages are not routed to the appropriate account ID/region even though the endpoint URL may suggest otherwise.
