@@ -319,7 +319,7 @@ That way, Bob, Alice and Carol could collaborate using either an S3 bucket remot
 The Cloud Pods command-line interface enables users to manage these remotes with ease, by following the instructions in the
 [documentation](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#remotes).
 
-## Conclusions
+## Conclusion
 
 Cloud Pods play a crucial role in team collaboration, significantly speeding up development processes. The multiple and 
 versatile options for remote storage can support different business requirements for companies that prefer using the 
