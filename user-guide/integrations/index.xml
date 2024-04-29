@@ -1018,14 +1018,83 @@ By default, the endpoint URL for &lt;code>awslocal&lt;/code> is &lt;code>http://
 &lt;p>You can further use integrations, such as &lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-cdk/">CDK&lt;/a>, &lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-sam/">SAM CLI&lt;/a>, and &lt;a href="https://docs.localstack.cloud/user-guide/integrations/terraform/">Terraform&lt;/a>, to interact with the Ephemeral Instance. In these integrations, you can change the &lt;code>AWS_ENDPOINT_URL&lt;/code> environment variable to the endpoint URL of the Ephemeral Instance.&lt;/p>
 &lt;h3 id="deleting-the-localstack-deployment">Deleting the LocalStack deployment&lt;/h3>
 &lt;p>To delete the LocalStack deployment, click on the &lt;strong>localstack-dev-spaces&lt;/strong> pod in the &lt;strong>Topology&lt;/strong> view. Click on the &lt;strong>Actions&lt;/strong> menu and select &lt;strong>Delete Deployment&lt;/strong>.&lt;/p></description></item><item><title>User-Guide: Pulumi</title><link>/user-guide/integrations/pulumi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/pulumi/</guid><description>
-&lt;img src="pulumi-logo.svg" width="600px" alt="Pulumi logo">
-&lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>Pulumi&amp;rsquo;s infrastructure-as-code SDK helps you create, deploy, and manage AWS containers, serverless functions, and infrastructure using familiar programming languages.
-The endpoints configuration environment of Pulumi allows us to easily point Pulumi to LocalStack.
-This guide follows the instructions from Pulumi&amp;rsquo;s &lt;a href="https://www.pulumi.com/docs/get-started/aws/">Get Started with Pulumi and AWS&lt;/a> guide, with additional explanations of how to make it work with LocalStack.&lt;/p>
-&lt;h2 id="quickstart">Quickstart&lt;/h2>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Pulumi&amp;rsquo;s SDK for infrastructure-as-code allows you to create, deploy, and manage AWS containers, serverless functions, and other infrastructure using popular programming languages. It supports a range of cloud providers, including AWS, Azure, Google Cloud, and Kubernetes.&lt;/p>
+&lt;p>LocalStack can integrate with Pulumi through the Pulumi configuration environment. There are two main methods to configure Pulumi for use with LocalStack:&lt;/p>
+&lt;ul>
+&lt;li>Using the &lt;code>pulumilocal&lt;/code> wrapper script which automatically configures service endpoints.&lt;/li>
+&lt;li>Manually setting up the service endpoints in your Pulumi configuration, which requires ongoing maintenance.&lt;/li>
+&lt;/ul>
+&lt;p>This guide will show you how to set up local AWS resources using both the &lt;code>pulumilocal&lt;/code> wrapper and manual configuration.&lt;/p>
+&lt;h2 id="pulumilocal-wrapper-script">&lt;code>pulumilocal&lt;/code> wrapper script&lt;/h2>
+&lt;p>&lt;code>pulumilocal&lt;/code> is a wrapper for the &lt;code>pulumi&lt;/code> command line interface, facilitating the use of Pulumi with LocalStack. When executing deployment commands like &lt;code>pulumilocal [&amp;quot;up&amp;quot;, &amp;quot;destroy&amp;quot;, &amp;quot;preview&amp;quot;, &amp;quot;cancel&amp;quot;]&lt;/code>, the script configures the Pulumi settings for LocalStack and runs the specified Pulumi command.&lt;/p>
+&lt;p>The endpoints are set to point to the LocalStack API (&lt;code>http://localhost:4566&lt;/code>). This setup simplifies the deployment of Pulumi stacks against LocalStack.&lt;/p>
+&lt;h3 id="configure-the-local-backend">Configure the Local Backend&lt;/h3>
+&lt;p>Optionally, you can set environment variables to store state locally, avoiding cloud storage.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export PULUMI_CONFIG_PASSPHRASE=lsdevtest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export PULUMI_BACKEND_URL=file://`pwd`/myproj&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+For further options please consult the official documentation on available &lt;a href="https://www.pulumi.com/docs/cli/environment-variables/">environment variables&lt;/a> and &lt;a href="https://www.pulumi.com/docs/concepts/state/#local-filesystem">local backend&lt;/a>.
+&lt;/div>
+&lt;h3 id="install-the-pulumilocal-wrapper-script">Install the &lt;code>pulumilocal&lt;/code> wrapper script&lt;/h3>
+&lt;p>You can install the &lt;code>pulumilocal&lt;/code> wrapper script by running the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install pulumi-local&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can now use the &lt;code>pulumilocal&lt;/code> command to interact with your Pulumi project.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pulumilocal --help
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;disable-copy&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Pulumi - Modern Infrastructure as Code
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;disable-copy&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-a-new-pulumi-project">Create a new Pulumi project&lt;/h3>
+&lt;p>To start a new project, use these commands:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mkdir myproj
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pulumilocal new aws-typescript -y -s lsdev --cwd myproj&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The &lt;code>--cwd&lt;/code> option is unnecessary if you&amp;rsquo;re already in the project directory.
+&lt;/div>
+&lt;h3 id="deploy-the-pulumi-stack">Deploy the Pulumi stack&lt;/h3>
+&lt;p>Create and select the &lt;code>lsdev&lt;/code> stack with:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pulumilocal stack select -c lsdev --cwd myproj&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>If you&amp;rsquo;ve just run the &lt;code>new typescript&lt;/code> command, the stack is already selected. Deploy it with:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pulumilocal up --cwd myproj&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="configuration">Configuration&lt;/h3>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Environment Variable&lt;/th>
+&lt;th>Default value&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>AWS_ENDPOINT_URL&lt;/code>&lt;/td>
+&lt;td>-&lt;/td>
+&lt;td>Target LocalStack instance hostname and port&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>LOCALSTACK_HOSTNAME&lt;/code>&lt;/td>
+&lt;td>&lt;code>localhost&lt;/code>&lt;/td>
+&lt;td>&lt;em>(Deprecated)&lt;/em> Target host for connecting to LocalStack&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>EDGE_PORT&lt;/code>&lt;/td>
+&lt;td>&lt;code>4566&lt;/code>&lt;/td>
+&lt;td>&lt;em>(Deprecated)&lt;/em> Target port for connecting to LocalStack&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>PULUMI_CMD&lt;/code>&lt;/td>
+&lt;td>&lt;code>pulumi&lt;/code>&lt;/td>
+&lt;td>Name of the executable Pulumi command on the system PATH&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="manual-configuration">Manual configuration&lt;/h2>
+&lt;p>Alternatively, you can manually configure local service endpoints and credentials. The following section will provide detailed steps for this manual configuration, assuming you have &lt;a href="https://www.pulumi.com/docs/install/">Pulumi&lt;/a> installed.&lt;/p>
 &lt;h3 id="create-a-new-pulumi-stack">Create a new Pulumi stack&lt;/h3>
-&lt;p>First, run the following commands and follow the instructions in the CLI to create a new project.&lt;/p>
+&lt;p>Start a new project with:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mkdir quickstart &amp;amp;&amp;amp; cd quickstart
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pulumi new aws-typescript&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>We use the default configuration values:&lt;/p>
@@ -1057,7 +1126,8 @@ This guide follows the instructions from Pulumi&amp;rsquo;s &lt;a href="https://
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── Pulumi.dev.yaml
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── Pulumi.yaml
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>└── tsconfig.json&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Now edit your stack configuration &lt;code>Pulumi.dev.yaml&lt;/code> as follows:&lt;/p>
+&lt;h3 id="configure-the-stack">Configure the stack&lt;/h3>
+&lt;p>Modify your stack configuration in &lt;code>Pulumi.dev.yaml&lt;/code> to include endpoints for AWS services pointing to &lt;code>http://localhost:4566&lt;/code>. However, these endpoints may change depending on the AWS plugin version you are using.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">config&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">aws:accessKey&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">test&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">aws:s3UsePathStyle&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;true&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -1339,81 +1409,13 @@ This guide follows the instructions from Pulumi&amp;rsquo;s &lt;a href="https://
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">workspaces&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">xray&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="deploy-the-stack-to-localstack">Deploy the stack to LocalStack&lt;/h3>
-&lt;p>Make sure your LocalStack is running.
-For the example stack, the only required service is S3.
-After updating the stack configuration, and starting localstack, you can run:&lt;/p>
+&lt;p>To deploy, ensure the S3 service is included in your configuration, start LocalStack, and run:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pulumi up&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>once the stack update was performed, you can run:&lt;/p>
+&lt;p>After the update, check the S3 buckets with:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Where you should see something like&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>2021-09-30 11:50:59 my-bucket-6c21027
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="pulumilocal">Pulumilocal&lt;/h2>
-&lt;p>&lt;code>pulumilocal&lt;/code> is a wrapper script and drop-in replacement for the &lt;code>pulumi&lt;/code> CLI, that also provides commands to better interface Pulumi with LocalStack.
-You can find the source code repository here: &lt;a href="https://github.com/localstack/pulumi-local">https://github.com/localstack/pulumi-local&lt;/a>&lt;/p>
-&lt;h3 id="install">Install&lt;/h3>
-&lt;p>&lt;code>pulumilocal&lt;/code> requires that you already have the &lt;code>pulumi&lt;/code> command in your path.
-Then, simply run&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install pulumi-local&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>then,&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>pulumi version
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pulumilocal version&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>should output the same value.&lt;/p>
-&lt;h3 id="use">Use&lt;/h3>
-&lt;p>Instead of manually editing a stack configuration as explained earlier, you can run&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pulumilocal init&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>which will create a &lt;code>Pulumi.localstack.yaml&lt;/code> stack configuration, and initialize an additional stack named &lt;code>localstack&lt;/code>.&lt;/p>
-&lt;p>You can now run&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pulumilocal up&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>to start the localstack stack.&lt;/p>
-&lt;h3 id="configuration">Configuration&lt;/h3>
-&lt;p>You can configure the integration between pulumi-local and LocalStack by adding these environment variables before running &lt;code>pulumilocal&lt;/code>:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Variable&lt;/th>
-&lt;th>Default value&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>PULUMI_CMD&lt;/code>&lt;/td>
-&lt;td>pulumi&lt;/td>
-&lt;td>The Pulumi command that is being delegated to&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>PULUMI_STACK_NAME&lt;/code>&lt;/td>
-&lt;td>localstack&lt;/td>
-&lt;td>The Pulumi stack name used for looking up the stack file (&lt;code>Pulumi.&amp;lt;stack&amp;gt;.yaml&lt;/code>)&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>AWS_ENDPOINT_URL&lt;/code>&lt;/td>
-&lt;td>-&lt;/td>
-&lt;td>Hostname and port of the target LocalStack instance&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>LOCALSTACK_HOSTNAME&lt;/code>&lt;/td>
-&lt;td>localhost&lt;/td>
-&lt;td>&lt;strong>(Deprecated)&lt;/strong> The name of the host LocalStack is reachable at&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>EDGE_PORT&lt;/code>&lt;/td>
-&lt;td>4566&lt;/td>
-&lt;td>&lt;strong>(Deprecated)&lt;/strong> The port LocalStack is reachable at&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>USE_SSL&lt;/code>&lt;/td>
-&lt;td>0&lt;/td>
-&lt;td>A truthy (&lt;code>1&lt;/code>, &lt;code>true&lt;/code>) string that indicates whether to use SSL when connecting to LocalStack&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="community-resources">Community resources&lt;/h2>
-&lt;h3 id="articles">Articles&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="https://delitescere.medium.com/pulumi-and-localstack-beyond-the-basics-d993f3b94d17">Pulumi and LocalStack &amp;ndash; beyond the basics. 2021-08-26&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://overflowed.dev/blog/how-to-deploy-localstack-with-pulumi">How to deploy LocalStack with Pulumi. 2020-09-22&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Quarkus</title><link>/user-guide/integrations/quarkus/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/quarkus/</guid><description>
+&lt;p>You should see output similar to:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2021-09-30 11:50:59 my-bucket-6c21027
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Quarkus</title><link>/user-guide/integrations/quarkus/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/quarkus/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Quarkus is a Java framework optimized for cloud, serverless, and containerized environments. Quarkus leverages a Kubernetes Native Java stack tailored for GraalVM &amp;amp; OpenJDK HotSpot, which further builds on various Java libraries and standards.&lt;/p>
 &lt;p>Localstack is supported by Quarkus as a Dev service for Amazon Services. Quarkus Amazon Services automatically starts a LocalStack container in development mode and when running tests, and the extension client is configured automatically.&lt;/p>
