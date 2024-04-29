@@ -35,19 +35,6 @@ $ export PULUMI_BACKEND_URL=file://`pwd`/myproj
 For further options please consult the official documentation on available  [environment variables](https://www.pulumi.com/docs/cli/environment-variables/) and [local backend](https://www.pulumi.com/docs/concepts/state/#local-filesystem).
 {{< /alert >}}
 
-### Create a new Pulumi project
-
-To start a new project, use these commands:
-
-{{< command >}}
-$ mkdir myproj
-$ pulumilocal new aws-typescript -y -s lsdev --cwd myproj
-{{< / command >}}
-
-{{< alert title="Note" >}}
-The `--cwd` option is unnecessary if you're already in the project directory.
-{{< /alert >}}
-
 ### Install the `pulumilocal` wrapper script
 
 You can install the `pulumilocal` wrapper script by running the following command:
@@ -65,6 +52,19 @@ Pulumi - Modern Infrastructure as Code
 ...
 <disable-copy>
 {{< / command >}}
+
+### Create a new Pulumi project
+
+To start a new project, use these commands:
+
+{{< command >}}
+$ mkdir myproj
+$ pulumilocal new aws-typescript -y -s lsdev --cwd myproj
+{{< / command >}}
+
+{{< alert title="Note" >}}
+The `--cwd` option is unnecessary if you're already in the project directory.
+{{< /alert >}}
 
 ### Deploy the Pulumi stack
 
@@ -91,7 +91,7 @@ $ pulumilocal up --cwd myproj
 
 ## Manual configuration
 
-Alternatively, you can manually configure local service endpoints and credentials. The following section will provide detailed steps for this manual configuration.
+Alternatively, you can manually configure local service endpoints and credentials. The following section will provide detailed steps for this manual configuration, assuming you have [Pulumi](https://www.pulumi.com/docs/install/) installed.
 
 ### Create a new Pulumi stack
 
@@ -138,6 +138,8 @@ $ tree -L 1
 ├── Pulumi.yaml
 └── tsconfig.json
 {{< / command >}}
+
+### Configure the stack
 
 Modify your stack configuration in `Pulumi.dev.yaml` to include endpoints for AWS services pointing to `http://localhost:4566`. However, these endpoints may change depending on the AWS plugin version you are using.
 
