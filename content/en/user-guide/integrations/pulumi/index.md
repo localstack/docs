@@ -32,7 +32,7 @@ $ export PULUMI_BACKEND_URL=file://`pwd`/myproj
 {{< / command >}}
 
 {{< alert title="Note" >}}
-For further options please consult the official documentation on available  [environment variables](https://www.pulumi.com/docs/cli/environment-variables/) and [local backend](https://www.pulumi.com/docs/concepts/state/#local-filesystem)._
+For further options please consult the official documentation on available  [environment variables](https://www.pulumi.com/docs/cli/environment-variables/) and [local backend](https://www.pulumi.com/docs/concepts/state/#local-filesystem).
 {{< /alert >}}
 
 ### Create a new Pulumi project
