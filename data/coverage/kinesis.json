@@ -1472,22 +1472,22 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestIoTData::test_topic_rule_triggers_kinesis_put_record",
-            "test": "test_topic_rule_triggers_kinesis_put_record",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestIoTTopicRules::test_topic_kinesis_rule",
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_kinesis_rule",
             "test": "test_topic_kinesis_rule",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_kinesis_put_record",
+            "test": "test_topic_rule_triggers_kinesis_put_record",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -1724,18 +1724,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/test_iam.py::test_managed_policy_with_empty_resource",
-            "test": "test_managed_policy_with_empty_resource",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Policy.Description', '$..Policy.IsAttachable', '$..Policy.PermissionsBoundaryUsageCount', '$..Policy.Tags']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_dynamodb.py::test_billing_mode_as_conditional[PROVISIONED]",
-            "test": "test_billing_mode_as_conditional[PROVISIONED]",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_dynamodb.py::test_billing_mode_as_conditional[PAY_PER_REQUEST]",
+            "test": "test_billing_mode_as_conditional[PAY_PER_REQUEST]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..Table.DeletionProtectionEnabled']",
@@ -1761,16 +1751,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_dynamodb.py::test_global_table",
-            "test": "test_global_table",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Table.DeletionProtectionEnabled', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas']",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -2154,6 +2134,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_multiple_filters]",
+            "test": "test_dynamodb_event_filter[content_multiple_filters]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_or_filter]",
             "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "200",
@@ -2174,8 +2164,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[exists_filter_type]",
-            "test": "test_dynamodb_event_filter[exists_filter_type]",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[insert_same_entry_twice]",
+            "test": "test_dynamodb_event_filter[insert_same_entry_twice]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
@@ -2184,8 +2174,18 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[insert_same_entry_twice]",
-            "test": "test_dynamodb_event_filter[insert_same_entry_twice]",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[prefix_filter]",
+            "test": "test_dynamodb_event_filter[prefix_filter]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_source_mapping",
+            "test": "test_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
@@ -2426,22 +2426,22 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestIoTData::test_topic_rule_triggers_kinesis_put_record",
-            "test": "test_topic_rule_triggers_kinesis_put_record",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestIoTTopicRules::test_topic_kinesis_rule",
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_kinesis_rule",
             "test": "test_topic_kinesis_rule",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_kinesis_put_record",
+            "test": "test_topic_rule_triggers_kinesis_put_record",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -2774,6 +2774,66 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-default]",
+            "test": "test_full_load_replication_task[mariadb-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-non_default]",
+            "test": "test_full_load_replication_task[mariadb-non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-unformatted_json]",
+            "test": "test_full_load_replication_task[mariadb-unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-default]",
+            "test": "test_full_load_replication_task[mysql-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-non_default]",
+            "test": "test_full_load_replication_task[mysql-non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-unformatted_json]",
+            "test": "test_full_load_replication_task[mysql-unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/kinesis_firehose_redshift/test_kinesis_firehose_redshift.py::TestKinesisFirehoseScenario::test_kinesis_firehose_redshift",
@@ -3350,6 +3410,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_list_versions",
+            "test": "test_list_versions",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_integrations.py::test_put_events_with_target_kinesis",
             "test": "test_put_events_with_target_kinesis",
             "response": "200",
@@ -3870,11 +3940,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_apigetway_task_service.py::TestTaskApiGateway::test_invoke_base",
-            "test": "test_invoke_base",
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/intrinsic_functions/test_math_operations.py::TestMathOperations::test_math_random",
+            "test": "test_math_random",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..loggingConfiguration', '$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata', '$..Headers.Content-Length']",
+            "snapshot_skipped": "['$..loggingConfiguration', '$..tracingConfiguration']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3940,16 +4010,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_apigateway_deployed",
-            "test": "test_apigateway_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_event_rules_deployed",
             "test": "test_event_rules_deployed",
             "response": "200",
@@ -3980,8 +4040,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_s3_bucket_deployed",
-            "test": "test_s3_bucket_deployed",
+            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_queue_handler_deployed",
+            "test": "test_queue_handler_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3990,23 +4050,13 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_setup",
-            "test": "test_setup",
-            "response": "400",
-            "error": "ResourceNotFoundException",
+            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_s3_bucket_deployed",
+            "test": "test_s3_bucket_deployed",
+            "response": "200",
+            "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_kinesis.py::test_apigateway_to_kinesis",
-            "test": "test_apigateway_to_kinesis",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..EncryptionType', '$..ChildShards']",
-            "aws_validated": true,
-            "snapshot_tested": true,
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -4130,16 +4180,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_template_engine.py::TestTypes::test_implicit_type_conversion",
-            "test": "test_implicit_type_conversion",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/dynamodb/test_dynamodb.py::TestDynamoDB::test_data_encoding_consistency",
             "test": "test_data_encoding_consistency",
             "response": "400",
@@ -4150,8 +4190,18 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/dynamodb/test_dynamodb.py::TestDynamoDB::test_dynamodb_execute_transaction",
-            "test": "test_dynamodb_execute_transaction",
+            "node_id": "LocalStack Community: tests/aws/services/dynamodb/test_dynamodb.py::TestDynamoDB::test_dynamodb_create_table_with_class",
+            "test": "test_dynamodb_create_table_with_class",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/dynamodb/test_dynamodb.py::TestDynamoDB::test_dynamodb_partiql_missing",
+            "test": "test_dynamodb_partiql_missing",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -4162,26 +4212,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/dynamodb/test_dynamodb.py::TestDynamoDB::test_dynamodb_pay_per_request",
             "test": "test_dynamodb_pay_per_request",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/dynamodb/test_dynamodb.py::TestDynamoDB::test_dynamodb_stream_stream_view_type",
-            "test": "test_dynamodb_stream_stream_view_type",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..SizeBytes', '$..DeletionProtectionEnabled', '$..ProvisionedThroughput.NumberOfDecreasesToday', '$..StreamDescription.CreationRequestDateTime']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/dynamodb/test_dynamodb.py::TestDynamoDB::test_dynamodb_streams_describe_with_exclusive_start_shard_id",
-            "test": "test_dynamodb_streams_describe_with_exclusive_start_shard_id",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -4237,6 +4267,16 @@
             "snapshot_skipped": "['$..SizeBytes', '$..DeletionProtectionEnabled', '$..ProvisionedThroughput.NumberOfDecreasesToday', '$..StreamDescription.CreationRequestDateTime']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_list_versions",
+            "test": "test_list_versions",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -4390,11 +4430,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_apigetway_task_service.py::TestTaskApiGateway::test_invoke_base",
-            "test": "test_invoke_base",
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/intrinsic_functions/test_math_operations.py::TestMathOperations::test_math_random",
+            "test": "test_math_random",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..loggingConfiguration', '$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata', '$..Headers.Content-Length']",
+            "snapshot_skipped": "['$..loggingConfiguration', '$..tracingConfiguration']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4412,6 +4452,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_s3_bucket_deployed",
             "test": "test_s3_bucket_deployed",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/docker_utils/test_docker.py::TestDockerClient::test_get_container_id_not_existing[CmdDockerClient]",
+            "test": "test_get_container_id_not_existing[CmdDockerClient]",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -4512,7 +4562,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestIoTData::test_topic_rule_triggers_kinesis_put_record",
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_kinesis_put_record",
             "test": "test_topic_rule_triggers_kinesis_put_record",
             "response": "200",
             "error": "",
@@ -5174,28 +5224,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_scheduled_lambda",
-            "test": "test_scheduled_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::test_kinesis_lambda_forward_chain",
             "test": "test_kinesis_lambda_forward_chain",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_apigateway_deployed",
-            "test": "test_apigateway_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5216,26 +5246,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_kinesis_stream_handler_deployed",
             "test": "test_kinesis_stream_handler_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_lambda_with_configs_deployed",
-            "test": "test_lambda_with_configs_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_queue_handler_deployed",
-            "test": "test_queue_handler_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5274,54 +5284,14 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_lambda_dynamodb_event_filter",
-            "test": "test_lambda_dynamodb_event_filter",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_cfn_function_url",
             "test": "test_cfn_function_url",
             "response": "400",
-            "error": "ResourceInUseException",
+            "error": "ResourceNotFoundException",
             "snapshot_skipped": "['$..Metadata', '$..DriftInformation', '$..Type', '$..Message', '$..access-control-allow-headers', '$..access-control-allow-methods', '$..access-control-allow-origin', '$..access-control-expose-headers', '$..server', '$..content-length', '$..InvokeMode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_log_group_resource",
-            "test": "test_cfn_handle_log_group_resource",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_legacy.py::TestCloudFormation::test_validate_invalid_json_template_should_fail",
-            "test": "test_validate_invalid_json_template_should_fail",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_elasticsearch_s3_backup",
-            "test": "test_kinesis_firehose_elasticsearch_s3_backup",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_opensearch_s3_backup[domain]",
@@ -5336,16 +5306,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_deletion_event_source_mapping_with_dynamodb",
             "test": "test_deletion_event_source_mapping_with_dynamodb",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_disabled_dynamodb_event_source_mapping",
-            "test": "test_disabled_dynamodb_event_source_mapping",
             "response": "400",
             "error": "ResourceInUseException",
             "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
@@ -5384,16 +5344,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_or_filter]",
-            "test": "test_dynamodb_event_filter[content_or_filter]",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[date_time_conversion]",
             "test": "test_dynamodb_event_filter[date_time_conversion]",
             "response": "400",
@@ -5406,16 +5356,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[exists_filter_type]",
             "test": "test_dynamodb_event_filter[exists_filter_type]",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[prefix_filter]",
-            "test": "test_dynamodb_event_filter[prefix_filter]",
             "response": "400",
             "error": "ResourceInUseException",
             "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
@@ -5447,24 +5387,104 @@
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_kinesis.py::TestKinesisSource::test_duplicate_event_source_mappings",
             "test": "test_duplicate_event_source_mappings",
             "response": "400",
-            "error": "ResourceNotFoundException",
+            "error": "ResourceInUseException",
             "snapshot_skipped": "['$..Records..eventID', '$..Records..kinesis.kinesisSchemaVersion', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_kinesis.py::TestKinesisSource::test_kinesis_event_source_trim_horizon",
-            "test": "test_kinesis_event_source_trim_horizon",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_kinesis.py::TestKinesisSource::test_duplicate_event_source_mappings",
+            "test": "test_duplicate_event_source_mappings",
             "response": "400",
-            "error": "ResourceNotFoundException",
+            "error": "ResourceInUseException",
             "snapshot_skipped": "['$..Records..eventID', '$..Records..kinesis.kinesisSchemaVersion', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_scheduled_lambda",
+            "test": "test_scheduled_lambda",
+            "response": "400",
+            "error": "ResourceInUseException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_s3_bucket_deployed",
+            "test": "test_s3_bucket_deployed",
+            "response": "400",
+            "error": "ResourceInUseException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ],
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-default]",
+            "test": "test_full_load_replication_task[mariadb-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-non_default]",
+            "test": "test_full_load_replication_task[mariadb-non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-unformatted_json]",
+            "test": "test_full_load_replication_task[mariadb-unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-default]",
+            "test": "test_full_load_replication_task[mysql-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-non_default]",
+            "test": "test_full_load_replication_task[mysql-non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-unformatted_json]",
+            "test": "test_full_load_replication_task[mysql-unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/kinesis_firehose_redshift/test_kinesis_firehose_redshift.py::TestKinesisFirehoseScenario::test_kinesis_firehose_redshift",
             "test": "test_kinesis_firehose_redshift",
@@ -5584,6 +5604,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestLambdaEventSourceMappings::test_kinesis_event_source_mapping",
+            "test": "test_kinesis_event_source_mapping",
+            "response": "400",
+            "error": "AccessDeniedException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       },
@@ -5624,16 +5654,6 @@
             "test": "test_kinesis_dlq_behavior",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_kinesis.py::TestPipesKinesis::test_kinesis_dlq_behavior",
-            "test": "test_kinesis_dlq_behavior",
-            "response": "400",
-            "error": "ResourceInUseException",
             "snapshot_skipped": "['$..StateReason']",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -5842,6 +5862,16 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kinesis/test_kinesis.py::TestKinesis::test_get_records_empty_stream",
+            "test": "test_get_records_empty_stream",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ],
         "ls_pro": [
@@ -5856,7 +5886,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestIoTData::test_topic_rule_triggers_kinesis_put_record",
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_kinesis_put_record",
             "test": "test_topic_rule_triggers_kinesis_put_record",
             "response": "200",
             "error": "",
@@ -5994,7 +6024,7 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestIoTData::test_topic_rule_triggers_kinesis_put_record",
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_kinesis_put_record",
             "test": "test_topic_rule_triggers_kinesis_put_record",
             "response": "200",
             "error": "",
@@ -6027,6 +6057,66 @@
       },
       "ShardId, ShardIteratorType, StreamARN": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-default]",
+            "test": "test_full_load_replication_task[mariadb-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-non_default]",
+            "test": "test_full_load_replication_task[mariadb-non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-unformatted_json]",
+            "test": "test_full_load_replication_task[mariadb-unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-default]",
+            "test": "test_full_load_replication_task[mysql-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-non_default]",
+            "test": "test_full_load_replication_task[mysql-non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-unformatted_json]",
+            "test": "test_full_load_replication_task[mysql-unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
             "test": "test_kinesis_dlq_pipe",
@@ -6582,8 +6672,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3PresignedUrl::test_presigned_url_signature_authentication_expired[s3-True]",
-            "test": "test_presigned_url_signature_authentication_expired[s3-True]",
+            "node_id": "LocalStack Community: tests/aws/services/sqs/test_sqs.py::TestSqsProvider::test_fifo_deduplication_not_on_message_group_id[sqs-True]",
+            "test": "test_fifo_deduplication_not_on_message_group_id[sqs-True]",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -6864,78 +6954,68 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_changesets.py::test_create_and_then_update_refreshes_template_metadata",
-            "test": "test_create_and_then_update_refreshes_template_metadata",
+            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_setup",
+            "test": "test_setup",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda",
-            "test": "test_events_sqs_sns_lambda",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_serverless_api_resource",
-            "test": "test_cfn_handle_serverless_api_resource",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_stepfunctions.py::test_nested_statemachine_with_sync2",
-            "test": "test_nested_statemachine_with_sync2",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_kinesis.py::TestKinesisSource::test_create_kinesis_event_source_mapping_multiple_lambdas_single_kinesis_event_stream",
-            "test": "test_create_kinesis_event_source_mapping_multiple_lambdas_single_kinesis_event_stream",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..Records..eventID', '$..Records..kinesis.kinesisSchemaVersion', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_cors.py::TestS3Cors::test_cors_match_headers",
-            "test": "test_cors_match_headers",
+            "node_id": "LocalStack Community: tests/aws/scenario/loan_broker/test_loan_broker.py::TestLoanBrokerScenario::test_stepfunctions_input_recipient_list[step_function_input0-SUCCEEDED]",
+            "test": "test_stepfunctions_input_recipient_list[step_function_input0-SUCCEEDED]",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..x-amz-id-2']",
+            "snapshot_skipped": "['$..traceHeader', '$..cause']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_sns_task_service.py::TestTaskServiceSns::test_publish_message_attributes[\"HelloWorld\"]",
-            "test": "test_publish_message_attributes[\"HelloWorld\"]",
+            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_create_certificate_for_multiple_alternative_domains",
+            "test": "test_create_certificate_for_multiple_alternative_domains",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..loggingConfiguration', '$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "snapshot_skipped": "['$..ExtendedKeyUsages', '$..IssuedAt', '$..KeyUsages', '$..NotAfter', '$..NotBefore', '$..Status', '$..DomainValidationOptions..ValidationMethod', '$..DomainValidationOptions..ValidationEmails', '$..DomainValidationOptions..ValidationStatus', '$..FailureReason', '$..ResourceRecord', '$..SignatureAlgorithm', '$..Serial']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/test_sfn_api.py::TestSnfApi::test_create_update_state_machine_base_definition_and_role",
-            "test": "test_create_update_state_machine_base_definition_and_role",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_secretsmanager.py::test_cfn_secret_policy",
+            "test": "test_cfn_secret_policy",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_runtimes.py::TestGoProvidedRuntimes::test_uncaught_exception_invoke[provided.al2]",
+            "test": "test_uncaught_exception_invoke[provided.al2]",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..LoggingConfig', '$..CodeSha256']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_runtimes.py::TestNodeJSRuntimes::test_invoke_nodejs_es6_lambda[nodejs18.x]",
+            "test": "test_invoke_nodejs_es6_lambda[nodejs18.x]",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..LoggingConfig']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/choice_operators/test_timestamp_operators.py::TestTimestamps::test_timestamp_greater_than_equals_path",
+            "test": "test_timestamp_greater_than_equals_path",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "['$..loggingConfiguration', '$..tracingConfiguration']",
@@ -6944,18 +7024,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_network_configuration.py::TestOpenSearch::test_port_strategy",
-            "test": "test_port_strategy",
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/intrinsic_functions/test_array.py::TestArray::test_array_get_item",
+            "test": "test_array_get_item",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..loggingConfiguration', '$..tracingConfiguration']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_event_rules_deployed",
-            "test": "test_event_rules_deployed",
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_sns_task_service.py::TestTaskServiceSns::test_publish_base_error_topic_arn",
+            "test": "test_publish_base_error_topic_arn",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..loggingConfiguration', '$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/docker_utils/test_docker.py::TestDockerClient::test_copy_into_container_without_target_filename[SdkDockerClient]",
+            "test": "test_copy_into_container_without_target_filename[SdkDockerClient]",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -7162,6 +7252,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_kinesisanalytics.py::test_application_with_output_and_reference",
+            "test": "test_application_with_output_and_reference",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationDetail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_firehose_redshift_as_target",
             "test": "test_firehose_redshift_as_target",
             "response": "200",
@@ -7172,28 +7272,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_application_output",
-            "test": "test_application_output",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_input_processing_configuration",
             "test": "test_input_processing_configuration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_list_and_update_applications",
-            "test": "test_list_and_update_applications",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -7626,7 +7706,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestIoTData::test_topic_rule_triggers_kinesis_put_record",
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_kinesis_put_record",
             "test": "test_topic_rule_triggers_kinesis_put_record",
             "response": "200",
             "error": "",
@@ -7673,16 +7753,6 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_apigw_v2_http_kinesis_integration",
-            "test": "test_apigw_v2_http_kinesis_integration",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "['$..EncryptionType']",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -8229,6 +8299,66 @@
           }
         ],
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-default]",
+            "test": "test_full_load_replication_task[mariadb-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-non_default]",
+            "test": "test_full_load_replication_task[mariadb-non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mariadb-unformatted_json]",
+            "test": "test_full_load_replication_task[mariadb-unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-default]",
+            "test": "test_full_load_replication_task[mysql-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-non_default]",
+            "test": "test_full_load_replication_task[mysql-non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[mysql-unformatted_json]",
+            "test": "test_full_load_replication_task[mysql-unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..PartitionKey', '$..partition-key-value', '$.describe-replication-tasks-stopped.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-ready.ReplicationTasks..ReplicationTaskSettings', '$.describe-replication-tasks-stopped.ReplicationTasks..TableMappings', '$.describe-replication-tasks-ready.ReplicationTasks..TableMappings', '$..TableStatistics', '$..ReplicationTaskStats', '$..ReplicationTaskStartDate', '$..Data.data.height', '$..Data.data.weight']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestLambdaEventSourceMappings::test_dynamodb_event_source_mapping",
             "test": "test_dynamodb_event_source_mapping",
