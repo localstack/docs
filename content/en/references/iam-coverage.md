@@ -71,18 +71,18 @@ In principle, LocalStack supports all operations. However, not all services and 
 
 |Source Service|Target Service|Feature                |Operation                                                   |Implemented|Tested|
 |--------------|--------------|-----------------------|------------------------------------------------------------|-----------|------|
-|sns           |sqs           |sns subscription       |sqs.SendMessage                                             |Yes        |Yes   |
-|sns           |lambda        |sns subscription       |lambda.Invoke                                               |Yes        |Yes   |
-|lambda        |sqs           |event destinations     |sqs.SendMessage                                             |Yes        |Yes   |
-|lambda        |logs          |storing lambda logs    |logs.CreateLogGroup, logs.CreateLogStream, logs.PutLogEvents|Yes        |No    |
-|lambda        |sns           |event destinations     |sns.Publish                                                 |Yes        |No    |
+|sns           |sqs           |SNS subscription       |sqs.SendMessage                                             |Yes        |Yes   |
+|sns           |lambda        |SNS subscription       |lambda.Invoke                                               |Yes        |Yes   |
+|lambda        |sqs           |Event destinations     |sqs.SendMessage                                             |Yes        |Yes   |
+|lambda        |logs          |Storing Lambda logs    |logs.CreateLogGroup, logs.CreateLogStream, logs.PutLogEvents|Yes        |No    |
+|lambda        |sns           |Event destinations     |sns.Publish                                                 |Yes        |No    |
 |lambda        |sqs           |Event source mapping   |                                                            |Yes        |Yes   |
 |lambda        |kinesis       |Event source mapping   |                                                            |Yes        |Yes   |
 |lambda        |dynamodb      |Event source mapping   |                                                            |Yes        |Yes   |
 |lambda        |kafka         |Event source mapping   |                                                            |No         |No    |
 |events        |lambda        |Event rule target      |                                                            |Yes        |Yes   |
-|sns           |ses           |sns subscription       |                                                            |Yes        |Yes   |
-|sns           |firehose      |sns subscription       |                                                            |Yes        |Yes   |
+|sns           |ses           |SNS subscription       |                                                            |Yes        |Yes   |
+|sns           |firehose      |SNS subscription       |                                                            |Yes        |Yes   |
 |events        |sns           |Event rule target      |                                                            |Yes        |Yes   |
 |events        |sqs           |Event rule target      |                                                            |Yes        |Yes   |
 |events        |logs          |Event rule target      |                                                            |Yes        |Yes   |
@@ -104,77 +104,52 @@ In principle, LocalStack supports all operations. However, not all services and 
 |s3            |sns           |Bucket notification    |                                                            |Yes        |Yes   |
 
 ## Supported Policy Types
-
--   Identity based permissions
-    -   Roles
-    -   Users
--   Resource based permissions
-    -   Lambda
-    -   ECR
-    -   EFS
-    -   SQS
-    -   SNS
-    -   KMS
-    -   S3
-    -   Backup
-    -   Events
-    -   Secretsmanager
-    -   IAM/STS
--   Permission boundaries
-    -   Roles
-    -   Users
+| Permission Type             | Details                                             |
+|-----------------------------|-----------------------------------------------------|
+| **Identity Based Permissions** |                                                     |
+|                             | - Roles                                             |
+|                             | - Users                                             |
+| **Resource Based Permissions** |                                                     |
+|                             | - Lambda                                            |
+|                             | - ECR (Elastic Container Registry)                  |
+|                             | - EFS (Elastic File System)                         |
+|                             | - SQS (Simple Queue Service)                        |
+|                             | - SNS (Simple Notification Service)                 |
+|                             | - KMS (Key Management Service)                      |
+|                             | - S3 (Simple Storage Service)                       |
+|                             | - Backup                                            |
+|                             | - Events                                            |
+|                             | - Secrets Manager                                   |
+|                             | - IAM/STS (Identity and Access Management/Security Token Service) |
+| **Permission Boundaries**   |                                                     |
+|                             | - Roles                                             |
+|                             | - Users                                             |
 
 ## Supported Policy Features
 
-### Version
+| Category       | Description                                                                          |
+|----------------|--------------------------------------------------------------------------------------|
+| **Version**    | Not evaluated, but only `"2012-10-17"` supported/tested.                             |
+| **Id**         | The policy ID is currently ignored.                                                  |
+| **Statements** | Supported with the following policy elements:                                        |
+| **Effect**     | Fully supported. Allow + Deny                                                        |
+| **Sid**        | Currently ignored                                                                    |
+| **Action, NotAction** | Supported including placeholder `*`                                            |
+| **Principal, NotPrincipal** | Supported principals:                                                     |
+|                | - Service                                                                            |
+|                | - (Assumed) role (ARN only)                                                          |
+|                | - User (ARN only)                                                                    |
+|                | Organizations, Federated, CanonicalUsers etc. are currently _not_ supported           |
+| **Resource, NotResource** | In general supported, including placeholders `*` and `?`.              |
+|                | No support for policy variables                                                      |
+| **Condition**  | Supported condition operators:                                                       |
+|                | - StringEquals                                                                       |
+|                | - StringEqualsIgnoreCase                                                             |
+|                | - StringLike                                                                         |
+|                | - ArnLike/ArnEquals                                                                  |
+|                | Supported condition keys:                                                            |
+|                | - aws:SourceArn                                                                      |
 
-Not evaluated, but only `"2012-10-17"` supported/tested.
+## Known Issues
 
-### Id
-
-The policy ID is currently ignored.
-
-### Statements
-
-Supported with the following policy elements:
-
-#### Effect
-
-Fully supported. Allow + Deny
-
-#### Sid
-
-Currently ignored
-
-#### Action, NotAction
-
-Supported including placeholder `*`
-
-#### Principal, NotPrincipal
-
-Supported principals:
-
--   Service
--   (Assumed) role (ARN only)
--   User (ARN only)
-
-Organizations, Federated, CanonicalUsers etc. are currently _not_ supported
-
-#### Resource, NotResource
-
-In general supported, including placeholders `*` and `?`.
-
-No support for policy variables
-
-#### Condition
-
-Supported condition operators:
-
--   StringEquals
--   StringEqualsIgnoreCase
--   StringLike
--   ArnLike/ArnEquals
-
-Supported condition keys:
-
--   aws:SourceArn
+- CloudFormation stack permissions do not work as expected.
