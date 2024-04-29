@@ -67,3 +67,38 @@ In principle, LocalStack supports all operations. However, not all services and 
 |stepfunctions |CreateStateMachine          |Yes          |Yes           |
 |sts           |GetCallerIdentity           |No           |Yes           |
 
+## Inter Service Enforcement
+
+|Source Service|Target Service|Feature                |Operation                                                   |Implemented|Tested|
+|--------------|--------------|-----------------------|------------------------------------------------------------|-----------|------|
+|sns           |sqs           |sns subscription       |sqs.SendMessage                                             |Yes        |Yes   |
+|sns           |lambda        |sns subscription       |lambda.Invoke                                               |Yes        |Yes   |
+|lambda        |sqs           |event destinations     |sqs.SendMessage                                             |Yes        |Yes   |
+|lambda        |logs          |storing lambda logs    |logs.CreateLogGroup, logs.CreateLogStream, logs.PutLogEvents|Yes        |No    |
+|lambda        |sns           |event destinations     |sns.Publish                                                 |Yes        |No    |
+|lambda        |sqs           |Event source mapping   |                                                            |Yes        |Yes   |
+|lambda        |kinesis       |Event source mapping   |                                                            |Yes        |Yes   |
+|lambda        |dynamodb      |Event source mapping   |                                                            |Yes        |Yes   |
+|lambda        |kafka         |Event source mapping   |                                                            |No         |No    |
+|events        |lambda        |Event rule target      |                                                            |Yes        |Yes   |
+|sns           |ses           |sns subscription       |                                                            |Yes        |Yes   |
+|sns           |firehose      |sns subscription       |                                                            |Yes        |Yes   |
+|events        |sns           |Event rule target      |                                                            |Yes        |Yes   |
+|events        |sqs           |Event rule target      |                                                            |Yes        |Yes   |
+|events        |logs          |Event rule target      |                                                            |Yes        |Yes   |
+|events        |firehose      |Event rule target      |                                                            |Yes        |Yes   |
+|events        |events        |Event rule target      |                                                            |Yes        |Yes   |
+|events        |kinesis       |Event rule target      |                                                            |Yes        |Yes   |
+|events        |stepfunctions |Event rule target      |                                                            |Yes        |Yes   |
+|apigateway    |lambda        |API integration        |                                                            |Yes        |Yes   |
+|apigateway    |dynamodb      |API integration        |                                                            |Yes        |Yes   |
+|apigateway    |kinesis       |API integration        |                                                            |Yes        |Yes   |
+|apigateway    |s3            |API integration        |                                                            |No         |No    |
+|apigateway    |sns           |API integration        |                                                            |No         |Yes   |
+|apigateway    |sqs           |API integration        |                                                            |Yes        |Yes   |
+|apigateway    |stepfunctions |API integration        |                                                            |No         |No    |
+|apigateway    |appsync       |API integration        |                                                            |No         |No    |
+|cloudformation|*             |Resource Modification  |                                                            |No         |No    |
+|lambda        |sts           |Assuming execution role|                                                            |Yes        |Yes   |
+|s3            |sqs           |Bucket notification    |                                                            |Yes        |Yes   |
+|s3            |sns           |Bucket notification    |                                                            |Yes        |Yes   |
