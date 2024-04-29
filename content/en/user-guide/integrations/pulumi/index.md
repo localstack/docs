@@ -41,7 +41,7 @@ To start a new project, use these commands:
 
 {{< command >}}
 $ mkdir myproj
-$ pulumilocal new typescript -y -s lsdev --cwd myproj
+$ pulumilocal new aws-typescript -y -s lsdev --cwd myproj
 {{< / command >}}
 
 {{< alert title="Note" >}}
