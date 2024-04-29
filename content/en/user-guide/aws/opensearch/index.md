@@ -203,6 +203,52 @@ The following output will be visible on your terminal:
 
 It's important to note that any unauthorized requests will yield an HTTP response with a status code of 401 (`Unauthorized`).
 
+## OpenSearch Dashboards
+
+OpenSearch Dashboards is a great tool to analyze and visualize the data in your OpenSearch domain.
+And you can directly use the official OpenSearch Dashboards Docker image to analyze data in your OpenSearch domain within LocalStack!
+
+When using OpenSearch Dashboards with LocalStack, you need to make sure to:
+- Enable the [advanced security options]({{< ref "#advanced-security-options" >}}) and set a username and a password.
+  This is required by the OpenSearch Dashboards.
+- Ensure that the OpenSearch Dashboards Docker container uses the LocalStack DNS.
+  You can find more information on how to connect your Docker container to Localstack in our [Network Troubleshooting guide]({{< ref "references/network-troubleshooting/endpoint-url/#from-your-container" >}}).
+
+First, you need to make sure to start LocalStack in a specific Docker network:
+{{< command >}}
+$ localstack start --network ls
+{{< /command >}}
+
+Now you can provision a new OpenSearch domain.
+Make sure to enable the [advanced security options]({{< ref "#advanced-security-options" >}}):
+
+{{< command >}}
+$ awslocal opensearch create-domain --cli-input-json file://./opensearch_domain.json
+{{< /command >}}
+
+Now you can start another container for the OpenSearch Dashboards, which is configured such that:
+- The port for OpenSearch Dashboards is mapped (`5601`).
+- The container is in the same network as LocalStack.
+- The container uses the LocalStack DNS.
+- The OpenSearch Domain is set.
+- The OpenSearch credentials are set.
+- The version of OpenSearch Dashboards is the same as the OpenSearch domain.
+
+{{< command >}}
+docker inspect localstack-main | \
+	jq -r '.[0].NetworkSettings.Networks | to_entries | .[].value.IPAddress'
+# prints 172.22.0.2
+
+docker run --rm -p 5601:5601 \
+  --network ls \
+  --dns 172.22.0.2 \
+  -e "OPENSEARCH_HOSTS=http://secure-domain.us-east-1.opensearch.localhost.localstack.cloud:4566" \
+  -e "OPENSEARCH_USERNAME=admin" -e "OPENSEARCH_PASSWORD=really-secure-passwordAa!1" \
+  opensearchproject/opensearch-dashboards:2.11.0
+{{< /command >}}
+
+Once the container is running, you can reach the OpenSearch Dashboards at `http://localhost:5601` and you can log in with your OpenSearch domain credentials.
+
 ## Custom OpenSearch backends
 
 LocalStack employs an asynchronous approach to download OpenSearch the first time you create an OpenSearch cluster. Consequently, you'll receive a prompt response from LocalStack initially, followed by the setup of your local OpenSearch cluster once the download and installation are completed.
