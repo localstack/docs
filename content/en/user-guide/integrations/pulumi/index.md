@@ -56,10 +56,10 @@ You can install the `pulumilocal` wrapper script by running the following comman
 $ pip install pulumi-local
 {{< / command >}}
 
-Post-installation, you can use the `pulumilocal` command as if it were `pulumi`.
+You can now use the `pulumilocal` command to interact with your Pulumi project.
 
 {{< command >}}
-$ tflocal --help
+$ pulumilocal --help
 <disable-copy>
 Pulumi - Modern Infrastructure as Code
 ...
@@ -139,7 +139,7 @@ $ tree -L 1
 └── tsconfig.json
 {{< / command >}}
 
-Modify your stack configuration in `Pulumi.dev.yaml` to include endpoints for AWS services pointing to `http://localhost:4566`.
+Modify your stack configuration in `Pulumi.dev.yaml` to include endpoints for AWS services pointing to `http://localhost:4566`. However, these endpoints may change depending on the AWS plugin version you are using.
 
 ```yaml
 config:
