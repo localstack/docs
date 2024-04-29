@@ -5,20 +5,97 @@ description: >
   Use the Pulumi Infrastructure as Code framework with LocalStack
 ---
 
-<img src="pulumi-logo.svg" width="600px" alt="Pulumi logo">
+## Introduction
 
-## Overview
+Pulumi's SDK for infrastructure-as-code allows you to create, deploy, and manage AWS containers, serverless functions, and other infrastructure using popular programming languages. It supports a range of cloud providers, including AWS, Azure, Google Cloud, and Kubernetes.
 
-Pulumi's infrastructure-as-code SDK helps you create, deploy, and manage AWS containers, serverless functions, and infrastructure using familiar programming languages.
-The endpoints configuration environment of Pulumi allows us to easily point Pulumi to LocalStack.
-This guide follows the instructions from Pulumi's [Get Started with Pulumi and AWS](https://www.pulumi.com/docs/get-started/aws/) guide, with additional explanations of how to make it work with LocalStack.
+LocalStack can integrate with Pulumi through the Pulumi configuration environment. There are two main methods to configure Pulumi for use with LocalStack:
 
+- Using the `pulumilocal` wrapper script which automatically configures service endpoints.
+- Manually setting up the service endpoints in your Pulumi configuration, which requires ongoing maintenance.
 
-## Quickstart
+This guide will show you how to set up local AWS resources using both the `pulumilocal` wrapper and manual configuration.
+
+## `pulumilocal` wrapper script
+
+`pulumilocal` is a wrapper for the `pulumi` command line interface, facilitating the use of Pulumi with LocalStack. When executing deployment commands like `pulumilocal ["up", "destroy", "preview", "cancel"]`, the script configures the Pulumi settings for LocalStack and runs the specified Pulumi command.
+
+The endpoints are set to point to the LocalStack API (`http://localhost:4566`). This setup simplifies the deployment of Pulumi stacks against LocalStack.
+
+### Configure the Local Backend
+
+Optionally, you can set environment variables to store state locally, avoiding cloud storage.
+
+{{< command >}}
+$ export PULUMI_CONFIG_PASSPHRASE=lsdevtest
+$ export PULUMI_BACKEND_URL=file://`pwd`/myproj
+{{< / command >}}
+
+{{< alert title="Note" >}}
+For further options please consult the official documentation on available  [environment variables](https://www.pulumi.com/docs/cli/environment-variables/) and [local backend](https://www.pulumi.com/docs/concepts/state/#local-filesystem)._
+{{< /alert >}}
+
+### Create a new Pulumi project
+
+To start a new project, use these commands:
+
+{{< command >}}
+$ mkdir myproj
+$ pulumilocal new typescript -y -s lsdev --cwd myproj
+{{< / command >}}
+
+{{< alert title="Note" >}}
+The `--cwd` option is unnecessary if you're already in the project directory.
+{{< /alert >}}
+
+### Install the `pulumilocal` wrapper script
+
+You can install the `pulumilocal` wrapper script by running the following command:
+
+{{< command >}}
+$ pip install pulumi-local
+{{< / command >}}
+
+Post-installation, you can use the `pulumilocal` command as if it were `pulumi`.
+
+{{< command >}}
+$ tflocal --help
+<disable-copy>
+Pulumi - Modern Infrastructure as Code
+...
+<disable-copy>
+{{< / command >}}
+
+### Deploy the Pulumi stack
+
+Create and select the `lsdev` stack with:
+
+{{< command >}}
+$ pulumilocal stack select -c lsdev --cwd myproj
+{{< / command >}}
+
+If you've just run the `new typescript` command, the stack is already selected. Deploy it with:
+
+{{< command >}}
+$ pulumilocal up --cwd myproj
+{{< / command >}}
+
+### Configuration
+
+| Environment Variable  | Default value     | Description                                                   |
+|-----------------------|-------------------|---------------------------------------------------------------|
+| `AWS_ENDPOINT_URL`    | - | Target LocalStack instance hostname and port                   |
+| `LOCALSTACK_HOSTNAME`   | `localhost`         | *(Deprecated)* Target host for connecting to LocalStack        |
+| `EDGE_PORT`             | `4566`              | *(Deprecated)* Target port for connecting to LocalStack        |
+| `PULUMI_CMD`            | `pulumi`            | Name of the executable Pulumi command on the system PATH       |
+
+## Manual configuration
+
+Alternatively, you can manually configure local service endpoints and credentials. The following section will provide detailed steps for this manual configuration.
 
 ### Create a new Pulumi stack
 
-First, run the following commands and follow the instructions in the CLI to create a new project.
+Start a new project with:
 
 {{< command >}}
 $ mkdir quickstart && cd quickstart
@@ -62,7 +139,7 @@ $ tree -L 1
 └── tsconfig.json
 {{< / command >}}
 
-Now edit your stack configuration `Pulumi.dev.yaml` as follows:
+Modify your stack configuration in `Pulumi.dev.yaml` to include endpoints for AWS services pointing to `http://localhost:4566`.
 
 ```yaml
 config:
@@ -347,91 +424,22 @@ config:
     - xray: http://localhost:4566
 ```
 
-
-
 ### Deploy the stack to LocalStack
 
-Make sure your LocalStack is running.
-For the example stack, the only required service is S3.
-After updating the stack configuration, and starting localstack, you can run:
+To deploy, ensure the S3 service is included in your configuration, start LocalStack, and run:
 
 {{< command >}}
 $ pulumi up
 {{< / command >}}
 
-once the stack update was performed, you can run:
+After the update, check the S3 buckets with:
 
 {{< command >}}
 $ awslocal s3 ls
 {{< / command >}}
 
-Where you should see something like
+You should see output similar to:
 
-```plaintext
+```bash
 2021-09-30 11:50:59 my-bucket-6c21027
 ```
-
-## Pulumilocal
-
-`pulumilocal` is a wrapper script and drop-in replacement for the `pulumi` CLI, that also provides commands to better interface Pulumi with LocalStack.
-You can find the source code repository here: https://github.com/localstack/pulumi-local
-
-### Install
-
-`pulumilocal` requires that you already have the `pulumi` command in your path.
-Then, simply run
-
-{{< command >}}
-$ pip install pulumi-local
-{{< / command >}}
-
-then,
-
-{{< command >}}
-pulumi version
-pulumilocal version
-{{< / command >}}
-
-should output the same value.
-
-### Use
-
-Instead of manually editing a stack configuration as explained earlier, you can run
-
-{{< command >}}
-$ pulumilocal init
-{{< / command >}}
-
-which will create a `Pulumi.localstack.yaml` stack configuration, and initialize an additional stack named `localstack`.
-
-You can now run
-
-{{< command >}}
-$ pulumilocal up
-{{< / command >}}
-
-to start the localstack stack.
-
-
-### Configuration
-
-You can configure the integration between pulumi-local and LocalStack by adding these environment variables before running `pulumilocal`:
-
-| Variable              | Default value | Description |
-| --------------------- | ------------- | ------------|
-| `PULUMI_CMD`          | pulumi        | The Pulumi command that is being delegated to |
-| `PULUMI_STACK_NAME`   | localstack    | The Pulumi stack name used for looking up the stack file (`Pulumi.<stack>.yaml`) |
-| `AWS_ENDPOINT_URL`    | -             |Hostname and port of the target LocalStack instance |
-| `LOCALSTACK_HOSTNAME` | localhost     | **(Deprecated)** The name of the host LocalStack is reachable at |
-| `EDGE_PORT`           | 4566          | **(Deprecated)** The port LocalStack is reachable at |
-| `USE_SSL`             | 0             | A truthy (`1`, `true`) string that indicates whether to use SSL when connecting to LocalStack |
-
-
-## Community resources
-
-### Articles
-
-* [Pulumi and LocalStack -- beyond the basics. 2021-08-26](https://delitescere.medium.com/pulumi-and-localstack-beyond-the-basics-d993f3b94d17)
-* [How to deploy LocalStack with Pulumi. 2020-09-22](https://overflowed.dev/blog/how-to-deploy-localstack-with-pulumi)
-
-
