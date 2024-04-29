@@ -307,3 +307,31 @@ container.add_mount_points(
         source_volume="test-volume",
     ),
 )
+```
+
+## Private registry authentication
+
+To download images from a private registry using LocalStack, you must provide your credentials. You can pass your Docker credentials to the container by setting the `DOCKER_CONFIG` environment variable and mounting the `~/.docker/config.json` file as a volume at `/config.json`. Your file paths might differ, so check Docker's documentation on [Environment Variables](https://docs.docker.com/engine/reference/commandline/cli/#environment-variables) and [Configuration Files](https://docs.docker.com/engine/reference/commandline/cli/#configuration-files) for details.
+
+Here is a Docker Compose example:
+
+```yaml
+version: '3.8'
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack-pro
+    ports:
+      - "127.0.0.1:4566:4566"            
+      - "127.0.0.1:4510-4559:4510-4559"  
+      - "127.0.0.1:443:443"              
+    environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+      - DOCKER_CONFIG=/config.json
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - ~/.docker/config.json:/config.json
+```
+
+Alternatively, you can download the image from the private registry before using it or employ an [Initialization Hook](https://docs.localstack.cloud/references/init-hooks/) to install the Docker client and use these credentials to download the image.
