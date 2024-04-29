@@ -102,3 +102,79 @@ In principle, LocalStack supports all operations. However, not all services and 
 |lambda        |sts           |Assuming execution role|                                                            |Yes        |Yes   |
 |s3            |sqs           |Bucket notification    |                                                            |Yes        |Yes   |
 |s3            |sns           |Bucket notification    |                                                            |Yes        |Yes   |
+
+## Supported Policy Types
+
+-   Identity based permissions
+    -   Roles
+    -   Users
+-   Resource based permissions
+    -   Lambda
+    -   ECR
+    -   EFS
+    -   SQS
+    -   SNS
+    -   KMS
+    -   S3
+    -   Backup
+    -   Events
+    -   Secretsmanager
+    -   IAM/STS
+-   Permission boundaries
+    -   Roles
+    -   Users
+
+## Supported Policy Features
+
+### Version
+
+Not evaluated, but only `"2012-10-17"` supported/tested.
+
+### Id
+
+The policy ID is currently ignored.
+
+### Statements
+
+Supported with the following policy elements:
+
+#### Effect
+
+Fully supported. Allow + Deny
+
+#### Sid
+
+Currently ignored
+
+#### Action, NotAction
+
+Supported including placeholder `*`
+
+#### Principal, NotPrincipal
+
+Supported principals:
+
+-   Service
+-   (Assumed) role (ARN only)
+-   User (ARN only)
+
+Organizations, Federated, CanonicalUsers etc. are currently _not_ supported
+
+#### Resource, NotResource
+
+In general supported, including placeholders `*` and `?`.
+
+No support for policy variables
+
+#### Condition
+
+Supported condition operators:
+
+-   StringEquals
+-   StringEqualsIgnoreCase
+-   StringLike
+-   ArnLike/ArnEquals
+
+Supported condition keys:
+
+-   aws:SourceArn
