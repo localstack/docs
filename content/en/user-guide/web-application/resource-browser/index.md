@@ -37,7 +37,8 @@ The Resource Browser supports the following AWS services:
 |                              | [Amazon ECR](https://app.localstack.cloud/inst/default/resources/ecr/repositories)                                  | 
 |                              | [Amazon EKS](https://app.localstack.cloud/inst/default/resources/eks/clusters)                                  | 
 |                              | [AWS Lambda](https://app.localstack.cloud/inst/default/resources/lambda/functions)                                | 
-| **Management/Governance**    | [AWS CloudFormation](https://app.localstack.cloud/inst/default/resources/cloudformation)                | 
+| **Management/Governance**    | [AWS Account](https://app.localstack.cloud/inst/default/resources/account/contactinfo) |
+|                              | [AWS CloudFormation](https://app.localstack.cloud/inst/default/resources/cloudformation)                | 
 |                              | [Amazon CloudWatch](https://app.localstack.cloud/inst/default/resources/cloudwatch)                      | 
 |                              | [Amazon CloudTrail](https://app.localstack.cloud/inst/default/resources/cloudtrail/events)                      | 
 |                              | [Amazon EventBridge (CloudWatch Events)](https://app.localstack.cloud/inst/default/resources/events)    | 
@@ -53,7 +54,8 @@ The Resource Browser supports the following AWS services:
 |                              | [AWS Key Management Service (KMS)](https://app.localstack.cloud/inst/default/resources/kms)            | 
 |                              | [AWS Secrets Manager](https://app.localstack.cloud/inst/default/resources/secretsmanager)                | 
 | **Storage**                  | [Amazon S3](https://app.localstack.cloud/inst/default/resources/s3)                                      | 
-|                              | [AWS Backup](https://app.localstack.cloud/inst/default/resources/backup/plans)                                | 
+|                              | [AWS Backup](https://app.localstack.cloud/inst/default/resources/backup/plans)                                |
+|                               | [Amazon Cost Explorer](https://app.localstack.cloud/inst/default/resources/ce/costcategorydefinitions)                                | 
 | **Machine Learning**         | [Amazon SageMaker](https://app.localstack.cloud/inst/default/resources/sagemaker/models)                        | 
 |                              | [Amazon Transcribe](https://app.localstack.cloud/inst/default/resources/transcribe/transcriptionjobs)                      | 
 | **Database**                 | [Amazon DynamoDB](https://app.localstack.cloud/inst/default/resources/dynamodb)                          | 
@@ -61,6 +63,8 @@ The Resource Browser supports the following AWS services:
 |                              | [Amazon ElastiCache](https://app.localstack.cloud/inst/default/resources/elasticache)                    | 
 |                              | [Amazon QLDB](https://app.localstack.cloud/inst/default/resources/qldb/ledgers)                                  | 
 |                              | [Amazon DocumentDB](https://app.localstack.cloud/inst/default/resources/docdb/clusters) | 
+|                               | [Amazon Neptune](https://app.localstack.cloud/inst/default/resources/neptune/clusters) |
+|                              | [Amazon Timestream](https://app.localstack.cloud/inst/default/resources/timestream-write) |
 | **Analytics**                | [Amazon Athena](https://app.localstack.cloud/inst/default/resources/athena/databases)                     | 
 |                              | [Amazon Kinesis](https://app.localstack.cloud/inst/default/resources/kinesis)                            | 
 |                              | [Amazon MSK (Managed Streaming for Kafka)](https://app.localstack.cloud/inst/default/resources/kafka)     |  
