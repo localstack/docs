@@ -277,6 +277,6 @@ Upon failure of any step of the workflow, this  action uploads the generated dia
 
 ## Additional resources
 
-1. Continuous Integration Doc [https://docs.localstack.cloud/user-guide/ci/](https://docs.localstack.cloud/user-guide/ci/)
-2. Gitlab CI [https://docs.localstack.cloud/user-guide/ci/gitlab-ci/](https://docs.localstack.cloud/user-guide/ci/gitlab-ci/)
-3. CI Keys [https://docs.localstack.cloud/user-guide/web-application/ci-keys/](https://docs.localstack.cloud/user-guide/web-application/ci-keys/)
+1. [Continuous Integration Doc](https://docs.localstack.cloud/user-guide/ci/)
+2. [Gitlab CI](https://docs.localstack.cloud/user-guide/ci/gitlab-ci/)
+3. [CI Keys](https://docs.localstack.cloud/user-guide/web-application/ci-keys/)
