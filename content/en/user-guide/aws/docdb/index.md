@@ -6,30 +6,21 @@ description: >
     Get started with AWS DocumentDB on LocalStack
 ---
 
-LocalStack Pro supports a basic version of [Amazon DocumentDB](https://aws.amazon.com/documentdb/) for testing.
-LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it
-can be accessed from localhost. 
+## Introduction
 
-When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
+DocumentDB is a fully managed, non-relational database service that supports MongoDB workloads. DocumentDB is compatible with MongoDB, meaning you can use the same MongoDB drivers, applications, and tools to run, manage, and scale workloads on DocumentDB without having to worry about managing the underlying infrastructure.
+
+LocalStack allows you to use the DocumentDB APIs to create and manage DocumentDB clusters and instances. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_docdb/), which provides information on the extent of DocumentDB's integration with LocalStack.
 
 {{< alert title="Information" color="success">}}
-MongoDB is a popular open-source, document-oriented NoSQL database that provides high scalability, flexibility, and performance for modern application development.
-It belongs to the family of
-non-relational databases, also known as NoSQL databases.
-{{< /alert>}}
+Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it can be accessed from `localhost`. When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
 
-DocumentDB currently uses the default configuration of the
-latest [MongoDB Docker image](https://hub.docker.com/_/mongo). 
-
-When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`. 
-
-
-{{< alert title="Note" >}}
 Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not
 have exact feature parity with Amazon DocumentDB. The database engine may support additional
-features that
-Amazon DocumentDB does not and vice versa.
-{{< /alert >}}
+features that DocumentDB does not and vice versa.
+
+DocumentDB currently uses the default configuration of the latest [MongoDB Docker image](https://hub.docker.com/_/mongo). When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`. 
+{{< /alert>}}
 
 ## Getting started
 
@@ -403,3 +394,19 @@ exports.handler = async (event) => {
 };
 
 {{< /command >}}
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing DocumentDB instances and clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **DocumentDB** under the **Database** section.
+
+<img src="docdb-resource-browser.png" alt="DocumentDB Resource Browser" title="DocumentDB Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Cluster**: Create a new DocumentDB cluster by specifying the DBCluster Identifier, Availability Zone, and other parameters.
+- **Create Instance**: Create a new DocumentDB instance by specifying the database class, engine, DBInstance Identifier, and other parameters.
+- **View Instance & Cluster**: View an existing DocumentDB instance or cluster by clicking the instance/cluster name.
+- **Edit Instance & Cluster**: Edit an existing DocumentDB instance or cluster by clicking the instance/cluster name and clicking the **Edit Instance** or **Edit Cluster** button.
+- **Remove Instance & Cluster**: Remove an existing DocumentDB instance or cluster by clicking the instance/cluster name and clicking the **Actions** followed by **Remove Selected** button.
