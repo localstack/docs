@@ -273,6 +273,7 @@ Upon failure of any step of the workflow, this  action uploads the generated dia
 
 ## Conclusion
 
+ We have learned to develop a CI workflow for cloud integration testing using LocalStack. We learned to leverage LocalStack to emulate AWS services, deploy our application infrastructure, and execute integration tests with Pytest. The workflow additionally incorporates valuable monitoring and reporting actions to help in troubleshooting potential issues. By following these steps and exploring the recommended best practices for LocalStack and CI, we can improve developer productivity and save time on CI runs.
 
 ## Additional resources
 
