@@ -142,9 +142,9 @@ This information must be explicitly passed in operators, hooks, and sensors.
 The LocalStack Web Application provides a Resource Browser for managing MWAA Environments.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **MWAA** under the **App Integration** section.
 
+<p>
 <img src="mwaa-resource-browser.png" alt="MWAA Resource Browser" title="MWAA Resource Browser" width="900" />
-<br>
-<br>
+</p>
 
 The Resource Browser allows you to perform the following actions:
 
