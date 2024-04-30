@@ -118,7 +118,7 @@ $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern 
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing QLDB ledgers. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **CloudWatch Logs** under the **Management/Governance** section.
+The LocalStack Web Application provides a Resource Browser for exploring CloudWatch Logs. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **CloudWatch Logs** under the **Management/Governance** section.
 
 <img src="logs-resource-browser.png" alt="CloudWatch Logs Resource Browser" title="CloudWatch Logs Resource Browser" width="900" />
 <br>
