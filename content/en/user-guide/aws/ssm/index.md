@@ -119,7 +119,7 @@ The LocalStack Web Application provides a Resource Browser for managing SSM Syst
 The Resource Browser allows you to perform the following actions:
 
 - **Create System Parameter**: Create a new System Parameter by clicking on the **Create Parameter** button and providing the required details.
-- **View the System Parameter**: View the details of a System Parameter by clicking on the parameter name.
+- **View the System Parameter**: View the details of a System Parameter, such as its value, by clicking on the parameter name.
 - **Delete the System Parameter**: Delete a System Parameter by selecting the parameter and clicking on the **Actions** dropdown menu followed by **Remove Selected**.
 
 ## Limitations
