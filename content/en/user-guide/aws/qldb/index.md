@@ -1,18 +1,11 @@
 ---
 title: "Quantum Ledger Database (QLDB)"
 linkTitle: "Quantum Ledger Database (QLDB)"
-categories: ["LocalStack Pro"]
-description: >
-    Get started with Quantum Ledger Database (QLDB) on LocalStack
-aliases:
-
-- /aws/qldb/
-
+tags: ["Pro image"]
+description: Get started with Quantum Ledger Database (QLDB) on LocalStack
 ---
 
 ## Introduction
-
-Quantum Ledger Database (QLDB) is supported by LocalStack only in the Pro version.
 
 Amazon Quantum Ledger Database is a fully managed ledger database service offered by Amazon Web
 Services. It is designed to provide transparent, immutable, and cryptographically verifiable
@@ -21,11 +14,9 @@ log functionality to applications. QLDB is particularly useful for applications 
 and scalable
 way to maintain a complete and verifiable history of data changes over time.
 
-To learn more about QLDB please refer to
-the [official documentation](https://docs.aws.amazon.com/qldb/).
-To find out what operations are supported by the QLDB service on LocalStack, please check
-the [QLDB service coverage page]({{< ref "/references/coverage/coverage_qldb/index.md" >}} "QLDB
-service coverage page").
+
+LocalStack allows you to use the QLDB APIs in your local environment to create and manage ledgers. The supported APIs are available on the [API coverage page]({{< ref "/references/coverage/coverage_qldb/index.md" >}} "QLDB
+service coverage page"), which provides information on the extent of QLDB's integration with LocalStack. 
 
 ## Getting started
 
@@ -320,6 +311,21 @@ $ awslocal qldb update-ledger --name vehicle-registration --no-deletion-protecti
 ```
 
 Now the `delete-ledger` command can be repeated without errors.
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing QLDB ledgers. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **QLDB** under the **Database** section.
+
+<img src="qldb-resource-browser.png" alt="QLDB Resource Browser" title="QLDB Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Ledger**: Create a new QLDB ledger by clicking on the **Create Ledger** button and providing the ledger name and permissions mode.
+- **View Ledger**: View the details of a specific ledger by clicking on the ledger name.
+- **Edit Ledger**: Edit the details of a specific ledger by clicking on the ledger name and then clicking on the **Edit Ledger** button.
+- **Delete Ledger**: Delete a specific ledger by selecting the ledger name and clicking on the **Actions** dropdown menu, then selecting **Remove Selected**.
 
 ### Examples
 
