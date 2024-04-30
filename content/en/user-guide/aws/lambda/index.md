@@ -76,6 +76,10 @@ To invoke the Lambda function, you can use the [`Invoke` API](https://docs.aws.a
 
 ### Create a Function URL
 
+{{< alert title="Note" >}}
+[Response streaming](https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html) is currently not supported, so it will still return a synchronous/full response instead.
+{{< /alert >}}
+
 With the Function URL property, there is now a new way to call a Lambda Function via HTTP API call using the [`CreateFunctionURLConfig` API](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html). To create a URL for invoking the function, run the following command:
 
 {{< command >}}
