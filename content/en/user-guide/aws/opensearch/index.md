@@ -205,12 +205,12 @@ It's important to note that any unauthorized requests will yield an HTTP respons
 
 ## OpenSearch Dashboards
 
-OpenSearch Dashboards is a great tool to analyze and visualize the data in your OpenSearch domain.
+[OpenSearch Dashboards](https://opensearch.org/docs/latest/dashboards/) is a great tool to analyze and visualize the data in your OpenSearch domain.
 And you can directly use the official OpenSearch Dashboards Docker image to analyze data in your OpenSearch domain within LocalStack!
 
 When using OpenSearch Dashboards with LocalStack, you need to make sure to:
 - Enable the [advanced security options]({{< ref "#advanced-security-options" >}}) and set a username and a password.
-  This is required by the OpenSearch Dashboards.
+  This is required by OpenSearch Dashboards.
 - Ensure that the OpenSearch Dashboards Docker container uses the LocalStack DNS.
   You can find more information on how to connect your Docker container to Localstack in our [Network Troubleshooting guide]({{< ref "references/network-troubleshooting/endpoint-url/#from-your-container" >}}).
 
@@ -226,7 +226,7 @@ Make sure to enable the [advanced security options]({{< ref "#advanced-security-
 $ awslocal opensearch create-domain --cli-input-json file://./opensearch_domain.json
 {{< /command >}}
 
-Now you can start another container for the OpenSearch Dashboards, which is configured such that:
+Now you can start another container for OpenSearch Dashboards, which is configured such that:
 - The port for OpenSearch Dashboards is mapped (`5601`).
 - The container is in the same network as LocalStack.
 - The container uses the LocalStack DNS.
@@ -247,7 +247,7 @@ docker run --rm -p 5601:5601 \
   opensearchproject/opensearch-dashboards:2.11.0
 {{< /command >}}
 
-Once the container is running, you can reach the OpenSearch Dashboards at `http://localhost:5601` and you can log in with your OpenSearch domain credentials.
+Once the container is running, you can reach OpenSearch Dashboards at `http://localhost:5601` and you can log in with your OpenSearch domain credentials.
 
 ## Custom OpenSearch backends
 
