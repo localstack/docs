@@ -311,7 +311,9 @@ container.add_mount_points(
 
 ## Private registry authentication
 
-To download images from a private registry using LocalStack, you must provide your credentials. You can pass your Docker credentials to the container by setting the `DOCKER_CONFIG` environment variable and mounting the `~/.docker/config.json` file as a volume at `/config.json`. Your file paths might differ, so check Docker's documentation on [Environment Variables](https://docs.docker.com/engine/reference/commandline/cli/#environment-variables) and [Configuration Files](https://docs.docker.com/engine/reference/commandline/cli/#configuration-files) for details.
+To download images from a private registry using LocalStack, you must provide your credentials.
+You can pass your Docker credentials to the container by setting the `DOCKER_CONFIG` environment variable and mounting the `~/.docker/config.json` file as a volume at `/config.json`.
+Your file paths might differ, so check Docker's documentation on [Environment Variables](https://docs.docker.com/engine/reference/commandline/cli/#environment-variables) and [Configuration Files](https://docs.docker.com/engine/reference/commandline/cli/#configuration-files) for details.
 
 Here is a Docker Compose example:
 
