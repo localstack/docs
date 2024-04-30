@@ -110,6 +110,18 @@ Change the `CommandId` and `InstanceId` values to the ones you received in the p
 }
 ```
 
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing SSM System Parameters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Simple Systems Manager (SSM)** under the **Management/Governance** section.
+
+<img src="ssm-resource-browser.png" alt="SSM Resource Browser" title="SSM Resource Browser" width="900" />
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create System Parameter**: Create a new System Parameter by clicking on the **Create Parameter** button and providing the required details.
+- **View the System Parameter**: View the details of a System Parameter by clicking on the parameter name.
+- **Delete the System Parameter**: Delete a System Parameter by selecting the parameter and clicking on the **Actions** dropdown menu followed by **Remove Selected**.
+
 ## Limitations
 
 The following table highlights some differences between LocalStack SSM and AWS SSM.
