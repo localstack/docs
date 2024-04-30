@@ -230,3 +230,19 @@ To initiate the deletion of a cluster, select the corresponding `ClusterARN` fro
 {{< command >}}
 awslocal kafka delete-cluster --cluster-arn ClusterArn
 {{< / command >}}
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing MSK clusters. 
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Kafka** under the **Analytics** section.
+
+<img src="msk-resource-browser.png" alt="MSK Resource Browser" title="MSK Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Cluster**: Create a new MSK cluster by clicking on the **Create Cluster** button and specifying the required parameters.
+- **View Cluster**: View the details of an existing MSK cluster by clicking on the cluster name.
+- **Edit Cluster**: Edit the configuration of an existing MSK cluster by clicking on the **Edit** button in the cluster details page.
+- **Delete Cluster**: Delete an existing MSK cluster by selecting the cluster name and clicking on the **Actions** dropdown menu, then selecting **Remove Selected**.
