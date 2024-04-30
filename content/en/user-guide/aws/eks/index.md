@@ -510,3 +510,18 @@ spec:
         name: example-volume
   restartPolicy: Always
 ```
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing EKS clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **EKS** under the **Compute** section.
+
+<img src="eks-resource-browser.png" alt="EKS Resource Browser" title="EKS Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Cluster**: Create a new EKS cluster by clicking on the **Create Cluster** button and providing the cluster name among other details.
+- **View Cluster Details**: View the details of an existing EKS cluster by clicking on the cluster name.
+- **Edit Cluster**: Edit the configuration of an existing EKS cluster by clicking on the **Edit** button while viewing the cluster details.
+- **Delete Cluster**: Select the cluster name and click on the **Actions** button followed by **Remove Selected** button.
