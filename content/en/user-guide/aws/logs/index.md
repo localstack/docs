@@ -115,3 +115,19 @@ If not specified otherwise in the pattern, we look for a match in the whole even
 {{< command >}}
 $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern "foo"
 {{< / command >}}
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing QLDB ledgers. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **CloudWatch Logs** under the **Management/Governance** section.
+
+<img src="logs-resource-browser.png" alt="CloudWatch Logs Resource Browser" title="CloudWatch Logs Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+* **Create Log Group**: Create a new log group by clicking on the **Create Log Group** button followed by entering the details in the dialog box.
+* **Create Log Stream**: Create a new log stream by clicking on the **Create Log Stream** button in the log group detail followed by entering the details in the dialog box.
+* **Filter Log Events**: Filter log events by clicking the log stream name followed by entering the filter pattern and clicking **Apply**.
+* **Delete Log Group**: Delete a log group by selecting the log group name and clicking on the **Actions** dropdown menu, then selecting **Remove Selected**.
+* **Delete Log Stream**: Delete a log stream by selecting the log stream name and clicking on the **Actions** dropdown menu, then selecting **Remove Selected**.
