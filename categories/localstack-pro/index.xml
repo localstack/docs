@@ -1,23 +1,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Pro</title><link>/categories/localstack-pro/</link><description>Recent content in LocalStack Pro on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/categories/localstack-pro/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: DocumentDB (DocDB)</title><link>/user-guide/aws/docdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/docdb/</guid><description>
-&lt;p>LocalStack Pro supports a basic version of &lt;a href="https://aws.amazon.com/documentdb/">Amazon DocumentDB&lt;/a> for testing.
-LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it
-can be accessed from localhost.&lt;/p>
-&lt;p>When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>DocumentDB is a fully managed, non-relational database service that supports MongoDB workloads. DocumentDB is compatible with MongoDB, meaning you can use the same MongoDB drivers, applications, and tools to run, manage, and scale workloads on DocumentDB without having to worry about managing the underlying infrastructure.&lt;/p>
+&lt;p>LocalStack allows you to use the DocumentDB APIs to create and manage DocumentDB clusters and instances. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_docdb/">API coverage page&lt;/a>, which provides information on the extent of DocumentDB&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Information&lt;/h4>
-MongoDB is a popular open-source, document-oriented NoSQL database that provides high scalability, flexibility, and performance for modern application development.
-It belongs to the family of
-non-relational databases, also known as NoSQL databases.
-&lt;/div>
-&lt;p>DocumentDB currently uses the default configuration of the
-latest &lt;a href="https://hub.docker.com/_/mongo">MongoDB Docker image&lt;/a>.&lt;/p>
-&lt;p>When the &lt;code>MasterUsername&lt;/code> and &lt;code>MasterUserPassword&lt;/code> are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs &lt;code>MONGO_INITDB_ROOT_USERNAME&lt;/code> respectively &lt;code>MONGO_INITDB_ROOT_PASSWORD&lt;/code>.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not
+&lt;p>Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it can be accessed from &lt;code>localhost&lt;/code>. When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.&lt;/p>
+&lt;p>Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not
 have exact feature parity with Amazon DocumentDB. The database engine may support additional
-features that
-Amazon DocumentDB does not and vice versa.
+features that DocumentDB does not and vice versa.&lt;/p>
+&lt;p>DocumentDB currently uses the default configuration of the latest &lt;a href="https://hub.docker.com/_/mongo">MongoDB Docker image&lt;/a>. When the &lt;code>MasterUsername&lt;/code> and &lt;code>MasterUserPassword&lt;/code> are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs &lt;code>MONGO_INITDB_ROOT_USERNAME&lt;/code> respectively &lt;code>MONGO_INITDB_ROOT_PASSWORD&lt;/code>.&lt;/p>
 &lt;/div>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>To create a new DocumentDB cluster we use the &lt;code>create-db-cluster&lt;/code> command as follows:&lt;/p>
@@ -321,7 +312,20 @@ In the lambda, you can then retrieve the secret details like this:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> body: JSON.stringify({ error: error.message }),
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Container Service (ECS)</title><link>/user-guide/aws/ecs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ecs/</guid><description>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing DocumentDB instances and clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>DocumentDB&lt;/strong> under the &lt;strong>Database&lt;/strong> section.&lt;/p>
+&lt;img src="docdb-resource-browser.png" alt="DocumentDB Resource Browser" title="DocumentDB Resource Browser" width="900" />
+&lt;br>
+&lt;br>
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create Cluster&lt;/strong>: Create a new DocumentDB cluster by specifying the DBCluster Identifier, Availability Zone, and other parameters.&lt;/li>
+&lt;li>&lt;strong>Create Instance&lt;/strong>: Create a new DocumentDB instance by specifying the database class, engine, DBInstance Identifier, and other parameters.&lt;/li>
+&lt;li>&lt;strong>View Instance &amp;amp; Cluster&lt;/strong>: View an existing DocumentDB instance or cluster by clicking the instance/cluster name.&lt;/li>
+&lt;li>&lt;strong>Edit Instance &amp;amp; Cluster&lt;/strong>: Edit an existing DocumentDB instance or cluster by clicking the instance/cluster name and clicking the &lt;strong>Edit Instance&lt;/strong> or &lt;strong>Edit Cluster&lt;/strong> button.&lt;/li>
+&lt;li>&lt;strong>Remove Instance &amp;amp; Cluster&lt;/strong>: Remove an existing DocumentDB instance or cluster by clicking the instance/cluster name and clicking the &lt;strong>Actions&lt;/strong> followed by &lt;strong>Remove Selected&lt;/strong> button.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Elastic Container Service (ECS)</title><link>/user-guide/aws/ecs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ecs/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service provided by Amazon Web Services (AWS).
 It allows you to run, stop, and manage Docker containers on a cluster.
