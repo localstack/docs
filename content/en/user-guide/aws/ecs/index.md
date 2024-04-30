@@ -333,7 +333,7 @@ services:
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - ~/.docker/config.json:/config.json
+      - ~/.docker/config.json:/config.json:ro
 ```
 
 Alternatively, you can download the image from the private registry before using it or employ an [Initialization Hook](https://docs.localstack.cloud/references/init-hooks/) to install the Docker client and use these credentials to download the image.
