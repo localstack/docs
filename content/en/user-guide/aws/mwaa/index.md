@@ -136,3 +136,19 @@ Therefore, you must follow the above steps to install any required provider pack
 When incorporating connections to other AWS services within your DAGs, it is crucial to specify either the internal Docker IP address of the LocalStack container or utilize `host.docker.internal`.
 LocalStack currently does not use the credentials and region from `aws_conn_id`.
 This information must be explicitly passed in operators, hooks, and sensors.
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing MWAA Environments.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **MWAA** under the **App Integration** section.
+
+<p>
+<img src="mwaa-resource-browser.png" alt="MWAA Resource Browser" title="MWAA Resource Browser" width="900" />
+</p>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Environment**: Create a new MWAA environment by clicking on the **Create Environment** button and providing the required parameters.
+- **View Environment**: View details of an existing MWAA environment by clicking on the environment name.
+- **Edit Environment**: Edit an existing MWAA environment by clicking on the **Edit** button after clicking on the environment name.
+- **Delete Environment**: Select the environment name and click on the **Actions** button followed by **Remove Selected** button.
