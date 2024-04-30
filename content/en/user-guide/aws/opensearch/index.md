@@ -334,6 +334,22 @@ Finally create an example index using the following command:
 $ curl -X PUT my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/my-index
 {{< /command >}}
 
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing OpenSearch domains. 
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **OpenSearch Service** under the **Analytics** section.
+
+<img src="opensearch-resource-browser.png" alt="OpenSearch Resource Browser" title="OpenSearch Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Domain**: Create a new OpenSearch domain by clicking on the **Create Domain** button and providing the required details.
+- **View Domain Details**: Click on a domain to view its details, such as the domain name, status, endpoint, and configuration.
+- **Edit Domain**: Edit the configuration of a domain by clicking on domain name and then clicking on the **Edit Domain** button.
+- **Delete Domain**: Delete a domain by selecting the domain name and clicking on the **Actions** dropdown menu, then selecting **Remove Selected**.
+
 ## Limitations
 
 Internally, LocalStack makes use of the [OpenSearch Python client 2.x](https://github.com/opensearch-project/opensearch-py). The functionalities marked as deprecated in OpenSearch 1.x and subsequently removed in OpenSearch 2.x may not operate reliably when interacting with OpenSearch 1.x clusters through LocalStack. You can refer to the [compatibility documentation](https://github.com/opensearch-project/opensearch-py/blob/main/COMPATIBILITY.md) provided by the [OpenSearch Python client repository](https://github.com/opensearch-project/opensearch-py).
