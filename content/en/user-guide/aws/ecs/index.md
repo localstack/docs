@@ -337,3 +337,23 @@ services:
 ```
 
 Alternatively, you can download the image from the private registry before using it or employ an [Initialization Hook](https://docs.localstack.cloud/references/init-hooks/) to install the Docker client and use these credentials to download the image.
+
+## Resource Browser
+
+
+The LocalStack Web Application provides a Resource Browser for managing ECS clusters & task definitions. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **ECS** under the **Compute** section.
+
+<img src="ecs-resource-browser.png" alt="ECS Resource Browser" title="ECS Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Cluster**: Create a new ECS cluster by clicking on the **Create Cluster** button in the **Clusters** tab and providing the cluster name among other details.
+- **Register Task Definition**: Register a new task definition by clicking on the **Register Task Definition** button in the **Task Definitions** tab and providing the task definition details.
+- **View Cluster Details**: Click on a cluster in the **Clusters** tab to view the cluster details, including the cluster ARN, status, and other information.
+- **View Task Definition Details**: Click on a task definition in the **Task Definitions** tab to view the task definition details, including the task definition ARN, family, and other information.
+- **Edit Cluster**: Click on the **Edit Cluster** button while you are viewing a cluster to edit the cluster details.
+- **Edit Task Definition**: Click on the **Edit Task Definition** button while you are viewing a task definition to edit the task definition details.
+- **Delete Cluster**: Select the cluster name in the **Clusters** tab and click on the **Actions** button followed by **Remove Selected** button.
+- **Delete Task Definition**: Select the task definition name in the **Task Definitions** tab and click on the **Actions** button followed by **Remove Selected** button.
