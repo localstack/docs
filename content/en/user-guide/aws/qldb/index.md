@@ -15,8 +15,8 @@ and scalable
 way to maintain a complete and verifiable history of data changes over time.
 
 
-LocalStack allows you to use the QLDB APIs in your local environment to create and manage ledgers. The supported APIs are available on the [API coverage page]({{< ref "/references/coverage/coverage_qldb/index.md" >}} "QLDB
-service coverage page"), which provides information on the extent of QLDB's integration with LocalStack. 
+LocalStack allows you to use the QLDB APIs in your local environment to create and manage ledgers.
+The supported APIs are available on the [API coverage page]({{< ref "/references/coverage/coverage_qldb/index.md" >}} "QLDB service coverage page"), which provides information on the extent of QLDB's integration with LocalStack. 
 
 ## Getting started
 
