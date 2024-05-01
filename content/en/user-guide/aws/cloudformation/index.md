@@ -359,6 +359,7 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::Glue::Crawler                              |      ✅ |      ✅ |      - |
 | AWS::Glue::Database                             |      ✅ |      ✅ |      - |
 | AWS::Glue::Job                                  |      ✅ |      ✅ |      - |
+| AWS::Glue::Registry                             |      ✅ |      ✅ |      - |
 | AWS::Glue::Table                                |      ✅ |      ✅ |      - |
 | AWS::Glue::Trigger                              |      ✅ |      ✅ |      - |
 | AWS::Glue::Workflow                             |      ✅ |      ✅ |      - |
