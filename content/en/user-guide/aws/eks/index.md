@@ -513,7 +513,8 @@ spec:
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing EKS clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **EKS** under the **Compute** section.
+The LocalStack Web Application provides a Resource Browser for managing EKS clusters.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **EKS** under the **Compute** section.
 
 <img src="eks-resource-browser.png" alt="EKS Resource Browser" title="EKS Resource Browser" width="900" />
 <br>
