@@ -109,6 +109,10 @@ The product of 10 and 10 is 100%
 
 ## Lambda Event Source Mappings
 
+{{<alert title="Information">}}
+LocalStack now supports a new experimental event rule engine for [event pattern matching ](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html). You can configure the `EVENT_RULE_ENGINE=java` to use the AWS [event-ruler ](https://github.com/aws/event-ruler) that offers better parity.
+{{< /alert >}}
+
 [Lambda event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) allows you to connect Lambda functions to other AWS services. The following event sources are supported in LocalStack:
 
 -   [DynamoDB](https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html)

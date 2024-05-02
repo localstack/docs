@@ -17,6 +17,10 @@ The supported APIs are available on our [API coverage page]({{< ref "coverage_pi
 The implementation of EventBridge Pipes is currently in **preview** stage and under active development. If you would like support for more APIs or report bugs, please make an issue on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
 {{< /alert >}}
 
+{{<alert title="Information">}}
+LocalStack now supports a new experimental event rule engine for [event pattern matching ](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html). You can configure the `EVENT_RULE_ENGINE=java` to use the AWS [event-ruler ](https://github.com/aws/event-ruler) that offers better parity.
+{{< /alert >}}
+
 ## Getting started
 
 This guide is designed for users new to EventBridge Pipes and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
