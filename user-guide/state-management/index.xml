@@ -318,7 +318,7 @@ The Cloud Pods S3 remote is currently &lt;em>only&lt;/em> available when &lt;a h
 &lt;p>&lt;a href="/user-guide/state-management/persistence/">Persistence&lt;/a> ensures that the service state persists across container restarts. You can enable persistence via a LocalStack config flag &lt;code>PERSISTENCE=1&lt;/code> to restore your local resources, in case you’re stopping and re-starting the LocalStack instance on the same machine.&lt;/p>
 &lt;p>In contrast, Cloud Pods provide more detailed control over your state. Rather than just restoring a state during LocalStack restarts, Cloud Pods enable you to capture snapshots of your local instance using the &lt;code>save&lt;/code> command and inject these snapshots into a running instance using the &lt;code>load&lt;/code> command, all without needing to perform a full restart.&lt;/p>
 &lt;h3 id="limitations">Limitations&lt;/h3>
-&lt;p>Cloud Pods (and state manager in general), come with a few limitation.
+&lt;p>Cloud Pods (and state management in general), come with a few limitation.
 In particular, Cloud Pods states might not be correctly restored if the LocalStack version used to create the pod and the target one differ.
 We detect version miss-matches when using the &lt;code>pod load&lt;/code> and prompt a confirmation message to the user.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod load old-pod
@@ -327,7 +327,30 @@ We detect version miss-matches when using the &lt;code>pod load&lt;/code> and pr
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Loading a Cloud Pod with mismatching version might lead to a corrupted state of the emulator. Do you want to continue? [y/N]:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>We are working to extend Cloud Pods support to all AWS services emulated in LocalStack.
-However, state management might not yet work reliably for every service.&lt;/p></description></item><item><title>User-Guide: Persistence</title><link>/user-guide/state-management/persistence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/state-management/persistence/</guid><description>
+However, state management might not yet work reliably for every service.&lt;/p>
+&lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
+&lt;h3 id="unable-to-obtain-auth-token">Unable to obtain auth token&lt;/h3>
+&lt;p>When you try to save a Cloud Pod and see the error in LocalStack logs like this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>localstack.cli.exceptions.CLIError: Failed to create Cloud Pod sample-pod ❌ - Unable to obtain auth token &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>code 401&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> - please log in again.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>It would be good to check if you have outdated authentication credentials (bearer token from a previous LocalStack login) in the &lt;code>remotes.yaml&lt;/code> file for cloud pods. You have two options to fix this:&lt;/p>
+&lt;ol>
+&lt;li>Run another &lt;code>localstack auth login&lt;/code> command.&lt;/li>
+&lt;li>Find the &lt;code>remotes.yaml&lt;/code> file in the &lt;code>&amp;lt;localstack_volume&amp;gt;&lt;/code> directory on your machine and delete the file, or at least remove the &lt;code>&amp;quot;default&amp;quot;&lt;/code> entry from it.&lt;/li>
+&lt;/ol>
+&lt;p>Additionally, if there is a &lt;code>~/.localstack/auth.json&lt;/code> file in your home directory, delete it as well if it still exists.&lt;/p>
+&lt;h3 id="license-not-found">License not found&lt;/h3>
+&lt;p>When you try to save a Cloud Pod and see the &lt;code>license.not_found&lt;/code> error in LocalStack logs like this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>lsmulti-localstack &lt;span style="color:#000;font-weight:bold">|&lt;/span> 2024-03-15T13:06:16.358 WARN --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>functhread31&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.p.remotes.remotes : Failed to register pod sample-pod: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;error&amp;#34;&lt;/span>: true, &lt;span style="color:#4e9a06">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;licensing.license.not_found&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To fix this, clear the LocalStack cache directory and restart the LocalStack instance before trying to save the Cloud Pod again. You can find the cache directories at:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>/Users/localstack/Library/Caches/localstack&lt;/code>&lt;/li>
+&lt;li>&lt;code>/Users/localstack/Library/Caches/localstack-cli&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>Adjust the path based on your operating system.&lt;/p>
+&lt;h3 id="ssl-certificate-verification-failed">SSL Certificate verification failed&lt;/h3>
+&lt;p>If you get an SSL certificate verification error while trying to save a Cloud Pod, as shown below:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>An error occurred &lt;span style="color:#204a87;font-weight:bold">while&lt;/span> checking remote management &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> pod &lt;span style="color:#4e9a06">&amp;#34;cloud-pod-product-app&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;MyHTTPSConnectionPool(host=&amp;#39;api.localstack.cloud&amp;#39;, port=443): Max retries exceeded with url: /v1/cloudpods/cloud-pod-product-app (Caused by SSLError(SSLCertVerificationError(1, &amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>SSL: CERTIFICATE_VERIFY_FAILED&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> certificate verify failed: Hostname mismatch, certificate is not valid &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;api.localstack.cloud&amp;#39;&lt;/span>. &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>_ssl.c:1006&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;)))&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Check if your machine&amp;rsquo;s clock is set incorrectly or if the certificate store is outdated. This error can also occur if you use &lt;code>localstack&lt;/code> as &lt;code>LOCALSTACK_HOST&lt;/code>. In this case, the DNS incorrectly resolves &lt;code>api.localstack.cloud&lt;/code> to &lt;code>localhost&lt;/code>, causing a certificate mismatch.&lt;/p></description></item><item><title>User-Guide: Persistence</title><link>/user-guide/state-management/persistence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/state-management/persistence/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>LocalStack&amp;rsquo;s Persistence mechanism enables the saving and restoration of the entire LocalStack state, including all AWS resources and data, on your local machine. It functions as a &amp;ldquo;pause and resume&amp;rdquo; feature, allowing you to take a snapshot of your LocalStack instance and save this data to disk. This mechanism ensures a quick and efficient way to preserve and continue your work with AWS resources locally.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
