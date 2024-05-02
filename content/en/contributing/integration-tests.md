@@ -119,11 +119,14 @@ Ideally every integration is tested against real AWS. To run the integration tes
 2.  Type in **IAM** in the top bar and navigate to the **IAM** service
 3.  Navigate to `Users` and create a new user (**Add Users**)
     1.  Add the username as `localstack-testing`.
-    2.  Check the “**Access key - Programmatic access**” box (don’t check the password box below)
+    2.  Keep the **Provide user access to the AWS Management Console - optional** box unchecked.
 4.  Attach existing policies directly.
-5.  Check **AdministratorAccess** and click **Next** before **Next/Create User** until done. Copy the **Access Key ID** and the **Secret access key** immediately.
-6.  Run `aws configure —profile ls-sandbox` and enter the Access Key ID, and the Secret access key when prompted.
-7.  Verify that the profile is set up correctly by running: `aws sts get-caller-identity --profile ls-sandbox`.
+5.  Check **AdministratorAccess** and click **Next** before **Next/Create User** until done.
+6.  Go to the newly created user under `IAM/Users`, go to the `Security Credentials` tab, and click on **Create access key** within the `Access Keys` section.
+7.  Pick the **Local code** option and check the **I understand the above recommendation and want to proceed to create an access key** box.
+8.  Click on **Create access key** and copy the Access Key ID and the Secret access key immediately.
+9.  Run `aws configure —-profile ls-sandbox` and enter the Access Key ID, and the Secret access key when prompted.
+10.  Verify that the profile is set up correctly by running: `aws sts get-caller-identity --profile ls-sandbox`.
 
 Here is how `~/.aws/credentials` should look like:
 
