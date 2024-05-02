@@ -103,6 +103,8 @@ Create a new file named `create-outbound-resolver-endpoint.json` and add the fol
  }
 ```
 
+Replace the `Ip` and `SubnetId` values with the CIDR blocks and subnet IDs you fetched earlier.
+
 You can now use the [`CreateResolverEndpoint`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html) API to create an outbound resolver endpoint. Run the following command:
 
 {{< command >}}
