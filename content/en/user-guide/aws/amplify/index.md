@@ -48,3 +48,17 @@ $ amplify init --use-localstack true
 $ amplify add api
 $ amplify push --use-localstack true
 {{< /command >}}
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing Amplify applications. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Amplify** under the **Front-end Web & Mobile** section.
+
+<img src="amplify-resource-browser.png" alt="Amplify Resource Browser" title="Amplify Resource Browser" width="900" />
+<br><br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create new Amplify applications**: Create new Amplify applications by clicking **Create App** and filling in the required details.
+- **View Amplify applications**: View the list of Amplify applications created in LocalStack by clicking on the application ID.
+- **Edit Amplify applications**: Edit the configuration of an existing Amplify application by clicking on the application ID and then clicking **Edit App**.
+- **Delete Amplify applications**: Delete an existing Amplify application by selecting the application, followed by clicking **Actions** and then **Remove Selected**.
