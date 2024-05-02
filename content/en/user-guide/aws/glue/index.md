@@ -46,18 +46,42 @@ You should see the following output:
 
 ### Running Scripts with Scala and PySpark
 
-Assuming we would like to deploy a simple PySpark script `job.py` in the local folder, we can first copy the script to an S3 bucket:
+
+Create a new PySpark script named `job.py` with the following code:
+
+```python
+from pyspark.sql import SparkSession
+
+def init_spark():
+   spark = SparkSession.builder.appName("HelloWorld").getOrCreate()
+   sc = spark.sparkContext
+   return spark,sc
+
+def main():
+   spark,sc = init_spark()
+   nums = sc.parallelize([1,2,3,4])
+   print(nums.map(lambda x: x*x).collect())
+
+
+if __name__ == '__main__':
+   main()
+```
+
+You can now copy the script to an S3 bucket:
 {{< command >}}
 $ awslocal s3 mb s3://glue-test
 $ awslocal s3 cp job.py s3://glue-test/job.py
 {{< / command >}}
 
-Next, we can create a job definition:
+Next, you can create a job definition:
+
 {{< command >}}
 $ awslocal glue create-job --name job1 --role arn:aws:iam::000000000000:role/glue-role \
   --command '{"Name": "pythonshell", "ScriptLocation": "s3://glue-test/job.py"}'
 {{< / command >}}
-... and finally start the job:
+
+You can finally start the job execution:
+
 {{< command >}}
 $ awslocal glue start-job-run --job-name job1
 {{< / command >}}
@@ -154,7 +178,8 @@ Support for other target types is in our pipeline and will be added soon.
 
 The example below illustrates crawling tables and partition metadata from S3 buckets.
 
-First, we create an S3 bucket with a couple of items:
+You can first create an S3 bucket with a couple of items:
+
 {{< command >}}
 $ awslocal s3 mb s3://test
 $ printf "1, 2, 3, 4\n5, 6, 7, 8" > /tmp/file.csv
@@ -164,14 +189,16 @@ $ awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Feb/day=1/file.c
 $ awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Feb/day=2/file.csv
 {{< / command >}}
 
-Then we can create and trigger the crawler:
+You can then create and trigger the crawler:
+
 {{< command >}}
 $ awslocal glue create-database --database-input '{"Name":"db1"}'
 $ awslocal glue create-crawler --name c1 --database-name db1 --role arn:aws:iam::000000000000:role/glue-role --targets '{"S3Targets": [{"Path": "s3://test/table1"}]}'
 $ awslocal glue start-crawler --name c1
 {{< / command >}}
 
-Finally, we can query the table metadata that has been created by the crawler:
+Finally, you can query the table metadata that has been created by the crawler:
+
 {{< command >}}
 $ awslocal glue get-tables --database-name db1
 {{< / command >}}
@@ -204,7 +231,7 @@ You should see the following output:
 When using JDBC crawlers, you can point your crawler towards a Redshift database created in LocalStack.
 
 Below is a rough outline of the steps required to get the integration for the JDBC crawler working.
-We can first create the local Redshift cluster via:
+You can first create the local Redshift cluster via:
 {{< command >}}
 $ awslocal redshift create-cluster --cluster-identifier c1 --node-type dc1.large --master-username test --master-user-password test --db-name db1
 {{< / command >}}
@@ -218,9 +245,10 @@ The output of this command contains the endpoint address of the created Redshift
 ...
 ```
 
-Then we can use any JDBC or Postgres client to create a table `mytable1` in the Redshift database, and fill the table with some data.
+Then you can use any JDBC or Postgres client to create a table `mytable1` in the Redshift database, and fill the table with some data.
 
-Next, we're creating the Glue database, the JDBC connection, as well as the crawler:
+Next, you're creating the Glue database, the JDBC connection, as well as the crawler:
+
 {{< command >}}
 $ awslocal glue create-database --database-input '{"Name":"gluedb1"}'
 $ awslocal glue create-connection --connection-input \
@@ -229,7 +257,7 @@ $ awslocal glue create-crawler --name c1 --database-name gluedb1 --role arn:aws:
 $ awslocal glue start-crawler --name c1
 {{< / command >}}
 
-Once the crawler has started, we have to wait until the `State` turns to `READY` when querying the current state:
+Once the crawler has started, you have to wait until the `State` turns to `READY` when querying the current state:
 {{< command >}}
 $ awslocal glue get-crawler --name c1
 {{< /command >}}
@@ -332,7 +360,8 @@ result = spark.sql("SELECT * FROM db1.table1")
 print("SQL result:", result.toJSON().collect())
 ```
 
-We can now run the following commands to create and start the Glue job:
+You can now run the following commands to create and start the Glue job:
+
 {{< command >}}
 $ awslocal s3 mb s3://test
 $ awslocal s3 cp job.py s3://test/job.py
