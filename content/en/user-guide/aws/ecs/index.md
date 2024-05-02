@@ -340,7 +340,6 @@ Alternatively, you can download the image from the private registry before using
 
 ## Resource Browser
 
-
 The LocalStack Web Application provides a Resource Browser for managing ECS clusters & task definitions.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **ECS** under the **Compute** section.
 
