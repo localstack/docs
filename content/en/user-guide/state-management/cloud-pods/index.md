@@ -443,7 +443,7 @@ In contrast, Cloud Pods provide more detailed control over your state. Rather th
 
 ### Limitations
 
-Cloud Pods (and state manager in general), come with a few limitation.
+Cloud Pods (and state management in general), come with a few limitation.
 In particular, Cloud Pods states might not be correctly restored if the LocalStack version used to create the pod and the target one differ.
 We detect version miss-matches when using the `pod load` and prompt a confirmation message to the user.
 
@@ -457,3 +457,45 @@ Loading a Cloud Pod with mismatching version might lead to a corrupted state of 
 
 We are working to extend Cloud Pods support to all AWS services emulated in LocalStack.
 However, state management might not yet work reliably for every service.
+
+## Troubleshooting
+
+### Unable to obtain auth token
+
+When you try to save a Cloud Pod and see the error in LocalStack logs like this:
+
+```bash
+localstack.cli.exceptions.CLIError: Failed to create Cloud Pod sample-pod ❌ - Unable to obtain auth token (code 401) - please log in again.
+```
+
+It would be good to check if you have outdated authentication credentials (bearer token from a previous LocalStack login) in the `remotes.yaml` file for cloud pods. You have two options to fix this:
+
+1.  Run another `localstack auth login` command.
+2.  Find the `remotes.yaml` file in the `<localstack_volume>` directory on your machine and delete the file, or at least remove the `"default"` entry from it.
+
+Additionally, if there is a `~/.localstack/auth.json` file in your home directory, delete it as well if it still exists.
+
+### License not found
+
+When you try to save a Cloud Pod and see the `license.not_found` error in LocalStack logs like this:
+
+```bash
+lsmulti-localstack  | 2024-03-15T13:06:16.358  WARN --- [functhread31] l.p.remotes.remotes        : Failed to register pod sample-pod: {"error": true, "message": "licensing.license.not_found"}
+```
+
+To fix this, clear the LocalStack cache directory and restart the LocalStack instance before trying to save the Cloud Pod again. You can find the cache directories at:
+
+-   `/Users/localstack/Library/Caches/localstack`
+-   `/Users/localstack/Library/Caches/localstack-cli`
+
+Adjust the path based on your operating system.
+
+### SSL Certificate verification failed
+
+If you get an SSL certificate verification error while trying to save a Cloud Pod, as shown below:
+
+```bash
+An error occurred while checking remote management for pod "cloud-pod-product-app": "MyHTTPSConnectionPool(host='api.localstack.cloud', port=443): Max retries exceeded with url: /v1/cloudpods/cloud-pod-product-app (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'api.localstack.cloud'. (_ssl.c:1006)")))"
+```
+
+Check if your machine's clock is set incorrectly or if the certificate store is outdated. This error can also occur if you use `localstack` as `LOCALSTACK_HOST`. In this case, the DNS incorrectly resolves `api.localstack.cloud` to `localhost`, causing a certificate mismatch.
