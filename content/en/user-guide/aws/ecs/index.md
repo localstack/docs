@@ -15,6 +15,9 @@ Amazon Elastic Container Service (Amazon ECS) is a fully managed container orche
 It allows you to run, stop, and manage Docker containers on a cluster.
 ECS eliminates the need for you to install, operate, and scale your own cluster management infrastructure.
 
+LocalStack allows you to use the ECS APIs in your local environment to create & manage ECS clusters, tasks, and services.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ecs/), which provides information on the extent of ECS's integration with LocalStack.
+
 ## Getting Started
 
 This guide is designed for users new to ECS and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
