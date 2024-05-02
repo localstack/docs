@@ -24,7 +24,7 @@ You can install the `samlocal` wrapper script by running the following command:
 $ pip install aws-sam-cli-local
 {{< / command >}}
 
-### Create a new Pulumi project
+### Create a new SAM project
 
 You can initialize a new SAM project using the following command:
 
