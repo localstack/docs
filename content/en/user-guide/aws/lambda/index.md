@@ -76,6 +76,10 @@ To invoke the Lambda function, you can use the [`Invoke` API](https://docs.aws.a
 
 ### Create a Function URL
 
+{{< alert title="Note" >}}
+[Response streaming](https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html) is currently not supported, so it will still return a synchronous/full response instead.
+{{< /alert >}}
+
 With the Function URL property, there is now a new way to call a Lambda Function via HTTP API call using the [`CreateFunctionURLConfig` API](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html). To create a URL for invoking the function, run the following command:
 
 {{< command >}}
@@ -104,6 +108,10 @@ The product of 10 and 10 is 100%
 ```
 
 ## Lambda Event Source Mappings
+
+{{<alert title="Information">}}
+LocalStack now supports a new experimental event rule engine for [event pattern matching ](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html). You can configure the `EVENT_RULE_ENGINE=java` to use the AWS [event-ruler ](https://github.com/aws/event-ruler) that offers better parity.
+{{< /alert >}}
 
 [Lambda event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) allows you to connect Lambda functions to other AWS services. The following event sources are supported in LocalStack:
 
@@ -183,6 +191,7 @@ LocalStack provides various tools to help you develop, debug, and test your AWS 
 * **Hot reloading**: With Lambda hot reloading, you can continuously apply code changes to your Lambda functions without needing to redeploy them manually. To learn more about how to use hot reloading with LocalStack, check out our [hot reloading documentation]({{< ref "hot-reloading" >}}).
 * **Remote debugging**: LocalStack's remote debugging functionality allows you to attach a debugger to your Lambda function using your preferred IDE. To get started with remote debugging in LocalStack, see our [debugging documentation]({{< ref "debugging" >}}).
 * **Lambda VS Code Extension**: LocalStack's Lambda VS Code Extension supports deploying and invoking Python Lambda functions through AWS SAM or AWS CloudFormation. To get started with the Lambda VS Code Extension, see our [Lambda VS Code Extension documentation]({{< ref "user-guide/lambda-tools/vscode-extension" >}}).
+* **API for querying Lambda runtimes**: LocalStack offers a metadata API to query the list of Lambda runtimes via `GET http://localhost.localstack.cloud:4566/_aws/lambda/runtimes`. It returns the [Supported Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) matching AWS parity (i.e., excluding deprecated runtimes) and offers additional filters for `deprecated` runtimes and `all` runtimes (`GET /_aws/lambda/runtimes?filter=all`).
 
 ## Resource Browser
 

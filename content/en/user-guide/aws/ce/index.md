@@ -150,3 +150,16 @@ The following output would be retrieved:
     ]
 }
 ```
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing cost category definitions for the Cost Explorer service. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the Resources section, and then clicking on **Cost Explorer** under the **Storage** section.
+
+<img src="cost-explorer-resource-browser.png" alt="Cost Explorer Resource Browser" title="Cost Explorer Resource Browser" width="900" />
+<br><br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Cost Category definition**: Create a new Cost Category definition by clicking on the **Create** button and providing the required details.
+- **View Cost Category definition**: View the details of a Cost Category definition by clicking on the Cost Category definition.
+- **Delete Cost Category definition**: Delete a Cost Category definition by selecting on the Cost Categorty definition, and then clicking on the **Actions** button followed by **Remove Selected**.

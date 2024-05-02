@@ -42,11 +42,11 @@
       "BatchGetRepositoryScanningConfiguration": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -282,11 +282,11 @@
       "GetRegistryScanningConfiguration": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -402,11 +402,11 @@
       "PutRegistryScanningConfiguration": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -766,6 +766,22 @@
         ]
       }
     },
+    "BatchGetRepositoryScanningConfiguration": {
+      "repositoryNames": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_registry_scanning_configuration",
+            "test": "test_registry_scanning_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "CreateRepository": {
       "encryptionConfiguration, imageScanningConfiguration, imageTagMutability, repositoryName, tags": {
         "ls_pro": [
@@ -984,6 +1000,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_registry_scanning_configuration",
+            "test": "test_registry_scanning_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_repository_deletion_in_registry",
             "test": "test_repository_deletion_in_registry",
             "response": "200",
@@ -1040,6 +1066,16 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_listener_services_are_accessible_and_returning_expected_content",
+            "test": "test_listener_services_are_accessible_and_returning_expected_content",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -1143,6 +1179,30 @@
       }
     },
     "DeleteRepository": {
+      "force, repositoryName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_deployed_resources",
+            "test": "test_deployed_resources",
+            "response": "400",
+            "error": "RepositoryNotEmptyException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_deployed_resources",
+            "test": "test_deployed_resources",
+            "response": "400",
+            "error": "RepositoryNotEmptyException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "registryId, repositoryName": {
         "ls_pro": [
           {
@@ -1327,6 +1387,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_registry_scanning_configuration",
+            "test": "test_registry_scanning_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1810,6 +1880,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_registry_scanning_configuration",
+            "test": "test_registry_scanning_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_repository_deletion_in_registry",
             "test": "test_repository_deletion_in_registry",
             "response": "200",
@@ -2156,6 +2236,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_registry_scanning_configuration",
+            "test": "test_registry_scanning_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_repository_deletion_in_registry",
             "test": "test_repository_deletion_in_registry",
             "response": "200",
@@ -2420,6 +2510,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_listener_services_are_accessible_and_returning_expected_content",
+            "test": "test_listener_services_are_accessible_and_returning_expected_content",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecr.py::test_untransformed_url_when_no_repository_created",
             "test": "test_untransformed_url_when_no_repository_created",
             "response": "400",
@@ -2462,6 +2562,16 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_listener_services_are_accessible_and_returning_expected_content",
+            "test": "test_listener_services_are_accessible_and_returning_expected_content",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -2523,6 +2633,22 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetRegistryScanningConfiguration": {
+      "- (without any parameters)": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_registry_scanning_configuration",
+            "test": "test_registry_scanning_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -2735,6 +2861,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_registry_scanning_configuration",
+            "test": "test_registry_scanning_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -2979,6 +3115,22 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "PutRegistryScanningConfiguration": {
+      "rules, scanType": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecr/test_ecr.py::TestECR::test_registry_scanning_configuration",
+            "test": "test_registry_scanning_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]

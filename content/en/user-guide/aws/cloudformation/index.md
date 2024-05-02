@@ -157,17 +157,7 @@ Currently, support for `UPDATE` operations on resources is limited. Prefer stack
 When utilizing the Community image, any resources within the stack that are not supported will be disregarded and won't be deployed.
 {{< /alert >}}
 
-| Resource                                        | Create | Delete | Update | Image     |
-|-------------------------------------------------|-------:|-------:|-------:|-----------|
-| AWS::Amplify::App                               | ✅     | ✅     | -      | Pro       |
-| AWS::Amplify::Branch                            | ✅     | ✅     | -      | Community |
-| AWS::ApiGateway::Account                        | ✅     | ✅     | -      | Community |
-| AWS::ApiGateway::ApiKey                         | ✅     | ✅     | -      | Community |
-| AWS::ApiGateway::Authorizer                     | ✅     | ✅     | -      | Pro       |
-
-
 #### Community image
-
 
 | Resource                                    | Create | Delete | Update |
 |---------------------------------------------|-------:|-------:|-------:|
@@ -215,6 +205,7 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::EC2::VPCGatewayAttachment              |      ✅ |      ✅ |      - |
 | AWS::ECR::Repository                        |      ✅ |      ✅ |      - |
 | AWS::Elasticsearch::Domain                  |      ✅ |      ✅ |      - |
+| AWS::Events::ApiDestination                 |      ✅ |      ✅ |      - |
 | AWS::Events::Connection                     |      ✅ |      ✅ |      - |
 | AWS::Events::EventBus                       |      ✅ |      ✅ |      - |
 | AWS::Events::EventBusPolicy                 |      ✅ |      ✅ |      - |
@@ -252,11 +243,11 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::Route53::RecordSet                     |      ✅ |      ✅ |      - |
 | AWS::S3::Bucket                             |      ✅ |      ✅ |      - |
 | AWS::S3::BucketPolicy                       |      ✅ |      ✅ |      - |
-| AWS::SNS::Subscription                      |      ✅ |      ✅ |      - |
+| AWS::SNS::Subscription                      |      ✅ |      ✅ |      ✅ |
 | AWS::SNS::Topic                             |      ✅ |      ✅ |      - |
 | AWS::SNS::TopicPolicy                       |      ✅ |      ✅ |      - |
 | AWS::SQS::Queue                             |      ✅ |      ✅ |      ✅ |
-| AWS::SQS::QueuePolicy                       |      ✅ |      ✅ |      - |
+| AWS::SQS::QueuePolicy                       |      ✅ |      ✅ |      ✅ |
 | AWS::SSM::MaintenanceWindow                 |      ✅ |      ✅ |      - |
 | AWS::SSM::MaintenanceWindowTarget           |      ✅ |      ✅ |      - |
 | AWS::SSM::MaintenanceWindowTask             |      ✅ |      ✅ |      - |
@@ -336,9 +327,11 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::DocDB::DBSubnetGroup                       |      ✅ |      ✅ |      - |
 | AWS::EC2::EIP                                   |      ✅ |      ✅ |      - |
 | AWS::EC2::LaunchTemplate                        |      ✅ |      ✅ |      - |
+| AWS::EC2::PrefixList                           |      ✅ |      ✅ |      - |
 | AWS::EC2::SecurityGroupEgress                   |      ✅ |      ✅ |      - |
 | AWS::EC2::SecurityGroupIngress                  |      ✅ |      ✅ |      - |
 | AWS::EC2::SubnetRouteTableAssociation           |      ✅ |      ✅ |      - |
+| AWS::EC2::VpcEndpoint                           |      ✅ |      ✅ |      - |
 | AWS::EC2::VPCCidrBlock                          |      ✅ |      ✅ |      - |
 | AWS::EC2::VPCEndpoint                           |      ✅ |      ✅ |      - |
 | AWS::EC2::VPCEndpointService                    |      ✅ |      ✅ |      - |
@@ -368,6 +361,7 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::Glue::Crawler                              |      ✅ |      ✅ |      - |
 | AWS::Glue::Database                             |      ✅ |      ✅ |      - |
 | AWS::Glue::Job                                  |      ✅ |      ✅ |      - |
+| AWS::Glue::Registry                             |      ✅ |      ✅ |      - |
 | AWS::Glue::Table                                |      ✅ |      ✅ |      - |
 | AWS::Glue::Trigger                              |      ✅ |      ✅ |      - |
 | AWS::Glue::Workflow                             |      ✅ |      ✅ |      - |

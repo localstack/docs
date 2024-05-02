@@ -240,6 +240,12 @@ For more details visit [Docker WSL documentation](https://docs.docker.com/deskto
 
 ## LocalStack Platform FAQs
 
+### Where are my Cloud Pods stored?
+
+LocalStack provides a secure storage mechanism to store Cloud Pods on the Web Application.
+When you push a Cloud Pod, it is stored securely in our storage backend in AWS, with each user/organization receiving a dedicated, isolated S3 bucket.
+Pushing and pulling a Cloud Pod from our Web Application is facilitated by using secure S3 pre-signed URLs for the Cloud Pods CLI to interact directly with the S3 bucket, rather than piping the state files through our LocalStack Platform APIs.
+
 ### How do I check if my license is valid and activated?
 
 The easiest way to check if LocalStack Pro or Enterprise is activated is to check the health endpoint of LocalStack for a list of the running services:
@@ -311,14 +317,13 @@ We also use Infrastructure-as-Code scripts to ensure that our infrastructure con
 Our software assets are regularly checked for vulnerabilities, such as code issues and outdated dependencies.
 We use Dependabot to scan our GitHub repositories, and Trivy as well as Snyk (among other security tools) to scan our Docker images.
 
-### Do you have any penetration test reports or SOC2 reports that demonstrate your security compliance?
-
-We conduct regular penetration tests and audits to ensure our services are secure and compliant.
-If you want to access our security documentation and test reports, please contact us at info@localstack.cloud, and we will be happy to share them with you.
-
 ### Does LocalStack provide offline capabilities?
 
 LocalStack Community and Pro images provide limited offline capabilities.
 To use a fully-fledged offline mode, you may use LocalStack Enterprise, which can be used in air-gapped environments.
 The regular LocalStack Docker images may need to download additional dependencies for specific services (e.g., Elasticsearch, Big Data services) at runtime, while the offline image bakes all dependencies into the image, along with any other configuration that you might need.
 For more details, please take a look at our [Enterprise offering](https://localstack.cloud/pricing).
+
+### How does the LocalStack Web Application communicate with the LocalStack container?
+
+The LocalStack Web Application connects to your LocalStack container running on your local machine and retrieves the information directly via the `localhost` without using the internet. Features such as Resource Browsers, IAM Policy Stream, Chaos Engineering dashboard, and others communicate directly with the LocalStack container using your browser. None of the information is sent to the internet, or stored on any external servers maintained by LocalStack.

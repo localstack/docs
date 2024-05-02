@@ -60,6 +60,20 @@ Finally you can use the [`DeleteCertificate` API](https://docs.aws.amazon.com/ac
 $ awslocal acm delete-certificate --certificate-arn arn:aws:acm:<region>:account:certificate/<certificate_ID>
 {{< /command >}}
 
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing ACM Certificates. 
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Certificate Manager** under the **Security Identity Compliance** section.
+
+<img src="acm-resource-browser.png" alt="ACM Resource Browser" title="ACM Resource Browser" width="900" />
+<br><br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Certificate**: Create a new ACM certificate by clicking **Create Certificate** and providing the required information.
+- **View Certificate**: View the details of a specific certificate by clicking on the domain name.
+- **Delete Certificate**: Delete a certificate by selecting the certificate, followed by clicking **Actions** and then **Remove Selected**.
+
 ## Examples
 
 The following code snippets and sample applications provide practical examples of how to use ACM in LocalStack for various use cases:

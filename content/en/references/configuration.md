@@ -88,6 +88,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `BIGDATA_DOCKER_NETWORK` | | Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
 | `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
 
+### CloudFormation
+| Variable | Example Values | Description |
+| - | - | - |
+| `CFN_PER_RESOURCE_TIMEOUT` | `300` (default) | Set the timeout to deploy each individual CloudFormation resource.
+| `CFN_VERBOSE_ERRORS` | `0` (default) | Show exceptions for CloudFormation deploy errors.
+
 ### CloudWatch
 
 | Variable | Example Values | Description |
@@ -113,6 +119,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `DYNAMODB_CORS` | `*` | Enable CORS support for specific allow-list list the domains separated by `,` use `*` for public access (default is `*`) |
 | `DYNAMODB_REMOVE_EXPIRED_ITEMS` | `0`\|`1` | Enables [Time to Live (TTL)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html) feature |
 
+### ECR 
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `ECR_ENDPOINT_STRATEGY` | `domain` (default)\|`off`\| | Governs how the default ECR endpoints are returned |
+
 ### ECS
 
 | Variable | Example Values | Description |
@@ -120,6 +132,7 @@ This section covers configuration options that are specific to certain AWS servi
 | `ECS_REMOVE_CONTAINERS` | `0`\|`1` (default) | Remove Docker containers associated with ECS tasks after execution. Disabling this and dumping container logs might help with troubleshooting failing ECS tasks. |
 | `ECS_DOCKER_FLAGS` | `--privileged`, `--dns 1.2.3.4` | Additional flags passed to Docker when creating ECS task containers. Same restrictions as `LAMBDA_DOCKER_FLAGS`. |
 | `ECS_DISABLE_AWS_ENDPOINT_URL` | `0` (default) \| `1` | Whether to disable injecting the environment variable `AWS_ENDPOINT_URL`, which automatically configures [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html). |
+| `ECS_TASK_EXECUTOR` | `kubernetes` | Whether to run  ECS tasks when LocalStack is deployed on Kubernetes. Tasks are added to ELB load balancer target groups. |
 
 ### EC2
 
@@ -158,7 +171,7 @@ See [here](#opensearch).
 | Variable | Example Values | Description |
 | - | - | - |
 | `ENFORCE_IAM` | `0` (default)\|`1` | Enable IAM policy evaluation and enforcement. If this is disabled (the default), IAM policies will have no effect to your requests. |
-| `IAM_SOFT_MODE` | `0` (default)\|`1` | Enable IAM soft mode. This leads to policy evaluation without actually denying access. Needs `ENFORCE_IAM` enabled as well. For more information, see [Identity and Access Management]({{< ref "iam" >}}).|
+| `IAM_SOFT_MODE` | `0` (default)\|`1` | Enable IAM soft mode. This leads to policy evaluation without actually denying access. Needs `ENFORCE_IAM` enabled as well. For more information, see [Identity and Access Management]({{< ref "user-guide/aws/iam" >}}).|
 
 ### Kinesis
 
@@ -216,6 +229,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | Variable | Example Values | Description |
 | - | - | - |
 | `NEPTUNE_DB_TYPE` | `neo4j`\|`tinkerpop` (default) | Starts Neptune DB as traditional netpune with Tinkerpop/Gremlin (default) or in Neo4J mode. |
+| `NEPTUNE_USE_SSL` | `1`\|`0` (default) | Whether to start the Neptune server with SSL configuration, which will enable wss protocol. This setting is only valid for Tinkerpop/Gremlin. By default SSL is not enabled. |
 
 ### OpenSearch
 
@@ -258,8 +272,8 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | - | - | - |
 | `SQS_DELAY_PURGE_RETRY` | `0` (default) | Used to toggle PurgeQueueInProgress errors when making more than one PurgeQueue call within 60 seconds. |
 | `SQS_DELAY_RECENTLY_DELETED` | `0` (default) | Used to toggle QueueDeletedRecently errors when re-creating a queue within 60 seconds of deleting it. |
-| `SQS_ENABLE_MESSAGE_RETENTION_PERIOD`| `0` (default) \| `1` | Used to toggle the MessageRetentionPeriod feature (see [Enabling `MessageRetentionPeriod`]({{< ref "sqs#enabling-messageretentionperiod" >}})) |
-| `SQS_ENDPOINT_STRATEGY`| `standard` (default) \| `domain` \| `path` \| `off` | Configures the format of Queue URLs (see [SQS Queue URLs]({{< ref "sqs#queue-urls" >}})) |
+| `SQS_ENABLE_MESSAGE_RETENTION_PERIOD`| `0` (default) \| `1` | Used to toggle the MessageRetentionPeriod feature (see [Enabling `MessageRetentionPeriod`](https://docs.localstack.cloud/user-guide/aws/sqs/#enabling-messageretentionperiod) |
+| `SQS_ENDPOINT_STRATEGY`| `standard` (default) \| `domain` \| `path` \| `off` | Configures the format of Queue URLs (see [SQS Queue URLs](https://docs.localstack.cloud/user-guide/aws/sqs/#queue-urls) |
 | `SQS_DISABLE_CLOUDWATCH_METRICS` | `0` (default) | Disables the CloudWatch Metrics for SQS when set to `1` |
 | `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL` | `60` (default) | Configures the report interval (in seconds) for `Approximate*` metrics that are sent to CloudWatch periodically. Sending will be disabled if `SQS_DISABLE_CLOUDWATCH_METRICS=1` |
 
@@ -301,21 +315,22 @@ To learn more about these configuration options, see [Persistence]({{< ref "pers
 | `SNAPSHOT_SAVE_STRATEGY` | `ON_SHUTDOWN`\|`ON_REQUEST`\|`SCHEDULED`\|`MANUAL` | Strategy that governs when LocalStack should make state snapshots |
 | `SNAPSHOT_LOAD_STRATEGY` | `ON_STARTUP`\|`ON_REQUEST`\|`MANUAL` | Strategy that governs when LocalStack restores state snapshots |
 | `SNAPSHOT_FLUSH_INTERVAL` | 15 (default) | The interval (in seconds) between persistence snapshots. It only applies to a `SCHEDULED` save strategy (see [Persistence Mechanism]({{< ref "persistence" >}}))|
-| `AUTO_LOAD_POD` |  | Comma-separated list of Cloud Pods to be automatically loaded at startup time. |
+| `AUTO_LOAD_POD` |  | Comma-separated list of Cloud Pods to be automatically loaded at startup time. This feature is disabled when snapshot persistence is set via the `PERSISTENCE` variable. |
 | `POD_LOAD_CLI_TIMEOUT` | 60 (default) | Timeout in seconds to wait before returning from load operations on the Cloud Pods CLI |
 
 ## Miscellaneous
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud
-| `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud
-| `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins
-| `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary.
-| `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events
-| `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
-| `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
-| `REQUESTS_CA_BUNDLE` | `/var/lib/localstack/lib/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack
+| `EVENT_RULE_ENGINE` (experimental) | `python` (default) \| `java` | Engine for [event pattern matching](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html) used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping. Set it `java` to use the AWS [event-ruler](https://github.com/aws/event-ruler) offering better parity. |
+| `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud |
+| `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud |
+| `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins |
+| `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary. |
+| `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events |
+| `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself |
+| `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself |
+| `REQUESTS_CA_BUNDLE` | `/var/lib/localstack/lib/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack |
 | `DOCKER_HOST` | `unix:///var/run/docker.sock` (default) | Daemon socket to connect Docker. Used by the LocalStack dependency [Docker](https://docs.docker.com/engine/reference/commandline/cli/#environment-variables). |
 
 
@@ -337,8 +352,8 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 | `DNS_ADDRESS` | `0.0.0.0` (default) | Address the LocalStack should bind the DNS server on (port 53 tcp/udp). Value `0` to disable.
 | `DNS_SERVER` | Default upstream DNS or `8.8.8.8` (default) | Fallback DNS server for queries not handled by LocalStack.
 | `DNS_RESOLVE_IP` | `127.0.0.1` (default) | IP address the DNS server should return as A record for queries handled by LocalStack. If customized, this value will be returned in preference to the DNS server response.
-| `DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM` | `.*(ecr\|lambda).*.amazonaws.com` (example) | List of domain names that should *NOT* be resolved to the LocalStack container, but instead always forwarded to the upstream resolver. Comma-separated list of Python-flavored regex patterns. See [the DNS server documentation]({{< ref "user-guide/tools/dns-server#skip-localstack-dns-resolution" >}}) for more details.
-| `DNS_LOCAL_NAME_PATTERNS` | `.*(ecr\|lambda).*.amazonaws.com` (example) | **Deprecated since 3.0.2** Skiplist of domain names that should *NOT* be resolved to the LocalStack container, as a comma-separated list of Python-flavored regex patterns. **Renamed to `DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM`**
+| `DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM` | `([^.]+\.)*(ecr|lambda)\.[^.]+\.amazonaws\.com` (example) | List of domain names that should *NOT* be redirected by the LocalStack DNS to the LocalStack container, but instead always forwarded to the upstream resolver. This will *NOT* redirect requests made to LocalStack due to manual endpoint configuration. Comma-separated list of Python-flavored regex patterns. See [the DNS server documentation]({{< ref "user-guide/tools/dns-server#skip-localstack-dns-resolution" >}}) for more details.
+| `DNS_LOCAL_NAME_PATTERNS` | `([^.]+\.)*(ecr|lambda)\.[^.]+\.amazonaws\.com` (example) | **Deprecated since 3.0.2** List of domain names that should *NOT* be redirected by the LocalStack DNS to the LocalStack container, but instead always forwarded to the upstream resolver. This will *NOT* redirect requests made to LocalStack due to manual endpoint configuration. Comma-separated list of Python-flavored regex patterns. **Renamed to `DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM`**
 
 ## Transparent Endpoint Injection
 

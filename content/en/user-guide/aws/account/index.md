@@ -73,3 +73,18 @@ $ awslocal account put-alternate-contact \
     --phone-number "+1 555-555-5555" \
     --title "Billing"
 {{< /command >}}
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing contact information & alternate accounts for the Account service. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the Resources section, and then clicking on **Account** under the **Management & Governance** section.
+
+<img src="account-resource-browser.png" alt="Account Resource Browser" title="Account Resource Browser" width="900" />
+<br><br>
+
+The Resource Browser allows you to perform the following actions:
+
+* **Create Contact Information**: Add the contact information for your mocked AWS account by clicking on the **Create** button in the contact information section.
+* **Create Alternate Contact**: Add an alternate contact for your mocked AWS account by clicking on the **Create** button in the alternate contacts section.
+* **View Contact Information**: View the contact information for your mocked AWS account by clicking on the contact information.
+* **Update Contact Information**: Update the contact information for your mocked AWS account by clicking on the contact information.
+* **Filter**: Filter the contact information and alternate contacts by types, such as `BILLING`, `OPERATIONS`, and `SECURITY`.

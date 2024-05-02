@@ -122,6 +122,10 @@ $ localstack logs
 
 ## Supported target types
 
+{{<alert title="Information">}}
+LocalStack now supports a new experimental event rule engine for [event pattern matching ](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html). You can configure the `EVENT_RULE_ENGINE=java` to use the AWS [event-ruler ](https://github.com/aws/event-ruler) that offers better parity.
+{{< /alert >}}
+
 At this time LocalStack supports the following [target types](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-console-targets) for EventBridge rules:
 
 - Lambda function

@@ -127,6 +127,19 @@ This means that the bucket name has to be globally unique.
 - `ListObjects`
 - `PutObject`
 
+### Secrets Manager
+
+- `DeleteSecret`
+- `DescribeSecret`
+- `GetResourcePolicy`
+- `GetSecretValue`
+- `ListSecretVersionIds`
+- `PutResourcePolicy`
+- `PutSecretValue`
+- `RestoreSecret`
+- `TagResource`
+- `UntagResource`
+- `UpdateSecret`
 
 ### SNS topics
 

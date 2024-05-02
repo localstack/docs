@@ -57,7 +57,7 @@ $ awslocal ecs create-cluster --cluster-name mycluster
 ### Create a task definition
 
 Containers within tasks are defined by a task definition that is managed outside of the context of a cluster.
-To create a task definition that runs an `ubuntu` container forever (by running `sleep infinity` on startup), create the following file as `task_definition.json`:
+To create a task definition that runs an `ubuntu` container forever (by running an infinite loop printing "Running" on startup), create the following file as `task_definition.json`:
 
 ```json
 {
@@ -68,10 +68,20 @@ To create a task definition that runs an `ubuntu` container forever (by running 
       "cpu": 10,
       "memory": 10,
       "command": [
-        "sleep",
-        "infinity"
+        "sh",
+        "-c",
+        "while true; do echo running; sleep 1; done"
       ],
-      "essential": true
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "myloggroup",
+          "awslogs-stream-prefix": "myprefix",
+          "awslogs-region": "us-east-1"
+        }
+      }
     }
   ],
   "family": "myfamily"
@@ -95,12 +105,22 @@ $ awslocal ecs register-task-definition --cli-input-json file://task_definition.
                 "portMappings": [],
                 "essential": true,
                 "command": [
-                    "sleep",
-                    "infinity"
+                    "sh",
+                    "-c",
+                    "while true; do echo running; sleep 1; done"
                 ],
                 "environment": [],
                 "mountPoints": [],
-                "volumesFrom": []
+                "volumesFrom": [],
+                "logConfiguration": {
+                    "logDriver": "awslogs",
+                    "options": {
+                        "awslogs-create-group": "true",
+                        "awslogs-group": "myloggroup",
+                        "awslogs-stream-prefix": "myprefix",
+                        "awslogs-region": "us-east-1"
+                    }
+                }
             }
         ],
         "family": "myfamily",
@@ -113,13 +133,15 @@ $ awslocal ecs register-task-definition --cli-input-json file://task_definition.
             "EXTERNAL",
             "EC2"
         ],
-        "registeredAt": 1709242097.870379
+        "registeredAt": 1713364207.068659
     }
 }
 </disable-copy>
 {{< / command >}}
 
 Task definitions are immutable, and are identified by their `family` field, and calling `register-task-definition` again with the same `family` value creates a new _version_ of a task definition.
+
+This task definition creates a CloudWatch Logs log group and log stream for the container so you can view the service logs.
 
 ### Launch a service
 
@@ -177,14 +199,47 @@ $ awslocal ecs create-service --service-name myservice --cluster mycluster --tas
 </disable-copy>
 {{< / command >}}
 
-You should see a new docker container has been created, using the `ubuntu:latest` image, and running the command `sleep infinity`.
+You should see a new docker container has been created, using the `ubuntu:latest` image, and running the infinite loop command:
 
 ```
 $ docker ps
-CONTAINER ID   IMAGE                       COMMAND                  CREATED              STATUS                    PORTS                                                                                                                                        NAMES
-a0dfa7a2cdd5   ubuntu                      "sleep infinity"         About a minute ago   Up About a minute                                                                                                                                                      ls-ecs-mycluster-a2fda12e-6a02-4eaa-a977-ded467a0227d-0-8ba33dc8
-66fcc01adb99   localstack/localstack-pro   "docker-entrypoint.sh"   18 minutes ago       Up 18 minutes (healthy)   127.0.0.1:53->53/tcp, 127.0.0.1:443->443/tcp, 127.0.0.1:4510-4560->4510-4560/tcp, 127.0.0.1:4566->4566/tcp, 127.0.0.1:53->53/udp, 5678/tcp   localstack-main
+CONTAINER ID   IMAGE                       COMMAND                  CREATED         STATUS                   PORTS                                                                                              NAMES
+5dfeb9376391   ubuntu                      "sh -c 'while true; …"   3 minutes ago   Up 3 minutes                                                                                                                ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d
+9967fe5300cc   localstack/localstack-pro   "docker-entrypoint.sh"   5 minutes ago   Up 5 minutes (healthy)   0.0.0.0:443->443/tcp, 0.0.0.0:4510-4560->4510-4560/tcp, 53/tcp, 5678/tcp, 0.0.0.0:4566->4566/tcp   localstack-main
 ```
+
+### Collect container logs
+
+To access the generated logs from the container, run the following command:
+
+{{< command >}}
+awslocal logs filter-log-events --log-group-name myloggroup --query 'events[].message'
+<disable-copy>
+$ awslocal logs filter-log-events --log-group-name myloggroup | head -n 20
+{
+    "events": [
+        {
+            "logStreamName": "myprefix/ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d/75f0515e-0364-4ee5-9828-19026140c91a",
+            "timestamp": 1713364216375,
+            "message": "running",
+            "ingestionTime": 1713364216704,
+            "eventId": "0"
+        },
+        {
+            "logStreamName": "myprefix/ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d/75f0515e-0364-4ee5-9828-19026140c91a",
+            "timestamp": 1713364216440,
+            "message": "running",
+            "ingestionTime": 1713364216704,
+            "eventId": "1"
+        },
+        {
+            "logStreamName": "myprefix/ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d/75f0515e-0364-4ee5-9828-19026140c91a",
+            "timestamp": 1713364216505,
+            "message": "running",
+</disable-copy>
+{{< / command >}}
+
+See our [CloudWatch Logs user guide]({{< ref "user-guide/aws/logs" >}}) for more details.
 
 ## LocalStack ECS behavior
 
@@ -209,7 +264,9 @@ In some cases, it can be useful to mount code from the host filesystem into the 
 
 In order to leverage code mounting, we can use the ECS bind mounts feature, which is covered in the [AWS Bind mounts documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/bind-mounts.html).
 
-For example, the Python sample code below registers a task definition, mounting a host path `/host/path` into the container under `/container/path`:
+### Boto3 example
+
+The Python sample code below registers a task definition, mounting a host path `/host/path` into the container under `/container/path`:
 
 ```bash
 ecs_client = boto3.client("ecs", endpoint_url="http://localhost:4566")
@@ -229,3 +286,74 @@ ecs_client.register_task_definition(
     volumes=[{"host": {"sourcePath": "/host/path"}, "name": "test-volume"}],
 )
 ```
+
+### CDK example
+
+The same functionality can be achieved with the AWS CDK following this (Python) example:
+
+```python
+task_definition = ecs.TaskDefinition(
+    ...
+    volumes=[
+        ecs.Volume(name="test-volume", host=ecs.Host(source_path="/host/path"))
+    ]
+)
+
+container = task_def.add_container(...)
+
+container.add_mount_points(
+    ecs.MountPoint(
+        container_path="/container/path",
+        source_volume="test-volume",
+    ),
+)
+```
+
+## Private registry authentication
+
+To download images from a private registry using LocalStack, you must provide your credentials.
+You can pass your Docker credentials to the container by setting the `DOCKER_CONFIG` environment variable and mounting the `~/.docker/config.json` file as a volume at `/config.json`.
+Your file paths might differ, so check Docker's documentation on [Environment Variables](https://docs.docker.com/engine/reference/commandline/cli/#environment-variables) and [Configuration Files](https://docs.docker.com/engine/reference/commandline/cli/#configuration-files) for details.
+
+Here is a Docker Compose example:
+
+```yaml
+version: '3.8'
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack-pro
+    ports:
+      - "127.0.0.1:4566:4566"            
+      - "127.0.0.1:4510-4559:4510-4559"  
+      - "127.0.0.1:443:443"              
+    environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+      - DOCKER_CONFIG=/config.json
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - ~/.docker/config.json:/config.json:ro
+```
+
+Alternatively, you can download the image from the private registry before using it or employ an [Initialization Hook](https://docs.localstack.cloud/references/init-hooks/) to install the Docker client and use these credentials to download the image.
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing ECS clusters & task definitions.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **ECS** under the **Compute** section.
+
+<img src="ecs-resource-browser.png" alt="ECS Resource Browser" title="ECS Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Cluster**: Create a new ECS cluster by clicking on the **Create Cluster** button in the **Clusters** tab and providing the cluster name among other details.
+- **Register Task Definition**: Register a new task definition by clicking on the **Register Task Definition** button in the **Task Definitions** tab and providing the task definition details.
+- **View Cluster Details**: Click on a cluster in the **Clusters** tab to view the cluster details, including the cluster ARN, status, and other information.
+- **View Task Definition Details**: Click on a task definition in the **Task Definitions** tab to view the task definition details, including the task definition ARN, family, and other information.
+- **Edit Cluster**: Click on the **Edit Cluster** button while you are viewing a cluster to edit the cluster details.
+- **Edit Task Definition**: Click on the **Edit Task Definition** button while you are viewing a task definition to edit the task definition details.
+- **Delete Cluster**: Select the cluster name in the **Clusters** tab and click on the **Actions** button followed by **Remove Selected** button.
+- **Delete Task Definition**: Select the task definition name in the **Task Definitions** tab and click on the **Actions** button followed by **Remove Selected** button.

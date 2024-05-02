@@ -19,7 +19,10 @@ The Auth Token remains unchanged unless manually rotated by the user, regardless
 
 ## Managing your License
 
-To use LocalStack, a license is required. You can get a license by registering on the [LocalStack Web Application](https://app.localstack.cloud/sign-up).Choose between a 14-day trial or explore additional features with our [paid offering](https://app.localstack.cloud/pricing). During the trial period, you are welcome to use all the features of LocalStack.
+To use LocalStack, a license is required.
+You can get a license by registering on the [LocalStack Web Application](https://app.localstack.cloud/sign-up).
+Choose between a 14-day trial or explore additional features with our paid offering.
+During the trial period, you are welcome to use all the features of LocalStack.
 
 After initiating your trial or acquiring a license, proceed to assign it to a user by following the steps outlined below:
 
@@ -52,7 +55,7 @@ LocalStack requires the `LOCALSTACK_AUTH_TOKEN` environment variable to contain 
 
 ### Configuring your CI environment
 
-For use in Continuous Integration (CI) or automated test environments, a CI key is necessary.  
+For use in Continuous Integration (CI) or automated test environments, a CI key is necessary.
 Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
 
 To configure your CI key, you need to set the `LOCALSTACK_API_KEY` environment variable to your CI key.
