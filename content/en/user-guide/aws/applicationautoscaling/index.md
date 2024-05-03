@@ -107,3 +107,31 @@ $ awslocal application-autoscaling put-scaling-policy \
     --policy-name scaling-policy --policy-type TargetTrackingScaling \
     --target-tracking-scaling-policy-configuration '{ "TargetValue": 50.0, "PredefinedMetricSpecification": { "PredefinedMetricType": "predefinedmetric" }}'
 {{< /command >}}
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing AppConfig applications. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Application Auto Scaling** under the **App Integration** section.
+
+<img src="application-auto-scaling-resource-browser.png" alt="Application Auto Scaling Resource Browser" title="Application Auto Scaling Resource Browser" width="900" />
+<br><br>
+
+The Resource Browser allows you to perform the following actions:
+
+* **Create scalable target**: Create a new scalable target by clicking **Create Scalable Target** and providing the required details.
+* **Filter services**: Filter services by service namespace to view only the services you are interested in, by choosing from the dropdown list.
+* **Delete**: Delete a scalable target by selecting the target, followed by clicking **Actions** and then **Remove Selected**.
+
+The following service namespaces are currently supported:
+
+- Elastic Container Service (ECS)
+- Elastic MapReduce (EMR)
+- Elastic Compute Cloud (EC2)
+- AppStream
+- Lambda
+- DynamoDB
+- RDS
+- Sagemaker
+- Kafka
+- Cassandra
+- Comprenhend
+- Custom Resource
