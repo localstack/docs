@@ -180,3 +180,17 @@ The following output would be retrieved:
     "AppliedExtensions": []
 }
 ```
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing AppConfig applications. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **AppConfig** under the **Developer Tools** section.
+
+<img src="appconfig-resource-browser.png" alt="AppConfig Resource Browser" title="AppConfig Resource Browser" width="900" />
+<br><br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create new AppConfig applications**: Create new AppConfig applications by clicking **Create Application** and filling in the required details.
+- **View AppConfig applications**: View the list of AppConfig applications created in LocalStack by clicking on the application ID.
+- **Edit AppConfig applications**: Edit the configuration of an existing AppConfig application by clicking on the application ID and then clicking **Edit Application**.
+- **Delete AppConfig applications**: Delete an existing AppConfig application by selecting the application, followed by clicking **Actions** and then **Remove Selected**.
