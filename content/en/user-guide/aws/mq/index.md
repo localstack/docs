@@ -78,6 +78,20 @@ Now that the broker is actively listening, we can use curl to send a message to 
 $ curl -XPOST -d "body=message" http://admin:admin@localhost:4513/api/message\?destination\=queue://orders.input
 {{< / command >}}
 
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing MQ brokers. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **MQ** under the **App Integration** section.
+
+<img src="mq-resource-browser.png" alt="MQ Resource Browser" title="MQ Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Broker**: Create a new MQ broker by clicking on the **Create Broker** button and providing the required parameters.
+- **View Broker**: View details of an existing MQ broker by clicking on the broker name.
+- **Delete Broker**: Select the broker name and click on the **Actions** button followed by **Remove Selected** button.
+
 ## Examples
 
 The following code snippets and sample applications provide practical examples of how to use MQ in LocalStack for various use cases:
