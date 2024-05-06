@@ -182,7 +182,7 @@ or Amazon S3 logs.
 The EventBridge Pipes implementation in LocalStack is currently in preview stage and has the following limitations:
 
 * Lack of input transformers.
-* Batch handling behavior may have parity issues (e.g., batch flushing rules by size, length, etc.).
-* Lack of concurrency support (i.e., `ParallelizationFactor), resulting in slower processing in high-throughput scenarios.
-* Lack of lifecycle management for pipe states, such as inadequate locking and state transition testing.
+* Lack of concurrency support (i.e., ParallelizationFactor), resulting in slower processing in high-throughput scenarios.
+* Lack of lifecycle management for pipe states (i.e., missing tests for state transitions).
 * Lack of re-sharding support when polling from Kinesis and DynamoDB streams.
+* Batch handling behavior may have parity issues (e.g., batch flushing rules by size, length, time, etc. are not implemented).
