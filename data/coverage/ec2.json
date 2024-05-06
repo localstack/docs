@@ -1,5 +1,6 @@
 {
   "service": "ec2",
+  "pro_support": true,
   "community_support": true,
   "operations": [
     {
@@ -1038,11 +1039,11 @@
       "CreateManagedPrefixList": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1412,7 +1413,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -1460,7 +1461,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -1950,11 +1951,11 @@
       "DeleteManagedPrefixList": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -2300,7 +2301,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -3522,11 +3523,11 @@
       "DescribeManagedPrefixLists": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -4088,7 +4089,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -4124,7 +4125,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -4599,6 +4600,18 @@
       }
     },
     {
+      "DisableImageDeregistrationProtection": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "DisableIpamOrganizationAdminAccount": {
         "implemented": false,
         "availability": "",
@@ -4959,6 +4972,18 @@
       }
     },
     {
+      "EnableImageDeregistrationProtection": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "EnableIpamOrganizationAdminAccount": {
         "implemented": false,
         "availability": "",
@@ -5286,6 +5311,18 @@
       "GetInstanceMetadataDefaults": {
         "implemented": false,
         "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "GetInstanceTpmEkPub": {
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -9232,6 +9269,22 @@
         ]
       }
     },
+    "CreateManagedPrefixList": {
+      "AddressFamily, ClientToken, Entries, MaxEntries, PrefixListName, TagSpecifications": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_prefix_list",
+            "test": "test_deploy_prefix_list",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
     "CreateNatGateway": {
       "AllocationId, ClientToken, SubnetId": {
         "ls_pro": [
@@ -10508,6 +10561,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaFunction::test_vpc_config",
             "test": "test_vpc_config",
             "response": "200",
@@ -11331,6 +11394,16 @@
       },
       "AvailabilityZone, CidrBlock, VpcId": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_cfn_with_multiple_route_table_associations",
             "test": "test_cfn_with_multiple_route_table_associations",
@@ -12414,6 +12487,18 @@
         ]
       },
       "CidrBlock, TagSpecifications": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_describe_endpoints",
@@ -12479,6 +12564,20 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "internal"
+          }
+        ]
+      },
+      "PrivateDnsEnabled, SecurityGroupIds, ServiceName, SubnetIds, VpcEndpointType, VpcId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           }
         ]
@@ -12653,16 +12752,6 @@
           }
         ],
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
             "test": "test_infra",
@@ -12884,8 +12973,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13023,6 +13112,22 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
+    "DeleteManagedPrefixList": {
+      "PrefixListId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_prefix_list",
+            "test": "test_deploy_prefix_list",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13234,8 +13339,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13312,8 +13417,8 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13395,16 +13500,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14568,16 +14663,6 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
             "test": "test_infra",
             "response": "200",
@@ -14798,8 +14883,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -14852,16 +14937,6 @@
             "test": "test_postgis_extension[16]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "400",
-            "error": "CommonServiceException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -15864,6 +15939,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaFunction::test_vpc_config",
             "test": "test_vpc_config",
             "response": "200",
@@ -15975,16 +16060,6 @@
           }
         ],
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
             "test": "test_infra",
@@ -16346,8 +16421,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16421,6 +16496,16 @@
     "DeleteSubnet": {
       "SubnetId": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_cfn_with_multiple_route_table_associations",
             "test": "test_cfn_with_multiple_route_table_associations",
@@ -16583,16 +16668,6 @@
           }
         ],
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
             "test": "test_infra",
@@ -16904,8 +16979,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17027,6 +17102,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..NetworkAcls..Entries', '$..NetworkAcls..Tags', '$..NetworkAcls..Tags..Key', '$..NetworkAcls..Tags..Value', '$..NetworkAcls..VpcId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -17313,16 +17398,6 @@
           }
         ],
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
             "test": "test_infra",
@@ -17684,8 +17759,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17806,6 +17881,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/ec2/test_ec2.py::TestEc2Integrations::test_create_vpc_end_point",
             "test": "test_create_vpc_end_point",
             "response": "200",
@@ -17890,11 +17975,11 @@
       "AttributeNames": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaRuntimesCommon::test_echo_invoke[nodejs20.x]",
-            "test": "test_echo_invoke[nodejs20.x]",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_sqs.py::test_failing_lambda_retries_after_visibility_timeout",
+            "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..FunctionResponseTypes', '$..StartingPosition', '$..StateTransitionReason']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17905,6 +17990,16 @@
     "DescribeAvailabilityZones": {
       "- (without any parameters)": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_cfn_with_multiple_route_table_associations",
             "test": "test_cfn_with_multiple_route_table_associations",
@@ -18502,16 +18597,6 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
             "test": "test_infra",
             "response": "200",
@@ -18872,6 +18957,32 @@
         ]
       }
     },
+    "DescribeManagedPrefixLists": {
+      "PrefixListIds": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_prefix_list",
+            "test": "test_deploy_prefix_list",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_prefix_list",
+            "test": "test_deploy_prefix_list",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "DescribeNatGateways": {
       "NatGatewayIds": {
         "ls_pro": [
@@ -19116,8 +19227,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -19237,6 +19348,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..NetworkAcls..Entries', '$..NetworkAcls..Tags', '$..NetworkAcls..Tags..Key', '$..NetworkAcls..Tags..Value', '$..NetworkAcls..VpcId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19846,6 +19967,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_cfn_with_multiple_route_table_associations",
             "test": "test_cfn_with_multiple_route_table_associations",
             "response": "200",
@@ -19957,16 +20088,6 @@
           }
         ],
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
             "test": "test_infra",
@@ -20784,6 +20905,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_cfn_with_multiple_route_table_associations",
             "test": "test_cfn_with_multiple_route_table_associations",
             "response": "200",
@@ -21556,6 +21687,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsMysql::test_create_aurora_db_invalid_version",
+            "test": "test_create_aurora_db_invalid_version",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsMysql::test_create_mysql[False-5.7.39-MariaDB]",
             "test": "test_create_mysql[False-5.7.39-MariaDB]",
             "response": "200",
@@ -21573,6 +21714,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsMysql::test_delete_db_parameters_in_use",
+            "test": "test_delete_db_parameters_in_use",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -22892,6 +23043,26 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -23962,6 +24133,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsMysql::test_create_aurora_db_invalid_version",
+            "test": "test_create_aurora_db_invalid_version",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsMysql::test_create_mysql[False-5.7.39-MariaDB]",
             "test": "test_create_mysql[False-5.7.39-MariaDB]",
             "response": "200",
@@ -23979,6 +24160,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsMysql::test_delete_db_parameters_in_use",
+            "test": "test_delete_db_parameters_in_use",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -24501,6 +24692,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..NetworkAcls..Entries', '$..NetworkAcls..Tags', '$..NetworkAcls..Tags..Key', '$..NetworkAcls..Tags..Value', '$..NetworkAcls..VpcId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/test_ec2.py::test_deploy_vpc_endpoint",
+            "test": "test_deploy_vpc_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -25172,16 +25373,6 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
             "test": "test_infra",
             "response": "200",
@@ -25402,8 +25593,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -25456,16 +25647,6 @@
             "test": "test_postgis_extension[16]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "400",
-            "error": "CommonServiceException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -25896,16 +26077,6 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
             "test": "test_infra",
             "response": "200",
@@ -26126,8 +26297,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -26180,26 +26351,6 @@
             "test": "test_postgis_extension[16]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_rename_change_column[mariadb]",
-            "test": "test_cdc_rename_change_column[mariadb]",
-            "response": "400",
-            "error": "CommonServiceException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -27716,8 +27867,8 @@
       "AllocationId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTP-True-source_ip]",
-            "test": "test_target_group_attributes_stickiness[HTTP-True-source_ip]",
+            "node_id": "LocalStack Pro: tests/aws/services/elbv2/test_elbv2_target_groups.py::TestElbV2TargetGroups::test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
+            "test": "test_target_group_attributes_stickiness[HTTPS-True-source_ip]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
