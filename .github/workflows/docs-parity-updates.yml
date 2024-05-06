@@ -73,6 +73,8 @@ jobs:
 
       - name: Download metrics data from latest Community test run (CircleCI)
         working-directory: docs
+        env:
+          CIRCLE_CI_TOKEN: ${{ secrets.CIRCLE_CI_TOKEN }}
         run: ./scripts/get_latest_circleci_metrics.sh ./target
 
 
