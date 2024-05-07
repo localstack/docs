@@ -39,11 +39,9 @@ $ curl -v --request POST --header "Content-Type: application/json"  --data '{"ac
 
 The API path for the AWS internal resources is `/_aws`. The following endpoints are available:
 
-[Lambda – Special Tools]({{< ref "user-guide/aws/lambda#special-tools" >}})
-
 | Endpoint                               | Description                                               |
 |----------------------------------------|-----------------------------------------------------------|
-| `/_aws/lambda/runtimes`                | List Lambda runtimes |
+| `/_aws/lambda/runtimes`                | List Lambda runtimes. See [Lambda – Special Tools]({{< ref "user-guide/aws/lambda" >}}) |
 | `/_aws/sqs/messages`                   | Access all messages within a SQS queue                    |
 | `/_aws/sns/platform-endpoint-messages` | Access and delete all the published SNS platform messages |
 | `/_aws/ses`                            | Access and delete all the sent SES emails                 |
