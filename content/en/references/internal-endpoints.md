@@ -39,7 +39,7 @@ $ curl -v --request POST --header "Content-Type: application/json"  --data '{"ac
 
 The API path for the AWS internal resources is `/_aws`. The following endpoints are available:
 
-[Lambda – Special Tools]({{< ref "user-guide/aws/lambda/#special-tools" >}})
+[Lambda – Special Tools]({{< ref "user-guide/aws/lambda#special-tools" >}})
 
 | Endpoint                               | Description                                               |
 |----------------------------------------|-----------------------------------------------------------|
