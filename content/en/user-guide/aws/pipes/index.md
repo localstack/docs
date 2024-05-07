@@ -14,11 +14,13 @@ LocalStack allows you to use the Pipes APIs in your local environment to create 
 The supported APIs are available on our [API coverage page]({{< ref "coverage_pipes" >}}), which provides information on the extent of Pipe's integration with LocalStack. 
 
 {{< alert title="Note" color="info" >}}
-The implementation of EventBridge Pipes is currently in **preview** stage and under active development. If you would like support for more APIs or report bugs, please make an issue on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
+The implementation of EventBridge Pipes is currently in **preview** stage and under active development.
+If you would like support for more APIs or report bugs, please make an issue on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
 {{< /alert >}}
 
 {{<alert title="Information">}}
-LocalStack now supports a new experimental event rule engine for [event pattern matching ](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html). You can configure the `EVENT_RULE_ENGINE=java` to use the AWS [event-ruler ](https://github.com/aws/event-ruler) that offers better parity.
+LocalStack now supports a new event rule engine for [EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html).
+You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (preview) to use the AWS [event-ruler](https://github.com/aws/event-ruler), which offers better parity.
 {{< /alert >}}
 
 ## Getting started
