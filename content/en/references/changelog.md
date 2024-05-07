@@ -10,13 +10,16 @@ cascade:
 
 ## Introduction
 
-This page documents the release notes for official LocalStack major and minor releases since LocalStack v1.0.0.  If you're looking for information about nightly releases, beta features, or experimental features, pull the [latest Docker image]({{< ref "docker-images" >}}). The changelog is updated with every release. Updates that affect only LocalStack Web Application or features in beta or limited release may not be reflected.
+This page documents the release notes for official LocalStack major and minor releases since LocalStack v1.0.0.
+If you are looking for information about nightly releases, preview features, or experimental features, pull the [latest Docker image]({{< ref "docker-images" >}}).
+The changelog is updated with every release.
+Updates that affect only LocalStack Web Application or features in preview or limited release may not be reflected.
 
 ## Official Releases
 
 | Version  | Release Date       | Release Notes                                                                                      |
 |----------|--------------------|----------------------------------------------------------------------------------------------------|
-| `v3.4.0` | April 25, 2024        | [v3.4.0](https://discuss.localstack.cloud/t/localstack-release-v3-4-0/871)                         |
+| `v3.4.0` | April 25, 2024     | [v3.4.0](https://discuss.localstack.cloud/t/localstack-release-v3-4-0/871)                         |
 | `v3.3.0` | March 28, 2024     | [v3.3.0](https://discuss.localstack.cloud/t/localstack-release-v3-3-0/828)                         |
 | `v3.2.0` | February 29, 2024  | [v3.2.0](https://discuss.localstack.cloud/t/localstack-release-v3-2-0/782/)                        |
 | `v3.1.0` | January 25, 2024   | [v3.1.0](https://discuss.localstack.cloud/t/localstack-release-v3-1-0/713/)                        |

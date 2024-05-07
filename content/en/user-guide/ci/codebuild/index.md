@@ -272,7 +272,7 @@ phases:
       ...
 ```
 
-#### Ephemeral Instances (Beta)
+#### Ephemeral Instances (Preview)
 ```yml
 ...
 phases:

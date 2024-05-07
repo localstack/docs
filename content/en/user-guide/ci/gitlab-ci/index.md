@@ -161,7 +161,7 @@ job:
 ```
 Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
 
-#### Ephemeral Instance (Beta)
+#### Ephemeral Instance (Preview)
 
 ```yaml
 ...

@@ -39,7 +39,7 @@ $ localstack extensions --help
 
 Usage: localstack extensions [OPTIONS] COMMAND [ARGS]...
 
-Manage LocalStack extensions (beta)
+Manage LocalStack extensions (preview)
 
 Options:
 -v, --verbose  Print more output
