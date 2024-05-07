@@ -28,6 +28,9 @@ Disclaimer: Features under development (i.e., labelled as preview/beta, experime
 
 ## Official Releases
 
+LocalStack follows [Semantic Versioning](https://semver.org/) except for [AWS parity](https://localstack.cloud/blog/2022-08-04-parity-explained) fixes,
+which can be released as patch version because we are committed to make LocalStack behave the same way AWS does.
+
 | Version  | Release Date       | Release Notes                                                                                      |
 |----------|--------------------|----------------------------------------------------------------------------------------------------|
 | `v3.4.0` | April 25, 2024     | [v3.4.0](https://discuss.localstack.cloud/t/localstack-release-v3-4-0/871)                         |
