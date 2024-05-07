@@ -189,7 +189,7 @@ Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.
 
 ## Device Shadows
 
-LocalStack supports unnamed (classic) device shadows.
+LocalStack supports both unnamed (classic) and named device shadows.
 
 You can use AWS CLI and [MQTT topics](https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html) to get, update or delete device shadow state information.
 
