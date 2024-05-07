@@ -15,6 +15,17 @@ If you are looking for information about nightly releases, preview features, or 
 The changelog is updated with every release.
 Updates that affect only LocalStack Web Application or features in preview or limited release may not be reflected.
 
+## Features under Development
+
+LocalStack uses the following terminology to communicate features under development:
+
+* **Preview** refers to a feature under development that usually evolves into becoming a stable feature.
+  We encourage you to try out these features and report [bugs](https://github.com/localstack/localstack/issues/new/choose), missing functionality, or general feedback.
+* **Experimental** refers to a feature prototype that demonstrates initial feasibility and usually comes with many limitations.
+  Please share your feedback to shape such features and express your interest to get them prioritized.
+
+Disclaimer: Features under development (i.e., labelled as preview/beta, experimental/alpha, or similar terms) are subject to changes (e.g., behavior, pricing tiers) or even complete removal.
+
 ## Official Releases
 
 | Version  | Release Date       | Release Notes                                                                                      |
