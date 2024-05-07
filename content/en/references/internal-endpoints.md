@@ -41,9 +41,10 @@ The API path for the AWS internal resources is `/_aws`. The following endpoints 
 
 | Endpoint                               | Description                                               |
 |----------------------------------------|-----------------------------------------------------------|
+| `/_aws/lambda/runtimes`                | List Lambda runtimes. See [Lambda – Special Tools]({{< ref "lambda/#special-tools" >}}) |
 | `/_aws/sqs/messages`                   | Access all messages within a SQS queue                    |
 | `/_aws/sns/platform-endpoint-messages` | Access and delete all the published SNS platform messages |
 | `/_aws/ses`                            | Access and delete all the sent SES emails                 |
 | `/_aws/cloudwatch/metrics/raw`         | Access all the raw CloudWatch metrics                     |
-| `_aws/cognito-idp`                     | Access the local Cognito login form                       |
-| `/_aws/dynamodb/expired`               | Trigger the DynamoDB TTL worker at convenience                      |
+| `/_aws/cognito-idp`                    | Access the local Cognito login form                       |
+| `/_aws/dynamodb/expired`               | Trigger the DynamoDB TTL worker at convenience            |
