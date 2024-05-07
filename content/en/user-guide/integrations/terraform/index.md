@@ -492,6 +492,47 @@ less common or more advanced commands.
 </disable-copy>
 {{< /command >}}
 
+## Terragrunt
+
+Terragrunt is an open-source wrapper for Terraform that provides extra tools for keeping your configurations DRY, working with multiple Terraform modules, and managing remote state. You can use Terragrunt with LocalStack to create and manage your AWS resources with your pre-existing Terraform configurations.
+
+### Configuration
+
+A sample `terragrunt.hcl` configuration file to use with LocalStack is shown below:
+
+```hcl
+generate "provider" {
+  path = "provider.tf"
+  if_exists = "overwrite_terragrunt"
+  contents = <<EOF
+provider "aws" {
+  access_key                  = "test"
+  secret_key                  = "test"
+  region                      = "us-east-1"
+  s3_use_path_style           = false
+  skip_credentials_validation = true
+  skip_metadata_api_check     = true
+  skip_requesting_account_id  = true
+
+  endpoints {
+    apigateway     = "http://localhost:4566"
+    dynamodb       = "http://localhost:4566"
+    iam            = "http://localhost:4566"
+    kinesis        = "http://localhost:4566"
+    lambda         = "http://localhost:4566"
+    s3             = "http://s3.localhost.localstack.cloud:4566"
+    ses            = "http://localhost:4566"
+    sns            = "http://localhost:4566"
+    sqs            = "http://localhost:4566"
+    sts            = "http://localhost:4566"
+  }
+}
+EOF
+}
+```
+
+You can add more service endpoints to the above configuration as needed, and point them to LocalStack (`http://localhost:4566`).
+
 ## Examples
 
 - [Serverless Container-based APIs with Amazon ECS & API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
