@@ -130,7 +130,18 @@ LocalStack supports the following [sources](https://docs.aws.amazon.com/eventbri
 Please create a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose) if you miss support for
 Amazon MQ broker,
 Amazon MSK stream,
-or Apache Kafka stream.      
+or Apache Kafka stream.
+
+## Supported enrichments
+
+LocalStack supports the following [enrichments](https://docs.aws.amazon.com/eventbridge/latest/userguide/pipes-enrichment.html) for Pipes:
+
+* Lambda function
+
+Please create a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose) if you miss support for
+API destination,
+Amazon API Gateway,
+or Step Functions state machine
 
 ## Supported targets
 
@@ -156,13 +167,22 @@ Redshift cluster data API queries,
 SageMaker Pipeline,
 or Step Functions state machine: Express workflows (SYNC or ASYNC).
 
+## Supported log destinations
+
+LocalStack supports the following [log destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html) for detailed Pipes logging: 
+
+* CloudWatch Logs
+
+Please create a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose) if you miss support for
+Firehose stream logs,
+or Amazon S3 logs.
+
 ## Limitations
 
 The EventBridge Pipes implementation in LocalStack is currently in preview stage and has the following limitations:
 
 * Lack of input transformers.
-* Absence of failure handling mechanisms.
-* No provision for handling partial batch failures.
-* Batch handling may have parity issues.
-* Lack of concurrency support, resulting in slower processing of numerous events.
-* Lack of lifecycle management for pipe states, such as inadequate locking and state transition testing.
+* Lack of concurrency support (i.e., ParallelizationFactor), resulting in slower processing in high-throughput scenarios.
+* Lack of lifecycle management for pipe states (i.e., missing tests for state transitions).
+* Lack of re-sharding support when polling from Kinesis and DynamoDB streams.
+* Batch handling behavior may have parity issues (e.g., batch flushing rules by size, length, time, etc. are not implemented).
