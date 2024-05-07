@@ -10544,6 +10544,15 @@ LocalStack now supports a new experimental event rule engine for &lt;a href="htt
 Amazon MQ broker,
 Amazon MSK stream,
 or Apache Kafka stream.&lt;/p>
+&lt;h2 id="supported-enrichments">Supported enrichments&lt;/h2>
+&lt;p>LocalStack supports the following &lt;a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/pipes-enrichment.html">enrichments&lt;/a> for Pipes:&lt;/p>
+&lt;ul>
+&lt;li>Lambda function&lt;/li>
+&lt;/ul>
+&lt;p>Please create a feature request on &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub&lt;/a> if you miss support for
+API destination,
+Amazon API Gateway,
+or Step Functions state machine&lt;/p>
 &lt;h2 id="supported-targets">Supported targets&lt;/h2>
 &lt;p>LocalStack supports the following &lt;a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html">targets&lt;/a> for Pipes:&lt;/p>
 &lt;ul>
@@ -10569,15 +10578,22 @@ Inspector assessment template,
 Redshift cluster data API queries,
 SageMaker Pipeline,
 or Step Functions state machine: Express workflows (SYNC or ASYNC).&lt;/p>
+&lt;h2 id="supported-log-destinations">Supported log destinations&lt;/h2>
+&lt;p>LocalStack supports the following &lt;a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html">log destinations&lt;/a> for detailed Pipes logging:&lt;/p>
+&lt;ul>
+&lt;li>CloudWatch Logs&lt;/li>
+&lt;/ul>
+&lt;p>Please create a feature request on &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub&lt;/a> if you miss support for
+Firehose stream logs,
+or Amazon S3 logs.&lt;/p>
 &lt;h2 id="limitations">Limitations&lt;/h2>
 &lt;p>The EventBridge Pipes implementation in LocalStack is currently in preview stage and has the following limitations:&lt;/p>
 &lt;ul>
 &lt;li>Lack of input transformers.&lt;/li>
-&lt;li>Absence of failure handling mechanisms.&lt;/li>
-&lt;li>No provision for handling partial batch failures.&lt;/li>
-&lt;li>Batch handling may have parity issues.&lt;/li>
-&lt;li>Lack of concurrency support, resulting in slower processing of numerous events.&lt;/li>
-&lt;li>Lack of lifecycle management for pipe states, such as inadequate locking and state transition testing.&lt;/li>
+&lt;li>Lack of concurrency support (i.e., ParallelizationFactor), resulting in slower processing in high-throughput scenarios.&lt;/li>
+&lt;li>Lack of lifecycle management for pipe states (i.e., missing tests for state transitions).&lt;/li>
+&lt;li>Lack of re-sharding support when polling from Kinesis and DynamoDB streams.&lt;/li>
+&lt;li>Batch handling behavior may have parity issues (e.g., batch flushing rules by size, length, time, etc. are not implemented).&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: Fault Injection Simulator (FIS)</title><link>/user-guide/aws/fis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/fis/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Fault Injection Simulator (FIS) is a service provided by Amazon Web Services (AWS) that enables you to test the resilience of your applications and infrastructure by injecting faults and failures into your AWS resources.
