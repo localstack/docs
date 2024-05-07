@@ -41,7 +41,7 @@ The API path for the AWS internal resources is `/_aws`. The following endpoints 
 
 | Endpoint                               | Description                                               |
 |----------------------------------------|-----------------------------------------------------------|
-| `/_aws/lambda/runtimes`                | List Lambda runtimes. See [Lambda – Special Tools]({{< ref "lambda" >}}) |
+| `/_aws/lambda/runtimes`                | List Lambda runtimes. See TODO |
 | `/_aws/sqs/messages`                   | Access all messages within a SQS queue                    |
 | `/_aws/sns/platform-endpoint-messages` | Access and delete all the published SNS platform messages |
 | `/_aws/ses`                            | Access and delete all the sent SES emails                 |
