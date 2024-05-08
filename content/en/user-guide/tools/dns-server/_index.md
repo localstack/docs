@@ -68,7 +68,6 @@ DNS_ADDRESS=0
 We do not recommend disabling the DNS server since this disables resolving `localhost.localstack.cloud` to the LocalStack container.
 {{< / alert >}}
 
-This option is primarily used by [LocalStack developers]({{< ref "contributing/development-environment-setup" >}}) in host mode because binding port 53 requires root privileges and port 53 might be occupied.
 
 ### LocalStack endpoints
 
