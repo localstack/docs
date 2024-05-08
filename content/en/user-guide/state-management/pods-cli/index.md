@@ -317,7 +317,7 @@ The `state` group offers two commands to export and import the state of the Loca
 <disable-copy>
 Usage: state [OPTIONS] COMMAND [ARGS]...
 
-  (Beta) Manage and manipulate the localstack state.
+  (Preview) Manage and manipulate the localstack state.
 
   The state command group allows you to interact with LocalStack's state
   backend.

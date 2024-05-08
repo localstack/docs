@@ -354,7 +354,7 @@ workflows:
       ...
 ```
 
-#### Ephemeral Instance (Beta)
+#### Ephemeral Instance (Preview)
 Find out more about [Ephemeral Instances](/user-guide/cloud-sandbox/).
 
 ##### Same job 

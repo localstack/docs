@@ -130,7 +130,7 @@ More information about state import and export [here](/user-guide/state-manageme
 
 Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
 
-#### Ephemeral Instance (Beta)
+#### Ephemeral Instance (Preview)
 
 Our Github Action contains the prebuilt functionality to spin up an ephemeral instance.
 

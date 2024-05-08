@@ -10,7 +10,8 @@ description: Create an Application Preview to deploy your application changes in
 Application Preview allows you to generate an preview environment from GitHub Pull Request (PR) builds. You can use Application Preview to temporarily deploy your AWS-powered application to a LocalStack Ephemeral Instance and preview your application changes. Currently, the Application Preview are only supported for GitHub repositories using GitHub Actions.
 
 {{< alert title="Note">}}
-Application Preview is currently in **private beta**. If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
+Application Preview is currently in **private preview**.
+If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
 {{< /alert >}}
 
 ## Getting started
