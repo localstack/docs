@@ -357,16 +357,6 @@ $ export NODE_PORT=31566
 $ k3d cluster create ls-cluster -p "4566:$NODE_PORT" --wait --timeout 5m
 {{< / command >}}
 
-### Import LocalStack image
-
-You can import the LocalStack image to the Kubernetes cluster by running the following command:
-
-{{< command >}}
-$ k3d image import docker.io/localstack/localstack-pro:latest \
-    --cluster ls-cluster \
-    --mode direct
-{{< / command >}}
-
 ### Install LocalStack in the cluster
 
 You can now install LocalStack in the Kubernetes cluster by using LocalStack's Helm chart. The following command installs LocalStack with the `kubernetes` executor for ECS and sets the `LOCALSTACK_AUTH_TOKEN` environment variable:
@@ -374,20 +364,13 @@ You can now install LocalStack in the Kubernetes cluster by using LocalStack's H
 {{< command >}}
 $ helm upgrade --install localstack localstack/localstack \
                --set debug=true \
-               --set image.pullPolicy=Never \
                --set image.repository=localstack/localstack-pro \
                --set image.tag=latest \
-               --set lambda.executor=kubernetes \
                --set readinessProbe.initialDelaySeconds=10 --set livenessProbe.initialDelaySeconds=10 \
                --set service.edgeService.nodePort=$NODE_PORT \
                --set "extraEnvVars[0].name=LOCALSTACK_AUTH_TOKEN" --set-string "extraEnvVars[0].value=${LOCALSTACK_AUTH_TOKEN}" \
                --set "extraEnvVars[1].name=ECS_TASK_EXECUTOR" --set-string "extraEnvVars[1].value=kubernetes" \
-               --wait --timeout 5m \
-               --debug || {
-                kubectl describe deployment/localstack
-                kubectl describe pods
-                exit 1
-            }
+               --wait --timeout 5m
 {{< / command >}}
 
 After a successful installation, you can access the LocalStack running the following command:
