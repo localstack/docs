@@ -99,7 +99,7 @@ $ pyenv global 3.9.0
 
 ### Setup the serverless image resizer
 
-This application enables serverless image resizing using [S3](https://docs.localstack.cloud/user-guide/aws/s3/), [SSM](https://docs.localstack.cloud/user-guide/aws/systems-manager/), [Lambda](https://docs.localstack.cloud/user-guide/aws/lambda/), [SNS](https://docs.localstack.cloud/user-guide/aws/sns/), and [SES](https://docs.localstack.cloud/user-guide/aws/ses/). A simple web interface allows users to upload and view resized images. A Lambda function generates S3 pre-signed URLs for direct uploads, while S3 bucket notifications trigger image resizing. Another Lambda function lists and provides pre-signed URLs for browser display. The application also handles Lambda failures through SNS and SES email notifications.
+This application enables serverless image resizing using [S3](https://docs.localstack.cloud/user-guide/aws/s3/), [SSM](https://docs.localstack.cloud/user-guide/aws/ssm/), [Lambda](https://docs.localstack.cloud/user-guide/aws/lambda/), [SNS](https://docs.localstack.cloud/user-guide/aws/sns/), and [SES](https://docs.localstack.cloud/user-guide/aws/ses/). A simple web interface allows users to upload and view resized images. A Lambda function generates S3 pre-signed URLs for direct uploads, while S3 bucket notifications trigger image resizing. Another Lambda function lists and provides pre-signed URLs for browser display. The application also handles Lambda failures through SNS and SES email notifications.
 
 The sample application uses AWS CLI and our `awslocal` wrapper to deploy the application to LocalStack. You can build and deploy the sample application on LocalStack by running the following command:
 
