@@ -9013,6 +9013,8 @@ You can also view the push commands to push an image to the repository by clicki
 &lt;p>Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service provided by Amazon Web Services (AWS).
 It allows you to run, stop, and manage Docker containers on a cluster.
 ECS eliminates the need for you to install, operate, and scale your own cluster management infrastructure.&lt;/p>
+&lt;p>LocalStack allows you to use the ECS APIs in your local environment to create &amp;amp; manage ECS clusters, tasks, and services.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_ecs/">API coverage page&lt;/a>, which provides information on the extent of ECS&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting Started&lt;/h2>
 &lt;p>This guide is designed for users new to ECS and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container using your preferred method.
@@ -9275,6 +9277,28 @@ Your file paths might differ, so check Docker&amp;rsquo;s documentation on &lt;a
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/var/run/docker.sock:/var/run/docker.sock&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">~/.docker/config.json:/config.json:ro&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Alternatively, you can download the image from the private registry before using it or employ an &lt;a href="https://docs.localstack.cloud/references/init-hooks/">Initialization Hook&lt;/a> to install the Docker client and use these credentials to download the image.&lt;/p>
+&lt;h2 id="running-ecs-on-kubernetes">Running ECS on Kubernetes&lt;/h2>
+&lt;p>LocalStack Enterprise image allows you to run ECS tasks on Kubernetes. The tasks are added to ELB load balancer target groups.
+You can do so by setting the &lt;code>ECS_TASK_EXECUTOR&lt;/code> environment variable to &lt;code>kubernetes&lt;/code> in the LocalStack container.&lt;/p>
+&lt;p>In this guide, you will learn how to run ECS tasks on Kubernetes by using &lt;a href="https://k3d.io/">`k3d&lt;/a>, a lightweight Kubernetes distribution.&lt;/p>
+&lt;h3 id="create-a-new-cluster">Create a new cluster&lt;/h3>
+&lt;p>After installing &lt;code>k3d&lt;/code>, you can run the following commands to create a Kubernetes cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export NODE_PORT=31566
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>k3d cluster create ls-cluster -p &amp;#34;4566:$NODE_PORT&amp;#34; --wait --timeout 5m&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="install-localstack-in-the-cluster">Install LocalStack in the cluster&lt;/h3>
+&lt;p>You can now install LocalStack in the Kubernetes cluster by using LocalStack&amp;rsquo;s Helm chart. The following command installs LocalStack with the &lt;code>kubernetes&lt;/code> executor for ECS and sets the &lt;code>LOCALSTACK_AUTH_TOKEN&lt;/code> environment variable:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>helm upgrade --install localstack localstack/localstack \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --set debug=true \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --set image.repository=localstack/localstack-pro \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --set image.tag=latest \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --set readinessProbe.initialDelaySeconds=10 --set livenessProbe.initialDelaySeconds=10 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --set service.edgeService.nodePort=$NODE_PORT \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --set &amp;#34;extraEnvVars[0].name=LOCALSTACK_AUTH_TOKEN&amp;#34; --set-string &amp;#34;extraEnvVars[0].value=${LOCALSTACK_AUTH_TOKEN}&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --set &amp;#34;extraEnvVars[1].name=ECS_TASK_EXECUTOR&amp;#34; --set-string &amp;#34;extraEnvVars[1].value=kubernetes&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --wait --timeout 5m&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After a successful installation, you can access the LocalStack running the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl http://localhost:4566/_localstack/health&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can now create ECS tasks on Kubernetes by following the steps in the &lt;a href="#getting-started">Getting Started&lt;/a> section.&lt;/p>
 &lt;h2 id="resource-browser">Resource Browser&lt;/h2>
 &lt;p>The LocalStack Web Application provides a Resource Browser for managing ECS clusters &amp;amp; task definitions.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resource Browser&lt;/strong> section, and then clicking on &lt;strong>ECS&lt;/strong> under the &lt;strong>Compute&lt;/strong> section.&lt;/p>
