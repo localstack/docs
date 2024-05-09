@@ -344,7 +344,8 @@ Alternatively, you can download the image from the private registry before using
 
 ## Running ECS on Kubernetes
 
-LocalStack Enterprise image allows you to run ECS tasks on Kubernetes. The tasks are added to ELB load balancer target groups. You can do so by setting the `ECS_TASK_EXECUTOR` environment variable to `kubernetes` in the LocalStack container.
+LocalStack Enterprise image allows you to run ECS tasks on Kubernetes. The tasks are added to ELB load balancer target groups.
+You can do so by setting the `ECS_TASK_EXECUTOR` environment variable to `kubernetes` in the LocalStack container.
 
 In this guide, you will learn how to run ECS tasks on Kubernetes by using [`k3d](https://k3d.io/), a lightweight Kubernetes distribution.
 
