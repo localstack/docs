@@ -3,7 +3,7 @@ title: "Chaos Engineering"
 linkTitle: "Chaos Engineering"
 weight: 11
 description: >
-  Chaos Engineering with LocalStack enables you to build resilient systems early on in the development phase.
+  Chaos Engineering with LocalStack enables you to build resilient systems early on
 cascade:
   type: docs
 ---
