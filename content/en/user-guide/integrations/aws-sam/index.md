@@ -63,7 +63,7 @@ The `samlocal` wrapper will package and deploy the application to LocalStack.
 
 ## Debugging on VS Code
 
-To debug your Lambda functions in VS Code while using the SAM CLI with LocalStack, set up a launch configuration in the `.vscode/launch.json` file.
+To debug your Lambda functions in VS Code while using the SAM CLI's `sam local` command alongside other services provided by LocalStack, set up a launch configuration in the `.vscode/launch.json` file.
 Insert the following settings into the file:
 
 
@@ -96,4 +96,4 @@ Insert the following settings into the file:
         }
 ```
 
-The `dockerNetwork` property is essential as it allows the LocalStack container to use the `samlocal invoke` commands within the same network as the LocalStack container itself. Adjust the Lambda function handler and environment variables as needed.
+The `dockerNetwork` property is essential as it allows the LocalStack container to use the `sam invoke` commands within the same network as the LocalStack container itself. Adjust the Lambda function handler and environment variables as needed.
