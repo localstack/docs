@@ -61,7 +61,8 @@ Enter the default values for the deployment, such as the stack name, region, and
 
 ## Debugging on VS Code
 
-To debug your Lambda functions in VS Code while using the SAM CLI with LocalStack, set up a launch configuration in the `.vscode/launch.json` file. Insert the following settings into the file:
+To debug your Lambda functions in VS Code while using the SAM CLI with LocalStack, set up a launch configuration in the `.vscode/launch.json` file.
+Insert the following settings into the file:
 
 
 ```json
