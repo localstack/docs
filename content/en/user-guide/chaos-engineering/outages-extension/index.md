@@ -1,12 +1,16 @@
 ---
 title: "Outages Extension"
 linkTitle: "Outages Extension"
-weight: 3 
 description: Use LocalStack Outages Extension to mimic service outages by testing your infrastructure's ability to deploy robustly and recover from unexpected events.
 tags: ["Enterprise plan"]
 ---
 
 ## Introduction
+
+{{< alert title="Warning" color="warning" >}}
+Outages Extension is no longer supported.
+Please use the [Outages]({{< ref "outages" >}}).
+{{< /alert >}}
 
 The [LocalStack Outages Extension](https://pypi.org/project/localstack-extension-outages/) allows you to mimic outages across any AWS region or service.
 By integrating the Outages Extension using the [LocalStack Extension mechanism](https://docs.localstack.cloud/user-guide/extensions/), you can assess 

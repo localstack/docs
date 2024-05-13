@@ -1,7 +1,6 @@
 ---
 title: "Chaos Engineering Dashboard"
 linkTitle: "Chaos Engineering Dashboard"
-weight: 3
 description: Effortlessly design, activate, and manage Fault Injection Service experiments
 tags: ["Pro image"]
 ---

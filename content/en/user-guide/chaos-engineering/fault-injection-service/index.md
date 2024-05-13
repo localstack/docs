@@ -1,7 +1,6 @@
 ---
 title: "Fault Injection Service"
 linkTitle: "Fault Injection Service"
-weight: 1
 description: Use Fault Injection Service to simulate faults in your infrastructure and test its fault tolerance
 tags: ["Pro image"]
 ---

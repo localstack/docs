@@ -1,7 +1,6 @@
 ---
 title: "Outages"
 linkTitle: "Outages"
-weight: 2 
 description: Mimic service outages and test your infrastructure's ability to recover from unexpected events
 tags: ["Enterprise plan"]
 ---
@@ -11,6 +10,13 @@ tags: ["Enterprise plan"]
 LocalStack Outages allows you to mimic outages across any AWS region or service.
 Intentionally triggering service outages and monitoring the system's response in situations where the infrastructure is compromised offers a powerful way to test.
 This strategy helps gauge the effectiveness of the system's deployment procedures and its resilience against infrastructure disruptions, which is a key element of chaos engineering.
+
+You can use LocalStack Outages to cause API failures for following or any combination thereof:
+- Service
+- Region
+- Operation
+
+You can also cause failures to occur non-deterministically and return a specific error.
 
 {{< alert title="Note">}}
 Outages is available as part of the LocalStack Enterprise plan.
@@ -32,7 +38,7 @@ Outages is configured using a REST API endpoint at `/_localstack/outages`.
 
 Configuration consists of an array of rules.
 Each rule specifies the conditions for a network outage to occur and its effects.
-Rules are evaluated sequentially.
+For every request to LocalStack, rules are evaluated sequentially until the first match.
 
 The schema for the configuration is as follows.
 
@@ -60,7 +66,7 @@ The endpoint allows the following operations:
 
 ## Examples
 
-To initiate an outage for specific service/region combinations, you can make a POST request as described below:
+To initiate an outage, make a POST request as follows:
 
 {{< command >}}
 curl --location --request POST 'http://localhost.localstack.cloud:4566/_localstack/outages' \
@@ -81,11 +87,11 @@ curl --location --request POST 'http://localhost.localstack.cloud:4566/_localsta
 ]'
 {{< /command >}}
 
-In the above example, S3 is affected in us-east-1 and ap-south-1, and Lambda is affected in all regions.
+In this example, S3 is affected in us-east-1 and ap-south-1, and Lambda is affected in all regions.
 All calls to these services in these regions will return a 503 Service Unavailable error.
 
 
-To demonstrate this works as expected, we can try to create an S3 bucket in us-east-1:
+To demonstrate this, try to create an S3 bucket in us-east-1:
 
 {{< command >}}
 $ awslocal s3 mb s3://test-bucket --region us-east-1
@@ -94,7 +100,7 @@ make_bucket failed: s3://test-bucket An error occurred (ServiceUnavailableExcept
 </disable-copy>
 {{< /command >}}
 
-However, the same operation, when run in eu-central-1 is unaffected:
+However, the same operation, when run in eu-central-1 will work as expected.
 
 {{< command >}}
 $ awslocal s3 mb s3://test-bucket --region eu-central-1
