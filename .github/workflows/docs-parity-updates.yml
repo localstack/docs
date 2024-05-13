@@ -84,6 +84,17 @@ jobs:
           cp -r target/updated_coverage/md/* content/en/references/coverage && rm -R target/updated_coverage/md/
           mv -f target/updated_coverage/data/*.json data/coverage
 
+      - name: Update Coverage Docs with Persistence Coverage
+        working-diretory: docs
+        run: |
+          cd scripts/persistence
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip3 install -r requirements.txt
+          python3 create_persistence_docs.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+
       - name: Check for changes
         id: check-for-changes
         working-directory: docs
