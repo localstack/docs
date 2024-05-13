@@ -49,7 +49,8 @@ After initializing the SAM project, enter the project directory and deploy the a
 $ samlocal deploy --guided
 {{< / command >}}
 
-Enter the default values for the deployment, such as the stack name, region, and confirm the changes. The `samlocal` wrapper will package and deploy the application to LocalStack.
+Enter the default values for the deployment, such as the stack name, region, and confirm the changes.
+The `samlocal` wrapper will package and deploy the application to LocalStack.
 
 ### Configuration
 
