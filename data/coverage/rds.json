@@ -1507,8 +1507,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -2499,6 +2499,20 @@
           }
         ]
       },
+      "DBClusterIdentifier, DatabaseName, Engine, EngineMode, MasterUserPassword, MasterUsername, ServerlessV2ScalingConfiguration": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_serverless_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_serverless_cluster.yml]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "DBClusterIdentifier, DatabaseName, Engine, EngineVersion, GlobalClusterIdentifier, MasterUserPassword, MasterUsername": {
         "ls_pro": [
           {
@@ -2650,8 +2664,8 @@
       "DBClusterIdentifier, DatabaseName, Engine, MasterUserPassword, MasterUsername": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
-            "test": "test_db_cluster_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_cluster.yml]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3555,6 +3569,20 @@
           }
         ]
       },
+      "AllocatedStorage, CopyTagsToSnapshot, DBInstanceClass, DBInstanceIdentifier, DBName, DBParameterGroupName, DBSubnetGroupName, Engine, EngineVersion, MasterUserPassword, MasterUsername, PubliclyAccessible, StorageType, VpcSecurityGroupIds": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_describe_endpoints",
+            "test": "test_describe_endpoints",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "AllocatedStorage, CopyTagsToSnapshot, DBInstanceClass, DBInstanceIdentifier, DBName, DBSubnetGroupName, Engine, EngineVersion, MasterUserPassword, MasterUsername, PubliclyAccessible, StorageType, VpcSecurityGroupIds": {
         "ls_pro": [
           {
@@ -3580,34 +3608,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          }
-        ]
-      },
-      "AllocatedStorage, DBInstanceClass, DBInstanceIdentifier, DBName, DBParameterGroupName, DBSubnetGroupName, Engine, EngineVersion, MasterUserPassword, MasterUsername, Port, PubliclyAccessible, VpcSecurityGroupIds": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_describe_endpoints",
-            "test": "test_describe_endpoints",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          }
-        ]
-      },
-      "AllocatedStorage, DBInstanceClass, DBInstanceIdentifier, DBName, DBParameterGroupName, DBSubnetGroupName, Engine, MasterUserPassword, MasterUsername, Port, PubliclyAccessible, VpcSecurityGroupIds": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_describe_endpoints",
-            "test": "test_describe_endpoints",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       },
@@ -4946,8 +4946,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
-            "test": "test_db_cluster_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_cluster.yml]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_serverless_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_serverless_cluster.yml]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5720,6 +5730,16 @@
       "DBInstanceIdentifier": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_table_rules_filter",
+            "test": "test_cdc_table_rules_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_rds_lambda",
             "test": "test_rds_lambda",
             "response": "200",
@@ -5830,6 +5850,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/redshift/test_redshift.py::TestRedshift::test_create_cluster",
+            "test": "test_create_cluster",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_rds_lambda",
             "test": "test_rds_lambda",
             "response": "400",
@@ -5852,6 +5882,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_multi_label",
             "test": "test_multi_label",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_postgres_extensions.py::TestRdsPostgresExtensions::test_postgis_extension[16]",
+            "test": "test_postgis_extension[16]",
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
@@ -6300,6 +6340,16 @@
       "DBParameterGroupName": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_table_rules_filter",
+            "test": "test_cdc_table_rules_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
             "test": "test_db_proxy",
             "response": "200",
@@ -6358,6 +6408,26 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_table_rules_filter",
+            "test": "test_cdc_table_rules_filter",
+            "response": "400",
+            "error": "InvalidDBParameterGroupStateFault",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_table_rules_filter",
+            "test": "test_cdc_table_rules_filter",
+            "response": "400",
+            "error": "InvalidDBParameterGroupStateFault",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
@@ -6421,6 +6491,16 @@
     "DeleteDBSubnetGroup": {
       "DBSubnetGroupName": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_mariadb_kinesis/test_dms.py::TestDmsScenario::test_cdc_table_rules_filter",
+            "test": "test_cdc_table_rules_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_rds_lambda",
             "test": "test_rds_lambda",
@@ -6898,8 +6978,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
-            "test": "test_db_cluster_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_cluster.yml]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_serverless_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_serverless_cluster.yml]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -7804,8 +7894,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
-            "test": "test_db_cluster_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_cluster.yml]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_serverless_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_serverless_cluster.yml]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8474,8 +8574,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
-            "test": "test_db_cluster_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_cluster.yml]",
+            "response": "404",
+            "error": "DBClusterNotFoundFault",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_serverless_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_serverless_cluster.yml]",
             "response": "404",
             "error": "DBClusterNotFoundFault",
             "snapshot_skipped": "",

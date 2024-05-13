@@ -340,8 +340,8 @@
     },
     {
       "UntagResource": {
-        "implemented": true,
-        "availability": "pro",
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
@@ -377,6 +377,20 @@
   ],
   "details": {
     "CreateAccessPoint": {
+      "ClientToken, FileSystemId, PosixUser, RootDirectory": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "ClientToken, FileSystemId, PosixUser, RootDirectory, Tags": {
         "ls_pro": [
           {
@@ -410,8 +424,8 @@
       "Backup, CreationToken, Encrypted, PerformanceMode, ProvisionedThroughputInMibps, ThroughputMode": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_url_output",
-            "test": "test_url_output",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
@@ -481,6 +495,30 @@
       }
     },
     "CreateMountTarget": {
+      "FileSystemId, SecurityGroups, SubnetId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestDurableStorageSample::test_listener",
+            "test": "test_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "FileSystemId, SubnetId": {
         "ls_pro": [
           {
@@ -500,6 +538,16 @@
       "AccessPointId": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/efs/test_efs.py::TestEfsFileSystemCrud::test_access_point",
             "test": "test_access_point",
             "response": "204",
@@ -516,8 +564,8 @@
       "FileSystemId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_url_output",
-            "test": "test_url_output",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
             "response": "204",
             "error": "",
             "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
@@ -596,6 +644,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "409",
+            "error": "FileSystemInUse",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestDurableStorageSample::test_listener",
+            "test": "test_listener",
+            "response": "409",
+            "error": "FileSystemInUse",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/efs/test_efs.py::TestEfsFileSystemCrud::test_mount_target",
             "test": "test_mount_target",
             "response": "409",
@@ -612,6 +680,26 @@
       "MountTargetId": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestDurableStorageSample::test_listener",
+            "test": "test_listener",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/efs/test_efs.py::TestEfsFileSystemCrud::test_mount_target",
             "test": "test_mount_target",
             "response": "204",
@@ -627,6 +715,36 @@
     "DescribeAccessPoints": {
       "AccessPointId": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "404",
+            "error": "AccessPointNotFound",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/efs/test_efs.py::TestEfsFileSystemCrud::test_access_point",
             "test": "test_access_point",
@@ -688,8 +806,8 @@
       "FileSystemId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_url_output",
-            "test": "test_url_output",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
@@ -828,6 +946,70 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          }
+        ]
+      },
+      "MountTargetId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestDurableStorageSample::test_listener",
+            "test": "test_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
+            "test": "test_file_system_deployment",
+            "response": "404",
+            "error": "MountTargetNotFound",
+            "snapshot_skipped": "['$..FileSystems..FileSystemProtection', '$..FileSystems..Name', '$..FileSystems..ProvisionedThroughputInMibps', '$..FileSystems..SizeInBytes.Timestamp', '$..FileSystems..SizeInBytes.Value', '$..FileSystems..SizeInBytes.ValueInArchive', '$..FileSystems..SizeInBytes.ValueInStandard', '$..FileSystems..Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestDurableStorageSample::test_listener",
+            "test": "test_listener",
+            "response": "404",
+            "error": "MountTargetNotFound",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestDurableStorageSample::test_listener",
+            "test": "test_listener",
+            "response": "404",
+            "error": "MountTargetNotFound",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
