@@ -36,7 +36,10 @@ $ samlocal init
 
 Select `1` to create a new SAM application using an AWS Quick Start template. The SAM CLI will ask you for the project name and the runtime for the Lambda function.
 
-For this example, select `1` for the Hello World example. Choose the Python runtime and `zip` for the packaging type. Optionally, you can enable X-Ray tracing, monitoring, and structured JSON logging. Then, enter the project name and press `Enter`.
+For this example, select `1` for the Hello World example.
+Choose the Python runtime and `zip` for the packaging type.
+Optionally, you can enable X-Ray tracing, monitoring, and structured JSON logging.
+Then, enter the project name and press `Enter`.
 
 ### Deploy the SAM application
 
