@@ -16,7 +16,8 @@ This guide explains how to set up local AWS resources using the `samlocal` wrapp
 
 ## `samlocal` wrapper script
 
-`samlocal` is a wrapper for the `sam` command line interface, facilitating the use of SAM framework with LocalStack. When executing deployment commands like `samlocal ["build", "deploy", "validate", "package"]`, the script configures the SAM settings for LocalStack and runs the specified SAM command.
+`samlocal` is a wrapper for the `sam` command line interface, facilitating the use of SAM framework with LocalStack.
+When executing deployment commands like `samlocal ["build", "deploy", "validate", "package"]`, the script configures the SAM settings for LocalStack and runs the specified SAM command.
 
 ### Install the `samlocal` wrapper script
 
