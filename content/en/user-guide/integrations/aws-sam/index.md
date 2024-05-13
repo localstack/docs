@@ -56,8 +56,8 @@ Enter the default values for the deployment, such as the stack name, region, and
 | Environment Variable   | Default value                                    | Description                                                             |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------|
 | AWS_ENDPOINT_URL       | `http://localhost.localstack.cloud:4566`        | URL at which the `boto3` client can reach LocalStack                   |
-| EDGE_PORT              | `4566` (Deprecated)                              | Port number under which the LocalStack edge service is available        |
-| LOCALSTACK_HOSTNAME    | `localhost` (Deprecated)                         | Host under which the LocalStack edge service is available
+| EDGE_PORT (Deprecated)              | `4566`                              | Port number under which the LocalStack edge service is available        |
+| LOCALSTACK_HOSTNAME (Deprecated)     | `localhost`                         | Host under which the LocalStack edge service is available
 
 ## Debugging on VS Code
 
