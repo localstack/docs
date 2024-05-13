@@ -352,23 +352,87 @@ You can execute any &lt;code>copilot&lt;/code> command as &lt;code>copilotlocal&
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>copilotlocal init
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For more information about how to use the AWS Copilot CLI, checkout the &lt;a href="https://aws.github.io/copilot-cli/docs/overview/">copilot documentation&lt;/a>.
 Just remember to replace &lt;code>copilot&lt;/code> with &lt;code>copilotlocal&lt;/code>.&lt;/p></description></item><item><title>User-Guide: AWS Serverless Application Model (SAM)</title><link>/user-guide/integrations/aws-sam/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/aws-sam/</guid><description>
-&lt;p>&lt;img src="aws-sam-logo.jpg" alt="AWS SAM">&lt;/p>
-&lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The AWS Serverless Application Model (SAM) is a framework on top of CloudFormation to quickly develop Cloud Applications with a focus on serverless services such as S3, Lambda, API Gateway, Step Functions and more.&lt;/p>
-&lt;h2 id="aws-sam-cli-for-localstack">AWS SAM CLI for LocalStack&lt;/h2>
-&lt;p>To deploy SAM applications on &lt;a href="https://github.com/localstack/localstack">LocalStack&lt;/a> you can use &lt;a href="https://github.com/localstack/aws-sam-cli-local">samlocal&lt;/a>, a wrapper for the &lt;a href="https://github.com/aws/aws-sam-cli">AWS SAM CLI&lt;/a>.&lt;/p>
-&lt;h3 id="installation">Installation&lt;/h3>
-&lt;p>Simply use &lt;code>pip&lt;/code> to install &lt;code>samlocal&lt;/code> as a Python library on your machine:&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>The AWS Serverless Application Model (SAM) is an open-source framework for developing serverless applications. It uses a simplified syntax to define functions, APIs, databases, and event source mappings.
+When you deploy, SAM converts its syntax into AWS CloudFormation syntax, helping you create serverless applications more quickly.&lt;/p>
+&lt;p>LocalStack can work with SAM using the AWS SAM CLI for LocalStack. This CLI comes in the form of a &lt;code>samlocal&lt;/code> wrapper script, which lets you deploy SAM applications on LocalStack.
+This guide explains how to set up local AWS resources using the &lt;code>samlocal&lt;/code> wrapper script.&lt;/p>
+&lt;h2 id="samlocal-wrapper-script">&lt;code>samlocal&lt;/code> wrapper script&lt;/h2>
+&lt;p>&lt;code>samlocal&lt;/code> is a wrapper for the &lt;code>sam&lt;/code> command line interface, facilitating the use of SAM framework with LocalStack.
+When executing deployment commands like &lt;code>samlocal [&amp;quot;build&amp;quot;, &amp;quot;deploy&amp;quot;, &amp;quot;validate&amp;quot;, &amp;quot;package&amp;quot;]&lt;/code>, the script configures the SAM settings for LocalStack and runs the specified SAM command.&lt;/p>
+&lt;h3 id="install-the-samlocal-wrapper-script">Install the &lt;code>samlocal&lt;/code> wrapper script&lt;/h3>
+&lt;p>You can install the &lt;code>samlocal&lt;/code> wrapper script by running the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install aws-sam-cli-local&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="usage">Usage&lt;/h3>
-&lt;p>The &lt;code>samlocal&lt;/code> command has the exact same usage as the underlying &lt;code>sam&lt;/code> command. The main difference is that for commands like &lt;code>samlocal deploy&lt;/code> the operations will be executed against the LocalStack endpoints (&lt;code>http://localhost:4566&lt;/code> by default) instead of real AWS endpoints.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>samlocal --help&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Start using &lt;code>samlocal&lt;/code> by deploying a &lt;a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html">Hello World Application&lt;/a>.
-Please make sure to replace all &lt;code>sam&lt;/code> calls with &lt;code>samlocal&lt;/code> when following the AWS tutorial.&lt;/p>
+&lt;h3 id="create-a-new-sam-project">Create a new SAM project&lt;/h3>
+&lt;p>You can initialize a new SAM project using the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>samlocal init&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Select &lt;code>1&lt;/code> to create a new SAM application using an AWS Quick Start template. The SAM CLI will ask you for the project name and the runtime for the Lambda function.&lt;/p>
+&lt;p>For this example, select &lt;code>1&lt;/code> for the Hello World example.
+Choose the Python runtime and &lt;code>zip&lt;/code> for the packaging type.
+Optionally, you can enable X-Ray tracing, monitoring, and structured JSON logging.
+Then, enter the project name and press &lt;code>Enter&lt;/code>.&lt;/p>
+&lt;h3 id="deploy-the-sam-application">Deploy the SAM application&lt;/h3>
+&lt;p>After initializing the SAM project, enter the project directory and deploy the application using the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>samlocal deploy --guided&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Enter the default values for the deployment, such as the stack name, region, and confirm the changes.
+The &lt;code>samlocal&lt;/code> wrapper will package and deploy the application to LocalStack.&lt;/p>
 &lt;h3 id="configuration">Configuration&lt;/h3>
-&lt;ul>
-&lt;li>&lt;code>AWS_ENDPOINT_URL&lt;/code>: The endpoint URL (i.e., protocol, host, and port) to connect to LocalStack (default: &lt;code>http://localhost:4566&lt;/code>)&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Cloud Custodian</title><link>/user-guide/integrations/cloud-custodian/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/cloud-custodian/</guid><description>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Environment Variable&lt;/th>
+&lt;th>Default value&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>AWS_ENDPOINT_URL&lt;/td>
+&lt;td>&lt;code>http://localhost.localstack.cloud:4566&lt;/code>&lt;/td>
+&lt;td>URL at which the &lt;code>boto3&lt;/code> client can reach LocalStack&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>EDGE_PORT (Deprecated)&lt;/td>
+&lt;td>&lt;code>4566&lt;/code>&lt;/td>
+&lt;td>Port number under which the LocalStack edge service is available&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>LOCALSTACK_HOSTNAME (Deprecated)&lt;/td>
+&lt;td>&lt;code>localhost&lt;/code>&lt;/td>
+&lt;td>Host under which the LocalStack edge service is available&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="debugging-on-vs-code">Debugging on VS Code&lt;/h2>
+&lt;p>To debug your Lambda functions in VS Code while using the SAM CLI&amp;rsquo;s &lt;code>sam local&lt;/code> command alongside other services provided by LocalStack, set up a launch configuration in the &lt;code>.vscode/launch.json&lt;/code> file.
+Insert the following settings into the file:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws-sam&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;request&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;direct-invoke&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Job dispatcher lambda&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;invokeTarget&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;target&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;code&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;projectRoot&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;${workspaceFolder}&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;lambdaHandler&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;lambda/lambda.handler&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;lambda&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;runtime&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;python3.8&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;payload&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;environmentVariables&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ENDPOINT_URL&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localstack:4566/&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;S3_ENDPOINT_URL&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://s3.localhost.localstack.cloud:4566/&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;AWS_ACCESS_KEY_ID&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;AWS_SECRET_ACCESS_KEY&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;AWS_SESSION_TOKEN&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;AWS_REGION&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;MAIN_DOCKER_NETWORK&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;localstack-network&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;sam&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;dockerNetwork&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;localstack-network&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The &lt;code>dockerNetwork&lt;/code> property is essential as it allows the LocalStack container to use the &lt;code>sam invoke&lt;/code> commands within the same network as the LocalStack container itself. Adjust the Lambda function handler and environment variables as needed.&lt;/p></description></item><item><title>User-Guide: Cloud Custodian</title><link>/user-guide/integrations/cloud-custodian/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/cloud-custodian/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Cloud Custodian is an open-source rules engine and cloud management tool designed to help organizations maintain security and compliance across their cloud environments. Cloud Custodian&amp;rsquo;s YAML DSL allows definition of rules to filter and tag resources, and then apply actions to those resources.&lt;/p>
 &lt;p>Cloud Custodian can be used to manage local AWS resources in LocalStack, resembling the live AWS environment, allowing you to test and validate your security policies locally. You can use Cloud Custodian with LocalStack by just specifying the Cloud Custodian package to use the LocalStack profile configured with your AWS CLI.&lt;/p>
