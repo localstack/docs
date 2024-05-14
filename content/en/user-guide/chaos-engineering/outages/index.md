@@ -144,3 +144,12 @@ curl --location --request DELETE 'http://localhost.localstack.cloud:4566/_locals
 {{</ command >}}
 
 The rule to be removed must be exactly the same as in the existing configuration.
+
+
+## Limitations
+
+Outages currently do not affect internal cross-service communication.
+For example, if you trigger an outage for Kinesis, its integration with DynamoDB Streams will remain unaffected.
+
+Outages also do not affect emulated resources.
+For example, if you launch an EC2 instance and then start an outage for EC2, the instance will remain accessible.
