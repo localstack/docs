@@ -3,12 +3,39 @@ from io import BytesIO
 import json
 import notion_client as n_client
 import frontmatter
+from frontmatter.default_handlers import YAMLHandler, DEFAULT_POST_TEMPLATE
 from notion.catalog import PersistenceCatalog
 
 token = os.getenv("NOTION_TOKEN")
 markdown_path = "../../content/en/user-guide/aws"
 persistence_path = "../../data/persistence"
 persistence_data = os.path.join(persistence_path, "coverage.json")
+
+
+class CustomYAMLHandler(YAMLHandler):
+    def export(self, metadata: dict[str, object], **kwargs: object) -> str:
+            """
+            Settings sort keys as false to prevent sorting existing elements.
+            """
+            kwargs.setdefault("sort_keys", False)
+            return super().export(metadata, **kwargs)
+
+    def format(self, post, **kwargs):
+        """
+        Simple customization to avoid removing the last line.
+        """
+        start_delimiter = kwargs.pop("start_delimiter", self.START_DELIMITER)
+        end_delimiter = kwargs.pop("end_delimiter", self.END_DELIMITER)
+
+        metadata = self.export(post.metadata, **kwargs)
+
+        return DEFAULT_POST_TEMPLATE.format(
+            metadata=metadata,
+            content=post.content,
+            start_delimiter=start_delimiter,
+            end_delimiter=end_delimiter,
+        ).lstrip()
+
 
 def collect_status() -> dict:
     """Reads the catalog on Notion and returns the status of persistence for each service"""
@@ -49,7 +76,7 @@ def update_frontmatter():
             continue
          
         # open the markdown file and read the content
-        content = frontmatter.load(_path)
+        content = frontmatter.load(_path, handler=CustomYAMLHandler())
         desc = content.metadata["description"]
         content.metadata["description"] = desc.strip()
         content.metadata["persistence"] = values.get("support", "unknown")
