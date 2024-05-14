@@ -46,7 +46,7 @@ pipelines:
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             ./aws/install
-          - docker run -d --rm -p 4566:4566 -p 4510-4559:4510-4559 -e DOCKER_SOCK=tcp://${BITBUCKET_DOCKER_HOST_INTERNAL}:2375 -e DOCKER_HOST=tcp://${BITBUCKET_DOCKER_HOST_INTERNAL}:2375 --name localstack-main localstack/localstack-pro
+          - docker run -d --rm -p 4566:4566 -p 4510-4559:4510-4559 -e DOCKER_SOCK=tcp://${BITBUCKET_DOCKER_HOST_INTERNAL}:2375 -e DOCKER_HOST=tcp://${BITBUCKET_DOCKER_HOST_INTERNAL}:2375 --name localstack-main localstack/localstack
           - localstack wait -t 60
           - awslocal s3 mb s3://test-bucket
           - awslocal s3 ls
