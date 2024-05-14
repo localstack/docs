@@ -1,0 +1,64 @@
+name: Update Persistence Docs
+on:
+  schedule:
+    - cron: 0 5 * * MON
+  workflow_dispatch:
+    inputs:
+        targetBranch:
+          required: false
+          type: string
+          default: 'main'
+
+jobs:
+  update-persistence-docs:
+    name: Update Parity Docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout docs
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: docs
+          ref: ${{ github.event.inputs.targetBranch || 'main' }}
+
+      - name: Set up Python 3.11
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+ 
+      - name: Update Coverage Docs with Persistence Coverage
+        working-directory: docs
+        run: |
+          cd scripts/persistence
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip3 install -r requirements.txt
+          python3 create_persistence_docs.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+
+      - name: Check for changes
+        id: check-for-changes
+        working-directory: docs
+        run: |
+          # Check if there are changed files and store the result in resources/diff-check.log
+          # Check against the PR branch if it exists, otherwise against the main
+          # Store the result in resources/diff-check.log and store the diff count in the GitHub Action output "diff-count"
+          mkdir -p resources
+          (git diff --name-only origin/persistence-auto-updates data/persistence/ 2>/dev/null || git diff --name-only origin/${{ github.event.inputs.targetBranch || 'main' }} data/persistence/ 2>/dev/null) | tee -a resources/diff-check.log
+          echo "diff-count=$(cat resources/diff-check.log | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v6
+        if: ${{ success() && steps.check-for-changes.outputs.diff-count != '0' && steps.check-for-changes.outputs.diff-count != '' }}
+        with:
+          path: docs
+          title: "Update Persistence Docs"
+          body: "Updating Persistence Coverage Documentation based on the [Persistence Catalog](https://www.notion.so/localstack/Persistence-Catalog-a9e0e5cb89df4784adb4a1ed377b3c23) on Notion."
+          branch: "persistence-auto-updates"
+          author: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
+          committer: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
+          commit-message: "update generated persistence docs"
+          token: ${{ secrets.PRO_ACCESS_TOKEN }}
+          reviewers: giograno
