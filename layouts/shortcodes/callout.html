@@ -19,10 +19,12 @@ If TITLE is set to any other value the the above, the default is used.
 */}}
 
 
-{{ $titleColour := dict "warning" "warning" "note" "primary" "tip" "success" }}
-{{ $title := .Get 0 }}
-{{ if not (collections.IsSet $titleColour $title) }}
-{{ $title = "note" }}
+{{ $titleColour := dict "warning" "danger" "note" "primary" "tip" "success" }}
+{{ $title := "note" }}
+{{ with .Get 0 }}
+{{ if collections.IsSet $titleColour . }}
+{{ $title = . }}
+{{ end }}
 {{ end }}
 {{ $colour := index $titleColour (strings.ToLower $title) }}
 
