@@ -8,7 +8,8 @@ from notion_objects import (
     Status,
     Database,
     Checkbox,
-    PeopleProperty
+    PeopleProperty,
+    Text
 )
 
 DEFAULT_CATALOG_DATABASE_ID = "3c0f615e7ffc4ae2a034f1ed9c444bd2"
@@ -20,6 +21,7 @@ class PersistenceServiceItem(Page):
     has_test = Checkbox("Persistence Tests")
     primary_owner = PeopleProperty("Primary Owner")
     secondary_owner = PeopleProperty("Secondary Owner(s)")
+    notes = Text("Notes about persistence") 
 
 
 class PersistenceCatalog(Database[PersistenceServiceItem]):

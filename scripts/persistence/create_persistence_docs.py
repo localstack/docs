@@ -14,11 +14,11 @@ persistence_data = os.path.join(persistence_path, "coverage.json")
 
 class CustomYAMLHandler(YAMLHandler):
     def export(self, metadata: dict[str, object], **kwargs: object) -> str:
-            """
-            Settings sort keys as false to prevent sorting existing elements.
-            """
-            kwargs.setdefault("sort_keys", False)
-            return super().export(metadata, **kwargs)
+        """
+        Settings sort keys as false to prevent sorting existing elements.
+        """
+        kwargs.setdefault("sort_keys", False)
+        return super().export(metadata, **kwargs)
 
     def format(self, post, **kwargs):
         """
@@ -48,7 +48,9 @@ def collect_status() -> dict:
         status = item.status.lower()
         statuses[service] = {
             "support": status,
-            "test_suite": item.has_test or False
+            "test_suite": item.has_test or False,
+            # we collect notes only for the services with some limitations
+            "notes": item.notes if "limit" in status else "" 
         }
     return dict(sorted(statuses.items()))
 
