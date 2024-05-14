@@ -70,6 +70,9 @@ def update_frontmatter():
         content = f.read()
     statuses = json.loads(content)
     for service, values in statuses.items():
+        # special case for cognito:
+        if "cognito" in service:
+            service = "cognito"
         _path = os.path.join(markdown_path, service, "index.md")
         if not os.path.exists(_path):
             print(f" Can't find index.md file for {service}")
