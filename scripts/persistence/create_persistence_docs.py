@@ -39,6 +39,8 @@ class CustomYAMLHandler(YAMLHandler):
 
 def collect_status() -> dict:
     """Reads the catalog on Notion and returns the status of persistence for each service"""
+    if not token:
+        print("Aborting, please provide a NOTION_TOKEN in the env") 
     notion_client = n_client.Client(auth=token)
     
     catalog_db = PersistenceCatalog(notion_client=notion_client)
@@ -55,22 +57,22 @@ def collect_status() -> dict:
     return dict(sorted(statuses.items()))
 
 
-def update_coverage_data():
-    if not token:
-        print("Aborting, please provide a NOTION_TOKEN in the env") 
-    statuses = collect_status()
+def update_coverage_data(statuses: dict):
     if not os.path.exists(persistence_path):
         os.mkdir(persistence_path)
     
+    # transform the statuses dict into a list
+    _statuses = []
+    for service, value in statuses.items():
+        value["service"] = service
+        _statuses.append(value)
+    
     with open(persistence_data, 'w') as f:
-        json.dump(statuses, f, indent=2)
+        json.dump(_statuses, f, indent=2)
     
     
-def update_frontmatter():
+def update_frontmatter(statuses: dict):
     """Updates the frontmatter of the service page in the user guide Markdown file"""
-    with open(persistence_data, 'r') as f:
-        content = f.read()
-    statuses = json.loads(content)
     for service, values in statuses.items():
         # special case for cognito:
         if "cognito" in service:
@@ -89,6 +91,8 @@ def update_frontmatter():
 
 
 if __name__ == "__main__":
-    update_coverage_data()
-    update_frontmatter()
+    data = collect_status()
+    update_frontmatter(statuses=data)
+    update_coverage_data(statuses=data)
+
 

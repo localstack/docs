@@ -1,0 +1,14 @@
+{{ $data := .Site.Data.persistence.coverage }}
+
+{{ range $data }}
+<tr>
+    <!-- Service -->
+    <td>{{ .service }}</td>
+    <!-- Supported -->
+    <td>{{ .support }}</td>
+    <!-- Persistence Test Suite -->
+    <td class="coverage-shadow-overlay-green">{{ if (.test_suite) }} ✔️ {{ end }}</td>
+    <!-- Details -->
+    <td>{{ .notes }}</td>
+</tr>
+{{ end }}
