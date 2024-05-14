@@ -31,9 +31,9 @@ $ export PULUMI_CONFIG_PASSPHRASE=lsdevtest
 $ export PULUMI_BACKEND_URL=file://`pwd`/myproj
 {{< / command >}}
 
-{{< alert title="Note" >}}
+{{< callout >}}
 For further options please consult the official documentation on available  [environment variables](https://www.pulumi.com/docs/cli/environment-variables/) and [local backend](https://www.pulumi.com/docs/concepts/state/#local-filesystem).
-{{< /alert >}}
+{{< /callout  >}}
 
 ### Install the `pulumilocal` wrapper script
 
@@ -62,9 +62,9 @@ $ mkdir myproj
 $ pulumilocal new aws-typescript -y -s lsdev --cwd myproj
 {{< / command >}}
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 The `--cwd` option is unnecessary if you're already in the project directory.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Deploy the Pulumi stack
 

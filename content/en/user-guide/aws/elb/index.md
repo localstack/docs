@@ -64,9 +64,10 @@ $ awslocal elbv2 register-targets --targets Id=127.0.0.1,Port=5678,AvailabilityZ
     --target-group-arn $targetGroup
 {{< /command >}}
 
-{{< alert title="Note">}}
-Note that in some cases the `targets` parameter `Id` can be the `Gateway` address of the docker container. You can find the gateway address by running `docker inspect <container_id>`.
-{{< /alert >}}
+{{< callout >}}
+Note that in some cases the `targets` parameter `Id` can be the `Gateway` address of the docker container.
+You can find the gateway address by running `docker inspect <container_id>`.
+{{< /callout >}}
 
 ### Create a listener and a rule
 

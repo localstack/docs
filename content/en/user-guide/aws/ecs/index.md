@@ -27,9 +27,9 @@ We will demonstrate how to create an ECS service using the AWS CLI
 
 ### Create a cluster
 
-{{< alert title="Note">}}
+{{< callout >}}
 By default, the **ECS Fargate** launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.
-{{< /alert >}}
+{{< /callout >}}
 
 ECS tasks and services run on a cluster.
 Execute the following command to create an ECS cluster named `mycluster`:

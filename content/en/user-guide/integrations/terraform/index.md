@@ -79,7 +79,7 @@ $ tflocal apply
 | `CUSTOMIZE_ACCESS_KEY`   | -                                | Enables you to override the static AWS Access Key ID |
 | `AWS_ACCESS_KEY_ID`      | `test` (`accountId`: 000000000000)   | AWS Access Key ID to use for multi-account setups |
 
-{{< alert title="Note" >}}
+{{< callout >}}
 While using `CUSTOMIZE_ACCESS_KEY`, following cases are taking precedence over each other from top to bottom:
 1.  If the `AWS_ACCESS_KEY_ID` environment variable is set.
 2.  If `access_key` is configured in the Terraform AWS provider.
@@ -87,7 +87,7 @@ While using `CUSTOMIZE_ACCESS_KEY`, following cases are taking precedence over e
 4.  If the `AWS_DEFAULT_PROFILE` environment variable is set and configured.
 5.  If credentials for the `default` profile are configured.
 6.  If none of the above settings are present, it falls back to using the default `AWS_ACCESS_KEY_ID` mock value.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Manual Configuration
 
@@ -137,9 +137,9 @@ Furthermore, it's necessary to configure the individual services to use LocalSta
   }
 ```
 
-{{< alert title="Note">}}
+{{< callout >}}
 If there are any difficulties resolving this DNS record, you can utilize `http://localhost:4566` as a fallback option in combination with setting `s3_use_path_style = true` in the provider. It's worth noting that the S3 service endpoint differs slightly from the other service endpoints due to AWS deprecating path-style based access for hosting buckets.
-{{< /alert >}}
+{{< /callout  >}}
 
 ### Final Configuration
 
@@ -209,7 +209,7 @@ provider "aws" {
 }
 ```
 
-{{< alert title="Note" >}}
+{{< callout >}}
 To heuristically detect whether your Terraform configuration should be deployed against LocalStack, you can use the following snippet:
 
 ```hcl
@@ -220,7 +220,7 @@ output "is_localstack" {
 ```
 
 It will detect whether the AWS account ID is `000000000000`, which is the default value for LocalStack. If you use a different account ID within LocalStack, you can customize the snippet accordingly.
-{{< /alert >}}
+{{< /callout >}}
 
 ## CDK for Terraform
 

@@ -79,9 +79,9 @@ Created bucket doc-example-bucket-b911f85f-4dd3-4668-a32e-3f69aa4e37dc.
 Your bucket's region is: us-east-2
 {{< /command >}}
 
-{{< alert title="Note">}}
+{{< callout >}}
 The endpoint we configure for the S3 and virtual host bucket is `http://s3.localhost.localstack.cloud`. In case of issues resolving the DNS record, we can fall back to `http://localhost:4566` in combination with the provider setting `force_path_style: true`. The S3 service endpoint differs slightly from the other service endpoints because AWS deprecates path-style-based access for hosting buckets.
-{{< /alert >}}
+{{< /callout >}}
 
 For alternative AWS services, you can use the following configuration:
 

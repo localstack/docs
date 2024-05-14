@@ -6,10 +6,10 @@ description: >
   Using LocalStack in multi-tenant setups
 ---
 
-{{< alert title="Note">}}
+{{< callout >}}
 Please note that multi-accounts may not work for use-cases that have cross-account and cross-service access.
 See [this issue](https://github.com/localstack/localstack/issues/7041) for more information.
-{{< /alert >}}
+{{< /callout >}}
 
 LocalStack ships with multi-account support which allows namespacing based on AWS account ID.
 

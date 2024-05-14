@@ -56,9 +56,9 @@ you might need to configure cross-platform emulation on your system.
 
 You can do so by installing the `bin_fmt` emulator with the following command:
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout "warning" >}}
 The following command installs additional emulators on your host system.
-{{< /alert >}}
+{{< /callout >}}
 
 {{< command >}}
 $ docker run --privileged --rm tonistiigi/binfmt --install amd64
@@ -68,9 +68,9 @@ $ docker run --privileged --rm tonistiigi/binfmt --install amd64
 
 ### Pulling images for other architectures
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout "note" >}}
 Please be aware that this workaround is not supported by LocalStack at all.
-{{< /alert >}}
+{{< /callout >}}
 
 If you want to use a LocalStack image which has been built for another architecture than yours, you can instruct Docker to use another platform by setting the `DOCKER_DEFAULT_PLATFORM` environment variable:
 
@@ -82,9 +82,9 @@ When using Docker Compose, you can use the `platform` element [as described in t
 
 ### Emulating AMD64 in host mode on Apple Silicon
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout >}}
 Please be aware that this workaround is not supported by LocalStack at all.
-{{< /alert >}}
+{{< /callout >}}
 
 This advanced workaround is running the open source version of LocalStack in host mode (i.e., developer mode) using AMD64 emulation on an ARM64 machine.
 

@@ -163,9 +163,9 @@ When you establish an RDS DB cluster or instance using the `postgres`/`aurora-po
 
 It's important to note that the selection of minor versions is not available. The latest major version will be installed within the Docker environment. If you wish to prevent the installation of customized versions, adjusting the `RDS_PG_CUSTOM_VERSIONS` environment variable to `0` will enforce the use of the default PostgreSQL version 11.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 While the [`DescribeDbCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusters.html) and [`DescribeDbInstances`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) APIs will still reflect the initially defined `engine-version`, the actual installed PostgreSQL engine might differ. This can have implications, particularly when employing a Terraform configuration, where unexpected changes should be avoided.
-{{< /alert >}}
+{{< /callout >}}
 
 Instances and clusters with the PostgreSQL engine have the capability to both create and restore snapshots.
 
@@ -179,9 +179,9 @@ A MySQL community server will be launched in a new Docker container upon request
 
 The `engine-version` will serve as the tag for the Docker image, allowing you to freely select the desired MySQL version from those available on the [official MySQL Docker Hub](https://hub.docker.com/_/mysql). If you have a specific image in mind, you can also use the environment variable `MYSQL_IMAGE=<my-image:tag>`.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 The `arm64` MySQL images are limited to newer versions. For more information about availability, check the [MySQL Docker Hub repository](https://hub.docker.com/_/mysql).
-{{< /alert >}}
+{{< /callout >}}
 
 It's essential to understand that the `MasterUserPassword` you define for the database cluster/instance will be used as the `MYSQL_ROOT_PASSWORD` environment variable for the `root` user within the MySQL container. The user specified in `MasterUserName` will use the same password and will have complete access to the database. As of now, snapshots are not supported for MySQL.
 

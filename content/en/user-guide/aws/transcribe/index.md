@@ -10,11 +10,11 @@ Transcribe is a service provided by Amazon Web Services (AWS) that offers automa
 
 LocalStack allows you to use the Transcribe APIs for offline speech-to-text jobs in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_transcribe/), which provides information on the extent of Transcribe integration with LocalStack.
 
-{{< alert title="Note">}}
+{{< callout >}}
 LocalStack's Transcribe relies on the offline speech-to-text service called [Vosk](https://alphacephei.com/vosk/). Therefore, LocalStack requires an internet connection during the initial creation of a transcription job for a specific language. This initial connection is required to download and cache the language model.
 
 Once the language model is cached, subsequent transcriptions for the same language can be performed offline. These language models typically have a size of around 50 MiB, and they are saved to the cache directory (for more details, refer to the [Filesystem Layout]({{< ref "filesystem" >}}) section).
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting Started
 

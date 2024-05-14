@@ -14,14 +14,13 @@ Quickly iterating over Lambda function code can be quite cumbersome, as you need
 LocalStack enables fast feedback cycles during development by automatically reloading your function code.
 Pro users can also hot-reload Lambda layers.
 
-{{< alert title="Note" >}}
-**The magic S3 bucket name changed from `__local__` to `hot-reload` in LocalStack&nbsp;2.0**
-
+{{< callout >}}
+The magic S3 bucket name changed from `__local__` to `hot-reload` in LocalStack v2.0.
 Please change your deployment configuration accordingly because the old value is an invalid bucket name.
 The configuration `BUCKET_MARKER_LOCAL` is still supported.
 
 More information about the new Lambda provider is available under [Lambda providers]({{< ref "user-guide/aws/lambda" >}}).
-{{< /alert >}}
+{{< /callout >}}
 
 ## Covered Topics
 

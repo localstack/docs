@@ -15,9 +15,9 @@ where the infrastructure is compromised offers a powerful way to test. This stra
 deployment procedures and its resilience against infrastructure disruptions, which is a key element of chaos engineering.
 
 
-{{< alert title="Note">}}
+{{< callout >}}
 Outages Extension is currently available as part of the **LocalStack Enterprise** plan. If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Prerequisites
 

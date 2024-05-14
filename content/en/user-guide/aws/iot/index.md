@@ -32,11 +32,11 @@ $ awslocal iot describe-endpoint
 }
 {{< / command >}}
 
-{{< alert title="Hint" color="success" >}}
+{{< callout "tip" >}}
 LocalStack lazy-loads services by default.
 The MQTT broker may not be automatically available on a fresh launch of LocalStack.
 You should make a `DescribeEndpoint` call to ensure the broker is running and identify the port.
-{{< /alert >}}
+{{< /callout >}}
 
 This endpoint can then be used with any MQTT client to publish and subscribe to topics.
 In this example, we will use the [Hive MQTT CLI](https://hivemq.github.io/mqtt-cli/docs/installation/).
@@ -67,10 +67,10 @@ This message will be pushed to all subscribers of this topic, including the one 
 LocalStack IoT maintains its own root certificate authority which is regenerated at every run.
 The root CA certificate can be retrieved from <http://localhost.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem>.
 
-{{< alert title="Note">}}
+{{< callout >}}
 AWS provides its root CA certificate at <https://www.amazontrust.com/repository/AmazonRootCA1.pem>.
 For more information, see [this](https://docs.aws.amazon.com/iot/latest/developerguide/server-authentication.html#server-authentication-certs).
-{{< /alert >}}
+{{< /callout >}}
 
 When connecting to the endpoints, you will need to provide this root CA certificate for authentication.
 This is illustrated below with Python [AWS IoT SDK](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdks.html), 

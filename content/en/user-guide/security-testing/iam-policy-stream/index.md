@@ -72,9 +72,9 @@ The LocalStack Web Application includes an IAM Policy Stream dashboard, which al
 3.  Includes a feature to activate or deactivate this functionality on-the-fly for performance tuning.
 4.  Presents an option to reset the stream, facilitating a clean slate to generate new policies.
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 You don't need to set additional configuration variables, such as `DEBUG=1` or `IAM_SOFT_MODE=1`, when using the IAM Policy Stream with Web Application. However, it won't enforce policies or print IAM-related logs in the LocalStack container.
-{{< /alert >}}
+{{< /callout >}}
 
 To use this feature, open the LocalStack Web Application in your browser, go to the IAM Policy Stream section, and click on **Enable** to view the **Summary Policy** and **Output**.
 

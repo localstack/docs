@@ -132,10 +132,10 @@ However, if the endpoint is not prefixed by `s3.`, LocalStack will not be able t
 You can either change the endpoint to an S3-specific one, or configure your SDK to use **Path style** requests instead.
 Check out our [SDK documentation](https://docs.localstack.cloud/user-guide/integrations/sdks/) to learn how you can configure language SDKs to access LocalStack and S3.
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 While using [AWS language SDKs](https://aws.amazon.com/developer/tools/#SDKs), you would need to configure the `ForcePathStyle` parameter to `true` in the S3 client configuration to use **Path style** requests. If you want to use virtual host addressing of buckets, you can remove `ForcePathStyle` from the configuration.
 The `ForcePathStyle` parameter name can vary between SDK and languages, please check our [SDK documentation](https://docs.localstack.cloud/user-guide/integrations/sdks/)
-{{< /alert >}}
+{{< /callout >}}
 
 If your endpoint is not prefixed with `s3.`, all requests are treated as **Path style** requests.
 Using the `s3.localhost.localstack.cloud` endpoint URL is recommended for all requests aimed at S3.
@@ -170,9 +170,9 @@ Next, create a JSON file with the CORS configuration. The file should have the f
 }
 ```
 
-{{< alert title="Note" >}}
+{{< callout >}}
 Note that this configuration is a sample, and you can tailor it to fit your needs better, for example, restricting the **AllowedHeaders** to specific ones.
-{{% /alert %}}
+{{< /callout >}}
 
 Save the file locally with a name of your choice, for example, `cors-config.json`. Run the following command to apply the CORS configuration to your S3 bucket:
 

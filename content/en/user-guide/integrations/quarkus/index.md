@@ -89,20 +89,20 @@ You can further run the application in dev mode with the following command:
 $ java -Dparameters.path=/quarkus/is/awesome/ -jar target/quarkus-app/quarkus-run.jar
 {{< /command >}}
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 With GraalVM installed, you can also create a native executable binary using the following command:
 {{< command >}}
 $ ./mvnw clean package -Dnative.
 {{< /command >}}
-{{< /alert >}}
+{{< /callout >}}
 
-{{< alert title="Note" >}}
+{{< callout >}}
 Dev Services for Amazon Services is automatically enabled for each extension added to the `pom.xml`, except in the following scenarios:
 
 -   When `quarkus.devservices.enabled` is set to false.
 -   When `devservices.enabled` is set to false per extension (e.g., `quarkus.s3.devservices.enabled=false`).
 -   When the `endpoint-override` is configured (e.g., `quarkus.s3.endpoint-override=http://localhost:4566`).
-{{< /alert >}}
+{{< /callout >}}
 
 ## Supported extensions
 
@@ -132,11 +132,11 @@ The following configuration properties are fixed at build time. All the other co
 | `quarkus.aws.devservices.localstack.additional-services."additional-services".service-name` | string                 | `localstack`                         |
 | `quarkus.aws.devservices.localstack.additional-services."additional-services".container-properties` | `Map<String,String>`  |                                      |
 
-{{< alert title="Note" >}}
+{{< callout >}}
 - If `quarkus.aws.devservices.localstack.additional-services."additional-services".enabled` is set to `true` and the endpoint-override is not configured, LocalStack will be started and utilized instead of the provided configuration. For all services excluding Cognito, LocalStack will function as the core cloud emulator.  In the case of Cognito, the emulation/mocking will be done by Moto.
 - The `quarkus.aws.devservices.localstack.additional-services."additional-services".shared` indicates whether the LocalStack container managed by Dev Services is shared. In shared mode, Quarkus utilizes label-based service discovery, specifically the `quarkus-dev-service-localstack` label, to identify running containers. If a matching container is found, it is used. Otherwise, Dev Services initiates a new container. It's important to note that sharing is not supported for the Cognito extension.
 - In `quarkus.aws.devservices.localstack.additional-services."additional-services".service-name`, the value of the `quarkus-dev-service-localstack` label is attached to the initiated container. In dev mode, when the shared flag is true, Dev Services checks for a container with the `quarkus-dev-service-localstack` label set to the configured value before starting a new one. If found, it utilizes the existing container. Otherwise, it creates a new container with the `quarkus-dev-service-localstack` label set to the specified value. In test mode, Dev Services groups services with the same service-name value into a single container instance. This property is useful when there's a requirement for multiple shared LocalStack instances.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Specific configuration
 

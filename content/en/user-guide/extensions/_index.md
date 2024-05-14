@@ -24,7 +24,7 @@ You can use LocalStack Extensions to:
 
 The officially supported [LocalStack Extensions]({{< ref "user-guide/extensions/official-extensions" >}}) can be discovered on our [Extension Library](https://app.localstack.cloud/extensions/library). To install and use extensions, you need an active LocalStack license.
 
-{{<alert title="Note">}}
+{{< callout >}}
 The feature and the API are currently in a preview stage and may be subject to change.
 Please report any issues or feature requests on [LocalStack Extension's GitHub repository](https://github.com/localstack/localstack-extensions).
-{{</alert>}}
+{{< /callout >}}

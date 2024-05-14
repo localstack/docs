@@ -17,9 +17,9 @@ To invite a user, provide the user's name and email address.
 If the invitee does not have a LocalStack account yet, an invitation to create an account will be sent to the provided email address.
 The user's name is used as placeholder for easier managing and will be replaced by the actual username once the account is created.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 Administrators can invite users to a workspace, and can freely assign and unassign licenses or legacy API keys to users. LocalStack automatically assigns a license to the user who is making the purchase, which can be reassigned again with no restrictions.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Removing Users
 A user can be removed from a workspace by clicking the user entry in the list to show the user's details.
@@ -59,9 +59,9 @@ The benefits of this new systems are:
 - An admin can manage users's licenses, not requiring any configuration change of the user.
   Previously users had to manually update their (legacy) API key.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 The transition to auth tokens only affects _developer_ API keys. **CI keys** are unaffected by this transition and are still the only way to activate a LocalStack instance for use in CI or other automated contexts.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Migrating Users to Auth Tokens and Licenses
 To migrate users from legacy API keys, assign a license to them in the 'Workspace Members' list.

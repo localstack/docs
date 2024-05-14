@@ -27,13 +27,13 @@ The API path for the LocalStack internal resources is `/_localstack`. The follow
 | `/_localstack/state/reset`           | Reset the state of the services using the Persistence mechanism. |
 | `/_localstack/state/<service>/reset` | Reset the state of the given service using the Persistence mechanism. |
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 You can use the `/_localstack/health` endpoint to restart or kill the services. You can use `cURL` or your HTTP REST client to access the endpoint:
 {{< command >}}
 $ curl -v --request POST --header "Content-Type: application/json"  --data '{"action":"restart"}' http://localhost:4566/_localstack/health
 $ curl -v --request POST --header "Content-Type: application/json"  --data '{"action":"kill"}' http://localhost:4566/_localstack/health
 {{< /command >}}
-{{< /alert >}}
+{{< /callout >}}
 
 ## AWS endpoints
 

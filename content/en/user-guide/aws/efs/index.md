@@ -12,9 +12,9 @@ Elastic File System (EFS) is a fully managed file storage service provided by Am
 
 LocalStack allows you to use the EFS APIs in your local environment to create local file systems, lifecycle configurations, and file system policies. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_efs/), which provides information on the extent of EFS's integration with LocalStack.
 
-{{< alert title="Note" >}}
+{{< callout "note" >}}
 LocalStack's EFS implementation is limited and lacks support for functionalities like creating mount targets, configuring access points, and generating tags. LocalStack uses Moto to emulate the EFS APIs, and efforts are underway to incorporate support for these features in upcoming updates.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 

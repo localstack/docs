@@ -104,13 +104,13 @@ You can now use ECR (Elastic Container Registry) images within your EKS environm
 To modify the return value of resource URIs for most services, including ECR, you can utilize the `LOCALSTACK_HOST` variable in the [configuration]({{< ref "configuration" >}}).
 By default, ECR returns a `repositoryUri` starting with `localhost.localstack.cloud`, such as: `localhost.localstack.cloud:<port>/<repository-name>`.
 
-{{< alert title="Notes" >}}
+{{< callout >}}
 In this section, we assume that `localhost.localstack.cloud` resolves in your environment, and LocalStack is connected to a non-default bridge network. For more information, refer to the article about [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}).
 
 If the domain `localhost.localstack.cloud` does not resolve on your host, you can still proceed by setting `LOCALSTACK_HOST=localhost` (not recommended). 
 
 LocalStack will take care of the DNS resolution of `localhost.localstack.cloud` within ECR itself, allowing you to use the `localhost:<port>/<repository_name>` URI for tagging and pushing the image on your host.
-{{< / alert >}}
+{{< /callout >}}
 
 Once you have configured this correctly, you can seamlessly use your ECR image within EKS as expected.
 
@@ -142,11 +142,11 @@ $ awslocal ecr create-repository --repository-name "fancier-nginx"
 </disable-copy>
 {{< / command >}}
 
-{{< alert title="Note">}}
+{{< callout >}}
 When creating an ECR repository, a port from the [external service port range]({{< ref "external-ports" >}}) is dynamically assigned. As a result, the port can differ from the static value `4510` used in the examples below.
 
 To ensure the correct URL and port, it's important to use the `repositoryUrl` obtained from the `create-repository` request. This ensures that you have the accurate endpoint to access the repository.
-{{< /alert >}}
+{{< /callout >}}
 
 You can now pull the `nginx` image from Docker Hub using the `docker` CLI:
 
@@ -221,9 +221,9 @@ In the events, we can see that the pull from ECR was successful:
   Normal  Pulled     10s   kubelet            Successfully pulled image "localhost.localstack.cloud:4510/fancier-nginx:latest" in 2.412775896s
 ```
 
-{{< alert title="Note">}}
+{{< callout "tip" >}}
 Public Docker images from `registry.k8s.io` can be pulled without additional configuration from EKS nodes, but if you pull images from any other locations that resolve to S3 you can configure `DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM=<bucket-name>\.s3.*\.amazonaws\.com` in your [configuration]({{< ref "configuration" >}}).
-{{< /alert >}}
+{{< /callout >}}
 
 ### Configuring an Ingress for your services
 
@@ -284,9 +284,9 @@ $ curl http://localhost:8081/test123
 </disable-copy>
 {{< / command >}}
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 You can customize the Load Balancer port by configuring `EKS_LOADBALANCER_PORT` in your environment.
-{{< /alert >}}
+{{< /callout  >}}
 
 ### Enabling HTTPS with local SSL/TLS certificate for the Ingress
 
@@ -315,9 +315,9 @@ Once you have deployed your service using the mentioned ingress configuration, i
 
 Remember that the ingress controller does not support HTTP/HTTPS multiplexing within the same Ingress. Consequently, if you want your service to be accessible via HTTP and HTTPS, you must create two separate Ingress definitions — one Ingress for HTTP and another for HTTPS.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 The `ls-secret-tls` secret is created in the `default` namespace. If your ingress and services are residing in a custom namespace, it is essential to copy the secret to that custom namespace to make use of it.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Use an existing Kubernetes installation
 
@@ -477,9 +477,9 @@ $ awslocal eks create-cluster \
 </disable-copy>
 {{< / command >}}
 
-{{< alert title="Notes" >}}
+{{< callout >}}
 Note that the tag was previously referred to as `__k3d_volume_mount__`, but it has now been renamed to `_volume_mount_`. As a result, the tag name `__k3d_volume_mount__` is considered deprecated and will be removed in an upcoming release.
-{{< /alert >}}
+{{< /callout >}}
 
 After creating your cluster with the `_volume_mount_` tag, you can create your path with volume mounts as usual. The configuration for the volume mounts can be set up similar to this:
 

@@ -136,13 +136,13 @@ spec:
 EOF
 {{</command>}}
 
-{{<alert title="Note">}}
+{{< callout >}}
 The endpoint `http://host.docker.internal:4566` in the listing above assumes that you are running Kubernetes in the local Docker engine, and that LocalStack is up and running and available on default port `4566`.
-{{</alert>}}
+{{< /callout >}}
 
-{{<alert title="Note">}}
+{{< callout >}}
 The Crossplane AWS provider currently requires us to specify the list of `services` for which the local `endpoint` is used as the target URL. Please make sure to extend this list accordingly if you're working with additional LocalStack services.
-{{</alert>}}
+{{< /callout >}}
 
 ### Deploying sample resources in LocalStack
 

@@ -48,9 +48,9 @@ Commands:
 </disable-copy>
 {{< / command >}}
 
-{{< alert title="Note" >}}
+{{< callout >}}
 These Cloud Pods are securely stored within an AWS storage backend, where each user or organization is allocated a dedicated and isolated S3 bucket. The LocalStack Cloud Pods CLI utilizes secure S3 presigned URLs to directly interface with the S3 bucket, bypassing the need to transmit the state files through LocalStack Platform APIs.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 
@@ -182,11 +182,11 @@ $ localstack state inspect --format json
 
 For comprehensive instructions, navigate to our [Command-Line Interface (CLI) Guide]({{< ref "pods-cli" >}}). To access your Cloud Pods through the LocalStack Web Application, navigate to the [Cloud Pods browser](https://app.localstack.cloud/pods).
 
-{{< alert title="Note" >}}
+{{< callout >}}
 Permission on Cloud Pods are assigned at organization level.
 This means that every individual in the organization can view, load, and delete Cloud Pods created by other team members.
 Similarly, everyone can save a new version of a Cloud Pod on top of a Pod originally created by someone else.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Web Application
 
@@ -359,9 +359,9 @@ Commands:
 
 The S3 remote enables you to store Cloud Pod assets in an existing S3 bucket within an actual AWS account. The initial step is to export the necessary AWS credentials within the terminal session.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 The Cloud Pods S3 remote is currently _only_ available when [installing the `localstack` CLI via `pip`](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), and not for the binary CLI distribution.
-{{< /alert >}}
+{{< /callout >}}
 
 ```bash
 export AWS_ACCESS_KEY_ID=...

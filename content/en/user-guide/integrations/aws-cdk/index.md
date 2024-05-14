@@ -27,9 +27,9 @@ cdklocal --version
 # e.g. 1.65.5
 ```
 
-{{< alert title="Note">}}
+{{< callout >}}
 Using `cdklocal` locally (e.g. within the `node_modules` of your repo instead of globally installed) does not work at the moment for some setups, so make sure you install both `aws-cdk` and `aws-cdk-local` with the `-G` flag.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Usage
 

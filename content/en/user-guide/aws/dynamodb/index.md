@@ -11,9 +11,9 @@ DynamoDB provides a fast and scalable key-value datastore with support for repli
 LocalStack allows you to use the DynamoDB APIs in your local environment to manage key-value and document data models.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_dynamodb/), which provides information on the extent of DynamoDB's integration with LocalStack.
 
-{{< alert title="Note">}}
+{{< callout >}}
 DynamoDB on LocalStack is powered by [DynamoDB Local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 
@@ -150,9 +150,9 @@ The following output would be retrieved:
 1
 ```
 
-{{< alert title="Note" >}}
+{{< callout >}}
 You can run DynamoDB in memory, which can greatly improve the performance of your database operations. However, this also means that the data will not be possible to persist on disk and will be lost even though persistence is enabled in LocalStack. To enable this feature, you need to set the environment variable `DYNAMODB_IN_MEMORY=1` while starting LocalStack.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Time To Live
 

@@ -12,9 +12,9 @@ Elastic Beanstalk (EB) is a managed platform-as-a-service (PaaS) provided by Ama
 
 LocalStack allows you to use the Elastic Beanstalk APIs in your local environment to create and manage applications, environments and versions. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_elasticbeanstalk/), which provides information on the extent of Elastic Beanstalk's integration with LocalStack.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 LocalStack's Elastic Beanstalk implementation is limited and lacks support for installing application and running it in a local Elastic Beanstalk environment. LocalStack also does not support the [`eb`](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html) CLI tool. However, you can use other integrations, such as AWS CLI & Terraform, to mock the Elastic Beanstalk APIs and test your workflow locally.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 

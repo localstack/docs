@@ -14,11 +14,11 @@ You can see which APIs are being used, which clients of integrations use particu
 
 To get started, the `LOCALSTACK_AUTH_TOKEN` environment variable needs to be configured. The system will start making your events accessible on the LocalStack [Web Application dashboard](https://app.localstack.cloud/dashboard).
 
-{{< alert title="Information" color="success" >}}
+{{< callout "note" >}}
 Your privacy matters to us! We only collect anonymized and sanitized data.
 No sensitive information about your application is ever collected or exposed.
 The data is only used to provide you with insights into the usage of LocalStack and to help us improve the product.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 
@@ -45,7 +45,7 @@ Please note that stack insights are only collected if the LocalStack sessions ru
 
 You can disable event reporting on your LocalStack client by setting the environment variable `DISABLE_EVENTS=1`.
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 Brave blocks `localhost` requests due to security by default via shields.
 While some sites need access to `localhost` / `127.0.0.1` to work correctly, an easy option to allow a user to enable this is manually enabling via the site via `brave://settings/content/insecureContent`.
-{{< /alert >}}
+{{< /callout >}}

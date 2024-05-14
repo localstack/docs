@@ -162,10 +162,10 @@ This section covers configuration options that are specific to certain AWS servi
 
 ### Elasticsearch
 
-{{< alert title="Note">}}
+{{< callout >}}
 The OpenSearch configuration variables are used to manage both OpenSearch and ElasticSearch clusters.
 See [here](#opensearch).
-{{< /alert >}}
+{{< /callout >}}
 
 ### IAM
 | Variable | Example Values | Description |
@@ -184,10 +184,10 @@ See [here](#opensearch).
 
 ### Lambda
 
-{{< alert title="Note" >}}
+{{< callout >}}
 The legacy [Lambda]({{< ref "user-guide/aws/lambda" >}}) implementation has been removed since LocalStack&nbsp;3.0 (Docker `latest` since 2023-11-09).
 Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to-lambda-v2" >}}) for more information.
-{{</alert>}}
+{{< /callout >}}
 
 | Variable| Example Values | Description |
 | - | - | - |
@@ -280,9 +280,9 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 
 ## Security
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout "warning" >}}
 Please be aware that the following options may have severe security implications.
-{{</alert>}}
+{{< /callout >}}
 
 | Variable| Example Values | Description |
 | - | - | - |
@@ -475,8 +475,8 @@ To display the config environment variables, you can use the following command:
 $ python -m localstack.cli.main --profile=dev config show
 {{< / command >}}
 
-{{< alert title="Note" >}}
+{{< callout >}}
 The `CONFIG_PROFILE` is a CLI feature and cannot be used with a Docker/Docker Compose setup.
 You can look at [alternative means of setting environment variables](https://docs.docker.com/compose/environment-variables/set-environment-variables/) for your Docker Compose setups.
 For Docker setups, we recommend passing the environment variables directly to the `docker run` command.
-{{< /alert >}}
+{{< /callout >}}

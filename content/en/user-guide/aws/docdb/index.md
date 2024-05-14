@@ -12,7 +12,7 @@ DocumentDB is a fully managed, non-relational database service that supports Mon
 
 LocalStack allows you to use the DocumentDB APIs to create and manage DocumentDB clusters and instances. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_docdb/), which provides information on the extent of DocumentDB's integration with LocalStack.
 
-{{< alert title="Information" color="success">}}
+{{< callout >}}
 Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it can be accessed from `localhost`. When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
 
 Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not
@@ -20,7 +20,7 @@ have exact feature parity with Amazon DocumentDB. The database engine may suppor
 features that DocumentDB does not and vice versa.
 
 DocumentDB currently uses the default configuration of the latest [MongoDB Docker image](https://hub.docker.com/_/mongo). When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`. 
-{{< /alert>}}
+{{< /callout >}}
 
 ## Getting started
 
@@ -220,11 +220,11 @@ the [MongoDB documentation](https://www.mongodb.com/docs/).
 
 ### Connect to DocumentDB using Node.js Lambda
 
-{{< alert title="Important" color="success">}}
+{{< callout >}}
 You need to set `DOCDB_PROXY_CONTAINER=1` when starting LocalStack to be able to use the returned `Endpoint`, which will be correctly resolved automatically.
 
 The flag `DOCDB_PROXY_CONTAINER=1` changes the default behavior and the container will be started as proxied container. Meaning a port from the [pre-defined port]({{< ref "/references/external-ports" >}}) range will be chosen, and when using lambda, you can use `localhost.localstack.cloud` to connect to the instance.
-{{< /alert>}}
+{{< /callout >}}
 
 In this sample we will use a Node.js lambda function to connect to a DocumentDB. 
 For the mongo-db connection we will use the `mongodb` lib.

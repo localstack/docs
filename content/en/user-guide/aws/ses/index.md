@@ -36,10 +36,10 @@ $ awslocal ses list-identities
 }
 {{< /command >}}
 
-{{< alert title="Note" >}}
+{{< callout >}}
 On AWS, verifying email identities or domain identities require additional steps like changing DNS configuration or clicking verification links respectively.
 In LocalStack, verifying identities require no additional steps.
-{{< /alert >}}
+{{< /callout >}}
 
 Next, emails can be sent using the `SendEmail` operation.
 
@@ -53,9 +53,9 @@ $ awslocal ses send-email \
 }
 {{< /command >}}
 
-{{< alert title="Note" >}}
+{{< callout >}}
 In the Community image, no emails are actually sent. Hence this operation is mocked. In the Pro image however, emails are sent via an SMTP server.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Sent Emails
 
@@ -100,11 +100,11 @@ $ curl --silent localhost.localstack.cloud:4566/_aws/ses?email=hello@example.com
 
 The Pro image supports sending emails via an SMTP server. Refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`).
 
-{{< alert title="Hint" color="success">}}
+{{< callout "tip" >}}
 If you do not have access to a proper SMTP server, you can use tools like [MailDev](https://github.com/maildev/maildev) or [smtp4dev](https://github.com/rnwood/smtp4dev).
 These run as Docker containers on your local machine.
 Make sure they run in the same Docker network as the LocalStack container.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Resource Browser
 

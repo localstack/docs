@@ -19,12 +19,12 @@ Simply install and remove extensions from your specific LocalStack instance dire
 If you have multiple instances of LocalStack, each instance has its own set of extensions,
 and our App allows you to manage extensions for each instance individually.
 
-{{<alert title="Note">}}
+{{< callout "tip" >}}
 When you install or uninstall extensions, LocalStack needs to be restarted.
 LocalStack will do this automatically for you!
 It re-starts the process inside the running container, not the container itself.
 However, you may lose LocalStack state if you do not use persistence.
-{{</alert>}}
+{{</callout>}}
 
 
 {{< figure src="extensions-manager.png" >}}

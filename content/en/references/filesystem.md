@@ -9,9 +9,9 @@ aliases:
 
 This page describes the filesystem directory layout used internally by LocalStack.
 
-{{< alert title="Note">}}
+{{< callout >}}
 This filesystem layout was introduced in LocalStack v1 and can be disabled by setting `LEGACY_DIRECTORIES` to `1`.
-{{< /alert >}}
+{{< /callout >}}
 
 LocalStack uses following directory layout when running within a container.
 
@@ -58,7 +58,7 @@ LocalStack uses following directory layout when running within a container.
 - `/usr/lib/localstack`: static third-party packages installed into the container images
 
 
-{{< alert title="Note">}}
+{{< callout >}}
 Previously, directories were individually configurable, e.g., via `DATA_DIR` or `HOST_TMP_DIR`.
 These have been deprecated since LocalStack v1, since we now follow a directory convention.
 
@@ -67,7 +67,7 @@ Use `PERSISTENCE=1` to enable persistence.
 If `DATA_DIR` is set, its value is ignored, a warning is logged and `PERSISTENCE` is set to `1`.
 
 `HOST_TMP_FOLDER` is determined by inspecting the volume mounts and using the source of the bind mount to `/var/lib/localstack`.
-{{< /alert >}}
+{{< /callout >}}
 
 ## LocalStack volume
 
