@@ -1,6 +1,7 @@
 import os
 from io import BytesIO
 import json
+from pathlib import Path
 import notion_client as n_client
 import frontmatter
 from frontmatter.default_handlers import YAMLHandler, DEFAULT_POST_TEMPLATE
@@ -37,6 +38,23 @@ class CustomYAMLHandler(YAMLHandler):
         ).lstrip()
 
 
+def lookup_full_name(shortname: str) -> str:
+    """Given the short default name of a service, looks up for the full name"""
+    service_lookup = Path("../../data/coverage/service_display_name.json")
+    service_info = {}
+    if service_lookup.exists() and service_lookup.is_file():
+        with open(service_lookup, "r") as f:
+            service_info = json.load(f)
+
+    service_name_title = shortname
+
+    if service_name_details := service_info.get(shortname, {}):
+        service_name_title = service_name_details.get("long_name", shortname)
+        if service_name_title and (short_name := service_name_details.get("short_name")):
+            service_name_title = f"{short_name} ({service_name_title})"
+    return service_name_title
+
+
 def collect_status() -> dict:
     """Reads the catalog on Notion and returns the status of persistence for each service"""
     if not token:
@@ -49,34 +67,33 @@ def collect_status() -> dict:
         service = item.name.replace('_', '-')
         status = item.status.lower()
         statuses[service] = {
+            "service": service,
+            "full_name": lookup_full_name(service),
             "support": status,
             "test_suite": item.has_test or False,
-            # we collect notes only for the services with some limitations
-            "notes": item.notes if "limit" in status else "" 
+            # we collect limitations notes only for the services explicitly marked with limitations
+            "limitations": item.limitations if "limit" in status else "" 
         }
-    return dict(sorted(statuses.items()))
+    statuses = dict(sorted(statuses.items()))
 
-
-def update_coverage_data(statuses: dict):
+    # save the data
     if not os.path.exists(persistence_path):
         os.mkdir(persistence_path)
-    
-    # transform the statuses dict into a list
-    _statuses = []
-    for service, value in statuses.items():
-        value["service"] = service
-        _statuses.append(value)
-    
     with open(persistence_data, 'w') as f:
-        json.dump(_statuses, f, indent=2)
-    
+        json.dump(statuses, f, indent=2)
+    return statuses
+
     
 def update_frontmatter(statuses: dict):
     """Updates the frontmatter of the service page in the user guide Markdown file"""
     for service, values in statuses.items():
-        # special case for cognito:
+
+        # a bunch of special cases
         if "cognito" in service:
             service = "cognito"
+        if service == "kafka":
+            service = "msk"
+        
         _path = os.path.join(markdown_path, service, "index.md")
         if not os.path.exists(_path):
             print(f" Can't find index.md file for {service}")
@@ -86,13 +103,10 @@ def update_frontmatter(statuses: dict):
         content = frontmatter.load(_path, handler=CustomYAMLHandler())
         desc = content.metadata["description"]
         content.metadata["description"] = desc.strip()
-        content.metadata["persistence"] = values.get("support", "unknown")
+        content.metadata["persistence_support"] = values.get("support", "unknown")
         frontmatter.dump(content, _path)
 
 
 if __name__ == "__main__":
     data = collect_status()
     update_frontmatter(statuses=data)
-    update_coverage_data(statuses=data)
-
-

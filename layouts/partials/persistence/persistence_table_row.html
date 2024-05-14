@@ -3,12 +3,16 @@
 {{ range $data }}
 <tr>
     <!-- Service -->
-    <td>{{ .service }}</td>
+    <td>{{ .full_name }}</td>
     <!-- Supported -->
-    <td>{{ .support }}</td>
+    <td class="coverage-shadow-overlay-green">
+        {{ if or (eq .support "supported") (eq .support "supported with limitations") -}}
+        ✔️
+        {{ end }}
+    </td>
     <!-- Persistence Test Suite -->
     <td class="coverage-shadow-overlay-green">{{ if (.test_suite) }} ✔️ {{ end }}</td>
-    <!-- Details -->
-    <td>{{ .notes }}</td>
+    <!-- Limitations -->
+    <td>{{ .limitations }}</td>
 </tr>
 {{ end }}
