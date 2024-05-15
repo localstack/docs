@@ -130,7 +130,7 @@ Add a new step to set up dependencies and deploy the application preview on an e
         make bootstrap-frontend
         make deploy-frontend
         distributionId=$(awslocal cloudfront list-distributions | jq -r '.DistributionList.Items[0].Id')
-        echo "Open URL: $AWS_ENDPOINT_URL/cloudfront/$AWS_DEFAULT_REGION/$distributionId/"
+        echo "PREVIEW_URL=$AWS_ENDPOINT_URL/cloudfront/$distributionId/" >> $GITHUB_ENV
 ```
 
 In the provided workflow:
