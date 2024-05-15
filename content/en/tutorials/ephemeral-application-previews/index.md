@@ -38,7 +38,7 @@ This tutorial will show you how to use LocalStack's Ephemeral Instance feature t
 
 This tutorial uses a [public LocalStack sample](https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway) to showcase a simple note-taking application using the modular AWS SDK for JavaScript. The example application deploys several AWS resources including DynamoDB, Lambda, API Gateway, S3, Cognito, and CloudFront, functioning as follows:
 
--   Five Lambda functions handle creating, listing, updating, deleting, and retrieving notes.
+-   Five Lambda functions handle basic CRUD functionality around note entities.
 -   The frontend is built with React and served via Cloudfront and an S3 bucket.
 -   DynamoDB is used as a persistence layer to store the notes.
 -   API Gateway exposes the Lambda functions through HTTP APIs.
