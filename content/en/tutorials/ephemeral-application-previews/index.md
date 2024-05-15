@@ -167,7 +167,8 @@ Now, you can commit and push your workflow to your forked GitHub repository.
 
 Now that the GitHub Action Workflow is set up, each pull request in your cloud application will undergo building, deployment, and packaging as an application preview running within an ephemeral instance. The workflow will automatically update the application preview whenever new commits are pushed to the pull request.
 
-// picture
+<img src="github-action-pr-preview-comment.png" alt="PR preview comment for every pull request" title="PR preview comment for every pull request" width="800" />
+<br><br>
 
 In case your deployment encounters issues and fails on LocalStack, you can troubleshoot by incorporating additional steps to generate a diagnostics report. After downloading, you can visualize logs and environment variables using a tool like [`diapretty`](https://github.com/silv-io/diapretty):
 
