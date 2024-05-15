@@ -34,7 +34,7 @@ This tutorial will show you how to use LocalStack's Ephemeral Instance feature t
 - [LocalStack Web Application account](https://app.localstack.cloud/)
 - [GitHub Account](https://github.com/join)  & [`gh` CLI](https://github.com/cli/cli?tab=readme-ov-file#installation) (optional)
 
-## Tutorial: Setting up Application Preview for your cloud application
+## Tutorial: Setting up Application Previews for your cloud application
 
 This tutorial uses a [public LocalStack sample](https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway) to showcase a simple note-taking application using the modular AWS SDK for JavaScript. The example application deploys several AWS resources including DynamoDB, Lambda, API Gateway, S3, Cognito, and CloudFront, functioning as follows:
 
