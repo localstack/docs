@@ -157,7 +157,7 @@ Before triggering your workflow, set up a continuous integration (CI) key for Lo
 Follow these steps to add your LocalStack CI key to your GitHub repository:
 
 -   Navigate to the [LocalStack Web Application](https://app.localstack.cloud/) and access the [CI Keys](https://app.localstack.cloud/workspace/ci-keys) page.
--   Switch to the **Generate CI Key** tab, provide a name, and click **Generate CI Key**.
+-   Scroll down to the **Generate CI Key** card, where you can provide a name, and click **Generate CI Key** to receive a new key.
 -   In your [GitHub repository secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions), set the **Name** as `LOCALSTACK_API_KEY` and the **Secret** as the CI Key.
 
 Now, you can commit and push your workflow to your forked GitHub repository.
