@@ -42,7 +42,7 @@ This tutorial uses a [public LocalStack sample](https://github.com/localstack-sa
 -   The frontend is built with React and served via Cloudfront and an S3 bucket.
 -   DynamoDB is used as a persistence layer to store the notes.
 -   API Gateway exposes the Lambda functions through HTTP APIs.
--   Cognito User Pools are utilized for creating an identity pool to generate signed URL for S3.
+-  A Cognito User Pool is used for Authentication and Authorization.
 
 This tutorial guides you through setting up a GitHub Action workflow to create an Application Preview of the sample application by deploying it on an ephemeral instance.
 
