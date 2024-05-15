@@ -173,8 +173,7 @@ In case your deployment encounters issues and fails on LocalStack, you can troub
 ```yaml
 - name: Generate a Diagnostic Report
   if: failure()
-  run: |
-      curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz
+  run: curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz
 
 - name: Upload the Diagnostic Report
   if: failure()
