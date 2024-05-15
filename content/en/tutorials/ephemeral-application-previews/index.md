@@ -25,7 +25,7 @@ LocalStack's core cloud emulator allows you set up your cloud infrastructure on 
 
 In many cases, staging environments are costly and deploying changes to them takes a lot of time. Also, teams can only use one staging environment at a time, which makes it difficult to test changes quickly.
 
-With LocalStack's Ephemeral Instances, you can create short-lived, self-contained deployment of LocalStack in the cloud. These Ephemeral Instances, let you deploy your application on a remote LocalStack container, creating an Application Preview. This allows you to run end-to-end tests, preview features, and collaborate with your team asynchronously, both within the team and across teams.
+With LocalStack's Ephemeral Instances, you can create short-lived, self-contained deployments of LocalStack in the cloud. These Ephemeral Instances let you deploy your application on a remote LocalStack container, creating an Application Preview. This allows you to run end-to-end tests, preview features, and collaborate within your team or across teams asynchronously.
 
 This tutorial will show you how to use LocalStack's Ephemeral Instance to generate an Application Preview automatically for every new Pull Request (PR) using a GitHub Action workflow.
 
