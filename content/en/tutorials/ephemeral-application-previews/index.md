@@ -54,8 +54,7 @@ In this tutorial, you'll implement a workflow that:
 
 - Checks out the repository from GitHub.
 - Installs necessary dependencies.
-- Deploys the application on LocalStack using a GitHub Action Runner.
-- Packages the application to generate an application preview.
+- Deploys the application on a ephemeral LocalStack Instance using a GitHub Action Runner to generate a sharable application preview.
 
 To begin, fork the [LocalStack sample repository](https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway) on GitHub. If you're using GitHub's `gh` CLI, fork and clone the repository with this command:
 
@@ -71,9 +70,9 @@ Now you're set to create your GitHub Action workflow, which will deploy your clo
 
 To achieve the goal, you can utilize a few prebuilt Actions:
 
--   [`actions/checkout`](https://github.com/actions/checkout): Clone the repository to deploy the application.
+-   [`actions/checkout`](https://github.com/actions/checkout): Checkout the application code with Git.
 -   [`setup-localstack/preview`](https://github.com/localstack/setup-localstack): Configure the workflow to generate the application preview.
--   [`LocalStack/setup-localstack/finish`](https://github.com/localstack/setup-localstack): Configure the workflow to add the preview URL to a PR comment.
+-   [`LocalStack/setup-localstack/finish`](https://github.com/localstack/setup-localstack): Add a comment to the PR, which includes a URL to the application preview.
 
 You will find the following content to the `preview.yml` file that you opened earlier:
 
@@ -102,7 +101,7 @@ jobs:
 
 ### Deploy the application preview
 
-To deploy the application preview, you can utilize the `LocalStack/setup-localstack/preview` action, which requires the following:
+To deploy the application preview, you can utilize the `LocalStack/setup-localstack/preview` action, which requires the following parameters:
 
 -   `github-token`: Automatically configured on the GitHub Action runner.
 -   `localstack-api-key`: Configuration of a LocalStack CI key (`LOCALSTACK_API_KEY`) to activate licensed features in LocalStack.
