@@ -63,10 +63,7 @@ To begin, fork the [LocalStack sample repository](https://github.com/localstack-
 gh repo fork https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway
 ```
 
-After forking and cloning:
-
--   Create a new directory named `.github` and within it, create a sub-directory named `workflows`.
--   Inside the `workflows` sub-directory, create a new file named `preview.yml`.
+After forking and cloning, navigate to the `.github/workflows` directory in your forked repository and open the `preview.yml` file. This file will contain the GitHub Action workflow configuration.
 
 Now you're set to create your GitHub Action workflow, which will deploy your cloud application on an ephemeral instance using LocalStack.
 
@@ -78,7 +75,7 @@ To achieve the goal, you can utilize a few prebuilt Actions:
 -   [`setup-localstack/preview`](https://github.com/localstack/setup-localstack): Configure the workflow to generate the application preview.
 -   [`LocalStack/setup-localstack/finish`](https://github.com/localstack/setup-localstack): Configure the workflow to add the preview URL to a PR comment.
 
-Add the following content to the `preview.yml` file created earlier:
+You will find the following content to the `preview.yml` file that you opened earlier:
 
 ```yaml 
 name: Create PR Preview
@@ -90,7 +87,7 @@ on:
 
 This configuration ensures that every time a pull request is raised, the action is triggered.
 
-Create a new job named `preview` and specify the GitHub-hosted runner to execute our workflow steps, while checking out the code:
+A new job named `preview` specifies the GitHub-hosted runner to execute our workflow steps, while checking out the code:
 
 ```yaml 
 jobs:
@@ -111,7 +108,7 @@ To deploy the application preview, you can utilize the `LocalStack/setup-localst
 -   `localstack-api-key`: Configuration of a LocalStack CI key (`LOCALSTACK_API_KEY`) to activate licensed features in LocalStack.
 -   `preview-cmd`: The set of commands necessary to deploy the application, including its infrastructure, on LocalStack.
 
-Add a new step to set up dependencies and deploy the application preview on an ephemeral LocalStack instance:
+The following step sets up the dependencies and deploys the application preview on an ephemeral LocalStack instance:
 
 ```yaml 
 - name: Deploy Preview
@@ -140,7 +137,7 @@ In the provided workflow:
 -   Additionally, the frontend application is built and deployed on an S3 bucket served via a CloudFront distribution.
 -   The application preview URL is provided by querying the CloudFront distribution ID using `awslocal`.
 
-To complete the process, add the last step to attach the application preview URL to the Pull Request (PR) as a comment. This allows for quick access to the deployed URL for validating features or enhancements pushed to your application.
+To complete the process, the last step attaches the application preview URL to the Pull Request (PR) as a comment. This allows for quick access to the deployed URL for validating features or enhancements pushed to your application.
 
 ```yaml 
 - name: Finalize PR comment
@@ -155,7 +152,7 @@ To complete the process, add the last step to attach the application preview URL
 
 Before triggering your workflow, set up a continuous integration (CI) key for LocalStack. LocalStack requires a CI Key for usage in CI or similar automated environments to activate licensed features.
 
-Follow these steps to add your LocalStack CI key to your GitHub repository:
+Follow these steps to add your LocalStack CI key to your forked GitHub repository:
 
 -   Navigate to the [LocalStack Web Application](https://app.localstack.cloud/) and access the [CI Keys](https://app.localstack.cloud/workspace/ci-keys) page.
 -   Scroll down to the **Generate CI Key** card, where you can provide a name, and click **Generate CI Key** to receive a new key.
