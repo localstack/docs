@@ -3,9 +3,9 @@ title: "Creating ephemeral application previews with LocalStack and GitHub Actio
 linkTitle: "Creating ephemeral application previews with LocalStack and GitHub Actions"
 weight: 8
 description: >
-  Creating ephemeral application previews with LocalStack and GitHub Actions
+  Learn how to use LocalStack's Ephemeral Instances to generate application previews for your cloud applications using GitHub Actions. This tutorial will guide you through deploying a full-stack serverless application using Lambda, DynamoDB, API Gateway, S3, and CloudFront, and serving it on a short-lived, encapsulated deployment generated for every new pull request.
 type: tutorials
-teaser: ""
+teaser: "ephemeral-application-previews-banner.png"
 services:
 - lambda
 - cloudfront
@@ -16,7 +16,7 @@ platform:
 deployment:
 - AWS CLI
 pro: true
-leadimage: ""
+leadimage: "ephemeral-application-previews-banner.png"
 ---
 
 ## Introduction
