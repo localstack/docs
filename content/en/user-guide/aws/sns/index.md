@@ -146,13 +146,21 @@ Then, use the ARN to unsubscribe
 $ awslocal sns unsubscribe --subscription-arn "arn:aws:sns:us-east-1:000000000000:localstack-topic:636e2a73-0dda-4e09-9fdf-77f113d0edd8"
 {{< /command >}}
 
-## Accessing published Platform Messages
+## Developer endpoints
 
-For testing purposes, LocalStack retains all messages published to a platform endpoint in memory, making it easy to retrieve them. To learn more about SNS mobile push notifications, refer to the [AWS documentation on SNS mobile push notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html).
+LocalStack’s SNS implementation offers additional endpoints for developers located at `/_aws/sns`.
+These endpoints provide the ability to access different SNS internals, like Platform Endpoint messages which are not sent to those platforms, or Subscription Tokens which you might not be able to retrieve otherwise. 
 
-You can access these messages in JSON format through the `GET /_aws/sns/platform-endpoint-messages`. To retrieve specific messages, you can use query parameters to filter by `accountId`, `region`, and `endpointArn`.
+### Platform Endpoint messages
 
-### Query parameters
+For testing purposes, LocalStack retains all messages published to a platform endpoint in memory, making it easy to retrieve them.
+To learn more about SNS mobile push notifications, refer to the [AWS documentation on SNS mobile push notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html).
+
+You can access these messages in JSON format through `GET /_aws/sns/platform-endpoint-messages`.
+To retrieve specific messages, you can use query parameters to filter by `accountId`, `region`, and `endpointArn`.
+You can also call `DELETE /_aws/sns/platform-endpoint-messages` to clear the messages. 
+
+#### Query parameters
 
 | Parameter | Required | Description |
 | - | - | - |
@@ -160,7 +168,7 @@ You can access these messages in JSON format through the `GET /_aws/sns/platform
 | `region` | No | The AWS region from which the messages have been published. If not specified, it will use the default `us-east-1` |
 | `endpointArn` | No | The target `EndpointArn` to which the messages have been published. If specified, the response will contain only messages sent to this target. Otherwise, it will return all endpoints with their messages. |
 
-### Response format and attributes
+#### Response format and attributes
 
 | Attribute | Description |
 | - | - |
@@ -173,29 +181,41 @@ In this example, we will create a platform endpoint in SNS and publish a message
 
 {{< command >}}
 $ awslocal sns create-platform-application --name app-test --platform APNS --attributes {}
+{{< /command >}}
+An example response is shown below:
+```json
 {
     "PlatformApplicationArn": "arn:aws:sns:us-east-1:000000000000:app/APNS/app-test"
 }
+```
 
+Using the `PlatformApplicationArn` from the previous call:
+{{< command >}}
 $ awslocal sns create-platform-endpoint --platform-application-arn "arn:aws:sns:us-east-1:000000000000:app/APNS/app-test" --token my-fake-token
+{{< /command >}}
+```json
 {
     "EndpointArn": "arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944"
 }
-{{< /command >}}
+```
 
 Publish a message to the platform endpoint:
 
 {{< command >}}
 $ awslocal sns publish --target-arn "arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944" --message '{"APNS_PLATFORM": "{\"aps\": {\"content-available\": 1}}"}' --message-structure json
+{{< /command >}}
+```json
 {
     "MessageId": "ed501a7a-caab-45aa-a941-2fcc64b5c227"
 }
-{{< /command >}}
+```
 
 Retrieve the messages published to the platform endpoint using `cURL`:
 
 {{< command >}}
 $ curl "http://localhost:4566/_aws/sns/platform-endpoint-messages" | jq .
+{{< /command >}}
+```json
 {
   "platform_endpoint_messages": {
     "arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944": [
@@ -210,18 +230,220 @@ $ curl "http://localhost:4566/_aws/sns/platform-endpoint-messages" | jq .
   },
   "region": "us-east-1"
 }
-{{< /command >}}
+```
+
 
 With those same filters, you can reset the saved messages at `DELETE /_aws/sns/platform-endpoint-messages`. Run the following command to reset the saved messages:
 
 {{< command >}}
 $ curl -X "DELETE" "http://localhost:4566/_aws/sns/platform-endpoint-messages"
+{{< /command >}}
+We can now check that the messages have been properly deleted:
+{{< command >}}
 $ curl "http://localhost:4566/_aws/sns/platform-endpoint-messages" | jq .
+{{< /command >}}
+```json
 {
   "platform_endpoint_messages": {},
   "region": "us-east-1"
 }
+```
+
+### SMS messages
+
+For testing purposes, LocalStack also retains all SMS messages published to a phone number in memory, making it easy to retrieve them.
+To learn more about SNS SMS notifications, refer to the [AWS documentation on SNS mobile text messaging (SMS)](https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-phone-number-as-subscriber.html).
+
+You can access these messages in JSON format through `GET /_aws/sns/sms-messages`.
+To retrieve specific messages, you can use query parameters to filter by `accountId`, `region`, and `phoneNumber`.
+You can also call `DELETE /_aws/sns/sms-messages` to clear the messages.
+
+#### Query parameters
+
+| Parameter | Required | Description |
+| - | - | - |
+| `accountId` | No | The AWS Account ID from which the messages have been published. If not specified, it will use the default `000000000000` |
+| `region` | No | The AWS region from which the messages have been published. If not specified, it will use the default `us-east-1` |
+| `phoneNumber` | No | The `phoneNumber` to which the messages have been published. If specified, the response will contain only messages sent to this number. Otherwise, it will return all phone numbers with their messages. |
+
+#### Response format and attributes
+
+| Attribute | Description |
+| - | - |
+| `sms_messages` | Contains phone numbers as field names. Each phone number will have its messages in an Array. |
+| `region` | The region from where the messages were sent. | 
+
+<br>
+
+In this example, we will publish a message to a phone number and retrieve it:
+
+Publish a message to a phone number:
+
+{{< command >}}
+$ awslocal sns publish --phone-number "" --message "Hello World!"
 {{< /command >}}
+An example response is shown below:
+```json
+{
+    "MessageId": "9ce56934-dcc4-45f5-ba40-13691329fc67"
+}
+```
+
+Retrieve the message published using `cURL` and `jq`:
+
+{{< command >}}
+$ curl "http://localhost:4566/_aws/sns/sms-messages" | jq .
+{{< /command >}}
+```json
+{
+  "sms_messages": {
+    "+123123123": [
+      {
+        "PhoneNumber": "+123123123",
+        "TopicArn": null,
+        "SubscriptionArn": null,
+        "MessageId": "9ce56934-dcc4-45f5-ba40-13691329fc67",
+        "Message": "Hello World",
+        "MessageAttributes": {},
+        "MessageStructure": null,
+        "Subject": null
+      }
+    ]
+  },
+  "region": "us-east-1"
+}
+```
+
+You can reset the saved messages at `DELETE /_aws/sns/sms-messages`.
+Using the query parameters, you can also selectively reset messages only in one region or from one phone number.
+Run the following command to reset the saved messages:
+
+{{< command >}}
+$ curl -X "DELETE" "http://localhost:4566/_aws/sns/sms-messages"
+{{< /command >}}
+We can now check that the messages have been properly deleted:
+{{< command >}}
+$ curl "http://localhost:4566/_aws/sns/sms-messages" | jq .
+{{< /command >}}
+```json
+{
+  "sms_messages": {},
+  "region": "us-east-1"
+}
+```
+
+### Subscription Tokens
+
+In case of email and HTTP(S) subscriptions, a special message is sent to the subscriber with a link to confirm the subscription so that it will be able to receive the messages afterwards. SNS does not send messages to endpoints pending confirmation.
+
+However, when working with external integrations, the link sent will most probably point to your local environment, which won't be accessible from the external integration to confirm.
+
+To still be able to test your external integrations, we expose the subscription tokens so that you can manually confirm the subscription.
+The subscription tokens are never deleted from memory, because they can be re-used. To manually confirm the subscription, you will use [`ConfirmSubscription`](https://docs.aws.amazon.com/sns/latest/api/API_ConfirmSubscription.html). 
+
+To learn more about confirming subscriptions, refer to the [AWS documentation](https://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.confirm.html).
+
+You can access the subscription tokens in JSON format through `GET /_aws/sns/subscription-tokens/<subscription-arn>`.
+
+#### Path parameters
+
+| Parameter | Required | Description |
+| - | - | - |
+| `subscription-arn` | Yes | The SNS Subscription ARN for which you would like to fetch the tokens |
+
+#### Response format and attributes
+
+| Attribute | Description |
+| - | - |
+| `subscription_token` | The Subscription token to be used with `ConfirmSubscription`. |
+| `subscription_arn` | The Subscription ARN provided. | 
+
+<br>
+
+In this example, we will susbcribe to an external SNS integration not confirming the subscription, retrieve the subscription token and manually confirm it:
+
+Create an SNS topic, and create a subscription to a external HTTP SNS integration:
+
+{{< command >}}
+awslocal sns create-topic --name "test-external-integration"
+{{< /command >}}
+```json
+{
+    "TopicArn": "arn:aws:sns:us-east-1:000000000000:test-external-integration"
+}
+```
+We now create an HTTP SNS subscription to an external endpoint:
+{{< command >}}
+awslocal sns subscribe --topic-arn "arn:aws:sns:us-east-1:000000000000:test-external-integration" --protocol https --notification-endpoint "https://api.opsgenie.com/v1/json/amazonsns?apiKey=b13fd59a-9" --return-subscription-arn
+{{< /command >}}
+```json
+{
+    "SubscriptionArn": "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8"
+}
+```
+
+Now, we can check the `PendingConfirmation` status of our subscription, showing our endpoint did not confirm the subscription. You will need to use the `SubscriptionArn` from the response of your subscribe call:
+{{< command >}}
+awslocal sns get-subscription-attributes --subscription-arn "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8"
+{{< /command >}}
+```json
+{
+    "Attributes": {
+        "TopicArn": "arn:aws:sns:us-east-1:000000000000:test-external-integration",
+        "Endpoint": "https://api.opsgenie.com/v1/json/amazonsns?apiKey=b13fd59a-9",
+        "Protocol": "https",
+        "SubscriptionArn": "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8",
+        "PendingConfirmation": "true",
+        "Owner": "000000000000",
+        "RawMessageDelivery": "false",
+        "SubscriptionPrincipal": "arn:aws:iam::000000000000:user/DummySNSPrincipal"
+    }
+}
+```
+
+To manually confirm the subscription, we will fetch its token with our developer endpoint:
+{{< command >}}
+curl "http://localhost:4566/_aws/sns/subscription-tokens/arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8" | jq .
+{{< /command >}}
+```json
+{
+  "subscription_token": "75732d656173742d312f3b875fb03b875fb03b875fb03b875fb03b875fb03b87",
+  "subscription_arn": "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8"
+}
+```
+
+We can now use this token to manually confirm the subscription:
+{{< command >}}
+awslocal sns confirm-subscription --topic-arn "arn:aws:sns:us-east-1:000000000000:test-external-integration" --token 75732d656173742d312f3b875fb03b875fb03b875fb03b875fb03b875fb03b87
+{{< /command >}}
+```json
+{
+    "SubscriptionArn": "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8"
+}
+```
+
+We can now finally verify the subscription has been confirmed:
+{{< command >}}
+awslocal sns get-subscription-attributes --subscription-arn "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8"
+{{< /command >}}
+```json
+{
+    "Attributes": {
+        "TopicArn": "arn:aws:sns:us-east-1:000000000000:test-external-integration",
+        "Endpoint": "https://api.opsgenie.com/v1/json/amazonsns?apiKey=b13fd59a-9",
+        "Protocol": "https",
+        "SubscriptionArn": "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8",
+        "PendingConfirmation": "false",
+        "Owner": "000000000000",
+        "RawMessageDelivery": "false",
+        "SubscriptionPrincipal": "arn:aws:iam::000000000000:user/DummySNSPrincipal",
+        "ConfirmationWasAuthenticated": "true"
+    }
+}
+```
+
+SNS will now publish messages to your HTTP endpoint, even if it did not confirm itself the subscription. 
+
 
 ## Resource Browser
 
