@@ -149,8 +149,6 @@ To complete the process, add the last step to attach the application preview URL
     github-token: ${{ secrets.GITHUB_TOKEN }}
     include-preview: true
     preview-url: ${{ env.PREVIEW_URL }}
-    preview-url: ${{ env.PREVIEW_URL }}
-    preview-url: ${{ env.PREVIEW_URL }}
 ```
 
 ### Configure a CI key for GitHub Actions
