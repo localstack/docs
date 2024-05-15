@@ -140,7 +140,7 @@ In the provided workflow:
 -   Additionally, the frontend application is built and deployed on an S3 bucket served via a CloudFront distribution.
 -   The application preview URL is provided by querying the CloudFront distribution ID using `awslocal`.
 
-To complete the process, add another step to attach the application preview URL to the Pull Request (PR) as a comment. This allows for quick access to the deployed URL for validating features or enhancements pushed to your application.
+To complete the process, add the last step to attach the application preview URL to the Pull Request (PR) as a comment. This allows for quick access to the deployed URL for validating features or enhancements pushed to your application.
 
 ```yaml 
 - name: Finalize PR comment
