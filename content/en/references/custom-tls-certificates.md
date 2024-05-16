@@ -60,7 +60,7 @@ If your certificate file ends with `.pem`, you can rename it to end in `.crt`.
 
 LocalStack now needs to be configured to use this custom image. The workflow is different depending on how you start localstack.
 
-{{< tabpane >}}
+{{< tabpane lang="bash">}}
 {{< tab header="CLI" lang="bash" >}}
 IMAGE_NAME=<image name> localstack start
 {{< /tab >}}

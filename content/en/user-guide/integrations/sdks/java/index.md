@@ -36,7 +36,7 @@ The client can be used to upload a file to an existing bucket and then retrieve 
 
 #### Configuring the S3 Client
 
-{{< tabpane >}}
+{{< tabpane lang="java" >}}
 {{< tab header="v1" lang="java" >}}
 
     // Credentials that can be replaced with real AWS values. (To be handled properly and not hardcoded.)
@@ -77,7 +77,7 @@ S3Client s3Client = S3Client.builder()
 
 #### Interacting with S3
 
-{{< tabpane >}}
+{{< tabpane lang="java" >}}
 {{< tab header="v1" lang="java" >}}
 
     // Existing bucket name.
@@ -153,7 +153,7 @@ cater to the application's needs. The full list of supported converters can be f
 
 #### Configuring the DynamoDB Client
 
-{{< tabpane >}}
+{{< tabpane lang="java" >}}
 {{< tab header="v1" lang="java">}}
 
     // Credentials that can be replaced with real AWS values. (To be handled properly and not hardcoded.)
@@ -207,7 +207,7 @@ DynamoDbEnhancedClient enhancedClient = DynamoDbEnhancedClient.builder()
 
 #### Interacting with DynamoDB
 
-{{< tabpane >}}
+{{< tabpane lang="java" >}}
 
 {{< tab header="v1" lang="java">}}
 

@@ -250,7 +250,7 @@ To automatically load a Cloud Pod at startup, utilize the `AUTO_LOAD_POD` [confi
 
 `AUTO_LOAD_POD` can accept multiple Cloud Pod names separated by commas. To autoload multiple Cloud Pods, such as `foo-pod` and `bar-pod`, use: `AUTO_LOAD_POD=foo-pod,bar-pod`. The order of Cloud Pods in `AUTO_LOAD_POD` dictates their loading sequence. When autoloading multiple Cloud Pods, later pods might overwrite the state of earlier ones if they share the same service, account, and region.
 
-{{< tabpane >}}
+{{< tabpane lang="bash" >}}
 {{< tab header="LocalStack CLI" lang="bash" >}}
 AUTO_LOAD_POD=foo-pod localstack start
 {{< /tab >}}

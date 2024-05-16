@@ -59,7 +59,7 @@ In the old Lambda provider, you could create a function with any arbitrary strin
 
 To invoke the Lambda function, you can use the [`Invoke` API](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html). Run the following command to invoke the function:
 
-{{< tabpane text=true persistLang=false >}}
+{{< tabpane text=true persist=false >}}
   {{% tab header="AWS CLI v1" lang="shell" %}}
   {{< command >}}
   $ awslocal lambda invoke --function-name localstack-lambda-url-example \
@@ -267,7 +267,7 @@ In the old Lambda provider, Lambda functions were executed within the LocalStack
 
 If you encounter the following error message, you may be using the local executor mode:
 
-{{< tabpane >}}
+{{< tabpane lang="bash" >}}
 {{< tab header="LocalStack Logs" lang="shell" >}}
 Lambda 'arn:aws:lambda:us-east-1:000000000000:function:my-function:$LATEST' changed to failed. Reason: Docker not available
 ...

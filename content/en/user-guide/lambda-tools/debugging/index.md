@@ -184,7 +184,7 @@ $ awslocal lambda create-function --function-name my-cool-local-function \
 
 We can quickly verify that it works by invoking it with a simple payload:
 
-{{< tabpane text=true persistLang=false >}}
+{{< tabpane text=true persist=false >}}
 {{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
 $ awslocal lambda invoke --function-name my-cool-local-function \
@@ -394,7 +394,7 @@ Now to debug your lambda function, click on the `Debug` icon with
 `Attach to Remote Node.js` configuration selected, and then invoke your
 lambda function:
 
-{{< tabpane text=true persistLang=false >}}
+{{< tabpane text=true persist=false >}}
 {{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
 $ awslocal lambda invoke --function-name func1 \

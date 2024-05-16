@@ -227,7 +227,7 @@ $ docker pull localstack/localstack:s3-latest
 
 The S3 Docker image only supports the S3 APIs and does not include other services like Lambda, DynamoDB, etc. You can run the S3 Docker image using any of the following commands:
 
-{{< tabpane >}}
+{{< tabpane lang="shell" >}}
 {{< tab header="LocalStack CLI" lang="shell" >}}
 IMAGE_NAME=localstack/localstack:s3-latest localstack start
 {{< /tab >}}
