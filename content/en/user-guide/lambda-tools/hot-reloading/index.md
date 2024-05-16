@@ -23,33 +23,6 @@ The configuration `BUCKET_MARKER_LOCAL` is still supported.
 More information about the new Lambda provider is available under [Lambda providers]({{< ref "user-guide/aws/lambda" >}}).
 {{< /alert >}}
 
-## Covered Topics
-
-- [Covered Topics](#covered-topics)
-- [Hot Reloading Behavior](#hot-reloading-behavior)
-- [Application Configuration Examples](#application-configuration-examples)
-  - [Hot reloading for JVM Lambdas](#hot-reloading-for-jvm-lambdas)
-  - [Hot reloading for Python Lambdas](#hot-reloading-for-python-lambdas)
-    - [Creating the Lambda Function](#creating-the-lambda-function)
-    - [Changing things up](#changing-things-up)
-    - [Usage with Virtualenv](#usage-with-virtualenv)
-      - [Expanding the module search path in your Lambda handler](#expanding-the-module-search-path-in-your-lambda-handler)
-      - [Using a watchman script to copy libraries](#using-a-watchman-script-to-copy-libraries)
-  - [Hot reloading for TypeScript Lambdas](#hot-reloading-for-typescript-lambdas)
-    - [ESbuild](#esbuild)
-      - [Setting up the Lambda function](#setting-up-the-lambda-function)
-      - [Creating the Lambda Function](#creating-the-lambda-function-1)
-      - [Changing the Lambda Function](#changing-the-lambda-function)
-    - [Webpack](#webpack)
-      - [Setting up the build](#setting-up-the-build)
-      - [Creating the Lambda Function](#creating-the-lambda-function-2)
-      - [Trigger the Hot Reload](#trigger-the-hot-reload)
-- [Deployment Configuration Examples](#deployment-configuration-examples)
-  - [Serverless Framework Configuration](#serverless-framework-configuration)
-  - [AWS Cloud Development Kit (CDK) Configuration](#aws-cloud-development-kit-cdk-configuration)
-  - [Terraform Configuration](#terraform-configuration)
-- [Useful Links](#useful-links)
-
 ## Hot Reloading Behavior
 
 **Delay in code change detection:**
@@ -130,6 +103,7 @@ $ git clone git@github.com:awsdocs/aws-doc-sdk-examples.git
 #### Creating the Lambda Function
 
 To create the Lambda function, you just need to take care of two things:
+
 1. Deploy via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket.
 2. Set the S3 key to the path of the directory your lambda function resides in.
    The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.
@@ -175,7 +149,9 @@ The invocation returns itself returns:
     "ExecutedVersion": "$LATEST"
 }
 ```
+
 and `output.txt` contains:
+
 ```json
 {"result":4}
 ```
@@ -196,12 +172,14 @@ Without redeploying or updating the function, the result of the previous request
 ```json
 {"math_result":4}
 ```
+
 Cool!
 
 #### Usage with Virtualenv
 
 For [virtualenv](https://virtualenv.pypa.io)-driven projects, all dependencies should be made
 available to the Python interpreter at runtime. There are different ways to achieve that, including:
+
 * expanding the Python module search path in your Lambda handler
 * creating a watchman script to copy the libraries
 
@@ -237,13 +215,13 @@ BUILD_FOLDER ?= build
 PROJECT_MODULE_NAME = my_project_module
 
 build-hot:
-	rm -rf $(BUILD_FOLDER)/hot && mkdir -p $(BUILD_FOLDER)/hot
-	cp -r $(VENV_DIR)/lib/python$(shell python --version | grep -oE '[0-9]\.[0-9]')/site-packages/* $(BUILD_FOLDER)/hot/
-	cp -r $(PROJECT_MODULE_NAME) $(BUILD_FOLDER)/hot/$(PROJECT_MODULE_NAME)
-	cp *.toml $(BUILD_FOLDER)/hot
+ rm -rf $(BUILD_FOLDER)/hot && mkdir -p $(BUILD_FOLDER)/hot
+  cp -r $(VENV_DIR)/lib/python$(shell python --version | grep -oE '[0-9]\.[0-9]')/site-packages/* $(BUILD_FOLDER)/hot/
+  cp -r $(PROJECT_MODULE_NAME) $(BUILD_FOLDER)/hot/$(PROJECT_MODULE_NAME)
+  cp *.toml $(BUILD_FOLDER)/hot
 
 watch:
-	bin/watchman.sh $(PROJECT_MODULE_NAME) "make build-hot"
+  bin/watchman.sh $(PROJECT_MODULE_NAME) "make build-hot"
 
 .PHONY: build-hot watch
 ```
@@ -254,10 +232,11 @@ LocalStack's Lambda container.
 
 ### Hot reloading for TypeScript Lambdas
 
-You can hot-reload your [TypeScript Lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html). You can use the following options to build your TypeScript code:
+You can hot-reload your [TypeScript Lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html).
+You can use the following options to build your TypeScript code:
 
-- ESbuild
-- Webpack
+* ESbuild
+* Webpack
 
 #### ESbuild
 
@@ -310,12 +289,12 @@ You can now run the build script to create the `dist/index.js` file:
 $ npm run build
 {{< / command >}}
 
-##### Creating the Lambda Function
+##### Creating the Lambda Function with ESbuild
 
 To create the Lambda function, you need to take care of two things:
 
-- Deploy via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket.
-- Set the S3 key to the path of the directory your lambda function resides in. The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.
+* Deploy via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket.
+* Set the S3 key to the path of the directory your lambda function resides in.The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.
 
 Create the Lambda Function using the `awslocal` CLI:
 
@@ -399,9 +378,10 @@ Next, you can build the Lambda function:
 $ yarn run build
 {{< / command >}}
 
-The `build` script in the `package.json` file uses Nodemon to watch for changes in the `src` directory and rebuild the Lambda. This is enabled using the [`nodemon-webpack-plugin`](https://www.npmjs.com/package/nodemon-webpack-plugin)  plugin, which has been pre-configured in the `webpack.config.js`  file.
+The `build` script in the `package.json` file uses Nodemon to watch for changes in the `src` directory and rebuild the Lambda.
+This is enabled using the [`nodemon-webpack-plugin`](https://www.npmjs.com/package/nodemon-webpack-plugin)  plugin, which has been pre-configured in the `webpack.config.js`  file.
 
-##### Creating the Lambda Function
+##### Creating the Lambda Function with Webpack
 
 You can now create the Lambda function using the `awslocal` CLI:
 
@@ -436,7 +416,8 @@ The response should be:
 {"error":"Only JSON payloads are accepted"}
 ```
 
-Go to `src/api.ts` and make the `errorResponse` function return `"Only JSON payload is accepted"` instead of `"Only JSON payloads are accepted"`. Save the file and run the last `curl` command again. 
+Go to `src/api.ts` and make the `errorResponse` function return `"Only JSON payload is accepted"` instead of `"Only JSON payloads are accepted"`.
+Save the file and run the last `curl` command again.
 
 The output should now be:
 
