@@ -118,7 +118,7 @@ def update_frontmatter(statuses: dict):
         content = frontmatter.load(_path, handler=CustomYAMLHandler())
         desc = content.metadata["description"]
         content.metadata["description"] = desc.strip()
-        content.metadata["persistence_support"] = values.get("support", "unknown")
+        content.metadata["persistence"] = values.get("support", "unknown")
         frontmatter.dump(content, _path)
 
 
