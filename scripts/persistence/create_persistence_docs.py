@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import notion_client as n_client
 import frontmatter
+from ruamel.yaml import YAML
 from frontmatter.default_handlers import YAMLHandler, DEFAULT_POST_TEMPLATE
 from notion.catalog import PersistenceCatalog
 
@@ -14,12 +15,20 @@ persistence_data = os.path.join(persistence_path, "coverage.json")
 
 
 class CustomYAMLHandler(YAMLHandler):
+
+    def load(self, fm: str, **kwargs: object):
+        yaml = YAML()
+        yaml.default_flow_style = False
+        yaml.preserve_quotes = True
+        return yaml.load(fm, **kwargs)  # type: ignore[arg-type]
+
     def export(self, metadata: dict[str, object], **kwargs: object) -> str:
-        """
-        Settings sort keys as false to prevent sorting existing elements.
-        """
-        kwargs.setdefault("sort_keys", False)
-        return super().export(metadata, **kwargs)
+        yaml = YAML()
+        yaml.default_flow_style = False
+        from io import StringIO
+        stream = StringIO()
+        yaml.dump(metadata, stream)
+        return stream.getvalue()
 
     def format(self, post, **kwargs):
         """
