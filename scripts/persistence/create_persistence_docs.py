@@ -98,7 +98,13 @@ def update_frontmatter(statuses: dict):
         if not os.path.exists(_path):
             print(f" Can't find index.md file for {service}")
             continue
-         
+
+        support_value = values.get("support")
+        is_supported = support_value == "supported" or support_value == "supported with limitations"
+        if not is_supported:
+            # we don't want to modify the frontmatter for the services not supporting persistence
+            continue
+
         # open the markdown file and read the content
         content = frontmatter.load(_path, handler=CustomYAMLHandler())
         desc = content.metadata["description"]
