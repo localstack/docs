@@ -90,7 +90,7 @@ You will see an output similar to the following:
         "repositoryArn": "arn:aws:ecr:us-east-1:000000000000:repository/localstack-ecr-repository",
         "registryId": "000000000000",
         "repositoryName": "localstack-ecr-repository",
-        "repositoryUri": "localhost.localstack.cloud:4510/localstack-ecr-repository",
+        "repositoryUri": "000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/localstack-ecr-repository",
         "createdAt": "2023-07-24T16:58:36+05:30",
         "imageTagMutability": "MUTABLE",
         "imageScanningConfiguration": {
@@ -111,13 +111,13 @@ To push the Docker image to the repository, you first need to tag the image with
 Run the following command to tag the image:
 
 {{< command >}}
-$ docker tag localstack-ecr-image localhost.localstack.cloud:4510/localstack-ecr-repository
+$ docker tag localstack-ecr-image 000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/localstack-ecr-repository
 {{< / command >}}
 
 You can now push the image to the repository using the `docker` CLI:
 
 {{< command >}}
-$ docker push localhost.localstack.cloud:4510/localstack-ecr-repository
+$ docker push 000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/localstack-ecr-repository
 {{< / command >}}
 
 The image will take a few seconds to push to the repository.
