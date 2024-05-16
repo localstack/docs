@@ -1,6 +1,6 @@
 ---
 title: "Cloud Pods"
-weight: 1
+weight: 2
 description: Get started with Cloud Pods to manage the state of your LocalStack instance state
 aliases:
   - /user-guide/cloud-pods/getting-started/
