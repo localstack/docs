@@ -25,16 +25,30 @@ More information about the new Lambda provider is available under [Lambda provid
 
 ## Covered Topics
 
-* [Hot Reloading Behavior](#hot-reloading-behavior)
-* [Application Configuration Examples](#application-configuration-examples):
-  * [Hot reloading for JVM Lambdas](#hot-reloading-for-jvm-lambdas)
-  * [Hot reloading for Python Lambdas](#hot-reloading-for-python-lambdas)
-  * [Hot reloading for TypeScript Lambdas](#hot-reloading-for-typescript-lambdas)
-* [Deployment Configuration Examples](#deployment-configuration-examples):
-  * [Serverless Framework Configuration](#serverless-framework-configuration)
-  * [AWS Cloud Development Kit (CDK) Configuration](#aws-cloud-development-kit-cdk-configuration)
-  * [Terraform Configuration](#terraform-configuration)
-* [Useful Links](#useful-links)
+- [Covered Topics](#covered-topics)
+- [Hot Reloading Behavior](#hot-reloading-behavior)
+- [Application Configuration Examples](#application-configuration-examples)
+  - [Hot reloading for JVM Lambdas](#hot-reloading-for-jvm-lambdas)
+  - [Hot reloading for Python Lambdas](#hot-reloading-for-python-lambdas)
+    - [Creating the Lambda Function](#creating-the-lambda-function)
+    - [Changing things up](#changing-things-up)
+    - [Usage with Virtualenv](#usage-with-virtualenv)
+      - [Expanding the module search path in your Lambda handler](#expanding-the-module-search-path-in-your-lambda-handler)
+      - [Using a watchman script to copy libraries](#using-a-watchman-script-to-copy-libraries)
+  - [Hot reloading for TypeScript Lambdas](#hot-reloading-for-typescript-lambdas)
+    - [ESbuild](#esbuild)
+      - [Setting up the Lambda function](#setting-up-the-lambda-function)
+      - [Creating the Lambda Function](#creating-the-lambda-function-1)
+      - [Changing the Lambda Function](#changing-the-lambda-function)
+    - [Webpack](#webpack)
+      - [Setting up the build](#setting-up-the-build)
+      - [Creating the Lambda Function](#creating-the-lambda-function-2)
+      - [Trigger the Hot Reload](#trigger-the-hot-reload)
+- [Deployment Configuration Examples](#deployment-configuration-examples)
+  - [Serverless Framework Configuration](#serverless-framework-configuration)
+  - [AWS Cloud Development Kit (CDK) Configuration](#aws-cloud-development-kit-cdk-configuration)
+  - [Terraform Configuration](#terraform-configuration)
+- [Useful Links](#useful-links)
 
 ## Hot Reloading Behavior
 
@@ -310,7 +324,7 @@ awslocal lambda create-function \
     --function-name hello-world \
     --runtime "nodejs16.x" \
     --role arn:aws:iam::123456789012:role/lambda-ex \
-    --code S3Bucket="hot-reload",S3Key="$(PWD)/dist" \
+    --code S3Bucket="hot-reload",S3Key="/absolute/path/to/dist" \
     --handler index.handler
 {{< / command >}}
 
@@ -396,7 +410,7 @@ $ awslocal lambda create-function \
     --function-name localstack-example \
     --runtime nodejs18.x \
     --role arn:aws:iam::000000000000:role/lambda-ex \
-    --code S3Bucket="hot-reload",S3Key="$(PWD)/dist" \
+    --code S3Bucket="hot-reload",S3Key="/absolute/path/to/dist" \
     --handler api.default
 {{< / command >}}
 
