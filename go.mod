@@ -1,6 +1,6 @@
 module github.com/localstack/docs
 
-go 1.17
+go 1.22
 
 require (
 	github.com/google/docsy v0.10.0 // indirect
