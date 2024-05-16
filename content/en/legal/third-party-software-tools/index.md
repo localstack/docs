@@ -19,7 +19,6 @@ amazon_kclpy              | Amazon Software License
 boto3                     | Apache License 2.0
 coverage                  | Apache License 2.0
 docopt                    | MIT License
-elasticsearch             | Apache License 2.0
 flask                     | BSD License
 flask_swagger             | MIT License
 jsonpath-rw               | Apache License 2.0
