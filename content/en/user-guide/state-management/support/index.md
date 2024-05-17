@@ -3,7 +3,6 @@ title: Persistence Coverage for AWS Services
 linkTitle: Persistence Coverage
 description: Overview of the persistence coverage across the implemented AWS services
 hide_readingtime: true
-weight: 1
 tags: ["Pro Image"]
 ---
 
