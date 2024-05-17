@@ -450,46 +450,8 @@ This is a compromise between &lt;code>ON_REQUEST&lt;/code> and &lt;code>ON_SHUTD
 &lt;h2 id="service-coverage">Service coverage&lt;/h2>
 &lt;p>Although we are working to support both snapshot-based persistence and Cloud pods for all AWS services,
 there are some common issues, known limitations, and also services that are not well tested for persistence support.
-Please help us improve persistence support by reporting bugs on our &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub issue tracker&lt;/a>.&lt;/p>
-&lt;p>Here is a list of currently supported services and known issues.
-Persistence for services that are &lt;em>not&lt;/em> listed here &lt;em>may&lt;/em> work correctly, but are untested and unsupported.&lt;/p>
-&lt;h3 id="supported--tested">Supported &amp;amp; tested&lt;/h3>
-&lt;ul>
-&lt;li>ACM&lt;/li>
-&lt;li>Amplify&lt;/li>
-&lt;li>API Gateway&lt;/li>
-&lt;li>AppConfig&lt;/li>
-&lt;li>AppSync&lt;/li>
-&lt;li>CloudWatch&lt;/li>
-&lt;li>Cognito&lt;/li>
-&lt;li>DynamoDB&lt;/li>
-&lt;li>IAM&lt;/li>
-&lt;li>Kinesis&lt;/li>
-&lt;li>KMS&lt;/li>
-&lt;li>Lambda&lt;/li>
-&lt;li>RDS: Postgres, MariaDB, MySQL&lt;/li>
-&lt;li>Route53&lt;/li>
-&lt;li>S3&lt;/li>
-&lt;li>SecretsManager&lt;/li>
-&lt;li>SNS&lt;/li>
-&lt;li>SQS&lt;/li>
-&lt;li>SSM&lt;/li>
-&lt;li>Stepfunctions&lt;/li>
-&lt;/ul>
-&lt;h3 id="known-limitations">Known limitations&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>ElastiCache&lt;/strong>: Redis instances are not restored&lt;/li>
-&lt;li>&lt;strong>MSK&lt;/strong>: Kafka brokers are not restored&lt;/li>
-&lt;li>&lt;strong>EC2&lt;/strong>: works for most resources, but emulated VM data is not restored&lt;/li>
-&lt;li>&lt;strong>Firehose&lt;/strong>: Kinesis delivery streams are not restored&lt;/li>
-&lt;li>&lt;strong>RDS&lt;/strong>: MSSQL database is not restored&lt;/li>
-&lt;li>&lt;strong>Neptune&lt;/strong>: database is not restored&lt;/li>
-&lt;li>&lt;strong>DocDB&lt;/strong>: database is not restored&lt;/li>
-&lt;/ul>
-&lt;h3 id="not-implemented">Not Implemented&lt;/h3>
-&lt;ul>
-&lt;li>MQ&lt;/li>
-&lt;/ul>
+An overview is available &lt;a href="/user-guide/state-management/support/">here&lt;/a>.&lt;/p>
+&lt;p>Please help us improve persistence support by reporting bugs on our &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub issue tracker&lt;/a>.&lt;/p>
 &lt;h2 id="technical-details">Technical Details&lt;/h2>
 &lt;p>State persistence in LocalStack works on a per-service basis and uses a custom state serialization protocol based on &lt;a href="https://docs.python.org/3/library/pickle.html">Python&amp;rsquo;s pickle mechanism&lt;/a>.
 Some services also store application-specific data, which we call &lt;em>assets&lt;/em>.
@@ -923,4 +885,744 @@ The &lt;code>state&lt;/code> group offers two commands to export and import the 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> the state of all running services is reset.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Persistence Coverage for AWS Services</title><link>/user-guide/state-management/support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/state-management/support/</guid><description>
+&lt;h2 id="persistence-coverage-overview">Persistence Coverage Overview&lt;/h2>
+&lt;div class="coverage-report">
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th class="coverage-report-header-1">Service&lt;/th>
+&lt;th class="coverage-report-header-2">Supported&lt;/th>
+&lt;th class="coverage-report-header-1">Persistence Test Suite&lt;/th>
+&lt;th class="coverage-report-header-2">Limitations&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/account/">AWS Account Management&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/acm/">ACM (AWS Certificate Manager)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/acm-pca/">AWS Private Certificate Authority (CA)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/amplify/">Amplify&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/apigateway/">API Gateway&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/appconfig/">AppConfig&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/applicationautoscaling/">applicationautoscaling&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/appsync/">AppSync&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/athena/">Athena&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/autoscaling/">Auto Scaling&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/backup/">Backup&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/batch/">Batch&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ce/">CE (Cost Explorer API)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cloudformation/">CloudFormation&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cloudfront/">CloudFront&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cloudtrail/">CloudTrail&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cloudwatch/">CloudWatch&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/codecommit/">CodeCommit&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cognito-identity/">Cognito Identity&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cognito-idp/">Cognito IDP (Cognito User Pools API)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/config/">Config&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/dms/">dms&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/docdb/">DocumentDB&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/dynamodb/">DynamoDB&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/dynamodbstreams/">DynamoDB Streams&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ec2/">EC2 (Elastic Compute Cloud)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ecr/">ECR (Elastic Container Registry)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ecs/">ECS (Elastic Container Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/efs/">EFS (Elastic File System)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/eks/">EKS (Elastic Kubernetes Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/elasticache/">ElastiCache&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/elasticbeanstalk/">Elastic Beanstalk&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/elb/">ELB (Elastic Load Balancer)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/elbv2/">ELB v2 (Elastic Load Balancer v2)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/emr/">EMR (Elastic MapReduce)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/es/">ES (OpenSearch, legacy Elasticsearch)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/events/">EventBridge&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/firehose/">Kinesis Data Firehose&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/fis/">FIS (Fault Injection Simulator)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/glacier/">Glacier (S3 Glacier)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/glue/">Glue&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/iam/">IAM (Identity and Access Management)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/identitystore/">identitystore&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/iot/">IoT (Internet of Things)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/iot-data/">IoT Data&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/iotanalytics/">IoT Analytics&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/iotwireless/">IoT Wireless&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/kafka/">MSK (Managed Streaming for Apache Kafka)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>The Kafka instances are restored. However, their content is not.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/kinesis/">Kinesis&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/kinesisanalytics/">Kinesis Data Analytics API&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/kinesisanalyticsv2/">Kinesis Data Analytics API v2&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/kms/">KMS (Key Management Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/lakeformation/">Lake Formation&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/lambda/">Lambda&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>Hot-Reloading is currently not supported (see https://github.com/localstack/localstack/issues/9974).&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/logs/">CloudWatch Logs&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/managedblockchain/">managedblockchain&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/mediaconvert/">mediaconvert&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/mediastore/">Elemental MediaStore&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/memorydb/">MemoryDB for Redis&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/mq/">Amazon MQ&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/mwaa/">MWAA (Managed Workflows for Apache Airflow)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/neptune/">Neptune&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/opensearch/">OpenSearch&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/organizations/">Organizations&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/pinpoint/">pinpoint&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/pipes/">Pipes (EventBridge Pipes)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/qldb/">QLDB (Quantum Ledger Database)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ram/">ram (Resource Access Manager)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/rds/">RDS (Relational Database Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>MSSQL does not support persistence.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/rds-data/">RDS data (Relational Database Service Data)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/redshift/">Redshift&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/resource-groups/">Resource Groups&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/resourcegroupstaggingapi/">Resource Groups Tagging API&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/route53/">Route 53&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/route53resolver/">Route 53 Resolver&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/s3/">S3 (Simple Storage Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sagemaker/">SageMaker&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/scheduler/">scheduler (EventBridge Scheduler)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/secretsmanager/">Secrets Manager&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/serverlessrepo/">Serverless Application Repository&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/servicediscovery/">Service Discovery (Cloud Map)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ses/">SES (Simple Email Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sesv2/">SES v2 (Simple Email Service v2)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sns/">SNS (Simple Notification Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sqs/">SQS (Simple Queue Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ssm/">SSM (Web Services Systems Manager)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sso-admin/">sso-admin (IAM Identity Center (successor to Single Sign-On))&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/stepfunctions/">Step Functions&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sts/">STS (Security Token Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/support/">Support API&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/swf/">SWF (Simple Workflow Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/textract/">textract&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/timestream/">timestream&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/transcribe/">Transcribe&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/transfer/">Transfer&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/verifiedpermissions/">verifiedpermissions&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/wafv2/">wafv2&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/xray/">X-Ray&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;br/>
+&lt;/div>
+&lt;h3 id="terminology">Terminology&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Persistence Test Suite&lt;/strong>: tested by LocalStack&amp;rsquo;s internal persistence test suite.
+To test persistence, we use an approach similar to snapshot parity test:
+we first record API responses from LocalStack, we then reset and restore the snapshotted state,
+and finally verify that the same API responses matches with the initial ones.&lt;/li>
+&lt;/ul></description></item></channel></rss>

@@ -943,46 +943,8 @@ This is a compromise between &lt;code>ON_REQUEST&lt;/code> and &lt;code>ON_SHUTD
 &lt;h2 id="service-coverage">Service coverage&lt;/h2>
 &lt;p>Although we are working to support both snapshot-based persistence and Cloud pods for all AWS services,
 there are some common issues, known limitations, and also services that are not well tested for persistence support.
-Please help us improve persistence support by reporting bugs on our &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub issue tracker&lt;/a>.&lt;/p>
-&lt;p>Here is a list of currently supported services and known issues.
-Persistence for services that are &lt;em>not&lt;/em> listed here &lt;em>may&lt;/em> work correctly, but are untested and unsupported.&lt;/p>
-&lt;h3 id="supported--tested">Supported &amp;amp; tested&lt;/h3>
-&lt;ul>
-&lt;li>ACM&lt;/li>
-&lt;li>Amplify&lt;/li>
-&lt;li>API Gateway&lt;/li>
-&lt;li>AppConfig&lt;/li>
-&lt;li>AppSync&lt;/li>
-&lt;li>CloudWatch&lt;/li>
-&lt;li>Cognito&lt;/li>
-&lt;li>DynamoDB&lt;/li>
-&lt;li>IAM&lt;/li>
-&lt;li>Kinesis&lt;/li>
-&lt;li>KMS&lt;/li>
-&lt;li>Lambda&lt;/li>
-&lt;li>RDS: Postgres, MariaDB, MySQL&lt;/li>
-&lt;li>Route53&lt;/li>
-&lt;li>S3&lt;/li>
-&lt;li>SecretsManager&lt;/li>
-&lt;li>SNS&lt;/li>
-&lt;li>SQS&lt;/li>
-&lt;li>SSM&lt;/li>
-&lt;li>Stepfunctions&lt;/li>
-&lt;/ul>
-&lt;h3 id="known-limitations">Known limitations&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>ElastiCache&lt;/strong>: Redis instances are not restored&lt;/li>
-&lt;li>&lt;strong>MSK&lt;/strong>: Kafka brokers are not restored&lt;/li>
-&lt;li>&lt;strong>EC2&lt;/strong>: works for most resources, but emulated VM data is not restored&lt;/li>
-&lt;li>&lt;strong>Firehose&lt;/strong>: Kinesis delivery streams are not restored&lt;/li>
-&lt;li>&lt;strong>RDS&lt;/strong>: MSSQL database is not restored&lt;/li>
-&lt;li>&lt;strong>Neptune&lt;/strong>: database is not restored&lt;/li>
-&lt;li>&lt;strong>DocDB&lt;/strong>: database is not restored&lt;/li>
-&lt;/ul>
-&lt;h3 id="not-implemented">Not Implemented&lt;/h3>
-&lt;ul>
-&lt;li>MQ&lt;/li>
-&lt;/ul>
+An overview is available &lt;a href="/user-guide/state-management/support/">here&lt;/a>.&lt;/p>
+&lt;p>Please help us improve persistence support by reporting bugs on our &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub issue tracker&lt;/a>.&lt;/p>
 &lt;h2 id="technical-details">Technical Details&lt;/h2>
 &lt;p>State persistence in LocalStack works on a per-service basis and uses a custom state serialization protocol based on &lt;a href="https://docs.python.org/3/library/pickle.html">Python&amp;rsquo;s pickle mechanism&lt;/a>.
 Some services also store application-specific data, which we call &lt;em>assets&lt;/em>.
@@ -5823,6 +5785,746 @@ Run the following command to create a Neptune instance:&lt;/p>
 &lt;p>The following code snippets and sample applications provide practical examples of how to use Neptune in LocalStack for various use cases:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/neptune-graph-db">Neptune Graph Database Demo&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Persistence Coverage for AWS Services</title><link>/user-guide/state-management/support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/state-management/support/</guid><description>
+&lt;h2 id="persistence-coverage-overview">Persistence Coverage Overview&lt;/h2>
+&lt;div class="coverage-report">
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th class="coverage-report-header-1">Service&lt;/th>
+&lt;th class="coverage-report-header-2">Supported&lt;/th>
+&lt;th class="coverage-report-header-1">Persistence Test Suite&lt;/th>
+&lt;th class="coverage-report-header-2">Limitations&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/account/">AWS Account Management&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/acm/">ACM (AWS Certificate Manager)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/acm-pca/">AWS Private Certificate Authority (CA)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/amplify/">Amplify&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/apigateway/">API Gateway&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/appconfig/">AppConfig&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/applicationautoscaling/">applicationautoscaling&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/appsync/">AppSync&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/athena/">Athena&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/autoscaling/">Auto Scaling&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/backup/">Backup&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/batch/">Batch&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ce/">CE (Cost Explorer API)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cloudformation/">CloudFormation&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cloudfront/">CloudFront&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cloudtrail/">CloudTrail&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cloudwatch/">CloudWatch&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/codecommit/">CodeCommit&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cognito-identity/">Cognito Identity&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/cognito-idp/">Cognito IDP (Cognito User Pools API)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/config/">Config&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/dms/">dms&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/docdb/">DocumentDB&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/dynamodb/">DynamoDB&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/dynamodbstreams/">DynamoDB Streams&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ec2/">EC2 (Elastic Compute Cloud)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ecr/">ECR (Elastic Container Registry)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ecs/">ECS (Elastic Container Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/efs/">EFS (Elastic File System)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/eks/">EKS (Elastic Kubernetes Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/elasticache/">ElastiCache&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/elasticbeanstalk/">Elastic Beanstalk&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/elb/">ELB (Elastic Load Balancer)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/elbv2/">ELB v2 (Elastic Load Balancer v2)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/emr/">EMR (Elastic MapReduce)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/es/">ES (OpenSearch, legacy Elasticsearch)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/events/">EventBridge&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/firehose/">Kinesis Data Firehose&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/fis/">FIS (Fault Injection Simulator)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/glacier/">Glacier (S3 Glacier)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/glue/">Glue&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/iam/">IAM (Identity and Access Management)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/identitystore/">identitystore&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/iot/">IoT (Internet of Things)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/iot-data/">IoT Data&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/iotanalytics/">IoT Analytics&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/iotwireless/">IoT Wireless&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/kafka/">MSK (Managed Streaming for Apache Kafka)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>The Kafka instances are restored. However, their content is not.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/kinesis/">Kinesis&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/kinesisanalytics/">Kinesis Data Analytics API&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/kinesisanalyticsv2/">Kinesis Data Analytics API v2&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/kms/">KMS (Key Management Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/lakeformation/">Lake Formation&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/lambda/">Lambda&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>Hot-Reloading is currently not supported (see https://github.com/localstack/localstack/issues/9974).&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/logs/">CloudWatch Logs&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/managedblockchain/">managedblockchain&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/mediaconvert/">mediaconvert&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/mediastore/">Elemental MediaStore&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/memorydb/">MemoryDB for Redis&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/mq/">Amazon MQ&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/mwaa/">MWAA (Managed Workflows for Apache Airflow)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/neptune/">Neptune&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/opensearch/">OpenSearch&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/organizations/">Organizations&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/pinpoint/">pinpoint&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/pipes/">Pipes (EventBridge Pipes)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/qldb/">QLDB (Quantum Ledger Database)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ram/">ram (Resource Access Manager)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/rds/">RDS (Relational Database Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>MSSQL does not support persistence.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/rds-data/">RDS data (Relational Database Service Data)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/redshift/">Redshift&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/resource-groups/">Resource Groups&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/resourcegroupstaggingapi/">Resource Groups Tagging API&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/route53/">Route 53&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/route53resolver/">Route 53 Resolver&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/s3/">S3 (Simple Storage Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sagemaker/">SageMaker&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/scheduler/">scheduler (EventBridge Scheduler)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/secretsmanager/">Secrets Manager&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/serverlessrepo/">Serverless Application Repository&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/servicediscovery/">Service Discovery (Cloud Map)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ses/">SES (Simple Email Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sesv2/">SES v2 (Simple Email Service v2)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sns/">SNS (Simple Notification Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sqs/">SQS (Simple Queue Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/ssm/">SSM (Web Services Systems Manager)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sso-admin/">sso-admin (IAM Identity Center (successor to Single Sign-On))&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/stepfunctions/">Step Functions&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/sts/">STS (Security Token Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/support/">Support API&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/swf/">SWF (Simple Workflow Service)&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/textract/">textract&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/timestream/">timestream&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/transcribe/">Transcribe&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+✔️
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/transfer/">Transfer&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/verifiedpermissions/">verifiedpermissions&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/wafv2/">wafv2&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="/user-guide/aws/xray/">X-Ray&lt;/a>&lt;/td>
+&lt;td class="coverage-shadow-overlay-green">
+&lt;/td>
+&lt;td class="coverage-shadow-overlay-green"> ✔️ &lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;br/>
+&lt;/div>
+&lt;h3 id="terminology">Terminology&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Persistence Test Suite&lt;/strong>: tested by LocalStack&amp;rsquo;s internal persistence test suite.
+To test persistence, we use an approach similar to snapshot parity test:
+we first record API responses from LocalStack, we then reset and restore the snapshotted state,
+and finally verify that the same API responses matches with the initial ones.&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: Pinpoint</title><link>/user-guide/aws/pinpoint/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/pinpoint/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Pinpoint is a customer engagement service to facilitate communication across multiple channels, including email, SMS, and push notifications. Pinpoint allows developers to create and manage customer segments based on various attributes, such as user behavior and demographics, while integrating with other AWS services to send targeted messages to customers.&lt;/p>
@@ -6286,203 +6988,4 @@ We will demonstrate how to create a RedShift cluster and database while using a 
 &lt;p>You can finally retrieve the schema of the table using the &lt;a href="https://docs.aws.amazon.com/glue/latest/webapi/API_GetTable.html">&lt;code>GetTable&lt;/code>&lt;/a> API. The following command will retrieve the schema of the table:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-table \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --database-name $GLUE_DATABASE_NAME \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name &amp;#34;${REDSHIFT_DATABASE_NAME}_${REDSHIFT_SCHEMA_NAME}_${REDSHIFT_TABLE_NAME}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Relational Database Service (RDS)</title><link>/user-guide/aws/rds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/rds/</guid><description>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Relational Database Service (RDS) is a managed database service provided by Amazon Web Services (AWS) that allows users to setup, operate, and scale relational databases in the cloud. RDS allows you to deploy and manage various relational database engines like MySQL, PostgreSQL, MariaDB, and Microsoft SQL Server. RDS handles routine database tasks such as provisioning, patching, backup, recovery, and scaling.&lt;/p>
-&lt;p>LocalStack allows you to use the RDS APIs in your local environment to create and manage RDS clusters and instances for testing &amp;amp; integration purposes. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_rds/">API coverage page&lt;/a>, which provides information on the extent of RDS&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>This guide is designed for users new to RDS and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
-&lt;p>Start your LocalStack container using your preferred method. We will demonstrate the following with the AWS CLI:&lt;/p>
-&lt;ol>
-&lt;li>Creating an RDS cluster.&lt;/li>
-&lt;li>Generating a &lt;code>SecretsManager&lt;/code> secret containing the database password.&lt;/li>
-&lt;li>Executing a basic &lt;code>SELECT 123 query&lt;/code> through the RDS Data API.&lt;/li>
-&lt;/ol>
-&lt;p>LocalStack&amp;rsquo;s RDS implementation also supports the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">RDS Data API&lt;/a>, which allows executing data queries against RDS clusters over a JSON/REST interface.&lt;/p>
-&lt;h3 id="create-an-rds-cluster">Create an RDS cluster&lt;/h3>
-&lt;p>To create an RDS cluster, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html">&lt;code>CreateDBCluster&lt;/code>&lt;/a> API.
-The following command creates a new cluster with the name &lt;code>db1&lt;/code> and the engine &lt;code>aurora-postgresql&lt;/code>.
-Instances for the cluster must be added manually.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-cluster \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-cluster-identifier db1 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine aurora-postgresql \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --database-name test \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-username myuser \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-user-password mypassword&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You should see the following output:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBCluster&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Port&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">4510&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#a40000">#&lt;/span> &lt;span style="color:#a40000">may&lt;/span> &lt;span style="color:#a40000">vary&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusterArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:rds:us-east-1:000000000000:cluster:db1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To add an instance you can run the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-instance \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-instance-identifier db1-instance \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-cluster-identifier db1 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine aurora-postgresql \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-instance-class db.t3.large&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="create-a-secretsmanager-secret">Create a SecretsManager secret&lt;/h3>
-&lt;p>To create a &lt;code>SecretsManager&lt;/code> secret, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateSecret.html">&lt;code>CreateSecret&lt;/code>&lt;/a> API. Before creating the secret, you need to create a JSON file containing the credentials for the database. The following command creates a file called &lt;code>mycreds.json&lt;/code> with the credentials for the database.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; mycreds.json
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;engine&amp;#34;: &amp;#34;aurora-postgresql&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;username&amp;#34;: &amp;#34;myuser&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;password&amp;#34;: &amp;#34;mypassword&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;host&amp;#34;: &amp;#34;localhost&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dbname&amp;#34;: &amp;#34;test&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;port&amp;#34;: &amp;#34;4510&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Run the following command to create the secret:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal secretsmanager create-secret \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name dbpass \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --secret-string file://mycreds.json&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You should see the following output:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ARN&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;dbpass&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;VersionId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;fffa1f4a-2381-4a2b-a977-4869d59a16c0&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="execute-a-query">Execute a query&lt;/h3>
-&lt;p>To execute a query, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ExecuteStatement.html">&lt;code>ExecuteStatement&lt;/code>&lt;/a> API.&lt;/p>
-&lt;p>Make sure to replace the &lt;code>secret-arn&lt;/code> with the ARN from the secret you just created in the previous step, and check that the &lt;code>resource-arn&lt;/code> matches the &lt;code>cluster-arn&lt;/code> that you have created before.&lt;/p>
-&lt;p>The following command executes a query against the database. The query returns the value &lt;code>123&lt;/code>.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds-data execute-statement \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --database test \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --secret-arn arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --include-result-metadata --sql &amp;#39;SELECT 123&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You should see the following output:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;columnMetadata&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;arrayBaseColumnType&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;isAutoIncrement&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;isCaseSensitive&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;isCurrency&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;isSigned&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;?column?&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;?column?&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;nullable&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;precision&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;scale&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;schemaName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;tableName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">4&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;typeName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;int4&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;numberOfRecordsUpdated&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;records&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;longValue&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">123&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Alternative clients, such as &lt;code>psql&lt;/code>, can also be employed to interact with the database. You can retrieve the hostname and port of your created instance either from the preceding output or by using the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html">&lt;code>DescribeDbInstances&lt;/code>&lt;/a> API.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>psql -d test -U test -p 4513 -h localhost -W&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="supported-db-engines">Supported DB engines&lt;/h2>
-&lt;p>Presently, you can spin up PostgreSQL, MariaDB, MySQL, and MSSQL (SQL Server) databases directly on your local machine, using LocalStack&amp;rsquo;s RDS implementation. However, certain configurations of RDS clusters and instances currently offer only CRUD functionality. For instance, the &lt;code>storage-encrypted&lt;/code> flag is returned as configured, but active support for actual storage encryption is not yet available.&lt;/p>
-&lt;h3 id="postgresql-engine">PostgreSQL Engine&lt;/h3>
-&lt;p>When you establish an RDS DB cluster or instance using the &lt;code>postgres&lt;/code>/&lt;code>aurora-postgresql&lt;/code> DB engine along with a specified &lt;code>EngineVersion&lt;/code>, LocalStack will dynamically install and configure the corresponding PostgreSQL version as required. Presently, you have the option to choose major versions ranging from 10 to 15. If you select a major version beyond this range, the system will automatically default to version 11.&lt;/p>
-&lt;p>It&amp;rsquo;s important to note that the selection of minor versions is not available. The latest major version will be installed within the Docker environment. If you wish to prevent the installation of customized versions, adjusting the &lt;code>RDS_PG_CUSTOM_VERSIONS&lt;/code> environment variable to &lt;code>0&lt;/code> will enforce the use of the default PostgreSQL version 11.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-While the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusters.html">&lt;code>DescribeDbCluster&lt;/code>&lt;/a> and &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html">&lt;code>DescribeDbInstances&lt;/code>&lt;/a> APIs will still reflect the initially defined &lt;code>engine-version&lt;/code>, the actual installed PostgreSQL engine might differ. This can have implications, particularly when employing a Terraform configuration, where unexpected changes should be avoided.
-&lt;/div>
-&lt;p>Instances and clusters with the PostgreSQL engine have the capability to both create and restore snapshots.&lt;/p>
-&lt;h3 id="mariadb-engine">MariaDB Engine&lt;/h3>
-&lt;p>MariaDB will be set up as an operating system package within LocalStack. However, currently, the option to choose a particular version is not available. As of now, snapshots are not supported for MariaDB.&lt;/p>
-&lt;h3 id="mysql-engine">MySQL Engine&lt;/h3>
-&lt;p>A MySQL community server will be launched in a new Docker container upon requesting the MySQL engine.&lt;/p>
-&lt;p>The &lt;code>engine-version&lt;/code> will serve as the tag for the Docker image, allowing you to freely select the desired MySQL version from those available on the &lt;a href="https://hub.docker.com/_/mysql">official MySQL Docker Hub&lt;/a>. If you have a specific image in mind, you can also use the environment variable &lt;code>MYSQL_IMAGE=&amp;lt;my-image:tag&amp;gt;&lt;/code>.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-The &lt;code>arm64&lt;/code> MySQL images are limited to newer versions. For more information about availability, check the &lt;a href="https://hub.docker.com/_/mysql">MySQL Docker Hub repository&lt;/a>.
-&lt;/div>
-&lt;p>It&amp;rsquo;s essential to understand that the &lt;code>MasterUserPassword&lt;/code> you define for the database cluster/instance will be used as the &lt;code>MYSQL_ROOT_PASSWORD&lt;/code> environment variable for the &lt;code>root&lt;/code> user within the MySQL container. The user specified in &lt;code>MasterUserName&lt;/code> will use the same password and will have complete access to the database. As of now, snapshots are not supported for MySQL.&lt;/p>
-&lt;h3 id="microsoft-sql-server-engine">Microsoft SQL Server Engine&lt;/h3>
-&lt;p>To utilize MSSQL databases, it&amp;rsquo;s necessary to expressly agree to the terms of the &lt;a href="https://hub.docker.com/_/microsoft-mssql-server">Microsoft SQL Server End-User Licensing Agreement (EULA)&lt;/a> by configuring &lt;code>MSSQL_ACCEPT_EULA=Y&lt;/code> within the LocalStack container environment. The &lt;code>arm64&lt;/code> architecture is not currently officially supported for MSSQL.&lt;/p>
-&lt;p>For the MSSQL engine, the database server is initiated in a fresh Docker container using the &lt;code>latest&lt;/code> image. As of now, snapshots are not supported for MSSQL.&lt;/p>
-&lt;h2 id="default-usernames-and-passwords">Default Usernames and Passwords&lt;/h2>
-&lt;p>The following details concern default usernames, passwords, and database names for local RDS clusters created by LocalStack:&lt;/p>
-&lt;ul>
-&lt;li>The default values for &lt;code>master-username&lt;/code> and &lt;code>db-name&lt;/code> are both &lt;strong>test&lt;/strong>. For the &lt;code>master-user-password&lt;/code>, the default is &lt;strong>test&lt;/strong>, except for MSSQL databases, which employ &lt;strong>Test123!&lt;/strong> as the default master password.&lt;/li>
-&lt;li>When setting up a new RDS instance, you have the flexibility to utilize any &lt;code>master-username&lt;/code>, with the exception of &lt;strong>postgres&lt;/strong>. The system will automatically generate the user.&lt;/li>
-&lt;li>It&amp;rsquo;s important to remember that the username &lt;strong>postgres&lt;/strong> has special significance, preventing the creation of a new RDS instance under this particular name.&lt;/li>
-&lt;li>For clarity, please avoid using the &lt;code>db-name&lt;/code> &lt;strong>postgres&lt;/strong>, as it is already allocated for use by LocalStack.&lt;/li>
-&lt;/ul>
-&lt;h2 id="iam-authentication-support">IAM Authentication Support&lt;/h2>
-&lt;p>IAM authentication tokens can be employed to establish connections with RDS. As of now, this functionality is supported for PostgreSQL within LocalStack. However, IAM authentication is not yet validated at this stage. Consequently, any database user assigned the &lt;code>rds_iam&lt;/code> role will obtain a valid token, thereby gaining the ability to connect to the database.&lt;/p>
-&lt;p>In this example, you will be able to verify the IAM authentication process for RDS Postgres:&lt;/p>
-&lt;ol>
-&lt;li>Establish a database instance and obtain the corresponding host and port information.&lt;/li>
-&lt;li>Connect to the database using the master username and password. Subsequently, generate a new user and assign the &lt;code>rds_iam&lt;/code> role as follows:
-&lt;ul>
-&lt;li>&lt;code>CREATE USER &amp;lt;username&amp;gt; WITH LOGIN&lt;/code>&lt;/li>
-&lt;li>&lt;code>GRANT rds_iam TO &amp;lt;username&amp;gt;&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Create a token for the &lt;code>&amp;lt;username&amp;gt;&lt;/code> using the &lt;code>generate-db-auth-token&lt;/code> command.&lt;/li>
-&lt;li>Connect to the database utilizing the user you generated and the token obtained in the previous step as the password.&lt;/li>
-&lt;/ol>
-&lt;h3 id="create-a-database-instance">Create a database instance&lt;/h3>
-&lt;p>The following command creates a new database instance with the name &lt;code>mydb&lt;/code> and the engine &lt;code>postgres&lt;/code>. The database will be created with a single instance, which will be used as the master instance.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>MASTER_USER=hello
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>MASTER_PW=&amp;#39;MyPassw0rd!&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>DB_NAME=test
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-instance \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-username $MASTER_USER \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-user-password $MASTER_PW \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-instance-identifier mydb \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine postgres \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-name $DB_NAME \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --enable-iam-database-authentication \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-instance-class db.t3.small&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="connect-to-the-database">Connect to the database&lt;/h3>
-&lt;p>You can retrieve the hostname and port of your created instance either from the preceding output or by using the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html">&lt;code>DescribeDbInstances&lt;/code>&lt;/a> API. Run the following command to retrieve the host and port of the instance:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PORT=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r &amp;#34;.DBInstances[0].Endpoint.Port&amp;#34;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>HOST=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r &amp;#34;.DBInstances[0].Endpoint.Address&amp;#34;)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Next, you can connect to the database using the master username and password:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$MASTER_PW psql -d $DB_NAME -U $MASTER_USER -p $PORT -h $HOST -w -c &amp;#39;CREATE USER myiam WITH LOGIN&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$MASTER_PW psql -d $DB_NAME -U $MASTER_USER -p $PORT -h $HOST -w -c &amp;#39;GRANT rds_iam TO myiam&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="create-a-token">Create a token&lt;/h3>
-&lt;p>You can create a token for the user you generated using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/rds/generate-db-auth-token.html">&lt;code>generate-db-auth-token&lt;/code>&lt;/a> command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>TOKEN=$(awslocal rds generate-db-auth-token --username myiam --hostname $HOST --port $PORT)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can now connect to the database utilizing the user you generated and the token obtained in the previous step as the password:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$TOKEN psql -d $DB_NAME -U myiam -w -p $PORT -h $HOST&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="global-database-support">Global Database Support&lt;/h2>
-&lt;p>LocalStack extends support for &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html">Aurora Global Database&lt;/a> with certain limitations:&lt;/p>
-&lt;ul>
-&lt;li>Creating a global database will result in the generation of a single local database. All clusters and instances associated with the global database will share a common endpoint.&lt;/li>
-&lt;li>It&amp;rsquo;s important to note that clusters removed from a global database lose their ability to function as standalone clusters, differing from their intended behavior on AWS.&lt;/li>
-&lt;li>At present, the capability for persistence within global databases is not available.&lt;/li>
-&lt;/ul>
-&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
-&lt;p>The LocalStack Web Application provides a Resource Browser for managing RDS instances and clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>RDS&lt;/strong> under the &lt;strong>Database&lt;/strong> section.&lt;/p>
-&lt;img src="rds-resource-browser.png" alt="RDS Resource Browser" title="RDS Resource Browser" width="900" />
-&lt;br>
-&lt;br>
-&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Create Instance&lt;/strong>: Create a new RDS instance by specifying the instance name, engine, DBInstance Class &amp;amp; Identifier, and other parameters.&lt;/li>
-&lt;li>&lt;strong>Create Cluster&lt;/strong>: Create a new RDS cluster by specifying the database name, engine, DBCluster Identifier, and other parameters.&lt;/li>
-&lt;li>&lt;strong>View Instance &amp;amp; Cluster&lt;/strong>: View an existing RDS instance or cluster by clicking the instance/cluster name.&lt;/li>
-&lt;li>&lt;strong>Edit Instance &amp;amp; Cluster&lt;/strong>: Edit an existing RDS instance or cluster by clicking the instance/cluster name and clicking the &lt;strong>EDIT INSTANCE&lt;/strong> or &lt;strong>EDIT CLUSTER&lt;/strong> button.&lt;/li>
-&lt;li>&lt;strong>Remove Instance &amp;amp; Cluster&lt;/strong>: Remove an existing RDS instance or cluster by clicking the instance/cluster name and clicking the &lt;strong>ACTIONS&lt;/strong> followed by &lt;strong>Remove Selected&lt;/strong> button.&lt;/li>
-&lt;/ul>
-&lt;h2 id="examples">Examples&lt;/h2>
-&lt;p>The following code snippets and sample applications provide practical examples of how to use RDS in LocalStack for various use cases:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/localstack/appsync-graphql-api-sample">AppSync GraphQL APIs for DynamoDB and RDS Aurora PostgreSQL&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack/amazon-rds-init-cdk">Amazon RDS initialization using CDK, Lambda, ECR, and Secrets Manager&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack-samples/sample-serverless-rds-proxy-demo/">Serverless RDS Proxy with API Gateway, Lambda, and Aurora RDS&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/rds-db-queries">Running queries against an RDS database&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample">Running cloud integration tests against LocalStack&amp;rsquo;s RDS with Testcontainers&lt;/a>&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name &amp;#34;${REDSHIFT_DATABASE_NAME}_${REDSHIFT_SCHEMA_NAME}_${REDSHIFT_TABLE_NAME}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
