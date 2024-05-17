@@ -196,7 +196,7 @@ docker pull public.ecr.aws/localstack/localstack-pro:latest
 
 ### How to increase IO performance for LocalStack's Docker image under Windows?
 
-{{< callout "Note">}}
+{{< callout "note">}}
 Some options that are not part of the standard configuration may have unintended consequences for AWS services that operate within LocalStack.
 For example, these options may interfere with the functionality of AppSync function executor, RDS MySQL persistence and SageMaker.
 We advise you to exercise caution.

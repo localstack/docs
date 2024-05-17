@@ -59,7 +59,7 @@ $ python3 -m pip install --upgrade localstack
 {{< / command >}}
 {{% /markdown %}}
 
-{{< callout "Important" >}}
+{{< callout "warning" >}}
 Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
 If you have problems with permissions in MacOS X Sierra, install with `python3 -m pip install --user localstack`.
 {{< /callout >}}
@@ -118,7 +118,7 @@ Afterwards you can install the LocalStack CLI in your Python environment with:
 $ python3 -m pip install --upgrade localstack
 {{< / command >}}
 {{% /markdown %}}
-{{< callout "Important" >}}
+{{< callout "warning" >}}
 Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
 {{< /callout >}}
 </details>
@@ -145,7 +145,7 @@ $ python3 -m pip install --upgrade localstack
 {{< / command >}}
 {{% /markdown %}}
 
-{{< callout "Important" >}}
+{{< callout "warning" >}}
 Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
 {{< /callout >}}
 </details>
@@ -166,7 +166,7 @@ $ python3 -m pip install --upgrade localstack
 {{< / command >}}
 {{% /markdown %}}
 
-{{< callout "Note" >}}
+{{< callout "note" >}}
 To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
 {{< command >}}
 $ python3 -m pip install localstack==<version>
@@ -176,7 +176,7 @@ Here `<version>` depicts the particular LocalStack version that you would like t
 {{% /markdown %}}
 {{< /callout >}}
 
-{{< callout "Important" >}}
+{{< callout "warning" >}}
 Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
 {{< /callout >}}
 {{< /tab >}}
@@ -285,7 +285,7 @@ Start the container by running the following command:
 $ docker-compose up
 {{< / command >}}
 
-{{< callout "Notes" >}}
+{{< callout "note" >}}
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
   If you want to use a specific version, set the appropriate localstack image tag at `services.localstack.image` in the `docker-compose.yml` file (for example `localstack/localstack:<version>`).
 
@@ -345,7 +345,7 @@ docker run \
   localstack/localstack-pro{{< /tab >}}
 {{< /tabpane >}}
 
-{{< callout "Note" >}}
+{{< callout "note" >}}
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
   If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`. Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
 

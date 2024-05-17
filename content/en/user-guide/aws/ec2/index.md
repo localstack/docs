@@ -143,7 +143,7 @@ You should see the following output:
 ...
 ```
 
-{{< callout "Note" >}}
+{{< callout "note" >}}
 Similar to the setup in production AWS, the user data content is stored at `/var/lib/cloud/instances/<instance_id>/user-data.txt` within the instance.
 Any execution of this data is recorded in the `/var/log/cloud-init-output.log` file.
 {{< /callout >}}
@@ -166,7 +166,7 @@ Assuming the instance is available under `127.0.0.1:12862` (as per the LocalStac
 $ ssh -p 12862 -i key.pem root@127.0.0.1
 {{< /command >}}
 
-{{< callout "Tip" >}}
+{{< callout "tip" >}}
 If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here](#create-a-key-pair).
 {{< /callout >}}
 
@@ -227,7 +227,7 @@ At startup, LocalStack downloads the following AMIs that can be used to launch D
 - Ubuntu 22.04 `ami-df5de72bdb3b`
 - Amazon Linux 2023 `ami-024f768332f0`
 
-{{< callout "Note" >}}
+{{< callout "note" >}}
 The auto download of Docker images to be used as AMIs can be disabled using the `EC2_DOWNLOAD_DEFAULT_IMAGES=0` configuration variable.
 {{< /callout >}}
 
@@ -238,7 +238,7 @@ These AMIs can be listed using:
 $ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
 {{< /command >}}
 
-{{< callout "Note" >}}
+{{< callout "note" >}}
 If an AMI does have the `ec2_vm_manager:docker` tag, it means that it is mocked.
 Attempting to launch Dockerized instances using these AMIs will result in an `InvalidAMIID.NotFound` error.
 See [Mock VM manager](#mock-vm-manager).
@@ -246,7 +246,7 @@ See [Mock VM manager](#mock-vm-manager).
 
 ### Networking
 
-{{< callout "Note" >}}
+{{< callout "note" >}}
 Network access to EC2 instance is not possible on macOS. 
 This is because Docker Desktop on macOS does not expose the bridge network to the host system.
 See [Docker Desktop Known Limitations](https://docs.docker.com/desktop/networking/#known-limitations).
@@ -264,7 +264,7 @@ If not found, it installs and starts the [Dropbear](https://github.com/mkj/dropb
 
 To be able to access the instance at additional ports from the host system, you can modify the default security group and incorporate the needed ingress ports.
 
-{{< callout "Note" >}}
+{{< callout "note" >}}
 Security group ingress rules are applied only during the creation of the Dockerized instance.
 Modifying a security group will not open any ports for a running instance.
 {{< /callout >}}
@@ -293,7 +293,7 @@ The port mapping details are provided in the logs during the instance initializa
 A common use case is to attach an EBS block device to an EC2 instance, which can then be used to create a custom filesystem for additional storage.
 This section illustrates how this functionality can be achieved with EC2 Docker instances in LocalStack.
 
-{{< callout "Note" >}}
+{{< callout "note" >}}
 This feature is disabled by default.
 Please set the [`EC2_MOUNT_BLOCK_DEVICES`]({{< ref "configuration#ec2" >}}) configuration option to enable it.
 {{< /callout >}}
@@ -353,7 +353,7 @@ $ curl -H "x-aws-ec2-metadata-token: <TOKEN>" -v http://169.254.169.254/latest/m
 Currently a limited set of [metadata categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) are implemented.
 If you would like support for more metadata categories, please make a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
 
-{{< callout "Note" >}}
+{{< callout "note" >}}
 IMDS IPv6 endpoint is currently not supported.
 {{< /callout >}}
 
@@ -384,7 +384,7 @@ Any operation not listed below will use the mock VM manager.
 
 ## Libvirt VM Manager
 
-{{< callout "Note" >}}
+{{< callout "note" >}}
 The Libvirt VM manager is under active development.
 It is currently offered as a preview and will be part of the Enterprise Plan upon release.
 If a functionality you desire is missing, please create a feature request on the [GitHub issue tracker](https://github.com/localstack/localstack/issues/new/choose).
@@ -408,7 +408,7 @@ INFO: /dev/kvm exists
 KVM acceleration can be used
 {{< /command >}}
 
-{{< callout "Tip" >}}
+{{< callout "tip" >}}
 You may also need to enable virtualization support at hardware level.
 This is often labelled as 'Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
 {{< /callout >}}
@@ -505,7 +505,7 @@ If a key pair is provided, it will added as an authorised SSH key for this user.
 LocalStack shuts down all virtual machines when it terminates.
 The Libvirt domains and volumes are left defined and can be used for debugging, etc.
 
-{{< callout "Tip" >}}
+{{< callout "tip" >}}
 Use [Virtual Machine Manager](https://virt-manager.org/) or [virsh](https://www.libvirt.org/manpages/virsh.html) to manage the virtual machines outside of LocalStack.
 {{< /callout >}}
 

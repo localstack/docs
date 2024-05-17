@@ -77,7 +77,7 @@ COPY ./handler.py ./
 CMD [ "handler.handler" ]
 ```
 
-{{< callout "Note">}}
+{{< callout "note">}}
 If your Lambda function has additional dependencies, create a file named `requirements.txt` in the same directory as the Dockerfile. List the required libraries in this file. You can install these dependencies in the `Dockerfile` under the `${LAMBDA_TASK_ROOT}` directory.
 {{< /callout >}}
 
@@ -119,7 +119,7 @@ $ awslocal ecr create-repository --repository-name localstack-lambda-container-i
 }
 {{< / command >}}
 
-{{< callout "Note">}}
+{{< callout "note">}}
 To further customize the ECR repository, you can pass additional flags to the `create-repository` command. For more details on the available options, refer to the [AWS CLI documentation](https://docs.aws.amazon.com/cli/latest/reference/ecr/create-repository.html).
 {{< /callout >}}
 
@@ -158,7 +158,7 @@ By running this command, you can confirm that the image is now in the ECR reposi
 
 To deploy the container image as a Lambda function, we will create a new Lambda function using the `create-function` command. Run the following command to create the function:
 
-{{< callout "Note">}}
+{{< callout "note">}}
 Before creating the lambda function, please double check under which architecture you have built your image. If your image is built as arm64, you need to specify the lambda architecture when deploying or set `LAMBDA_IGNORE_ARCHTIECTURE=1` when starting LocalStack.
 More information can be found [in our documentation regarding ARM support.]({{< ref "arm64-support" >}})
 {{< /callout >}}
