@@ -5,6 +5,8 @@ description: Get started with Athena on LocalStack
 tags: ["Pro image"]
 ---
 
+## Introduction
+
 Athena is an interactive query service provided by Amazon Web Services (AWS) that enables you to analyze data stored in S3 using standard SQL queries.
 Athena allows users to create ad-hoc queries to perform data analysis, filter, aggregate, and join datasets stored in S3.
 It supports various file formats, such as JSON, Parquet, and CSV, making it compatible with a wide range of data sources.
@@ -201,6 +203,42 @@ s3://mybucket/prefix/metadata/snap-8425363304532374388-1-70de28f7-6507-44ae-b505
 s3://mybucket/prefix/metadata/snap-9068645333036463050-1-2f8d3628-bb13-4081-b5a9-30f2e81b7226.avro
 s3://mybucket/prefix/temp/
 ```
+
+## Client configuration
+
+You can configure the Athena service in LocalStack with various clients, such as [PyAthena](https://github.com/laughingman7743/PyAthena/), [awswrangler](https://github.com/aws/aws-sdk-pandas), among others!
+Here are small snippets to get you started:
+
+{{< tabpane >}}
+{{< tab header="PyAthena" lang="python" >}}
+from pyathena import connect
+
+conn = connect(
+    s3_staging_dir="s3://s3-results-bucket/output/",
+    region_name="us-east-1",
+    endpoint_url="http://localhost:4566",
+)
+cursor = conn.cursor()
+
+cursor.execute("SELECT 1,2,3 AS test")
+print(cursor.fetchall())
+{{< /tab >}}
+{{< tab header="awswrangler" lang="python" >}}
+import awswrangler as wr
+import pandas as pd
+
+ENDPOINT = "http://localhost:4566"
+DATABASE = "testdb"
+S3_BUCKET = "s3://s3-results-bucket/output/"
+
+wr.config.athena_endpoint_url = ENDPOINT
+wr.config.glue_endpoint_url = ENDPOINT
+wr.config.s3_endpoint_url = ENDPOINT
+wr.catalog.create_database(DATABASE)
+df = wr.athena.read_sql_query("SELECT 1 AS col1, 2 AS col2, 3 AS col3", database=DATABASE)
+print(df)
+{{< /tab >}}
+{{< /tabpane >}}
 
 ## Resource Browser
 

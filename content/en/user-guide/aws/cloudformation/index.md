@@ -312,6 +312,7 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::CloudFront::Function                       |      ✅ |      ✅ |      - |
 | AWS::CloudFront::OriginAccessControl            |      ✅ |      ✅ |      - |
 | AWS::CloudFront::OriginRequestPolicy            |      ✅ |      ✅ |      - |
+| AWS::Cloudfront::ResponseHeadersPolicy          |      ✅ |      ✅ |      - |
 | AWS::CloudTrail::Trail                          |      ✅ |      ✅ |      - |
 | AWS::Cognito::IdentityPool                      |      ✅ |      ✅ |      - |
 | AWS::Cognito::IdentityPoolRoleAttachment        |      ✅ |      ✅ |      - |
@@ -340,7 +341,9 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::ECS::ClusterCapacityProviderAssociations   |      ✅ |      ✅ |      - |
 | AWS::ECS::Service                               |      ✅ |      ✅ |      - |
 | AWS::ECS::TaskDefinition                        |      ✅ |      ✅ |      - |
+| AWS::EFS::AccessPoint                          |      ✅ |      ✅ |      - |
 | AWS::EFS::FileSystem                            |      ✅ |      ✅ |      - |
+| AWS::EFS:MountTarget                            |      ✅ |      ✅ |      - |
 | AWS::EKS::Cluster                               |      ✅ |      ✅ |      - |
 | AWS::EKS::FargateProfile                        |      ✅ |      ✅ |      - |
 | AWS::EKS::Nodegroup                             |      ✅ |      ✅ |      - |
