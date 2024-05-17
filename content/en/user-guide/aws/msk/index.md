@@ -1,9 +1,10 @@
 ---
 title: "Managed Streaming for Kafka (MSK)"
 linkTitle: "Managed Streaming for Kafka (MSK)"
-description: >
-  Get started with Managed Streaming for Kafka (MSK) on LocalStack
+description: Get started with Managed Streaming for Kafka (MSK) on LocalStack
 tags: ["Pro image"]
+persistence: supported with limitations
+
 ---
 
 ## Introduction

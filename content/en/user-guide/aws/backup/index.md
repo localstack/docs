@@ -3,6 +3,8 @@ title: "Backup"
 linkTitle: "Backup"
 description: Get started with Backup on LocalStack
 tags: ["Pro image"]
+persistence: supported
+
 ---
 
 ## Introduction

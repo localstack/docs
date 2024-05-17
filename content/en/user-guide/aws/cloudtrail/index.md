@@ -1,9 +1,10 @@
 ---
 title: "CloudTrail"
 linkTitle: "CloudTrail"
-description: >
-  Get started with CloudTrail on LocalStack
+description: Get started with CloudTrail on LocalStack
 tags: ["Pro image"]
+persistence: supported
+
 ---
 
 ## Introduction

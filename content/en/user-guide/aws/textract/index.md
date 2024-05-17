@@ -3,6 +3,8 @@ title: "Textract"
 linkTitle: "Textract"
 description: Get started with Textract on LocalStack
 tags: ["Pro image"]
+persistence: supported
+
 ---
 
 Textract is a machine learning service that automatically extracts text, forms, and tables from scanned documents. It simplifies the process of extracting valuable information from a variety of document types, enabling applications to quickly analyze and understand document content.

@@ -1,8 +1,9 @@
 ---
 title: "Secrets Manager"
 linkTitle: "Secrets Manager"
-description: >
-  Get started with Secrets Manager on LocalStack
+description: Get started with Secrets Manager on LocalStack
+persistence: supported
+
 ---
 
 ## Introduction

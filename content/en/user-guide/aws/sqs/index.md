@@ -1,9 +1,10 @@
 ---
 title: "Simple Queue Service (SQS)"
-description: >
-  Get started with Simple Queue Service (SQS) on LocalStack
+description: Get started with Simple Queue Service (SQS) on LocalStack
 aliases:
-  - /aws/sqs/
+- /aws/sqs/
+persistence: supported
+
 ---
 
 ## Introduction

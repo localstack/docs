@@ -2,10 +2,11 @@
 title: "ElastiCache"
 linkTitle: "ElastiCache"
 categories: ["LocalStack Pro"]
-description: >
-  Get started with AWS ElastiCache on LocalStack
+description: Get started with AWS ElastiCache on LocalStack
 aliases:
-  - /aws/elasticache/
+- /aws/elasticache/
+persistence: supported
+
 ---
 
 ## Introduction
