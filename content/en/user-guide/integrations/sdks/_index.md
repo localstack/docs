@@ -10,7 +10,8 @@ aliases:
 
 ## Introduction
 
-LocalStack integrates with official AWS Software Development Kits (SDKs) so you can connect to LocalStack services using the same SDKs you use for AWS services. This lets you develop and test your applications locally without connecting to the cloud.
+LocalStack integrates with official AWS Software Development Kits (SDKs) so you can connect to LocalStack services using the same SDKs you use for AWS services.
+This lets you develop and test your applications locally without connecting to the cloud.
 
 ## How to connect with AWS SDKs?
 
