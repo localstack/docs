@@ -101,47 +101,9 @@ $ curl -X POST localhost:4566/_localstack/state/save
 
 Although we are working to support both snapshot-based persistence and Cloud pods for all AWS services,
 there are some common issues, known limitations, and also services that are not well tested for persistence support.
+An overview is available [here]({{<ref "user-guide/state-management/support">}}).
+
 Please help us improve persistence support by reporting bugs on our [GitHub issue tracker](https://github.com/localstack/localstack/issues/new/choose).
-
-Here is a list of currently supported services and known issues.
-Persistence for services that are _not_ listed here _may_ work correctly, but are untested and unsupported.
-
-
-### Supported & tested
-
-* ACM
-* Amplify
-* API Gateway
-* AppConfig
-* AppSync
-* CloudWatch
-* Cognito
-* DynamoDB
-* IAM
-* Kinesis
-* KMS
-* Lambda
-* RDS: Postgres, MariaDB, MySQL
-* Route53
-* S3
-* SecretsManager
-* SNS
-* SQS
-* SSM
-* Stepfunctions
-
-### Known limitations
-
-* **ElastiCache**: Redis instances are not restored
-* **MSK**: Kafka brokers are not restored
-* **EC2**: works for most resources, but emulated VM data is not restored
-* **Firehose**: Kinesis delivery streams are not restored
-* **RDS**: MSSQL database is not restored
-* **Neptune**: database is not restored
-* **DocDB**: database is not restored
-
-### Not Implemented
-* MQ
 
 ## Technical Details
 

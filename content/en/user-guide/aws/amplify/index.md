@@ -1,9 +1,10 @@
 ---
 title: "Amplify"
 linkTitle: "Amplify"
-description: >
-  Get started with Amplify on LocalStack
+description: Get started with Amplify on LocalStack
 tags: ["Pro image"]
+persistence: supported
+
 ---
 
 ## Introduction

@@ -1,9 +1,10 @@
 ---
 title: "CloudFront"
 linkTitle: "CloudFront"
-description: >
-  Get started with CloudFront on LocalStack
+description: Get started with CloudFront on LocalStack
 tags: ["Pro image"]
+persistence: supported
+
 ---
 
 ## Introduction

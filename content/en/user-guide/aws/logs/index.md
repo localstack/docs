@@ -3,7 +3,9 @@ title: "CloudWatch Logs"
 linkTitle: "CloudWatch Logs"
 description: Get started with AWS CloudWatch Logs on LocalStack
 aliases:
-  - /aws/logs/
+- /aws/logs/
+persistence: supported
+
 ---
 
 [CloudWatch Logs](https://docs.aws.amazon.com/cloudwatch/index.html) allows to store and retrieve logs. While some services automatically create and write logs (e.g. Lambda), logs can also be added manually. 

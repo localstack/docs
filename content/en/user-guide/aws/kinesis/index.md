@@ -1,8 +1,9 @@
 ---
 title: "Kinesis"
 linkTitle: "Kinesis"
-description: >
-  Get started with Kinesis on LocalStack
+description: Get started with Kinesis on LocalStack
+persistence: supported
+
 ---
 
 ## Introduction

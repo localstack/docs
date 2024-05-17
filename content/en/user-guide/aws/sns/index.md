@@ -1,8 +1,9 @@
 ---
 title: "Simple Notification Service (SNS)"
 linkTitle: "Simple Notification Service (SNS)"
-description: >
-   Get started with Simple Notification Service (SNS) on LocalStack
+description: Get started with Simple Notification Service (SNS) on LocalStack
+persistence: supported
+
 ---
 
 Simple Notification Service (SNS) is a serverless messaging service that can distribute a massive number of messages to multiple subscribers and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints. SNS employs the Publish/Subscribe, an asynchronous messaging pattern that decouples services that produce events from services that process events.

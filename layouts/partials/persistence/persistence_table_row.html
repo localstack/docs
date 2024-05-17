@@ -1,0 +1,14 @@
+<tr>
+    <!-- Service -->
+    <td><a href="{{ printf "/user-guide/aws/%s/" .service }}">{{ .full_name }}</a></td>
+    <!-- Supported -->
+    <td class="coverage-shadow-overlay-green">
+        {{ if or (eq .support "supported") (eq .support "supported with limitations") -}}
+        ✔️
+        {{ end }}
+    </td>
+    <!-- Persistence Test Suite -->
+    <td class="coverage-shadow-overlay-green">{{ if (.test_suite) }} ✔️ {{ end }}</td>
+    <!-- Limitations -->
+    <td>{{ .limitations }}</td>
+</tr>

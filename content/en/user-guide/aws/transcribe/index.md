@@ -2,6 +2,8 @@
 title: "Transcribe"
 linkTitle: "Transcribe"
 description: Get started with Amazon Transcribe on LocalStack
+persistence: supported
+
 ---
 
 ## Introduction

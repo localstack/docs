@@ -1,8 +1,9 @@
 ---
 title: "Identity and Access Management (IAM)"
 linkTitle: "Identity and Access Management (IAM)"
-description: >
-  Get started with AWS Identity and Access Management (IAM) on LocalStack
+description: Get started with AWS Identity and Access Management (IAM) on LocalStack
+persistence: supported
+
 ---
 
 ## Introduction
