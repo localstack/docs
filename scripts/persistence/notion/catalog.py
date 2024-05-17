@@ -21,7 +21,7 @@ class PersistenceServiceItem(Page):
     has_test = Checkbox("Persistence Tests")
     primary_owner = PeopleProperty("Primary Owner")
     secondary_owner = PeopleProperty("Secondary Owner(s)")
-    limitations = Text("Limitations") 
+    limitations = Text("Limitations (synced with docs)")
 
 
 class PersistenceCatalog(Database[PersistenceServiceItem]):
