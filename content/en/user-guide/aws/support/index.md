@@ -10,9 +10,9 @@ AWS Support is a service provided by Amazon Web Services (AWS) that offers techn
 
 LocalStack allows you to use the Support APIs in your local environment to create and manage new cases, while testing your configurations locally. LocalStack provides a mock implementation via a mock Support Center provided by [Moto](https://docs.getmoto.org/en/latest/docs/services/support.html), and does not create real cases in the AWS. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_support/), which provides information on the extent of Support API's integration with LocalStack.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 For technical support with LocalStack, you can reach out through our [support channels](https://docs.localstack.cloud/getting-started/help-and-support/). It's important to note that LocalStack doesn't offer a programmatic interface to create support cases, and this documentation is only intended to demonstrate how you can use and mock the AWS Support APIs in your local environment.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 

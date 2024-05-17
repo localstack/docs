@@ -7,9 +7,9 @@ aliases:
 - /user-guide/aws/kinesis-firehose/
 ---
 
-{{< alert title="Note">}}
+{{< callout >}}
 Amazon recently renamed Kinesis Data Firehose to Data Firehose.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Introduction
 
@@ -57,9 +57,9 @@ You can now create the Firehose delivery stream. In this configuration, Elastics
 
 The `elasticsearch-destination-configuration` sets vital parameters, which includes the access role, `DomainARN` of the Elasticsearch domain where you wish to publish, and the settings including the `IndexName` and `TypeName` for the Elasticsearch setup. Additionally to backup all documents to S3, the `S3BackupMode` parameter is set to `AllDocuments`, which is accompanied by `S3Configuration`.
 
-{{< alert title="Note">}}
+{{< callout >}}
 Within LocalStack's default configuration, IAM roles remain unverified and no strict validation is applied on ARNs. However, when operating within the AWS environment, you need to check the access rights of the specified role for the task.
-{{< /alert >}}
+{{< /callout >}}
 
 You can use the [`CreateDeliveryStream`](https://docs.aws.amazon.com/firehose/latest/APIReference/API_CreateDeliveryStream.html) API to create a Firehose delivery stream named `activity-to-elasticsearch-local`:
 
@@ -99,9 +99,9 @@ $ awslocal kinesis put-record \
   --partition-key partition
 {{< / command >}}
 
-{{< alert title="Note">}}
+{{< callout "tip" >}}
 For users using AWS CLI v2, consider adding `--cli-binary-format raw-in-base64-out` to the command mentioned above.
-{{< /alert >}}
+{{< /callout >}}
 
 You can use the [`PutRecord`](https://docs.aws.amazon.com/firehose/latest/APIReference/API_PutRecord.html) API to add data to the Firehose delivery stream. The following command adds a record to the stream:
 

@@ -287,11 +287,11 @@ You can enable this behavior in LocalStack by setting the `SQS_ENABLE_MESSAGE_RE
 In AWS, valid values for message retention range from 60 (1 minute) to 1,209,600 (14 days).
 In LocalStack, we do not put constraints on the value which can be helpful for test scenarios.
 
-{{<alert title="Note">}}
+{{< callout >}}
 Note that, if you enable this option, [persistence]({{< ref "persistence" >}}) or [cloud pods]({{<ref "user-guide/state-management/cloud-pods" >}}) for SQS may not work as expected.
 The reason is that, LocalStack does not adjust timestamps when restoring a state, so time appears to pass between LocalStack runs.
 Consequently, when you restart LocalStack after a period that is longer than the message retention period, LocalStack will remove all those messages when SQS starts.
-{{</alert>}}
+{{</callout>}}
 
 ### Disable CloudWatch Metrics Reporting
 

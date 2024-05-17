@@ -16,9 +16,9 @@ CI Keys are administered on the [CI Keys page](https://app.localstack.cloud/work
 
 CI Keys are not meant for individual developers. To grant a developer access to LocalStack and its advanced features, assign a license to them on the [Users & Licenses page](https://app.localstack.cloud/workspace/members).
 
-{{< alert title="Note" >}}
+{{< callout >}}
 We have recently introduced Auth Tokens to replace _developer_ API keys. However, this change does not affect **CI Keys**, which remain the sole method for activating a LocalStack instance in Continuous Integration (CI) or other automated test environments.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Managing CI keys
 

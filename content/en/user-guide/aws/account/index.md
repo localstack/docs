@@ -10,9 +10,9 @@ The Account service provides APIs to manage your AWS account. You can use the Ac
 
 LocalStack supports Account via the Pro offering, allowing you to use the Account API to retrieve information about your account. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_account/), which provides information on the extent of Account's integration with LocalStack.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 LocalStack's Account provider is mock-only and does not support any real AWS account. The Account APIs are only intended to demonstrate how you can use and mock the AWS Account APIs in your local environment. It's important to note that LocalStack doesn't offer a programmatic interface to manage your AWS or your LocalStack account.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 

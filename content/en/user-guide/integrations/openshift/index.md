@@ -11,13 +11,13 @@ OpenShift is a container orchestration platform as a service designed to simplif
 
 With OpenShift, you can deploy LocalStack on a managed Kubernetes cluster, as a cloud sandbox that emulates various AWS services & APIs. This guide demonstrates how you can deploy LocalStack on OpenShift using Devfile. You can use the deployed LocalStack container to create AWS resources that you can use for local development and testing purposes.
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout "warning" >}}
 Creating shared/hosted LocalStack instances may have some licensing implications. For example, a valid license might be necessary for each user who interacts with the instance. If you have any questions or uncertainties regarding the licensing implications, we encourage you to [contact us](https://localstack.cloud/contact) for further details.
-{{< /alert >}}
+{{< /callout >}}
 
-{{< alert title="Note" >}}
+{{< callout >}}
 LocalStack on OpenShift can be used in conjunction with the [LocalStack Community image](https://hub.docker.com/r/localstack/localstack). However, specific features such as execution of Lambda functions as OpenShift pods and other container workloads is only available in the [LocalStack Pro image](https://hub.docker.com/r/localstack/localstack-pro).
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 
@@ -69,9 +69,9 @@ $ awslocal sqs create-queue --queue-name my-queue
 
 In the above commands, replace `<localstack-route-url>` with the route URL of the LocalStack container. The `AWS_ENDPOINT_URL` environment variable is used to specify the endpoint URL of the LocalStack container. 
 
-{{< alert title="Note" >}}
+{{< callout >}}
 By default, the endpoint URL for `awslocal` is `http://localhost:4566`. Since we are running LocalStack on OpenShift, we need to specify the route URL of the LocalStack container. You can swap `awslocal` with the AWS CLI, by specifying the additional `--endpoint-url` parameter.
-{{< /alert >}}
+{{< /callout >}}
 
 You can further use integrations, such as [CDK](https://docs.localstack.cloud/user-guide/integrations/aws-cdk/), [SAM CLI](https://docs.localstack.cloud/user-guide/integrations/aws-sam/), and [Terraform](https://docs.localstack.cloud/user-guide/integrations/terraform/), to interact with the Ephemeral Instance. In these integrations, you can change the `AWS_ENDPOINT_URL` environment variable to the endpoint URL of the Ephemeral Instance.
 

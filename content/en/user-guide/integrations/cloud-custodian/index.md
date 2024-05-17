@@ -80,9 +80,9 @@ $ custodian run \
     --profile localstack
 {{< / command >}}
 
-{{< alert title="Note">}}
+{{< callout "tip" >}}
 Alternatively, you can also set the `AWS_PROFILE=localstack` environment variable, in which case the `--profile localstack` parameter can be omitted in the commands above.
-{{< /alert >}}
+{{< /callout >}}
 
 You should see the following output:
 

@@ -160,9 +160,9 @@ provider "aws" {
 }
 ```
 
-{{< alert title="Notes" >}}
+{{< callout "note" >}}
 We use `localhost.localstack.cloud` as the recommended endpoint for the S3 to enable host-based bucket endpoints. Users can rely on the `localhost.localstack.cloud` domain to be publicly resolvable. We also publish an SSL certificate which is automatically used inside LocalStack to enable HTTPS endpoints with valid certificates. For most of the other services, it is fine to use `localhost:4566`.
-{{< /alert >}}
+{{< /callout >}}
 
 With the provider configured, we can now configure the variables for our S3 bucket. Create a new file named `variables.tf` and add the following code:
 

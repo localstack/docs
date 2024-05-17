@@ -125,9 +125,9 @@ You can now utilize the JVM truststore to establish communication with the MSK c
 
 Run the following command, replacing `java_home` with the path of your `java_home`. For this instance, the java_home path is `/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home`.
 
-{{< alert title="Note">}}
+{{< callout >}}
 The following step is optional and may not be required, depending on the operating system environment being used.
-{{< /alert >}}
+{{< /callout >}}
 
 {{< command >}}
 $ cp java_home/lib/security/cacerts /tmp/kafka.client.truststore.jks

@@ -16,7 +16,7 @@ LocalStack Cloud Sandbox allow you to run an LocalStack instance in the cloud. L
 - Create easy previews by enabling preview-per-PR type workflows for application change.
 - Facilitate collaboration by allowing developers to test features on the same environment.
 
-{{< alert title="Note">}}
-Cloud Sandbox is currently in **private preview**.
+{{< callout >}}
+Cloud Sandbox is currently available on invite-only preview.
 If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /alert >}}
+{{< /callout >}}

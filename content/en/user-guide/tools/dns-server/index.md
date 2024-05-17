@@ -17,10 +17,10 @@ which enables seamless connectivity to LocalStack without changing your applicat
 The DNS server resolves AWS domains such as `*.amazonaws.com` including subdomains to the LocalStack container.
 Therefore, your application seamlessly accesses the LocalStack APIs instead of the real AWS APIs.
 
-{{< alert title="Notes" >}}
+{{< callout >}}
 On your host machine, `localhost.localstack.cloud` and any subdomains such as `mybucket.s3.localhost.localstack.cloud` resolve to `localhost` using a public DNS entry by LocalStack
 unless your router has [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}) enabled.
-{{< / alert >}}
+{{< / callout >}}
 
 
 ### Fallback DNS server
@@ -52,9 +52,9 @@ The regex pattern follows Python flavored-regex and can be tested at [regex101.c
 [The regex101 link is maintained by Joel Scheuner (requires linking to GitHub or Google account).
 It redirects to the main page if the saved example would not work.]: #
 
-{{< alert title="Warning" color="warning">}}
+{{< callout "warning" >}}
 Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack. 
-{{< /alert >}}
+{{< /callout >}}
 
 ### DNS Server bind address
 
@@ -64,9 +64,9 @@ If you experience problems when running LocalStack and the DNS server is the iss
 DNS_ADDRESS=0
 ```
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout "warning" >}}
 We do not recommend disabling the DNS server since this disables resolving `localhost.localstack.cloud` to the LocalStack container.
-{{< / alert >}}
+{{< /callout >}}
 
 
 ### LocalStack endpoints
@@ -84,9 +84,9 @@ If you rely on your local network's DNS, your router/DNS server might block requ
 This feature is enabled by default in pfSense, OPNSense, OpenWRT, AVM FritzBox, and potentially also other devices.
 Some of the vendors might allow upstream responses in the 127.0.0.0/8 range (like OpenWRT).
 
-{{< alert title="Note" >}}
+{{< callout >}}
 If you are using the LocalStack DNS server, DNS rebind protection should not cause any issues.
-{{< / alert >}}
+{{< /callout >}}
 
 You can check if your DNS setup works correctly by resolving a subdomain of `localhost.localstack.cloud`:
 {{< command "hl_lines=16">}}
@@ -122,10 +122,10 @@ If not, please check the configuration of your router / DNS if the Rebind Protec
 If you wish to use the DNS server on your host system, you need to expose the LocalStack DNS server and configure your operating system.
 This is necessary if you want to test unmodified application code directly on your system against LocalStack and cannot configure the endpoint URL.
 
-{{< alert title="Warning" color="warning">}}
+{{< callout "warning" >}}
 Please be careful when changing the network configuration on your system, as this may have undesired side effects.
 Remember to save the default configuration and restore it after testing.
-{{< /alert >}}
+{{< /callout >}}
 
 1. Expose the LocalStack DNS server:
 
@@ -139,7 +139,7 @@ Remember to save the default configuration and restore it after testing.
        - "127.0.0.1:53:53/udp"            # Expose DNS server to host
      ```
 
-{{< alert title="Notes" >}}
+{{< callout >}}
 If port 53 is already bound, `docker-compose up` fails with the error:
 ```plain
 Error response from daemon: Ports are not available: exposing port UDP 127.0.0.1:53 -> 0.0.0.0:0: command failed
@@ -159,7 +159,7 @@ Docker for Mac 4.24 has a [known issue](https://docs.docker.com/desktop/release-
 
 Additionally, ensure that "Internet Sharing" is disabled in the system preferences as suggested in [this GitHub issue](https://github.com/docker/for-mac/issues/7008#issuecomment-1748344545).
 
-{{< / alert >}}
+{{< /callout >}}
 
 2. Configure LocalStack to use a `DNS_SERVER` other than the host, for example using [CloudFlare DNS](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/) `DNS_SERVER=1.1.1.1`.
 3. Configure your system to use the LocalStack DNS depending on your operating system:
@@ -196,9 +196,9 @@ To revert, please run:
 $ localstack dns systemd-resolved --revert
 {{< / command >}}
 
-{{< alert title="Note">}}
+{{< callout >}}
 You need sudo privileges to execute this command.
-{{< /alert >}}
+{{< /callout >}}
 
 This command sets the DNS server of the bridge interface of the docker network LocalStack currently runs in to the LocalStack container's IP address.
 (The command does not work with host networking or without LocalStack running for this reason.)
@@ -241,7 +241,7 @@ In some systems, directly editing `/etc/resolv.conf` is possible, like described
 If your `/etc/resolv.conf` is overwritten by some service, it might be possible to install and enable/start `resolvconf` and specify the nameserver in `/etc/resolvconf/resolv.conf.d/head` with `nameserver 127.0.0.1`.
 This will prepend this line in the resolv.conf file even after changes.
 
-{{< alert title="Note">}}
+{{< callout >}}
 Using these options, every DNS request is forwarded to LocalStack, which will forward queries it does not need to modify (in essence all but certain AWS domains).
 LocalStack does not share or store any forwarded DNS requests, except for local exception logging in debug mode.
-{{< /alert >}}
+{{< /callout >}}

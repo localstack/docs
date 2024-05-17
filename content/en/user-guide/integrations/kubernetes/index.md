@@ -8,9 +8,9 @@ description: Running LocalStack on Kubernetes
 
 [Kubernetes](https://kubernetes.io) is an open-source container orchestration platform that simplifies the deployment, scaling, and management of containerized applications. LocalStack can be deployed on Kubernetes using the [LocalStack Helm chart](http://helm.localstack.cloud).
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout "warning" >}}
 Creating shared/hosted LocalStack instances may have some licensing implications. For example, a valid license might be necessary for each user who interacts with the instance. If you have any questions or uncertainties regarding the licensing implications, we encourage you to [contact us](https://localstack.cloud/contact) for further details.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 

@@ -9,22 +9,22 @@ aliases:
   - /getting-started/api-key/
 ---
 
-{{< alert title="Important" color="danger" >}}
+{{< callout "warning" >}}
 -   LocalStack is transitioning from API Keys to Auth Tokens for activation. Auth Tokens streamline license management and remove the need for developers to adjust their setup when license changes occur.
 -   For detailed information and guidance on migrating your LocalStack setup to Auth Tokens, please consult our [Auth Token documentation]({{< ref "auth-token" >}}).
 -   API Keys will remain functional for LocalStack Pro and Enterprise users until the next major release. Following this release, LocalStack Pro and Enterprise will exclusively use Auth Tokens.
-{{< /alert >}}
+{{< /callout >}}
 
 The LocalStack API key is a unique identifier to activate your LocalStack license needed to start LocalStack Pro.
 You can find your API key in the [LocalStack Web app](https://app.localstack.cloud/account/apikeys).
 This guide demonstrates how you can use your new LocalStack licenses and go over some best practices regarding the usage, activation, and safety of your LocalStack API key.
 
-{{< alert title="Important" color="danger" >}}
+{{< callout "warning" >}}
 - Avoid sharing your API key with anyone. Ensure that you do not commit it to any source code management systems (like Git repositories).
 - If you push an API key to a public repository, it has potentially been exposed and might remain in the history (even if you try to rewrite it).
 - If you accidentally publish your API key, please [contact us](https://localstack.cloud/contact/) immediately to get your API key rotated!
 - If you want to use your API key in your CI environment, check out our [CI documentation]({{< ref "user-guide/ci" >}}) to see the proper way to handle secrets in your CI environment to store your API key securely.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Starting LocalStack via CLI
 
@@ -44,9 +44,9 @@ You can optionally run your LocalStack container in background mode by adding th
 
 The `localstack` CLI will detect the API key and properly pass it to the LocalStack container.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 If you are using LocalStack with an API Key, you need to pull the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image) that includes the Pro services and several other advanced features.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Starting LocalStack via Docker
 

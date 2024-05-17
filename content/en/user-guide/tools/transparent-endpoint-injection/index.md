@@ -48,9 +48,9 @@ Transparent Endpoint Injection is only available in LocalStack Pro.
 Alternatively, specific AWS endpoints can be resolved to AWS while continuing to use Transparent Endpoint Injection.
 Refer to the [DNS server configuration]({{< ref "dns-server#configuration" >}}) for skipping selected domain name patterns.
 
-{{< alert title="Warning" color="warning">}}
+{{< callout "warning" >}}
 Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack.
-{{< /alert >}}
+{{< /callout >}}
 
 
 ## Self-signed certificates
@@ -87,7 +87,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 
 If you are using the Java AWS SDK v2 in Lambda, you can opt in to automatically disable SSL validation using the configuration `LAMBDA_DISABLE_JAVA_SDK_V2_CERTIFICATE_VALIDATION=1`.
 
-{{< alert title="Warning" color="warning">}}
+{{< callout "warning" >}}
 Disabling SSL validation may have undesired side effects and security implications.
 Make sure to use this only for local testing, and never in production.
-{{< /alert >}}
+{{< /callout >}}

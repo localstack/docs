@@ -6,9 +6,9 @@ description: Executing LocalStack tests on LambdaTest's HyperExecute
 
 [HyperExecute](https://www.lambdatest.com/hyperexecute) is a test orchestration platform designed to optimize the execution of automated tests in the cloud. It supports a wide range of testing frameworks and integrates seamlessly with CI/CD pipelines, such as GitHub Actions. You can use HyperExecute to run your LocalStack tests on your local machine or in the CI pipeline using a single configuration file.
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout >}}
 LambdaTest provides specialized runners for LocalStack. The default runners don't provide a Docker socket, which is required for LocalStack to work properly. If you want to use LocalStack with HyperExecute, you need to get in touch with the LambdaTest team to get access to the specialized runners.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 
@@ -43,9 +43,9 @@ pre:
 
 The above minimal configuration file starts LocalStack and creates an S3 bucket, SQS queue, and SNS topic.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 To use the LocalStack Pro image, configure a LocalStack Auth Token by appending `LOCALSTACK_AUTH_TOKEN=${{ .secrets.LOCALSTACK_AUTH_TOKEN }}` to the `localstack start` command. Subsequently, you need to add your LocalStack Auth Token to your HyperExecute Portal as a secret.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Enabling test execution on HyperExecute
 

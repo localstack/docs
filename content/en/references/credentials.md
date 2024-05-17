@@ -27,10 +27,10 @@ If keys with `ASIA...`/`AKIA...` prefix are provided, these are rejected and the
 This is a safeguard to prevent misuse of production AWS access key IDs.
 To disable this safeguard, set the `PARITY_AWS_ACCESS_KEY_ID` configuration variable.
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout "warning" >}}
 Disabling the access key safeguard and using production access key IDs may cause accidental connections to AWS.
 We strongly recommend leaving it on.
-{{< /alert >}}
+{{< /callout >}}
 
 Please refer to the [IAM docs]({{< ref "user-guide/aws/iam" >}}) to learn how to create access keys in LocalStack.
 

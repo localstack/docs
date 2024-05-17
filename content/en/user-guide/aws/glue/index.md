@@ -18,10 +18,10 @@ This guide is designed for users new to Glue and assumes basic knowledge of the 
 Start your LocalStack container using your preferred method.
 We will demonstrate how to create databases and table metadata in Glue, run Glue ETL jobs, import databases from Athena, and run Glue Crawlers with the AWS CLI.
 
-{{< alert title="Note">}}
+{{< callout >}}
 In order to run Glue jobs, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Spark, Presto, Hive and other tools.
 These dependencies are automatically fetched when you start up the service, so please make sure you're on a decent internet connection when pulling the dependencies for the first time.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Creating Databases and Table Metadata
 
@@ -270,10 +270,10 @@ The Glue Schema Registry allows you to centrally discover, control, and evolve d
 With the Schema Registry, you can manage and enforce schemas and schema compatibilities in your streaming applications.
 It integrates nicely with [Managed Streaming for Kafka (MSK)](../managed-streaming-for-kafka).
 
-{{< alert title="Note" >}}
+{{< callout >}}
 Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry.
 Support for other dataformats will be added in the future.
-{{< /alert >}}
+{{< /callout >}}
 
 You can create a schema registry with the following command:
 {{< command >}}
@@ -324,9 +324,9 @@ You can find a more advanced sample in our [localstack-pro-samples repository on
 
 LocalStack Glue supports [Delta Lake](https://delta.io), an open-source storage framework that extends Parquet data files with a file-based transaction log for ACID transactions and scalable metadata handling.
 
-{{< alert title="Note">}}
+{{< callout >}}
 Please note that Delta Lake tables are only [supported for Glue versions `3.0` and `4.0`](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-format-delta-lake.html).
-{{< /alert >}}
+{{< /callout >}}
 
 To illustrate this feature, we take a closer look at a Glue sample job that creates a Delta Lake table, puts some data into it, and then queries data from the table.
 

@@ -20,9 +20,9 @@ We will demonstrate an application illustrating running a machine learning job u
 - Creates a SageMaker Endpoint for accessing the model
 - Invokes the endpoint directly on the container via Boto3
 
-{{< alert title="Note" >}}
+{{< callout >}}
 SageMaker is a fairly comprehensive API for now. Currently a subset of the functionality is provided locally, but new features are being added on a regular basis.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Download the sample application
 

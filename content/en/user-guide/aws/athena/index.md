@@ -21,12 +21,12 @@ This guide is designed for users new to Athena and assumes basic knowledge of th
 Start your LocalStack container using your preferred method.
 We will demonstrate how to create an Athena table and run a query against it in addition to reading the results with the AWS CLI.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 To utilize the Athena API, LocalStack will download additional dependencies.
 This involves getting a Docker image of around 1.5GB, containing Presto, Hive, and other tools.
 These components are retrieved automatically when you initiate the service.
 To ensure a smooth initial setup, ensure you're connected to a stable internet connection while fetching these components for the first time.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Create an S3 bucket
 
@@ -174,9 +174,9 @@ The query should yield a result similar to the output below:
 ...
 ```
 
-{{< alert title="Note" >}}
+{{< callout >}}
 The `SELECT` statement above currently requires us to prefix the database/table name with `deltalake.` - this will be further improved in a future iteration, for better parity with AWS.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Iceberg Tables
 

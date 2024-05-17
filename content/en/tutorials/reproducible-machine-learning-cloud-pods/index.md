@@ -243,7 +243,7 @@ $ localstack pod save reproducible-ml
 Cloud Pod reproducible-ml successfully created
 {{< / command >}}
 
-{{< alert title="Note" >}}
+{{< callout "note" >}}
 You can also export a Cloud Pod locally by specifying a file URI as an argument. To export on a local path, run the following command:
 
 {{< command >}}
@@ -251,7 +251,7 @@ $ localstack pod save file://<path_on_disk>/<pod_name>
 {{< / command >}}
 
 The output of the above command will be a `<pod_name>` zip file in the specified directory. We can restore it at any time with the `load` command.
-{{< /alert >}}
+{{< /callout >}}
 
 To list available the Cloud Pods you can use the `list` command:
 
@@ -274,13 +274,13 @@ $ localstack pod inspect reproducible-ml
 
 While you save a Cloud Pod, it is automatically published on the LocalStack platform and can be shared with other users in your organization. While saving an already existing Cloud Pod, we would create a new version, which is eventually uploaded to the LocalStack platform.
 
-{{< alert title="Note" >}}
+{{< callout "note" >}}
 You can optionally set the visibility of a Cloud Pod to `private` or `public` using the `--visibility` flag. By default, the visibility of a Cloud Pod is set to `private`. To set a Cloud Pod to `public`, you can use the following command:
 {{< command >}}
 $ localstack pod save --name <pod_name> --visibility public
 {{< / command >}}
 The above command does not create a new version and requires a version already registered with the platform.
-{{< /alert >}}
+{{< /callout >}}
 
 You can also attach an optional message and a list of services to a Cloud Pod using the `--message` and `--services` flags. You can check all the Cloud Pods in your organization over the [LocalStack Web Application](https://app.localstack.cloud/pods). Now that we have created a Cloud Pod, we can ask one of our team members to start LocalStack and load the Cloud Pod using the `load` command.
 

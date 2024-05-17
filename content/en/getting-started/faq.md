@@ -196,11 +196,11 @@ docker pull public.ecr.aws/localstack/localstack-pro:latest
 
 ### How to increase IO performance for LocalStack's Docker image under Windows?
 
-{{< alert title="Note">}}
+{{< callout "note">}}
 Some options that are not part of the standard configuration may have unintended consequences for AWS services that operate within LocalStack.
 For example, these options may interfere with the functionality of AppSync function executor, RDS MySQL persistence and SageMaker.
 We advise you to exercise caution.
-{{< /alert >}}
+{{< /callout >}}
 
 You can change the LocalStack `volume` folder to use the WSL Linux file system instead of the Windows host folder.
 To do so, you need to change the [`docker-compose.yml`](https://github.com/localstack/localstack/blob/master/docker-compose-pro.yml) file and add the following lines:

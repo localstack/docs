@@ -1,0 +1,38 @@
+{{/*
+
+This shortcode is a modification of Docsy `alert` shortcode to maintain styling consistency.
+
+Usage:
+
+  {{< callout TITLE >}}
+  This is the text that goes in the callout box.
+  {{< /callout >}}
+
+TITLE must be one of:
+- 'warning'
+- 'note' (default)
+- 'tip'
+
+If TITLE is omitted, the default is used.
+If TITLE is set to any other value the the above, the default is used.
+
+*/}}
+
+
+{{ $titleColour := dict "warning" "danger" "note" "primary" "tip" "success" }}
+{{ $title := "note" }}
+{{ with .Get 0 }}
+{{ if collections.IsSet $titleColour . }}
+{{ $title = . }}
+{{ end }}
+{{ end }}
+{{ $colour := index $titleColour (strings.ToLower $title) }}
+
+<div class="alert alert-{{ $colour }}" role="alert">
+<h4 class="alert-heading">{{ safe.HTML (strings.FirstUpper $title) }}</h4>
+{{ if eq .Page.File.Ext "md" }}
+    {{ .Inner | markdownify }}
+{{ else }}
+    {{ .Inner | htmlUnescape | safeHTML }}
+{{ end }}
+</div>

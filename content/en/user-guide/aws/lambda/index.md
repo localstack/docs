@@ -50,9 +50,9 @@ $ awslocal lambda create-function \
     --role arn:aws:iam::000000000000:role/lambda-role
 {{< / command >}}
 
-{{< alert title="Note" >}}
+{{< callout >}}
 In the old Lambda provider, you could create a function with any arbitrary string as the role, such as `r1`. However, the new provider requires the role ARN to be in the format `arn:aws:iam::000000000000:role/lambda-role` and validates it using an appropriate regex. However, it currently does not check whether the role exists.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Invoke the Function
 
@@ -76,9 +76,9 @@ To invoke the Lambda function, you can use the [`Invoke` API](https://docs.aws.a
 
 ### Create a Function URL
 
-{{< alert title="Note" >}}
+{{< callout >}}
 [Response streaming](https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html) is currently not supported, so it will still return a synchronous/full response instead.
-{{< /alert >}}
+{{< /callout >}}
 
 With the Function URL property, there is now a new way to call a Lambda Function via HTTP API call using the [`CreateFunctionURLConfig` API](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html). To create a URL for invoking the function, run the following command:
 
@@ -109,10 +109,10 @@ The product of 10 and 10 is 100%
 
 ## Lambda Event Source Mappings
 
-{{<alert title="Information">}}
+{{< callout >}}
 LocalStack now supports a new event rule engine for [Lambda event filtering](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
 You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (preview) to use the AWS [event-ruler](https://github.com/aws/event-ruler), which offers better parity.
-{{< /alert >}}
+{{< /callout >}}
 
 [Lambda event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) allows you to connect Lambda functions to other AWS services. The following event sources are supported in LocalStack:
 
@@ -210,9 +210,9 @@ The Resource Browser allows you to perform the following actions:
 
 ## Migrating to Lambda v2
 
-{{< alert title="Note" >}}
+{{< callout >}}
 The legacy Lambda implementation has been removed since LocalStack&nbsp;3.0 (Docker `latest` since 2023-11-09).
-{{</alert>}}
+{{</callout >}}
 
 As part of the [LocalStack 2.0 release](https://discuss.localstack.cloud/t/new-lambda-implementation-in-localstack-2-0/258), the Lambda provider has been migrated to `v2` (formerly known as `asf`).
 With the new implementation, the following changes have been introduced:

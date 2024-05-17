@@ -39,9 +39,9 @@ $ export AWS_DEFAULT_REGION="us-east-1"
 $ aws --endpoint-url=http://localhost:4566 kinesis list-streams
 {{< / command >}}
 
-{{< alert title="Note">}}
+{{< callout >}}
 To enable the creation of pre-signed URLs for S3 buckets, please set both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to the value "test." Our pre-signed URL signature verification algorithm validates the pre-signed URL and its expiration.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Configuring a custom profile
 
@@ -69,9 +69,9 @@ $ aws s3 mb s3://test --profile localstack
 $ aws s3 ls --profile localstack
 {{< / command >}}
 
-{{< alert title="Note">}}
+{{< callout "tip" >}}
 Alternatively, you can also set the `AWS_PROFILE=localstack` environment variable, in which case the `--profile localstack` parameter can be omitted in the commands above.
-{{< /alert >}}
+{{< /callout >}}
 
 ## LocalStack AWS CLI (`awslocal`)
 
@@ -85,17 +85,17 @@ Install the `awslocal` command using the following command:
 $ pip install awscli-local[ver1]
 {{< / command >}}
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 The above command installs the most recent version of the underlying AWS CLI version 1 (`awscli`) package. If you would rather manage your own `awscli` version (e.g., `v1` or `v2`) and only install the wrapper script, you can use the following command:
 
 {{< command >}}
 $ pip install awscli-local
 {{< / command >}}
-{{< /alert >}}
+{{< /callout >}}
 
-{{< alert title="Note" >}}
+{{< callout >}}
 Automatic installation of AWS CLI version 2 is currently not supported yet (at the time of writing there is no official pypi package for `v2` available), but the `awslocal` technically also works with AWS CLI v2 (see [this section]({{< ref "#limitations" >}}) for more details).
-{{< /alert >}}
+{{< /callout  >}}
 
 ### Usage
 

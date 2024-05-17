@@ -15,9 +15,9 @@ The Resource Browser provide an experience similar to the AWS Management Console
 
 The LocalStack Web Application connects to your LocalStack container and retrieves the information about your local resources directly via `localhost` without using the internet. None of the information is sent to the internet, or stored on any external servers maintained by LocalStack.
 
-{{<alert title="Switching AWS regions">}}
+{{< callout "tip" >}}
 An AWS region dropdown menu in the dashboard is located on the top right of the page. You can select your desired region to ensure that you can view your resources. If you cannot view resources that you have recently created, you should verify that you are checking the resources in the correct region.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Supported services
 

@@ -104,9 +104,9 @@ The following code snippets and sample applications provide practical examples o
 
 ## Feature coverage
 
-{{< alert title="Note">}}
+{{< callout "tip" >}}
 We are continually enhancing our CloudFormation feature coverage by consistently introducing new resource types. Your feature requests assist us in determining the priority of resource additions. Feel free to contribute by [creating a new GitHub issue](https://github.com/localstack/localstack/issues/new?assignees=&labels=feature-request&template=feature-request.yml&title=feature+request%3A+%3Ctitle%3E).
-{{< /alert >}}
+{{< /callout >}}
 
 ### Features
 
@@ -127,9 +127,9 @@ We are continually enhancing our CloudFormation feature coverage by consistently
 | StackSets           | Partial                                         |
 | Intrinsic Functions | Partial                                         |
 
-{{< alert title="Note">}}
+{{< callout >}}
 Currently, support for `UPDATE` operations on resources is limited. Prefer stack re-creation over stack update at this time.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Intrinsic Functions
 
@@ -153,9 +153,9 @@ Currently, support for `UPDATE` operations on resources is limited. Prefer stack
 
 ### Resources
 
-{{< alert title="Note">}}
+{{< callout >}}
 When utilizing the Community image, any resources within the stack that are not supported will be disregarded and won't be deployed.
-{{< /alert >}}
+{{< /callout >}}
 
 #### Community image
 

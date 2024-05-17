@@ -89,13 +89,13 @@ pip install -r requirements-dev.txt
 {{< /tab >}}
 {{< /tabpane >}}
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 If you are encountering issues with the installation of the packages, such as Pillow, ensure you use the same version as the Python Lambdas (3.9) for Pillow to work. If you're using <a href="https://github.com/pyenv/pyenv">pyenv</a>, install and activate Python 3.9 with the following commands:
 {{< command >}}
 $ pyenv install 3.9.0
 $ pyenv global 3.9.0
 {{< / command >}}
-{{< /alert >}}
+{{< /callout >}}
 
 ### Setup the serverless image resizer
 
@@ -109,9 +109,9 @@ $ bin/deploy.sh
 
 Alternatively, you can follow these instructions to deploy the sample application manually step-by-step.
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 In absence of the `awslocal` wrapper, you can use the `aws` CLI directly, by configuring an [endpoint URL](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-an-endpoint-url) or a [custom profile](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-a-custom-profile) like `localstack`. You can then swap `awslocal` with `aws --endpoint-url=http://localhost:4566` or `aws --profile=localstack` in the commands below.
-{{< /alert >}}
+{{< /callout >}}
 
 #### Create the S3 buckets
 

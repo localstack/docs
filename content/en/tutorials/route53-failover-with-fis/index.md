@@ -34,10 +34,10 @@ a healthy secondary zone if the primary region fails, ensuring system availabili
 traffic redirection enhance architecture resilience and ensure service continuity during regional outages, crucial for uninterrupted
 user experiences.
 
-{{< alert title="Note">}}
+{{< callout "note">}}
 Route53 Failover with FIS is currently available as part of the **LocalStack Enterprise** plan. If you'd like to try it out,
 please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 

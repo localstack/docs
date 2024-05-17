@@ -12,9 +12,9 @@ Amplify is a JavaScript-based development framework with libraries, UI component
 
 LocalStack allows you to use the Amplify APIs to build and test their Amplify applications locally. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_amplify/), which provides information on the extent of Amplify's integration with LocalStack.
 
-{{< alert title="Note" >}}
+{{< callout "note" >}}
 The `amplifylocal` CLI and the Amplify JS library have been deprecated and are no longer supported. We recommend using the Amplify CLI with the Amplify LocalStack Plugin instead.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Amplify LocalStack Plugin
 

@@ -10,10 +10,10 @@ LocalStack automatically namespaces all resources based on the account ID and, i
 However, there are certain resource types that can be accessed across multiple accounts or regions.
 This document provides information to help design such setups.
 
-{{< alert title="Note">}}
+{{< callout >}}
 Cross-account support in LocalStack is being actively developed.
 Please report any issues on our [GitHub issue tracker](https://github.com/localstack/localstack/issues/new/choose).
-{{< /alert >}}
+{{< /callout >}}
 
 Cross-account/cross-region access happens when a client attempts to access a resource in another account or region than what it is configured with:
 
@@ -59,10 +59,10 @@ $ AWS_ACCESS_KEY_ID=222222222222 awslocal sqs get-queue-attributes \
 Resources that can be accessed across accounts are identified by their Amazon Resource Names (ARNs) or other schemes such as SQS Queue URLs.
 The full list of resources and operations that allow cross-account access are listed below.
 
-{{< alert title="Note">}}
+{{< callout "tip" >}}
 LocalStack does not enforce IAM for cross-account access by default.
 Use the `ENFORCE_IAM` [configuration]({{< ref "configuration#iam" >}}) option to enable it.
-{{< /alert >}}
+{{< /callout >}}
 
 ### EC2 Peering
 

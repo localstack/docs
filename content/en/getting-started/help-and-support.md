@@ -92,7 +92,7 @@ LocalStack Web Application is available to all licensed users. To create a suppo
 
 You can optionally choose to continue the conversation via email or via the Web Application.
 
-{{< alert title="Note" >}}
+{{< callout "note" >}}
 In many scenarios, we ask our customers to use Diagnosis endpoint to help us retrieve additional information. To use LocalStack's Diagnosis endpoint:
 
 - Set the environment variable `LS_LOG=trace`
@@ -102,4 +102,4 @@ In many scenarios, we ask our customers to use Diagnosis endpoint to help us ret
 - Send the output file to our Slack chat
 
 Ensure that you avoid sending the diagnostic output to public channels or forums, as it may contain sensitive information.
-{{< /alert >}}
+{{< /callout >}}

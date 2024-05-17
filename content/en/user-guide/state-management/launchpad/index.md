@@ -17,11 +17,11 @@ You can visit [Cloud Pods launchpad](https://app.localstack.cloud/launchpad) to 
 
 Enter a public URL to your pod Cloud Pod the first input field, then click **Generate Link**. You can copy the resulting link and share it with others. Additionally, you have the option to copy a markdown snippet for quickly adding a badge to your repository.
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout "warning" >}}
 The Launchpad accepts any URL as input and directly passes it to your LocalStack instance for Cloud Pod injection. As a result, this process may carry the risk of unintended side effects, as there is no validation applied to the URL provided to the launchpad.
 
 Furthermore, it's essential to exercise caution and only use URLs that you trust when utilizing the launchpad, as the URL is displayed in the user interface.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Adding a badge to your repository
 

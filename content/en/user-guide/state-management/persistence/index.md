@@ -40,11 +40,11 @@ docker run \
 {{< /tab >}}
 {{< /tabpane >}}
 
-{{< alert title="Note">}}
+{{< callout >}}
 Snapshots may not be compatible across different versions of LocalStack.
 It is possible that snapshots from older versions can be restored, but there are no guarantees to whether LocalStack will start into a consistent state.
 We are actively working on a solution for this problem.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Save strategies
 

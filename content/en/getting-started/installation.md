@@ -59,10 +59,10 @@ $ python3 -m pip install --upgrade localstack
 {{< / command >}}
 {{% /markdown %}}
 
-{{< alert title="Important" color="danger" >}}
+{{< callout "warning" >}}
 Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
 If you have problems with permissions in MacOS X Sierra, install with `python3 -m pip install --user localstack`.
-{{< /alert >}}
+{{< /callout >}}
 </details>
 {{< /tab >}}
 
@@ -118,9 +118,9 @@ Afterwards you can install the LocalStack CLI in your Python environment with:
 $ python3 -m pip install --upgrade localstack
 {{< / command >}}
 {{% /markdown %}}
-{{< alert title="Important" color="danger" >}}
+{{< callout "warning" >}}
 Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
-{{< /alert >}}
+{{< /callout >}}
 </details>
 {{< /tab >}}
 
@@ -145,9 +145,9 @@ $ python3 -m pip install --upgrade localstack
 {{< / command >}}
 {{% /markdown %}}
 
-{{< alert title="Important" color="danger" >}}
+{{< callout "warning" >}}
 Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
-{{< /alert >}}
+{{< /callout >}}
 </details>
 {{< /tab >}}
 
@@ -166,7 +166,7 @@ $ python3 -m pip install --upgrade localstack
 {{< / command >}}
 {{% /markdown %}}
 
-{{< alert title="Note" >}}
+{{< callout "note" >}}
 To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
 {{< command >}}
 $ python3 -m pip install localstack==<version>
@@ -174,11 +174,11 @@ $ python3 -m pip install localstack==<version>
 {{% markdown %}}
 Here `<version>` depicts the particular LocalStack version that you would like to download and use.
 {{% /markdown %}}
-{{< /alert >}}
+{{< /callout >}}
 
-{{< alert title="Important" color="danger" >}}
+{{< callout "warning" >}}
 Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
-{{< /alert >}}
+{{< /callout >}}
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -285,7 +285,7 @@ Start the container by running the following command:
 $ docker-compose up
 {{< / command >}}
 
-{{< alert title="Notes" >}}
+{{< callout "note" >}}
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
   If you want to use a specific version, set the appropriate localstack image tag at `services.localstack.image` in the `docker-compose.yml` file (for example `localstack/localstack:<version>`).
 
@@ -303,7 +303,7 @@ $ docker-compose up
   Please consider removing it, if this functionality is needed.
 
 - To configure an auth token, refer to the [auth token]({{< ref "auth-token" >}}) documentation.
-{{< /alert >}}
+{{< /callout >}}
 
 Please note that there are a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, and environment variables).
 We recommend using the LocalStack CLI to validate your configuration, which will print warning messages in case it detects any potential misconfigurations:
@@ -345,7 +345,7 @@ docker run \
   localstack/localstack-pro{{< /tab >}}
 {{< /tabpane >}}
 
-{{< alert title="Notes" >}}
+{{< callout "note" >}}
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
   If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`. Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
 
@@ -362,7 +362,7 @@ docker run \
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
 
 - To configure an auth token, refer to the [auth token]({{< ref "auth-token" >}}) documentation.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Helm
 

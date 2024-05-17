@@ -10,7 +10,7 @@ CloudWatch is a comprehensive monitoring and observability service that Amazon W
 
 LocalStack allows you to use CloudWatch APIs on your local machine to create and manage CloudWatch resources, such as custom metrics, alarms, and log groups, for local development and testing purposes. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/), which provides information on the extent of CloudWatch's integration with LocalStack.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 We have introduced an all-new LocalStack-native [CloudWatch provider](https://docs.localstack.cloud/user-guide/aws/cloudwatch/) is available behind a feature flag. You can activate it by configuring  `PROVIDER_OVERRIDE_CLOUDWATCH=v2` in your LocalStack configuration.
 
 We have migrated from storing data in Python objects within the Moto backend to a more robust system. Now, metrics are efficiently stored in SQLite, and alarm resources are managed using LocalStack stores.
@@ -19,7 +19,7 @@ We have migrated from storing data in Python objects within the Moto backend to 
 -   The provider is engineered to ensure thread safety, facilitating smooth concurrent operations.
 -   There’s a significant improvement in the integrity and durability of data.
 -   The new provider allows for more efficient data retrieval.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 
@@ -115,9 +115,9 @@ The output should look similar to the following:
 }
 ```
 
-{{< alert title="Note" >}}
+{{< callout "tip" >}}
 You can use [filters](https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html) or [queries](https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html) with the LocalStack Pro image to refine your results.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Metric Alarms
 
@@ -182,13 +182,13 @@ $ awslocal cloudwatch put-metric-alarm \
 
 By executing this command, you'll create an alarm named `my-alarm` that monitors the `Orders` metric in the `test` namespace. If the metric value exceeds the threshold of 50 (using the `GreaterThanThreshold` operator) during a single evaluation period of 300 seconds, the alarm will trigger the specified action on the provided SNS topic.
 
-{{< alert title="Warning" color="warning" >}}
+{{< callout "warning" >}}
 Please be aware of the following known limitations in LocalStack:
 - Anomaly detection and extended statistics are not supported.
 - The `unit` values specified in the alarm are ignored.
 - Composite alarms are not evaluated.
 - Metric streams are not supported.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Resource Browser
 

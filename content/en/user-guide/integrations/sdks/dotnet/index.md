@@ -35,10 +35,10 @@ var lambdaClient = new AmazonLambdaClient(new BasicAWSCredentials("test", "test"
 );
 ```
 
-{{< alert title="Note">}}
+{{< callout >}}
 Make sure you are setting the `AuthenticationRegion` and not the `RegionEndpoint`.
 Setting the `RegionEndpoint` to a constant like `RegionEndpoint.EUWest1` will override the ServiceURL, and your request will end up against AWS.
-{{< /alert >}}
+{{< /callout >}}
 
 ### S3 specific endpoint
 
@@ -49,9 +49,9 @@ var config = new AmazonS3Config({ ServiceURL = "http://s3.localhost.localstack.c
 var s3client = new AmazonS3Client(config);
 ```
 
-{{< alert title="Note">}}
+{{< callout >}}
 In case of issues resolving this DNS record, we can fallback to <http://localhost:4566> in combination with the provider setting `ForcePathStyle = true`. The S3 service endpoint is slightly different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
-{{< /alert >}}
+{{< /callout >}}
 
 ```csharp
 var config = new AmazonS3Config(

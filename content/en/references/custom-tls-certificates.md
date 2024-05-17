@@ -51,10 +51,10 @@ and build the image:
 $ docker build -t <image name> .
 {{< / command >}}
 
-{{< alert title="Note">}}
+{{< callout "tip" >}}
 Certificate files must end in `.crt` to be included in the system certificate store.
 If your certificate file ends with `.pem`, you can rename it to end in `.crt`. 
-{{< / alert>}}
+{{< /callout >}}
 
 ### Starting LocalStack with the custom image
 

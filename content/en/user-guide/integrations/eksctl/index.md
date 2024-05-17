@@ -8,9 +8,9 @@ description: Running `eksctl` on LocalStack to create EKS clusters
 
 [eksctl](https://eksctl.io/) is a CLI tool for creating and managing EKS clusters, Amazon's managed Kubernetes service. LocalStack supports running `eksctl` on LocalStack to create EKS clusters locally. LocalStack's EKS spin up embedded Kubernetes clusters using [K3s](https://github.com/k3s-io/k3s) to allow you to use the EKS APIs in your local environment.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 The support for `eksctl` is currently experimental and may not work in all cases. We are working on improving the support for `eksctl` in LocalStack.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 

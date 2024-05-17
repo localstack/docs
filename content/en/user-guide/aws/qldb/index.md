@@ -62,7 +62,7 @@ $ awslocal qldb create-ledger --name vehicle-registration --permissions-mode ALL
 }
 ```
 
-{{< alert title="Note" >}}
+{{< callout >}}
 
 - Permissions mode – the following options are available in AWS:
 
@@ -81,7 +81,7 @@ To allow PartiQL
 commands, you must create IAM permissions policies for specific table resources and PartiQL actions,
 in addition to
 the `SendCommand` API permission for the ledger.
-{{< /alert >}}
+{{< /callout >}}
 
 The following command can be used directly to write PartiQL statements against a QLDB ledger:
 
