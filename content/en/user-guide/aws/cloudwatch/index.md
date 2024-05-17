@@ -190,6 +190,13 @@ Please be aware of the following known limitations in LocalStack:
 - Metric streams are not supported.
 {{< /callout >}}
 
+## Supported Service Integrations with CloudWatch Metrics
+
+LocalStack supports the following AWS services for integration with CloudWatch metrics:
+
+-   **SQS**: Supports `Approximate*` metrics, `NumberOfMessagesSent`, and other metrics triggered by events such as message received or sending.
+-   **Lambda**: Supports `Invocations` and `Errors` metrics.
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing CloudWatch logs. You can access the Resource Browser by opening the LocalStack Web Application in your browser and navigating to the Resources section, then clicking on [**CloudWatch Logs**](https://app.localstack.cloud/resources/cloudwatch/groups) and [**CloudWatch Metrics**](https://app.localstack.cloud/resources/monitoring) under the **Management/Governance** section.
