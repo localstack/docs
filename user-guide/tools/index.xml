@@ -151,7 +151,7 @@ If Transparent Endpoint Injection is &lt;em>not&lt;/em> used, the AWS SDK within
 Transparent Endpoint Injection is only available in LocalStack Pro.&lt;/p>
 &lt;p>Alternatively, specific AWS endpoints can be resolved to AWS while continuing to use Transparent Endpoint Injection.
 Refer to the &lt;a href="/user-guide/tools/dns-server/#configuration">DNS server configuration&lt;/a> for skipping selected domain name patterns.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack.
 &lt;/div>
@@ -174,7 +174,7 @@ Similar parameters are available for most other &lt;a href="https://docs.aws.ama
 &lt;p>For Node.js, you can set this environment variable in your application, to allow the AWS SDK to talk to the local APIs via SSL:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-node.js" data-lang="node.js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">process&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">env&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">NODE_TLS_REJECT_UNAUTHORIZED&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you are using the Java AWS SDK v2 in Lambda, you can opt in to automatically disable SSL validation using the configuration &lt;code>LAMBDA_DISABLE_JAVA_SDK_V2_CERTIFICATE_VALIDATION=1&lt;/code>.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Disabling SSL validation may have undesired side effects and security implications.
 Make sure to use this only for local testing, and never in production.
@@ -190,7 +190,7 @@ which enables seamless connectivity to LocalStack without changing your applicat
 The DNS server resolves AWS domains such as &lt;code>*.amazonaws.com&lt;/code> including subdomains to the LocalStack container.
 Therefore, your application seamlessly accesses the LocalStack APIs instead of the real AWS APIs.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Notes&lt;/h4>
+&lt;h4 class="alert-heading">Note&lt;/h4>
 On your host machine, &lt;code>localhost.localstack.cloud&lt;/code> and any subdomains such as &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code> resolve to &lt;code>localhost&lt;/code> using a public DNS entry by LocalStack
 unless your router has &lt;a href="/user-guide/tools/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a> enabled.
 &lt;/div>
@@ -208,7 +208,7 @@ specify a comma-separated list of skip patterns using Python-flavored regex such
 For example, &lt;code>https://123456789012.dkr.ecr.us-west-2.amazonaws.com&lt;/code> will be forwarded to the upstream DNS resolver and reach real AWS.
 This can be used for hybrid setups, where certain API calls (e.g., ECR, Lambda) target AWS, whereas other services will target LocalStack.
 The regex pattern follows Python flavored-regex and can be tested at &lt;a href="https://regex101.com/r/OzIsQa/1">regex101.com&lt;/a>.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack.
 &lt;/div>
@@ -216,7 +216,7 @@ Use this configuration with caution because we generally do not recommend connec
 &lt;p>If you experience problems when running LocalStack and the DNS server is the issue, you can disable the DNS server using:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_ADDRESS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 We do not recommend disabling the DNS server since this disables resolving &lt;code>localhost.localstack.cloud&lt;/code> to the LocalStack container.
 &lt;/div>
@@ -261,7 +261,7 @@ If not, please check the configuration of your router / DNS if the Rebind Protec
 &lt;h2 id="system-dns-configuration">System DNS configuration&lt;/h2>
 &lt;p>If you wish to use the DNS server on your host system, you need to expose the LocalStack DNS server and configure your operating system.
 This is necessary if you want to test unmodified application code directly on your system against LocalStack and cannot configure the endpoint URL.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Please be careful when changing the network configuration on your system, as this may have undesired side effects.
 Remember to save the default configuration and restore it after testing.
@@ -277,7 +277,7 @@ Remember to save the default configuration and restore it after testing.
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;/ol>
 &lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Notes&lt;/h4>
+&lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;p>If port 53 is already bound, &lt;code>docker-compose up&lt;/code> fails with the error:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plain" data-lang="plain">&lt;span style="display:flex;">&lt;span>Error response from daemon: Ports are not available: exposing port UDP 127.0.0.1:53 -&amp;gt; 0.0.0.0:0: command failed
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To find out if a program is listening on a port, run the following command:&lt;/p>

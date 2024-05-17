@@ -5583,8 +5583,8 @@ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab">
 &lt;li>&lt;a href="https://github.com/localstack/sqs-fargate-ddb-cdk-go">Messaging Processing application with SQS, DynamoDB, and Fargate&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="feature-coverage">Feature coverage&lt;/h2>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 We are continually enhancing our CloudFormation feature coverage by consistently introducing new resource types. Your feature requests assist us in determining the priority of resource additions. Feel free to contribute by &lt;a href="https://github.com/localstack/localstack/issues/new?assignees=&amp;amp;labels=feature-request&amp;amp;template=feature-request.yml&amp;amp;title=feature+request%3A+%3Ctitle%3E">creating a new GitHub issue&lt;/a>.
 &lt;/div>
 &lt;h3 id="features">Features&lt;/h3>
@@ -7207,8 +7207,8 @@ When utilizing the Community image, any resources within the stack that are not 
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>domain=$(awslocal cloudfront create-distribution \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --origin-domain-name abc123.s3.amazonaws.com | jq -r &amp;#39;.Distribution.DomainName&amp;#39;)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -k https://$domain/hello.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 If you wish to use CloudFront on system host, ensure your local DNS setup is correctly configured.
 Refer to the section on &lt;a href="/user-guide/tools/dns-server/#system-dns-configuration">System DNS configuration&lt;/a> for details.
 &lt;/div>
@@ -7388,8 +7388,8 @@ Refer to the section on &lt;a href="/user-guide/tools/dns-server/#system-dns-con
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nextBackwardToken&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;b/00000000000000000000000000000000000000000000000000000000&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 You can use &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html">filters&lt;/a> or &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html">queries&lt;/a> with the LocalStack Pro image to refine your results.
 &lt;/div>
 &lt;h2 id="metric-alarms">Metric Alarms&lt;/h2>
@@ -7430,7 +7430,7 @@ You can use &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/logs/fi
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --treat-missing notBreaching \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --alarm-actions &amp;lt;topic-arn&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>By executing this command, you&amp;rsquo;ll create an alarm named &lt;code>my-alarm&lt;/code> that monitors the &lt;code>Orders&lt;/code> metric in the &lt;code>test&lt;/code> namespace. If the metric value exceeds the threshold of 50 (using the &lt;code>GreaterThanThreshold&lt;/code> operator) during a single evaluation period of 300 seconds, the alarm will trigger the specified action on the provided SNS topic.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 &lt;p>Please be aware of the following known limitations in LocalStack:&lt;/p>
 &lt;ul>
@@ -7978,8 +7978,8 @@ LocalStack&amp;rsquo;s Cost Explorer implementation cannot programmatically quer
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>DocumentDB is a fully managed, non-relational database service that supports MongoDB workloads. DocumentDB is compatible with MongoDB, meaning you can use the same MongoDB drivers, applications, and tools to run, manage, and scale workloads on DocumentDB without having to worry about managing the underlying infrastructure.&lt;/p>
 &lt;p>LocalStack allows you to use the DocumentDB APIs to create and manage DocumentDB clusters and instances. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_docdb/">API coverage page&lt;/a>, which provides information on the extent of DocumentDB&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;div class="alert alert-success" role="alert">
-&lt;h4 class="alert-heading">Information&lt;/h4>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;p>Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it can be accessed from &lt;code>localhost&lt;/code>. When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.&lt;/p>
 &lt;p>Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not
 have exact feature parity with Amazon DocumentDB. The database engine may support additional
@@ -8147,8 +8147,8 @@ by &lt;code>mongosh&lt;/code>:&lt;/p>
 &lt;p>For more information on how to use MongoDB with &lt;code>mongosh&lt;/code> please refer to
 the &lt;a href="https://www.mongodb.com/docs/">MongoDB documentation&lt;/a>.&lt;/p>
 &lt;h3 id="connect-to-documentdb-using-nodejs-lambda">Connect to DocumentDB using Node.js Lambda&lt;/h3>
-&lt;div class="alert alert-success" role="alert">
-&lt;h4 class="alert-heading">Important&lt;/h4>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;p>You need to set &lt;code>DOCDB_PROXY_CONTAINER=1&lt;/code> when starting LocalStack to be able to use the returned &lt;code>Endpoint&lt;/code>, which will be correctly resolved automatically.&lt;/p>
 &lt;p>The flag &lt;code>DOCDB_PROXY_CONTAINER=1&lt;/code> changes the default behavior and the container will be started as proxied container. Meaning a port from the &lt;a href="/references/external-ports/">pre-defined port&lt;/a> range will be chosen, and when using lambda, you can use &lt;code>localhost.localstack.cloud&lt;/code> to connect to the instance.&lt;/p>
 &lt;/div>
@@ -9515,7 +9515,7 @@ LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for funct
 &lt;p>To modify the return value of resource URIs for most services, including ECR, you can utilize the &lt;code>LOCALSTACK_HOST&lt;/code> variable in the &lt;a href="/references/configuration/">configuration&lt;/a>.
 By default, ECR returns a &lt;code>repositoryUri&lt;/code> starting with &lt;code>localhost.localstack.cloud&lt;/code>, such as: &lt;code>localhost.localstack.cloud:&amp;lt;port&amp;gt;/&amp;lt;repository-name&amp;gt;&lt;/code>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Notes&lt;/h4>
+&lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;p>In this section, we assume that &lt;code>localhost.localstack.cloud&lt;/code> resolves in your environment, and LocalStack is connected to a non-default bridge network. For more information, refer to the article about &lt;a href="/user-guide/tools/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a>.&lt;/p>
 &lt;p>If the domain &lt;code>localhost.localstack.cloud&lt;/code> does not resolve on your host, you can still proceed by setting &lt;code>LOCALSTACK_HOST=localhost&lt;/code> (not recommended).&lt;/p>
 &lt;p>LocalStack will take care of the DNS resolution of &lt;code>localhost.localstack.cloud&lt;/code> within ECR itself, allowing you to use the &lt;code>localhost:&amp;lt;port&amp;gt;/&amp;lt;repository_name&amp;gt;&lt;/code> URI for tagging and pushing the image on your host.&lt;/p>
@@ -9593,8 +9593,8 @@ By default, ECR returns a &lt;code>repositoryUri&lt;/code> starting with &lt;cod
 &lt;p>In the events, we can see that the pull from ECR was successful:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span> Normal Pulled 10s kubelet Successfully pulled image &lt;span style="color:#4e9a06">&amp;#34;localhost.localstack.cloud:4510/fancier-nginx:latest&amp;#34;&lt;/span> in 2.412775896s
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 Public Docker images from &lt;code>registry.k8s.io&lt;/code> can be pulled without additional configuration from EKS nodes, but if you pull images from any other locations that resolve to S3 you can configure &lt;code>DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM=&amp;lt;bucket-name&amp;gt;\.s3.*\.amazonaws\.com&lt;/code> in your &lt;a href="/references/configuration/">configuration&lt;/a>.
 &lt;/div>
 &lt;h3 id="configuring-an-ingress-for-your-services">Configuring an Ingress for your services&lt;/h3>
@@ -9642,8 +9642,8 @@ Public Docker images from &lt;code>registry.k8s.io&lt;/code> can be pulled witho
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;hr&amp;gt;&amp;lt;center&amp;gt;nginx/1.21.6&amp;lt;/center&amp;gt;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 You can customize the Load Balancer port by configuring &lt;code>EKS_LOADBALANCER_PORT&lt;/code> in your environment.
 &lt;/div>
 &lt;h3 id="enabling-https-with-local-ssltls-certificate-for-the-ingress">Enabling HTTPS with local SSL/TLS certificate for the Ingress&lt;/h3>
@@ -9781,7 +9781,7 @@ The &lt;code>ls-secret-tls&lt;/code> secret is created in the &lt;code>default&l
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Notes&lt;/h4>
+&lt;h4 class="alert-heading">Note&lt;/h4>
 Note that the tag was previously referred to as &lt;code>__k3d_volume_mount__&lt;/code>, but it has now been renamed to &lt;code>_volume_mount_&lt;/code>. As a result, the tag name &lt;code>__k3d_volume_mount__&lt;/code> is considered deprecated and will be removed in an upcoming release.
 &lt;/div>
 &lt;p>After creating your cluster with the &lt;code>_volume_mount_&lt;/code> tag, you can create your path with volume mounts as usual. The configuration for the volume mounts can be set up similar to this:&lt;/p>
@@ -9854,7 +9854,8 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --target-group-arn $targetGroup&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-Note that in some cases the &lt;code>targets&lt;/code> parameter &lt;code>Id&lt;/code> can be the &lt;code>Gateway&lt;/code> address of the docker container. You can find the gateway address by running &lt;code>docker inspect &amp;lt;container_id&amp;gt;&lt;/code>.
+Note that in some cases the &lt;code>targets&lt;/code> parameter &lt;code>Id&lt;/code> can be the &lt;code>Gateway&lt;/code> address of the docker container.
+You can find the gateway address by running &lt;code>docker inspect &amp;lt;container_id&amp;gt;&lt;/code>.
 &lt;/div>
 &lt;h3 id="create-a-listener-and-a-rule">Create a listener and a rule&lt;/h3>
 &lt;p>We create a for the load balancer using the &lt;a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateListener.html">&lt;code>CreateListener&lt;/code>&lt;/a> API. The following command creates a listener for the load balancer created in the previous step:&lt;/p>
@@ -10532,7 +10533,7 @@ Run the following command to download the file:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="supported-target-types">Supported target types&lt;/h2>
 &lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Information&lt;/h4>
+&lt;h4 class="alert-heading">Note&lt;/h4>
 LocalStack now supports a new event rule engine for &lt;a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html">EventBridge event patterns&lt;/a>.
 You can &lt;a href="/references/configuration/">configure&lt;/a> &lt;code>EVENT_RULE_ENGINE=java&lt;/code> (preview) to use the AWS &lt;a href="https://github.com/aws/event-ruler">event-ruler&lt;/a>, which offers better parity.
 &lt;/div>
@@ -10561,13 +10562,13 @@ You can &lt;a href="/references/configuration/">configure&lt;/a> &lt;code>EVENT_
 &lt;p>EventBridge Pipes allows users to create point-to-point integrations between event producers and consumers with transform, filter and enrichment steps. Pipes are particularly useful for scenarios involving real-time data processing, application integration, and automated workflows, while simplifying the process of routing events between AWS services. Pipes offer a point-to-point connection from one source to one target (one-to-one). In contrast, EventBridge Event Bus offers a one-to-many integration where an event router delivers one event to zero or more destinations.&lt;/p>
 &lt;p>LocalStack allows you to use the Pipes APIs in your local environment to create Pipes with SQS queues and Kinesis streams as source and target. You can also filter events using EventBridge event patterns and enrich events using Lambda.&lt;/p>
 &lt;p>The supported APIs are available on our &lt;a href="/references/coverage/coverage_pipes/">API coverage page&lt;/a>, which provides information on the extent of Pipe&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;div class="alert alert-info" role="alert">
+&lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 The implementation of EventBridge Pipes is currently in &lt;strong>preview&lt;/strong> stage and under active development.
 If you would like support for more APIs or report bugs, please make an issue on &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub&lt;/a>.
 &lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Information&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 LocalStack now supports a new event rule engine for &lt;a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html">EventBridge event patterns&lt;/a>.
 You can &lt;a href="/references/configuration/">configure&lt;/a> &lt;code>EVENT_RULE_ENGINE=java&lt;/code> (preview) to use the AWS &lt;a href="https://github.com/aws/event-ruler">event-ruler&lt;/a>, which offers better parity.
 &lt;/div>
@@ -10972,13 +10973,11 @@ Run the following command to upload the file to your Glacier vault:&lt;/p>
 &lt;p>The data download process can be verified through the previous &lt;code>ListJobs&lt;/code> call to check progress.
 Once the &lt;code>ArchiveRetrieval&lt;/code> Job is complete, the data can be downloaded.
 You can use the &lt;code>JobId&lt;/code> of the Job to download your archive with the following command:&lt;/p>
-&lt;p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier get-job-output --vault-name sample-vault --account-id - --job-id 25CEOTJ7ZUR5Q7YY0B1O55AE4C3L1502EOHWMNY10IIYEBWEQB73D23S8BVYO9RTRTPLRK2LJLUCCRM52GDV87C9A4JW my-archive.jpg&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Please not that currently, this operation is only mocked, and will create an empty file named &lt;code>my-archive.jpg&lt;/code>, not containing the contents of your archive.
 &lt;/div>
-&lt;/p>
 &lt;h3 id="retrieve-the-inventory-information">Retrieve the inventory information&lt;/h3>
 &lt;p>You can also initiate the retrieval of the inventory of a vault using the same &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-initiate-job-post.html">&lt;code>InitiateJob&lt;/code>&lt;/a> API.&lt;/p>
 &lt;p>Initiate a job of the specified type to get the details of the individual inventory items inside a Vault using the &lt;code>initiate-job&lt;/code> command:
@@ -11534,7 +11533,7 @@ To retrieve the MQTT endpoint, use the &lt;a href="https://docs.aws.amazon.com/i
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;endpointAddress&amp;#34;: &amp;#34;000000000000.iot.eu-central-1.localhost.localstack.cloud:4510&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-success" role="alert">
-&lt;h4 class="alert-heading">Hint&lt;/h4>
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 LocalStack lazy-loads services by default.
 The MQTT broker may not be automatically available on a fresh launch of LocalStack.
 You should make a &lt;code>DescribeEndpoint&lt;/code> call to ensure the broker is running and identify the port.
@@ -12049,8 +12048,8 @@ Within LocalStack&amp;rsquo;s default configuration, IAM roles remain unverified
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --stream-name kinesis-es-local-stream \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --data &amp;#39;{ &amp;#34;target&amp;#34;: &amp;#34;barry&amp;#34; }&amp;#39; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --partition-key partition&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 For users using AWS CLI v2, consider adding &lt;code>--cli-binary-format raw-in-base64-out&lt;/code> to the command mentioned above.
 &lt;/div>
 &lt;p>You can use the &lt;a href="https://docs.aws.amazon.com/firehose/latest/APIReference/API_PutRecord.html">&lt;code>PutRecord&lt;/code>&lt;/a> API to add data to the Firehose delivery stream. The following command adds a record to the stream:&lt;/p>
@@ -12166,7 +12165,7 @@ id="tabs-02-01" role="tabpanel" aria-labelled-by="tabs-02-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>The product of &lt;span style="color:#0000cf;font-weight:bold">10&lt;/span> and &lt;span style="color:#0000cf;font-weight:bold">10&lt;/span> is 100%
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="lambda-event-source-mappings">Lambda Event Source Mappings&lt;/h2>
 &lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Information&lt;/h4>
+&lt;h4 class="alert-heading">Note&lt;/h4>
 LocalStack now supports a new event rule engine for &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">Lambda event filtering&lt;/a>.
 You can &lt;a href="/references/configuration/">configure&lt;/a> &lt;code>EVENT_RULE_ENGINE=java&lt;/code> (preview) to use the AWS &lt;a href="https://github.com/aws/event-ruler">event-ruler&lt;/a>, which offers better parity.
 &lt;/div>

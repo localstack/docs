@@ -205,8 +205,8 @@ To enable the creation of pre-signed URLs for S3 buckets, please set both &lt;co
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can now use the &lt;code>localstack&lt;/code> profile with the &lt;code>aws&lt;/code> CLI:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws s3 mb s3://test --profile localstack
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws s3 ls --profile localstack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 Alternatively, you can also set the &lt;code>AWS_PROFILE=localstack&lt;/code> environment variable, in which case the &lt;code>--profile localstack&lt;/code> parameter can be omitted in the commands above.
 &lt;/div>
 &lt;h2 id="localstack-aws-cli-awslocal">LocalStack AWS CLI (&lt;code>awslocal&lt;/code>)&lt;/h2>
@@ -214,8 +214,8 @@ Alternatively, you can also set the &lt;code>AWS_PROFILE=localstack&lt;/code> en
 &lt;h3 id="installation">Installation&lt;/h3>
 &lt;p>Install the &lt;code>awslocal&lt;/code> command using the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install awscli-local[ver1]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 &lt;p>The above command installs the most recent version of the underlying AWS CLI version 1 (&lt;code>awscli&lt;/code>) package. If you would rather manage your own &lt;code>awscli&lt;/code> version (e.g., &lt;code>v1&lt;/code> or &lt;code>v2&lt;/code>) and only install the wrapper script, you can use the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install awscli-local&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
@@ -488,8 +488,8 @@ Insert the following settings into the file:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>custodian run \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --output-dir=. custodian.yml \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --profile localstack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 Alternatively, you can also set the &lt;code>AWS_PROFILE=localstack&lt;/code> environment variable, in which case the &lt;code>--profile localstack&lt;/code> parameter can be omitted in the commands above.
 &lt;/div>
 &lt;p>You should see the following output:&lt;/p>
@@ -860,7 +860,7 @@ The support for &lt;code>eksctl&lt;/code> is currently experimental and may not 
 &lt;p>For a simple demonstration, check out the &lt;a href="https://github.com/Gitpod-Samples/localstack-gitpod-demo">LocalStack GitPod demo&lt;/a> repository. Check out our &lt;a href="https://localstack.cloud/blog/2022-09-26-localstack-x-gitpod-run-cloud-applications-with-localstack-and-gitpod/">in-depth walkthrough over the demo&lt;/a> on our blog!&lt;/p></description></item><item><title>User-Guide: Kubernetes</title><link>/user-guide/integrations/kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/kubernetes/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>&lt;a href="https://kubernetes.io">Kubernetes&lt;/a> is an open-source container orchestration platform that simplifies the deployment, scaling, and management of containerized applications. LocalStack can be deployed on Kubernetes using the &lt;a href="http://helm.localstack.cloud">LocalStack Helm chart&lt;/a>.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Creating shared/hosted LocalStack instances may have some licensing implications. For example, a valid license might be necessary for each user who interacts with the instance. If you have any questions or uncertainties regarding the licensing implications, we encourage you to &lt;a href="https://localstack.cloud/contact">contact us&lt;/a> for further details.
 &lt;/div>
@@ -963,8 +963,8 @@ Creating shared/hosted LocalStack instances may have some licensing implications
 &lt;h3 id="debugging-lambda-on-kubernetes">Debugging Lambda on Kubernetes&lt;/h3>
 &lt;p>Debugging is currently not supported. Lambda hot-reloading will not function, as the bind mounting into pods cannot be done at runtime.&lt;/p></description></item><item><title>User-Guide: LambdaTest HyperExecute</title><link>/user-guide/integrations/lambdatest-hyperexecute/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/lambdatest-hyperexecute/</guid><description>
 &lt;p>&lt;a href="https://www.lambdatest.com/hyperexecute">HyperExecute&lt;/a> is a test orchestration platform designed to optimize the execution of automated tests in the cloud. It supports a wide range of testing frameworks and integrates seamlessly with CI/CD pipelines, such as GitHub Actions. You can use HyperExecute to run your LocalStack tests on your local machine or in the CI pipeline using a single configuration file.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 LambdaTest provides specialized runners for LocalStack. The default runners don&amp;rsquo;t provide a Docker socket, which is required for LocalStack to work properly. If you want to use LocalStack with HyperExecute, you need to get in touch with the LambdaTest team to get access to the specialized runners.
 &lt;/div>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
@@ -1048,7 +1048,7 @@ To use the LocalStack Pro image, configure a LocalStack Auth Token by appending 
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>OpenShift is a container orchestration platform as a service designed to simplify the deployment, scaling, and management of containerized applications. Built on Kubernetes, OpenShift provides a comprehensive set of tools and features that facilitate the orchestration, automation, and monitoring of containerized workloads.&lt;/p>
 &lt;p>With OpenShift, you can deploy LocalStack on a managed Kubernetes cluster, as a cloud sandbox that emulates various AWS services &amp;amp; APIs. This guide demonstrates how you can deploy LocalStack on OpenShift using Devfile. You can use the deployed LocalStack container to create AWS resources that you can use for local development and testing purposes.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Creating shared/hosted LocalStack instances may have some licensing implications. For example, a valid license might be necessary for each user who interacts with the instance. If you have any questions or uncertainties regarding the licensing implications, we encourage you to &lt;a href="https://localstack.cloud/contact">contact us&lt;/a> for further details.
 &lt;/div>
@@ -1125,8 +1125,8 @@ For further options please consult the official documentation on available &lt;a
 &lt;p>To start a new project, use these commands:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mkdir myproj
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pulumilocal new aws-typescript -y -s lsdev --cwd myproj&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 The &lt;code>--cwd&lt;/code> option is unnecessary if you&amp;rsquo;re already in the project directory.
 &lt;/div>
 &lt;h3 id="deploy-the-pulumi-stack">Deploy the Pulumi stack&lt;/h3>
@@ -1538,8 +1538,8 @@ The &lt;code>--cwd&lt;/code> option is unnecessary if you&amp;rsquo;re already i
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>./mvnw clean package&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can further run the application in dev mode with the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>java -Dparameters.path=/quarkus/is/awesome/ -jar target/quarkus-app/quarkus-run.jar&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 &lt;p>With GraalVM installed, you can also create a native executable binary using the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>./mvnw clean package -Dnative.&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
@@ -1870,8 +1870,8 @@ Next, you need make minor adjustments to your function code in order to make you
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>In this guide, you will learn how to use LocalStack to test
 your serverless applications powered by Spring Cloud Function framework.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 Some features and services described in this document may not work properly on aarch64, including Apple&amp;rsquo;s M1 silicon.
 &lt;/div>
 &lt;h2 id="covered-topics">Covered Topics&lt;/h2>

@@ -721,8 +721,8 @@ The next time you start up LocalStack, your extensions will still be there!&lt;/
 Simply install and remove extensions from your specific LocalStack instance directly from the App.&lt;/p>
 &lt;p>If you have multiple instances of LocalStack, each instance has its own set of extensions,
 and our App allows you to manage extensions for each instance individually.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 When you install or uninstall extensions, LocalStack needs to be restarted.
 LocalStack will do this automatically for you!
 It re-starts the process inside the running container, not the container itself.
@@ -1286,8 +1286,8 @@ You can create a one-click installer for your extension using our &lt;a href="ht
 &lt;li>Includes a feature to activate or deactivate this functionality on-the-fly for performance tuning.&lt;/li>
 &lt;li>Presents an option to reset the stream, facilitating a clean slate to generate new policies.&lt;/li>
 &lt;/ol>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 You don&amp;rsquo;t need to set additional configuration variables, such as &lt;code>DEBUG=1&lt;/code> or &lt;code>IAM_SOFT_MODE=1&lt;/code>, when using the IAM Policy Stream with Web Application. However, it won&amp;rsquo;t enforce policies or print IAM-related logs in the LocalStack container.
 &lt;/div>
 &lt;p>To use this feature, open the LocalStack Web Application in your browser, go to the IAM Policy Stream section, and click on &lt;strong>Enable&lt;/strong> to view the &lt;strong>Summary Policy&lt;/strong> and &lt;strong>Output&lt;/strong>.&lt;/p>
@@ -1312,7 +1312,7 @@ You don&amp;rsquo;t need to set additional configuration variables, such as &lt;
 &lt;p>You can visit &lt;a href="https://app.localstack.cloud/launchpad">Cloud Pods launchpad&lt;/a> to generate a shareable link for your pods.&lt;/p>
 &lt;p>&lt;img src="link-generator.png" alt="Cloud Pods Launchpad Link Generator">&lt;/p>
 &lt;p>Enter a public URL to your pod Cloud Pod the first input field, then click &lt;strong>Generate Link&lt;/strong>. You can copy the resulting link and share it with others. Additionally, you have the option to copy a markdown snippet for quickly adding a badge to your repository.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 &lt;p>The Launchpad accepts any URL as input and directly passes it to your LocalStack instance for Cloud Pod injection. As a result, this process may carry the risk of unintended side effects, as there is no validation applied to the URL provided to the launchpad.&lt;/p>
 &lt;p>Furthermore, it&amp;rsquo;s essential to exercise caution and only use URLs that you trust when utilizing the launchpad, as the URL is displayed in the user interface.&lt;/p>
@@ -1359,7 +1359,7 @@ If Transparent Endpoint Injection is &lt;em>not&lt;/em> used, the AWS SDK within
 Transparent Endpoint Injection is only available in LocalStack Pro.&lt;/p>
 &lt;p>Alternatively, specific AWS endpoints can be resolved to AWS while continuing to use Transparent Endpoint Injection.
 Refer to the &lt;a href="/user-guide/tools/dns-server/#configuration">DNS server configuration&lt;/a> for skipping selected domain name patterns.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack.
 &lt;/div>
@@ -1382,7 +1382,7 @@ Similar parameters are available for most other &lt;a href="https://docs.aws.ama
 &lt;p>For Node.js, you can set this environment variable in your application, to allow the AWS SDK to talk to the local APIs via SSL:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-node.js" data-lang="node.js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">process&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">env&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">NODE_TLS_REJECT_UNAUTHORIZED&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you are using the Java AWS SDK v2 in Lambda, you can opt in to automatically disable SSL validation using the configuration &lt;code>LAMBDA_DISABLE_JAVA_SDK_V2_CERTIFICATE_VALIDATION=1&lt;/code>.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
+&lt;div class="alert alert-danger" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Disabling SSL validation may have undesired side effects and security implications.
 Make sure to use this only for local testing, and never in production.
@@ -2503,8 +2503,8 @@ While an unmanaged compute environment has been specified, there is no need to p
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>domain=$(awslocal cloudfront create-distribution \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --origin-domain-name abc123.s3.amazonaws.com | jq -r &amp;#39;.Distribution.DomainName&amp;#39;)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -k https://$domain/hello.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 If you wish to use CloudFront on system host, ensure your local DNS setup is correctly configured.
 Refer to the section on &lt;a href="/user-guide/tools/dns-server/#system-dns-configuration">System DNS configuration&lt;/a> for details.
 &lt;/div>
@@ -3709,7 +3709,7 @@ LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for funct
 &lt;p>To modify the return value of resource URIs for most services, including ECR, you can utilize the &lt;code>LOCALSTACK_HOST&lt;/code> variable in the &lt;a href="/references/configuration/">configuration&lt;/a>.
 By default, ECR returns a &lt;code>repositoryUri&lt;/code> starting with &lt;code>localhost.localstack.cloud&lt;/code>, such as: &lt;code>localhost.localstack.cloud:&amp;lt;port&amp;gt;/&amp;lt;repository-name&amp;gt;&lt;/code>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Notes&lt;/h4>
+&lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;p>In this section, we assume that &lt;code>localhost.localstack.cloud&lt;/code> resolves in your environment, and LocalStack is connected to a non-default bridge network. For more information, refer to the article about &lt;a href="/user-guide/tools/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a>.&lt;/p>
 &lt;p>If the domain &lt;code>localhost.localstack.cloud&lt;/code> does not resolve on your host, you can still proceed by setting &lt;code>LOCALSTACK_HOST=localhost&lt;/code> (not recommended).&lt;/p>
 &lt;p>LocalStack will take care of the DNS resolution of &lt;code>localhost.localstack.cloud&lt;/code> within ECR itself, allowing you to use the &lt;code>localhost:&amp;lt;port&amp;gt;/&amp;lt;repository_name&amp;gt;&lt;/code> URI for tagging and pushing the image on your host.&lt;/p>
@@ -3787,8 +3787,8 @@ By default, ECR returns a &lt;code>repositoryUri&lt;/code> starting with &lt;cod
 &lt;p>In the events, we can see that the pull from ECR was successful:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span> Normal Pulled 10s kubelet Successfully pulled image &lt;span style="color:#4e9a06">&amp;#34;localhost.localstack.cloud:4510/fancier-nginx:latest&amp;#34;&lt;/span> in 2.412775896s
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 Public Docker images from &lt;code>registry.k8s.io&lt;/code> can be pulled without additional configuration from EKS nodes, but if you pull images from any other locations that resolve to S3 you can configure &lt;code>DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM=&amp;lt;bucket-name&amp;gt;\.s3.*\.amazonaws\.com&lt;/code> in your &lt;a href="/references/configuration/">configuration&lt;/a>.
 &lt;/div>
 &lt;h3 id="configuring-an-ingress-for-your-services">Configuring an Ingress for your services&lt;/h3>
@@ -3836,8 +3836,8 @@ Public Docker images from &lt;code>registry.k8s.io&lt;/code> can be pulled witho
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;hr&amp;gt;&amp;lt;center&amp;gt;nginx/1.21.6&amp;lt;/center&amp;gt;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 You can customize the Load Balancer port by configuring &lt;code>EKS_LOADBALANCER_PORT&lt;/code> in your environment.
 &lt;/div>
 &lt;h3 id="enabling-https-with-local-ssltls-certificate-for-the-ingress">Enabling HTTPS with local SSL/TLS certificate for the Ingress&lt;/h3>
@@ -3975,7 +3975,7 @@ The &lt;code>ls-secret-tls&lt;/code> secret is created in the &lt;code>default&l
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Notes&lt;/h4>
+&lt;h4 class="alert-heading">Note&lt;/h4>
 Note that the tag was previously referred to as &lt;code>__k3d_volume_mount__&lt;/code>, but it has now been renamed to &lt;code>_volume_mount_&lt;/code>. As a result, the tag name &lt;code>__k3d_volume_mount__&lt;/code> is considered deprecated and will be removed in an upcoming release.
 &lt;/div>
 &lt;p>After creating your cluster with the &lt;code>_volume_mount_&lt;/code> tag, you can create your path with volume mounts as usual. The configuration for the volume mounts can be set up similar to this:&lt;/p>
@@ -4048,7 +4048,8 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --target-group-arn $targetGroup&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-Note that in some cases the &lt;code>targets&lt;/code> parameter &lt;code>Id&lt;/code> can be the &lt;code>Gateway&lt;/code> address of the docker container. You can find the gateway address by running &lt;code>docker inspect &amp;lt;container_id&amp;gt;&lt;/code>.
+Note that in some cases the &lt;code>targets&lt;/code> parameter &lt;code>Id&lt;/code> can be the &lt;code>Gateway&lt;/code> address of the docker container.
+You can find the gateway address by running &lt;code>docker inspect &amp;lt;container_id&amp;gt;&lt;/code>.
 &lt;/div>
 &lt;h3 id="create-a-listener-and-a-rule">Create a listener and a rule&lt;/h3>
 &lt;p>We create a for the load balancer using the &lt;a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateListener.html">&lt;code>CreateListener&lt;/code>&lt;/a> API. The following command creates a listener for the load balancer created in the previous step:&lt;/p>
@@ -4276,13 +4277,13 @@ Run the following command to download the file:&lt;/p>
 &lt;p>EventBridge Pipes allows users to create point-to-point integrations between event producers and consumers with transform, filter and enrichment steps. Pipes are particularly useful for scenarios involving real-time data processing, application integration, and automated workflows, while simplifying the process of routing events between AWS services. Pipes offer a point-to-point connection from one source to one target (one-to-one). In contrast, EventBridge Event Bus offers a one-to-many integration where an event router delivers one event to zero or more destinations.&lt;/p>
 &lt;p>LocalStack allows you to use the Pipes APIs in your local environment to create Pipes with SQS queues and Kinesis streams as source and target. You can also filter events using EventBridge event patterns and enrich events using Lambda.&lt;/p>
 &lt;p>The supported APIs are available on our &lt;a href="/references/coverage/coverage_pipes/">API coverage page&lt;/a>, which provides information on the extent of Pipe&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;div class="alert alert-info" role="alert">
+&lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 The implementation of EventBridge Pipes is currently in &lt;strong>preview&lt;/strong> stage and under active development.
 If you would like support for more APIs or report bugs, please make an issue on &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub&lt;/a>.
 &lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Information&lt;/h4>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 LocalStack now supports a new event rule engine for &lt;a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html">EventBridge event patterns&lt;/a>.
 You can &lt;a href="/references/configuration/">configure&lt;/a> &lt;code>EVENT_RULE_ENGINE=java&lt;/code> (preview) to use the AWS &lt;a href="https://github.com/aws/event-ruler">event-ruler&lt;/a>, which offers better parity.
 &lt;/div>
@@ -4687,13 +4688,11 @@ Run the following command to upload the file to your Glacier vault:&lt;/p>
 &lt;p>The data download process can be verified through the previous &lt;code>ListJobs&lt;/code> call to check progress.
 Once the &lt;code>ArchiveRetrieval&lt;/code> Job is complete, the data can be downloaded.
 You can use the &lt;code>JobId&lt;/code> of the Job to download your archive with the following command:&lt;/p>
-&lt;p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier get-job-output --vault-name sample-vault --account-id - --job-id 25CEOTJ7ZUR5Q7YY0B1O55AE4C3L1502EOHWMNY10IIYEBWEQB73D23S8BVYO9RTRTPLRK2LJLUCCRM52GDV87C9A4JW my-archive.jpg&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Please not that currently, this operation is only mocked, and will create an empty file named &lt;code>my-archive.jpg&lt;/code>, not containing the contents of your archive.
 &lt;/div>
-&lt;/p>
 &lt;h3 id="retrieve-the-inventory-information">Retrieve the inventory information&lt;/h3>
 &lt;p>You can also initiate the retrieval of the inventory of a vault using the same &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-initiate-job-post.html">&lt;code>InitiateJob&lt;/code>&lt;/a> API.&lt;/p>
 &lt;p>Initiate a job of the specified type to get the details of the individual inventory items inside a Vault using the &lt;code>initiate-job&lt;/code> command:

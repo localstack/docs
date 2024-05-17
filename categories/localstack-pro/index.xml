@@ -2,8 +2,8 @@
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>DocumentDB is a fully managed, non-relational database service that supports MongoDB workloads. DocumentDB is compatible with MongoDB, meaning you can use the same MongoDB drivers, applications, and tools to run, manage, and scale workloads on DocumentDB without having to worry about managing the underlying infrastructure.&lt;/p>
 &lt;p>LocalStack allows you to use the DocumentDB APIs to create and manage DocumentDB clusters and instances. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_docdb/">API coverage page&lt;/a>, which provides information on the extent of DocumentDB&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;div class="alert alert-success" role="alert">
-&lt;h4 class="alert-heading">Information&lt;/h4>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;p>Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it can be accessed from &lt;code>localhost&lt;/code>. When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.&lt;/p>
 &lt;p>Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not
 have exact feature parity with Amazon DocumentDB. The database engine may support additional
@@ -171,8 +171,8 @@ by &lt;code>mongosh&lt;/code>:&lt;/p>
 &lt;p>For more information on how to use MongoDB with &lt;code>mongosh&lt;/code> please refer to
 the &lt;a href="https://www.mongodb.com/docs/">MongoDB documentation&lt;/a>.&lt;/p>
 &lt;h3 id="connect-to-documentdb-using-nodejs-lambda">Connect to DocumentDB using Node.js Lambda&lt;/h3>
-&lt;div class="alert alert-success" role="alert">
-&lt;h4 class="alert-heading">Important&lt;/h4>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;p>You need to set &lt;code>DOCDB_PROXY_CONTAINER=1&lt;/code> when starting LocalStack to be able to use the returned &lt;code>Endpoint&lt;/code>, which will be correctly resolved automatically.&lt;/p>
 &lt;p>The flag &lt;code>DOCDB_PROXY_CONTAINER=1&lt;/code> changes the default behavior and the container will be started as proxied container. Meaning a port from the &lt;a href="/references/external-ports/">pre-defined port&lt;/a> range will be chosen, and when using lambda, you can use &lt;code>localhost.localstack.cloud&lt;/code> to connect to the instance.&lt;/p>
 &lt;/div>
@@ -756,7 +756,7 @@ To retrieve the MQTT endpoint, use the &lt;a href="https://docs.aws.amazon.com/i
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;endpointAddress&amp;#34;: &amp;#34;000000000000.iot.eu-central-1.localhost.localstack.cloud:4510&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-success" role="alert">
-&lt;h4 class="alert-heading">Hint&lt;/h4>
+&lt;h4 class="alert-heading">Tip&lt;/h4>
 LocalStack lazy-loads services by default.
 The MQTT broker may not be automatically available on a fresh launch of LocalStack.
 You should make a &lt;code>DescribeEndpoint&lt;/code> call to ensure the broker is running and identify the port.
