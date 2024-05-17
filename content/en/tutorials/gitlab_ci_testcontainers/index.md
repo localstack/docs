@@ -245,8 +245,8 @@ useful for integration testing with Docker containers.
 #### Executors
 
 We mentioned in the beginning that each job runs in a newly provisioned VM. You can also notice that the pipeline configuration mentions 
-a docker image, which is a template that contains instructions for creating a container. The relationship between these concepts is as
-following: a runner is responsible for the execution of one job. This runner is installed on a machine and implements 
+a docker image, which is a template that contains instructions for creating a container. This might look confusing, but a runner is responsible 
+for the execution of one job. This runner is installed on a machine and implements 
 a certain [executor](https://docs.gitlab.com/runner/executors/). The executor determines the environment in which the job runs. By
 default, the GitLab-managed runners use a Docker Machine executor. Some other available executor options are: SSH, Shell, Parallels,
 VirtualBox, Docker, Docker Autoscaler, Kubernetes.
@@ -297,7 +297,7 @@ After selecting the Linux machine you're done with defining the runner. Now you 
 computer. Notice the token in the first step command and save it for later.
 
 For simplicity, we'll use a GitLab Runner Docker image. The GitLab Runner Docker images are designed as wrappers around the standard
-`gitlab-runner` command, like if GitLab Runner was installed directly on the host. You can read more about it in the GitLab documentation.
+`gitlab-runner` command, like if GitLab Runner was installed directly on the host. You can read more about it in the [GitLab documentation](https://docs.gitlab.com/runner/install/docker.html).
 
 Make sure you have Docker installed. To verify your setup you can run the `docker info` command.
 
