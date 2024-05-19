@@ -1800,7 +1800,55 @@ The Resource Browser allows you to perform the following actions:
 &lt;li>&lt;a href="https://github.com/localstack/serverless-streaming-data-pipeline">Streaming Data Pipeline with Kinesis, Tinybird, CloudWatch, Lambda&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="limitations">Limitations&lt;/h2>
-&lt;p>In multi-account setups, each AWS account launches a separate instance of Kinesis Mock, which is very resource intensive when a large number of AWS accounts are used. An &lt;a href="https://github.com/etspaceman/kinesis-mock/issues/377">open Kinesis Mock issue&lt;/a> is being used to keep track of this feature.&lt;/p></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
+&lt;p>In multi-account setups, each AWS account launches a separate instance of Kinesis Mock, which is very resource intensive when a large number of AWS accounts are used. An &lt;a href="https://github.com/etspaceman/kinesis-mock/issues/377">open Kinesis Mock issue&lt;/a> is being used to keep track of this feature.&lt;/p></description></item><item><title>User-Guide: Pinpoint</title><link>/user-guide/aws/pinpoint/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/pinpoint/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Pinpoint is a customer engagement service to facilitate communication across multiple channels, including email, SMS, and push notifications. Pinpoint allows developers to create and manage customer segments based on various attributes, such as user behavior and demographics, while integrating with other AWS services to send targeted messages to customers.&lt;/p>
+&lt;p>LocalStack allows you to mock the Pinpoint APIs in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_pinpoint/">API coverage page&lt;/a>, which provides information on the extent of Pinpoint&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Pinpoint and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create a Pinpoint application, retrieve all applications, and list tags for the resource.&lt;/p>
+&lt;h3 id="create-an-application">Create an application&lt;/h3>
+&lt;p>Create a Pinpoint application using the &lt;a href="https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id.html">&lt;code>CreateApp&lt;/code>&lt;/a> API. Execute the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal pinpoint create-app \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --create-application-request Name=ExampleCorp,tags={&amp;#34;Stack&amp;#34;=&amp;#34;Test&amp;#34;}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ApplicationResponse&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:mobiletargeting:us-east-1:000000000000:apps/4487a55ac6fb4a2699a1b90727c978e7&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Id&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;4487a55ac6fb4a2699a1b90727c978e7&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ExampleCorp&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationDate&amp;#34;&lt;/span>: 1706609789.906863
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="list-applications">List applications&lt;/h3>
+&lt;p>You can list all applications using the &lt;a href="https://docs.aws.amazon.com/pinpoint/latest/apireference/apps.html">&lt;code>GetApps&lt;/code>&lt;/a> API. Execute the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal pinpoint get-apps&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ApplicationsResponse&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Item&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:mobiletargeting:us-east-1:000000000000:apps/4487a55ac6fb4a2699a1b90727c978e7&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Id&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;4487a55ac6fb4a2699a1b90727c978e7&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ExampleCorp&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationDate&amp;#34;&lt;/span>: 1706609789.906863
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="list-tags-for-the-application">List tags for the application&lt;/h3>
+&lt;p>You can list all tags for the application using the &lt;a href="https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id.html">&lt;code>GetApp&lt;/code>&lt;/a> API. Execute the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal pinpoint list-tags-for-resource \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --resource-arn arn:aws:mobiletargeting:us-east-1:000000000000:apps/4487a55ac6fb4a2699a1b90727c978e7&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Replace the &lt;code>resource-arn&lt;/code> with the ARN of the application you created earlier. The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TagsModel&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;tags&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Stack&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Test&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Route 53 is a highly scalable and reliable domain name system (DNS) web service provided by Amazon Web Services. Route 53 allows you to register domain names, and associate them with IP addresses or other resources. In addition to basic DNS functionality, Route 53 offers advanced features like health checks and DNS failover. Route 53 integrates seamlessly with other AWS services, such as route traffic to CloudFront distributions, S3 buckets configured for static website hosting, EC2 instances, and more.&lt;/p>
 &lt;p>LocalStack allows you to use the Route53 APIs in your local environment to create hosted zones and to manage DNS entries.
@@ -3326,7 +3374,63 @@ id="tabs-13-02" role="tabpanel" aria-labelled-by="tabs-13-02-tab">
 &lt;li>&lt;a href="https://github.com/localstack/query-data-s3-athena-glue-sample">Query data in S3 Bucket with Amazon Athena, Glue Catalog &amp;amp; CloudFormation&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/serverless-image-resizer">Serverless Image Resizer with Lambda, S3, SNS, and SES&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.localstack.cloud/tutorials/s3-static-website-terraform/">Host a static website locally using Simple Storage Service (S3) and Terraform with LocalStack&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Textract</title><link>/user-guide/aws/textract/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/textract/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Support</title><link>/user-guide/aws/support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/support/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>AWS Support is a service provided by Amazon Web Services (AWS) that offers technical assistance and resources to help you optimize your AWS environment, troubleshoot issues, and maintain operational efficiency. Support APIs provide programmatic access to AWS Support services, including the ability to create and manage support cases programmatically. You can further automate your support workflow using various AWS services, such as Lambda, CloudWatch, and EventBridge.&lt;/p>
+&lt;p>LocalStack allows you to use the Support APIs in your local environment to create and manage new cases, while testing your configurations locally. LocalStack provides a mock implementation via a mock Support Center provided by &lt;a href="https://docs.getmoto.org/en/latest/docs/services/support.html">Moto&lt;/a>, and does not create real cases in the AWS. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_support/">API coverage page&lt;/a>, which provides information on the extent of Support API&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+For technical support with LocalStack, you can reach out through our &lt;a href="https://docs.localstack.cloud/getting-started/help-and-support/">support channels&lt;/a>. It&amp;rsquo;s important to note that LocalStack doesn&amp;rsquo;t offer a programmatic interface to create support cases, and this documentation is only intended to demonstrate how you can use and mock the AWS Support APIs in your local environment.
+&lt;/div>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Support and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how you can create a case in the mock Support Center using the AWS CLI.&lt;/p>
+&lt;h3 id="create-a-support-case">Create a support case&lt;/h3>
+&lt;p>To create a support case, you can use the &lt;a href="https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/CreateCase">&lt;code>CreateCase&lt;/code>&lt;/a> API. The following example creates a case with the subject &amp;ldquo;Test case&amp;rdquo; and the description &amp;ldquo;This is a test case&amp;rdquo; in the category &amp;ldquo;General guidance&amp;rdquo;.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal support create-case \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --subject &amp;#34;Test case&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --service-code &amp;#34;general-guidance&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --category-code &amp;#34;general-guidance&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --communication-body &amp;#34;This is a test case&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;caseId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;case-12345678910-2020-kEa16f90bJE766J4&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="list-support-cases">List support cases&lt;/h3>
+&lt;p>To list all support cases, you can use the &lt;a href="https://docs.aws.amazon.com/awssupport/latest/APIReference/API_DescribeCases.html">&lt;code>DescribeCases&lt;/code>&lt;/a> API. The following example lists all cases in the category &amp;ldquo;General guidance&amp;rdquo;.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal support describe-cases&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;cases&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;caseId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;case-12345678910-2020-kEa16f90bJE766J4&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;submittedBy&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;moto@moto.com&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;timeCreated&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2023-08-24T18:03:08.895247&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;recentCommunications&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;communications&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;caseId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;case-12345678910-2020-kEa16f90bJE766J4&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;body&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;This is a test case&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;submittedBy&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;moto@moto.com&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nextToken&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;foo_next_token&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="resolve-a-support-case">Resolve a support case&lt;/h3>
+&lt;p>To resolve a support case, you can use the &lt;a href="https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/ResolveCase">&lt;code>ResolveCase&lt;/code>&lt;/a> API. The following example resolves the case created in the previous step.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal support resolve-case \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --case-id &amp;#34;case-12345678910-2020-kEa16f90bJE766J4&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Replace the case ID with the ID of the case you want to resolve. The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;initialCaseStatus&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;resolved&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;finalCaseStatus&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;resolved&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can also use the &lt;a href="https://docs.aws.amazon.com/awssupport/latest/APIReference/API_DescribeCases.html">&lt;code>DescribeCases&lt;/code>&lt;/a> API to verify that the case has been resolved.&lt;/p></description></item><item><title>User-Guide: Textract</title><link>/user-guide/aws/textract/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/textract/</guid><description>
 &lt;p>Textract is a machine learning service that automatically extracts text, forms, and tables from scanned documents. It simplifies the process of extracting valuable information from a variety of document types, enabling applications to quickly analyze and understand document content.&lt;/p>
 &lt;p>LocalStack allows you to mock Textract APIs in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_textract/">API coverage page&lt;/a>, providing details on the extent of Textract&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
