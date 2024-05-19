@@ -2,6 +2,8 @@
 title: "Support"
 linkTitle: "Support"
 description: Get started with Support on LocalStack
+persistence: supported
+
 ---
 
 ## Introduction
