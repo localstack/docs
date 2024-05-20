@@ -118,6 +118,7 @@ Step Functions integrates with AWS services, allowing you to invoke API actions 
 |                                | Amazon SQS              | &#10003;         |                   |                    | &#10003;                              |
 |                                | API Gateway             | &#10003;         |                   |                    | &#10003;                              |
 |                                | Amazon EventBridge      | &#10003;         |                   |                    | &#10003;                              |
+|                                | AWS Glue                | &#10003;         | &#10003;          |                    |                                       |
 |                                | AWS Step Functions      | &#10003;         | &#10003;          | &#10003;           | &#10003;                              |
 | AWS SDK integrations           | All LocalStack services | &#10003;         |                   |                    | &#10003;                              |
 
