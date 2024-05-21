@@ -144,19 +144,18 @@ all the necessary AWS resources. Both files are copied with read/write/execute p
 - `DEBUG=1` enables a more verbose debugging of LocalStack.
 - `LAMBDA_DOCKER_FLAGS` sets specific Testcontainers labels to the Lambda containers, as a solution to be correctly managed by Ryuk.
 Since the compute containers are created by LocalStack and not the Testcontainers framework, they do not receive the necessary tags.
+- `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` sets an environment variable to configure the Lambda runtime environment timeout to 90 seconds, for slower environments.
+- The last line `.waitingFor(Wait.forLogMessage(...))` configures the container to wait until the specified log message appears, exactly once, indicating that resource creation is complete.
 
 {{< alert title="Sidenote" >}}
 
-Ryuk is a component of Testcontainers that helps manage and clean up Docker resources created during testing. Specifically, Ryuk 
-ensures that any Docker containers, networks, volumes, and other resources are properly removed when they are no longer needed. 
+Ryuk is a component of Testcontainers that helps manage and clean up Docker resources created during testing. Specifically, Ryuk
+ensures that any Docker containers, networks, volumes, and other resources are properly removed when they are no longer needed.
 This prevents resource leaks and ensures that the testing environment remains clean and consistent between test runs.
 
 When Testcontainers starts, it typically launches a Ryuk container in the background. This container continuously monitors
 the Docker resources created by Testcontainers and removes them once the test execution is complete or if they are no longer in use.
 {{< /alert >}}
-
-- `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` sets an environment variable to configure the Lambda runtime environment timeout to 90 seconds, for slower environments.
-- The last line `.waitingFor(Wait.forLogMessage` configures the container to wait until the specified log message appears, indicating that resource creation is complete.
 
 The tests are set up in the `CoffeeAppTests` class, validating the workflows for creating a coffee description files, retrieving them, and exception throwing when needed.
 For this tutorial you don't really need to dive into the specifics of the tests, but you're more than welcome to.
