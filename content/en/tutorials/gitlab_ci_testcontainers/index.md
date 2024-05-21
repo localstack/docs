@@ -155,7 +155,7 @@ When Testcontainers starts, it typically launches a Ryuk container in the backgr
 the Docker resources created by Testcontainers and removes them once the test execution is complete or if they are no longer in use.
 {{< /alert >}}
 
-- LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT sets an environment variable to configure the Lambda runtime environment timeout to 90 seconds, for slower environments.
+- `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` sets an environment variable to configure the Lambda runtime environment timeout to 90 seconds, for slower environments.
 - The last line configures the container to wait until the specified log message appears, indicating that resource creation is complete.
 
 The tests are set up in the `CoffeeAppTests` class, validating the workflows for creating a coffee description files, retrieving them, and exception throwing when needed.
