@@ -325,7 +325,7 @@ gitlab/gitlab-runner:latest
 {{</command>}}
 
 The breakdown for this command:
-- The container is named gitlab-runner.
+- The container is named `gitlab-runner`.
 - It is configured to always restart.
 - It has access to the Docker socket on the host machine, allowing it to manage Docker containers - which is very important here.
 - It uses the named volume previously defined for persistent configuration storage.
