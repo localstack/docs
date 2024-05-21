@@ -420,7 +420,7 @@ shutdown_timeout = 0
     network_mtu = 0
 ```
 
-`Control + X` to save and exit the file. The runner is ready to use. You can now run your pipeline by pushing changes to your project 
+`[CTRL] + [X]` to save and exit the file. The runner is ready to use. You can now run your pipeline by pushing changes to your project 
 or from the dashboard, by going to `Build -> Pipelines` and using the `Run pipeline` button.
 
 ## Conclusion
