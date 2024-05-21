@@ -136,7 +136,7 @@ public class LocalStackConfig {
 Here's a breakdown of what's important:
 
 - The @Testcontainers marks the test class to use the Testcontainers library.
-- The @Container annotation indicates that the field is a Testcontainers managed container.
+- The `@Container` annotation indicates that the field is a Testcontainers managed container.
 - The image used for the test LocalStack instance is set to the latest Pro version (at the time of writing).
 - In order to use the Pro image, a `LOCALSTACK_AUTH_TOKEN` variable needs to be set and read from the environment.
 - There are two files copied to the container before startup: the jar file for the Lambda functions and the script for building
