@@ -250,7 +250,7 @@ a certain [executor](https://docs.gitlab.com/runner/executors/). The executor de
 default, the GitLab-managed runners use a Docker Machine executor. Some other available executor options are: SSH, Shell, Parallels,
 VirtualBox, Docker, Docker Autoscaler, Kubernetes.
 
-Sometimes visualising the components of a pipeline can be tricky, so let's simplify this into a diagram:
+Sometimes visualizing the components of a pipeline can be tricky, so let's simplify this into a diagram:
 
 {{< figure src="gitlab-ci-diagram.png" width="80%" height="auto">}}
 
