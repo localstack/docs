@@ -156,7 +156,7 @@ the Docker resources created by Testcontainers and removes them once the test ex
 {{< /alert >}}
 
 - `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` sets an environment variable to configure the Lambda runtime environment timeout to 90 seconds, for slower environments.
-- The last line configures the container to wait until the specified log message appears, indicating that resource creation is complete.
+- The last line `.waitingFor(Wait.forLogMessage` configures the container to wait until the specified log message appears, indicating that resource creation is complete.
 
 The tests are set up in the `CoffeeAppTests` class, validating the workflows for creating a coffee description files, retrieving them, and exception throwing when needed.
 For this tutorial you don't really need to dive into the specifics of the tests, but you're more than welcome to.
