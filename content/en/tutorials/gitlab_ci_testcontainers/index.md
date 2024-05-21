@@ -259,7 +259,7 @@ Basically, the `service` is an additional container that starts at the same time
 a Docker client, and it communicates with the Docker daemon, running in the service container, in order to spin up more containers, in this
 case for the Lambda functions.
 
-Don't forget to add your LOCALSTACK_AUTH_TOKEN as a masked variable in your CI/CD settings. 
+Don't forget to add your `LOCALSTACK_AUTH_TOKEN` as a masked variable in your CI/CD settings. 
 
 ```vue
 Settings -> CI/CD -> Expand the Variables section -> Add variable
