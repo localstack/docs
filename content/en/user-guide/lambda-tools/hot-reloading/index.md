@@ -625,7 +625,7 @@ For bash, please use single quotes `'` instead of double quotes `"` to make sure
 
 ### Example
 
-In order to make use of the environment variable placeholders, you can inject them into the LocalStack container, for example using the following docker-compose file.
+In order to make use of the environment variable placeholders, you can inject them into the LocalStack container, for example using the following `docker-compose.yml` file.
 
 ```yaml
 version: "3.8"
@@ -646,7 +646,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
 ```
 
-This will set a `HOST_LAMBDA_DIR` environment variable to the current working directory when creating the docker compose stack.
+This will set a `HOST_LAMBDA_DIR` environment variable to the current working directory when creating the Docker Compose stack.
 Please note that this environment variable name is arbitrary - you can use any you want, but need to refer to that variable in your templates or commands to deploy your function correctly.
 You can then deploy a hot-reloading function with the following command:
 
@@ -663,7 +663,7 @@ Please note the single quotes `'` which prevent our shell to replace `$HOST_LAMB
 
 With the above example, you can make hot-reloading paths sharable between machines, as long as there is a point on the host to which the relative paths will stay the same.
 One example for this are checked out git repositories, where the code is located in the same structure - the absolute location of the checked out repository on the machine might however differ.
-If the choosen variable always points to the checked out directory, you can set the path using the placeholder in the checked out IaC template, or can share a CloudPod between machines.
+If the chosen variable always points to the checked out directory, you can set the path using the placeholder in the checked out IaC template, or can share a Cloud Pod between machines.
 
 ## Useful Links
 
