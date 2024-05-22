@@ -73,6 +73,9 @@ def collect_status() -> dict:
     catalog_db = PersistenceCatalog(notion_client=notion_client)
     statuses = {}
     for item in catalog_db:
+        # we do not want some services to be mentioned in the docs (for instance, not yet released)
+        if item.exclude:
+            continue
         service = item.name.replace('_', '-')
         status = item.status.lower()
         statuses[service] = {
