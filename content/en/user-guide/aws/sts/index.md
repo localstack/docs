@@ -2,8 +2,10 @@
 title: "Security Token Service (STS)"
 linkTitle: "Security Token Service (STS)"
 aliases:
-- /user-guide/aws/security-token-service/ 
+- /user-guide/aws/security-token-service/
 description: Get started with Security Token Service on LocalStack
+persistence: supported
+
 ---
 
 ## Introduction
