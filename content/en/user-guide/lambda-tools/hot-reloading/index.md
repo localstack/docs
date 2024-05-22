@@ -625,7 +625,45 @@ For bash, please use single quotes `'` instead of double quotes `"` to make sure
 
 ### Example
 
+In order to make use of the environment variable placeholders, you can inject them into the LocalStack container, for example using the following docker-compose file.
 
+```yaml
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=${DEBUG:-0}
+      - HOST_LAMBDA_DIR=${PWD}
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+```
+
+This will set a `HOST_LAMBDA_DIR` environment variable to the current working directory when creating the docker compose stack.
+Please note that this environment variable name is arbitrary - you can use any you want, but need to refer to that variable in your templates or commands to deploy your function correctly.
+You can then deploy a hot-reloading function with the following command:
+
+{{< command >}}
+$ awslocal lambda create-function \
+  --function-name test-function \
+  --code S3Bucket=hot-reload,S3Key='$HOST_LAMBDA_DIR/src' \
+  --handler handler.handler \
+  --runtime python3.12 \
+  --role 'arn:aws:iam::000000000000:role/lambda-ex'
+{{< / command >}}
+
+Please note the single quotes `'` which prevent our shell to replace `$HOST_LAMBDA_DIR` before the function is created.
+
+With the above example, you can make hot-reloading paths sharable between machines, as long as there is a point on the host to which the relative paths will stay the same.
+One example for this are checked out git repositories, where the code is located in the same structure - the absolute location of the checked out repository on the machine might however differ.
+If the choosen variable always points to the checked out directory, you can set the path using the placeholder in the checked out IaC template, or can share a CloudPod between machines.
 
 ## Useful Links
 
