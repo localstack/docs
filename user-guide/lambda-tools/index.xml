@@ -219,7 +219,7 @@ LocalStack&amp;rsquo;s Lambda container.&lt;/p>
 &lt;li>Set the S3 key to the path of the directory your lambda function resides in. The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.&lt;/li>
 &lt;/ul>
 &lt;p>Create the Lambda Function using the &lt;code>awslocal&lt;/code> CLI:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal lambda create-function \
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name hello-world \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime &amp;#34;nodejs16.x&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::123456789012:role/lambda-ex \
@@ -271,9 +271,9 @@ id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;statusCode&amp;#34;&lt;/span>:200,&lt;span style="color:#4e9a06">&amp;#34;body&amp;#34;&lt;/span>:&lt;span style="color:#4e9a06">&amp;#34;{\&amp;#34;message\&amp;#34;:\&amp;#34;Hello LocalStack!\&amp;#34;}&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="webpack">Webpack&lt;/h4>
 &lt;p>In this example, you can use our public &lt;a href="https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-hot-reloading/lambda-typescript-webpack">Webpack example&lt;/a> to create a simple Lambda function using TypeScript and Webpack. To use the example, run the following commands:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>cd /tmp
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git clone https://github.com/localstack-samples/localstack-pro-samples.git
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd lambda-hot-reloading/lambda-typescript-webpack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cd /tmp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>git clone https://github.com/localstack-samples/localstack-pro-samples.git
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cd lambda-hot-reloading/lambda-typescript-webpack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h5 id="setting-up-the-build">Setting up the build&lt;/h5>
 &lt;p>Before you can build the Lambda function, you need to install the dependencies:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>yarn install&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -496,6 +496,51 @@ id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>terraform init &amp;amp;&amp;amp; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> terraform apply -var &amp;#34;STAGE=local&amp;#34; -var &amp;#34;LAMBDA_MOUNT_CWD=$(pwd)/build/hot&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="share-deployment-configuration-between-different-machines">Share deployment configuration between different machines&lt;/h2>
+&lt;p>The paths provided for hot reloading have to be absolute paths on the host running the LocalStack container.
+This, however makes sharing the same configuration between multiple machines difficult, whether using &lt;a href="/user-guide/state-management/cloud-pods/">Cloud Pods&lt;/a> or sharing IaC templates between different developers.&lt;/p>
+&lt;p>In order to remove the need for manual adjustments for your hot-reloading paths specified in the &lt;code>S3Key&lt;/code> field, you can use placeholders for environment variables inside the path.
+The placeholders use the same format as you would use for shell parameter expansion, namely &lt;code>$ENV_VAR&lt;/code> or &lt;code>${ENV_VAR}&lt;/code>.
+These used environment variables have to be set inside the LocalStack container.&lt;/p>
+&lt;p>Please note that the final path, after substituting the placeholders for their values, has to be an absolute path.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;p>Please make sure the placeholder is not substituted by your shell before being sent to LocalStack.
+This is mostly relevant when using the AWS CLI to create a function.
+Please use string quotation marks which prevent parameter expansion in your shell.&lt;/p>
+&lt;p>For bash, please use single quotes &lt;code>'&lt;/code> instead of double quotes &lt;code>&amp;quot;&lt;/code> to make sure the placeholder does not get expanded before being sent to LocalStack.&lt;/p>
+&lt;/div>
+&lt;h3 id="example">Example&lt;/h3>
+&lt;p>In order to make use of the environment variable placeholders, you can inject them into the LocalStack container, for example using the following &lt;code>docker-compose.yml&lt;/code> file.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;3.8&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">container_name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;${LOCALSTACK_DOCKER_NAME:-localstack-main}&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">localstack/localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ports&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;127.0.0.1:4566:4566&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># LocalStack Gateway&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;127.0.0.1:4510-4559:4510-4559&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># external services port range&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># LocalStack configuration: https://docs.localstack.cloud/references/configuration/&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DEBUG=${DEBUG:-0}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">HOST_LAMBDA_DIR=${PWD}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/var/run/docker.sock:/var/run/docker.sock&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will set a &lt;code>HOST_LAMBDA_DIR&lt;/code> environment variable to the current working directory when creating the Docker Compose stack.
+Please note that this environment variable name is arbitrary - you can use any you want, but need to refer to that variable in your templates or commands to deploy your function correctly.
+You can then deploy a hot-reloading function with the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name test-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=hot-reload,S3Key=&amp;#39;$HOST_LAMBDA_DIR/src&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler handler.handler \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime python3.12 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role &amp;#39;arn:aws:iam::000000000000:role/lambda-ex&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Please note the single quotes &lt;code>'&lt;/code> which prevent our shell to replace &lt;code>$HOST_LAMBDA_DIR&lt;/code> before the function is created.&lt;/p>
+&lt;p>With the above example, you can make hot-reloading paths sharable between machines, as long as there is a point on the host to which the relative paths will stay the same.
+One example for this are checked out git repositories, where the code is located in the same structure - the absolute location of the checked out repository on the machine might however differ.
+If the chosen variable always points to the checked out directory, you can set the path using the placeholder in the checked out IaC template, or can share a Cloud Pod between machines.&lt;/p>
 &lt;h2 id="useful-links">Useful Links&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging (Python)&lt;/a>&lt;/li>
