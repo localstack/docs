@@ -2,6 +2,7 @@
 title: "SageMaker"
 linkTitle: "SageMaker"
 description: Get started with SageMaker on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction 
@@ -9,6 +10,10 @@ description: Get started with SageMaker on LocalStack
 Amazon SageMaker is a fully managed service provided by Amazon Web Services (AWS) that provides the tools to build, train, and deploy machine-learning models in the cloud for predictive analytics applications. It streamlines the machine learning development process, reduces the time and effort required to build and deploy models, and offers the scalability and flexibility needed for large-scale machine learning projects in the AWS cloud.
 
 LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sagemaker/), which provides information on the extent of Sagemaker's integration with LocalStack.
+
+{{< callout >}}
+LocalStack supports custom-built models in SageMaker. You can push your Docker image to LocalStack's Elastic Container Registry (ECR) and use it in SageMaker. LocalStack will use the local ECR image to create a SageMaker model.
+{{< /callout >}}
 
 ## Getting started
 
