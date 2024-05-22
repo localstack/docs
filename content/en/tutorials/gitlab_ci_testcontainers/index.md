@@ -105,7 +105,7 @@ We'll need to make sure that the files are correctly created and named, that the
 
 #### Configuring the test container
 
-To follow along, make changes to the code or run your own pipelines, you can fork the repository at https://gitlab.com/tinyg210/coffee-backend-localstack.
+To follow along, make changes to the code or run your own pipelines, you may fork the repository from the [coffee-backend-localstack sample](https://gitlab.com/tinyg210/coffee-backend-localstack).
 <br>
 The application is developed, built and tested locally, the next step is to establish a quality gate in the pipeline, to make sure nothing breaks. 
 
