@@ -305,7 +305,7 @@ To create the Lambda function, you need to take care of two things:
 Create the Lambda Function using the `awslocal` CLI:
 
 {{< command >}}
-awslocal lambda create-function \
+$ awslocal lambda create-function \
     --function-name hello-world \
     --runtime "nodejs16.x" \
     --role arn:aws:iam::123456789012:role/lambda-ex \
@@ -365,9 +365,9 @@ Change the `Hello World!` message to `Hello LocalStack!` and run `npm run build`
 In this example, you can use our public [Webpack example](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-hot-reloading/lambda-typescript-webpack) to create a simple Lambda function using TypeScript and Webpack. To use the example, run the following commands:
 
 {{< command >}}
-cd /tmp
-git clone https://github.com/localstack-samples/localstack-pro-samples.git
-cd lambda-hot-reloading/lambda-typescript-webpack
+$ cd /tmp
+$ git clone https://github.com/localstack-samples/localstack-pro-samples.git
+$ cd lambda-hot-reloading/lambda-typescript-webpack
 {{< / command >}}
 
 ##### Setting up the build
@@ -603,6 +603,67 @@ resource "aws_lambda_function" "exampleFunctionOne" {
 $ terraform init && \
   terraform apply -var "STAGE=local" -var "LAMBDA_MOUNT_CWD=$(pwd)/build/hot"
 {{< / command >}}
+
+## Share deployment configuration between different machines
+
+The paths provided for hot reloading have to be absolute paths on the host running the LocalStack container.
+This, however makes sharing the same configuration between multiple machines difficult, whether using [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}}) or sharing IaC templates between different developers.
+
+In order to remove the need for manual adjustments for your hot-reloading paths specified in the `S3Key` field, you can use placeholders for environment variables inside the path.
+The placeholders use the same format as you would use for shell parameter expansion, namely `$ENV_VAR` or `${ENV_VAR}`.
+These used environment variables have to be set inside the LocalStack container.
+
+Please note that the final path, after substituting the placeholders for their values, has to be an absolute path.
+
+{{< callout >}}
+Please make sure the placeholder is not substituted by your shell before being sent to LocalStack.
+This is mostly relevant when using the AWS CLI to create a function.
+Please use string quotation marks which prevent parameter expansion in your shell.
+
+For bash, please use single quotes `'` instead of double quotes `"` to make sure the placeholder does not get expanded before being sent to LocalStack.
+{{< /callout >}}
+
+### Example
+
+In order to make use of the environment variable placeholders, you can inject them into the LocalStack container, for example using the following `docker-compose.yml` file.
+
+```yaml
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=${DEBUG:-0}
+      - HOST_LAMBDA_DIR=${PWD}
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+```
+
+This will set a `HOST_LAMBDA_DIR` environment variable to the current working directory when creating the Docker Compose stack.
+Please note that this environment variable name is arbitrary - you can use any you want, but need to refer to that variable in your templates or commands to deploy your function correctly.
+You can then deploy a hot-reloading function with the following command:
+
+{{< command >}}
+$ awslocal lambda create-function \
+  --function-name test-function \
+  --code S3Bucket=hot-reload,S3Key='$HOST_LAMBDA_DIR/src' \
+  --handler handler.handler \
+  --runtime python3.12 \
+  --role 'arn:aws:iam::000000000000:role/lambda-ex'
+{{< / command >}}
+
+Please note the single quotes `'` which prevent our shell to replace `$HOST_LAMBDA_DIR` before the function is created.
+
+With the above example, you can make hot-reloading paths sharable between machines, as long as there is a point on the host to which the relative paths will stay the same.
+One example for this are checked out git repositories, where the code is located in the same structure - the absolute location of the checked out repository on the machine might however differ.
+If the chosen variable always points to the checked out directory, you can set the path using the placeholder in the checked out IaC template, or can share a Cloud Pod between machines.
 
 ## Useful Links
 
