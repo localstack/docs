@@ -2196,7 +2196,114 @@ The Resource Browser allows you to perform the following actions:
 &lt;p>The following code snippets and sample applications provide practical examples of how to use Secrets Manager in LocalStack for various use cases:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/amazon-rds-init-cdk">Amazon RDS initialization using CDK, Lambda, ECR, and Secrets Manager&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Simple Notification Service (SNS)</title><link>/user-guide/aws/sns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sns/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Security Token Service (STS)</title><link>/user-guide/aws/sts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sts/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Security Token Service (STS) is a service provided by Amazon Web Services (AWS) that enables you to grant temporary, limited-privilege credentials to users and applications.
+STS implements fine-grained access control and reduce the exposure of your long-term credentials.
+The temporary credentials, known as security tokens, can be used to access AWS services and resources based on the permissions specified in the associated policies.&lt;/p>
+&lt;p>LocalStack allows you to use the STS APIs in your local environment to request security tokens, manage permissions, integrate with identity providers, and more.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_sts/">API coverage page&lt;/a>, which provides information on the extent of STS&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to STS and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method.
+We will demonstrate how to assume an IAM Role and assume the role as well as creating an IAM user and getting using the STS with the AWS CLI.&lt;/p>
+&lt;h3 id="create-an-iam-user-and-get-temporary-credentials">Create an IAM User and get temporary Credentials&lt;/h3>
+&lt;p>You can create an IAM User and Role using the &lt;a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_CreateUser.html">&lt;code>CreateUser&lt;/code>&lt;/a> API.
+The IAM User will be used to assume the IAM Role.
+Run the following command to create an IAM User, named &lt;code>localstack-user&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-user \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --user-name localstack-user&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can generate long-term access keys for the IAM user using the &lt;a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_CreateAccessKey.html">&lt;code>CreateAccessKey&lt;/code>&lt;/a> API.
+Run the following command to create an access key for the IAM user:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-access-key \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --user-name localstack-user&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AccessKey&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;UserName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;localstack-user&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AccessKeyId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ACCESS_KEY_ID&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Status&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Active&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SecretAccessKey&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;SECRET_ACCESS_KEY&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreateDate&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2023-08-24T17:16:16Z&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Using STS, you can also fetch temporary credentials for this user using the &lt;a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html">&lt;code>GetSessionToken&lt;/code>&lt;/a> API.
+Run the following command using your long-term credentials to get your temporary credentials:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sts get-session-token&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Credentials&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AccessKeyId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ACCESS_KEY_ID&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SecretAccessKey&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;SECRET_ACCESS_KEY&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SessionToken&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;SESSION_TOKEN&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Expiration&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;TIMESTAMP&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-an-iam-role">Create an IAM Role&lt;/h3>
+&lt;p>You can now create an IAM Role, named &lt;code>localstack-role&lt;/code>, using the &lt;a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_CreateRole.html">&lt;code>CreateRole&lt;/code>&lt;/a> API.
+Run the following command to create the IAM Role:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-role \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-name localstack-role \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --assume-role-policy-document &amp;#39;{&amp;#34;Version&amp;#34;:&amp;#34;2012-10-17&amp;#34;,&amp;#34;Statement&amp;#34;:[{&amp;#34;Effect&amp;#34;:&amp;#34;Allow&amp;#34;,&amp;#34;Principal&amp;#34;:{&amp;#34;AWS&amp;#34;:&amp;#34;arn:aws:iam::000000000000:root&amp;#34;},&amp;#34;Action&amp;#34;:&amp;#34;sts:AssumeRole&amp;#34;}]}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Role&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Path&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;/&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;RoleName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;localstack-role&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;RoleId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;AROAQAAAAAAAEDP262HSR&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:role/localstack-role&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreateDate&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2023-08-24T17:17:13.632000Z&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AssumeRolePolicyDocument&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Statement&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Allow&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Principal&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AWS&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:root&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;sts:AssumeRole&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can attach the policy to the IAM role using the &lt;a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_AttachRolePolicy.html">&lt;code>AttachRolePolicy&lt;/code>&lt;/a> API.
+Run the following command to attach the policy to the IAM role:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam attach-role-policy \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-name localstack-role \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy-arn arn:aws:iam::aws:policy/AdministratorAccess&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="assume-an-iam-role">Assume an IAM Role&lt;/h3>
+&lt;p>You can assume an IAM Role using the &lt;a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html">&lt;code>AssumeRole&lt;/code>&lt;/a> API.
+Run the following command to assume the IAM Role:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sts assume-role \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-arn arn:aws:iam::000000000000:role/localstack-role \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-session-name localstack-session&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Credentials&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AccessKeyId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ACCESS_KEY_ID&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SecretAccessKey&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;SECRET_ACCESS_KEY&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SessionToken&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;SESSION_TOKEN&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Expiration&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;TIMESTAMP&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AssumedRoleUser&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AssumedRoleId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;AROAQAAAAAAAEDP262HSR:localstack-session&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:sts::000000000000:assumed-role/localstack-role/localstack-session&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;PackedPolicySize&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">6&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can use the temporary credentials in your applications for temporary access.&lt;/p>
+&lt;h3 id="get-caller-identity">Get caller identity&lt;/h3>
+&lt;p>You can get the caller identity to identify the principal your current credentials are valid for using the &lt;a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html">&lt;code>GetCallerIdentity&lt;/code>&lt;/a> API.
+Run the following command to get the caller identity for the credentials set in your environment:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sts get-caller-identity&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;UserId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;AKIAIOSFODNN7EXAMPLE&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Account&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;000000000000&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:root&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Simple Notification Service (SNS)</title><link>/user-guide/aws/sns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sns/</guid><description>
 &lt;p>Simple Notification Service (SNS) is a serverless messaging service that can distribute a massive number of messages to multiple subscribers and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints. SNS employs the Publish/Subscribe, an asynchronous messaging pattern that decouples services that produce events from services that process events.&lt;/p>
 &lt;p>LocalStack allows you to use the SNS APIs in your local environment to coordinate the delivery of messages to subscribing endpoints or clients. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_sns/">API coverage page&lt;/a>, which provides information on the extent of SNS&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
