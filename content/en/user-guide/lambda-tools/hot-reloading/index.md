@@ -305,7 +305,7 @@ To create the Lambda function, you need to take care of two things:
 Create the Lambda Function using the `awslocal` CLI:
 
 {{< command >}}
-awslocal lambda create-function \
+$ awslocal lambda create-function \
     --function-name hello-world \
     --runtime "nodejs16.x" \
     --role arn:aws:iam::123456789012:role/lambda-ex \
@@ -365,9 +365,9 @@ Change the `Hello World!` message to `Hello LocalStack!` and run `npm run build`
 In this example, you can use our public [Webpack example](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-hot-reloading/lambda-typescript-webpack) to create a simple Lambda function using TypeScript and Webpack. To use the example, run the following commands:
 
 {{< command >}}
-cd /tmp
-git clone https://github.com/localstack-samples/localstack-pro-samples.git
-cd lambda-hot-reloading/lambda-typescript-webpack
+$ cd /tmp
+$ git clone https://github.com/localstack-samples/localstack-pro-samples.git
+$ cd lambda-hot-reloading/lambda-typescript-webpack
 {{< / command >}}
 
 ##### Setting up the build
@@ -603,6 +603,29 @@ resource "aws_lambda_function" "exampleFunctionOne" {
 $ terraform init && \
   terraform apply -var "STAGE=local" -var "LAMBDA_MOUNT_CWD=$(pwd)/build/hot"
 {{< / command >}}
+
+## Share deployment configuration between different machines
+
+The paths provided for hot reloading have to be absolute paths on the host running the LocalStack container.
+This, however makes sharing the same configuration between multiple machines difficult, whether using [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}}) or sharing IaC templates between different developers.
+
+In order to remove the need for manual adjustments for your hot-reloading paths specified in the `S3Key` field, you can use placeholders for environment variables inside the path.
+The placeholders use the same format as you would use for shell parameter expansion, namely `$ENV_VAR` or `${ENV_VAR}`.
+These used environment variables have to be set inside the LocalStack container.
+
+Please note that the final path, after substituting the placeholders for their values, has to be an absolute path.
+
+{{< callout >}}
+Please make sure the placeholder is not substituted by your shell before being sent to LocalStack.
+This is mostly relevant when using the AWS CLI to create a function.
+Please use string quotation marks which prevent parameter expansion in your shell.
+
+For bash, please use single quotes `'` instead of double quotes `"` to make sure the placeholder does not get expanded before being sent to LocalStack.
+{{< /callout >}}
+
+### Example
+
+
 
 ## Useful Links
 
