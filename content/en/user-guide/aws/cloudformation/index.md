@@ -403,3 +403,7 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::SES::ReceiptRuleSet                        |      ✅ |      ✅ |      - |
 | AWS::SES::Template                              |      ✅ |      ✅ |      ✅ |
 | AWS::SecretsManager::SecretTargetAttachment     |      ✅ |      ✅ |      - |
+| AWS::WAFv2::IPSet                               |      ✅ |      ✅ |      - |
+| AWS::WAFv2::LoggingConfiguration                |     ✅ |      ✅ |      - |
+| AWS::WAFv2::WebACL                              |      ✅ |      ✅ |      - |
+| AWS::WAFv2::WebACLAssociation                   |      ✅ |      ✅ |      - |
