@@ -44,11 +44,11 @@ For this tutorial, you will need:
 - [Docker](https://docker.io/)
 - [A GitLab account](https://gitlab.com/)
 
-## Why GitLab?
+## GitLab overview
 
 GitLab is striving to be a complete tool for DevOps practices, offering not just source code management and continuous integration, but also features for
-monitoring, security, planning, deploying and more. By having your code and CI on the same platform, GitLab simplifies all workflows, reduces context switching,
-and enhances collaboration. While Jenkins is still a very prominent CI/CD tool in the industry, it is up to the user to figure out where to host it and focuses 
+monitoring, security, planning, deploying and more. By having your code and CI on the same platform, workflows are simplified and collaboration is enhanced.
+While Jenkins is still a very prominent CI/CD tool in the industry, it is up to the user to figure out where to host it and focuses 
 solely on CI/CD features.
 
 ## GitLab architecture
@@ -63,7 +63,7 @@ ones for pipelines. The instance is then in charge of running the pipelines and 
 When running CI pipelines, you can choose to use [**GitLab-hosted runners**](https://docs.gitlab.com/ee/ci/runners/index.html), or provision and register 
 [**self-managed runners**](https://docs.gitlab.com/runner/install/docker.html). This tutorial will cover both.
 
-#### Runners hosted by GitLab
+### Runners hosted by GitLab
 
 The GitLab documentation highlights some key aspects about the provided runners:
 
@@ -77,7 +77,7 @@ and a copy of your cloned repository, meaning that the remaining disk space for 
 - The runners are configured to run in privileged mode to support Docker in Docker to build images natively or 
 run multiple containers within each job.
 
-#### Self-hosted runners
+### Self-hosted runners
 
 Essentially, the architecture does not change, except the runners will be executing the jobs on a local machine. For developing locally, 
 this approach is very convenient and there are several benefits:
@@ -103,7 +103,7 @@ We'll need to make sure that the files are correctly created and named, that the
 
 ## CI Pipeline Using GitLab Runners
 
-#### Configuring the test container
+### Configuring the test container
 
 To follow along, make changes to the code or run your own pipelines, you may fork the repository from the [coffee-backend-localstack sample](https://gitlab.com/tinyg210/coffee-backend-localstack).
 <br>
@@ -160,7 +160,7 @@ the Docker resources created by Testcontainers and removes them once the test ex
 The tests are set up in the `CoffeeAppTests` class, validating the workflows for creating a coffee description files, retrieving them, and exception throwing when needed.
 For this tutorial you don't really need to dive into the specifics of the tests, but you're more than welcome to.
 
-#### Setting up the pipeline configuration
+### Setting up the pipeline configuration
 
 The `.gitlab-ci.yml` file is a configuration file for defining GitLab CI/CD pipelines, which automate the process of building, testing,
 and deploying applications. It specifies stages (such as build, test, and deploy) and the jobs within each stage, detailing the commands
@@ -241,7 +241,7 @@ useful for integration testing with Docker containers.
   - `DOCKER_DRIVER: overlay2` - specifies the storage driver for Docker, ensuring better performance and compatibility.
 - The last line ensures that the pipeline fails if the tests fail.
 
-#### Executors
+### Executors
 
 We mentioned in the beginning that each job runs in a newly provisioned VM. You can also notice that the pipeline configuration mentions 
 a docker image, which is a template that contains instructions for creating a container. This might look confusing, but a runner is responsible 
