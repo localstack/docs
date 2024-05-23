@@ -398,6 +398,17 @@ You can use the `pod load` command to load the same pod that was previously save
 $ localstack pod load my-pod s3-storage-aws
 {{< / command >}}
 
+Similarly, you can list the Cloud Pods on this specific remote with the `pod list` command:
+
+{{< command >}}
+$ localstack pod list s3-storage-aws
+{{< / command >}}
+
+{{< callout >}}
+Full S3 remotes support is available in the CLI from version 3.2.0.
+If you experience any difficulties, update your [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#updating).
+{{< /callout >}}
+
 ### ORAS remote storage
 
 The ORAS remote enables users to store Cloud Pods in OCI-compatible registries like Docker Hub, Nexus, or ECS registries. ORAS stands for "OCI Registry as Service," and you can find additional information about this standard [on the official website](https://oras.land/).
