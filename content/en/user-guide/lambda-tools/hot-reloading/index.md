@@ -294,7 +294,7 @@ $ npm run build
 To create the Lambda function, you need to take care of two things:
 
 * Deploy via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket.
-* Set the S3 key to the path of the directory your lambda function resides in.The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.
+* Set the S3 key to the path of the directory your lambda function resides in. The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.
 
 Create the Lambda Function using the `awslocal` CLI:
 
