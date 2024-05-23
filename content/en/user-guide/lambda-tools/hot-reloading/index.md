@@ -161,10 +161,10 @@ and `output.txt` contains:
 Now, that we got everything up and running, the fun begins.
 Because the function is now mounted as a file in the executing container, any change that we save on the file will be there in an instant.
 
-For example, we can now make a minor change to the API and replace the response in [line 41](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py#L41) with the following:
+For example, we can now make a minor change to the API and replace the response in [line 36](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py#L36) with the following:
 
 ```python
-    response = {'math_result': result}
+response = {'math_result': result}
 ```
 
 Without redeploying or updating the function, the result of the previous request will look like this:
@@ -215,7 +215,7 @@ BUILD_FOLDER ?= build
 PROJECT_MODULE_NAME = my_project_module
 
 build-hot:
- rm -rf $(BUILD_FOLDER)/hot && mkdir -p $(BUILD_FOLDER)/hot
+  rm -rf $(BUILD_FOLDER)/hot && mkdir -p $(BUILD_FOLDER)/hot
   cp -r $(VENV_DIR)/lib/python$(shell python --version | grep -oE '[0-9]\.[0-9]')/site-packages/* $(BUILD_FOLDER)/hot/
   cp -r $(PROJECT_MODULE_NAME) $(BUILD_FOLDER)/hot/$(PROJECT_MODULE_NAME)
   cp *.toml $(BUILD_FOLDER)/hot
