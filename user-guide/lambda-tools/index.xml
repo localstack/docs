@@ -10,25 +10,6 @@ Please change your deployment configuration accordingly because the old value is
 The configuration &lt;code>BUCKET_MARKER_LOCAL&lt;/code> is still supported.&lt;/p>
 &lt;p>More information about the new Lambda provider is available under &lt;a href="/user-guide/aws/lambda/">Lambda providers&lt;/a>.&lt;/p>
 &lt;/div>
-&lt;h2 id="covered-topics">Covered Topics&lt;/h2>
-&lt;ul>
-&lt;li>&lt;a href="#hot-reloading-behavior">Hot Reloading Behavior&lt;/a>&lt;/li>
-&lt;li>&lt;a href="#application-configuration-examples">Application Configuration Examples&lt;/a>:
-&lt;ul>
-&lt;li>&lt;a href="#hot-reloading-for-jvm-lambdas">Hot reloading for JVM Lambdas&lt;/a>&lt;/li>
-&lt;li>&lt;a href="#hot-reloading-for-python-lambdas">Hot reloading for Python Lambdas&lt;/a>&lt;/li>
-&lt;li>&lt;a href="#hot-reloading-for-typescript-lambdas">Hot reloading for TypeScript Lambdas&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;a href="#deployment-configuration-examples">Deployment Configuration Examples&lt;/a>:
-&lt;ul>
-&lt;li>&lt;a href="#serverless-framework-configuration">Serverless Framework Configuration&lt;/a>&lt;/li>
-&lt;li>&lt;a href="#aws-cloud-development-kit-cdk-configuration">AWS Cloud Development Kit (CDK) Configuration&lt;/a>&lt;/li>
-&lt;li>&lt;a href="#terraform-configuration">Terraform Configuration&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;a href="#useful-links">Useful Links&lt;/a>&lt;/li>
-&lt;/ul>
 &lt;h2 id="hot-reloading-behavior">Hot Reloading Behavior&lt;/h2>
 &lt;p>&lt;strong>Delay in code change detection:&lt;/strong>
 It can take up to 700ms to detect code changes.
@@ -136,8 +117,8 @@ id="tabs-05-01" role="tabpanel" aria-labelled-by="tabs-05-01-tab">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="changing-things-up">Changing things up&lt;/h4>
 &lt;p>Now, that we got everything up and running, the fun begins.
 Because the function is now mounted as a file in the executing container, any change that we save on the file will be there in an instant.&lt;/p>
-&lt;p>For example, we can now make a minor change to the API and replace the response in &lt;a href="https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py#L41">line 41&lt;/a> with the following:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">response&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;math_result&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;p>For example, we can now make a minor change to the API and replace the response in &lt;a href="https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py#L36">line 36&lt;/a> with the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">response&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;math_result&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Without redeploying or updating the function, the result of the previous request will look like this:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;math_result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">4&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Cool!&lt;/p>
@@ -180,7 +161,8 @@ We can add the following two lines of code at the top of the Lambda handler scri
 along with all dependencies into the &lt;code>build/hot&lt;/code> folder, which is then mounted into
 LocalStack&amp;rsquo;s Lambda container.&lt;/p>
 &lt;h3 id="hot-reloading-for-typescript-lambdas">Hot reloading for TypeScript Lambdas&lt;/h3>
-&lt;p>You can hot-reload your &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html">TypeScript Lambda functions&lt;/a>. You can use the following options to build your TypeScript code:&lt;/p>
+&lt;p>You can hot-reload your &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html">TypeScript Lambda functions&lt;/a>.
+You can use the following options to build your TypeScript code:&lt;/p>
 &lt;ul>
 &lt;li>ESbuild&lt;/li>
 &lt;li>Webpack&lt;/li>
@@ -212,7 +194,7 @@ LocalStack&amp;rsquo;s Lambda container.&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The build script will use &lt;code>esbuild&lt;/code> to bundle and minify the TypeScript code into a single JavaScript file, which will be placed in the &lt;code>dist&lt;/code> folder.&lt;/p>
 &lt;p>You can now run the build script to create the &lt;code>dist/index.js&lt;/code> file:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>npm run build&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h5 id="creating-the-lambda-function-1">Creating the Lambda Function&lt;/h5>
+&lt;h5 id="creating-the-lambda-function-with-esbuild">Creating the Lambda Function with ESbuild&lt;/h5>
 &lt;p>To create the Lambda function, you need to take care of two things:&lt;/p>
 &lt;ul>
 &lt;li>Deploy via an S3 Bucket. You need to use the magic variable &lt;code>hot-reload&lt;/code> as the bucket.&lt;/li>
@@ -223,7 +205,7 @@ LocalStack&amp;rsquo;s Lambda container.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name hello-world \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime &amp;#34;nodejs16.x&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::123456789012:role/lambda-ex \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;hot-reload&amp;#34;,S3Key=&amp;#34;$(PWD)/dist&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;hot-reload&amp;#34;,S3Key=&amp;#34;/absolute/path/to/dist&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler index.handler&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can quickly make sure that it works by invoking it with a simple payload:&lt;/p>
 &lt;ul class="nav nav-tabs" id="tabs-10" role="tablist">
@@ -279,14 +261,15 @@ id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>yarn install&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Next, you can build the Lambda function:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>yarn run build&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The &lt;code>build&lt;/code> script in the &lt;code>package.json&lt;/code> file uses Nodemon to watch for changes in the &lt;code>src&lt;/code> directory and rebuild the Lambda. This is enabled using the &lt;a href="https://www.npmjs.com/package/nodemon-webpack-plugin">&lt;code>nodemon-webpack-plugin&lt;/code>&lt;/a> plugin, which has been pre-configured in the &lt;code>webpack.config.js&lt;/code> file.&lt;/p>
-&lt;h5 id="creating-the-lambda-function-2">Creating the Lambda Function&lt;/h5>
+&lt;p>The &lt;code>build&lt;/code> script in the &lt;code>package.json&lt;/code> file uses Nodemon to watch for changes in the &lt;code>src&lt;/code> directory and rebuild the Lambda.
+This is enabled using the &lt;a href="https://www.npmjs.com/package/nodemon-webpack-plugin">&lt;code>nodemon-webpack-plugin&lt;/code>&lt;/a> plugin, which has been pre-configured in the &lt;code>webpack.config.js&lt;/code> file.&lt;/p>
+&lt;h5 id="creating-the-lambda-function-with-webpack">Creating the Lambda Function with Webpack&lt;/h5>
 &lt;p>You can now create the Lambda function using the &lt;code>awslocal&lt;/code> CLI:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name localstack-example \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime nodejs18.x \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-ex \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;hot-reload&amp;#34;,S3Key=&amp;#34;$(PWD)/dist&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;hot-reload&amp;#34;,S3Key=&amp;#34;/absolute/path/to/dist&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler api.default&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Additionally, you can create a Lambda Function URL with the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>function_url=$(awslocal lambda create-function-url-config \
@@ -297,7 +280,8 @@ id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -X GET &amp;#34;$function_url&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The response should be:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;error&amp;#34;&lt;/span>:&lt;span style="color:#4e9a06">&amp;#34;Only JSON payloads are accepted&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Go to &lt;code>src/api.ts&lt;/code> and make the &lt;code>errorResponse&lt;/code> function return &lt;code>&amp;quot;Only JSON payload is accepted&amp;quot;&lt;/code> instead of &lt;code>&amp;quot;Only JSON payloads are accepted&amp;quot;&lt;/code>. Save the file and run the last &lt;code>curl&lt;/code> command again.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Go to &lt;code>src/api.ts&lt;/code> and make the &lt;code>errorResponse&lt;/code> function return &lt;code>&amp;quot;Only JSON payload is accepted&amp;quot;&lt;/code> instead of &lt;code>&amp;quot;Only JSON payloads are accepted&amp;quot;&lt;/code>.
+Save the file and run the last &lt;code>curl&lt;/code> command again.&lt;/p>
 &lt;p>The output should now be:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;error&amp;#34;&lt;/span>:&lt;span style="color:#4e9a06">&amp;#34;Only JSON payload is accepted&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can now see that the changes are applied without redeploying the Lambda function.&lt;/p>
