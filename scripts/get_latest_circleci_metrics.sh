@@ -26,13 +26,14 @@ echo "Project: $PROJECT_SLUG."
 
 HEADERS="-H 'accept: application/json' -H 'Circle-Token:${CIRCLE_CI_TOKEN}'"
 
-WORKFLOW_ID=$(curl -X 'GET' "https://circleci.com/api/v2/insights/${PROJECT_SLUG}/workflows/main?branch=${METRICS_ARTIFACTS_BRANCH}" ${HEADERS} | jq -r '[.items[] | select(.status == "success")][0].id')
+WORKFLOW_ID=$(curl -X 'GET' "https://circleci.com/api/v2/insights/${PROJECT_SLUG}/workflows/main?branch=${METRICS_ARTIFACTS_BRANCH}" -H 'accept: application/json' | jq -r '[.items[] | select(.status == "success")][0].id')
 echo "Latest successful workflow: $WORKFLOW_ID"
 
-JOB_NUMBER=$(curl -X 'GET' "https://circleci.com/api/v2/workflow/${WORKFLOW_ID}/job" ${HEADERS} | jq -r '.items[] | select(.name == "report") | .job_number')
+JOB_NUMBER=$(curl -X 'GET' "https://circleci.com/api/v2/workflow/${WORKFLOW_ID}/job" -H 'accept: application/json'| jq -r '.items[] | select(.name == "report") | .job_number')
 echo "Report job number: $JOB_NUMBER"
 
-ARTIFACT_URLS=$(curl -X 'GET' "https://circleci.com/api/v2/project/${PROJECT_SLUG}/${JOB_NUMBER}/artifacts" ${HEADERS} | jq -r '.items[] | select(.url | endswith(".csv")) | .url')
+curl -X 'GET' "https://circleci.com/api/v2/project/${PROJECT_SLUG}/${JOB_NUMBER}/artifacts" -H 'accept: application/json' -H "Circle-Token:${CIRCLE_CI_TOKEN}" 
+ARTIFACT_URLS=$(curl -X 'GET' "https://circleci.com/api/v2/project/${PROJECT_SLUG}/${JOB_NUMBER}/artifacts" -H 'accept: application/json' -H "Circle-Token:${CIRCLE_CI_TOKEN}" | jq -r '.items[] | select(.url | endswith(".csv")) | .url')
 echo "Raw metrics data URLs:"
 echo "$ARTIFACT_URLS"
 
