@@ -26,7 +26,7 @@ echo "Project: $PROJECT_SLUG."
 
 #  -H 'Circle-Token:${CIRCLE_CI_TOKEN}'
 HEADERS="-H 'accept: application/json'"
-curl -X 'GET' "https://circleci.com/api/v2/insights/${PROJECT_SLUG}/workflows/main?branch=${METRICS_ARTIFACTS_BRANCH}" "${HEADERS}" 
+curl -X 'GET' "https://circleci.com/api/v2/insights/${PROJECT_SLUG}/workflows/main?branch=${METRICS_ARTIFACTS_BRANCH} s${HEADERS}" 
 
 WORKFLOW_ID=$(curl -X 'GET' "https://circleci.com/api/v2/insights/${PROJECT_SLUG}/workflows/main?branch=${METRICS_ARTIFACTS_BRANCH}" "${HEADERS}" | jq -r '[.items[] | select(.status == "success")][0].id')
 echo "Latest successful workflow: $WORKFLOW_ID"
