@@ -406,7 +406,7 @@ $ localstack pod list s3-storage-aws
 
 {{< callout >}}
 Full S3 remotes support is available in the CLI from version 3.2.0.
-If you experience any difficulties, update your CLI by executing `localstack update localstack-cli`.
+If you experience any difficulties, update your [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#updating).
 {{< /callout >}}
 
 ### ORAS remote storage
