@@ -19,10 +19,107 @@ It is only available as part of the **LocalStack Enterprise** plan, and you need
 If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
 {{< /callout >}}
 
+## Supported Use Cases
+
+DMS is in a preview state on LocalStack and only supports some selected use cases:
+
+| Source             | Target      | Migration Types |
+| -                  | -           | -               | 
+| MariaDB (external) | Kinesis     | full-load, cdc  |
+| MySQL (external)   | Kinesis     | full-load, cdc  |
+| RDS MariaDB        | Kinesis     | full-load, cdc  |
+| RDS MySQL          | Kinesis     | full-load, cdc  |
+
 
 ## Getting started
 
-**TODO** - maybe only link to the sample that we will port to localstack-samples?
+You can run a DMS sample showcasing MariaDB source and Kinesis target from our [localstack-samples](https://github.com/localstack-samples/sample-dms-kinesis-rds-mariadb/).
+
+* The sample is using CDK to setup the infrastructure
+* It setups two databases: one external MariaDB (starting in a docker container) and one RDS MariaDB.
+* It creates two `cdc` replication tasks, with different table mappings, that will run against the RDS database
+* and two `full-load` replication tasks with different table mappings, running against the hosted (containerized) MariaDB.
+
+To follow the sample, simply clone the repository:
+
+```sh
+git clone https://github.com/localstack-samples/sample-dms-kinesis-rds-mariadb.git
+```
+
+Next, start LocalStack (there is a docker-compose included, setting the `ENABLE_DMS=1` flag):
+
+```sh
+export LOCALSTACK_AUTH_TOKEN=<your-auth-token> # this must be a enterprise license token
+docker-compose up
+```
+
+Now you can install the dependencies, deploy the resources, and run the tests:
+
+```sh
+# install dependencies
+make install
+# deploys cdk stack with all required resources (replication instances, tasks, endpoints)
+make deploy
+# starts the tasks
+make run
+```
+
+You will then see some log output, indicating the status of the ongoing replication:
+
+```sh
+************
+STARTING FULL LOAD FLOW
+************
+db endpoint: localhost:3306
+
+	Cleaning tables
+	Creating tables
+	Inserting data
+
+	Added the following authors
+[{'first_name': 'John', 'last_name': 'Doe'}]
+
+	Added the following accounts
+[{'account_balance': Decimal('1500.00'), 'name': 'Alice'}]
+
+	Added the following novels
+[{'author_id': 1, 'title': 'The Great Adventure'},
+ {'author_id': 1, 'title': 'Journey to the Stars'}]
+
+****Full Task 1****
+
+
+	Starting Full load task 1 a%
+Replication Task arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7 status: starting
+Waiting for task status stopped
+task='arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7' status='starting'
+task='arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7' status='stopped'
+
+	Kinesis events
+
+fetching Kinesis event
+Received: 6 events
+[{'control': {},
+  'metadata': {'operation': 'drop-table',
+               'partition-key-type': 'task-id',
+               'partition-key-value': 'FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7',
+               'record-type': 'control',
+               'schema-name': 'dms_sample',
+               'table-name': 'accounts',
+               'timestamp': '2024-05-23T19:17:33.126Z'},
+  'partition_key': 'FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7.dms_sample.accounts'},
+ {'control': {},
+  'metadata': {'operation': 'drop-table',
+               'partition-key-type': 'task-id',
+               'partition-key-value': 'FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7',
+               'record-type': 'control',
+               'schema-name': 'dms_sample',
+               'table-name': 'authors',
+               'timestamp': '2024-05-23T19:17:33.128Z'},
+...
+...
+...
+```
 
 
 ## Limitations
@@ -37,16 +134,6 @@ binlog_format=ROW
 server_id=1
 log_bin=mysqld-bin
 ```
-
-### Supported Use Cases
-
-| Source             | Target      | Migration Types |
-| -                  | -           | -               | 
-| MariaDB (external) | Kinesis     | full-load, cdc  |
-| MySQL (external)   | Kinesis     | full-load, cdc  |
-| RDS MariaDB        | Kinesis     | full-load, cdc  |
-| RDS MySQL          | Kinesis     | full-load, cdc  |
-
 
 
 ### Enum Values for CDC data events
