@@ -1,11 +1,11 @@
 ---
 title: "End-to-End Testing in Gitlab CI with Testcontainers and LocalStack: Understanding Runners and Docker in Docker"
 linkTitle: "End-to-End Testing in Gitlab CI with Testcontainers and LocalStack: Understanding Runners and Docker in Docker"
-weight: 3
+weight: 14
 description: >
   In this tutorial, we'll walk through the process of setting up end-to-end testing for a backend application using Testcontainers and LocalStack within GitLab. We'll understand the types of GitLab Runners available for CI pipelines and how the concept of Docker-in-Docker plays a crucial role in this environment.
 type: tutorials
-teaser: "Learn how you can set up end-to-end testing using Testcontainers and LocalStack in GitLab CI. This tutorial covers setting up the .gitlab-ci.yml file, configuring GitLab runners, and setting up a local Docker runner. With this setup, you can ensure your application is thoroughly tested in a CI/CD environment."
+teaser: "Learn how you can set up end-to-end testing using Testcontainers and LocalStack in GitLab CI. This tutorial covers setting up the `.gitlab-ci.yml` file, configuring GitLab runners, and setting up a local Docker runner. With this setup, you can ensure your application is thoroughly tested in a CI/CD environment."
 services:
 - s3
 - lambda
@@ -40,7 +40,7 @@ seamlessly with CI/CD pipelines like GitLab CI or GitHub Actions, allowing devel
 
 For this tutorial, you will need:
 
-- [LocalStack Pro](https://localstack.cloud/pricing/) to emulate the AWS services. If you don't have a subscription yet, you can just get a trial license for free.
+- [LocalStack Pro](https://docs.localstack.cloud/getting-started/auth-token/) to emulate the AWS services. If you don't have a subscription yet, you can just get a trial license for free.
 - [Docker](https://docker.io/)
 - [A GitLab account](https://gitlab.com/)
 
@@ -49,7 +49,7 @@ For this tutorial, you will need:
 GitLab is striving to be a complete tool for DevOps practices, offering not just source code management and continuous integration, but also features for
 monitoring, security, planning, deploying and more. By having your code and CI on the same platform, GitLab simplifies all workflows, reduces context switching,
 and enhances collaboration. While Jenkins is still a very prominent CI/CD tool in the industry, it is up to the user to figure out where to host it and focuses 
-solely on CI/CD features. GitLab provides a comprehensive suite of integrated tools that streamline the entire DevOps lifecycle, making it a powerful alternative for modern development teams.
+solely on CI/CD features.
 
 ## GitLab architecture
 
@@ -139,9 +139,9 @@ Here's a breakdown of what's important:
 - The `@Container` annotation indicates that the field is a Testcontainers managed container.
 - The image used for the test LocalStack instance is set to the latest Pro version (at the time of writing).
 - In order to use the Pro image, a `LOCALSTACK_AUTH_TOKEN` variable needs to be set and read from the environment.
-- There are two files copied to the container before startup: the jar file for the Lambda functions and the script for building
+- There are two files copied to the container before startup: the JAR file for the Lambda functions and the script for provisioning
 all the necessary AWS resources. Both files are copied with read/write/execute permissions.
-- `DEBUG=1` enables a more verbose debugging of LocalStack.
+- `DEBUG=1` enables a more verbose logging of LocalStack.
 - `LAMBDA_DOCKER_FLAGS` sets specific Testcontainers labels to the Lambda containers, as a solution to be correctly managed by Ryuk.
 Since the compute containers are created by LocalStack and not the Testcontainers framework, they do not receive the necessary tags.
 - `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` sets an environment variable to configure the Lambda runtime environment timeout to 90 seconds, for slower environments.
@@ -293,7 +293,7 @@ This dashboard may suffer changes and improvements over time, but the attributes
 {{< figure src="create-runner-2.png" width="80%" height="auto">}}
 
 After selecting the Linux machine you're done with defining the runner. Now you need a place to execute this runner, which will be your local
-computer. Notice the token in the first step command and save it for later.
+computer. Notice the token in the first step command and save it for later. Runner authentication tokens have the prefix `glrt-`.
 
 For simplicity, we'll use a GitLab Runner Docker image. The GitLab Runner Docker images are designed as wrappers around the standard
 `gitlab-runner` command, like if GitLab Runner was installed directly on the host. You can read more about it in the [GitLab documentation](https://docs.gitlab.com/runner/install/docker.html).
@@ -397,7 +397,7 @@ shutdown_timeout = 0
   name = "localstack-testcontainers-runner"
   url = "https://gitlab.com"
   id = 36509569
-  token = "glrt-1SLQUHi3TjsEi23Ro48e"
+  token = "glrt-RUNNER_AUTHENTICATION_TOKEN"
   token_obtained_at = 2024-05-16T19:51:27Z
   token_expires_at = 0001-01-01T00:00:00Z
   executor = "docker"
