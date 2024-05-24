@@ -159,11 +159,6 @@ def main(
                 # we currently have "sqs" + "sqs-query" endpoints because of different protocols
                 # the resulting coverage should not care about this though
                 continue
-            if service_name == "dms":
-                # we don't officially support dms yet, so we shouldn't show it in the coverage either
-                # the generated docs is currently also wrong -> as we don't load the provider, we get 5xx errors, which is interpreted
-                # as the operations being implemented
-                continue
             service = impl_details.setdefault(service_name, {})
             service[row["operation"]] = {
                 "implemented": True if row["is_implemented"] == "True" else False,
