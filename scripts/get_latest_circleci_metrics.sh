@@ -27,15 +27,15 @@ echo "Project: $PROJECT_SLUG."
 WORKFLOW_ID=$(curl -X 'GET' "https://circleci.com/api/v2/insights/${PROJECT_SLUG}/workflows/main?branch=${METRICS_ARTIFACTS_BRANCH}" -H 'accept: application/json' | jq -r '[.items[] | select(.status == "success")][0].id')
 echo "Latest successful workflow: $WORKFLOW_ID"
 
-JOB_NUMBER=$(curl -X 'GET' "https://circleci.com/api/v2/workflow/${WORKFLOW_ID}/job" -H 'accept: application/json' | jq -r '.items[] | select(.name == "report") | .job_number')
+JOB_NUMBER=$(curl -X 'GET' "https://circleci.com/api/v2/workflow/${WORKFLOW_ID}/job" -H 'accept: application/json'| jq -r '.items[] | select(.name == "report") | .job_number')
 echo "Report job number: $JOB_NUMBER"
 
-ARTIFACT_URLS=$(curl -X 'GET' "https://circleci.com/api/v2/project/${PROJECT_SLUG}/${JOB_NUMBER}/artifacts" -H 'accept: application/json' | jq -r '.items[] | select(.url | endswith(".csv")) | .url')
+ARTIFACT_URLS=$(curl -X 'GET' "https://circleci.com/api/v2/project/${PROJECT_SLUG}/${JOB_NUMBER}/artifacts" -H 'accept: application/json' -H "Circle-Token:${CIRCLE_CI_TOKEN}" | jq -r '.items[] | select(.url | endswith(".csv")) | .url')
 echo "Raw metrics data URLs:"
 echo "$ARTIFACT_URLS"
 
 echo "Downloading metrics data..."
-wget -m --cut-dirs 5 --no-host-directories $ARTIFACT_URLS
+wget -m --cut-dirs 5 --no-host-directories $ARTIFACT_URLS --header "Circle-Token: ${CIRCLE_CI_TOKEN}"
 
 echo "Moving raw community metrics data to $METRICS_RAW"
 mkdir -p $METRICS_RAW
