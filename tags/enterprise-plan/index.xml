@@ -317,4 +317,148 @@ The SAML metadata file can be specified either via URL or via a file upload.&lt;
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;img src="roles-permissions.png" width="600px" alt="User Roles and Permissions"></description></item></channel></rss>
+&lt;img src="roles-permissions.png" width="600px" alt="User Roles and Permissions"></description></item><item><title>User-Guide: Database Migration Service (DMS)</title><link>/user-guide/aws/dms/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/dms/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>AWS Database Migration Service provides migration solution from databases, data warehouses, and other type of data stores (e.g. S3, SAP).
+The migration can be homogeneous (source and target have the same type), but often times is heterogeneous as it supports migration from various sources to various targets (self-hosted and AWS services).&lt;/p>
+&lt;p>LocalStack only supports selected use cases for DMS at the moment.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_dms/">API coverage page&lt;/a>, which provides information on the extent of DMS integration with LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+DMS is in a preview state, supporting only &lt;a href="#supported-use-cases">selected use cases&lt;/a>.
+It is only available as part of the &lt;strong>LocalStack Enterprise&lt;/strong> plan, and you need to set the env &lt;code>ENABLE_DMS=1&lt;/code> in order to activate it.
+If you&amp;rsquo;d like to try it out, please &lt;a href="https://www.localstack.cloud/demo">contact us&lt;/a> to request access.
+&lt;/div>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>You can run a DMS sample showcasing MariaDB source and Kinesis target from our &lt;a href="https://github.com/localstack-samples/sample-dms-kinesis-rds-mariadb/">GitHub repository&lt;/a>.&lt;/p>
+&lt;ul>
+&lt;li>The sample is using CDK to setup the infrastructure.&lt;/li>
+&lt;li>It setups two databases: one external MariaDB (starting in a docker container) and one RDS MariaDB.&lt;/li>
+&lt;li>It creates two &lt;code>cdc&lt;/code> replication tasks, with different table mappings, that will run against the RDS database,&lt;/li>
+&lt;li>and two &lt;code>full-load&lt;/code> replication tasks with different table mappings, running against the hosted (containerized) MariaDB.&lt;/li>
+&lt;/ul>
+&lt;p>To follow the sample, simply clone the repository:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>git clone https://github.com/localstack-samples/sample-dms-kinesis-rds-mariadb.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Next, start LocalStack (there is a docker-compose included, setting the &lt;code>ENABLE_DMS=1&lt;/code> flag):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">LOCALSTACK_AUTH_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;your-auth-token&amp;gt; &lt;span style="color:#8f5902;font-style:italic"># this must be a enterprise license token&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker-compose up
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now you can install the dependencies, deploy the resources, and run the tests:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># install dependencies&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># deploys cdk stack with all required resources (replication instances, tasks, endpoints)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make deploy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># starts the tasks&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make run
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You will then see some log output, indicating the status of the ongoing replication:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>************
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>STARTING FULL LOAD FLOW
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>************
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>db endpoint: localhost:3306
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Cleaning tables
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Creating tables
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Inserting data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Added the following authors
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;first_name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;John&amp;#39;&lt;/span>, &lt;span style="color:#4e9a06">&amp;#39;last_name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;Doe&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Added the following accounts
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;account_balance&amp;#39;&lt;/span>: Decimal&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;1500.00&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>, &lt;span style="color:#4e9a06">&amp;#39;name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;Alice&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Added the following novels
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;author_id&amp;#39;&lt;/span>: 1, &lt;span style="color:#4e9a06">&amp;#39;title&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;The Great Adventure&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;author_id&amp;#39;&lt;/span>: 1, &lt;span style="color:#4e9a06">&amp;#39;title&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;Journey to the Stars&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>****Full Task 1****
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Starting Full load task &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> a%
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Replication Task arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7 status: starting
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Waiting &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> task status stopped
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">task&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7&amp;#39;&lt;/span> &lt;span style="color:#000">status&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;starting&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">task&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7&amp;#39;&lt;/span> &lt;span style="color:#000">status&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;stopped&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Kinesis events
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fetching Kinesis event
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Received: &lt;span style="color:#0000cf;font-weight:bold">6&lt;/span> events
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;control&amp;#39;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;metadata&amp;#39;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;operation&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;drop-table&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;partition-key-type&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;task-id&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;partition-key-value&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;record-type&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;control&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;schema-name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;dms_sample&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;table-name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;accounts&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;timestamp&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;2024-05-23T19:17:33.126Z&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;partition_key&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7.dms_sample.accounts&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;control&amp;#39;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;metadata&amp;#39;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;operation&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;drop-table&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;partition-key-type&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;task-id&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;partition-key-value&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;record-type&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;control&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;schema-name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;dms_sample&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;table-name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;authors&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;timestamp&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;2024-05-23T19:17:33.128Z&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="supported-use-cases">Supported Use Cases&lt;/h2>
+&lt;p>DMS is in a preview state on LocalStack and only supports some selected use cases:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Source&lt;/th>
+&lt;th>Target&lt;/th>
+&lt;th>Migration Types&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>MariaDB (external)&lt;/td>
+&lt;td>Kinesis&lt;/td>
+&lt;td>full-load, cdc&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>MySQL (external)&lt;/td>
+&lt;td>Kinesis&lt;/td>
+&lt;td>full-load, cdc&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>RDS MariaDB&lt;/td>
+&lt;td>Kinesis&lt;/td>
+&lt;td>full-load, cdc&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>RDS MySQL&lt;/td>
+&lt;td>Kinesis&lt;/td>
+&lt;td>full-load, cdc&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>For RDS MariaDB and RDS MySQL it is not yet possible to set custom db-parameters.
+In order to make those databases work with &lt;code>cdc&lt;/code> migration for DMS, some default db-parameters are changed upon start if the &lt;code>ENABLE_DMS=1&lt;/code> flag is set:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">binlog_checksum&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>NONE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">binlog_row_image&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>FULL
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">binlog_format&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>ROW
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">server_id&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">log_bin&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>mysqld-bin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="enum-values-for-cdc-data-events">Enum Values for CDC data events&lt;/h3>
+&lt;p>To support Enum values for CDC data events, you need to enable the database setting &lt;code>BINLOG_ROW_METADATA=FULL&lt;/code>&lt;/p>
+&lt;h3 id="migration-type">Migration Type&lt;/h3>
+&lt;p>A replication task on LocalStack does currently only support &lt;code>full-load&lt;/code> (migrate existing data) or &lt;code>cdc&lt;/code> (replicate data changes only).
+On AWS there is also a combination for those, which is not yet implemented on LocalStack.&lt;/p>
+&lt;h3 id="replicationtasksettings">ReplicationTaskSettings&lt;/h3>
+&lt;p>The &lt;code>ReplicationTaskSettings&lt;/code> for a &lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html">replication task&lt;/a> only considers &lt;code>BeforeImageSettings&lt;/code>, &lt;code>FullLoadSettings.CommitRate&lt;/code> and &lt;code>FullLoadSettings.TargetTablePrepMode&lt;/code>&lt;/p>
+&lt;h3 id="other-limitations">Other Limitations&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html">DMS Serverless&lt;/a> is not yet supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Validating.html#CHAP_Validating.TaskStatistics">Data Validation&lt;/a> is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.ReloadTables.html">Reload&lt;/a> of tables is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.ManagingLogs">Task Logs&lt;/a>, specifically CloudWatch, and CloudTrail are not supported (table statistics are supported)&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.TimeTravel.html">Time Travel&lt;/a> is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.TargetMetadata.html">Target Metadata Settings&lt;/a>: &lt;code>ParallelLoadThreads&lt;/code> is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Transformations.html">Transformation&lt;/a>: &lt;code>&amp;quot;rule-type&amp;quot;: &amp;quot;transformation&amp;quot;&lt;/code> is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html">AWS DMS Schema Conversion Tool&lt;/a> is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_FleetAdvisor.html">AWS DMS Fleet Advisor&lt;/a> is not supported&lt;/li>
+&lt;/ul></description></item></channel></rss>

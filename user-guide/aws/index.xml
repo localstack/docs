@@ -8004,6 +8004,150 @@ LocalStack&amp;rsquo;s Cost Explorer implementation cannot programmatically quer
 &lt;li>&lt;strong>Create Cost Category definition&lt;/strong>: Create a new Cost Category definition by clicking on the &lt;strong>Create&lt;/strong> button and providing the required details.&lt;/li>
 &lt;li>&lt;strong>View Cost Category definition&lt;/strong>: View the details of a Cost Category definition by clicking on the Cost Category definition.&lt;/li>
 &lt;li>&lt;strong>Delete Cost Category definition&lt;/strong>: Delete a Cost Category definition by selecting on the Cost Categorty definition, and then clicking on the &lt;strong>Actions&lt;/strong> button followed by &lt;strong>Remove Selected&lt;/strong>.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Database Migration Service (DMS)</title><link>/user-guide/aws/dms/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/dms/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>AWS Database Migration Service provides migration solution from databases, data warehouses, and other type of data stores (e.g. S3, SAP).
+The migration can be homogeneous (source and target have the same type), but often times is heterogeneous as it supports migration from various sources to various targets (self-hosted and AWS services).&lt;/p>
+&lt;p>LocalStack only supports selected use cases for DMS at the moment.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_dms/">API coverage page&lt;/a>, which provides information on the extent of DMS integration with LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+DMS is in a preview state, supporting only &lt;a href="#supported-use-cases">selected use cases&lt;/a>.
+It is only available as part of the &lt;strong>LocalStack Enterprise&lt;/strong> plan, and you need to set the env &lt;code>ENABLE_DMS=1&lt;/code> in order to activate it.
+If you&amp;rsquo;d like to try it out, please &lt;a href="https://www.localstack.cloud/demo">contact us&lt;/a> to request access.
+&lt;/div>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>You can run a DMS sample showcasing MariaDB source and Kinesis target from our &lt;a href="https://github.com/localstack-samples/sample-dms-kinesis-rds-mariadb/">GitHub repository&lt;/a>.&lt;/p>
+&lt;ul>
+&lt;li>The sample is using CDK to setup the infrastructure.&lt;/li>
+&lt;li>It setups two databases: one external MariaDB (starting in a docker container) and one RDS MariaDB.&lt;/li>
+&lt;li>It creates two &lt;code>cdc&lt;/code> replication tasks, with different table mappings, that will run against the RDS database,&lt;/li>
+&lt;li>and two &lt;code>full-load&lt;/code> replication tasks with different table mappings, running against the hosted (containerized) MariaDB.&lt;/li>
+&lt;/ul>
+&lt;p>To follow the sample, simply clone the repository:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>git clone https://github.com/localstack-samples/sample-dms-kinesis-rds-mariadb.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Next, start LocalStack (there is a docker-compose included, setting the &lt;code>ENABLE_DMS=1&lt;/code> flag):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">LOCALSTACK_AUTH_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;your-auth-token&amp;gt; &lt;span style="color:#8f5902;font-style:italic"># this must be a enterprise license token&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker-compose up
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now you can install the dependencies, deploy the resources, and run the tests:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># install dependencies&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make install
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># deploys cdk stack with all required resources (replication instances, tasks, endpoints)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make deploy
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># starts the tasks&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make run
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You will then see some log output, indicating the status of the ongoing replication:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>************
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>STARTING FULL LOAD FLOW
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>************
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>db endpoint: localhost:3306
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Cleaning tables
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Creating tables
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Inserting data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Added the following authors
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;first_name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;John&amp;#39;&lt;/span>, &lt;span style="color:#4e9a06">&amp;#39;last_name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;Doe&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Added the following accounts
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;account_balance&amp;#39;&lt;/span>: Decimal&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;1500.00&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>, &lt;span style="color:#4e9a06">&amp;#39;name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;Alice&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Added the following novels
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;author_id&amp;#39;&lt;/span>: 1, &lt;span style="color:#4e9a06">&amp;#39;title&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;The Great Adventure&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;author_id&amp;#39;&lt;/span>: 1, &lt;span style="color:#4e9a06">&amp;#39;title&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;Journey to the Stars&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>****Full Task 1****
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Starting Full load task &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> a%
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Replication Task arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7 status: starting
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Waiting &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> task status stopped
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">task&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7&amp;#39;&lt;/span> &lt;span style="color:#000">status&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;starting&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">task&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7&amp;#39;&lt;/span> &lt;span style="color:#000">status&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;stopped&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Kinesis events
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fetching Kinesis event
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Received: &lt;span style="color:#0000cf;font-weight:bold">6&lt;/span> events
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;control&amp;#39;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;metadata&amp;#39;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;operation&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;drop-table&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;partition-key-type&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;task-id&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;partition-key-value&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;record-type&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;control&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;schema-name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;dms_sample&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;table-name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;accounts&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;timestamp&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;2024-05-23T19:17:33.126Z&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;partition_key&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7.dms_sample.accounts&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;control&amp;#39;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;metadata&amp;#39;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;operation&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;drop-table&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;partition-key-type&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;task-id&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;partition-key-value&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;record-type&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;control&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;schema-name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;dms_sample&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;table-name&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;authors&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;timestamp&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;2024-05-23T19:17:33.128Z&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="supported-use-cases">Supported Use Cases&lt;/h2>
+&lt;p>DMS is in a preview state on LocalStack and only supports some selected use cases:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Source&lt;/th>
+&lt;th>Target&lt;/th>
+&lt;th>Migration Types&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>MariaDB (external)&lt;/td>
+&lt;td>Kinesis&lt;/td>
+&lt;td>full-load, cdc&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>MySQL (external)&lt;/td>
+&lt;td>Kinesis&lt;/td>
+&lt;td>full-load, cdc&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>RDS MariaDB&lt;/td>
+&lt;td>Kinesis&lt;/td>
+&lt;td>full-load, cdc&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>RDS MySQL&lt;/td>
+&lt;td>Kinesis&lt;/td>
+&lt;td>full-load, cdc&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>For RDS MariaDB and RDS MySQL it is not yet possible to set custom db-parameters.
+In order to make those databases work with &lt;code>cdc&lt;/code> migration for DMS, some default db-parameters are changed upon start if the &lt;code>ENABLE_DMS=1&lt;/code> flag is set:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">binlog_checksum&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>NONE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">binlog_row_image&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>FULL
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">binlog_format&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>ROW
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">server_id&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">log_bin&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>mysqld-bin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="enum-values-for-cdc-data-events">Enum Values for CDC data events&lt;/h3>
+&lt;p>To support Enum values for CDC data events, you need to enable the database setting &lt;code>BINLOG_ROW_METADATA=FULL&lt;/code>&lt;/p>
+&lt;h3 id="migration-type">Migration Type&lt;/h3>
+&lt;p>A replication task on LocalStack does currently only support &lt;code>full-load&lt;/code> (migrate existing data) or &lt;code>cdc&lt;/code> (replicate data changes only).
+On AWS there is also a combination for those, which is not yet implemented on LocalStack.&lt;/p>
+&lt;h3 id="replicationtasksettings">ReplicationTaskSettings&lt;/h3>
+&lt;p>The &lt;code>ReplicationTaskSettings&lt;/code> for a &lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html">replication task&lt;/a> only considers &lt;code>BeforeImageSettings&lt;/code>, &lt;code>FullLoadSettings.CommitRate&lt;/code> and &lt;code>FullLoadSettings.TargetTablePrepMode&lt;/code>&lt;/p>
+&lt;h3 id="other-limitations">Other Limitations&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html">DMS Serverless&lt;/a> is not yet supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Validating.html#CHAP_Validating.TaskStatistics">Data Validation&lt;/a> is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.ReloadTables.html">Reload&lt;/a> of tables is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.ManagingLogs">Task Logs&lt;/a>, specifically CloudWatch, and CloudTrail are not supported (table statistics are supported)&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.TimeTravel.html">Time Travel&lt;/a> is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.TargetMetadata.html">Target Metadata Settings&lt;/a>: &lt;code>ParallelLoadThreads&lt;/code> is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Transformations.html">Transformation&lt;/a>: &lt;code>&amp;quot;rule-type&amp;quot;: &amp;quot;transformation&amp;quot;&lt;/code> is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html">AWS DMS Schema Conversion Tool&lt;/a> is not supported&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_FleetAdvisor.html">AWS DMS Fleet Advisor&lt;/a> is not supported&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: DocumentDB (DocDB)</title><link>/user-guide/aws/docdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/docdb/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>DocumentDB is a fully managed, non-relational database service that supports MongoDB workloads. DocumentDB is compatible with MongoDB, meaning you can use the same MongoDB drivers, applications, and tools to run, manage, and scale workloads on DocumentDB without having to worry about managing the underlying infrastructure.&lt;/p>
@@ -12626,95 +12770,4 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 &lt;li>&lt;strong>View Cluster&lt;/strong>: View the details of an existing MSK cluster by clicking on the cluster name.&lt;/li>
 &lt;li>&lt;strong>Edit Cluster&lt;/strong>: Edit the configuration of an existing MSK cluster by clicking on the &lt;strong>Edit&lt;/strong> button in the cluster details page.&lt;/li>
 &lt;li>&lt;strong>Delete Cluster&lt;/strong>: Delete an existing MSK cluster by selecting the cluster name and clicking on the &lt;strong>Actions&lt;/strong> dropdown menu, then selecting &lt;strong>Remove Selected&lt;/strong>.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Managed Workflows for Apache Airflow (MWAA)</title><link>/user-guide/aws/mwaa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mwaa/</guid><description>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Managed Workflows for Apache Airflow (MWAA) is a fully managed service by AWS that simplifies the deployment, management, and scaling of Apache Airflow workflows in the cloud.
-MWAA leverages the familiar Airflow features and integrations while integrating with S3, Glue, Redshift, Lambda, and other AWS services to build data pipelines and orchestrate data processing workflows in the cloud.&lt;/p>
-&lt;p>LocalStack allows you to use the MWAA APIs in your local environment to allow the setup and operation of data pipelines.
-The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_mwaa/">API coverage page&lt;/a>, which provides information on the extent of MWAA&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>This guide is designed for users new to Managed Workflows for Apache Airflow and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
-&lt;p>Start your LocalStack container using your preferred method.
-We will demonstrate how to create an Airflow environment and access the Airflow UI.&lt;/p>
-&lt;h3 id="create-a-s3-bucket">Create a S3 bucket&lt;/h3>
-&lt;p>Create a S3 bucket that will be used for Airflow resources.
-Run the following command to create a bucket using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html">&lt;code>mb&lt;/code>&lt;/a> command.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://my-mwaa-bucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="create-an-airflow-environment">Create an Airflow environment&lt;/h3>
-&lt;p>You can now create an Airflow environment, using the &lt;a href="https://docs.aws.amazon.com/mwaa/latest/API/API_CreateEnvironment.html">&lt;code>CreateEnvironment&lt;/code>&lt;/a> API.
-Run the following command, by specifying the bucket ARN we created earlier:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mwaa create-environment --dag-s3-path /dags \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --execution-role-arn arn:aws:iam::000000000000:role/airflow-role \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --network-configuration {} \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --source-bucket-arn arn:aws:s3:::my-mwaa-bucket \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --airflow-version 2.2.2 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --airflow-configuration-options agent.code=007,agent.name=bond \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name my-mwaa-env&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="access-the-airflow-ui">Access the Airflow UI&lt;/h3>
-&lt;p>The Airflow UI can be accessed via the URL in the &lt;code>WebserverUrl&lt;/code> attribute of the response of the &lt;code>GetEnvironment&lt;/code> operation.
-The username and password are always set to &lt;code>localstack&lt;/code>.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mwaa get-environment --name my-mwaa-env --query Environment.WebserverUrl
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;http://localhost.localstack.cloud:4510&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>LocalStack also prints this information in the logs:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2024-03-06T14:54:47.070 INFO --- &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>functhread10&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> l.services.mwaa.provider : Airflow environment &lt;span style="color:#4e9a06">&amp;#39;my-mwaa-env&amp;#39;&lt;/span> available at http://localhost.localstack.cloud:4510 with username &lt;span style="color:#4e9a06">&amp;#39;localstack&amp;#39;&lt;/span> and password &lt;span style="color:#4e9a06">&amp;#39;localstack&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="airflow-versions">Airflow versions&lt;/h2>
-&lt;p>LocalStack supports the following versions of Apache Airflow:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>1.10.12&lt;/code> (deprecated)&lt;/li>
-&lt;li>&lt;code>2.0.2&lt;/code> (deprecated)&lt;/li>
-&lt;li>&lt;code>2.2.2&lt;/code> (deprecated)&lt;/li>
-&lt;li>&lt;code>2.4.3&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.5.1&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.6.3&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.7.2&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.8.1&lt;/code> (default)&lt;/li>
-&lt;/ul>
-&lt;h2 id="airflow-configuration-options">Airflow configuration options&lt;/h2>
-&lt;p>To configure Airflow environments effectively, you can utilize the &lt;code>AirflowConfigurationOptions&lt;/code> argument.
-These options are transformed into corresponding environment variables and passed to Airflow.
-For instance:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>agent.code&lt;/code>:&lt;code>007&lt;/code> is transformed into &lt;code>AIRFLOW__AGENT__CODE:007&lt;/code>.&lt;/li>
-&lt;li>&lt;code>agent.name&lt;/code>:&lt;code>bond&lt;/code> is transformed into &lt;code>AIRFLOW__AGENT__NAME:bond&lt;/code>.&lt;/li>
-&lt;/ul>
-&lt;p>This transformation process ensures that your configuration settings are easily applied within the Airflow environment.&lt;/p>
-&lt;h2 id="adding-or-updating-dags">Adding or updating DAGs&lt;/h2>
-&lt;p>When it comes to adding or updating DAGs in Airflow, the process is simple and efficient.
-Just upload your DAGs to the designated S3 bucket path, configured by the &lt;code>DagS3Path&lt;/code> argument.&lt;/p>
-&lt;p>Follow this example command to upload a sample DAG named &lt;code>sample_dag.py&lt;/code> to your S3 bucket named &lt;code>my-mwaa-bucket&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp sample_dag.py s3://my-mwaa-bucket/dags&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="installing-custom-plugins">Installing custom plugins&lt;/h2>
-&lt;p>You can extend the capabilities of Airflow by incorporating custom plugins, which introduce new operators, interfaces, or hooks.
-LocalStack seamlessly supports plugins packaged according to &lt;a href="https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html#configuring-dag-plugins-test-create">AWS specifications&lt;/a>.&lt;/p>
-&lt;p>To integrate your custom plugins into the MWAA environment, upload the packaged &lt;code>plugins.zip&lt;/code> file to the designated S3 bucket path:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp plugins.zip s3://my-mwaa-bucket/plugins.zip&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="installing-python-dependencies">Installing Python dependencies&lt;/h2>
-&lt;p>LocalStack streamlines the process of installing Python dependencies for Apache Airflow within your environments.
-To get started, create a &lt;code>requirements.txt&lt;/code> file that lists the required dependencies.
-For example:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-txt" data-lang="txt">&lt;span style="display:flex;">&lt;span>boto3==1.17.54
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>boto==2.49.0
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>botocore==1.20.54
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once you have your &lt;code>requirements.txt&lt;/code> file ready, upload it to the designated S3 bucket, configured for use by the MWAA environment.
-Make sure to upload the file to &lt;code>/requirements.txt&lt;/code> in the bucket:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp requirements.txt s3://my-mwaa-bucket/requirements.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>After the upload, the environment will be automatically updated, and your Apache Airflow setup will be equipped with the new dependencies.
-It is important to note that, unlike &lt;a href="https://docs.aws.amazon.com/mwaa/latest/userguide/connections-packages.html">AWS&lt;/a>, LocalStack does not install any provider packages by default.
-Therefore, you must follow the above steps to install any required provider packages.&lt;/p>
-&lt;h2 id="connections">Connections&lt;/h2>
-&lt;p>When incorporating connections to other AWS services within your DAGs, it is crucial to specify either the internal Docker IP address of the LocalStack container or utilize &lt;code>host.docker.internal&lt;/code>.
-LocalStack currently does not use the credentials and region from &lt;code>aws_conn_id&lt;/code>.
-This information must be explicitly passed in operators, hooks, and sensors.&lt;/p>
-&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
-&lt;p>The LocalStack Web Application provides a Resource Browser for managing MWAA Environments.
-You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resource Browser&lt;/strong> section, and then clicking on &lt;strong>MWAA&lt;/strong> under the &lt;strong>App Integration&lt;/strong> section.&lt;/p>
-&lt;p>
-&lt;img src="mwaa-resource-browser.png" alt="MWAA Resource Browser" title="MWAA Resource Browser" width="900" />
-&lt;/p>
-&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Create Environment&lt;/strong>: Create a new MWAA environment by clicking on the &lt;strong>Create Environment&lt;/strong> button and providing the required parameters.&lt;/li>
-&lt;li>&lt;strong>View Environment&lt;/strong>: View details of an existing MWAA environment by clicking on the environment name.&lt;/li>
-&lt;li>&lt;strong>Edit Environment&lt;/strong>: Edit an existing MWAA environment by clicking on the &lt;strong>Edit&lt;/strong> button after clicking on the environment name.&lt;/li>
-&lt;li>&lt;strong>Delete Environment&lt;/strong>: Select the environment name and click on the &lt;strong>Actions&lt;/strong> button followed by &lt;strong>Remove Selected&lt;/strong> button.&lt;/li>
 &lt;/ul></description></item></channel></rss>
