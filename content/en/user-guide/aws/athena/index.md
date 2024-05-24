@@ -209,7 +209,7 @@ s3://mybucket/prefix/temp/
 You can configure the Athena service in LocalStack with various clients, such as [PyAthena](https://github.com/laughingman7743/PyAthena/), [awswrangler](https://github.com/aws/aws-sdk-pandas), among others!
 Here are small snippets to get you started:
 
-{{< tabpane >}}
+{{< tabpane lang="python" >}}
 {{< tab header="PyAthena" lang="python" >}}
 from pyathena import connect
 
