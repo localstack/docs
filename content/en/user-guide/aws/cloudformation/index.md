@@ -399,6 +399,9 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::Redshift::ClusterSecurityGroup             |      ✅ |      ✅ |      - |
 | AWS::Redshift::ClusterSubnetGroup               |      ✅ |      ✅ |      - |
 | AWS::Route53::HostedZone                        |      ✅ |      ✅ |      - |
+| AWS::SageMaker::Endpoint                        |      ✅ |      ✅ |      - |
+| AWS::SageMaker::EndpointConfig                  |      ✅ |      ✅ |      - |
+| AWS::SageMaker::Model                           |      ✅ |      ✅ |      - |
 | AWS::SES::ReceiptRule                           |      ✅ |      ✅ |      - |
 | AWS::SES::ReceiptRuleSet                        |      ✅ |      ✅ |      - |
 | AWS::SES::Template                              |      ✅ |      ✅ |      ✅ |
