@@ -332,16 +332,17 @@ You can start the Docker container simply by executing the following `docker run
 {{< tab header="Community" lang="shell" >}}
 docker run \
   --rm -it \
-  -p 4566:4566 \
-  -p 4510-4559:4510-4559 \
+  -p 127.0.0.1:4566:4566 \
+  -p 127.0.0.1:4510-4559:4510-4559 \
   -v /var/run/docker.sock:/var/run/docker.sock \
   localstack/localstack
 {{< /tab >}}
 {{< tab header="Pro" lang="shell" >}}
 docker run \
   --rm -it \
-  -p 4566:4566 \
-  -p 4510-4559:4510-4559 \
+  -p 127.0.0.1:4566:4566 \
+  -p 127.0.0.1:4510-4559:4510-4559 \
+  -p 127.0.0.1:443:443 \
   -e LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?} \
   -v /var/run/docker.sock:/var/run/docker.sock \
   localstack/localstack-pro{{< /tab >}}
