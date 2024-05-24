@@ -2,7 +2,7 @@
 title: "Database Migration Service (DMS)"
 linkTitle: "Database Migration Service (DMS)"
 description: Get started with Database Migration Service (DMS) on LocalStack
-
+tags: ["Enterprise plan"]
 ---
 
 ## Introduction
@@ -19,25 +19,13 @@ It is only available as part of the **LocalStack Enterprise** plan, and you need
 If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
 {{< /callout >}}
 
-## Supported Use Cases
-
-DMS is in a preview state on LocalStack and only supports some selected use cases:
-
-| Source             | Target      | Migration Types |
-| -                  | -           | -               | 
-| MariaDB (external) | Kinesis     | full-load, cdc  |
-| MySQL (external)   | Kinesis     | full-load, cdc  |
-| RDS MariaDB        | Kinesis     | full-load, cdc  |
-| RDS MySQL          | Kinesis     | full-load, cdc  |
-
-
 ## Getting started
 
-You can run a DMS sample showcasing MariaDB source and Kinesis target from our [localstack-samples](https://github.com/localstack-samples/sample-dms-kinesis-rds-mariadb/).
+You can run a DMS sample showcasing MariaDB source and Kinesis target from our [GitHub repository](https://github.com/localstack-samples/sample-dms-kinesis-rds-mariadb/).
 
-* The sample is using CDK to setup the infrastructure
+* The sample is using CDK to setup the infrastructure.
 * It setups two databases: one external MariaDB (starting in a docker container) and one RDS MariaDB.
-* It creates two `cdc` replication tasks, with different table mappings, that will run against the RDS database
+* It creates two `cdc` replication tasks, with different table mappings, that will run against the RDS database,
 * and two `full-load` replication tasks with different table mappings, running against the hosted (containerized) MariaDB.
 
 To follow the sample, simply clone the repository:
@@ -122,6 +110,18 @@ Received: 6 events
 ```
 
 
+## Supported Use Cases
+
+DMS is in a preview state on LocalStack and only supports some selected use cases:
+
+| Source             | Target      | Migration Types |
+| -                  | -           | -               | 
+| MariaDB (external) | Kinesis     | full-load, cdc  |
+| MySQL (external)   | Kinesis     | full-load, cdc  |
+| RDS MariaDB        | Kinesis     | full-load, cdc  |
+| RDS MySQL          | Kinesis     | full-load, cdc  |
+
+
 ## Limitations
 
 For RDS MariaDB and RDS MySQL it is not yet possible to set custom db-parameters. 
@@ -149,12 +149,8 @@ On AWS there is also a combination for those, which is not yet implemented on Lo
 
 The `ReplicationTaskSettings` for a [replication task](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html) only considers `BeforeImageSettings`, `FullLoadSettings.CommitRate` and `FullLoadSettings.TargetTablePrepMode`
 
-### Persistence
 
-Persistence on LocalStack for DMS is not supported.
-
-
-### Unsupported Features or Settings
+### Other Limitations
 
 - [DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) is not yet supported
 - [Data Validation](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Validating.html#CHAP_Validating.TaskStatistics) is not supported
