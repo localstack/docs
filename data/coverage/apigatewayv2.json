@@ -21,8 +21,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -381,8 +381,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -477,8 +477,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1086,7 +1086,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[1.0]",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1096,7 +1096,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[2.0]",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1994,6 +1994,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_delete_domain_name_deletes_mapping",
+            "test": "test_delete_domain_name_deletes_mapping",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ResponseMetadata.HTTPStatusCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -2304,7 +2314,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[1.0]",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2314,7 +2324,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[2.0]",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2965,20 +2975,6 @@
       }
     },
     "CreateDomainName": {
-      "DomainName": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_domain_names",
-            "test": "test_create_domain_names",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
       "DomainName, DomainNameConfigurations": {
         "ls_pro": [
           {
@@ -3222,6 +3218,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_custom_domain_dns_resolution",
+            "test": "test_custom_domain_dns_resolution",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_delete_domain_name_deletes_mapping",
+            "test": "test_delete_domain_name_deletes_mapping",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ResponseMetadata.HTTPStatusCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_domain_names",
+            "test": "test_create_domain_names",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..DomainNameConfigurations..ApiGatewayDomainName', '$..DomainNameConfigurations..CertificateArn', '$..DomainNameConfigurations..HostedZoneId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_api_mapping_deployment",
             "test": "test_api_mapping_deployment",
             "response": "201",
@@ -3340,7 +3366,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[1.0]",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3350,7 +3376,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[2.0]",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4594,7 +4620,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[1.0]",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4604,7 +4630,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[2.0]",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5660,7 +5686,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[1.0]",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5670,7 +5696,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[2.0]",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6374,7 +6400,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[1.0]",
             "response": "204",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6384,7 +6410,7 @@
             "test": "test_apigw_v2_lambda_request_authorizer[2.0]",
             "response": "204",
             "error": "",
-            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables']",
+            "snapshot_skipped": "['$..headers', '$..body', '$..multiValueHeaders', '$..requestContext', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..stageVariables', '$.create-api.ApiEndpoint', '$.create-api.ApiKeySelectionExpression', '$.create-api.CreatedDate', '$.create-api.DisableExecuteApiEndpoint', '$.create-api.RouteSelectionExpression']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7246,74 +7272,6 @@
       "ApiMappingId, DomainName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_api_mapping_deployment",
-            "test": "test_api_mapping_deployment",
-            "response": "404",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          }
-        ]
-      }
-    },
-    "DeleteAuthorizer": {
-      "ApiId, AuthorizerId": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_authorizers",
-            "test": "test_create_authorizers",
-            "response": "204",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
-            "response": "404",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          }
-        ]
-      }
-    },
-    "DeleteDeployment": {
-      "ApiId, DeploymentId": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_multiple_routes",
-            "test": "test_create_multiple_routes",
-            "response": "204",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_multiple_routes",
-            "test": "test_create_multiple_routes",
-            "response": "404",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "DeleteDomainName": {
-      "DomainName": {
-        "ls_pro": [
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.example.com-1.0]",
             "test": "test_custom_domains[--<random>.example.com-1.0]",
             "response": "204",
@@ -7554,13 +7512,101 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_domain_names",
-            "test": "test_create_domain_names",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_api_mapping_deployment",
+            "test": "test_api_mapping_deployment",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
+    "DeleteAuthorizer": {
+      "ApiId, AuthorizerId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_authorizers",
+            "test": "test_create_authorizers",
             "response": "204",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
+            "test": "test_create_apigatewayv2_resources",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
+    "DeleteDeployment": {
+      "ApiId, DeploymentId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_multiple_routes",
+            "test": "test_create_multiple_routes",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_multiple_routes",
+            "test": "test_create_multiple_routes",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteDomainName": {
+      "DomainName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_custom_domain_dns_resolution",
+            "test": "test_custom_domain_dns_resolution",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_delete_domain_name_deletes_mapping",
+            "test": "test_delete_domain_name_deletes_mapping",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..ResponseMetadata.HTTPStatusCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_domain_names",
+            "test": "test_create_domain_names",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..DomainNameConfigurations..ApiGatewayDomainName', '$..DomainNameConfigurations..CertificateArn', '$..DomainNameConfigurations..HostedZoneId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -7592,6 +7638,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_delete_domain_name_deletes_mapping",
+            "test": "test_delete_domain_name_deletes_mapping",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "['$..ResponseMetadata.HTTPStatusCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -7829,6 +7885,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_delete_domain_name_deletes_mapping",
+            "test": "test_delete_domain_name_deletes_mapping",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "['$..ResponseMetadata.HTTPStatusCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -8256,9 +8322,9 @@
             "test": "test_create_domain_names",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..DomainNameConfigurations..ApiGatewayDomainName', '$..DomainNameConfigurations..CertificateArn', '$..DomainNameConfigurations..HostedZoneId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -8269,16 +8335,6 @@
             "snapshot_skipped": "['$..Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_domain_names",
-            "test": "test_create_domain_names",
-            "response": "404",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -8292,9 +8348,9 @@
             "test": "test_create_domain_names",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..DomainNameConfigurations..ApiGatewayDomainName', '$..DomainNameConfigurations..CertificateArn', '$..DomainNameConfigurations..HostedZoneId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
