@@ -124,8 +124,7 @@ You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (previ
 
 ## Lambda Layers (Pro)
 
-[Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) lets you include additional code and dependencies in your Lambda functions. LocalStack Pro image allows you to deploy Lambda Layers locally to streamline your development and testing process.
-However, the layers are not applied when invoking a Lambda function.
+[Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) lets you include additional code and dependencies in your Lambda functions. LocalStack Pro image allows you to deploy Lambda Layers locally to streamline your development and testing process. You can use Lambda Layers in the Community image, though they are not applied when invoking a Lambda function.
 
 ### Creating and using a Lambda Layer Locally
 
