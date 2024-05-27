@@ -23,15 +23,9 @@ category = "categories"
 persistence = "persistence"
 
 [params.taxonomy]
-# set taxonomyCloud = [] to hide taxonomy clouds
-taxonomyCloud = [] 
-
-# If used, must have same length as taxonomyCloud
-taxonomyCloudTitle = ["Tag Cloud", "Categories"] 
-
-# set taxonomyPageHeader = [] to hide taxonomies on the page headers
-taxonomyPageHeader = ["tags", "persistence"]
-
+taxonomyCloud = [] # set taxonomyCloud = [] to hide taxonomy clouds
+taxonomyCloudTitle = [] # if used, must have same length as taxonomyCloud
+taxonomyPageHeader = ["tags", "categories", "persistence"] # set taxonomyPageHeader = [] to hide taxonomies on the page headers
 
 # Highlighting config
 pygmentsCodeFences = true
@@ -62,10 +56,11 @@ id = "UA-101988473-1"
 [languages]
 [languages.en]
 title = "Docs"
-description = "LocalStack Documentation"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
+[languages.en.params]
+description = "LocalStack Documentation"
 
 [markup]
   [markup.goldmark]
@@ -126,14 +121,19 @@ github_branch= "main"
 # Google Custom Search Engine ID. Remove or comment out to disable search.
 # gcs_engine_id = "d72aa9b2712488cc3"
 
-# Enable Algolia DocSearch
-algolia_docsearch = true
-
 # Enable Lunr.js offline search
 offlineSearch = false
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = false
+
+disable_click2copy_chroma = true
+
+# Enable Algolia DocSearch
+[params.search.algolia]
+appId = "XBW1JU7CW5"
+apiKey = "6b0341e2f50196d328d088dbb5cd6166"
+indexName = "localstack"
 
 # User interface configuration
 [params.ui]
@@ -236,7 +236,7 @@ latest_version = "3.4.0"
 [module]
   [module.hugoVersion]
     extended = true
-    min = "0.75.0"
+    min = "0.125.4"
   [[module.imports]]
     path = "github.com/google/docsy"
     disable = false

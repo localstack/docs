@@ -21,7 +21,7 @@ The JavaScript SDK has two major versions, each with their own way of specifying
 
 Here is an example of how to create a Lambda client and an S3 client with the endpoint set to LocalStack.
 
-{{< tabpane >}}
+{{< tabpane lang="javascript" >}}
 {{< tab header="aws-sdk-js" lang="javascript" >}}
 
 const AWS = require('aws-sdk');

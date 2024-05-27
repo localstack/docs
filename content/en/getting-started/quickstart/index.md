@@ -186,7 +186,7 @@ $ awslocal lambda create-function-url-config \
 
 #### Build the Image Resizer Lambda
 
-{{< tabpane >}}
+{{< tabpane lang="shell" >}}
 {{< tab header="macOS" lang="shell" >}}
 cd lambdas/resize
 rm -rf libs lambda.zip

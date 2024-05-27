@@ -238,7 +238,7 @@ If you want to manually manage your Docker container, it's usually a good idea t
 You can start LocalStack with [Docker Compose](https://docs.docker.com/compose/) by configuring a `docker-compose.yml` file.
 Currently, `docker-compose` version 1.9.0+ is supported.
 
-{{< tabpane >}}
+{{< tabpane lang="yml" >}}
 {{< tab header="Community" lang="yml" >}}
 version: "3.8"
 
@@ -328,7 +328,7 @@ If it does not report an error (but shows information on your Docker system), yo
 
 You can start the Docker container simply by executing the following `docker run` command:
 
-{{< tabpane >}}
+{{< tabpane lang="shell" >}}
 {{< tab header="Community" lang="shell" >}}
 docker run \
   --rm -it \

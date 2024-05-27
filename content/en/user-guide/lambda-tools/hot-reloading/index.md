@@ -121,7 +121,7 @@ You can also check out some of our [Deployment Configuration Examples](#deployme
 
 We can also quickly make sure that it works by invoking it with a simple payload:
 
-{{< tabpane text=true persistLang=false >}}
+{{< tabpane text=true persist=false >}}
 {{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
 $ awslocal lambda invoke --function-name my-cool-local-function \
@@ -308,7 +308,7 @@ $ awslocal lambda create-function \
 
 You can quickly make sure that it works by invoking it with a simple payload:
 
-{{< tabpane text=true persistLang=false >}}
+{{< tabpane text=true persist=false >}}
 {{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
 $ awslocal lambda invoke \

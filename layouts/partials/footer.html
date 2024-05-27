@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="col">
-        <div class="text-right link-lists">
+        <div class="text-end link-lists">
           {{ with $links }}
           {{ with index . "user" }}
           {{ template "footer-links-block"  . }}
@@ -31,8 +31,8 @@
           <div class="col">
             {{ with .Site.Params.copyright }}<small>Copyright &copy; {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small>{{ end }}
           </div>
-          <div class="col text-right">
-            {{ with .Site.Params.privacy_policy }}<small class="ml-1"><a href="{{ . }}" target="_blank" rel="noopener">{{ T "footer_privacy_policy" }}</a></small>{{ end }}
+          <div class="col text-end">
+            {{ with .Site.Params.privacy_policy }}<small class="ms-1"><a href="{{ . }}" target="_blank" rel="noopener">{{ T "footer_privacy_policy" }}</a></small>{{ end }}
             {{ if not .Site.Params.ui.footer_about_disable }}
               {{ with .Site.GetPage "about" }}<p class="mt-2"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ end }}
             {{ end }}

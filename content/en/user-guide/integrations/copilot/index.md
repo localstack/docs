@@ -17,7 +17,7 @@ Using `copilotlocal` instead of `copilot` in your command line therefore ensures
 
 ### Download / Installation
 
-{{< tabpane >}}
+{{< tabpane lang="bash" >}}
 {{< tab header="Linux AMD64" lang="bash">}}
 curl -Lo copilotlocal https://github.com/localstack/copilot-cli/raw/localstack-builds/build/linux-amd64/copilotlocal && chmod +x copilotlocal
 # if you want to have copilotlocal in your $PATH, move the executable e.g. to /usr/local/bin/

@@ -35,7 +35,7 @@ To enable access to the LocalStack instance, it's advisable to start LocalStack 
 This allows the code running inside the container to access the LocalStack instance using its hostname.
 For example:
 
-{{<tabpane>}}
+{{<tabpane lang="bash">}}
 {{<tab header="CLI" lang="bash">}}
 # create the network
 docker network create my-network
@@ -87,7 +87,7 @@ To configure your application container:
 * either determine your LocalStack container IP, or configure your LocalStack container to have a fixed known IP address;
 * set the DNS server of your application container to the IP address of the LocalStack container.
 
-{{% tabpane %}}
+{{% tabpane lang="bash" %}}
 {{< tab header="CLI" lang="bash" >}}
 # start localstack
 localstack start -d --network ls
@@ -162,7 +162,7 @@ To facilitate access to LocalStack from within the container, it's recommended t
 Doing so enables the containerized code to connect to the LocalStack instance using its hostname.
 For instance:
 
-{{<tabpane>}}
+{{<tabpane lang="bash">}}
 {{<tab header="CLI" lang="bash">}}
 # create the network
 docker network create my-network
@@ -214,7 +214,7 @@ Please update your LocalStack container and see the [instructions]({{< ref "#fro
 
 LocalStack must listen to the address of the host, or `0.0.0.0`.
 
-{{<tabpane>}}
+{{<tabpane lang="bash">}}
 {{<tab header="CLI" lang="bash">}}
 GATEWAY_LISTEN="0.0.0.0" localstack start
 {{</tab>}}

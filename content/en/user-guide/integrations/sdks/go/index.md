@@ -22,7 +22,7 @@ The Go SDK has two major versions, each with their own way of specifying the Loc
 Here is an example of how to create an S3 Client from a Session with the endpoint set to LocalStack.
 Full examples for both SDK versions can be found [in our samples repository](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/go).
 
-{{< tabpane >}}
+{{< tabpane lang="golang" >}}
 {{< tab header="aws-go-sdk" lang="golang" >}}
 package main
 
