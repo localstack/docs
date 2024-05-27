@@ -17,7 +17,7 @@
     "service": "acm-pca",
     "full_name": "AWS Private Certificate Authority (CA)",
     "support": "supported",
-    "test_suite": false,
+    "test_suite": true,
     "limitations": ""
   },
   "amplify": {
@@ -146,6 +146,13 @@
     "test_suite": true,
     "limitations": ""
   },
+  "dms": {
+    "service": "dms",
+    "full_name": "DMS (Database Migration Service)",
+    "support": "not supported",
+    "test_suite": false,
+    "limitations": ""
+  },
   "docdb": {
     "service": "docdb",
     "full_name": "DocumentDB",
@@ -170,9 +177,9 @@
   "ec2": {
     "service": "ec2",
     "full_name": "EC2 (Elastic Compute Cloud)",
-    "support": "unknown",
+    "support": "supported with limitations",
     "test_suite": false,
-    "limitations": ""
+    "limitations": "Instances (Docker containers) are not persisted. The mock VM manager fully support persistence."
   },
   "ecr": {
     "service": "ecr",
@@ -368,7 +375,7 @@
     "full_name": "Lambda",
     "support": "supported with limitations",
     "test_suite": true,
-    "limitations": "Hot-Reloading is currently not supported (see https://github.com/localstack/localstack/issues/9974)."
+    "limitations": "Hot-reloading Lambdas need special configuration. Visit that section of our docs for more info."
   },
   "logs": {
     "service": "logs",
