@@ -3,6 +3,8 @@ title: "Elastic Compute Cloud (EC2)"
 linkTitle: "Elastic Compute Cloud (EC2)"
 tags: ["Pro image"]
 description: Get started with Amazon Elastic Compute Cloud (EC2) on LocalStack
+persistence: supported with limitations
+
 ---
 
 ## Introduction
