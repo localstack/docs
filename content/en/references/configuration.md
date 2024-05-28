@@ -15,6 +15,9 @@ These options can be passed to LocalStack as environment variables like so:
 $ DEBUG=1 localstack start
 {{< / command >}}
 
+To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker.
+For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
+
 You can also use [Profiles](#profiles).
 
 Configurations marked as **Deprecated** will be removed in the next major version. You can find previously removed configuration variables under [Legacy](#legacy).
