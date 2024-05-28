@@ -158,17 +158,19 @@ The following code snippets and sample applications provide practical examples o
 
 - [Neptune Graph Database Demo](https://github.com/localstack/localstack-pro-samples/tree/master/neptune-graph-db)
 
-## Experimental Features
+## Preview Features
 
 ### Gremlin Transactions
 
 Gremlin transactions can be enabled by setting the environment `NEPTUNE_ENABLE_TRANSACTION=1`. Be aware that the `engine_version` provided when creating your cluster will be ignored and LocalStack will use `3.7.2` Gremlin Server. This feature is in beta and any feedback is appreciated.
 
-**Serializer considerations**
+#### Known Limitations
 
-- While it is possible to connect to the server with a lower version of Gremlin Language Variants, there are breaking changes to the default `GraphBinarySerializersV1` serializer used by most languages. One possible fix is to use the matching version for your language variant. Otherwise, using the `GraphSONSerializersV3d0` serializer also seems to be working. See example below.
-
-- If using Neptune <= `1.2.0.2`, the Gryo message serializer is no longer supported. Only affects users explicitly using that serializer.
+- Fixed id
+  - Creating a Vertex with an id in a transaction, then deleting it. Trying to recreate a vertex with the same id will fail.
+- Serializer considerations
+    - While it is possible to connect to the server with a lower version of Gremlin Language Variants, there are breaking changes to the default `GraphBinarySerializersV1` serializer used by most languages. One possible fix is to use the matching version for your language variant. Otherwise, using the `GraphSONSerializersV3d0` serializer also seems to be working. See example below.
+    - If using Neptune <= `1.2.0.2`, the Gryo message serializer is no longer supported. Only affects users explicitly using that serializer.
 
 Example using `gremlinpython==3.6.2`
 ```python
@@ -184,7 +186,7 @@ if __name__ == '__main__':
     conn = DriverRemoteConnection(
         DATABASE_URL,
         "g",
-        pool_size=1,
+        # Note, the serializer is only required if using gremplin_python < 3.7.0 
         message_serializer=serializer.GraphSONSerializersV3d0(),
     )
 
