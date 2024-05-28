@@ -408,7 +408,7 @@ If you have installed the CLI with Brew or directly as a binary, please simply p
 
 ## Troubleshooting
 
-- The LocalStack CLI installation is successful, but I cannot execute `localstack` on my terminal.
+- **The LocalStack CLI installation is successful, but I cannot execute `localstack` on my terminal.**
 
   If you can successfully install LocalStack using `pip` but you cannot use it in your terminal, you most likely haven't set up your operating system's / terminal's `PATH` variable (in order to tell them where to find programs installed via `pip`).
   - If you are using Windows, you can enable the `PATH` configuration when installing Python, [as described in the official docs of Python](https://docs.python.org/3/using/windows.html#finding-the-python-executable).
@@ -419,7 +419,19 @@ If you have installed the CLI with Brew or directly as a binary, please simply p
   $ python3 -m localstack.cli.main
   {{< / command >}}
 
-- How should I access the LocalStack logs on my local machine?
+- **The `localstack` CLI is not starting the LocalStack container**
+
+  If you are using the `localstack` CLI to start LocalStack, but the container is not starting, please check the following:
+  - Uncheck the **Use kernel networking for UDP** option in Docker Desktop (**Settings** → **Resources** → **Network**) or in our [documentation](https://docs.localstack.cloud/user-guide/tools/dns-server/#system-dns-configuration) to disable it.
+  - Start LocalStack with a specific DNS address:
+    {{< command >}}
+    $ DNS_ADDRESS=0 localstack start
+    {{< / command >}}
+  - Remove port 53 as indicated in our [standard `docker-compose.yml`  file](https://github.com/localstack/localstack/blob/master/docker-compose-pro.yml).
+
+<br><br>
+
+- **How should I access the LocalStack logs on my local machine?**
 
   You can now avail logging output and error reporting using LocalStack logs. To access the logs, run the following command:
 
@@ -438,7 +450,7 @@ If you have installed the CLI with Brew or directly as a binary, please simply p
   2022-09-12T11:01:55.799  INFO --- [   asgi_gw_0] localstack.request.http    : GET / => 200
   ```
 
-- How should I share the LocalStack logs to discover issues?
+- **How should I share the LocalStack logs to discover issues?**
 
   You can now share the LocalStack logs with us to help us discover issues.
   To share the logs, run our diagnostic endpoint:
@@ -450,7 +462,7 @@ If you have installed the CLI with Brew or directly as a binary, please simply p
   Ensure that the diagnostic endpoint is run after you have tried reproducing the affected task.
   After running the task, run the diagnostic endpoint and share the archive file with your team members or LocalStack Support.
 
-- My application cannot reach LocalStack over the network
+- **My application cannot reach LocalStack over the network**
 
   We have [extensive network troubleshooting documentation available]({{< ref "references/network-troubleshooting" >}}).
   If this does not solve your problem then please reach out for [help and support]({{< ref "help-and-support" >}}).
