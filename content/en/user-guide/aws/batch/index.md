@@ -166,6 +166,6 @@ You should see the following output:
 }
 ```
 
-## Limitations 
+## Current Limitations 
 
 As mentioned in the example above, the creation of a compute environment does not entail the provisioning of EC2 or Fargate instances. Rather, it executes Batch jobs on the local Docker daemon, operating alongside LocalStack.

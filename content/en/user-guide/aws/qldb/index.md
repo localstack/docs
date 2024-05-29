@@ -327,7 +327,7 @@ The Resource Browser allows you to perform the following actions:
 - **Edit Ledger**: Edit the details of a specific ledger by clicking on the ledger name and then clicking on the **Edit Ledger** button.
 - **Delete Ledger**: Delete a specific ledger by selecting the ledger name and clicking on the **Actions** dropdown menu, then selecting **Remove Selected**.
 
-### Examples
+## Examples
 
 Interacting with Amazon QLDB (Quantum Ledger Database) is typically done using language-specific
 software

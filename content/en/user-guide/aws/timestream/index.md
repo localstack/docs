@@ -68,7 +68,7 @@ The Resource Browser allows you to perform the following actions:
 - **View Database/Table Details**: Click on a database or table to view its details, including the schema, retention policy, and other metadata.
 - **Delete Database/Table**: Delete the Timestream database/table by selecting it and clicking on the **Actions** button followed by **Remove Selected** button.
 
-## Limitations
+## Current Limitations
 
 LocalStack's Timestream implementation is under active development and only supports a limited set of operations, please refer to the API Coverage pages for an up-to-date list of implemented and tested functions within [Timestream-Query](https://docs.localstack.cloud/references/coverage/coverage_timestream-query/) and [Timestream-Write](https://docs.localstack.cloud/references/coverage/coverage_timestream-write/).
 

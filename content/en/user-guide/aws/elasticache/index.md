@@ -18,7 +18,7 @@ It supports popular open-source caching engines like Redis and Memcached (LocalS
 providing a means to efficiently store and retrieve frequently accessed data with minimal latency.
 
 LocalStack supports ElastiCache via the Pro offering, allowing you to use the ElastiCache APIs in your local environment.
-The supported APIs are available on our API Coverage Page,
+The supported APIs are available on our [API Coverage Page]{{< ref "coverage_elasticache" >}},
 which provides information on the extent of ElastiCache integration with LocalStack.
 
 
@@ -131,7 +131,7 @@ In the ElastiCache resource browser you can:
   {{< img src="elasticache-resource-browser-create.png" alt="Create a ElastiCache cluster in the resource browser" >}}
 
 
-## Limitations
+## Current Limitations
 
 LocalStack currently supports Redis single-node and cluster mode, but not memcached.
 Moreover, LocalStack emulation support for ElastiCache is mostly centered around starting/stopping Redis servers.
@@ -139,5 +139,3 @@ Moreover, LocalStack emulation support for ElastiCache is mostly centered around
 Resources necessary to operate a cluster, like parameter groups, security groups, subnets groups, etc. are mocked, but have no effect on the functioning of the Redis servers.
 
 LocalStack currently doesn't support ElastiCache snapshots, failovers, users/passwords, service updates, replication scaling, SSL, migrations, service integration (like CloudWatch/Kinesis log delivery, SNS notifications) or tests.
-
-You can find a detailed list of covered API methods on the [ElastiCache coverage page]({{< ref "coverage_elasticache" >}}).

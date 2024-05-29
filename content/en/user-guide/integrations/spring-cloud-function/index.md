@@ -43,7 +43,7 @@ any other JVM setup.
 * [Testing, Debugging and Hot Reloading](#testing-debugging-and-hot-reloading)
 * [Useful links](#useful-links)
 
-### Limitations
+### Current Limitations
 
 This document demonstrates the usage of the Spring Cloud Function framework
 together with LocalStack.

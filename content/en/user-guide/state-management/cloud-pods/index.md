@@ -452,7 +452,7 @@ Custom remote configurations are stored within the [LocalStack volume directory]
 
 In contrast, Cloud Pods provide more detailed control over your state. Rather than just restoring a state during LocalStack restarts, Cloud Pods enable you to capture snapshots of your local instance using the `save` command and inject these snapshots into a running instance using the `load` command, all without needing to perform a full restart.
 
-### Limitations
+### Current Limitations
 
 Cloud Pods (and state management in general), come with a few limitation.
 In particular, Cloud Pods states might not be correctly restored if the LocalStack version used to create the pod and the target one differ.

@@ -427,6 +427,6 @@ The following code snippets and sample applications provide practical examples o
 
 The AWS Glue API is a fairly comprehensive service - more details can be found in the official [AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html).
 
-## Limitations
+## Current Limitations
 
 Support for triggers is currently limited - the basic API endpoints are implemented, but triggers are currently still under development (more details coming soon).

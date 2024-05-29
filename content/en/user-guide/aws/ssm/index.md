@@ -122,7 +122,7 @@ The Resource Browser allows you to perform the following actions:
 - **View the System Parameter**: View the details of a System Parameter, such as its value, by clicking on the parameter name.
 - **Delete the System Parameter**: Delete a System Parameter by selecting the parameter and clicking on the **Actions** dropdown menu followed by **Remove Selected**.
 
-## Limitations
+## Current Limitations
 
 The following table highlights some differences between LocalStack SSM and AWS SSM.
 

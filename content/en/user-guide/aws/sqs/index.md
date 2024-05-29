@@ -639,6 +639,6 @@ The following code snippets and sample applications provide practical examples o
 - [Messaging Processing application with SQS, DynamoDB, and Fargate](https://github.com/localstack/sqs-fargate-ddb-cdk-go)
 - [Serverless Transcription application using Transcribe, S3, Lambda, SQS, and SES](https://github.com/localstack/sample-transcribe-app)
 
-## Limitations
+## Current Limitations
 
 * Updating a queue's `MessageRetentionPeriod` currently has no effect on existing messages

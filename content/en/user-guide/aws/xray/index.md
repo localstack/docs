@@ -115,7 +115,7 @@ The following code snippets and sample applications provide practical examples o
 
 - [Lambda X-Ray](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray) shows how to instrument Lambda functions for X-Ray using Powertools and the X-Ray SDK.
 
-## Limitations
+## Current Limitations
 
 LocalStack supports collecting trace segments but currently does not correlate multiple trace segments with the same
 `trace_id` into a single aggregated trace.

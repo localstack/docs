@@ -244,7 +244,7 @@ Within its `parameters` section, you can configure the following:
 
 This table summarizes the configurable parameters for the `localstack:generic:api-error` action in LocalStack FIS.
 
-## Limitations
+## Current Limitations
 
 1. LocalStack currently supports only a subset of FIS actions available in AWS.
 Unsupported actions will result in an error.

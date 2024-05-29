@@ -12,16 +12,6 @@ DocumentDB is a fully managed, non-relational database service that supports Mon
 
 LocalStack allows you to use the DocumentDB APIs to create and manage DocumentDB clusters and instances. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_docdb/), which provides information on the extent of DocumentDB's integration with LocalStack.
 
-{{< callout >}}
-Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it can be accessed from `localhost`. When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
-
-Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not
-have exact feature parity with Amazon DocumentDB. The database engine may support additional
-features that DocumentDB does not and vice versa.
-
-DocumentDB currently uses the default configuration of the latest [MongoDB Docker image](https://hub.docker.com/_/mongo). When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`. 
-{{< /callout >}}
-
 ## Getting started
 
 To create a new DocumentDB cluster we use the `create-db-cluster` command as follows:
@@ -410,3 +400,11 @@ The Resource Browser allows you to perform the following actions:
 - **View Instance & Cluster**: View an existing DocumentDB instance or cluster by clicking the instance/cluster name.
 - **Edit Instance & Cluster**: Edit an existing DocumentDB instance or cluster by clicking the instance/cluster name and clicking the **Edit Instance** or **Edit Cluster** button.
 - **Remove Instance & Cluster**: Remove an existing DocumentDB instance or cluster by clicking the instance/cluster name and clicking the **Actions** followed by **Remove Selected** button.
+
+## Current Limitations
+
+Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it can be accessed from `localhost`. When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
+
+Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not have exact feature parity with Amazon DocumentDB. The database engine may support additional features that DocumentDB does not and vice versa.
+
+DocumentDB currently uses the default configuration of the latest [MongoDB Docker image](https://hub.docker.com/_/mongo). When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`. 

@@ -98,7 +98,7 @@ The following code snippets and sample applications provide practical examples o
 
 - [Demo application illustrating the use of MQ with LocalStack](https://github.com/localstack/localstack-pro-samples/tree/master/mq-broker)
 
-## Limitations
+## Current Limitations
 
 Currently, our MQ emulation offers only fundamental capabilities, and it comes with certain limitations:
 

@@ -122,7 +122,7 @@ DMS is in a preview state on LocalStack and only supports some selected use case
 | RDS MySQL          | Kinesis     | full-load, cdc  |
 
 
-## Limitations
+## Current Limitations
 
 For RDS MariaDB and RDS MySQL it is not yet possible to set custom db-parameters. 
 In order to make those databases work with `cdc` migration for DMS, some default db-parameters are changed upon start if the `ENABLE_DMS=1` flag is set:

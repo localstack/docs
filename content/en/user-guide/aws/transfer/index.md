@@ -73,7 +73,7 @@ Please note that this code is a simplified example for demonstration purposes.
 In a production environment, you should use more secure practices, including setting proper IAM roles and handling sensitive credentials securely.
 Additionally, error handling and cleanup code may be needed to ensure the script behaves robustly in all scenarios.
 
-## Limitations 
+## Current Limitations 
 The Transfer API does not provide a way to return the endpoint URL of created FTP servers.
 Hence, in order to determine the server endpoint, the local port is encoded as a suffix within the `ServerId` attribute, constituting the only numeric digits within the ID string.
 For example, assume the following is the response from the `CreateServer` API call, then the FTP server is accessible on port `4511` (i.e., `ftp://localhost:4511`):

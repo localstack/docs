@@ -119,7 +119,7 @@ The Resource Browser allows you to perform following actions:
 - **View Sent Emails**: View all sent emails from an email identity by clicking the email address. You can the view the details of a sent email by selecting them from the list.
 - **Send Emails**: On selecting an email identity, click **Send Message** and specify destination fields (To, CC and BCC addresses) and the body (Plaintext, HTML) to send an email.
 
-## Limitations
+## Current Limitations
 
 It is currently not possible to [receive emails via SES](https://docs.aws.amazon.com/ses/latest/dg/receiving-email.html) in LocalStack.
 Consequently, all operations related to Receipt Rules are currently mocked.

@@ -12,10 +12,6 @@ Cost Explorer is a service provided by Amazon Web Services (AWS) that enables yo
 
 LocalStack allows you to use the Cost Explorer APIs in your local environment to create and manage cost category definition, cost anomaly monitors & subscriptions. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ce/), which provides information on the extent of Cost Explorer's integration with LocalStack.
 
-{{< callout >}}
-LocalStack's Cost Explorer implementation cannot programmatically query your cost and usage data, or provide aggregated data such as total monthly costs or total daily usage. However, you can use the integrations to mock the Cost Explorer APIs and test your workflow locally.
-{{< /callout >}}
-
 ## Getting started
 
 This guide is designed for users new to Cost Explorer and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
@@ -163,3 +159,7 @@ The Resource Browser allows you to perform the following actions:
 - **Create Cost Category definition**: Create a new Cost Category definition by clicking on the **Create** button and providing the required details.
 - **View Cost Category definition**: View the details of a Cost Category definition by clicking on the Cost Category definition.
 - **Delete Cost Category definition**: Delete a Cost Category definition by selecting on the Cost Categorty definition, and then clicking on the **Actions** button followed by **Remove Selected**.
+
+## Current Limitations
+
+LocalStack's Cost Explorer implementation cannot programmatically query your cost and usage data, or provide aggregated data such as total monthly costs or total daily usage. However, you can use the integrations to mock the Cost Explorer APIs and test your workflow locally.

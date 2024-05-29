@@ -103,7 +103,7 @@ Replace `<application-id>` with the Application ID of your SAM application that 
 
 You can also create a CloudFormation changeset using the [`CreateCloudFormationChangeSet`](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-how-to-publish.html) API, and then execute the changeset to deploy the SAM application using the [`ExecuteChangeSet`](https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html) API.
 
-## Limitations
+## Current Limitations
 
 - Keep in mind, since the application is only registered in your individual localstack instance, you won't be able to share them with other developers.
 - Currently LocalStack only supports one AWS-hosted application (`"arn:aws:serverlessrepo:us-east-1:297356227824:applications/SecretsManagerRDSPostgreSQLRotationMultiUser`).

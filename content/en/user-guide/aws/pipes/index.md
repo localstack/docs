@@ -179,7 +179,7 @@ Please create a feature request on [GitHub](https://github.com/localstack/locals
 Firehose stream logs,
 or Amazon S3 logs.
 
-## Limitations
+## Current Limitations
 
 The EventBridge Pipes implementation in LocalStack is currently in preview stage and has the following limitations:
 

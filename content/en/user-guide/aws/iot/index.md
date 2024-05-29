@@ -196,7 +196,7 @@ You can use AWS CLI and [MQTT topics](https://docs.aws.amazon.com/iot/latest/dev
 The endpoint as returned by `DescribeEndpoint` currently does not support the [device shadow REST API](https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-rest-api.html#API_GetThingShadow)
 
 
-## Limitations
+## Current Limitations
 
 LocalStack MQTT broker does not support multi-account/multi-region namespacing.
 Internally, the MQTT messages are not routed to the appropriate account ID/region even though the endpoint URL may suggest otherwise.

@@ -192,7 +192,7 @@ jobs:
 
 Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 
-## Known Issues and Limitations
+## Current Limitations
 
 ### Running Lambdas targeting the `arm64` architecture
 
