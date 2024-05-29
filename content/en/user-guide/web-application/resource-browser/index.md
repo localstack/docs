@@ -55,7 +55,6 @@ The Resource Browser supports the following AWS services:
 |                              | [AWS Secrets Manager](https://app.localstack.cloud/inst/default/resources/secretsmanager)                | 
 | **Storage**                  | [Amazon S3](https://app.localstack.cloud/inst/default/resources/s3)                                      | 
 |                              | [AWS Backup](https://app.localstack.cloud/inst/default/resources/backup/plans)                                |
-|                               | [Amazon Cost Explorer](https://app.localstack.cloud/inst/default/resources/ce/costcategorydefinitions)                                | 
 | **Machine Learning**         | [Amazon SageMaker](https://app.localstack.cloud/inst/default/resources/sagemaker/models)                        | 
 |                              | [Amazon Transcribe](https://app.localstack.cloud/inst/default/resources/transcribe/transcriptionjobs)                      | 
 | **Database**                 | [Amazon DynamoDB](https://app.localstack.cloud/inst/default/resources/dynamodb)                          | 
@@ -72,6 +71,7 @@ The Resource Browser supports the following AWS services:
 |                              | [Amazon Route 53](https://app.localstack.cloud/inst/default/resources/route53)                            | 
 |                              | [Amazon CloudFront](https://app.localstack.cloud/inst/default/resources/cloudfront/distributions)                        | 
 |                              | [Amazon OpenSearch Service](https://app.localstack.cloud/inst/default/resources/opensearch/domains) | 
+| **Cloud Financial Management** | [AWS Cost Explorer](https://app.localstack.cloud/inst/default/resources/ce/costcategorydefinitions)                              |
 
 ## Troubleshooting
 
