@@ -164,7 +164,7 @@ The following code snippets and sample applications provide practical examples o
 
 Gremlin transactions can be enabled by setting the environment `NEPTUNE_ENABLE_TRANSACTION=1`. Be aware that the `engine_version` provided when creating your cluster will be ignored and LocalStack will use `3.7.2` Gremlin Server. This feature is in beta and any feedback is appreciated.
 
-#### Known Limitations
+#### Current Limitations
 
 - Fixed id
   - Creating a Vertex with an id in a transaction, then deleting it. Trying to recreate a vertex with the same id will fail.
