@@ -100,6 +100,6 @@ The following output would be retrieved:
 }
 ```
 
-## Limitations
+## Current Limitations
 
 LocalStack's EFS implementation is limited and lacks support for functionalities like creating mount targets, configuring access points, and generating tags. LocalStack uses Moto to emulate the EFS APIs, and efforts are underway to incorporate support for these features in upcoming updates.

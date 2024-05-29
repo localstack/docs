@@ -42,7 +42,7 @@ Click the CodeLens **Invoke Lambda function** and pick the stack name `my-stack`
 <img src="invoke-lambda-function.gif" alt="Invoking Lambda function via the VS Code Extension" title="Invoking Lambda function via the VS Code Extension" width="700" />
 <br>
 
-## Limitations
+## Current Limitations
 
 - The CodeLens for **Deploy Lambda function** always appears at the first line of each Python file.
 - **Invoke Lambda function** currently only works in the region `us-east-1` and with an empty payload.

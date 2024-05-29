@@ -401,7 +401,7 @@ The Resource Browser allows you to perform the following actions:
 - **Edit Instance & Cluster**: Edit an existing DocumentDB instance or cluster by clicking the instance/cluster name and clicking the **Edit Instance** or **Edit Cluster** button.
 - **Remove Instance & Cluster**: Remove an existing DocumentDB instance or cluster by clicking the instance/cluster name and clicking the **Actions** followed by **Remove Selected** button.
 
-## Limitations
+## Current Limitations
 
 Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it can be accessed from `localhost`. When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
 

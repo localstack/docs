@@ -105,6 +105,6 @@ $ awslocal elasticbeanstalk describe-application-versions \
     --application-name my-app
 {{< /command >}}
 
-## Limitations
+## Current Limitations
 
 LocalStack's Elastic Beanstalk implementation is limited and lacks support for installing application and running it in a local Elastic Beanstalk environment. LocalStack also does not support the [`eb`](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html) CLI tool. However, you can use other integrations, such as AWS CLI & Terraform, to mock the Elastic Beanstalk APIs and test your workflow locally.

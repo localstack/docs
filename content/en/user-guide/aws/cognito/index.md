@@ -313,6 +313,6 @@ The following code snippets and sample applications provide practical examples o
 - [Serverless Container-based APIs with ECS & API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
 - [Step-up Authentication using Cognito](https://github.com/localstack/step-up-auth-sample)
 
-## Limitations
+## Current Limitations
 
 By default, LocalStack's Cognito does not send actual email messages. However, if you wish to enable this feature, you will need to provide an email address and configure the corresponding SMTP settings. The instructions on configuring the connection parameters of your SMTP server can be found in the [Configuration]({{< ref "configuration#emails" >}}) guide to allow your local Cognito environment to send email notifications.

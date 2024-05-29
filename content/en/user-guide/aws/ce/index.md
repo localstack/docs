@@ -160,6 +160,6 @@ The Resource Browser allows you to perform the following actions:
 - **View Cost Category definition**: View the details of a Cost Category definition by clicking on the Cost Category definition.
 - **Delete Cost Category definition**: Delete a Cost Category definition by selecting on the Cost Categorty definition, and then clicking on the **Actions** button followed by **Remove Selected**.
 
-## Limitations
+## Current Limitations
 
 LocalStack's Cost Explorer implementation cannot programmatically query your cost and usage data, or provide aggregated data such as total monthly costs or total daily usage. However, you can use the integrations to mock the Cost Explorer APIs and test your workflow locally.

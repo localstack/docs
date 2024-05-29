@@ -34,7 +34,7 @@ $ awslocal ram create-resource-share \
     --resource-arn arn:aws:appsync:eu-central-1:000000000000:apis/wcgmjril5wuyvhmpildatuaat3
 {{< /command >}}
 
-## Limitations
+## Current Limitations
 
 RAM on LocalStack currently functions as a CRUD interface only.
 Resource shares do not lead to IAM policies being created or attached to resources. 

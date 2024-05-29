@@ -83,7 +83,7 @@ $ awslocal sns list-topics
 }
 {{< /command >}}
 
-## Limitations
+## Current Limitations
 
 ### Updating CDK stacks
 

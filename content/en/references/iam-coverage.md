@@ -150,6 +150,6 @@ In principle, LocalStack supports all operations. However, not all services and 
 |                | Supported condition keys:                                                            |
 |                | - aws:SourceArn                                                                      |
 
-## Limitations
+## Current Limitations
 
 - CloudFormation stack permissions do not work as expected.

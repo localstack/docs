@@ -298,7 +298,7 @@ phases:
 
 Find out more about [ephemeral instances](/user-guide/cloud-sandbox/).
 
-## Limitations
+## Current Limitations
 
 - We recommend using the `public.ecr.aws/localstack/localstack:latest` image to start LocalStack, instead of the `localstack/localstack:latest` image. LocalStack mirrors the Docker Hub image to the public ECR repository.
   You can use the Docker Hub image as well, though you may run into the following error:

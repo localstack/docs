@@ -106,7 +106,7 @@ $ awslocal kms create-key --tags '[{"TagKey":"_custom_id_","TagValue":"00000000-
 }
 {{< / command >}}
 
-## Limitations
+## Current Limitations
 
 ### Encryption data format
 

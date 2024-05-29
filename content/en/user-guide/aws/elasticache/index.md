@@ -131,7 +131,7 @@ In the ElastiCache resource browser you can:
   {{< img src="elasticache-resource-browser-create.png" alt="Create a ElastiCache cluster in the resource browser" >}}
 
 
-## Limitations
+## Current Limitations
 
 LocalStack currently supports Redis single-node and cluster mode, but not memcached.
 Moreover, LocalStack emulation support for ElastiCache is mostly centered around starting/stopping Redis servers.

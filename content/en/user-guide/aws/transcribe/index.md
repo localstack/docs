@@ -115,7 +115,7 @@ The following code snippets and sample applications provide practical examples o
 
 - [Serverless Transcription App using Transcribe, S3, Lambda, SQS, SES](https://github.com/localstack-samples/sample-serverless-transcribe)
 
-## Limitations
+## Current Limitations
 
 Currently, our Transcribe emulation offers only supported formats and languages.
 

@@ -318,6 +318,6 @@ $ curl -X PUT mylogs-2.us-east-1.es.localhost.localstack.cloud:4566/my-index
   LocalStack will return the endpoint immediately, but keep `Processing = "true"` until the cluster has been started.
 * The `CustomEndpointOptions` allows arbitrary endpoint URLs, which is not allowed in AWS
 
-## Limitations
+## Current Limitations
 
 The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in LocalStack.

@@ -350,7 +350,7 @@ The Resource Browser allows you to perform the following actions:
 - **Edit Domain**: Edit the configuration of a domain by clicking on domain name and then clicking on the **Edit Domain** button.
 - **Delete Domain**: Delete a domain by selecting the domain name and clicking on the **Actions** dropdown menu, then selecting **Remove Selected**.
 
-## Limitations
+## Current Limitations
 
 Internally, LocalStack makes use of the [OpenSearch Python client 2.x](https://github.com/opensearch-project/opensearch-py). The functionalities marked as deprecated in OpenSearch 1.x and subsequently removed in OpenSearch 2.x may not operate reliably when interacting with OpenSearch 1.x clusters through LocalStack. You can refer to the [compatibility documentation](https://github.com/opensearch-project/opensearch-py/blob/main/COMPATIBILITY.md) provided by the [OpenSearch Python client repository](https://github.com/opensearch-project/opensearch-py).
 

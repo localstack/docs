@@ -112,7 +112,7 @@ The screenshot below shows the triggered breakpoint with our `'Hello from LocalS
 
 ![Visual Studio Code debugging](vscode-debugging-py-1.png)
 
-#### Limitations
+#### Current Limitations
 
 Due to the ports published by the lambda container for the debugger, you can currently only debug one Lambda at a time. Due to the port publishing, multiple concurrently running lambda environments are not supported.
 

@@ -67,7 +67,7 @@ To start Redis clusters of a specific version, enable container mode for Redis-b
 This approach directs LocalStack to launch Redis instances in distinct containers, utilizing your chosen image tag. 
 Additionally, container mode is beneficial for independently examining the logs of each Redis instance. To activate this, set the `REDIS_CONTAINER_MODE` configuration variable to `1`.
 
-## Limitations
+## Current Limitations
 
 LocalStack's emulation support for MemoryDB primarily focuses on the creation and termination of Redis servers in cluster mode. Essential resources for running a cluster, such as parameter groups, security groups, and subnet groups, are mocked but have no effect on the Redis servers' operation.
 

@@ -113,7 +113,7 @@ awslocal kinesis list-streams
 | LOCALSTACK_HOST    | (deprecated) A variable defining where to find LocalStack (default: localhost:4566) |
 | USE_SSL             | (deprecated) Whether to use SSL when connecting to LocalStack (default: False) |
 
-### Limitations
+### Current Limitations
 
 Please note that there is a known limitation for using the `cloudformation package ...` command with the AWS CLI v2.
 The problem is that the AWS CLI v2 is [not available as a package on pypi.org](https://github.com/aws/aws-cli/issues/4947), but is instead shipped as a binary package that cannot be easily patched from `awslocal`.
