@@ -149,7 +149,7 @@ The following output would be retrieved:
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing cost category definitions for the Cost Explorer service. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the Resources section, and then clicking on **Cost Explorer** under the **Storage** section.
+The LocalStack Web Application provides a Resource Browser for managing cost category definitions for the Cost Explorer service. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the Resources section, and then clicking on **Cost Explorer** under the **Cloud Financial Management** section.
 
 <img src="cost-explorer-resource-browser.png" alt="Cost Explorer Resource Browser" title="Cost Explorer Resource Browser" width="900" />
 <br><br>
