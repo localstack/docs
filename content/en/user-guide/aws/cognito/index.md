@@ -13,10 +13,6 @@ Cognito is a managed identity service provided by AWS that is used for securing 
 
 LocalStack allows you to use the Cognito APIs in your local environment to manage authentication and access control for your local application and resources. The supported APIs are available on our [Cognito Identity coverage page](https://docs.localstack.cloud/references/coverage/coverage_cognito-identity/) and [Cognito User Pools coverage page](https://docs.localstack.cloud/references/coverage/coverage_cognito-idp/), which provides information on the extent of Cognito's integration with LocalStack.
 
-{{< callout >}}
-By default, LocalStack's Cognito does not send actual email messages. However, if you wish to enable this feature, you will need to provide an email address and configure the corresponding SMTP settings. The instructions on configuring the connection parameters of your SMTP server can be found in the [Configuration]({{< ref "configuration#emails" >}}) guide to allow your local Cognito environment to send email notifications.
-{{< /callout >}}
-
 ## Getting started
 
 This guide is designed for users new to Cognito and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
@@ -316,3 +312,7 @@ The following code snippets and sample applications provide practical examples o
 - [Running Cognito authentication and user pools locally](https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt)
 - [Serverless Container-based APIs with ECS & API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
 - [Step-up Authentication using Cognito](https://github.com/localstack/step-up-auth-sample)
+
+## Limitations
+
+By default, LocalStack's Cognito does not send actual email messages. However, if you wish to enable this feature, you will need to provide an email address and configure the corresponding SMTP settings. The instructions on configuring the connection parameters of your SMTP server can be found in the [Configuration]({{< ref "configuration#emails" >}}) guide to allow your local Cognito environment to send email notifications.

@@ -200,7 +200,7 @@ test-job:
 
 Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 
-## Limitations and Known Issues
+## Limitations
 
 - Localstack must be able to reach a docker socket to provision containers for certain services, ie Lambda, EKS, ECS...etc
 - the runner must be able to resolve the Localstack domain (by default _localhost.localstack.cloud_), see the sample pipelines for a possible solution
