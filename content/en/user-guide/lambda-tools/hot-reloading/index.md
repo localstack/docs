@@ -428,11 +428,8 @@ You can now see that the changes are applied without redeploying the Lambda func
 
 ## Deployment Configuration Examples
 
-### Serverless Framework Configuration
-
-Enable local code mounting
-
-```yaml
+{{< tabpane lang="YAML" >}}
+{{< tab header="Serverless Framework" lang="YAML" >}}
 custom:
   localstack:
     ...
@@ -452,18 +449,8 @@ custom:
       - testing
     lambda:
       mountCode: ${self:custom.stages.${opt:stage}.mountCode}
-```
-
-Pass `LAMBDA_MOUNT_CWD` env var with path to the built code directory
-(in our case to the folder with unzipped FatJar):
-
-{{< command >}}
-$ LAMBDA_MOUNT_CWD=$(pwd)/build/hot serverless deploy --stage local
-{{< / command >}}
-
-### AWS Cloud Development Kit (CDK) Configuration
-
-{{< highlight kotlin "linenos=table" >}}
+{{< /tab >}}
+{{< tab header="AWS Cloud Development Kit (CDK)" lang="Kotlin" >}}
 package org.localstack.cdkstack
 
 import java.util.UUID
@@ -504,19 +491,8 @@ class ApplicationStack(parent: Construct, name: String) : Stack(parent, name) {
         return Code.fromAsset(JAR_PATH)
     }
 }
-{{< / highlight >}}
-
-Then to bootstrap and deploy the stack run the following shell script
-
-{{< command >}}
-$ STAGE=local && LAMBDA_MOUNT_CWD=$(pwd)/build/hot &&
-  cdklocal bootstrap aws://000000000000/$(AWS_REGION) && \
-  cdklocal deploy
-{{< / command >}}
-
-### Terraform Configuration
-
-```hcl
+{{< /tab >}}
+{{< tab header="Terraform" lang="HCL" >}}
 variable "STAGE" {
     type    = string
     default = "local"
@@ -592,12 +568,25 @@ resource "aws_lambda_function" "exampleFunctionOne" {
         }
     }
 }
-```
+{{< /tab >}}
+{{< /tabpane >}}
 
-{{< command >}}
-$ terraform init && \
+You can then pass `LAMBDA_MOUNT_CWD` as an environment variable to your deployment tool.
+
+{{< tabpane lang="bash" >}}
+{{< tab header="Serverless Framework" lang="shell" >}}
+LAMBDA_MOUNT_CWD=$(pwd)/build/hot serverless deploy --stage local
+{{< /tab >}}
+{{< tab header="AWS Cloud Development Kit (CDK)" lang="shell" >}}
+STAGE=local && LAMBDA_MOUNT_CWD=$(pwd)/build/hot &&
+  cdklocal bootstrap aws://000000000000/$(AWS_REGION) && \
+  cdklocal deploy
+{{< /tab >}}
+{{< tab header="Terraform" lang="shell" >}}
+terraform init && \
   terraform apply -var "STAGE=local" -var "LAMBDA_MOUNT_CWD=$(pwd)/build/hot"
-{{< / command >}}
+{{< /tab >}}
+{{< /tabpane >}}
 
 ## Share deployment configuration between different machines
 
