@@ -10,7 +10,15 @@ cascade:
 
 ## Introduction
 
-We strive to make it as easy as possible for you to use LocalStack, and we are very grateful for any feedback.
+We strive to make it as easy as possible for you to use LocalStack, and we are very grateful for any feedback. We provide different levels of support to help you with your queries and issues. The support you receive depends on the plan you are on.
+
+| Plan | Support Level |
+|------|---------------|
+| Community Edition | [Community Support](#community-support) |
+| Hobby Plan | [Community Support](#community-support) |
+| Starter Plan | [Dedicated Support](#dedicated-support) |
+| Teams Plan | [Dedicated Support](#dedicated-support) |
+| Enterprise Plan | [Enterprise Support](#enterprise-support) |
 
 ## Community Support
 
@@ -50,7 +58,7 @@ Make sure to follow the issue templates and provide as much information as possi
 
 ## Dedicated support
 
-Dedicated customer support is available to all the LocalStack users with an active subscription.
+Dedicated customer support is available to **Starter** & **Teams** plan users with an active subscription.
 
 The support team is available to help you with:
 
@@ -74,7 +82,7 @@ You can avail dedicated support through the following channels:
 
 ### LocalStack Slack Bot
 
-LocalStack Slack Bot is available to all licensed users. To create a support ticket:
+To create a support ticket:
 
 - Search for the **LocalStack Pro Support** in our [Slack Community](https://localstack.cloud/slack).
 - Navigate to **Messages** and type your message to LocalStack Pro Support.
@@ -83,7 +91,7 @@ Sending a message to LocalStack Pro Support will create a support ticket, and ou
 
 ### LocalStack Web Application
 
-LocalStack Web Application is available to all licensed users. To create a support ticket:
+To create a support ticket:
 
 - Navigate to the [LocalStack Web Application](http://app.localstack.cloud).
 - Click on the chat icon in the bottom right corner of the page.
@@ -103,3 +111,47 @@ In many scenarios, we ask our customers to use Diagnosis endpoint to help us ret
 
 Ensure that you avoid sending the diagnostic output to public channels or forums, as it may contain sensitive information.
 {{< /callout >}}
+
+## Enterprise Support
+
+A customer portal is a home behind a login where customers can view, open, and reply to their support tickets. Currently, the **customer portal** is only **available to Enterprise customers**.
+
+You can find the customer portal here: [https://support.localstack.cloud/portal](https://support.localstack.cloud/portal)
+
+<p>
+{{< img src="customer-portal.png" alt="Customer portal for enterprise support" class="img-fluid shadow rounded" width="800px" >}}
+</p>
+
+### Signing up for Enterprise Support
+
+If you are a member of an organization with an enterprise LocalStack subscription, you will receive an invitation to create an account and join the LocalStack Support Portal via email.
+
+Follow the instructions in the email and set up your account by clicking on the **Sign up** button. You will be asked to create a password. Once you do so, you will be able to log in and start using the customer portal to create, view, and engage with tickets.
+
+### Creating a Support Ticket
+
+You can open a new ticket with LocalStack support by going to the **Create a Support Ticket** link. You will be redirected to a form where you will have to provide certain information to file a new support ticket.
+
+<p> 
+{{< img src="file-a-support-ticket.png" alt="Filing a support ticket" class="img-fluid shadow rounded" width="800px" >}} 
+</p>
+
+The form consists of two parts. One is basic information, which is mandatory to fill out, and additional information, which adds more context to your issue but is not mandatory. Once all the mandatory fields are filled out, you can create a new support ticket by clicking on the Submit button. Once the ticket is submitted, it will be reported to LocalStack support, who will get back to you on that query as soon as possible. A ticket will show up in the ticket list as soon as it’s submitted.
+
+#### Basic Information
+
+You need to fill out the following fields, which are mandatory to open a new ticket:
+
+-   **Type** - Choose the type of your query from the following options:
+    -   **Issue** - Select this when you are facing an issue using LocalStack.
+    -   **General inquiry** - Select this when you have a general question regarding LocalStack.
+    -   **Feature request** - Select this when you are looking for a feature that is not yet implemented in LocalStack.
+-   **Ticket name** - Provide a descriptive name for the ticket that summarizes your inquiry.
+-   **Description** - Provide a comprehensive description of your inquiry, explaining all the details that will help us understand your query.
+
+#### Additional Information
+
+-   **CI Issue?** - If the query is related to a CI issue, select the one that best fits your query from the dropdown.
+-   **Operating system** - From the dropdown, select the operating system you are using.
+-   **Affected Services** - From the dropdown, select the AWS service that is affected in your query.
+-   **File upload** - Here you can provide any additional files that you believe would be helpful for LocalStack support (e.g., screenshots, log files, etc.).
