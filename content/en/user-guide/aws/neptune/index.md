@@ -25,6 +25,9 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 | `1.2.0.1`       | `3.5.2`             |
 | `1.2.0.2`       | `3.5.2`             |
 | `1.2.1.0`       | `3.6.2`             |
+| `1.2.1.1`       | `3.6.2`             |
+| `1.3.0.0`       | `3.6.2`             |
+| `1.3.1.0`       | `3.6.2`             |
 
 ## Getting started
 
@@ -154,3 +157,51 @@ The Resource Browser allows you to perform the following actions:
 The following code snippets and sample applications provide practical examples of how to use Neptune in LocalStack for various use cases:
 
 - [Neptune Graph Database Demo](https://github.com/localstack/localstack-pro-samples/tree/master/neptune-graph-db)
+
+## Preview Features
+
+### Gremlin Transactions
+
+Gremlin transactions can be enabled by setting the environment `NEPTUNE_ENABLE_TRANSACTION=1`. Be aware that the `engine_version` provided when creating your cluster will be ignored and LocalStack will use `3.7.2` Gremlin Server. This feature is in beta and any feedback is appreciated.
+
+#### Current Limitations
+
+- Fixed id
+  - Creating a Vertex with an id in a transaction, then deleting it. Trying to recreate a vertex with the same id will fail.
+- Serializer considerations
+    - While it is possible to connect to the server with a lower version of Gremlin Language Variants, there are breaking changes to the default `GraphBinarySerializersV1` serializer used by most languages. One possible fix is to use the matching version for your language variant. Otherwise, using the `GraphSONSerializersV3d0` serializer also seems to be working. See example below.
+    - If using Neptune <= `1.2.0.2`, the Gryo message serializer is no longer supported. Only affects users explicitly using that serializer.
+
+Example using `gremlinpython==3.6.2`
+```python
+from gremlin_python.driver import serializer
+from gremlin_python.driver.driver_remote_connection import DriverRemoteConnection
+from gremlin_python.process.anonymous_traversal import traversal
+
+ENDPOINT = "localhost:4510" # TODO change to your endpoint
+DATABASE_URL = f"ws://{ENDPOINT}/gremlin"
+
+
+if __name__ == '__main__':
+    conn = DriverRemoteConnection(
+        DATABASE_URL,
+        "g",
+        # Note, the serializer is only required if using gremplin_python < 3.7.0 
+        message_serializer=serializer.GraphSONSerializersV3d0(),
+    )
+
+    g = traversal().withRemote(conn)
+
+    tx = g.tx()
+    gtx = tx.begin()
+
+    try:
+        v1 = gtx.addV("person").property("name", "Mark").next()
+        v2 = gtx.addV("person").property("name", "Jane").next()
+        tx.commit()
+    except Exception:
+        tx.rollback()
+    
+    nodes = g.V().valueMap().fold().next()
+    print(nodes)
+```
