@@ -155,7 +155,7 @@ sudo lsof -P -i :53 | grep LISTEN
 
 In macOS, a common process that listens on port 53 is `mDNSResponder`.
 Docker for Mac 4.24 has a [known issue](https://docs.docker.com/desktop/release-notes/#4240) and suggests the following workaround:
-> Deactivate network acceleration by adding `"kernelForUDP": false`, in the `settings.json` file located at `~/Library/Group Containers/group.com.docker/settings.json`.
+> Deactivate network acceleration by adding `"kernelForUDP": false`, in the `settings.json` file located at `~/Library/Group\ Containers/group.com.docker/settings.json`.
 
 Additionally, ensure that "Internet Sharing" is disabled in the system preferences as suggested in [this GitHub issue](https://github.com/docker/for-mac/issues/7008#issuecomment-1748344545).
 
