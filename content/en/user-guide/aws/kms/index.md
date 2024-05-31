@@ -98,30 +98,40 @@ Below is a simple example to create a key with a custom `KeyId` (note that the `
 
 {{< command >}}
 $ awslocal kms create-key --tags '[{"TagKey":"_custom_id_","TagValue":"00000000-0000-0000-0000-000000000001"}]'
+{{< / command >}}
+
+The following output will be displayed:
+
+```json
 {
     "KeyMetadata": {
         "AWSAccountId": "000000000000",
         "KeyId": "00000000-0000-0000-0000-000000000001",
     ....
 }
-{{< / command >}}
+```
 
 ## Custom Key Material for KMS Keys via Tags
 
-You can seed a KMS key with custom key material using the `_custom_key_material_` tag during creation. This can be useful to pre-seed a development environment so values encrypted with localstack KMS can be decrypted later.
+You can seed a KMS key with custom key material using the `_custom_key_material_` tag during creation. 
+This can be useful to pre-seed a development environment so values encrypted with KMS can be decrypted later.
 
-Below is an example of using custom key material (note this value should base base64 encoded):
+Here is an example of using custom key material with the value being base64 encoded:
 
 {{< command >}}
 $ echo 'c3VwZXIgc2VjcmV0IGtleQo=' | base64 -d
+<disable-copy>
 super secret key
+</disable-copy>
 $ awslocal kms create-key --tags '[{"TagKey":"_custom_key_material_","TagValue":"c3VwZXIgc2VjcmV0IGtleQo="}]'
+<disable-copy>
 {
     "KeyMetadata": {
         "AWSAccountId": "000000000000",
         "KeyId": "00000000-0000-0000-0000-000000000001",
     ....
 }
+</disable-copy>
 {{< / command >}}
 
 ## Limitations
