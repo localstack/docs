@@ -61,7 +61,7 @@ Options to configure how LocalStack interacts with Docker.
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `DOCKER_FLAGS` | | Allows to pass custom flags (e.g., volume mounts) to "docker run" when running LocalStack in Docker. |
+| `DOCKER_FLAGS` | | Allows to pass custom flags (e.g., volume mounts) to "docker run" when running LocalStack in Docker. You can also use the `--env-file` specification to mount environment variables. Note that when using `--env-file`, the path to the environment file must be inside the LocalStack Docker container. This requires the file to be copied or mounted into the container before it is used. |
 | `DOCKER_SOCK` | `/var/run/docker.sock` | Path to local Docker UNIX domain socket |
 | `DOCKER_BRIDGE_IP` | `172.17.0.1` | IP of the docker bridge used to enable access between containers |
 | `LEGACY_DOCKER_CLIENT` | `0`\|`1` | Whether LocalStack should use the command-line Docker client and subprocess execution to run Docker commands, rather than the Docker SDK. |
