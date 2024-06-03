@@ -3,6 +3,8 @@ title: "Simple Email Service (SES)"
 linkTitle: "Simple Email Service (SES)"
 description: Get started with Amazon Simple Email Service (SES) on LocalStack
 tags: ["Pro image"]
+persistence: supported
+
 ---
 
 ## Introduction
