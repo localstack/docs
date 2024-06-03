@@ -242,7 +242,7 @@ $ awslocal lambda put-function-event-invoke-config \
 {{< command >}}
 $ awslocal s3api put-bucket-notification-configuration \
     --bucket localstack-thumbnails-app-images \
-    --notification-configuration "{\"LambdaFunctionConfigurations\": [{\"LambdaFunctionArn\": \"$(awslocal lambda get-function --function-name resize | jq -r .Configuration.FunctionArn)\", \"Events\": [\"s3:ObjectCreated:*\"]}]}"
+    --notification-configuration "{\"LambdaFunctionConfigurations\": [{\"LambdaFunctionArn\": \"$(awslocal lambda get-function --function-name resize --output json | jq -r .Configuration.FunctionArn)\", \"Events\": [\"s3:ObjectCreated:*\"]}]}"
 {{< / command >}}
 
 #### Create the S3 static website
@@ -258,8 +258,8 @@ $ awslocal s3 website s3://webapp --index-document index.html
 Retrieve the Lambda function URLs for the `presign` and `list` Lambda functions using the following commands:
 
 {{< command >}}
-$ awslocal lambda list-function-url-configs --function-name presign | jq -r '.FunctionUrlConfigs[0].FunctionUrl'
-$ awslocal lambda list-function-url-configs --function-name list | jq -r '.FunctionUrlConfigs[0].FunctionUrl'
+$ awslocal lambda list-function-url-configs --function-name presign --output json | jq -r '.FunctionUrlConfigs[0].FunctionUrl'
+$ awslocal lambda list-function-url-configs --function-name list --output json | jq -r '.FunctionUrlConfigs[0].FunctionUrl'
 {{< / command >}}
 
 Save these URLs for later use in the sample application.
