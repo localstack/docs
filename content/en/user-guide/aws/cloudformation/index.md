@@ -305,6 +305,9 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::Athena::NamedQuery                         |      ✅ |      ✅ |      - |
 | AWS::Athena::WorkGroup                          |      ✅ |      ✅ |      - |
 | AWS::Backup::BackupPlan                         |      ✅ |      ✅ |      - |
+| AWS::Batch::ComputeEnvironment                  |      ✅ |      ✅ |      - |
+| AWS::Batch::JobDefinition                       |      ✅ |      ✅ |      - |
+| AWS::Batch::JobQueue                           |      ✅ |      ✅ |      - |
 | AWS::CloudFormation::CustomResource             |      ✅ |      - |      - |
 | AWS::CloudFront::CachePolicy                    |      ✅ |      ✅ |      - |
 | AWS::CloudFront::CloudFrontOriginAccessIdentity |      ✅ |      ✅ |      - |
@@ -362,9 +365,12 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::ElasticLoadBalancingV2::TargetGroup        |      ✅ |      ✅ |      - |
 | AWS::Glue::Classifier                           |      ✅ |      ✅ |      - |
 | AWS::Glue::Crawler                              |      ✅ |      ✅ |      - |
+| AWS::Glue::Connection                           |      ✅ |      ✅ |      - |
 | AWS::Glue::Database                             |      ✅ |      ✅ |      - |
 | AWS::Glue::Job                                  |      ✅ |      ✅ |      - |
 | AWS::Glue::Registry                             |      ✅ |      ✅ |      - |
+| AWS::Glue::SchemaVersion                        |      ✅ |      ✅ |      - |
+| AWS::Glue::SchemaVersionMetadata                |      ✅ |      ✅ |      - |
 | AWS::Glue::Table                                |      ✅ |      ✅ |      - |
 | AWS::Glue::Trigger                              |      ✅ |      ✅ |      - |
 | AWS::Glue::Workflow                             |      ✅ |      ✅ |      - |
