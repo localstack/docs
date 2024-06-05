@@ -14,7 +14,7 @@ This page contains easily customisable snippets to show you how to manage LocalS
 
 ```yaml
 - name: Start LocalStack
-  uses: LocalStack/setup-localstack@main
+  uses: LocalStack/setup-localstack@v0.2.0
   with:
     image-tag: 'latest'
     install-awslocal: 'true'
@@ -25,7 +25,7 @@ To set LocalStack configuration options, you can use the `configuration` input p
 
 ```yml
 - name: Start LocalStack
-  uses: LocalStack/setup-localstack@main
+  uses: LocalStack/setup-localstack@v0.2.0
   with:
     image-tag: 'latest'
     install-awslocal: 'true'
@@ -52,7 +52,7 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 
 ```yaml
 - name: Start LocalStack
-  uses: LocalStack/setup-localstack@main
+  uses: LocalStack/setup-localstack@v0.2.0
   with:
     image-tag: 'latest'
     install-awslocal: 'true'
@@ -72,59 +72,27 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 
 You can preserve your AWS infrastructure with Localstack in various ways.
 
-#### Artifact
-```yaml
-...
-# Localstack is up and running already
-
-- uses: actions/download-artifact@v4
-  with:
-    name: ls-state
-  continue-on-error: true  # Allow it to fail as pod does not exist at first run
-
-- name: Load the State
-  env:
-    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
-  run: | 
-    localstack state import ls-state.zip
-
-...
-
-- name: Save the State
-  env:
-    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
-  run: | 
-    localstack state export ls-state.zip
-
-- uses: actions/upload-artifact@v4
-  with:
-    name: ls-state
-    if-no-files-found: ignore
-    path: ${{ github.workspace }}/ls-state.zip
-    overwrite: true
-...
-```
-
-More information about state import and export [here](/user-guide/state-management/export-import-state).
-
 #### Cloud Pods
 ```yaml
 ...
 # Localstack is up and running already
 - name: Load the Cloud Pod 
   continue-on-error: true  # Allow it to fail as pod does not exist at first run
-  uses: LocalStack/setup-localstack/cloud-pods@main
+  uses: LocalStack/setup-localstack@v0.2.0
   with:
-    name: <cloud-pod-name>
-    action: load
+    state-backend: cloud-pods
+    state-name: <cloud-pod-name>
+    state-action: load
+    skip-startup: 'true'
 
 ...
 
 - name: Save the Cloud Pod 
-  uses: LocalStack/setup-localstack/cloud-pods@main
+  uses: LocalStack/setup-localstack@v0.2.0
   with:
-    name: <cloud-pod-name>
-    action: save
+    state-backend: cloud-pods
+    state-name: <cloud-pod-name>
+    state-action: save
 ...
 ```
 
@@ -152,45 +120,51 @@ jobs:
       ...
 
       - name: Deploy Preview
-        uses: LocalStack/setup-localstack/preview@main
+        uses: LocalStack/setup-localstack@v0.2.0
         env:
           AWS_DEFAULT_REGION: us-east-1
           AWS_REGION: us-east-1
           AWS_ACCESS_KEY_ID: test
           AWS_SECRET_ACCESS_KEY: test
         with:
+          state-backend: ephemeral
+          state-action: start
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          localstack-api-key: ${{ secrets.LOCALSTACK_API_KEY }}
-          preview-cmd: |
-            # Add your custom deployment commands here. 
-            # Below is an example script which will run against the instance.
-            bin/deploy.sh
-```
-And in a separate workflow add the counter part to comment the link on the Pull Request.
-
-```yaml
-name: Finalize PR Preview
-
-on:
-  workflow_run:
-    workflows: ["Create PR Preview"]
-    types:
-      - completed
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    steps:
-      - name: Finalize PR comment
-        uses: LocalStack/setup-localstack/finish@main
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          include-preview: true
+          skip-ephemeral-stop: 'true' # We want our instance keep running
+          preview-cmd: bin/deploy.sh
 ```
 
 Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
+
+#### Artifact
+```yaml
+...
+- name: Start LocalStack and Load State
+  uses: LocalStack/setup-localstack@v0.2.0
+  continue-on-error: true  # Allow it to fail as pod does not exist at first run
+  with:
+    install-awslocal: 'true'
+    state-backend: cloud-pods
+    state-action: load
+    state-name: my-ls-state
+  env:
+    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+
+...
+
+- name: Save LocalStack State
+  uses: LocalStack/setup-localstack@v0.2.0
+  with:
+    install-awslocal: 'true'
+    state-backend: cloud-pods
+    state-action: save
+    state-name: my-ls-state
+  env:
+    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+...
+```
+
+More information about state import and export [here](/user-guide/state-management/export-import-state).
 
 ## Current Limitations
 

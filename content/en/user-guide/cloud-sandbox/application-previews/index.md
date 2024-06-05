@@ -27,7 +27,7 @@ To get started with a ready-to-use template, you can fork the [`bref-localstack-
 
 ### Create the Application Preview
 
-To create an Application Preview, you can use the [`LocalStack/setup-localstack/preview` action](https://github.com/localstack/setup-localstack).
+To create an Application Preview, you can use the [`LocalStack/setup-localstack/ephemeral/startup` action](https://github.com/localstack/setup-localstack).
 
 The sample repository has been configured to use the workflow described above. For your custom repository, create a new file named `ci-pipeline.yml` in the `.github/workflows` directory. This file will contain the CI pipeline that runs on every pull request. This pipeline deploys the application to a LocalStack Ephemeral Instance.
 
@@ -49,7 +49,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy Preview
-        uses: LocalStack/setup-localstack/preview@main
+        uses: LocalStack/setup-localstack@v0.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           localstack-api-key: ${{ secrets.LOCALSTACK_API_KEY }}
@@ -93,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Finalize PR comment
-        uses: LocalStack/setup-localstack/finish@main
+        uses: LocalStack/setup-localstack/finish@v0.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           include-preview: true
