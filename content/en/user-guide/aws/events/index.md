@@ -12,7 +12,7 @@ LocalStack allows you to use the EventBridge APIs in your local environment to c
 
 {{< callout >}}
 We have introduced an all-new LocalStack-native EventBridge provider is available behind a feature flag. You can activate it by configuring `PROVIDER_OVERRIDE_EVENTS=v2` in your LocalStack configuration.
-{{< /callout >}
+{{< /callout >}}
 
 ## Getting Started
 
