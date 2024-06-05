@@ -3,8 +3,9 @@ title: "Simple Notification Service (SNS)"
 linkTitle: "Simple Notification Service (SNS)"
 description: Get started with Simple Notification Service (SNS) on LocalStack
 persistence: supported
-
 ---
+
+## Introduction
 
 Simple Notification Service (SNS) is a serverless messaging service that can distribute a massive number of messages to multiple subscribers and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints. SNS employs the Publish/Subscribe, an asynchronous messaging pattern that decouples services that produce events from services that process events.
 
@@ -445,6 +446,15 @@ awslocal sns get-subscription-attributes --subscription-arn "arn:aws:sns:us-east
 
 SNS will now publish messages to your HTTP endpoint, even if it did not confirm itself the subscription. 
 
+## Filter operations
+
+LocalStack supports the following SNS filter operators:
+
+- [Equals-ignore-case matching](https://docs.aws.amazon.com/sns/latest/dg/string-value-matching.html#string-equals-ignore)
+- [Suffix matching](https://docs.aws.amazon.com/sns/latest/dg/string-value-matching.html#string-suffix-matching)
+- [Anything-but matching](https://docs.aws.amazon.com/sns/latest/dg/string-value-matching.html#string-anything-but-matching).
+
+LocalStack also supports the [$or operator](https://docs.aws.amazon.com/sns/latest/dg/and-or-logic.html#or-operator), allowing more complex filter policies.
 
 ## Resource Browser
 
