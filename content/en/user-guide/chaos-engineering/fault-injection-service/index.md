@@ -162,6 +162,11 @@ The execution process is logged, and detailed information about the experiment's
 
 ### Service Unavailability
 
+{{< callout "warning" >}}
+The `localstack:generic:api-error` action is deprecated and marked for removal.
+You may use the [Chaos Plugin]({{< ref "chaos" >}}) to achieve the same effect.
+{{< /callout >}}
+
 In a file called `dynamodb-experiment.json` let's define a FIS experiment that causes all calls to the `GetItem` API of the DynamoDB service to return a 503 `Service Unavailable` response.
 This failure will happen 100% of the times the method is called.
 
@@ -312,6 +317,12 @@ $ awslocal fis stop-experiment --id 1a01327a-79d5-4202-8132-e56e55c9391b
 
 
 ### Region Unavailability
+
+{{< callout "warning" >}}
+The `localstack:generic:api-error` action is deprecated and marked for removal.
+You may use the [Chaos Plugin]({{< ref "chaos" >}}) to achieve the same effect.
+{{< /callout >}}
+
 
 This sort of experiment involves disabling entire regions to simulate regional outages and failovers.
 Let's see what that would look like, in a separate file, `regional-experiment.json`:
@@ -497,6 +508,12 @@ $ awslocal fis stop-experiment --id e49283c1-c2e0-492b-b69f-9fbd710bc1e3
 ```
 
 ### Service Latency
+
+{{< callout "warning" >}}
+The `localstack:generic:latency` action is deprecated and marked for removal.
+You may use the [Chaos Plugin]({{< ref "chaos" >}}) to achieve the same effect.
+{{< /callout >}}
+
 
 Let's now add some latency to our DynamoDB API calls.
 First the definition of a new experiment template in another file, `latency-experiment.json`:
