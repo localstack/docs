@@ -22,7 +22,7 @@ The API path for the LocalStack internal resources is `/_localstack`. The follow
 | `/_localstack/cloudformation/deploy` | Enables you to deploy CloudFormation templates locally through a web interface. |
 | `/_localstack/diagnose`              | Reports extensive and sensitive data from LocalStack instance, enabled via the `DEBUG=1` configuration variable. |
 | `/_localstack/config`                | Enables dynamic configuration updates at runtime, enabled via the `ENABLE_CONFIG_UPDATES` configuration variable.  |
-| `/_localstack/outages`               | [Outages]({{< ref "outages" >}}) configuration endpoint |
+| `/_localstack/chaos`                 | [Chaos]({{< ref "chaos" >}}) configuration endpoint |
 | `/_localstack/state/<service>/save`  | Get a snapshot of the given AWS service using the Persistence mechanism. |
 | `/_localstack/state/<service>/load`  | Load the most recent snapshot of the given service using the Persistence mechanism. |
 | `/_localstack/state/reset`           | Reset the state of the services using the Persistence mechanism. |
