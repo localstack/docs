@@ -44,7 +44,7 @@ phases:
       - run: docker pull public.ecr.aws/localstack/localstack:latest
       - run: docker image tag public.ecr.aws/localstack/localstack-pro:latest localstack/localstack:latest
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@main
+        uses: LocalStack/setup-localstack@v0.2.0
         with:
           image-tag: 'latest'
           install-awslocal: 'true'
@@ -82,7 +82,7 @@ phases:
     steps:
       ...
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@main
+        uses: LocalStack/setup-localstack@v0.2.0
         with:
           image-tag: 'latest'
           configuration: LS_LOG=trace
@@ -128,7 +128,7 @@ phases:
       - run: docker pull public.ecr.aws/localstack/localstack-pro:latest
       - run: docker image tag public.ecr.aws/localstack/localstack-pro:latest localstack/localstack-pro:latest
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@main
+        uses: LocalStack/setup-localstack@v0.2.0
         with:
           image-tag: 'latest'
           use-pro: 'true'
@@ -165,6 +165,76 @@ artifact:
 
 
 ### Store LocalStack state
+
+#### Cloud Pods
+
+Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
+
+##### Native Runner
+```yml
+...
+phases:
+  pre_build:
+    commands:
+      ...
+      # LocalStack is up and running already
+      - localstack pod load <POD_NAME> || true
+      ...
+      - localstack pod save <POD_NAME>
+      ...
+```
+
+##### GitHub Actions Runner
+
+```yml
+...
+phases:
+  pre_build:
+    steps:
+      # LocalStack is up and running already
+      - name: Load the Cloud Pod 
+        continue-on-error: true  # Allow it to fail as pod does not exist at first run
+        uses: LocalStack/setup-localstack@v0.2.0
+        with:
+          state-backend: cloud-pods
+          name: <cloud-pod-name>
+          action: load
+          skip-startup: 'true'
+      ...
+      - name: Save the Cloud Pod 
+        uses: LocalStack/setup-localstack@v0.2.0
+        with:
+          state-backend: cloud-pods
+          state-name: <cloud-pod-name>
+          state-action: save
+      ...
+```
+
+#### Ephemeral Instances (Preview)
+```yml
+...
+phases:
+  pre_build:
+    commands:
+      ...
+      - |
+          response=$(curl -X POST -d '{"auto_load_pod": "false"}' \
+            -H 'ls-api-key: $LOCALSTACK_API_KEY' \
+            -H 'authorization: token $LOCALSTACK_API_KEY' \
+            -H 'content-type: application/json' \
+            https://api.localstack.cloud/v1/previews/my-localstack-state)
+          
+          if [ "$endpointUrl" = "null" ] || [ "$endpointUrl" = "" ]; then
+            echo "Unable to create preview environment. API response: $response"
+            exit 1
+          fi
+          echo "Created preview environment with endpoint URL: $endpointUrl"
+
+          export AWS_ENDPOINT_URL=$endpointUrl
+      ...
+```
+
+Find out more about [ephemeral instances](/user-guide/cloud-sandbox/).
 
 #### Artifact
 
@@ -231,72 +301,6 @@ cache:
     - 'ls-state-pod.zip'
 ```
 
-#### Cloud Pods
-
-Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
-
-##### Native Runner
-```yml
-...
-phases:
-  pre_build:
-    commands:
-      ...
-      # LocalStack is up and running already
-      - localstack pod load <POD_NAME> || true
-      ...
-      - localstack pod save <POD_NAME>
-      ...
-```
-
-##### GitHub Actions Runner
-
-```yml
-...
-phases:
-  pre_build:
-    steps:
-      # LocalStack is up and running already
-      - name: Load the Cloud Pod 
-        continue-on-error: true  # Allow it to fail as pod does not exist at first run
-        uses: LocalStack/setup-localstack/cloud-pods@main
-        with:
-          name: <cloud-pod-name>
-          action: load
-      ...
-      - name: Save the Cloud Pod 
-        uses: LocalStack/setup-localstack/cloud-pods@main
-        with:
-          name: <cloud-pod-name>
-          action: save
-      ...
-```
-
-#### Ephemeral Instances (Preview)
-```yml
-...
-phases:
-  pre_build:
-    commands:
-      ...
-      - |
-          response=$(curl -X POST -d '{"auto_load_pod": "false"}' \
-            -H 'ls-api-key: $LOCALSTACK_API_KEY' \
-            -H 'authorization: token $LOCALSTACK_API_KEY' \
-            -H 'content-type: application/json' \
-            https://api.localstack.cloud/v1/previews/my-localstack-state)
-          
-          if [ "$endpointUrl" = "null" ] || [ "$endpointUrl" = "" ]; then
-            echo "Unable to create preview environment. API response: $response"
-            exit 1
-          fi
-          echo "Created preview environment with endpoint URL: $endpointUrl"
-
-          export AWS_ENDPOINT_URL=$endpointUrl
-      ...
-```
-
-Find out more about [ephemeral instances](/user-guide/cloud-sandbox/).
 
 ## Current Limitations
 

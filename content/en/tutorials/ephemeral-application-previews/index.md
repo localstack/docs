@@ -71,7 +71,7 @@ Now you're set to create your GitHub Action workflow, which will deploy your clo
 To achieve the goal, you can utilize a few prebuilt Actions:
 
 -   [`actions/checkout`](https://github.com/actions/checkout): Checkout the application code with Git.
--   [`setup-localstack/preview`](https://github.com/localstack/setup-localstack): Configure the workflow to generate the application preview.
+-   [`setup-localstack/ephemeral/startup`](https://github.com/localstack/setup-localstack): Configure the workflow to generate the application preview.
 -   [`LocalStack/setup-localstack/finish`](https://github.com/localstack/setup-localstack): Add a comment to the PR, which includes a URL to the application preview.
 
 You will find the following content to the `preview.yml` file that you opened earlier:
@@ -101,7 +101,7 @@ jobs:
 
 ### Deploy the application preview
 
-To deploy the application preview, you can utilize the `LocalStack/setup-localstack/preview` action, which requires the following parameters:
+To deploy the application preview, you can utilize the `LocalStack/setup-localstack/ephemeral/startup` action, which requires the following parameters:
 
 -   `github-token`: Automatically configured on the GitHub Action runner.
 -   `localstack-api-key`: Configuration of a LocalStack CI key (`LOCALSTACK_API_KEY`) to activate licensed features in LocalStack.
@@ -111,7 +111,7 @@ The following step sets up the dependencies and deploys the application preview 
 
 ```yaml 
 - name: Deploy Preview
-  uses: LocalStack/setup-localstack/preview@main
+  uses: LocalStack/setup-localstack/ephemeral/startup@v0.2.0
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     localstack-api-key: ${{ secrets.LOCALSTACK_API_KEY }}
@@ -140,7 +140,7 @@ To complete the process, the last step attaches the application preview URL to t
 
 ```yaml 
 - name: Finalize PR comment
-  uses: LocalStack/setup-localstack/finish@main
+  uses: LocalStack/setup-localstack/finish@v0.2.0
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     include-preview: true
