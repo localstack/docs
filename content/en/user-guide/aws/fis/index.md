@@ -230,32 +230,11 @@ $ awslocal fis stop-experiment \
 
 The [`ListKeys`](https://docs.aws.amazon.com/kms/latest/APIReference/API_ListKeys.html) API should now return an empty list again.
 
-## LocalStack features
-
-LocalStack provides the `localstack:generic:api-error` action, which functions similarly to actions like `aws:fis:inject-api-unavailable-error` found in AWS.
-This action enables users to introduce errors into API calls.
-
-
-Contrasting with AWS, where such functionality is currently limited to EC2 API calls and a handful of error types, the `localstack:generic:api-error` in LocalStack FIS empowers users to configure a wide range of faults for any API call.
-Within its `parameters` section, you can configure the following:
-
-| Parameter    | Description                                                                                       | Default Value           |
-|--------------|---------------------------------------------------------------------------------------------------|-------------------------|
-| `region`     | The region name where faults will be introduced, e.g., "us-west-1". | Experiment's region     |
-| `service`    | The service name to limit faults to, e.g., "kms". | All services            |
-| `operation`  | The operation name for the specified service to limit faults to, e.g., "ListKeys". | All operations          |
-| `percentage` | The percentage of API calls to fail among matching calls. | "100"                   |
-| `exception`  | The name of the exception to raise for affected API calls. | "InternalError"         |
-| `errorCode`  | The HTTP error code to return for impacted API calls. | "500"                   |
-
-This table summarizes the configurable parameters for the `localstack:generic:api-error` action in LocalStack FIS.
-
 ## Current Limitations
 
 1. LocalStack currently supports only a subset of FIS actions available in AWS.
 Unsupported actions will result in an error.
-The range of supported actions is continuously expanding, with the capability to add new actions upon request.
 1. LocalStack does not provide support for the target selection mechanism utilized by AWS.
 For more information, refer to the [selection mode documentation](https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-selection-mode).
-1. At present, LocalStack does not consider [`RoleARN`s](https://docs.aws.amazon.com/fis/latest/APIReference/API_ExperimentTemplate.html#fis-Type-ExperimentTemplate-roleArn).
-In AWS, FIS executes actions based on permissions granted by the specified `RoleARN`s.
+1. At present, LocalStack ignores [`RoleARN`s](https://docs.aws.amazon.com/fis/latest/APIReference/API_ExperimentTemplate.html#fis-Type-ExperimentTemplate-roleArn).
+On AWS, FIS executes actions based on permissions granted by the specified `RoleARN`s.
