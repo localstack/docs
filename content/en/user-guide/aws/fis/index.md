@@ -41,6 +41,12 @@ We will demonstrate how to create an FIS Experiment that fails KMS [`ListKeys`](
 
 ### Create an FIS Experiment
 
+<!--
+TODO
+
+Remove the use of localstack: action, instead use an AWS one
+-->
+
 Create a new file named `create-experiment.json`.
 This file should contain a JSON configuration that will be utilized during the subsequent invocation of the [`CreateExperimentTemplate`](https://docs.aws.amazon.com/fis/latest/APIReference/API_CreateExperimentTemplate.html) API.
 
