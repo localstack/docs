@@ -444,17 +444,7 @@ awslocal sns get-subscription-attributes --subscription-arn "arn:aws:sns:us-east
 }
 ```
 
-SNS will now publish messages to your HTTP endpoint, even if it did not confirm itself the subscription. 
-
-## Filter operations
-
-LocalStack supports the following SNS filter operators:
-
-- [Equals-ignore-case matching](https://docs.aws.amazon.com/sns/latest/dg/string-value-matching.html#string-equals-ignore)
-- [Suffix matching](https://docs.aws.amazon.com/sns/latest/dg/string-value-matching.html#string-suffix-matching)
-- [Anything-but matching](https://docs.aws.amazon.com/sns/latest/dg/string-value-matching.html#string-anything-but-matching).
-
-LocalStack also supports the [$or operator](https://docs.aws.amazon.com/sns/latest/dg/and-or-logic.html#or-operator), allowing more complex filter policies.
+SNS will now publish messages to your HTTP endpoint, even if it did not confirm itself the subscription.
 
 ## Resource Browser
 
@@ -477,3 +467,7 @@ The following code snippets and sample applications provide practical examples o
 - [Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3](https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo)
 - [Loan Broker application with AWS Step Functions, DynamoDB, Lambda, SQS, and SNS](https://github.com/localstack/loan-broker-stepfunctions-lambda-app)
 - [Serverless Image Resizer with AWS Lambda, S3, SNS, and SES](https://github.com/localstack/serverless-image-resizer)
+
+## Current Limitations
+
+- LocalStack does not support the `cidr` operator for filter policies. However, [other policies](https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html) are supported.
