@@ -121,6 +121,38 @@ DMS is in a preview state on LocalStack and only supports some selected use case
 | RDS MariaDB        | Kinesis     | full-load, cdc  |
 | RDS MySQL          | Kinesis     | full-load, cdc  |
 
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing:
+
+- [Replication Instances](https://app.localstack.cloud/inst/default/resources/dms/replication-instances)
+- [Endpoints](https://app.localstack.cloud/inst/default/resources/dms/endpoints)
+- [Replication Tasks](https://app.localstack.cloud/inst/default/resources/dms/replication-tasks)
+
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Database Migration Service** under the **Migration and transfer** section.
+
+<img src="dms-resource-browser.png" alt="DMS Resource Browser" title="Cognito Resource Browser" width="900" />
+<br><br>
+
+The Resource Browser supports CRUD (Create, Read, Update, Delete) operations on DMS resources.
+
+### Replication Instances
+
+-   **Create Replication Instance**: To create a new replication instance, click the **Create Replication Instance** button and enter details such as the Replication Instance Identifier and Replication Instance class.
+-   **View Replication Instance**: To view details of a replication instance, click on its ARN.
+-   **Delete Replication Instance**: To delete a replication instance, select it, go to **Actions**, and choose **Remove Selected**.
+
+### Endpoints
+
+-   **Create Endpoint**: To create a new endpoint, click on the **Create Endpoint** button and fill in necessary details such as the Endpoint Identifier, Endpoint Type, and Engine Name.
+-   **View Endpoint**: To see the details of an endpoint, click on its ARN. You can further click **Connections** and test a conenction by specifying the Replication Instance ARN.
+-   **Delete Endpoint**: To remove an endpoint, select it, navigate to **Actions**, and click **Remove Selected**.
+
+### Replication Tasks
+
+-   **Create Replication Task**: To create a new replication task, press the **Create Replication Task** button and specify the Task Identifier, Source Endpoint Identifier, and Target Endpoint Identifier, among other settings.
+-   **View Replication Task**: To review a replication task, click on the task identifier.
+-   **Delete Replication Task**: To delete a replication task, choose the task, click on **Actions**, and select **Remove Selected**.
 
 ## Current Limitations
 
