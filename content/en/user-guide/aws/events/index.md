@@ -11,7 +11,7 @@ EventBridge provides a centralized mechanism to discover and communicate events 
 LocalStack allows you to use the EventBridge APIs in your local environment to create rules that route events to a target. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_events/), which provides information on the extent of EventBridge's integration with LocalStack. For information on EventBridge Pipes, please refer to the [EventBridge Pipes]({{< ref "user-guide/aws/pipes" >}}) section.
 
 {{< callout >}}
-We have introduced an all-new LocalStack-native EventBridge provider is available behind a feature flag. You can activate it by configuring `PROVIDER_OVERRIDE_EVENTS=v2` in your LocalStack configuration.
+We have introduced an all-new LocalStack-native EventBridge provider available behind a feature flag. You can activate it by configuring `PROVIDER_OVERRIDE_EVENTS=v2` in your LocalStack configuration.
 {{< /callout >}}
 
 ## Getting Started
