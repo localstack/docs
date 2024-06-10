@@ -134,7 +134,7 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 <img src="dms-resource-browser.png" alt="DMS Resource Browser" title="Cognito Resource Browser" width="900" />
 <br><br>
 
-The Resource Browser supports CRUD (Create, Read, Update, Delete) operations on DMS resources.
+The Resource Browser supports CRD (Create, Read, Delete) operations on DMS resources.
 
 ### Replication Instances
 
