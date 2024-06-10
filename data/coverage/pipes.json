@@ -42,11 +42,11 @@
       "ListPipes": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -125,100 +125,6 @@
   ],
   "details": {
     "CreatePipe": {
-      "Enrichment, LogConfiguration, Name, RoleArn, Source, SourceParameters, Target": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_pipe_logging",
-            "test": "test_pipe_logging",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..message.awsRequest', '$..message.awsResponse', '$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "Enrichment, Name, RoleArn, Source, SourceParameters, Target": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_pipe_filter_enrichment",
-            "test": "test_pipe_filter_enrichment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "Enrichment, Name, RoleArn, Source, SourceParameters, Target, TargetParameters": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_kinesis.py::TestPipesKinesis::test_kinesis_dlq_behavior",
-            "test": "test_kinesis_dlq_behavior",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          }
-        ]
-      },
-      "LogConfiguration, Name, RoleArn, Source, SourceParameters, Target": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_sqs_dlq_partial_batch_failures",
-            "test": "test_sqs_dlq_partial_batch_failures",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..message.awsRequest', '$..message.awsResponse']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "Name, RoleArn, Source, SourceParameters, Target": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_dynamodb_pipe",
-            "test": "test_dynamodb_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason', '$..Message.dynamodb.SizeBytes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
-            "test": "test_kinesis_dlq_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "Name, RoleArn, Source, SourceParameters, Target, TargetParameters": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
-            "test": "test_kinesis_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
       "Name, RoleArn, Source, Target": {
         "ls_pro": [
           {
@@ -232,48 +138,14 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_pipe",
-            "test": "test_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipes_empty",
-            "test": "test_list_pipes_empty",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/pipes/aws_pipes_pipe/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          }
-        ]
-      },
-      "Name, RoleArn, Source, Target, TargetParameters": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_targets.py::TestPipesTargets::test_target_events",
-            "test": "test_target_events",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_targets.py::TestPipesTargets::test_target_stepfunctions",
-            "test": "test_target_stepfunctions",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           }
         ]
       }
@@ -292,114 +164,14 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_dynamodb_pipe",
-            "test": "test_dynamodb_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason', '$..Message.dynamodb.SizeBytes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
-            "test": "test_kinesis_dlq_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
-            "test": "test_kinesis_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_pipe",
-            "test": "test_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_pipe_filter_enrichment",
-            "test": "test_pipe_filter_enrichment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_pipe_logging",
-            "test": "test_pipe_logging",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..message.awsRequest', '$..message.awsResponse', '$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_sqs_dlq_partial_batch_failures",
-            "test": "test_sqs_dlq_partial_batch_failures",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..message.awsRequest', '$..message.awsResponse']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_kinesis.py::TestPipesKinesis::test_kinesis_dlq_behavior",
-            "test": "test_kinesis_dlq_behavior",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipe_source_prefix",
-            "test": "test_list_pipe_source_prefix",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/pipes/aws_pipes_pipe/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_targets.py::TestPipesTargets::test_target_events",
-            "test": "test_target_events",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_targets.py::TestPipesTargets::test_target_stepfunctions",
-            "test": "test_target_stepfunctions",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           }
         ]
       }
@@ -428,98 +200,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_dynamodb_pipe",
-            "test": "test_dynamodb_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason', '$..Message.dynamodb.SizeBytes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_dlq_pipe",
-            "test": "test_kinesis_dlq_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason', '$..KinesisBatchInfo..batchSize', '$..KinesisBatchInfo..shardId', 'pipe_target_function_event_1..eventID']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
-            "test": "test_kinesis_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_pipe",
-            "test": "test_pipe",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_pipe_filter_enrichment",
-            "test": "test_pipe_filter_enrichment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_pipe_logging",
-            "test": "test_pipe_logging",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..message.awsRequest', '$..message.awsResponse', '$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_sqs_dlq_partial_batch_failures",
-            "test": "test_sqs_dlq_partial_batch_failures",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..message.awsRequest', '$..message.awsResponse']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_kinesis.py::TestPipesKinesis::test_kinesis_dlq_behavior",
-            "test": "test_kinesis_dlq_behavior",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_kinesis.py::TestPipesKinesis::test_kinesis_dlq_behavior",
-            "test": "test_kinesis_dlq_behavior",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipe_source_prefix",
-            "test": "test_list_pipe_source_prefix",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/pipes/aws_pipes_pipe/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -528,28 +210,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipes_empty",
-            "test": "test_list_pipes_empty",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_targets.py::TestPipesTargets::test_target_events",
-            "test": "test_target_events",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_targets.py::TestPipesTargets::test_target_stepfunctions",
-            "test": "test_target_stepfunctions",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/pipes/aws_pipes_pipe/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -578,18 +240,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_kinesis.py::TestPipesKinesis::test_kinesis_dlq_behavior",
-            "test": "test_kinesis_dlq_behavior",
-            "response": "404",
-            "error": "NotFoundException",
-            "snapshot_skipped": "['$..StateReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipe_source_prefix",
-            "test": "test_list_pipe_source_prefix",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/pipes/aws_pipes_pipe/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
             "response": "404",
             "error": "NotFoundException",
             "snapshot_skipped": "",
@@ -598,74 +250,10 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipe_source_prefix",
-            "test": "test_list_pipe_source_prefix",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/pipes/aws_pipes_pipe/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
             "response": "404",
             "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipe_source_prefix",
-            "test": "test_list_pipe_source_prefix",
-            "response": "404",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          }
-        ]
-      }
-    },
-    "ListPipes": {
-      "NamePrefix": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipe_name_prefix",
-            "test": "test_list_pipe_name_prefix",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipes_empty",
-            "test": "test_list_pipes_empty",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "SourcePrefix": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipe_source_prefix",
-            "test": "test_list_pipe_source_prefix",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "TargetPrefix": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_list.py::TestPipesList::test_list_pipe_target_prefix",
-            "test": "test_list_pipe_target_prefix",
-            "response": "200",
-            "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,

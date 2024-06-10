@@ -138,7 +138,7 @@
       "DescribeVault": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -174,7 +174,7 @@
       "GetVaultAccessPolicy": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -294,7 +294,7 @@
       "ListTagsForVault": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -306,7 +306,7 @@
       "ListVaults": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -401,22 +401,18 @@
   ],
   "details": {
     "AddTagsToVault": {
-      "Tags, accountId, vaultName": {
+      "accountId, vaultName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
-            "test": "test_appsync_deployed",
-            "response": "204",
-            "error": "",
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_invalid_vault_name",
+            "test": "test_invalid_vault_name",
+            "response": "404",
+            "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          }
-        ]
-      },
-      "accountId, vaultName": {
-        "ls_pro": [
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_invalid_vault_name",
             "test": "test_invalid_vault_name",
@@ -444,6 +440,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
+            "test": "test_inventory_retrieval",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
             "test": "test_select_query_archive",
             "response": "201",
@@ -454,13 +460,13 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
-            "test": "test_appsync_deployed",
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
+            "test": "test_select_query_archive",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..location']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -469,6 +475,16 @@
     "DeleteVault": {
       "accountId, vaultName": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
+            "test": "test_inventory_retrieval",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
             "test": "test_inventory_retrieval",
@@ -490,39 +506,13 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_glacier_deployed",
-            "test": "test_glacier_deployed",
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
+            "test": "test_select_query_archive",
             "response": "204",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "DescribeVault": {
-      "accountId, vaultName": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
-            "test": "test_appsync_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_glacier_deployed",
-            "test": "test_glacier_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..location']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -554,22 +544,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
             "test": "test_inventory_retrieval",
-            "response": "404",
-            "error": "404",
+            "response": "200",
+            "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          }
-        ]
-      }
-    },
-    "GetVaultAccessPolicy": {
-      "accountId, vaultName": {
-        "ls_pro": [
+          },
           {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
-            "test": "test_appsync_deployed",
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
+            "test": "test_inventory_retrieval",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -578,14 +562,24 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_glacier_deployed",
-            "test": "test_glacier_deployed",
-            "response": "200",
-            "error": "",
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
+            "test": "test_inventory_retrieval",
+            "response": "404",
+            "error": "404",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
+            "test": "test_inventory_retrieval",
+            "response": "404",
+            "error": "404",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       }
@@ -604,18 +598,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
-            "test": "test_appsync_deployed",
-            "response": "404",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_glacier_deployed",
-            "test": "test_glacier_deployed",
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_invalid_vault_name",
+            "test": "test_invalid_vault_name",
             "response": "404",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -640,6 +624,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
+            "test": "test_inventory_retrieval",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
+            "test": "test_select_query_archive",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "['$..location']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
             "test": "test_select_query_archive",
             "response": "202",
@@ -652,51 +656,19 @@
         ]
       }
     },
-    "ListTagsForVault": {
-      "accountId, vaultName": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_appsync_deployed",
-            "test": "test_appsync_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_glacier_deployed",
-            "test": "test_glacier_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "ListVaults": {
-      "accountId": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/test_terraform.py::TestTerraform::test_glacier_deployed",
-            "test": "test_glacier_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
     "UploadArchive": {
       "accountId, body, checksum, vaultName": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
+            "test": "test_select_query_archive",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..location']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
             "test": "test_select_query_archive",
