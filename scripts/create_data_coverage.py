@@ -423,8 +423,9 @@ def aggregate_recorded_raw_data(
                     "snapshot_tested": snapshot_tested,
                     "origin": metric.get("origin", ""),
                 }
-
-                test_list.append(test_detail)
+                if test_detail not in test_list:
+                    # avoid duplicates
+                    test_list.append(test_detail)
 
     return recorded_data
 
