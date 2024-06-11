@@ -16,7 +16,7 @@ LocalStack allows you to use the S3 APIs in your local environment to create new
 
 This guide is designed for users new to S3 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how you can create an S3 bucket, manage S3 objects, and generate pre-signed URLs for S3 objects.
+Start your LocalStack container using your [preferred method](https://docs.localstack.cloud/getting-started/installation/#alternatives). We will demonstrate how you can create an S3 bucket, manage S3 objects, and generate pre-signed URLs for S3 objects.
 
 ### Create an S3 bucket
 
