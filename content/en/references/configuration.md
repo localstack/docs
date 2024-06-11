@@ -94,8 +94,9 @@ This section covers configuration options that are specific to certain AWS servi
 ### CloudFormation
 | Variable | Example Values | Description |
 | - | - | - |
+| `CFN_LEGACY_TEMPLATE_DEPLOYER` | `0` (default) \|`1` | Switch back to the old deployment engine. Note that this is only available temporarily to allow for a smoother roll-out of the new deployment order. 
 | `CFN_PER_RESOURCE_TIMEOUT` | `300` (default) | Set the timeout to deploy each individual CloudFormation resource.
-| `CFN_VERBOSE_ERRORS` | `0` (default) | Show exceptions for CloudFormation deploy errors.
+| `CFN_VERBOSE_ERRORS` | `0` (default) \|`1` | Show exceptions for CloudFormation deploy errors.
 
 ### CloudWatch
 
