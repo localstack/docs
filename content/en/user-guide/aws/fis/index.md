@@ -1,21 +1,21 @@
 ---
-title: "Fault Injection Simulator (FIS)"
-linkTitle: "Fault Injection Simulator (FIS)"
+title: "Fault Injection Service (FIS)"
+linkTitle: "Fault Injection Service (FIS)"
 description: >
-  Get started with Fault Injection Simulator (FIS) on LocalStack
+  Get started with Fault Injection Service (FIS) on LocalStack
 tags: ["Pro image"]
 ---
 
 ## Introduction
 
-Fault Injection Simulator (FIS) is a service provided by Amazon Web Services (AWS) that enables you to test the resilience of your applications and infrastructure by injecting faults and failures into your AWS resources.
+Fault Injection Service (FIS) is a service provided by Amazon Web Services (AWS) that enables you to test the resilience of your applications and infrastructure by injecting faults and failures into your AWS resources.
 FIS inject faults such as network latency, resource unavailability, and service errors to assess the impact on your application's performance and availability.
-The full list of such possible fault injections - called **actions** - is available in the [AWS docs](https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html).
+The full list of such possible fault injections is available in the [AWS docs](https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html).
 
 LocalStack allows you to use the FIS APIs in your local environment to introduce faults in other services, in order to check how your setup behaves when parts of it stop working locally.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_fis/), which provides information on the extent of FIS API's integration with LocalStack.
 
-## FIS Concepts
+## Concepts
 
 In general, FIS calls contain the following details:
 
@@ -37,15 +37,9 @@ Notably, AWS currently supports this exclusively for EC2 API calls.
 This guide is designed for users new to FIS and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method.
-We will demonstrate how to create an FIS Experiment that fails KMS [`ListKeys`](https://docs.aws.amazon.com/kms/latest/APIReference/API_ListKeys.html) API with a HTTP 400 code using the AWS CLI.
+We will demonstrate how to create an experiment that stops EC2 instances.
 
 ### Create an FIS Experiment
-
-<!--
-TODO
-
-Remove the use of localstack: action, instead use an AWS one
--->
 
 Create a new file named `create-experiment.json`.
 This file should contain a JSON configuration that will be utilized during the subsequent invocation of the [`CreateExperimentTemplate`](https://docs.aws.amazon.com/fis/latest/APIReference/API_CreateExperimentTemplate.html) API.
@@ -209,7 +203,7 @@ $ awslocal kms list-keys
 If everything happened as expected (or did not happen, in this case), the following output would be retrieved:
 
 ```bash
-An error occurred (SomeTerribleException) when calling the ListKeys operation: Failing as per Fault Injection Simulator configuration
+An error occurred (SomeTerribleException) when calling the ListKeys operation: Failing as per Fault Injection Service configuration
 ```
 
 You can double-check to be sure whether other API calls to KMS or different services are impacted.
@@ -232,9 +226,16 @@ The [`ListKeys`](https://docs.aws.amazon.com/kms/latest/APIReference/API_ListKey
 
 ## Current Limitations
 
-1. LocalStack currently supports only a subset of FIS actions available in AWS.
-Unsupported actions will result in an error.
-1. LocalStack does not provide support for the target selection mechanism utilized by AWS.
-For more information, refer to the [selection mode documentation](https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-selection-mode).
-1. At present, LocalStack ignores [`RoleARN`s](https://docs.aws.amazon.com/fis/latest/APIReference/API_ExperimentTemplate.html#fis-Type-ExperimentTemplate-roleArn).
-On AWS, FIS executes actions based on permissions granted by the specified `RoleARN`s.
+1. LocalStack FIS currently supports the following actions:
+    1. `aws:ec2:stop-instances`
+    1. `aws:ec2:terminate-instances`
+    1. `aws:rds:reboot-db-instances`
+    1. `aws:ssm:send-command`
+    1. `localstack:do-nothing` (deprecated)
+    1. `localstack:generic:api-error` (deprecated)
+    1. `localstack:log-debug` (deprecated)
+    1. `localstack:kms:inject-api-internal-error` (deprecated)
+    1. `localstack:generic:latency` (deprecated)
+1. LocalStack does not support the [selection mode](https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-selection-mode) mechanism utilized by AWS.
+1. LocalStack ignores [`RoleARN`](https://docs.aws.amazon.com/fis/latest/APIReference/API_ExperimentTemplate.html#fis-Type-ExperimentTemplate-roleArn).
+On AWS, FIS executes actions based on permissions granted by the specified `RoleARN`.
