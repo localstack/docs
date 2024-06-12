@@ -1,8 +1,7 @@
 ---
-title: "Chaos Engineering: Route53 Failovers"
-linkTitle: "Chaos Engineering: Route53 Failovers"
-weight: 9
-description: Set up Route 53 failovers to create a resilient, self-repairing infrastructure, which manages traffic effectively during simulated disruptions.
+title: "Chaos Engineering: Route53 Failover"
+linkTitle: "Chaos Engineering: Route53 Failover"
+description: Set up Route 53 failover to create a resilient, self-repairing infrastructure, which manages traffic effectively during simulated disruptions.
 type: tutorials
 teaser: ""
 services:
@@ -144,7 +143,7 @@ $ awslocal route53 change-resource-record-sets \
 }'
 {{< /command >}}
 
-Finally, we'll update the DNS records in the Route53 hosted zone identified by **`$HOSTED_ZONE_ID`**.
+Finally, we'll update the DNS records in the Route53 hosted zone identified by `$HOSTED_ZONE_ID`.
 We're adding two CNAME records for the subdomain `test.$HOSTED_ZONE_NAME`.
 The first record points to `12345.$HOSTED_ZONE_NAME` and is linked with the earlier created health check, designated as the primary failover target.
 The second record points to `67890.$HOSTED_ZONE_NAME` and is set as the secondary failover target.
