@@ -170,6 +170,12 @@ The OpenSearch configuration variables are used to manage both OpenSearch and El
 See [here](#opensearch).
 {{< /callout >}}
 
+### EventBridge
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `PROVIDER_OVERRIDE_EVENTS` | `v2` | Use the new EventBridge provider. |
+
 ### IAM
 | Variable | Example Values | Description |
 | - | - | - |
