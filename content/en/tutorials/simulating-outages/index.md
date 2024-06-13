@@ -1,6 +1,6 @@
 ---
-title: "Chaos Engineering: Simulating Errors using Chaos Plugin"
-linkTitle: "Chaos Engineering: Simulating Errors using Chaos Plugin"
+title: "Chaos Engineering: Simulating Outages using Chaos Plugin"
+linkTitle: "Chaos Engineering: Simulating Outages using Chaos Plugin"
 description: Use the Chaos Plugin to simulate service disruptions and assess how well your infrastructure can deploy and recover from unexpected situations.
 type: tutorials
 teaser: ""
