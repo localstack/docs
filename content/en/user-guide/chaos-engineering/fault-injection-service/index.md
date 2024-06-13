@@ -37,6 +37,10 @@ $ localstack start
 
 ## Getting Started
 
+{{< callout "tip" >}}
+For more information on LocalStack FIS, please refer to the [FIS service docs]({{< ref "user-guide/aws/fis" >}}).
+{{< /callout >}}
+
 This guide is created with users who are new to FIS in mind, and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
 
 The following demo will depict constructing various FIS experiments designed to trigger different types of failures in a DynamoDB service.
@@ -164,7 +168,7 @@ The execution process is logged, and detailed information about the experiment's
 
 {{< callout "warning" >}}
 The `localstack:generic:api-error` action is deprecated and marked for removal.
-You may use the [Chaos Plugin]({{< ref "chaos" >}}) to achieve the same effect.
+Please use the [Chaos Plugin]({{< ref "chaos" >}}) to achieve the same effect.
 {{< /callout >}}
 
 In a file called `dynamodb-experiment.json` let's define a FIS experiment that causes all calls to the `GetItem` API of the DynamoDB service to return a 503 `Service Unavailable` response.
@@ -320,7 +324,7 @@ $ awslocal fis stop-experiment --id 1a01327a-79d5-4202-8132-e56e55c9391b
 
 {{< callout "warning" >}}
 The `localstack:generic:api-error` action is deprecated and marked for removal.
-You may use the [Chaos Plugin]({{< ref "chaos" >}}) to achieve the same effect.
+Please use the [Chaos Plugin]({{< ref "chaos" >}}) to achieve the same effect.
 {{< /callout >}}
 
 
@@ -511,7 +515,7 @@ $ awslocal fis stop-experiment --id e49283c1-c2e0-492b-b69f-9fbd710bc1e3
 
 {{< callout "warning" >}}
 The `localstack:generic:latency` action is deprecated and marked for removal.
-You may use the [Chaos Plugin]({{< ref "chaos" >}}) to achieve the same effect.
+Please use the [Chaos Plugin]({{< ref "chaos" >}}) to achieve the same effect.
 {{< /callout >}}
 
 
@@ -650,4 +654,3 @@ $ awslocal fis list-experiments
 </disable-copy>
 {{< /command >}}
 
-For more information on LocalStack FIS, please refer to the [FIS service documentation]({{< ref "user-guide/aws/fis" >}}).

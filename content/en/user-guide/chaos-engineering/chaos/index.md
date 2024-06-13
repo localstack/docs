@@ -111,11 +111,11 @@ curl --location --request POST 'http://localhost.localstack.cloud:4566/_localsta
 ]'
 {{< /command >}}
 
-In this example, S3 is affected in us-east-1 and ap-south-1, and Lambda is affected in all regions.
+In this example, S3 is affected in `us-east-1` and `ap-south-1,` and Lambda is affected in all regions.
 All calls to these services in these regions will return a 503 Service Unavailable error.
 
 
-To see this in action, try to create an S3 bucket in us-east-1:
+To see this in action, try to create an S3 bucket in `us-east-1`:
 
 {{< command >}}
 $ awslocal s3 mb s3://test-bucket --region us-east-1
@@ -124,7 +124,7 @@ make_bucket failed: s3://test-bucket An error occurred (ServiceUnavailableExcept
 </disable-copy>
 {{< /command >}}
 
-However, the same operation, when run in eu-central-1 will work as expected.
+However, the same operation, when run in `eu-central-1` will work as expected.
 
 {{< command >}}
 $ awslocal s3 mb s3://test-bucket --region eu-central-1
