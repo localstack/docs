@@ -33,7 +33,7 @@ This tutorial is designed for users new to the Chaos Plugin and assumes basic kn
 In this example, we will use the Chaos Plugin to create controlled outages in a DynamoDB database.
 The aim is to test the software's behavior and error handling capabilities.
 
-For this particular example, we'll be using a [sample application repository](#TODO).
+For this particular example, we'll be using a [sample application repository](https://github.com/localstack-samples/samples-chaos-engineering/tree/master/chaos-plugin).
 Clone the repository, and follow the instructions below to get started.
 
 ### Prerequisites
