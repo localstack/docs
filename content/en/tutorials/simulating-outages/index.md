@@ -18,182 +18,207 @@ tags:
 - DynamoDB
 - ECS
 pro: true
-leadimage: "outages.png"
+leadimage: "banner.png"
 ---
 
 ## Introduction
 
-[LocalStack Chaos Plugin]({{< ref "chaos-plugin" >}}) can simulate outages for any AWS region or service.
-It can be used to test infrastructure resilience by intentionally causing service outages and observing the system's recovery in scenarios with incomplete infrastructure is an effective approach.
-This method evaluates the system's deployment mechanisms and its ability to handle and recover from infrastructure anomalies, a critical aspect of chaos engineering.
-
-{{< callout "note">}}
-Chaos Plugin is currently available as part of the LocalStack Enterprise plan.
-If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /callout >}}
+[LocalStack Chaos Plugin]({{< ref "chaos-plugin" >}}) is capable of simulating infrastructure faults to allow conducting controlled chaos engineering tests on AWS infrastructure.
+Its purpose is to uncover vulnerabilities and improve system robustness.
+Chaos plugin offers a means to deliberately introduce failures and observe their impacts, helping developers to better equip their systems against actual outages.
 
 ## Getting started
 
-This guide is designed for users who are new to Chaos Plugin.
-We'll simulate partial outages by interrupting specific services, such as halting an ECS instance creation or disrupting a database service.
-By closely watching Terraform's responses and the status of AWS resources, you'll learn how Terraform manages these disruptions.
+This tutorial is designed for users new to the Chaos plugin and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+In this example, we will use the Chaos plugin to create controlled outages in a DynamoDB database.
+The aim is to test the software's behavior and error handling capabilities.
 
-For this particular example, we'll be using a Terraform configuration file from a [sample application repository](#TODO).
+For this particular example, we'll be using a [sample application repository](#TODO).
 Clone the repository, and follow the instructions below to get started.
 
 ### Prerequisites
 
 The general prerequisites for this guide are:
 
-- LocalStack Pro with [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) & [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
-- [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+- LocalStack Pro with [LocalStack Auth Token]({{<ref "getting-started/auth-token">}})
+- [AWS CLI]({{<ref "user-guide/integrations/aws-cli">}}) with the [`awslocal` wrapper]({{<ref "user-guide/integrations/aws-cli#localstack-aws-cli-awslocal">}})
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
-- [Terraform](https://www.terraform.io/downloads.html) and [`tflocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/terraform/#tflocal-wrapper-script).
 
 Start LocalStack by using the `docker-compose.yml` file from the repository.
 Ensure to set your Auth Token as an environment variable during this process.
+The cloud resources will be automatically created upon the LocalStack start.
 
 {{< command >}}
 $ LOCALSTACK_AUTH_TOKEN=<YOUR_LOCALSTACK_AUTH_TOKEN>
 $ docker compose up
 {{< /command >}}
 
-### Running Terraform
+### Architecture
 
-To get started, initialize & apply the Terraform configuration using the `tflocal` CLI to create the local resources.
-The Terraform configuration file operates independently of the application, meaning the application won't be available during this phase.
-To deploy the entire stack, including the application, refer to the [sample repository](#TODO).
+The following diagram shows the architecture that this application builds and deploys:
+
+{{< figure src="arch-1.png" width="800">}}
+
+### Preflight checks
+
+Before starting any outages, it's important to verify that our application is functioning correctly.
+Start by creating an entity and saving it.
+To do this, use `cURL` to call the API Gateway endpoint for the POST method:
 
 {{< command >}}
-$ tflocal init
-$ tflocal plan
-$ tflocal apply
+$ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": "prod-2004",
+    "name": "Ultimate Gadget",
+    "price": "49.99",
+    "description": "The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry. Compact, powerful, and loaded with features."
+}'
+<disable-copy>
+Product added/updated successfully.
+</disable-copy>
 {{< /command >}}
 
-The following output would be returned:
+### Simulating the outage
 
-```bash
-Apply complete! Resources: 57 added, 0 changed, 0 destroyed.
+Next, we will configure the Chaos plugin to target all APIs of the DynamoDB resource.
+The Chaos plugin is powerful enough to refine outages to particular operations like `PutItem` or `GetItem`, but the objective here is to simulate a failure of entire database service.
+The following configuration will cause all API calls to fail with a 100% failure rate, each resulting in an HTTP 500 status code and a `DatacentreNotFound` error.
 
-Outputs:
-
-api_id = "3eed6d1d"
-api_invoke_url = "https://3eed6d1d.execute-api.us-east-1.amazonaws.com"
-api_invoke_url_foodstore_foods = "https://3eed6d1d.execute-api.us-east-1.amazonaws.com/foodstore/foods/{foodId}"
-api_invoke_url_petstore_pets = "https://3eed6d1d.execute-api.us-east-1.amazonaws.com/petstore/domestic/pets/{petId}"
-api_test_page = <sensitive>
-container_security_group = "sg-db749514a062de41c"
-ecs_cluster_name = "arn:aws:ecs:us-east-1:000000000000:cluster/ecs-cluster"
-private_dns_namespace = "60bfac90"
-vpc_id = "vpc-f9d6b124"
-```
-
-Next, you can update certain resources.
-This includes increasing the number of tasks in the `task_definition` for the ECS service from 3 to 5 and upgrading the `openapi` specification version used by API Gateway from 3.0.1 to 3.1.0.
-
-### Simulating outages
-
-After running the Terraform `plan` command to preview these changes, you can simulate an outage affecting the ECS and API Gateway V2 services before applying the changes.
-To do this, execute the following command:
-
-{{< command >}}
-$ curl --location --request POST 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
+{{<command>}}
+curl --location --request PATCH 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
 --header 'Content-Type: application/json' \
 --data '
 [
     {
-        "service": "ecs",
-        "region": "us-east-1"
-    },
-    {
-        "service": "apigatewayv2",
-        "region": "us-east-1"
+        "service": "dynamodb",
+        "probability": 1.0,
+        "error": {
+            "statusCode": 500,
+            "code": "DatacentreNotFound"
+        }
     }
 ]'
+{{</ command >}}
+
+This makes the database become inaccessible.
+No external client or a LocalStack service can retrieve or add new products, resulting in the API Gateway returning an Internal Server Error.
+
+Downtime and data loss are critical issues to avoid in enterprise applications.
+Fortunately, encountering this issue early in the development phase allows developers to implement effective error handling and develop mechanisms to prevent data loss during a database outage.
+
+### Designing a more resilient system
+
+{{< figure src="fis-experiment-2.png" width="800">}}
+
+A possible solution involves setting up an SNS topic, an SQS queue, and a Lambda function.
+The Lambda function will be responsible for retrieving queued items and attempting to re-execute the `PutItem` operation on the database.
+If DynamoDB remains unavailable, the item will be placed back in the queue for a later retry.
+
+{{< command >}}
+$ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": "prod-1003",
+    "name": "Super Widget",
+    "price": "29.99",
+    "description": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
+}'
+<disable-copy>
+A DynamoDB error occurred. Message sent to queue.
+</disable-copy>
 {{< /command >}}
 
-In the LocalStack logs, you'll notice that during the periods between successful calls, the controlled outages are marked by a `ServiceUnavailableException` accompanied by a 503 HTTP status code.
-These exceptions specifically affect the targeted AWS APIs.
+If we review the logs, it will show that the `DynamoDbException` has been managed effectively.
 
-```bash
-2023-11-09T21:53:31.801  INFO --- [   asgi_gw_9] localstack.request.aws     : AWS ec2.GetTransitGatewayRouteTableAssociations => 200
-2023-11-09T21:53:31.824  INFO --- [   asgi_gw_2] localstack.request.aws     : AWS apigatewayv2.GetVpcLink => 503 (ServiceUnavailableException)
-2023-11-09T21:53:31.828  INFO --- [   asgi_gw_6] localstack.request.aws     : AWS servicediscovery.ListTagsForResource => 200
-2023-11-09T21:53:31.831  INFO --- [   asgi_gw_8] localstack.request.aws     : AWS ec2.DescribeRouteTables => 200
-2023-11-09T21:53:31.834  INFO --- [   asgi_gw_7] localstack.request.aws     : AWS servicediscovery.ListTagsForResource => 200
-2023-11-09T21:53:31.836  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS ec2.DescribePrefixLists => 200
-2023-11-09T21:53:31.842  INFO --- [   asgi_gw_1] localstack.request.aws     : AWS ec2.DescribeSecurityGroups => 200
-2023-11-09T21:53:31.848  INFO --- [   asgi_gw_6] localstack.request.aws     : AWS ec2.GetTransitGatewayRouteTablePropagations => 200
-2023-11-09T21:53:31.876  INFO --- [   asgi_gw_9] localstack.request.aws     : AWS ec2.DescribeRouteTables => 200
-2023-11-09T21:53:31.879  INFO --- [   asgi_gw_5] localstack.request.aws     : AWS ec2.DescribeRouteTables => 200
-2023-11-09T21:53:32.205  INFO --- [   asgi_gw_8] localstack.request.aws     : AWS ecs.DescribeClusters => 503 (ServiceUnavailableException)
-2023-11-09T21:53:32.280  INFO --- [   asgi_gw_3] localstack.request.aws     : AWS ecs.DescribeTaskDefinition => 503 (ServiceUnavailableException)
-2023-11-09T21:53:32.443  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS ecs.DescribeTaskDefinition => 503 (ServiceUnavailableException)
-2023-11-09T21:53:32.584  INFO --- [   asgi_gw_6] localstack.request.aws     : AWS apigatewayv2.GetVpcLink => 503 (ServiceUnavailableException)
-2023-11-09T21:53:33.271  INFO --- [   asgi_gw_9] localstack.request.aws     : AWS ecs.DescribeClusters => 503 (ServiceUnavailableException)
-2023-11-09T21:53:33.473  INFO --- [   asgi_gw_2] localstack.request.aws     : AWS ecs.DescribeTaskDefinition => 503 (ServiceUnavailableException)
-2023-11-09T21:53:33.889  INFO --- [   asgi_gw_7] localstack.request.aws     : AWS ecs.DescribeTaskDefinition => 503 (ServiceUnavailableException)
+```text
+2023-11-06T22:21:40.789 DEBUG --- [   asgi_gw_2] l.services.fis.handler     : FIS handler called with configs: {'dynamodb': {None: [(100, 'DynamoDbException', '500')]}}
+2023-11-06T22:21:40.789  INFO --- [   asgi_gw_2] localstack.request.aws     : AWS dynamodb.PutItem => 500 (DynamoDbException)
+2023-11-06T22:21:40.834 DEBUG --- [   asgi_gw_4] l.services.sns.publisher   : Topic 'arn:aws:sns:us-east-1:000000000000:ProductEventsTopic' publishing '5520d37a-fc21-4a73-b1bf-f9b9afce5908' to subscribed
+'arn:aws:sqs:us-east-1:000000000000:ProductEventsQueue' with protocol 'sqs' (subscription 'arn:aws:sns:us-east-1:000000000000:ProductEventsTopic:0a4abf8c-744a-404a-9ff9-f132e25d1b30')
 ```
 
-During infrastructure provisioning, depending on the tool and provider used, attempts may be made to reapply changes to resources following a failure, or the action might simply fail.
+This element will remain in the queue until the outage is resolved.
 
-### Simulating region-wide outages
+### Ending the outage
 
-To simulate the ourage of an entire region, execute the following command:
-
-{{< command >}}
-$ curl --location --request POST 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
---header 'Content-Type: application/json' \
---data '
-[
-    {
-        "region": "us-east-1"
-    }
-]'
-{{< /command >}}
-
-### Other operations
-
-To stop all outages, submit an empty list in the configuration using the following `POST` request:
+To stop the outage, use the following configuration:
 
 {{< command >}}
-$ curl --location --request POST 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
+curl --location --request POST 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
 --header 'Content-Type: application/json' \
 --data '[]'
 {{< /command >}}
 
-To view the current configuration, use this `GET` request:
+With the outage now ended, the Product that initially failed to reach the database to finally be stored successfully.
+This can be confirmed by scanning the database.
 
 {{< command >}}
-$ curl --location --request GET 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults'
-{{< /command >}}
-
-To add a new service/region rule to the configuration, use a `PATCH` request as shown below:
-
-{{< command >}}
-$ curl --location --request PATCH 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
---header 'Content-Type: application/json' \
---data '
-[
+$ awslocal dynamodb scan --table-name Products
+<disable-copy>
+{
+    "Items": [
+        {
+        "name": {
+            "S": "Super Widget"
+        },
+        "description": {
+            "S": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
+        },
+        "id": {
+            "S": "prod-1003"
+        },
+        "price": {
+            "N": "29.99"
+        }
+    },
     {
-        "service": "transcribe",
-        "region": "us-west-1"
+        "name": {
+            "S": "Ultimate Gadget"
+        },
+        "description": {
+            "S": "The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry. Compact, powerful, and loaded with features."
+        },
+        "id": {
+        "S": "prod-2004"
+        },
+        "price": {
+            "N": "49.99"
+        }
     }
-]'
+],
+    "Count": 2,
+    "ScannedCount": 2,
+    "ConsumedCapacity": null
+}
+</disable-copy>
 {{< /command >}}
 
-To remove a service/region rule from the configuration, execute a `DELETE` request as follows:
+### Introducing network latency
+
+The LocalStack Chaos plugin can also introduce a network latency for all connections.
+This can be done with the following configuration:
 
 {{< command >}}
-$ curl --location --request DELETE 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
+$ curl --location --request POST 'http://localhost.localstack.cloud:4566/_localstack/chaos/effects' \
 --header 'Content-Type: application/json' \
---data '[{"service": "transcribe", "region": "us-west-1"}]'
+--data '{
+    "latency": 5000
+}'
 {{< /command >}}
 
-### Conclusion
+With this configured, you can use the same sample stack to observe and understand the effects of a 5-second delay on each service call.
 
-By closely watching Terraform's responses and the status of cloud resources, you'll learn how Terraform manages these disruptions.
-It's important to note how it attempts to retry operations, whether it rolls back changes or faces partial failures, and how it logs these incidents.
-
-This is crucial for understanding the resilience of your infrastructure provisioning against challenging conditions.
-It also aids in enhancing your IaC configurations, ensuring they are more robust and effective in handling faults and errors in real-life situations.
+{{< command >}}
+$ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": "prod-1088",
+    "name": "Super Widget",
+    "price": "29.99",
+    "description": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
+}'
+<disable-copy>
+An error occurred (InternalError) when calling the GetResources operation (reached max retries: 4)
+</disable-copy>
+{{< /command >}}
