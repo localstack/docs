@@ -109,7 +109,7 @@ Fortunately, encountering this issue early in the development phase allows devel
 
 ### Designing a more resilient system
 
-{{< figure src="fis-experiment-2.png" width="800">}}
+{{< figure src="arch-2.png" width="800">}}
 
 A possible solution involves setting up an SNS topic, an SQS queue, and a Lambda function.
 The Lambda function will be responsible for retrieving queued items and attempting to re-execute the `PutItem` operation on the database.
