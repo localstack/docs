@@ -1,9 +1,7 @@
 ---
-title: "Chaos Engineering: Simulating outages in your application stack"
-linkTitle: "Chaos Engineering: Simulating outages in your application stack"
-weight: 10
-description: >
-  Use the Chaos Plugin to simulate service disruptions and assess how well your infrastructure can deploy and recover from unexpected situations. This tool helps you test the resilience of your system by creating controlled outage scenarios, allowing you to identify and improve upon weaknesses.
+title: "Chaos Engineering: Simulating Errors using Chaos Plugin"
+linkTitle: "Chaos Engineering: Simulating Errors using Chaos Plugin"
+description: Use the Chaos Plugin to simulate service disruptions and assess how well your infrastructure can deploy and recover from unexpected situations. This tool helps you test the resilience of your system by creating controlled outage scenarios, allowing you to identify and improve upon weaknesses.
 type: tutorials
 teaser: ""
 services:
