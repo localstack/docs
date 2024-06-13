@@ -23,7 +23,7 @@ leadimage: "outages.png"
 
 ## Introduction
 
-[LocalStack Chaos Plugin]({{< ref "user-guide/chaos-engineering/chaos" >}}) can simulate outages for any AWS region or service.
+[LocalStack Chaos Plugin]({{< ref "chaos-plugin" >}}) can simulate outages for any AWS region or service.
 It can be used to test infrastructure resilience by intentionally causing service outages and observing the system's recovery in scenarios with incomplete infrastructure is an effective approach.
 This method evaluates the system's deployment mechanisms and its ability to handle and recover from infrastructure anomalies, a critical aspect of chaos engineering.
 

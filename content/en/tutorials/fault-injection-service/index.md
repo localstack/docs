@@ -22,7 +22,6 @@ pro: true
 leadimage: "fis-experiments.png"
 ---
 
-
 ## Introduction
 
 Fault Injection Service (FIS) is a service designed for conducting controlled chaos engineering tests on AWS infrastructure.
