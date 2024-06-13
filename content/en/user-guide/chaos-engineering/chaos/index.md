@@ -179,9 +179,3 @@ curl --location --request DELETE 'http://localhost.localstack.cloud:4566/_locals
 {{</ command >}}
 
 The rule to be removed must be exactly the same as in the existing configuration.
-
-
-## Limitations
-
-Faults do not affect internal cross-service communication.
-For example, if you configure faults for Kinesis, its integration with DynamoDB Streams will remain unaffected.
