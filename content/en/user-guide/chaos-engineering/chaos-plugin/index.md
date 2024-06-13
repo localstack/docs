@@ -7,11 +7,11 @@ tags: ["Enterprise plan"]
 
 ## Introduction
 
-LocalStack Chaos plugin allows you to mimic outages across any AWS region or service.
+LocalStack Chaos Plugin allows you to mimic outages across any AWS region or service.
 Intentionally triggering service outages and monitoring the system's response in situations where the infrastructure is compromised offers a powerful way to test.
 This strategy helps gauge the effectiveness of the system's deployment procedures and its resilience against infrastructure disruptions, which is a key element of chaos engineering.
 
-You can use LocalStack Chaos plugin to cause API failures for following or any combination thereof:
+You can use LocalStack Chaos Plugin to cause API failures for following or any combination thereof:
 - Service
 - Region
 - Operation
@@ -19,10 +19,10 @@ You can use LocalStack Chaos plugin to cause API failures for following or any c
 You can customise the HTTP error code and message that LocalStack responds with.
 If required, you can make the failures occur probabilistically.
 
-Furthermore, the Chaos plugin can also be configured to add a network latency for all calls.
+Furthermore, the Chaos Plugin can also be configured to add a network latency for all calls.
 
 {{< alert title="Note">}}
-Chaos plugin is available as part of the LocalStack Enterprise plan.
+Chaos Plugin is available as part of the LocalStack Enterprise plan.
 If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
 {{< /alert >}}
 
@@ -37,7 +37,7 @@ The prerequisites for this guide are:
 
 ## Configuration
 
-The chaos effects supported by Chaos plugin are broadly categorised into two groups.
+The chaos effects supported by Chaos Plugin are broadly categorised into two groups.
 **Faults** lead to an application-level HTTP error, and **Network Effects** introduce network-level effects to the connections.
 
 ### Faults
@@ -75,7 +75,7 @@ An empty array `[]` disables the faults entirely, while an empty rule in the arr
 ### Network Effects
 
 Network effects are configured using the endpoint `/_localstack/chaos/effects`.
-Currently the Chaos plugin only supports a latency factor.
+Currently the Chaos Plugin only supports a latency factor.
 
 ```json
 {

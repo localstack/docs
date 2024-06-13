@@ -34,7 +34,7 @@ If you'd like to try it out, please [contact us](https://www.localstack.cloud/de
 
 ## Getting started
 
-This tutorial is designed for users new to the Route53 and LocalStack Chaos plugin services.
+This tutorial is designed for users new to the Route53 and LocalStack Chaos Plugin.
 In this example, there's an active-primary and passive-standby configuration.
 Route53 routes traffic to the primary region, which processes product-related requests through API Gateway and Lambda functions, with data stored in DynamoDB.
 If the primary region fails, Route53 redirects to the standby region, maintained in sync by a replication Lambda function.

@@ -25,12 +25,12 @@ leadimage: "banner.png"
 
 [LocalStack Chaos Plugin]({{< ref "chaos-plugin" >}}) is capable of simulating infrastructure faults to allow conducting controlled chaos engineering tests on AWS infrastructure.
 Its purpose is to uncover vulnerabilities and improve system robustness.
-Chaos plugin offers a means to deliberately introduce failures and observe their impacts, helping developers to better equip their systems against actual outages.
+Chaos Plugin offers a means to deliberately introduce failures and observe their impacts, helping developers to better equip their systems against actual outages.
 
 ## Getting started
 
-This tutorial is designed for users new to the Chaos plugin and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
-In this example, we will use the Chaos plugin to create controlled outages in a DynamoDB database.
+This tutorial is designed for users new to the Chaos Plugin and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+In this example, we will use the Chaos Plugin to create controlled outages in a DynamoDB database.
 The aim is to test the software's behavior and error handling capabilities.
 
 For this particular example, we'll be using a [sample application repository](#TODO).
@@ -81,8 +81,8 @@ Product added/updated successfully.
 
 ### Simulating the outage
 
-Next, we will configure the Chaos plugin to target all APIs of the DynamoDB resource.
-The Chaos plugin is powerful enough to refine outages to particular operations like `PutItem` or `GetItem`, but the objective here is to simulate a failure of entire database service.
+Next, we will configure the Chaos Plugin to target all APIs of the DynamoDB resource.
+The Chaos Plugin is powerful enough to refine outages to particular operations like `PutItem` or `GetItem`, but the objective here is to simulate a failure of entire database service.
 The following configuration will cause all API calls to fail with a 100% failure rate, each resulting in an HTTP 500 status code and a `DatacentreNotFound` error.
 
 {{<command>}}
@@ -196,7 +196,7 @@ $ awslocal dynamodb scan --table-name Products
 
 ### Introducing network latency
 
-The LocalStack Chaos plugin can also introduce a network latency for all connections.
+The LocalStack Chaos Plugin can also introduce a network latency for all connections.
 This can be done with the following configuration:
 
 {{< command >}}
