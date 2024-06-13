@@ -215,7 +215,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `LAMBDA_SYNCHRONOUS_CREATE` | `0` (default) | Set to `1` to create lambda functions synchronously (not recommended). |
 | `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console. This does not affect the logs processing in CloudWatch. |
 | `LAMBDA_LIMITS_MAX_FUNCTION_ENVVAR_SIZE_BYTES` | `4096` (default) | The maximum size of the environment variables that you can use to configure your function. |
-| `LAMBDA_K8S_INIT_IMAGE` | | Specify the image for downloading the init binary from LocalStack. The image must include the `curl` and `chmod` commands. |
+| `LAMBDA_K8S_INIT_IMAGE` | | Specify the image for downloading the init binary from LocalStack. The image must include the `curl` and `chmod` commands. This is only relevant for container-based Lambdas on Kubernetes |
 
 ### MemoryDB
 
