@@ -4,6 +4,10 @@ linkTitle: "CloudFormation"
 description: Get started with Cloudformation on LocalStack
 ---
 
+{{< callout >}}
+With LocalStack 3.5 we've improved how the internal engine orders resources for deployment and deletion of stacks. Specifically it now more accurately calculates dependencies between resources and doesn't try to deploy/delete resources which don't have their dependencies available yet. Should you encounter any issues, please report them on [GitHub](https://github.com/localstack/localstack/issues/new/choose). You can temporarily revert to the old behavior with `CFN_LEGACY_TEMPLATE_DEPLOYER=1`, but be aware that this is only a temporary option.
+{{< /callout >}}
+
 ## Introduction
 
 CloudFormation is a service provided by Amazon Web Services (AWS) that allows you to define and provision infrastructure as code. It enables you to create, update, and manage resources in a repeatable and automated manner using declarative templates. With CloudFormation, you can use JSON or YAML templates to define your desired infrastructure state. You can specify resources, their configurations, dependencies, and relationships in these templates.
