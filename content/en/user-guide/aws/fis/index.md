@@ -17,7 +17,7 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 
 ## Concepts
 
-FIS defines the following abstractions:
+FIS defines the following conceptual elements:
 
 1. Action: Type of fault to introduce
 1. Target: Resources to be impacted
