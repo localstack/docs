@@ -246,6 +246,11 @@ Attempting to launch Dockerized instances using these AMIs will result in an `In
 See [Mock VM manager](#mock-vm-manager).
 {{< /callout >}}
 
+{{< callout "note" >}}
+LocalStack cannot emulate or run standard Amazon Machine Images (AMIs) because AWS does not allow them to be downloaded or used outside its environment.
+However, you can use [Packer](https://packer.io/) or a similar tool to modify the build process for Docker, which is compatible with LocalStack.
+{{< /callout >}}
+
 ### Networking
 
 {{< callout "note" >}}
