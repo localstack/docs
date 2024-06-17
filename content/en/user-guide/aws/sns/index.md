@@ -3,6 +3,7 @@ title: "Simple Notification Service (SNS)"
 linkTitle: "Simple Notification Service (SNS)"
 description: Get started with Simple Notification Service (SNS) on LocalStack
 persistence: supported
+
 ---
 
 ## Introduction
