@@ -38,11 +38,11 @@ The prerequisites for this guide are:
 ## Configuration
 
 The disruption types supported by Chaos API are broadly categorised into two groups.
-**Faults** lead to an application-level HTTP error, and **Network Effects** introduce network-level effects to the connections.
+**Service Faults** lead to an application-level HTTP error in an AWS service, and **Network Effects** introduce network-level effects to all connections.
 
-### Faults
+### Service Faults
 
-Faults can be configured using the endpoint at `/_localstack/chaos/faults`.
+Service faults can be configured using the endpoint at `/_localstack/chaos/faults`.
 The configuration schema consists of an array of one or more rules, where each rule specifies the conditions for the fault to occur.
 When active, rules are evaluated sequentially on every request to LocalStack until the first match.
 
