@@ -83,7 +83,7 @@ Product added/updated successfully.
 
 Next, we will configure the Chaos API to target all APIs of the DynamoDB resource.
 The Chaos API is powerful enough to refine outages to particular operations like `PutItem` or `GetItem`, but the objective here is to simulate a failure of entire database service.
-The following configuration will cause all API calls to fail with a 100% failure rate, each resulting in an HTTP 500 status code and a `DatacentreNotFound` error.
+The following configuration will cause all API calls to fail with a 100% failure rate, each resulting in an HTTP 500 status code and a `SomethingWentWrong` error.
 
 {{<command>}}
 curl --location --request PATCH 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
@@ -92,10 +92,10 @@ curl --location --request PATCH 'http://localhost.localstack.cloud:4566/_localst
 [
     {
         "service": "dynamodb",
-        "probability": 1.0,
+        "probability": 0.8,
         "error": {
             "statusCode": 500,
-            "code": "DatacentreNotFound"
+            "code": "SomethingWentWrong"
         }
     }
 ]'
