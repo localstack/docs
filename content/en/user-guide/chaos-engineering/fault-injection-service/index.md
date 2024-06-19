@@ -168,7 +168,7 @@ The execution process is logged, and detailed information about the experiment's
 
 {{< callout "warning" >}}
 The `localstack:generic:api-error` action is deprecated and marked for removal.
-Please use the [Chaos Plugin]({{< ref "chaos-plugin" >}}) to achieve the same effect.
+Please use the [Chaos API]({{< ref "chaos-api" >}}) to achieve the same effect.
 {{< /callout >}}
 
 In a file called `dynamodb-experiment.json` let's define a FIS experiment that causes all calls to the `GetItem` API of the DynamoDB service to return a 503 `Service Unavailable` response.
@@ -324,7 +324,7 @@ $ awslocal fis stop-experiment --id 1a01327a-79d5-4202-8132-e56e55c9391b
 
 {{< callout "warning" >}}
 The `localstack:generic:api-error` action is deprecated and marked for removal.
-Please use the [Chaos Plugin]({{< ref "chaos-plugin" >}}) to achieve the same effect.
+Please use the [Chaos API]({{< ref "chaos-api" >}}) to achieve the same effect.
 {{< /callout >}}
 
 
@@ -515,7 +515,7 @@ $ awslocal fis stop-experiment --id e49283c1-c2e0-492b-b69f-9fbd710bc1e3
 
 {{< callout "warning" >}}
 The `localstack:generic:latency` action is deprecated and marked for removal.
-Please use the [Chaos Plugin]({{< ref "chaos-plugin" >}}) to achieve the same effect.
+Please use the [Chaos API]({{< ref "chaos-api" >}}) to achieve the same effect.
 {{< /callout >}}
 
 

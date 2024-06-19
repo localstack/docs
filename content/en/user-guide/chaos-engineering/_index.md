@@ -21,7 +21,7 @@ Integrating chaos tests early in the development process helps identify and miti
 Chaos engineering in LocalStack encompasses the following features:
 
 - **Application behavior and error management** through Fault Injection Service (FIS) experiments.
-- **Robust architecture** tested via failover scenarios using Chaos Plugin.
+- **Robust architecture** tested via failover scenarios using the Chaos API.
 - **Consistent infrastructure setup** under challenging conditions like outages, examined through automated provisioning processes.
 
 The best way to understand concepts is through practice, so dive into our [chaos engineering tutorials]({{< ref "tutorials" >}}).
