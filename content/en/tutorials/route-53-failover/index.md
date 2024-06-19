@@ -18,6 +18,7 @@ tags:
 - API Gateway
 - DynamoDB
 - Lambda
+- Chaos Engineering 
 pro: true
 leadimage: "route-53-failover.png"
 ---

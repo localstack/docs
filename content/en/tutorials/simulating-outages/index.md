@@ -17,6 +17,7 @@ tags:
 - API Gateway
 - DynamoDB
 - ECS
+- Chaos Engineering
 pro: true
 leadimage: "banner.png"
 ---
