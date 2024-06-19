@@ -30,6 +30,9 @@ Chaos API offers a means to deliberately introduce failures and observe their im
 
 ## Getting started
 
+In this tutorial we study the effects of outages on a sample AWS application.
+We use the Chaos API to simulate the outage and design a mitigation to make the application resilient against database outages.
+
 This tutorial is designed for users new to the Chaos API and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 In this example, we will use the Chaos API to create controlled outages in a DynamoDB database.
 The aim is to test the software's behavior and error handling capabilities.
