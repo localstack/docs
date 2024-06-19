@@ -1,13 +1,13 @@
 ---
-title: "Fault Injection Service"
-linkTitle: "Fault Injection Service"
+title: "AWS Fault Injection Service"
+linkTitle: "AWS Fault Injection Service"
 description: Use Fault Injection Service to simulate faults in your infrastructure and test its fault tolerance
 tags: ["Pro image"]
 ---
 
 ## Introduction
 
-The [Fault Injection Service](https://aws.amazon.com/fis/) is a fully managed service designed to help you improve the resilience of your applications by simulating real-world outages and operational issues.
+The [Fault Injection Service](https://aws.amazon.com/fis/) is a fully managed service by AWS designed to help you improve the resilience of your applications by simulating real-world outages and operational issues.
 This service allows you to conduct controlled experiments on your AWS infrastructure, injecting faults and observing how your system responds under various conditions.
 
 By using the Fault Injection Service, you can identify weaknesses, test recovery procedures, and ensure that your applications can withstand unexpected disruptions.
