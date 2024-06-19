@@ -223,7 +223,8 @@ $ curl -L -X POST 'http://localhost.localstack.cloud:4566/_localstack/chaos/faul
 This will cause all services to fail in the `us-west-1` region with a 503 Service Unavailable error.
 Because of this, Route 53's health checks will detect the failure and redirect traffic to the standby region as per the failover setup.
 
-Confirm this redirection with:
+Confirm this redirection with the following command.
+Notice that the secondary endpoint is returned in the CNAME answer.
 
 {{< command >}}
 $ dig @localhost test.hello-localstack.com CNAME
