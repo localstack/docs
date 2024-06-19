@@ -154,7 +154,7 @@ Any execution of this data is recorded in the `/var/log/cloud-init-output.log` f
 
 You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.
 
-This section assumes that you have created or imported an SSH key pair named `my-key` (see [instructions above](#create-a-key-pair)).
+This section assumes that you have created or imported an SSH key pair named `my-key` (see [instructions above]({{< relref "#create-a-key-pair" >}})).
 When running the EC2 instance, make sure to pass the `--key-name` parameter to the command:
 
 {{< command >}}
@@ -169,7 +169,7 @@ $ ssh -p 12862 -i key.pem root@127.0.0.1
 {{< /command >}}
 
 {{< callout "tip" >}}
-If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here](#create-a-key-pair).
+If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here]({{< relref "ec2#create-a-key-pair" >}}).
 {{< /callout >}}
 
 
