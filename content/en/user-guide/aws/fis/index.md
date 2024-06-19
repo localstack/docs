@@ -30,6 +30,11 @@ FIS defines the following elements:
 Together this is termed as an Experiment.
 After the designated time, FIS restores systems to their original state and/or ceases introducing faults.
 
+{{< callout "note" >}}
+FIS experiment emulation is part of LocalStack Enterprise.
+If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo).
+{{< /callout >}}
+
 FIS actions can be categorized into two main types:
 
 1. Single-time events — For example, the `aws:ec2:stop-instances` FIS action, which sends a [`StopInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_StopInstances.html) API to specific EC2 instances.
