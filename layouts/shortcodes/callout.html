@@ -1,8 +1,10 @@
 {{/*
 
-This shortcode is a modification of Docsy `alert` shortcode to maintain styling consistency.
+This shortcode is a modification of Docsy `alert` shortcode.
+It was added to maintain the styling consistency by fixing the alert box titles to their severity.
 
-Usage:
+Usage
+-----
 
   {{< callout TITLE >}}
   This is the text that goes in the callout box.
@@ -14,7 +16,17 @@ TITLE must be one of:
 - 'tip'
 
 If TITLE is omitted, the default is used.
-If TITLE is set to any other value the the above, the default is used.
+If TITLE is set to any other value than the above, the default is used.
+
+Limitations
+-----------
+
+When using relative references with `[]()`, the link is incorrectly rendered.
+Please use the `relref` shortcode, like so:
+  
+  {{< callout "tip" >}}
+  See [instructions above]({{< relref "ec2#do-something" >}})
+  {{< /callout >}}
 
 */}}
 
