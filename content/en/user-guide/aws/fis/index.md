@@ -8,8 +8,8 @@ tags: ["Pro image"]
 
 ## Introduction
 
-Fault Injection Service (FIS) is a service provided by Amazon Web Services (AWS) that enables you to test the resilience of your applications and infrastructure by injecting faults and failures into your AWS resources.
-FIS inject faults such as network latency, resource unavailability, and service errors to assess the impact on your application's performance and availability.
+Fault Injection Service (FIS) is a service provided by Amazon Web Services that enables you to test the resilience of your applications and infrastructure by injecting faults and failures into your AWS resources.
+FIS simulates faults such as resource unavailability and service errors to assess the impact on your application's performance and availability.
 The full list of such possible fault injections is available in the [AWS docs](https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html).
 
 LocalStack allows you to use the FIS APIs in your local environment to introduce faults in other services, in order to check how your setup behaves when parts of it stop working locally.
@@ -17,13 +17,14 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 
 ## Concepts
 
-FIS defines the following conceptual elements:
+FIS defines the following elements:
 
 1. Action: Type of fault to introduce
 1. Target: Resources to be impacted
 1. Duration of the disruption.
 
-After the designated time, FIS restores systems to their original state or ceases introducing faults.
+Together this is termed as an Experiment.
+After the designated time, FIS restores systems to their original state and/or ceases introducing faults.
 
 FIS actions can be categorized into two main types:
 
@@ -218,10 +219,15 @@ If everything happened as expected, the following output would be retrieved:
 ## Supported Actions
 
 LocalStack FIS currently supports the following actions:
+
 - **`aws:ec2:stop-instances`**: Runs EC2 StopInstances on the target EC2 instances.
 - **`aws:ec2:terminate-instances`**: Runs EC2 TerminateInstances on the target EC2 instances.
 - **`aws:rds:reboot-db-instances`**: Runs EC2 RebootInstances on the target EC2 instances.
 - **`aws:ssm:send-command`**: Runs the Systems Manager SendCommand on the target EC2 instances.
+
+{{< callout "note" >}}
+If you would like support for more FIS actions, please make a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
+{{< /callout >}}
 
 The following actions are deprecated and marked for removal:
 
