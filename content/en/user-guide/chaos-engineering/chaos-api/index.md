@@ -37,7 +37,7 @@ The prerequisites for this guide are:
 
 ## Configuration
 
-The chaos effects supported by Chaos API are broadly categorised into two groups.
+The disruption types supported by Chaos API are broadly categorised into two groups.
 **Faults** lead to an application-level HTTP error, and **Network Effects** introduce network-level effects to the connections.
 
 ### Faults
