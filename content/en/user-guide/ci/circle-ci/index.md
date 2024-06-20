@@ -21,7 +21,7 @@ LocalStack supports CircleCI out of the box and can be easily integrated into yo
 ```yaml
 version: '2.1'
 orbs:
-  localstack: localstack/platform@2.1
+  localstack: localstack/platform@2.2
 jobs:
   localstack-test:
     executor: localstack/default
@@ -39,7 +39,7 @@ workflows:
 ```yaml
 version: '2.1'
 orbs:
-  localstack: localstack/platform@2.1
+  localstack: localstack/platform@2.2
 jobs:
   localstack-test:
     executor: localstack/default
@@ -125,6 +125,219 @@ You can preserve your AWS infrastructure with LocalStack in various ways.
 To be able to use any of the below samples, you must [set a valid CI key](#configuring-a-ci-key).
 
 _Note: For best result we recommend to use a combination of the below techniques and you should familiarise yourself with CircleCI's data persistance approach, see their [official documentation](https://circleci.com/docs/persist-data/)._
+
+#### Cloud Pods
+Cloud Pods providing an easy solution to persist LocalStack's state, even between workflows or projects.
+
+Find more information about [Cloud Pods](/user-guide/state-management/cloud-pods/).
+
+##### Multiple projects
+Update or create the Cloud Pod in it's own project (ie in a separate Infrastructure as Code repo), this would create a base Cloud Pod, which you can use in the future without any configuration or deployment.
+
+_Note: If there is a previously created Cloud Pod which doesn't need updating this step can be skipped._
+
+```yaml
+orbs:
+  localstack: localstack/platform@2.2
+...
+jobs:
+  localstack-update-cloud-pod:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running
+      - run:
+        name: Load state if exists
+        command: localstack pod load <POD_NAME> || true # Not allowed to fail yet
+      ...
+      # Deploy infrastructure changes
+      ...
+      - localstack/cloud_pods:
+          pod_name: <POD_NAME>
+
+
+workflows:
+  localstack-build:
+    jobs:
+      - localstack-update-cloud-pod
+```
+
+In a separate project use the previously created base Cloud Pod as below:
+
+```yaml
+orbs:
+  localstack: localstack/platform@2.2
+...
+jobs:
+  localstack-use-cloud-pod:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running
+      - localstack/cloud_pods:
+          pod_name: <POD_NAME>
+          pod_action: load
+      ...
+      # Run some tests
+
+workflows:
+  localstack-build:
+    jobs:
+      - localstack-use-cloud-pod
+```
+
+##### Same project
+To use a dynamically updated Cloud Pod in multiple workflows but in the same project, you must eliminate the race conditions between the update workflow and the others.
+
+Before you are able to use any stored artifacts in your pipeline, you must provide either a valid [project API token](https://circleci.com/docs/managing-api-tokens/#creating-a-project-api-token) or a [personal API token](https://circleci.com/docs/managing-api-tokens/#creating-a-personal-api-token) to CircleCI.
+
+```yaml
+orbs:
+  localstack: localstack/platform@2.2
+...
+parameters:
+  run_workflow_build:
+    default: true
+    type: boolean
+
+  run_workflow_test1:
+    default: false
+    type: boolean
+
+  run_workflow_test2:
+    default: false
+    type: boolean
+...
+
+
+jobs:
+  localstack-update-state:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running
+      - localstack/cloud_pods:
+          pod_name: <POD_NAME>
+          pod_action: load
+      ...
+      # Deploy infrastructure
+      ...
+      - localstack/cloud_pods:
+          pod_name: <POD_NAME>
+          pod_action: save  # Optional as this is the default
+      - run:
+          name: Trigger other workflows
+          # Replace placeholders with right values
+          command: |
+            curl --request POST \
+              --url https://circleci.com/api/v2/project/<vcs-slug>/<org-name>/<repo-name>/pipeline \
+              --header 'Circle-Token: $CIRCLECI_TOKEN' \
+              --header 'content-type: application/json' \
+              --data '{"parameters":{"run_workflow_build":false, "run_workflow_test1":true, "run_workflow_test2":true}}'
+
+
+  localstack-use-state:
+    executor: localstack/default
+    steps:
+      ...
+      # LocalStack already running
+      - run:
+        name: Load state if exists
+        command: localstack pod load <POD_NAME> || true
+      ...
+
+
+# Example workflows
+workflows:
+  localstack-build:
+    when: << pipeline.parameters.run_workflow_build >>
+    jobs:
+      - localstack-update-state
+  localstack-test1:
+    when: << pipeline.parameters.run_workflow_test1 >>
+    jobs:
+      - localstack-use-state
+      ...
+  localstack-test2:
+    when: << pipeline.parameters.run_workflow_test2 >>
+    jobs:
+      - localstack-use-state
+      ...
+```
+
+#### Ephemeral Instance (Preview)
+Find out more about [Ephemeral Instances](/user-guide/cloud-sandbox/).
+
+##### Same job 
+```yaml
+orbs:
+  localstack: localstack/platform@2.2
+...
+jobs:
+  do-work:
+    executor: localstack/default
+    steps:
+      - localstack/ephemeral:
+          auto_load_pod: <POD_NAME>  # Pod to load (optional)
+          # Commands to run (optional)
+          preview-cmd: |
+            awslocal sqs create-queue --queue-name=test-queue
+            awslocal s3 mb s3://test-bucket
+      - run:
+        name: Output the ephemeral instance address
+        command: echo "$AWS_ENDPOINT_URL"
+...
+workflows:
+  use-ephemeral-instance:
+    jobs:
+      - do-work
+...
+```
+
+##### Multiple jobs
+```yaml
+...
+jobs:
+  setup-instance:
+    executor: localstack/default
+    steps:
+      - localstack/ephemeral:
+          ephemeral_action: start
+          # Script to run (optional)
+          preview-cmd: bin/deploy.sh
+      - run:
+        name: Persist AWS Endpoint URL
+        command: echo "export AWS_ENDPOINT_URL=$endpointUrl" >> ls-env-vars
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ls-env-vars
+
+  run-test:
+    executor: localstack/default
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+        name: Set up LS env variables
+        command: cat ./ls-env-vars >> $BASH_ENV
+      - run:
+        name: Output the ephemeral instance address
+        command: echo "$AWS_ENDPOINT_URL"
+...
+    # Run any logic against the Ephemeral Instance,
+    # then stop when not needed anymore
+      - localstack/ephemeral:
+          ephemeral_action: stop
+
+...
+workflows:
+  use-ephemeral-instance:
+    jobs:
+      - setup-instance
+      - run-test
+...
+```
 
 #### Workspace
 This strategy persist LocalStack's state between jobs for the current workflow.
@@ -219,226 +432,3 @@ workflows:
       ...
 ```
 More information about [state management](/user-guide/state-management/export-import-state).
-
-#### Cloud Pods
-Cloud Pods providing an easy solution to persist LocalStack's state, even between workflows or projects.
-
-Find more information about [Cloud Pods](/user-guide/state-management/cloud-pods/).
-
-##### Multiple projects
-Update or create the Cloud Pod in it's own project (ie in a separate Infrastructure as Code repo), this would create a base Cloud Pod, which you can use in the future without any configuration or deployment.
-
-_Note: If there is a previously created Cloud Pod which doesn't need updating this step can be skipped._
-
-```yaml
-...
-jobs:
-  localstack-update-cloud-pod:
-    executor: localstack/default
-    steps:
-      ...
-      # LocalStack already running
-      - run:
-        name: Load state if exists
-        command: localstack pod load <POD_NAME> || true
-      ...
-      # Deploy infrastructure changes
-      ...
-      - run:
-          name: Export state updated state
-          command: localstack pod save <POD_NAME>
-
-
-workflows:
-  localstack-build:
-    jobs:
-      - localstack-update-cloud-pod
-```
-
-In a separate project use the previously created base Cloud Pod as below:
-
-```yaml
-...
-jobs:
-  localstack-use-cloud-pod:
-    executor: localstack/default
-    steps:
-      ...
-      # LocalStack already running
-      - run:
-        name: Load state if exists
-        command: localstack pod load <POD_NAME>
-      ...
-      # Run some tests
-
-workflows:
-  localstack-build:
-    jobs:
-      - localstack-use-cloud-pod
-```
-
-##### Same project
-To use a dynamically updated Cloud Pod in multiple workflows but in the same project, you must eliminate the race conditions between the update workflow and the others.
-
-Before you are able to use any stored artifacts in your pipeline, you must provide either a valid [project API token](https://circleci.com/docs/managing-api-tokens/#creating-a-project-api-token) or a [personal API token](https://circleci.com/docs/managing-api-tokens/#creating-a-personal-api-token) to CircleCI.
-
-```yaml
-...
-parameters:
-  run_workflow_build:
-    default: true
-    type: boolean
-
-  run_workflow_test1:
-    default: false
-    type: boolean
-
-  run_workflow_test2:
-    default: false
-    type: boolean
-...
-
-
-jobs:
-  localstack-update-state:
-    executor: localstack/default
-    steps:
-      ...
-      # LocalStack already running
-      - run:
-        name: Load state if exists
-        command: localstack pod load <POD_NAME>
-      ...
-      # Deploy infrastructure
-      ...
-      - run:
-          name: Export state updated state
-          command: localstack pod save <POD_NAME>
-      - run:
-          name: Trigger other workflows
-          # Replace placeholders with right values
-          command: |
-            curl --request POST \
-              --url https://circleci.com/api/v2/project/<vcs-slug>/<org-name>/<repo-name>/pipeline \
-              --header 'Circle-Token: $CIRCLECI_TOKEN' \
-              --header 'content-type: application/json' \
-              --data '{"parameters":{"run_workflow_build":false, "run_workflow_test1":true, "run_workflow_test2":true}}'
-
-
-  localstack-use-state:
-    executor: localstack/default
-    steps:
-      ...
-      # LocalStack already running
-      - run:
-        name: Load state if exists
-        command: localstack pod load <POD_NAME> || true
-      ...
-
-
-# Example workflows
-workflows:
-  localstack-build:
-    when: << pipeline.parameters.run_workflow_build >>
-    jobs:
-      - localstack-update-state
-  localstack-test1:
-    when: << pipeline.parameters.run_workflow_test1 >>
-    jobs:
-      - localstack-use-state
-      ...
-  localstack-test2:
-    when: << pipeline.parameters.run_workflow_test2 >>
-    jobs:
-      - localstack-use-state
-      ...
-```
-
-#### Ephemeral Instance (Preview)
-Find out more about [Ephemeral Instances](/user-guide/cloud-sandbox/).
-
-##### Same job 
-```yaml
-...
-jobs:
-  do-work:
-    docker:
-      - image: cimg/base:2024.02
-    steps:
-      - run:
-        command: |
-          response=$(curl -X POST -d '{"auto_load_pod": "false"}' \
-            -H 'ls-api-key: $LOCALSTACK_API_KEY' \
-            -H 'authorization: token $LOCALSTACK_API_KEY' \
-            -H 'content-type: application/json' \
-            https://api.localstack.cloud/v1/previews/my-localstack-state)
-          
-          if [ "$endpointUrl" = "null" ] || [ "$endpointUrl" = "" ]; then
-            echo "Unable to create preview environment. API response: $response"
-            exit 1
-          fi
-          echo "Created preview environment with endpoint URL: $endpointUrl"
-
-          echo "export AWS_ENDPOINT_URL=$endpointUrl" >> "$BASH_ENV"
-
-      - run:
-        name: Output the ephemeral instance address
-        command: echo "$AWS_ENDPOINT_URL"
-...
-workflows:
-  use-ephemeral-instance:
-    jobs:
-      - do-work
-...
-```
-
-##### Multiple jobs
-```yaml
-...
-jobs:
-  setup-instance:
-    docker:
-      - image: cimg/base:2024.02
-    steps:
-      - run:
-        name: Set up ephemeral instance
-        command: |
-          pip install localstack
-          response=$(curl -X POST -d '{"auto_load_pod": "false"}' \
-            -H 'ls-api-key: $LOCALSTACK_API_KEY' \
-            -H 'authorization: token $LOCALSTACK_API_KEY' \
-            -H 'content-type: application/json' \
-            https://api.localstack.cloud/v1/previews/my-localstack-state)
-          
-          if [ "$endpointUrl" = "null" ] || [ "$endpointUrl" = "" ]; then
-            echo "Unable to create preview environment. API response: $response"
-            exit 1
-          fi
-          echo "Created preview environment with endpoint URL: $endpointUrl"
-
-          echo "export AWS_ENDPOINT_URL=$endpointUrl" >> ls-env-vars
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ls-env-vars
-
-  run-test:
-    docker:
-      - image: cimg/aws:2024.03
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-        name: Set up LS env variables
-        command: cat ./ls-env-vars >> $BASH_ENV
-      - run:
-        name: Output the ephemeral instance address
-        command: echo "$AWS_ENDPOINT_URL"
-...
-workflows:
-  use-ephemeral-instance:
-    jobs:
-      - setup-instance
-      - run-test
-...
-```

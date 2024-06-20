@@ -154,7 +154,7 @@ Any execution of this data is recorded in the `/var/log/cloud-init-output.log` f
 
 You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.
 
-This section assumes that you have created or imported an SSH key pair named `my-key` (see [instructions above](#create-a-key-pair)).
+This section assumes that you have created or imported an SSH key pair named `my-key` (see [instructions above]({{< relref "#create-a-key-pair" >}})).
 When running the EC2 instance, make sure to pass the `--key-name` parameter to the command:
 
 {{< command >}}
@@ -169,7 +169,7 @@ $ ssh -p 12862 -i key.pem root@127.0.0.1
 {{< /command >}}
 
 {{< callout "tip" >}}
-If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here](#create-a-key-pair).
+If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here]({{< relref "ec2#create-a-key-pair" >}}).
 {{< /callout >}}
 
 
@@ -210,11 +210,10 @@ These restrictions include things like root access and networking.
 Please note that this VM manager does not fully support persistence.
 While the records of resources will be persisted, the instances or AMIs themselves (i.e. Docker containers and Docker images) will not be persisted.
 
-### Instances and AMIs
+### AMIs
 
 LocalStack utilizes a specific naming scheme to recognize and manage associated containers and images.
-Docker containers that back EC2 instances are named `localstack-ec2.<InstanceId>`.
-Similarly, Docker base images which are tagged with the scheme `localstack-ec2/<AmiName>:<AmiId>` are recognized as Amazon Machine Images (AMIs).
+Docker base images which are tagged with the scheme `localstack-ec2/<AmiName>:<AmiId>` are recognized as Amazon Machine Images (AMIs).
 
 You can mark any Docker base image as AMI using the below command:
 
@@ -245,6 +244,26 @@ If an AMI does have the `ec2_vm_manager:docker` tag, it means that it is mocked.
 Attempting to launch Dockerized instances using these AMIs will result in an `InvalidAMIID.NotFound` error.
 See [Mock VM manager](#mock-vm-manager).
 {{< /callout >}}
+
+AWS does not provide an API to download AMIs.
+This prevents the use stock AWS AMIs on LocalStack.
+However, in certain cases it may be possible to tweak your AMI build process to target Docker images.
+
+For example, suppose you use [Packer](https://packer.io/) to customise the Amazon Linux AMI on AWS.
+You can instead make Packer use the [Docker builder](https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker) instead of the Amazon builder and add the customisations on top of the Amazon Linux [Docker base image](https://hub.docker.com/_/amazonlinux/).
+The final image then can be used by LocalStack EC2 as illustrated above.
+
+### Instances
+
+When `RunInstances` is invoked, LocalStack creates an underlying Docker container to simulate an instance.
+Docker containers that back EC2 instances have the naming scheme `localstack-ec2.<InstanceId>`.
+
+LocalStack EC2 supports execution of user data scripts when the instance starts.
+A shell script can be passed to the `UserData` argument of `RunInstances`.
+Alternatively, the user data may also be added using the `ModifyInstanceAttribute` operation.
+
+The user data is placed at `/var/lib/cloud/instances/<InstanceId>/user-data.txt` in the container.
+The execution log is generated at `/var/log/cloud-init-output.log` in the container.
 
 ### Networking
 

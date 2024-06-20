@@ -11,9 +11,11 @@ persistence: supported
 Route 53 is a highly scalable and reliable domain name system (DNS) web service provided by Amazon Web Services. Route 53 allows you to register domain names, and associate them with IP addresses or other resources. In addition to basic DNS functionality, Route 53 offers advanced features like health checks and DNS failover. Route 53 integrates seamlessly with other AWS services, such as route traffic to CloudFront distributions, S3 buckets configured for static website hosting, EC2 instances, and more.
 
 LocalStack allows you to use the Route53 APIs in your local environment to create hosted zones and to manage DNS entries.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53/), which provides information on the extent of Route53's integration with LocalStack.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53/), which provides information on the extent of Route53's integration with LocalStack. LocalStack Pro image integrates with our DNS server to respond to DNS queries with these domains.
 
-Our Pro offering integrates with our DNS server to respond to DNS queries with these domains.
+{{< callout "note">}}
+LocalStack CLI does not publish port `53` anymore by default. Use the CLI flag `--host-dns` to expose the port on the host. This would be required if you want to reach out to Route53 domain names from your host machine, using the LocalStack DNS server.
+{{< /callout >}}
 
 ## Getting started
 

@@ -94,8 +94,9 @@ This section covers configuration options that are specific to certain AWS servi
 ### CloudFormation
 | Variable | Example Values | Description |
 | - | - | - |
+| `CFN_LEGACY_TEMPLATE_DEPLOYER` | `0` (default) \|`1` | Switch back to the old deployment engine. Note that this is only available temporarily to allow for a smoother roll-out of the new deployment order. 
 | `CFN_PER_RESOURCE_TIMEOUT` | `300` (default) | Set the timeout to deploy each individual CloudFormation resource.
-| `CFN_VERBOSE_ERRORS` | `0` (default) | Show exceptions for CloudFormation deploy errors.
+| `CFN_VERBOSE_ERRORS` | `0` (default) \|`1` | Show exceptions for CloudFormation deploy errors.
 
 ### CloudWatch
 
@@ -170,6 +171,12 @@ The OpenSearch configuration variables are used to manage both OpenSearch and El
 See [here](#opensearch).
 {{< /callout >}}
 
+### EventBridge
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `PROVIDER_OVERRIDE_EVENTS` | `v2` | Use the new EventBridge provider. |
+
 ### IAM
 | Variable | Example Values | Description |
 | - | - | - |
@@ -215,6 +222,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `LAMBDA_SYNCHRONOUS_CREATE` | `0` (default) | Set to `1` to create lambda functions synchronously (not recommended). |
 | `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console. This does not affect the logs processing in CloudWatch. |
 | `LAMBDA_LIMITS_MAX_FUNCTION_ENVVAR_SIZE_BYTES` | `4096` (default) | The maximum size of the environment variables that you can use to configure your function. |
+| `LAMBDA_K8S_INIT_IMAGE` | | Specify the image for downloading the init binary from LocalStack. The image must include the `curl` and `chmod` commands. This is only relevant for container-based Lambdas on Kubernetes |
 
 ### MemoryDB
 

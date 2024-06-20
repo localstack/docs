@@ -129,7 +129,8 @@ Remember to save the default configuration and restore it after testing.
 
 1. Expose the LocalStack DNS server:
 
-    a) The LocalStack CLI automatically publishes port 53 if it can be bound on the host.
+    a) Since version 3.5, the LocalStack CLI does not publish port `53` anymore by default. 
+       Use the CLI flag `--host-dns` to expose the port on the host.
 
     b) For Docker Compose, add the following port mappings to your `docker-compose.yml`:
 

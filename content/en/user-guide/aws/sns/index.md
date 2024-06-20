@@ -6,6 +6,8 @@ persistence: supported
 
 ---
 
+## Introduction
+
 Simple Notification Service (SNS) is a serverless messaging service that can distribute a massive number of messages to multiple subscribers and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints. SNS employs the Publish/Subscribe, an asynchronous messaging pattern that decouples services that produce events from services that process events.
 
 LocalStack allows you to use the SNS APIs in your local environment to coordinate the delivery of messages to subscribing endpoints or clients. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sns/), which provides information on the extent of SNS's integration with LocalStack.
@@ -443,8 +445,7 @@ awslocal sns get-subscription-attributes --subscription-arn "arn:aws:sns:us-east
 }
 ```
 
-SNS will now publish messages to your HTTP endpoint, even if it did not confirm itself the subscription. 
-
+SNS will now publish messages to your HTTP endpoint, even if it did not confirm itself the subscription.
 
 ## Resource Browser
 
@@ -467,3 +468,7 @@ The following code snippets and sample applications provide practical examples o
 - [Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3](https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo)
 - [Loan Broker application with AWS Step Functions, DynamoDB, Lambda, SQS, and SNS](https://github.com/localstack/loan-broker-stepfunctions-lambda-app)
 - [Serverless Image Resizer with AWS Lambda, S3, SNS, and SES](https://github.com/localstack/serverless-image-resizer)
+
+## Current Limitations
+
+- LocalStack does not support the `cidr` operator for filter policies. However, [other policies](https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html) are supported.

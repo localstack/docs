@@ -2,7 +2,13 @@
 title: "CloudFormation"
 linkTitle: "CloudFormation"
 description: Get started with Cloudformation on LocalStack
+persistence: supported with limitations
+
 ---
+
+{{< callout >}}
+With LocalStack 3.5 we've improved how the internal engine orders resources for deployment and deletion of stacks. Specifically it now more accurately calculates dependencies between resources and doesn't try to deploy/delete resources which don't have their dependencies available yet. Should you encounter any issues, please report them on [GitHub](https://github.com/localstack/localstack/issues/new/choose). You can temporarily revert to the old behavior with `CFN_LEGACY_TEMPLATE_DEPLOYER=1`, but be aware that this is only a temporary option.
+{{< /callout >}}
 
 ## Introduction
 
@@ -305,6 +311,9 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::Athena::NamedQuery                         |      ✅ |      ✅ |      - |
 | AWS::Athena::WorkGroup                          |      ✅ |      ✅ |      - |
 | AWS::Backup::BackupPlan                         |      ✅ |      ✅ |      - |
+| AWS::Batch::ComputeEnvironment                  |      ✅ |      ✅ |      - |
+| AWS::Batch::JobDefinition                       |      ✅ |      ✅ |      - |
+| AWS::Batch::JobQueue                           |      ✅ |      ✅ |      - |
 | AWS::CloudFormation::CustomResource             |      ✅ |      - |      - |
 | AWS::CloudFront::CachePolicy                    |      ✅ |      ✅ |      - |
 | AWS::CloudFront::CloudFrontOriginAccessIdentity |      ✅ |      ✅ |      - |
@@ -362,9 +371,12 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::ElasticLoadBalancingV2::TargetGroup        |      ✅ |      ✅ |      - |
 | AWS::Glue::Classifier                           |      ✅ |      ✅ |      - |
 | AWS::Glue::Crawler                              |      ✅ |      ✅ |      - |
+| AWS::Glue::Connection                           |      ✅ |      ✅ |      - |
 | AWS::Glue::Database                             |      ✅ |      ✅ |      - |
 | AWS::Glue::Job                                  |      ✅ |      ✅ |      - |
 | AWS::Glue::Registry                             |      ✅ |      ✅ |      - |
+| AWS::Glue::SchemaVersion                        |      ✅ |      ✅ |      - |
+| AWS::Glue::SchemaVersionMetadata                |      ✅ |      ✅ |      - |
 | AWS::Glue::Table                                |      ✅ |      ✅ |      - |
 | AWS::Glue::Trigger                              |      ✅ |      ✅ |      - |
 | AWS::Glue::Workflow                             |      ✅ |      ✅ |      - |
