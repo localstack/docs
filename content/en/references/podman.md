@@ -72,7 +72,7 @@ DEBUG=1 DOCKER_CMD="podman --storage-opt overlay.ignore_chown_errors=true" DOCKE
 ```
 ### Podman on Windows
 
-You can run Podman on Windows using WSL2. In the guide, we use a Docker Compose setup to run LocalStack.
+You can run Podman on Windows using [WSLv2](https://learn.microsoft.com/en-us/windows/wsl/about#what-is-wsl-2). In the guide, we use a Docker Compose setup to run LocalStack.
 
 Initialize and start Podman:
 
