@@ -87,7 +87,7 @@ At this stage, Podman operates in rootless mode, where exposing port 443 on Wind
 podman machine set --rootful
 {{< / command >}}
 
-For the Docker Compose setup, use the following configuration. In rootless mode, exclude the HTTPS gateway port by commenting it out, since it cannot bind to privileged ports under 1024:
+For the Docker Compose setup, use the following configuration. When running in rootless mode, ensure to comment out the HTTPS gateway port, as it is unable to bind to privileged ports below 1024.
 
 ```yaml
 version: "3.8"
