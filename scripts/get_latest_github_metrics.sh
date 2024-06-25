@@ -11,6 +11,7 @@ ARTIFACT_ID=${ARTIFACT_ID:-parity-metric-ext-raw}
 WORKFLOW=${WORKFLOW:-"Integration Tests"}
 PREFIX_ARTIFACT=${PREFIX_ARTIFACT:-}
 FILTER_SUCCESS=${FILTER_SUCCESS:-1}
+LIMIT=${LIMIT:-20}
 
 RESOURCE_FOLDER=${RESOURCE_FOLDER:-metrics-raw}
 REPOSITORY_OWNER=localstack
@@ -37,54 +38,33 @@ echo "Searching for Artifact: $ARTIFACT_ID in workflow '$WORKFLOW' on branch $ME
 # check filter criteria - some workflows might be expected to fail, but still have the artifact we are interested in
 if [ "$FILTER_SUCCESS" == "1" ]; then
     echo "searching last workflow with 'conclusion=success'"
-    RUN_ID=$(gh run list --limit 20 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.conclusion=="success")' | jq -rs '.[0].databaseId')
+    SELECTOR='.[] | select(.conclusion=="success")'
 else
     echo "searching last workflow with 'status=completed'"
-    RUN_ID=$(gh run list --limit 20 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.status=="completed" and (.conclusion=="failure" or .conclusion=="success"))' | jq -rs '.[0].databaseId')
+    SELECTOR='.[] | select(.status=="completed" and (.conclusion=="failure" or .conclusion=="success"))'
 fi
+RUN_IDS=$(gh run list --limit $LIMIT --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq "$SELECTOR")
 
-if [ "$RUN_ID" == "null" ];then
+if [ $( echo $RUN_IDS | jq -rs '.[0].databaseId' ) == "null" ];then
     echo "no run id found something must be wrong, exiting now..."
     exit 1
 fi
 
-echo "Trying to download file with runid $RUN_ID..."
+for (( i=0; i<$LIMIT; i++ )); do
+  # Extract the element at index $i
+  RUN_ID=$(echo $RUN_IDS | jq -rs ".[$i].databaseId")
+  echo "Trying to download file with run_id $RUN_ID..."
 
-# we do not want to exit if this command fails -> using or true
-gh run download $RUN_ID --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -p "$ARTIFACT_ID" -D $TMP_FOLDER || true
+  # we do not want to exit if this command fails -> using or true
+  gh run download $RUN_ID --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -p "$ARTIFACT_ID" -D $TMP_FOLDER || true
 
-# count the files with the pattern (we do not know the exact name) to check if we downloaded something
-if [ 0 -lt $(ls $TMP_FOLDER 2>/dev/null | wc -w) ]; then
-    echo "...downloaded $ARTIFACT_ID successfully."
+  # check if something got downloaded and break out of loop if so
+  if [ 0 -lt $(ls $TMP_FOLDER 2>/dev/null | wc -w) ]; then
+    echo "Downloaded $ARTIFACT_ID successfully!"
     tree $TMP_FOLDER
-else 
-    # runs on master often do NOT run the parity tests! we need to take the PR build which caused the master build to be skipped
-    # this one will have the same tree_id hash
-    echo "...download did not succeed, searching for build that created the artifact."
-    
-    # first find the tree_id from the RUN_ID we are interested in
-    DETAILS=$(gh api repos/$REPOSITORY_OWNER/$REPOSITORY_NAME/actions/runs/$RUN_ID |  jq -r '{id, tree_id: .head_commit.tree_id, head_branch, created_at}')
-    echo "RUN_ID details: $DETAILS"
-
-    TREE_ID=$(echo $DETAILS | jq -r .tree_id)
-    CREATED=$(echo $DETAILS | jq -r .created_at)
-
-    # now search for runs with the same tree_id but different run_id
-    # by default returns 30 builds, which should be enough, given we also filter for created and status
-    RELATED_BUILD_DETAILS=$(gh api -XGET repos/$REPOSITORY_OWNER/$REPOSITORY_NAME/actions/runs -F status='success' -F created="<$CREATED" \
-                            | jq -r .workflow_runs | jq -r '.[] | {id, tree_id: .head_commit.tree_id, head_branch}' \
-                            | jq --arg TREE_ID $TREE_ID --arg RUN_ID $RUN_ID -c 'select( .id != $RUN_ID and .tree_id == $TREE_ID)')
-    
-    echo "Found related build details: $RELATED_BUILD_DETAILS"
-
-    RELATED_ID=$(echo $RELATED_BUILD_DETAILS | jq -rs '.[0].id')
-    echo "Extracted ID $RELATED_ID, trying to download artefacts now..."
-
-    # download the artifact for the related build -> this time we fail if the download was not successful
-    gh run download $RELATED_ID --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -n $ARTIFACT_ID -D $TMP_FOLDER
-    echo "...dowloaded $ARTIFACT_ID successfully"
-    tree $TMP_FOLDER
-fi
+    break
+  fi
+done
 
 
 echo "Moving artifact to $TARGET_FOLDER"
