@@ -185,6 +185,26 @@ Replace `test-layer` and `1` with the name and version number of your layer, res
 
 After granting access, the next time you reference the layer in one of your local Lambda functions using the AWS Lambda layer ARN, the layer will be automatically pulled down and integrated into your local dev environment.
 
+## LocalStack Lambda Runtime Interface Emulator (RIE)
+
+LocalStack uses a [custom implementation](https://github.com/localstack/lambda-runtime-init/) of the
+[AWS Lambda Runtime Interface Emulator](https://github.com/aws/aws-lambda-runtime-interface-emulator)
+to match the behavior of AWS Lambda as closely as possible while providing additional features
+such as [hot reloading]({{< ref "hot-reloading" >}}).
+We ship our custom implementation as a Golang binary, which gets copied into each Lambda container under `/var/rapid/init`.
+This init binary is used as the entry point for every Lambda container.
+
+Our custom implementation offers additional configuration options,
+but these configurations are primarily intended for LocalStack developers and could change in the future.
+The LocalStack [configuration]({{< ref "configuration" >}}) `LAMBDA_DOCKER_FLAGS` can be used to configure all Lambda containers,
+for example `LAMBDA_DOCKER_FLAGS=-e LOCALSTACK_INIT_LOG_LEVEL=debug`.
+Some noteworthy configurations include:
+* `LOCALSTACK_INIT_LOG_LEVEL` defines the log level of the Golang binary. Values: `trace`, `debug`, `info`, `warn` (default), `error`, `fatal`, `panic`
+* `LOCALSTACK_USER` defines the system user executing the Lambda runtime. Values: `sbx_user1051` (default), `root` (skip dropping root privileges)
+
+The full list of configurations is defined in the Golang function
+[InitLsOpts](https://github.com/localstack/lambda-runtime-init/blob/localstack/cmd/localstack/main.go#L43).
+
 ## Special Tools
 
 LocalStack provides various tools to help you develop, debug, and test your AWS Lambda functions more efficiently.
