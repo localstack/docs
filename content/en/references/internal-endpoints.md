@@ -14,7 +14,7 @@ You may use [cURL](https://curl.se/) or your preferred HTTP client to access the
 
 {{< callout "tip" >}}
 You can use the Swagger UI below to interact with the API right from your browser.
-This may require changing the LocalStack [security settings]({{< ref "configuration#security" >}}) by allowing `https://docs.localstack.cloud` as CORS origin.
+This may require changing the LocalStack [security settings]({{< ref "configuration#security" >}}) to allow `https://docs.localstack.cloud` as CORS origin.
 {{< /callout >}}
 
 {{< swaggerui src="/openapi.json" >}}
