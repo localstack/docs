@@ -91,6 +91,36 @@ $ awslocal lambda create-function-url-config \
 
 This will generate a HTTP URL that can be used to invoke the Lambda function. The URL will be in the format `http://<XXXXXXXX>.lambda-url.us-east-1.localhost.localstack.cloud:4566`.
 
+#### Custom IDs for function URLs via tags
+
+If you need to create a predictable URL for the function, you can assign a custom ID to be used by speficying the `_custom_id_` tag on the function itself.
+
+Simply set (or update) the tags on the function to include the desired custom ID, for example:
+
+{{< command >}}
+$ awslocal lambda create-function \
+    --function-name localstack-lambda-url-example \
+    --runtime nodejs18.x \
+    --zip-file fileb://function.zip \
+    --handler index.handler \
+    --role arn:aws:iam::000000000000:role/lambda-role \
+    --tags '{"_custom_id_":"my-custom-subdomain"}'
+$ awslocal lambda create-function-url-config \
+    --function-name localstack-lambda-url-example \
+    --auth-type NONE
+{
+    "FunctionUrl": "http://my-custom-subdomain.lambda-url.<region>...",
+    ....
+}
+{{< / command >}}
+
+{{< callout >}}
+You have to specify the `_custom_id_` tag **before** calling `create-function-url-config`, and once the URL config is created, any changes to the tag will have no effect.
+{{< /callout >}}
+{{< callout >}}
+Currently, custom IDs can only be created for the `$LATEST` version of the function. Custom IDs for function version aliases are not yet supported.
+{{< /callout >}}
+
 ### Trigger the Lambda function URL
 
 You can now trigger the Lambda function by sending a HTTP POST request to the URL using `cURL` or your REST HTTP client:
