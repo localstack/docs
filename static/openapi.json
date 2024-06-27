@@ -199,6 +199,24 @@
             }
           }
         }
+      },
+      "PodRemoteConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {}
+      },
+      "PodSaveRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {}
+      },
+      "PodEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {}
       }
     },
     "parameters": {
@@ -245,6 +263,15 @@
         "description": "`phoneNumber` field of the resource",
         "in": "query",
         "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ServiceName": {
+        "name": "service",
+        "description": "Service name",
+        "in": "path",
+        "required": true,
         "schema": {
           "type": "string"
         }
@@ -1373,15 +1400,219 @@
     },
     "/_localstack/chaos": {},
     "/_localstack/cloudformation/deploy": {},
-    "/_localstack/pods": {},
-    "/_localstack/pods/{name}": {},
-    "/_localstack/pods/{name}/versions": {},
+    "/_localstack/pods": {
+      "get": {
+        "description": "List cloud pods",
+        "tags": [
+          "pro"
+        ],
+        "parameters": [
+          {
+            "name": "creator",
+            "description": "User ID of the pod creator. Special values like `me` are accepted.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PodRemoteConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "cloudpods"
+                  ],
+                  "properties": {
+                    "cloudpods": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "pod_name",
+                          "max_version"
+                        ],
+                        "properties": {
+                          "pod_name": {
+                            "type": "string"
+                          },
+                          "max_version": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_localstack/pods/{name}": {
+      "post": {
+        "description": "Create and register a cloud pod version",
+        "tags": [
+          "pro"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "description": "Cloud pod name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "local",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "version",
+            "description": "Cloud pod version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PodSaveRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/PodEvent"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Load a cloud pod version",
+        "tags": [
+          "pro"
+        ],
+        "parameters": [],
+        "requestBody": {},
+        "responses": {}
+      },
+      "delete": {
+        "description": "Delete a cloud pod",
+        "tags": [
+          "pro"
+        ],
+        "parameters": [],
+        "requestBody": {},
+        "responses": {}
+      }
+    },
+    "/_localstack/pods/{name}/versions": {
+      "get": {
+        "description": "List versions for a cloud pod",
+        "tags": [
+          "pro"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "description": "Cloud pod name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PodRemoteConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "versions"
+                  ],
+                  "properties": {
+                    "versions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/_localstack/pods/environment": {},
     "/_localstack/pods/remotes": {},
     "/_localstack/pods/remotes/{name}": {},
     "/_localstack/pods/remotes/token": {},
     "/_localstack/pods/state": {},
-    "/_localstack/pods/state/metamodel": {},
+    "/_localstack/pods/state/metamodel": {
+      "get": {
+        "description": "Extract a metamodel representing the state of the current LocalStack session",
+        "tags": [
+          "pro"
+        ],
+        "responses": {
+          "200": {
+            "description": "Metamodel representing the state of the current LocalStack session",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
     "/_localstack/stackinfo": {
       "get": {
         "description": "",
@@ -1455,7 +1686,22 @@
         }
       }
     },
-    "/_localstack/state/load": {},
+    "/_localstack/state/load": {
+      "post": {
+        "description": "Load all service states",
+        "tags": [
+          "pro"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/x-ndjson": {}
+            }
+          }
+        }
+      }
+    },
     "/_localstack/state/reset": {
       "post": {
         "description": "Reset all service states",
@@ -1464,13 +1710,51 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful"
+            "description": "Successful",
+            "content": {
+              "text/plain": {}
+            }
           }
         }
       }
     },
-    "/_localstack/state/save": {},
-    "/_localstack/state/{service}/load": {},
+    "/_localstack/state/save": {
+      "post": {
+        "description": "Save all service states",
+        "tags": [
+          "pro"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/x-ndjson": {}
+            }
+          }
+        }
+      }
+    },
+    "/_localstack/state/{service}/load": {
+      "post": {
+        "description": "Load a service state",
+        "tags": [
+          "pro"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ServiceName"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "text/plain": {}
+            }
+          }
+        }
+      }
+    },
     "/_localstack/state/{service}/reset": {
       "post": {
         "description": "Reset a service state",
@@ -1479,23 +1763,40 @@
         ],
         "parameters": [
           {
-            "name": "service",
-            "description": "Service name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/ServiceName"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful"
+            "description": "Successful",
+            "content": {
+              "text/plain": {}
+            }
           }
         }
       }
     },
-    "/_localstack/state/{service}/save": {}
+    "/_localstack/state/{service}/save": {
+      "post": {
+        "description": "Save a service state",
+        "tags": [
+          "pro"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ServiceName"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "text/plain": {}
+            }
+          }
+        }
+      }
+    }
   },
   "tags": [
     {
