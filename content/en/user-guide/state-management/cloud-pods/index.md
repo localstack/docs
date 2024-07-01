@@ -458,7 +458,7 @@ $ openssl rand --base64 32
 {{< / command > }}
 
 Users should treat the generated passphrase as a secret and they are responsible for securely sharing it within the organization.
-The generated secret can now be provided as am option to the `save` command when creating an encrypted Cloud Pod.
+The generated secret can now be provided as an option to the `save` command when creating an encrypted Cloud Pod.
 
 {{<command >}}
 $ localstack pod save my-secret-pod --secret 3X03eU5pgoejObUR+Y8I4QjbjeGEKjDcmVFd0FU5pCg=
