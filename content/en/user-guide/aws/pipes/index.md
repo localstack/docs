@@ -167,7 +167,8 @@ Firehose delivery stream,
 Inspector assessment template,
 Redshift cluster data API queries,
 SageMaker Pipeline,
-or Step Functions state machine: Express workflows (SYNC or ASYNC).
+Step Functions state machine: Express workflows (SYNC or ASYNC),
+or Timestream for LiveAnalytics table.
 
 ## Supported log destinations
 
