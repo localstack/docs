@@ -440,7 +440,7 @@ Likewise, you can execute the reverse operation to load a Cloud Pod from `oras-r
 $ localstack pod load my-pod oras-remote
 {{< / command >}}
 
-### End-to-End Encryption
+## End-to-End Encryption
 
 Cloud Pods artifacts are stored in S3 buckets when using the LocalStack platform as the storage remote.
 By default, Amazon S3 encrypts all objects before saving them on disks, while the opposite operation happens at download time.
@@ -452,25 +452,25 @@ To activate this feature, make sure to start LocalStack with the `POD_ENCRYPTION
 The next step is to generate a passphrase used to encrypt and decrypt the Cloud Pods' artifacts.
 We advise to create a strong passphrase by using the `openssl` utility, e,g.:
 
-{{<command >}}
+{{< command >}}
 $ openssl rand --base64 32
 # 3X03eU5pgoejObUR+Y8I4QjbjeGEKjDcmVFd0FU5pCg=
-{{< / command > }}
+{{< / command >}}
 
 Users should treat the generated passphrase as a secret and they are responsible for securely sharing it within the organization.
 The generated secret can now be provided as an option to the `save` command when creating an encrypted Cloud Pod.
 
-{{<command >}}
+{{< command >}}
 $ localstack pod save my-secret-pod --secret 3X03eU5pgoejObUR+Y8I4QjbjeGEKjDcmVFd0FU5pCg=
-{{< / command > }}
+{{< / command >}}
 
 Loading an encrypted Cloud Pod would require a similar `load` command:
 
-{{<command >}}
+{{< command >}}
 $ localstack pod load my-secret-pod --secret 3X03eU5pgoejObUR+Y8I4QjbjeGEKjDcmVFd0FU5pCg=
-{{< / command > }}
+{{< / command >}}
 
-#### Encryption with PGP keys
+### Encryption with PGP keys
 
 We also offer the option of using PGP keys to encrypt and decrypt Cloud Pods.
 The process is the following:
@@ -479,7 +479,7 @@ The process is the following:
 - These files need to be mounted in a specific `pods.keys.d` folder when starting LocalStack, i.e., `localstack start -v $PWD/pods.keys.d:/etc/localstack/pods.keys.d`.
 - The `secret` option passed to the `save` and `load` command corresponds to the passphrase needed to import the private key into the LocalStack runtime.
 
-#### Limitations
+### Limitations
 
 - Both browsing the Cloud Pod content via the UI and loading Cloud Pods into ephemeral instances are currently not supported for encrypted Cloud Pods.
 - It is not possible to have both encrypted and non-encrypted versions for a Cloud Pod. Encryption is set at the moment of the creation and it cannot be changed.
