@@ -85,7 +85,7 @@ For Node.js, you can set this environment variable in your application, to allow
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 ```
 
-If you are using the Java AWS SDK v2 in Lambda, you can opt in to automatically disable SSL validation using the configuration `LAMBDA_DISABLE_JAVA_SDK_V2_CERTIFICATE_VALIDATION=1`.
+If you are using the Java AWS SDK v2 in Lambda, LocalStack will per default use bytecode instrumentation to disable certificate validation, so the endpoint injection can work. You can opt out of this behavior by setting `LAMBDA_DISABLE_JAVA_SDK_V2_CERTIFICATE_VALIDATION=0`.
 
 {{< callout "warning" >}}
 Disabling SSL validation may have undesired side effects and security implications.
