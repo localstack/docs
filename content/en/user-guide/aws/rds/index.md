@@ -288,7 +288,7 @@ SELECT aws_commons.create_lambda_function_arn('my_function');
 SELECT aws_lambda.invoke('my_function', '{\"body\": \"Hello!\"}'::json);
 ```
 
-### Using the `aws_s3` extension to interact with AWS S3
+### `aws_s3` extension
 
 The [`aws_s3` extension](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/postgresql-s3-export.html) can be used in local RDS PostgreSQL databases to interact with the S3 API.
 
