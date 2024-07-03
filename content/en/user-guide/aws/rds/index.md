@@ -312,7 +312,7 @@ SELECT aws_s3.query_export_to_s3(
 )
 ```
 
-### Additional extensions available in RDS PostgreSQL
+### Additional extensions
 
 In addition to the `aws_*` extensions described in the sections above, LocalStack RDS supports the following PostgreSQL extensions (some of which are bundled with the [`PostGIS` extension](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.PostGIS.html)):
 
