@@ -294,7 +294,7 @@ The [`aws_s3` extension](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/
 
 In the SQL code snippet below, we are loading the `aws_s3` extension, then use the `table_import_from_s3(..)` function to populate the data in a table `table1` from a CSV file `test.csv` stored in a local S3 bucket `mybucket1`:
 
-```
+```sql
 CREATE EXTENSION IF NOT EXISTS aws_s3 CASCADE;
 SELECT aws_s3.table_import_from_s3(
     'table1', 'c1, c2, c3', '(format csv)',
