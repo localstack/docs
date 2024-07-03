@@ -270,6 +270,59 @@ LocalStack extends support for [Aurora Global Database](https://docs.aws.amazon.
 - It's important to note that clusters removed from a global database lose their ability to function as standalone clusters, differing from their intended behavior on AWS.
 - At present, the capability for persistence within global databases is not available.
 
+## RDS PostgreSQL Extensions for AWS Service Integrations
+
+LocalStack supports certain extensions and functions that are provided in RDS to interact with other AWS services.
+At the moment, primarily extension functions for the PostgreSQL engine are supported.
+
+### `aws_lambda` extension
+
+The [`aws_lambda` extension](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL-Lambda.html) can be used in local RDS PostgreSQL databases to interact with the Lambda API.
+
+For example, in the SQL code snippet below, we are loading the `aws_lambda` extension, then generate a full ARN from a function name, and finally invoke the Lambda function directly from the SQL query:
+```sql
+CREATE EXTENSION IF NOT EXISTS aws_lambda CASCADE;
+-- create a Lambda function ARN
+SELECT aws_commons.create_lambda_function_arn('my_function');
+-- invoke a Lambda function directly from a SQL query
+SELECT aws_lambda.invoke('my_function', '{\"body\": \"Hello!\"}'::json);
+```
+
+### `aws_s3` extension
+
+The [`aws_s3` extension](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/postgresql-s3-export.html) can be used in local RDS PostgreSQL databases to interact with the S3 API.
+
+In the SQL code snippet below, we are loading the `aws_s3` extension, then use the `table_import_from_s3(..)` function to populate the data in a table `table1` from a CSV file `test.csv` stored in a local S3 bucket `mybucket1`:
+
+```sql
+CREATE EXTENSION IF NOT EXISTS aws_s3 CASCADE;
+SELECT aws_s3.table_import_from_s3(
+    'table1', 'c1, c2, c3', '(format csv)',
+    aws_commons.create_s3_uri('mybucket1', 'test.csv', 'us-east-1')
+)
+```
+
+Analogously, we can use the `query_export_to_s3(..)` extension function to export data from a table `table2` into a CSV file `test.csv` in local S3 bucket `mybucket2`:
+```sql
+CREATE EXTENSION IF NOT EXISTS aws_s3 CASCADE;
+SELECT aws_s3.query_export_to_s3(
+    'SELECT * FROM table2',
+    aws_commons.create_s3_uri('mybucket2', 'test.csv', 'us-east-1'),
+    options := 'FORMAT csv'
+)
+```
+
+### Additional extensions
+
+In addition to the `aws_*` extensions described in the sections above, LocalStack RDS supports the following PostgreSQL extensions (some of which are bundled with the [`PostGIS` extension](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.PostGIS.html)):
+
+* `address_standardizer_data_us`
+* `fuzzystrmatch`
+* `postgis`
+* `postgis_raster`
+* `postgis_tiger_geocoder`
+* `postgis_topology`
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing RDS instances and clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **RDS** under the **Database** section.
