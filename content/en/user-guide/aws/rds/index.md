@@ -303,7 +303,7 @@ SELECT aws_s3.table_import_from_s3(
 ```
 
 Analogously, we can use the `query_export_to_s3(..)` extension function to export data from a table `table2` into a CSV file `test.csv` in local S3 bucket `mybucket2`:
-```
+```sql
 CREATE EXTENSION IF NOT EXISTS aws_s3 CASCADE;
 SELECT aws_s3.query_export_to_s3(
     'SELECT * FROM table2',
