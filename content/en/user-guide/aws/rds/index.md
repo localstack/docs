@@ -275,7 +275,7 @@ LocalStack extends support for [Aurora Global Database](https://docs.aws.amazon.
 LocalStack supports certain extensions and functions that are provided in RDS to interact with other AWS services.
 At the moment, primarily extension functions for the PostgreSQL engine are supported.
 
-### Using the `aws_lambda` extension to interact with AWS Lambda
+### `aws_lambda` extension
 
 The [`aws_lambda` extension](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL-Lambda.html) can be used in local RDS PostgreSQL databases to interact with the Lambda API.
 
