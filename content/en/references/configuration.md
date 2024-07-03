@@ -331,6 +331,13 @@ To learn more about these configuration options, see [Persistence]({{< ref "user
 | `SNAPSHOT_SAVE_STRATEGY` | `ON_SHUTDOWN`\|`ON_REQUEST`\|`SCHEDULED`\|`MANUAL` | Strategy that governs when LocalStack should make state snapshots |
 | `SNAPSHOT_LOAD_STRATEGY` | `ON_STARTUP`\|`ON_REQUEST`\|`MANUAL` | Strategy that governs when LocalStack restores state snapshots |
 | `SNAPSHOT_FLUSH_INTERVAL` | 15 (default) | The interval (in seconds) between persistence snapshots. It only applies to a `SCHEDULED` save strategy (see [Persistence Mechanism]({{< ref "user-guide/state-management/persistence" >}}))|
+
+## Cloud Pods
+
+To learn more about these configuration options, see [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}}).
+
+| Variable | Valid options | Description |
+| - | - | - |
 | `AUTO_LOAD_POD` |  | Comma-separated list of Cloud Pods to be automatically loaded at startup time. This feature is disabled when snapshot persistence is set via the `PERSISTENCE` variable. |
 | `POD_LOAD_CLI_TIMEOUT` | 60 (default) | Timeout in seconds to wait before returning from load operations on the Cloud Pods CLI |
 | `POD_ENCRYPTION` | `0` (default) \| `1` | Whether to encrypt the Cloud Pods artifacts at rest. |
