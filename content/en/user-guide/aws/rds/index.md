@@ -280,7 +280,7 @@ At the moment, primarily extension functions for the PostgreSQL engine are suppo
 The [`aws_lambda` extension](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL-Lambda.html) can be used in local RDS PostgreSQL databases to interact with the Lambda API.
 
 For example, in the SQL code snippet below, we are loading the `aws_lambda` extension, then generate a full ARN from a function name, and finally invoke the Lambda function directly from the SQL query:
-```
+```sql
 CREATE EXTENSION IF NOT EXISTS aws_lambda CASCADE;
 -- create a Lambda function ARN
 SELECT aws_commons.create_lambda_function_arn('my_function');
