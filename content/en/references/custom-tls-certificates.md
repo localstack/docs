@@ -29,7 +29,7 @@ They all can be summarised as:
 
 ## Creating a custom docker image
 
-If you run LocalStack in a docker container (which includes using [the CLI]({{< ref "/getting-started#localstack-cli" >}}), [docker]({{< ref "/getting-started/#docker" >}}), [docker-compose]({{< ref "/getting-started/#docker-compose" >}}), [cockpit]({{< ref "/getting-started/#localstack-cockpit" >}}) or [helm]({{< ref "/getting-started/#helm" >}})), to include a custom TLS root certificate a new docker image should be created.
+If you run LocalStack in a docker container (which includes using [the CLI]({{< ref "/getting-started#localstack-cli" >}}), [docker]({{< ref "/getting-started/#docker" >}}), [docker-compose]({{< ref "/getting-started/#docker-compose" >}}), or [helm]({{< ref "/getting-started/#helm" >}})), to include a custom TLS root certificate a new docker image should be created.
 
 Create a `Dockerfile` containing the following commands:
 
