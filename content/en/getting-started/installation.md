@@ -40,16 +40,16 @@ or use the curl commands below:
 <p>
 For x86-64:
 {{< command >}}
-$ curl -Lo localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz \
-    https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz
+$ curl --output localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz \
+    --location https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz
 {{< / command >}}
 </p>
 
 <p>
 For ARM64:
 {{< command >}}
-$ curl -Lo localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz \
-    https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz
+$ curl --output localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz \
+    --location https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz
 {{< / command >}}
 </p>
 
@@ -101,8 +101,8 @@ You may download the binary for your architecture using the link below:
 <p>
 or use the following curl command:
 {{< command >}}
-$ curl -Lo localstack-cli-{{< localstack-latest-version >}}-darwin-amd64-onefile.tar.gz \
-    https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-darwin-amd64-onefile.tar.gz
+$ curl --output localstack-cli-{{< localstack-latest-version >}}-darwin-amd64-onefile.tar.gz \
+    --location https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-darwin-amd64-onefile.tar.gz
 {{< / command >}}
 </p>
 
