@@ -93,7 +93,7 @@ This will generate a HTTP URL that can be used to invoke the Lambda function. Th
 
 #### Custom IDs for function URLs via tags
 
-If you need to create a predictable URL for the function, you can assign a custom ID to be used by speficying the `_custom_id_` tag on the function itself.
+If you need to create a predictable URL for the function, you can assign a custom ID to be used by specifying the `_custom_id_` tag on the function itself.
 
 Simply set (or update) the tags on the function to include the desired custom ID, for example:
 
