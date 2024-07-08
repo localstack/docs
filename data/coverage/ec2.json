@@ -1461,7 +1461,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -2349,7 +2349,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -4137,7 +4137,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -8557,7 +8557,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10300,6 +10300,30 @@
       }
     },
     "CreateSecurityGroup": {
+      "Description, GroupName, TagSpecifications, VpcId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestDurableStorageSample::test_listener",
+            "test": "test_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "Description, GroupName, VpcId": {
         "ls_community": [
           {
@@ -10575,16 +10599,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
-            "test": "test_eksctl_stack",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
             "test": "test_resource_deployment",
             "response": "200",
@@ -10759,7 +10773,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12401,11 +12415,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13043,11 +13057,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13371,11 +13385,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13759,11 +13773,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14063,7 +14077,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -14337,11 +14351,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -15037,11 +15051,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -16479,11 +16493,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -17781,11 +17795,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19375,7 +19389,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19979,7 +19993,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20173,7 +20187,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -21359,11 +21373,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -21683,11 +21697,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"

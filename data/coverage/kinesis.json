@@ -259,8 +259,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -1468,11 +1468,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2684,14 +2684,64 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[default]",
+            "test": "test_cdc_replication_task_cdc_files[default]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[non_default]",
+            "test": "test_cdc_replication_task_cdc_files[non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[unformatted_json]",
+            "test": "test_cdc_replication_task_cdc_files[unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[default]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[non_default]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[unformatted_json]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_describe_endpoints",
@@ -2738,10 +2788,80 @@
             "test": "test_no_csv_file[full-load]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType']",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryTimeout', '$..ReplicationTaskSettings.TTSettings', '$..ReplicationTasks..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[first row valid rest invalid]",
+            "test": "test_run_task_invalid_format_cdc_file[first row valid rest invalid]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid number of columns]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid number of columns]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid operation]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid operation]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid schema]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid schema]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid table]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid table]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/kinesis_firehose_redshift/test_kinesis_firehose_redshift.py::TestKinesisFirehoseScenario::test_kinesis_firehose_redshift",
@@ -2774,11 +2894,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
-            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4404,7 +4524,7 @@
             "test": "test_run_task_no_match_external_table_definition",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..RecoveryTimeout']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -5524,6 +5644,66 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[default]",
+            "test": "test_cdc_replication_task_cdc_files[default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[non_default]",
+            "test": "test_cdc_replication_task_cdc_files[non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[unformatted_json]",
+            "test": "test_cdc_replication_task_cdc_files[unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[default]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[non_default]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[unformatted_json]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[default]",
             "test": "test_full_load_replication_task[default]",
             "response": "200",
@@ -5558,7 +5738,67 @@
             "test": "test_no_csv_file[full-load]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType']",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryTimeout', '$..ReplicationTaskSettings.TTSettings', '$..ReplicationTasks..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[first row valid rest invalid]",
+            "test": "test_run_task_invalid_format_cdc_file[first row valid rest invalid]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid number of columns]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid number of columns]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid operation]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid operation]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid schema]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid schema]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid table]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid table]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6130,6 +6370,66 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[default]",
+            "test": "test_cdc_replication_task_cdc_files[default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[non_default]",
+            "test": "test_cdc_replication_task_cdc_files[non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[unformatted_json]",
+            "test": "test_cdc_replication_task_cdc_files[unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[default]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[non_default]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[unformatted_json]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[default]",
             "test": "test_full_load_replication_task[default]",
             "response": "200",
@@ -6164,7 +6464,67 @@
             "test": "test_no_csv_file[full-load]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType']",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryTimeout', '$..ReplicationTaskSettings.TTSettings', '$..ReplicationTasks..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[first row valid rest invalid]",
+            "test": "test_run_task_invalid_format_cdc_file[first row valid rest invalid]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid number of columns]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid number of columns]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid operation]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid operation]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid schema]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid schema]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid table]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid table]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7916,6 +8276,96 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[default]",
+            "test": "test_cdc_replication_task_basic_response[default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..RecoveryTimeout', '$..ReplicationTaskSettings.TTSettings', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[non_default]",
+            "test": "test_cdc_replication_task_basic_response[non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..RecoveryTimeout', '$..ReplicationTaskSettings.TTSettings', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_basic_response[unformatted_json]",
+            "test": "test_cdc_replication_task_basic_response[unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..RecoveryTimeout', '$..ReplicationTaskSettings.TTSettings', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[default]",
+            "test": "test_cdc_replication_task_cdc_files[default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[non_default]",
+            "test": "test_cdc_replication_task_cdc_files[non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_files[unformatted_json]",
+            "test": "test_cdc_replication_task_cdc_files[unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[default]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[non_default]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[non_default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_cdc_multiple_files[unformatted_json]",
+            "test": "test_cdc_replication_task_cdc_multiple_files[unformatted_json]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[default]",
             "test": "test_full_load_replication_task[default]",
             "response": "200",
@@ -7946,11 +8396,81 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_no_csv_file[cdc]",
+            "test": "test_no_csv_file[cdc]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryTimeout', '$..ReplicationTaskSettings.TTSettings', '$..ReplicationTasks..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_no_csv_file[full-load]",
             "test": "test_no_csv_file[full-load]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType']",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryTimeout', '$..ReplicationTaskSettings.TTSettings', '$..ReplicationTasks..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[first row valid rest invalid]",
+            "test": "test_run_task_invalid_format_cdc_file[first row valid rest invalid]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid number of columns]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid number of columns]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid operation]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid operation]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid schema]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid schema]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[invalid table]",
+            "test": "test_run_task_invalid_format_cdc_file[invalid table]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
