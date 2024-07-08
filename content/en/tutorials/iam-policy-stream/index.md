@@ -3,7 +3,7 @@ title: "Generate IAM Policies with LocalStack IAM Policy Stream"
 linkTitle: "Generate IAM Policies with LocalStack IAM Policy Stream"
 weight: 15
 description: >
-  Learn how to generate IAM policies for your AWS API requests on your local machine using LocalStack's IAM Policy Stream.s
+  Learn how to generate IAM policies for your AWS API requests on your local machine using LocalStack's IAM Policy Stream.
 type: tutorials
 services:
 - s3
@@ -33,3 +33,13 @@ LocalStack enables you to create and enforce local IAM roles and policies using 
 This challenge becomes more complex when dealing with AWS services that make requests not directly visible to users. For instance, if an SNS topic sends a message to an SQS queue and the underlying call fails, there might be no clear error message, causing confusion, especially for those less familiar with the services.
 
 IAM Policy Stream simplifies this by automatically generating the needed policies and showing them to users. This makes it easier to integrate with resources, roles, and users, streamlining the development process. Additionally, it serves as a useful learning tool, helping users understand the permissions linked to various AWS calls and improving the onboarding experience for newcomers to AWS.
+
+## Prerequisites
+
+-   [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)  with  [`LOCALSTACK_AUTH_TOKEN`](https://docs.localstack.cloud/getting-started/auth-token/)
+-   [Docker](https://docs.docker.com/get-docker/)
+-   [AWS](https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html)  CLI with  [`awslocal` wrapper](https://github.com/localstack/awscli-local)
+-   [LocalStack Web Application account](https://app.localstack.cloud/sign-up)
+-   [jq](https://jqlang.github.io/jq/download/)
+
+## Tutorial: Configure an S3 bucket for event notifications using SQS
