@@ -3,15 +3,19 @@ title: "Generate IAM Policies with LocalStack IAM Policy Stream"
 linkTitle: "Generate IAM Policies with LocalStack IAM Policy Stream"
 weight: 15
 description: >
+  Learn how to generate IAM policies for your AWS API requests on your local machine using LocalStack's IAM Policy Stream.s
 type: tutorials
-teaser: ""
 services:
 - s3
 - sns
 deployment:
 - terraform
+- awscli
 pro: true
 leadimage: ""
+teaser: ""
+platform:
+- HCL
 ---
 
 ## Introduction
