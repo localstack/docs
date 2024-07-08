@@ -182,3 +182,17 @@ Deploying Lambdas targeting the `arm64` architecture on GitHub Actions can pose 
 While the [`LAMBDA_IGNORE_ARCHITECTURE` configuration](https://docs.localstack.cloud/references/configuration/#lambda) is an option for cross-architecture compatible Lambdas, it may not be suitable for statically compiled Lambdas.
 To address this, users are recommended to leverage Docker's [`setup-qemu-action`](https://github.com/docker/setup-qemu-action) to enable emulation for the `arm64` architecture.
 It's important to note that using this approach may result in significantly slower build times.
+
+### Running LocalStack on macOS & Windows runners
+
+LocalStack requires Docker to run, which is not natively supported on macOS & Windows runners. To run LocalStack on macOS runners (`macos-latest` and other macOS versions), you can use [Colima](https://github.com/abiosoft/colima) in the following way:
+
+```yaml
+- name: Docker setup (macos only)
+  if: ${{ runner.os == 'macOS' }}
+  run: |
+    brew install docker
+    colima start
+```
+
+Windows runners don't support Docker natively due to licensing restrictions. It is currently not possible to run LocalStack on Windows runners.
