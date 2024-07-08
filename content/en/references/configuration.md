@@ -498,8 +498,7 @@ $ python -m localstack.cli.main --profile=dev config show
 
 {{< callout >}}
 The `CONFIG_PROFILE` is a CLI feature and cannot be used with a Docker/Docker Compose setup.
+You can look at [alternative means of setting environment variables](https://docs.docker.com/compose/environment-variables/set-environment-variables/) for your Docker Compose setups.
 
 For Docker setups, we recommend passing the environment variables directly to the `docker run` command.
-
-You can also set environment variables in a file and pass it to the LocalStack Docker container by using the `--compose-env-file` flag.
 {{< /callout >}}
