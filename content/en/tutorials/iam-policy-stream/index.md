@@ -121,7 +121,7 @@ Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
 
 Access the [LocalStack Web Application](https://app.localstack.cloud/) and go to the [IAM Policy Stream dashboard](https://app.localstack.cloud/policy-stream). This feature enables you to directly examine the generated policies, displaying the precise permissions required for each API call.
 
-<img src="iam-policy-stream-dashboard.png" alt="IAM Policy Stream dashboard" title="IAM Policy Stream dashboard" width="800" />
+<img src="iam-policy-stream-dashboard.png" alt="IAM Policy Stream dashboard" title="IAM Policy Stream dashboard" width="900" />
 <br><br>
 
 You'll observe the Stream active status icon, indicating that making any local AWS API request will trigger the generation of an IAM Policy. Now, let's proceed to upload a file to the S3 bucket to trigger the event notification and generate the IAM policy.
@@ -137,7 +137,7 @@ $ awslocal s3 cp some-log-file.log s3://s3-event-notification-bucket/
 
 Uploading a file will activate an event notification, sending a message to the SQS queue. However, since the SQS queue lacks the necessary permissions, an IAM violation will appear in the [IAM Policy Stream dashboard](https://app.localstack.cloud/policy-stream).
 
-<img src="iam-policy-stream-violation.png" alt="IAM Policy Stream showcasing an IAM violation" title="IAM Policy Stream showcasing an IAM violation" width="800" />
+<img src="iam-policy-stream-violation.png" alt="IAM Policy Stream showcasing an IAM violation" title="IAM Policy Stream showcasing an IAM violation" width="900" />
 <br><br>
 
 You can also navigate to the LocalStack logs and observe the IAM violation message:
@@ -154,7 +154,7 @@ You can also navigate to the LocalStack logs and observe the IAM violation messa
 
 Go to the IAM Policy Stream dashboard and review the API calls such as `PutObject`, `SendMessage`, and `ReceiveMessage`. Notice that the `SendMessage` call was denied due to an IAM violation. Click on the **SQS.SendMessage** action to see the suggested IAM policy.
 
-<img src="iam-policy-stream-sqs-policy.png" alt="IAM Policy Stream showcasing the required SQS policy" title="IAM Policy Stream showcasing the required SQS policy" width="800" />
+<img src="iam-policy-stream-sqs-policy.png" alt="IAM Policy Stream showcasing the required SQS policy" title="IAM Policy Stream showcasing the required SQS policy" width="900" />
 <br><br>
 
 LocalStack automatically recommends a resource-based policy for the SQS queue `arn:aws:sqs:us-east-1:000000000000:s3-event-notification-queue`. Copy this policy and incorporate it into your Terraform configuration under the `aws_sqs_queue` resource by adding the `policy` attribute:
@@ -219,7 +219,7 @@ The following output will show the message sent by the S3 bucket:
 
 You can now check the IAM Policy Stream dashboard to confirm that there are no violations and that your AWS API requests have been successfully executed with the correct IAM policies.
 
-<img src="iam-policy-stream-no-violations.png" alt="IAM Policy Stream showcasing no violations" title="IAM Policy Stream showcasing no violations" width="800" />
+<img src="iam-policy-stream-no-violations.png" alt="IAM Policy Stream showcasing no violations" title="IAM Policy Stream showcasing no violations" width="900" />
 <br><br>
 
 ### Generating a comprehensive policy
@@ -228,12 +228,12 @@ In scenarios where there are many AWS services, and every AWS API request genera
 
 You can navigate to the **Summary Policy** tab on the IAM Policy Stream dashboard. This concatenates the policy per principle which the policy should be attached to. For the example above, you would be able to see the **Identity Policy** for the root user which has all the actions and resources inside one single policy file for the operations we performed.
 
-<img src="require-identity-based-policy.png" alt="Required identity based policy" title="Required identity based policy" width="800" />
+<img src="require-identity-based-policy.png" alt="Required identity based policy" title="Required identity based policy" width="900" />
 <br><br>
 
 On the other hand, you have the **Resource Policy** for the SQS queue, where you can see the permission necessary for the subscription. For larger AWS applications, you would be able to find multiple roles and multiple resource-based policies depending on your scenario.
 
-<img src="require-resource-based-policy.png" alt="Required resource based policy" title="Required resource based policy" width="800" />
+<img src="require-resource-based-policy.png" alt="Required resource based policy" title="Required resource based policy" width="900" />
 <br><br>
 
 ## Conclusion
