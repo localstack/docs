@@ -51,6 +51,27 @@ $ awslocal lambda create-function \
     --role arn:aws:iam::000000000000:role/lambda-role
 {{< / command >}}
 
+{{< callout "note">}}
+To create a predictable URL for the function, you can assign a custom ID by specifying the `_custom_id_` tag on the function itself.
+{{< command >}}
+$ awslocal lambda create-function \
+    --function-name localstack-lambda-url-example \
+    --runtime nodejs18.x \
+    --zip-file fileb://function.zip \
+    --handler index.handler \
+    --role arn:aws:iam::000000000000:role/lambda-role \
+    --tags '{"_custom_id_":"my-custom-subdomain"}'
+$ awslocal lambda create-function-url-config \
+    --function-name localstack-lambda-url-example \
+    --auth-type NONE
+{
+    "FunctionUrl": "http://my-custom-subdomain.lambda-url.<region>...",
+    ....
+}
+{{< / command >}}
+You must specify the `_custom_id_` tag **before** using the `create-function-url-config` command. After the URL configuration is set up, any modifications to the tag will not affect it. At present, custom IDs can be assigned only to the `$LATEST` version of the function. LocalStack does not yet support custom IDs for function version aliases.
+{{< /callout >}}
+
 {{< callout >}}
 In the old Lambda provider, you could create a function with any arbitrary string as the role, such as `r1`. However, the new provider requires the role ARN to be in the format `arn:aws:iam::000000000000:role/lambda-role` and validates it using an appropriate regex. However, it currently does not check whether the role exists.
 {{< /callout >}}
