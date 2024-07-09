@@ -222,7 +222,7 @@ You can now check the IAM Policy Stream dashboard to confirm that there are no v
 <img src="iam-policy-stream-no-violations.png" alt="IAM Policy Stream showcasing no violations" title="IAM Policy Stream showcasing no violations" width="900" />
 <br><br>
 
-### Generating a comprehensive policy
+### Generate a comprehensive policy
 
 In scenarios where there are many AWS services, and every AWS API request generates a policy it might be cumbersome to analyze every policy. In such cases, you can generate one comprehensive policy for all your AWS resources together.
 
