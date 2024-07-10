@@ -26,9 +26,16 @@ We will demonstrate how to create an Airflow environment and access the Airflow 
 Create a S3 bucket that will be used for Airflow resources.
 Run the following command to create a bucket using the [`mb`](https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html) command.
 
-
 {{< command >}}
 $ awslocal s3 mb s3://my-mwaa-bucket
+{{< /command >}}
+
+Optionally, enable bucket versioning if you wish to use startup scripts.
+
+{{< command >}}
+$ awslocal s3api put-bucket-versioning \
+    --bucket my-mwaa-bucket \
+    --versioning-configuration Status=Enabled
 {{< /command >}}
 
 ### Create an Airflow environment
@@ -128,8 +135,64 @@ $ awslocal s3 cp requirements.txt s3://my-mwaa-bucket/requirements.txt
 {{< /command >}}
 
 After the upload, the environment will be automatically updated, and your Apache Airflow setup will be equipped with the new dependencies.
-It is important to note that, unlike [AWS](https://docs.aws.amazon.com/mwaa/latest/userguide/connections-packages.html), LocalStack does not install any provider packages by default.
+It is important to note that [unlike AWS](https://docs.aws.amazon.com/mwaa/latest/userguide/connections-packages.html), LocalStack does not install any provider packages by default.
 Therefore, you must follow the above steps to install any required provider packages.
+
+## Startup scripts
+
+A startup script is a shell script that can be used to customise the MWAA environment.
+It is hosted on S3 just like DAGs, plugins and the requirements file.
+The script is executed before requirements are installed and Airflow processes are started.
+You can use startup scripts to customise environment variables or install additional OS packages which may be required by your workflows or connections.
+
+{{< callout >}}
+The Airflow containers started by LocalStack are based on official [Apache Airflow Docker images](https://hub.docker.com/r/apache/airflow).
+{{< /callout >}}
+
+In the example script below, we update all system packages and set an environment variable:
+
+```sh
+#!/bin/sh
+
+apt update
+apg upgrade -y
+
+export ACTIVE_MISSION='moonraker'
+```
+
+[Unlike AWS](https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html), LocalStack runs all Airflow components in the same container.
+Thus the environment variable `MWAA_AIRFLOW_COMPONENT` is not preset during script execution.
+
+The above script can be uploaded to S3 using:
+
+{{< command >}}
+$ awslocal s3 cp startup.sh s3://my-mwaa-bucket/startup.sh
+{{< /command >}}
+
+Then using the following command, retrieve the latest version ID for this file:
+
+{{< command >}}
+$ awslocal s3api list-object-versions \
+    --bucket my-mwaa-bucket \
+    --prefix startup \
+    --query 'Versions[?IsLatest].[VersionId]' \
+    --output text
+{{< /command >}}
+
+{{< callout "tip" >}}
+If the version ID is `null`, please make sure that versioning is enabled for the bucket.
+{{< /callout >}}
+
+Next associate the startup script with the MWAA environment:
+
+{{< command >}}
+$ awslocal mwaa update-environment \
+    --name my-mwaa-env \
+    --startup-script-s3-path startup.sh \
+    --startup-script-s3-object-version 05ZnE2WIaQLfkesBWlUAHw
+{{< /command >}}
+
+LocalStack will immediately stop all Airflow components, execute the startup script and restart them.
 
 ## Connections
 
