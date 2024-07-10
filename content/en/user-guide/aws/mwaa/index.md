@@ -142,7 +142,6 @@ Therefore, you must follow the above steps to install any required provider pack
 
 A startup script is a shell script that can be used to customise the MWAA environment.
 It is hosted on S3 just like DAGs, plugins and the requirements file.
-The script is executed before requirements are installed and Airflow processes are started.
 You can use startup scripts to customise environment variables or install additional OS packages which may be required by your workflows or connections.
 
 {{< callout >}}
@@ -155,13 +154,14 @@ In the example script below, we update all system packages and set an environmen
 #!/bin/sh
 
 apt update
-apg upgrade -y
+apt upgrade -y
 
 export ACTIVE_MISSION='moonraker'
 ```
 
 [Unlike AWS](https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html), LocalStack runs all Airflow components in the same container.
-Thus the environment variable `MWAA_AIRFLOW_COMPONENT` is not preset during script execution.
+Thus the environment variable `MWAA_AIRFLOW_COMPONENT` is not pre-set during script execution.
+Also note that LocalStack makes no reservation of environment variables.
 
 The above script can be uploaded to S3 using:
 
@@ -192,7 +192,8 @@ $ awslocal mwaa update-environment \
     --startup-script-s3-object-version 05ZnE2WIaQLfkesBWlUAHw
 {{< /command >}}
 
-LocalStack will immediately stop all Airflow components, execute the startup script and restart them.
+LocalStack uses the same polling mechanism as DAGs to detect new or updated startup scripts.
+When this is detected, all Airflow components are stopped, the startup script is executed and Airflow restarted.
 
 ## Connections
 
