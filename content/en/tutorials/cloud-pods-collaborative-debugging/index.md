@@ -74,7 +74,7 @@ example, a `LOCALSTACK_AUTH_TOKEN` is needed, which you can find in the LocalSta
 [Getting Started](https://app.localstack.cloud/getting-started) page.
 
 {{< command >}}
-$ localstack auth set-token <YOUR_LOCALSTACK_AUTH_TOKEN>
+$ export LOCALSTACK_AUTH_TOKEN=<your-auth-token>
 $ docker compose up
 {{</ command >}}
 
