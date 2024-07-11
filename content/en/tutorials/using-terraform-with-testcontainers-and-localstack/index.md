@@ -101,7 +101,7 @@ host directory, potentially requiring `sudo` to modify or delete.
 ##### LocalStack CLI
 
 From the root folder of the demo project, navigate to the `terrform` folder and run:
-```commandline
+```bash
 $ export LOCALSTACK_AUTH_TOKEN=<your_auth_toke>
 $ localstack start -e EXTENSION_AUTO_INSTALL=localstack-extension-terraform-init 
                 -v ./terraform/main.tf:/etc/localstack/init/ready.d/main.tf 
@@ -115,7 +115,7 @@ absolute paths.
 
 ##### Docker compose
 
-Another way of easily starting LocalStack with the necessary resources is using `docker compose`. In the root folder, there is a `docker-compose.yml` file
+Another way of easily starting LocalStack with the necessary resources is using `docker compose`. In the root folder, there is a [`docker-compose.yml`](https://github.com/localstack-samples/terraform-init-hooks-demo/blob/main/docker-compose.yml) file
 with all the essential configs:
 
 Environment Variables
@@ -272,6 +272,40 @@ Since the app runs entirely inside the LocalStack container, an HTTP client is u
 ```
 
 It is now incredibly straightforward to utilize our own Infrastructure as Code directly to construct the exact, production-ready environment needed for effective testing.
+
+### About owner permissions
+
+It's important to note that this extension is still new and primarily intended for straightforward Terraform configurations. It may suffer improvement changes in the future.
+If you mount a directory instead of a single file, the AWS Terraform provider will not be downloaded each time the `init` command runs, and any state files created will be in your host directory, 
+potentially requiring `sudo` to modify or delete. The reason for this is that the container user that creates these files is `root`, and on Linux systems this will propagate 
+to your local files. MacOS, on the other hand, will not allow this to happen and your locally created files will belong to your user. Here's how it looks like:
+
+##### In the LocalStack container
+
+```bash
+drwxr-xr-x 8 root root   256 Jul 10 15:26 .
+drwxr-xr-x 1 root root  4096 Jul 10 15:24 ..
+drwxr-xr-x 3 root root    96 Jul 10 07:28 .terraform
+-rw-r--r-- 1 root root  1406 Jul 10 07:28 .terraform.lock.hcl
+-rwxrwxrwx 1 root root  5563 Jul  7 06:51 main.tf
+drwxr-xr-x 3 root root    96 Jul 10 07:28 target
+-rw-r--r-- 1 root root 23620 Jul 10 15:26 terraform.tfstate
+-rw-r--r-- 1 root root 23620 Jul 10 15:25 terraform.tfstate.backup
+```
+
+##### On MacOS
+
+```bash
+drwxr-xr-x@  9 user  staff    288 Jul 10 00:28 ./
+drwxr-xr-x@ 19 user  staff    608 Jul 10 00:28 ../
+drwxr-xr-x   3 user  staff     96 Jul 10 00:28 .terraform/
+-rw-r--r--   1 user  staff   1406 Jul 10 00:28 .terraform.lock.hcl
+-rw-------   1 user  staff    202 Jul 10 00:28 .terraform.tfstate.lock.info
+-rw-r--r--   1 user  staff   3798 Jul 10 00:28 localstack_providers_override.tf
+-rwxrwxrwx@  1 user  staff   5563 Jul  6 23:51 main.tf*
+drwxr-xr-x   3 user  staff     96 Jul 10 00:28 target/
+-rw-r--r--   1 user  staff  17338 Jul 10 00:29 terraform.tfstate
+```
 
 ## Conclusion
 
