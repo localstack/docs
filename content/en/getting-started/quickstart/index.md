@@ -50,11 +50,11 @@ You can start LocalStack using the `localstack` CLI. Start the LocalStack Pro co
 
 {{< tabpane >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
-export LOCALSTACK_AUTH_TOKEN=<your-auth-token>
+localstack auth set-token <your-auth-token>
 localstack start
 {{< /tab >}}
 {{< tab header="Windows" lang="powershell" >}}
-$env:LOCALSTACK_AUTH_TOKEN=<your-auth-token>
+localstack auth set-token <your-auth-token>
 localstack start
 {{< /tab >}}
 {{< /tabpane >}}
