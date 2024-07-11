@@ -37,7 +37,7 @@ git clone https://github.com/localstack-samples/sample-dms-kinesis-rds-mariadb.g
 Next, start LocalStack (there is a docker-compose included, setting the `ENABLE_DMS=1` flag):
 
 ```sh
-export LOCALSTACK_AUTH_TOKEN=<your-auth-token> # this must be a enterprise license token
+localstack auth set-token <your-auth-token> # this must be a enterprise license token
 docker-compose up
 ```
 
