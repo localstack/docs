@@ -201,6 +201,12 @@ To get started with Testcontainers, you need to include a few dependencies in th
 </dependencies>
 ```
 
+If you intend to make changes to the code, you may build the project by running the following command and the JAR file will be recreated in the `target` folder.
+However, you don't need to, as the built file is already provided.
+```bash
+$ mvn clean package
+```
+
 In the provided code snippet, we configure a LocalStackContainer object using Testcontainers.
 You'll need to set the `LOCALSTACK_AUTH_TOKEN` as an environment variable. This configuration is abstracted in a superclass to be reusable across different test cases.
 
