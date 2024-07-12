@@ -1,6 +1,6 @@
 ---
-title: "Language SDKs"
-linkTitle: "Language SDKs"
+title: "AWS SDKs"
+linkTitle: "AWS SDKs"
 description: >
   How to use your favorite cloud development SDK with LocalStack.
 weight: 1
