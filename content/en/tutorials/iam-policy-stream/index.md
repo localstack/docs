@@ -12,7 +12,7 @@ deployment:
 - terraform
 - awscli
 pro: true
-leadimage: ""
+leadimage: "iam-policy-stream.png"
 teaser: ""
 platform:
 - HCL
