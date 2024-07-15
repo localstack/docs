@@ -12,7 +12,7 @@ services:
 - sns
 - clf
 platform:
-- java
+- Java
 deployment:
 - aws-java-sdk
 - CloudFormation

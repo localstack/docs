@@ -8,11 +8,11 @@ type: tutorials
 teaser: ""
 services:
 - sqs
-- lambda
+- lmb
 platform:
 - Python
 deployment:
-- AWS CLI
+- awscli
 pro: true
 leadimage: "aws-replicator-extension-tutorial-cover.png"
 ---

@@ -12,7 +12,7 @@ services:
 - agw
 - ddb
 platform:
-- Javascript
+- JavaScript
 deployment:
 - terraform
 tags:
