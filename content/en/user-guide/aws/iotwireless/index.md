@@ -118,7 +118,7 @@ $ awslocal iotwireless create-wireless-gateway \
 
 The following output would be retrieved:
 
-```bash
+```json
 {
     "Id": "e519dc4e"
 }
