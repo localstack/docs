@@ -73,7 +73,7 @@ $ awslocal autoscaling describe-auto-scaling-groups
 
 The following output is displayed:
 
-```bash
+```json
 {
     "AutoScalingGroups": [
         {
