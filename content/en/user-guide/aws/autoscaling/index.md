@@ -30,7 +30,7 @@ $ awslocal ec2 create-launch-template \
 
 The following output is displayed:
 
-```bash
+```json
 {
     "LaunchTemplate": {
         "LaunchTemplateId": "lt-5ccdf1a84f178ba44",
