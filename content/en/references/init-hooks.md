@@ -33,7 +33,7 @@ In these directories, you can put either executable shell scripts or Python prog
 All except `boot.d` will be run in the same Python interpreter as LocalStack, which gives additional ways of configuring/extending LocalStack.
 You can also use subdirectories to organize your init scripts.
 
-Currently, known script extensions are `.sh`, `.py`, and `.tf`.
+Currently, known script extensions are `.sh` and `.py`. Additionally, with the installation of the `localstack-extension-terraform-init` [extension]({{<ref "user-guide/extensions/">}}), `.tf` files can also be supported.
 Shell scripts have to be executable, and have to have a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) (usually `#!/bin/bash`).
 
 A script can be in one of four states: `UNKNOWN`, `RUNNING`, `SUCCESSFUL`, `ERROR`.
@@ -154,7 +154,7 @@ Another use for init hooks can be seen when [adding custom TLS certificates to L
 ### Terraform configuration files as init hooks
 
 Running Terraform configuration files as init hooks requires the installation of a special extension.
-For more information on how to manage [LocalStack extensions](({{< ref "user-guide/extensions/" >}})), please refer to the dedicated documentation page,
+For more information on how to manage [LocalStack extensions]({{< ref "user-guide/extensions/" >}}), please refer to the dedicated documentation page,
 and for more details on running init hooks in development mode, you can check out the [extension repository description](https://github.com/localstack/localstack-extensions/tree/main/terraform-init).
 
 ##### Usage
@@ -181,36 +181,40 @@ Environment = "Dev"
 
 Start LocalStack Pro with mounted main.tf:
 
-```bash
-localstack start \
--e EXTENSION_AUTO_INSTALL="localstack-extension-terraform-init" \
--v ./main.tf:/etc/localstack/init/ready.d/main.tf
-```
+{{< tabpane >}}
+{{< tab header="docker-compose.yml" lang="yml" >}}
+version: "3.8"
 
-Or, if you use a `docker-compose` file:
-
-```yaml
 services:
-localstack:
-container_name: "localstack-main"
-image: localstack/localstack-pro  # required for Pro
-ports:
-- "127.0.0.1:4566:4566"            # LocalStack Gateway
-environment:
+  localstack:
+    container_name: "localstack-main"
+    image: localstack/localstack-pro  # required for Pro
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+    environment:
 # Activate LocalStack Pro: https://docs.localstack.cloud/getting-started/auth-token/
-- LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
-- EXTENSION_AUTO_LOAD=localstack-extension-terraform-init
-volumes:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+      - EXTENSION_AUTO_LOAD=localstack-extension-terraform-init
+    volumes:
 # you could also place your main.tf in `./ready.d` and set "./ready.d:/etc/localstack/init/ready.d"
-- "./main.tf:/etc/localstack/init/ready.d/main.tf"
-- "./volume:/var/lib/localstack"
-- "/var/run/docker.sock:/var/run/docker.sock"
-```
+      - "./main.tf:/etc/localstack/init/ready.d/main.tf"
+      - "./volume:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+{{< /tab >}}
+
+{{< tab header="LocalStack CLI" lang="bash" >}}
+  localstack start \
+  -e EXTENSION_AUTO_INSTALL="localstack-extension-terraform-init" \
+  -v ./main.tf:/etc/localstack/init/ready.d/main.tf
+{{< /tab >}}
+{{< /tabpane >}}
+
 
 You can wait for LocalStack to complete the startup process, and then print the created S3 bucket:
-```bash
+{{< command >}}
 localstack wait && awslocal s3 ls
-```
+{{< / command >}}
+
 The logs should show something like:
 
 ```bash
