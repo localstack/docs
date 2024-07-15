@@ -113,3 +113,7 @@ The following output is displayed:
     }
 }
 ```
+
+## Current Limitations
+
+The IoT Analytics service provider is currently mocked in LocalStack, and the service does not interface with the IoT Core service.
