@@ -33,7 +33,7 @@ $ awslocal iotanalytics describe-channel --channel-name mychannel
 
 The following output is displayed:
 
-```bash
+```json
 {
     "channel": {
         "name": "mychannel",
