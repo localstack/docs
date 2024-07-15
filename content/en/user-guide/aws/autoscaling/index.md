@@ -125,3 +125,7 @@ $ awslocal autoscaling attach-instances \
 {{< /command >}}
 
 Replace `i-0d678c4ecf6018dde` with the instance ID that you fetched from the output.
+
+## Current Limitations
+
+LocalStack does not support the `docker`/`libvirt` [VM manager for EC2](https://docs.localstack.cloud/user-guide/aws/ec2/#vm-managers). It only works with the `mock` VM manager.
