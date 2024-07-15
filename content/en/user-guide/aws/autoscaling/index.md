@@ -49,7 +49,7 @@ The following output is displayed:
 Before creating an Auto Scaling group, you need to fetch the subnet ID. Run the following command to describe the subnets:
 
 {{< command >}}
-$ awslocal ec2 describe-subnets
+$ awslocal ec2 describe-subnets --output text --query Subnets[0].SubnetId
 {{< /command >}}
 
 Copy the subnet ID from the output and use it to create the Auto Scaling group. Run the following command to create an Auto Scaling group using the [`CreateAutoScalingGroup`](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CreateAutoScalingGroup.html) API:
