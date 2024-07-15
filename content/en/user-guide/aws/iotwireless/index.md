@@ -41,7 +41,7 @@ $ awslocal iotwireless list-device-profiles
 
 The following output would be retrieved:
 
-```bash
+```json
 {
     "DeviceProfileList": [
         {
