@@ -109,13 +109,11 @@ The following output is displayed:
 
 You can attach an instance to the Auto Scaling group using the [`AttachInstances`](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachInstances.html) API.
 
-Before that, create an EC2 instance using the [`RunInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API. Run the following commands to create an EC2 instance locally:
+Before that, create an EC2 instance using the [`RunInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API. Run the following command to create an EC2 instance locally:
 
 {{< command >}}
-$ docker pull ubuntu:focal
-$ docker tag ubuntu:focal localstack-ec2/ubuntu-focal-docker-ami:ami-00a001
 $ awslocal ec2 run-instances \
-    --image-id ami-00a001 --count 1
+    --image-id ami-ff0fea8310f3 --count 1
 {{< /command >}}
 
 Fetch the instance ID from the output and use it to attach the instance to the Auto Scaling group. Run the following command to attach the instance to the Auto Scaling group:
