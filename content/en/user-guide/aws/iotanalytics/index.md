@@ -58,7 +58,7 @@ $ awslocal iotanalytics describe-datastore --datastore-name mydatastore
 
 The following output is displayed:
 
-```bash
+```json
 {
     "datastore": {
         "name": "mydatastore",
