@@ -153,7 +153,7 @@ Another use for init hooks can be seen when [adding custom TLS certificates to L
 
 ### Terraform configuration files as init hooks
 
-Running Terraform configuration files as init hooks is in itself its own category, because it requires the installation of a special extension.
+Running Terraform configuration files as init hooks requires the installation of a special extension.
 For more information on how to manage [LocalStack extensions](({{< ref "user-guide/extensions/" >}})), please refer to the dedicated documentation page,
 and for more details on running init hooks in development mode, you can check out the [extension repository description](https://github.com/localstack/localstack-extensions/tree/main/terraform-init).
 

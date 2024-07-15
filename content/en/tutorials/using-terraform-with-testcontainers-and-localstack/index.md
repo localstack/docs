@@ -34,14 +34,14 @@ In LocalStack, [**initialization hooks**](https://docs.localstack.cloud/referenc
 hooks could be shell or Python scripts executed at predefined lifecycle phases — BOOT, START, READY, and SHUTDOWN. By placing scripts in the respective directories
 (/etc/localstack/init/{stage}.d), developers can automate tasks like setting up initial states, configuring services, or performing clean-up activities.
 
-Now that we understand the functionality of initialization hooks in LocalStack, the value of extending this feature becomes clear. [Terraform](https://www.terraform.io/), is one of the most
+[Terraform](https://www.terraform.io/), is one of the most
 widely adopted tools for provisioning AWS infrastructure, so naturally, enabling Terraform configuration files to be used 
 directly as initialization hooks boosts LocalStack's utility. The direct use of Terraform scripts as init hooks allows developers to replicate 
 production environments accurately and automate integration tests more effectively. 
 This capability ensures that the test environment mirrors the production setup as closely as possible.
 
 This tutorial guides you through using LocalStack's [**new extension**](https://github.com/localstack/localstack-extensions/tree/main/terraform-init) that supports Terraform configuration files as initialization hooks, eliminating the need for 
-any sort of conversion. learn how to leverage this new feature, and integrate it with Testcontainers for seamless testing.
+any sort of conversion. You'll learn how to leverage this new feature, and integrate it with Testcontainers for seamless testing.
 This approach simplifies the development and testing cycle, making it more efficient and closely aligned with real AWS
 infrastructure practices.
 
@@ -62,12 +62,12 @@ For this tutorial, you will need:
 ## Project overview
 
 You can get hands-on with this setup by cloning the [**demo repository**](https://github.com/localstack-samples/terraform-init-hooks-demo). 
-To quickly understand how everything connects, check out the diagram.
-
-![architecture-diagram](architecture-diagram.png). 
+The diagram below illustrates how everything within the project connects.
 
 The application is simple, yet it reflects a realistic scenario: there's an API Gateway that directs requests to two Lambda functions.
 One Lambda function fetches product details by ID, and the other saves new products to a DynamoDB database. A CloudWatch Logs instance is used to store and access the Lambda log files.
+
+![architecture-diagram](architecture-diagram.png)
 
 ## Using Terraform init hooks
 
@@ -97,7 +97,7 @@ host directory, potentially requiring `sudo` to modify or delete.
 In the root folder of the demo project run:
 
 ```bash
-$ export LOCALSTACK_AUTH_TOKEN=<your_auth_toke>
+$ export LOCALSTACK_AUTH_TOKEN=<your_auth_token>
 $ localstack start -e EXTENSION_AUTO_INSTALL=localstack-extension-terraform-init 
                 -v ./terraform/main.tf:/etc/localstack/init/ready.d/main.tf 
                 -v ./target/product-lambda.jar:/etc/localstack/init/ready.d/target/product-lambda.jar
@@ -114,12 +114,12 @@ absolute paths.
 Another way of easily starting LocalStack with the desired resources is using `docker compose`. In the root folder, there is a 
 [`docker-compose.yml`](https://github.com/localstack-samples/terraform-init-hooks-demo/blob/main/docker-compose.yml) file with all the essential configs:
 
-Environment Variables
+Environment Variables:
 - **LOCALSTACK_AUTH_TOKEN**: Required for using LocalStack Pro.
 - **DEBUG**: Set to 1 to enable verbose logging of the container.
 - **EXTENSION_AUTO_INSTALL**: Automatically installs specified LocalStack [extensions](https://docs.localstack.cloud/user-guide/extensions/), in this case, `localstack-extension-terraform-init` which allows Terraform files to be directly used as init hooks.
 
-Volumes
+Volumes:
 - Docker Socket: Mounts the Docker socket `/var/run/docker.sock` from the host into the container. This allows LocalStack to manage Docker containers directly, facilitating functionalities like spinning up Lambda containers.
 - Terraform Configuration: Mounts a directory containing Terraform files (./terraform) from the host to `/etc/localstack/init/ready.d` in the container. This enables the use of init hooks, as well as the AWS provider (plugins and modules) 
 which is downloaded once and reused in subsequent startups.
@@ -245,7 +245,7 @@ The test suite in the `ProductAppTests` class is checking three scenarios:
 
 - Non-Existent Product Handling: Validates the system's response to a request for a non-existent product, ensuring the Lambda function properly returns the appropriate error message "Product not found".
 
-![architecture-diagram](architecture-diagram-test.png). 
+![architecture-diagram](architecture-diagram-test.png)
 
 Since the app runs entirely inside the LocalStack container, an HTTP client is used to make calls against the service.
 
