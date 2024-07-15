@@ -18,17 +18,17 @@ Start your LocalStack container using your preferred method. We will demonstrate
 
 ### Register the resource
 
-Create a new S3 bucket named `lf-emr-athena-result-123` using the `mb` command:
+Create a new S3 bucket named `test-bucket` using the `mb` command:
 
 {{< command >}}
-$ awslocal s3 mb s3://lf-emr-athena-result-123
+$ awslocal s3 mb s3://test-bucket
 {{</ command >}}
 
 You can now register the S3 bucket as a resource in Lake Formation using the [`RegisterResource`](https://docs.aws.amazon.com/lake-formation/latest/dg/API_RegisterResource.html) API. Create a file named `input.json` with the following content:
 
 ```json
 {
-    "ResourceArn": "arn:aws:s3:::lf-emr-athena-result-123",
+    "ResourceArn": "arn:aws:s3:::test-bucket",
     "UseServiceLinkedRole": true
 }
 ```
@@ -54,7 +54,7 @@ The following output is displayed:
 {
     "ResourceInfoList": [
         {
-            "ResourceArn": "arn:aws:s3:::lf-emr-athena-result-123",
+            "ResourceArn": "arn:aws:s3:::test-bucket",
             "LastModified": "2024-07-11T23:27:30.699312+05:30"
         }
     ]
