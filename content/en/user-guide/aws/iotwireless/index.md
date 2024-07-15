@@ -132,7 +132,7 @@ $ awslocal iotwireless list-wireless-gateways
 
 The following output would be retrieved:
 
-```bash
+```json
 {
     "WirelessGatewayList": [
         {
