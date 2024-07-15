@@ -7,7 +7,7 @@ tags: ["Pro image"]
 
 ## Introduction
 
-AWS IoT Wireless is a managed service that enables customers to connect and manage wireless devices. The service provides a set of APIs to manage wireless devices, gateways, and destinations. IoT Wireless supports LoRaWAN and Cellular connectivity options.
+AWS IoT Wireless is a managed service that enables customers to connect and manage wireless devices. The service provides a set of APIs to manage wireless devices, gateways, and destinations.
 
 LocalStack allows you to use the IoT Wireless APIs in your local environment from creating wireless devices and gateways. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iotwireless/), which provides information on the extent of IoT Wireless's integration with LocalStack.
 
