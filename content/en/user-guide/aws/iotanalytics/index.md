@@ -106,7 +106,7 @@ $ awslocal iotanalytics describe-pipeline  --pipeline-name mypipeline
 
 The following output is displayed:
 
-```bash
+```json
 {
     "pipeline": {
         "name": "mypipeline"
