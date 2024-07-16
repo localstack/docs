@@ -325,6 +325,24 @@ drwxr-xr-x   3 user  staff     96 Jul 10 00:28 target/
 -rw-r--r--   1 user  staff  17338 Jul 10 00:29 terraform.tfstate
 ```
 
+### Using multiple TF files
+
+When organizing your Terraform files into folders, recursion can be a highly effective strategy. This approach allows you to manage multiple Terraform projects within a single structure efficiently. 
+This feature supports recursive script execution, which can be useful for various scenarios.
+
+The scripts are executed using a preorder traversal method, where each level of the directory hierarchy is processed in alphabetical order. This ensures a consistent and predictable 
+execution sequence. For example, consider the following directory structure:
+
+```bash
+ready.d/myscript.sh
+ready.d/a/script_0.sh
+ready.d/a/aa/script_0.sh
+ready.d/a/aa/script_2.sh
+ready.d/b/script_0.sh
+```
+
+This alphabetical and hierarchical execution strategy helps maintain an organized and logical flow, making it easier to manage and execute complex Terraform projects.
+
 ## Conclusion
 
 Leveraging Terraform init hooks allows us to precisely replicate our production infrastructure within our testing environments, ensuring that our Infrastructure as Code is
