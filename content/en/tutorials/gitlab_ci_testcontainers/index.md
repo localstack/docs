@@ -8,13 +8,13 @@ type: tutorials
 teaser: "Learn how you can set up end-to-end testing using Testcontainers and LocalStack in GitLab CI. This tutorial covers setting up the `.gitlab-ci.yml` file, configuring GitLab runners, and setting up a local Docker runner. With this setup, you can ensure your application is thoroughly tested in a CI/CD environment."
 services:
 - s3
-- lambda
-- api-gw
+- lmb
+- agw
 platform:
-- java
+- Java
 deployment:
 - aws-java-sdk
-- aws-cli
+- awscli
 tags:
 - Java
 - AWS Java SDK

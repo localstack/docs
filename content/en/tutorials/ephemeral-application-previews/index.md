@@ -7,14 +7,14 @@ description: >
 type: tutorials
 teaser: "ephemeral-application-previews-banner.png"
 services:
-- lambda
-- cloudfront
-- dynamodb
+- lmb
+- cfr
+- ddb
 - s3
 platform:
 - JavaScript
 deployment:
-- AWS CLI
+- awscli
 pro: true
 leadimage: "ephemeral-application-previews-banner.png"
 ---
