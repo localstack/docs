@@ -5,9 +5,12 @@ description: >
   Use AWS Chalice with LocalStack
 ---
 
-[AWS Chalice](https://aws.github.io/chalice/) is a serverless micro framework used to develop and deploy your serverless applications on AWS resources. Chalice provides integrated functionality with most of the AWS Toolings like S3 Storage, Simple Queue Service, API Gateway and more. It offers a handy CLI interface that allows you to easily create, develop & deploy your serverless applications.
+[AWS Chalice](https://aws.github.io/chalice/) is a serverless micro framework used to develop and deploy your serverless applications on AWS resources.
+Chalice provides integrated functionality with most of the AWS Toolings like S3 Storage, Simple Queue Service, API Gateway and more.
+It offers a handy CLI interface that allows you to easily create, develop & deploy your serverless applications.
 
-LocalStack offers an [AWS Chalice client](https://github.com/localstack/chalice-local) that allows you to interact with your Chalice applications locally. Using LocalStack, you can kick-start your development process, create a new Chalice application, and test it application locally.
+LocalStack offers an [AWS Chalice client](https://github.com/localstack/chalice-local) that allows you to interact with your Chalice applications locally.
+Using LocalStack, you can kick-start your development process, create a new Chalice application, and test it application locally.
 
 ## Creating a new Chalice project
 
@@ -29,7 +32,8 @@ You can now create a new Chalice project by running:
 $ chalice-local new-project
 {{< / command >}}
 
-You will be prompted with an interactive menu where you can choose the name of your project and the project type. In this example, we are using `localstack-test` as the project name and `REST API` as the project type:
+You will be prompted with an interactive menu where you can choose the name of your project and the project type.
+In this example, we are using `localstack-test` as the project name and `REST API` as the project type:
 
 ```sh
    ___  _  _    _    _     ___  ___  ___
@@ -71,7 +75,10 @@ tree
 2 directories, 6 files
 ```
 
-The `app.py` is our main API file. It has only one Route that would assign the URL of the application to the function. The decorators here primarily "wrap" functions here which makes it easy to write Code Logic by breaking them down into separate routes. For now, our Application is serving only a JSON Message which is `{'hello': 'world'}`.
+The `app.py` is our main API file.
+It has only one Route that would assign the URL of the application to the function.
+The decorators here primarily "wrap" functions here which makes it easy to write Code Logic by breaking them down into separate routes.
+For now, our Application is serving only a JSON Message which is `{'hello': 'world'}`.
 
 ## Testing the Chalice API
 

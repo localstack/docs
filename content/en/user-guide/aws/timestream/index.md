@@ -54,7 +54,8 @@ $ awslocal timestream-query query --query-string "SELECT CREATE_TIME_SERIES(time
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing Timestream databases. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Timestream** under the **Database** section.
+The LocalStack Web Application provides a Resource Browser for managing Timestream databases.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Timestream** under the **Database** section.
 
 <img src="timestream-resource-browser.png" alt="Timestream Resource Browser" title="Timestream Resource Browser" width="900" />
 <br>

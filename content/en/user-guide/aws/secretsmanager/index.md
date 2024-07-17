@@ -46,7 +46,8 @@ $ awslocal secretsmanager create-secret \
     --secret-string file://secrets.json
 {{</command>}}
 
-Upon successful execution, the output will provide you with the ARN of the newly created secret. This identifier will be useful for further operations or integrations.
+Upon successful execution, the output will provide you with the ARN of the newly created secret.
+This identifier will be useful for further operations or integrations.
 
 The following output would be retrieved:
 
@@ -129,7 +130,8 @@ $ awslocal secretsmanager tag-resource \
 
 ### Rotate the secret
 
-To rotate a secret, you need a Lambda function that can rotate the secret. You can copy the code from a [Secrets Manager template](https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_available-rotation-templates.html) or you can use a [generic Lambda function](https://github.com/aws-samples/aws-secrets-manager-rotation-lambdas/blob/master/SecretsManagerRotationTemplate/lambda_function.py) that rotates the secret.
+To rotate a secret, you need a Lambda function that can rotate the secret.
+You can copy the code from a [Secrets Manager template](https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_available-rotation-templates.html) or you can use a [generic Lambda function](https://github.com/aws-samples/aws-secrets-manager-rotation-lambdas/blob/master/SecretsManagerRotationTemplate/lambda_function.py) that rotates the secret.
 
 Zip the Lambda function and create a Lambda function using the [`CreateFunction`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) API.
 Execute the following command:
@@ -179,7 +181,8 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 The Resource Browser allows you to perform the following actions:
 
 - **Create Secret**: Create a new secret by clicking **Add a Secret** and providing the required details, such as Name, Tags, Kms Key Id, Secret String, and more.
-- **View Secrets**: View the details of a secret by clicking on the secret name. You can also see the secret value by clicking on **Display Secret**.
+- **View Secrets**: View the details of a secret by clicking on the secret name.
+  You can also see the secret value by clicking on **Display Secret**.
 - **Edit Secret**: Edit the details of a secret by clicking on the secret name and then clicking **Edit Secret** and adding the new secret value.
 - **Delete Secret**: Delete a secret by clicking on the secret name and then clicking **Actions** and then **Remove Selected**.
 

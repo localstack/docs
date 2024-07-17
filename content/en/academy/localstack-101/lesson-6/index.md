@@ -14,7 +14,8 @@ url: "/academy/localstack-101/full-project-demo/"
 
 Discover the ins and outs of one of our Developer Hub's practical sample applications—a note-taking platform.
 This video tutorial offers a comprehensive walk-through, beginning with the checkout of the GitHub project and
-culminating in deploying the operational application on LocalStack. Covering the essentials, we'll guide you
+culminating in deploying the operational application on LocalStack.
+Covering the essentials, we'll guide you
 through dependency installation, backend and frontend build, and a detailed exploration of the application's service
 diagram to unveil the integral components at play.
 

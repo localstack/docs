@@ -38,7 +38,8 @@ $ arclocal init
 
 ### Deployment
 
-Now you need to start LocalStack. After LocalStack has started you can deploy your Architect setup via:
+Now you need to start LocalStack.
+After LocalStack has started you can deploy your Architect setup via:
 {{< command >}}
 $ arclocal deploy
 {{< / command >}}

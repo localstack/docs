@@ -30,23 +30,29 @@ leadimage: "route-53-failover.png"
 ## Introduction
 
 LocalStack allows you to integrate & test [Fault Injection Simulator (FIS)](https://docs.localstack.cloud/user-guide/aws/fis/) with [Route53](https://docs.localstack.cloud/user-guide/aws/route53/) to automatically divert users to
-a healthy secondary zone if the primary region fails, ensuring system availability and responsiveness. Route53's health checks and
+a healthy secondary zone if the primary region fails, ensuring system availability and responsiveness.
+Route53's health checks and
 traffic redirection enhance architecture resilience and ensure service continuity during regional outages, crucial for uninterrupted
 user experiences.
 
 {{< callout "note">}}
-Route53 Failover with FIS is currently available as part of the **LocalStack Enterprise** plan. If you'd like to try it out,
+Route53 Failover with FIS is currently available as part of the **LocalStack Enterprise** plan.
+If you'd like to try it out,
 please [contact us](https://www.localstack.cloud/demo) to request access.
 {{< /callout >}}
 
 ## Getting started
 
-This tutorial is designed for users new to the Route53 and FIS services. In this example, there's an active-primary and
-passive-standby configuration. Route53 routes traffic to the primary region, which processes product-related requests through
-API Gateway and Lambda functions, with data stored in DynamoDB. If the primary region fails, Route53 redirects to the standby
+This tutorial is designed for users new to the Route53 and FIS services.
+In this example, there's an active-primary and
+passive-standby configuration.
+Route53 routes traffic to the primary region, which processes product-related requests through
+API Gateway and Lambda functions, with data stored in DynamoDB.
+If the primary region fails, Route53 redirects to the standby
 region, maintained in sync by a replication Lambda function.
 
-For this particular example, we'll be using a [sample application repository](https://github.com/localstack-samples/samples-chaos-engineering/tree/main/route53-failover). Clone the repository, and follow the
+For this particular example, we'll be using a [sample application repository](https://github.com/localstack-samples/samples-chaos-engineering/tree/main/route53-failover).
+Clone the repository, and follow the
 instructions below to get started.
 
 ### Prerequisites
@@ -59,7 +65,8 @@ The general prerequisites for this guide are:
 - [Python-3](https://www.python.org/downloads/)
 - `dig`
 
-Start LocalStack by using the `docker-compose.yml` file from the repository. Ensure to set your Auth Token as an environment variable
+Start LocalStack by using the `docker-compose.yml` file from the repository.
+Ensure to set your Auth Token as an environment variable
 during this process.
 
 {{< command >}}
@@ -75,17 +82,21 @@ The following diagram shows the architecture that this application builds and de
 
 ### Creating the resources
 
-To begin, deploy the same services in both `us-west-1` and `us-east-1` regions. The resources specified in the `init-resources.sh`
+To begin, deploy the same services in both `us-west-1` and `us-east-1` regions.
+The resources specified in the `init-resources.sh`
 file will be created when the LocalStack container starts, using Initialization Hooks and the `awslocal` CLI tool.
 
-The objective is to have a backup system in case of a regional outage in the primary availability zone (`us-west-1`). We'll focus
+The objective is to have a backup system in case of a regional outage in the primary availability zone (`us-west-1`).
+We'll focus
 on this region to examine the existing resilience mechanisms.
 
 {{< figure src="route53-failover-2.png" width="800">}}
 
 - The primary API Gateway includes a health check endpoint that returns a 200 HTTP status code, serving as a basic check for its availability.
-- Data synchronization across regions can be achieved with AWS-native tools like DynamoDB Streams and AWS Lambda. Here, any changes to the
-primary table trigger a Lambda function, replicating these changes to a secondary table. This configuration is essential for high availability
+- Data synchronization across regions can be achieved with AWS-native tools like DynamoDB Streams and AWS Lambda.
+  Here, any changes to the
+primary table trigger a Lambda function, replicating these changes to a secondary table.
+  This configuration is essential for high availability
 and disaster recovery.
 
 ### Configuring a Route53 hosted zone
@@ -114,7 +125,8 @@ awslocal route53 create-health-check \
 {{< /command >}}
 
 This command creates a Route 53 health check for an HTTP endpoint (`12345.execute-api.localhost.localstack.cloud:4566/dev/healthcheck`)
-with a 10-second request interval and captures the health check's ID. The caller reference identifier in AWS resource creation or updates
+with a 10-second request interval and captures the health check's ID.
+The caller reference identifier in AWS resource creation or updates
 prevents accidental duplication if requests are repeated.
 
 To update DNS records in the specified Route53 hosted zone (`$HOSTED_ZONE_ID`), add two CNAME records: `12345.$HOSTED_ZONE_NAME`
@@ -152,9 +164,12 @@ $ awslocal route53 change-resource-record-sets \
 }'
 {{< /command >}}
 
-Finally, we'll update the DNS records in the Route53 hosted zone identified by **`$HOSTED_ZONE_ID`**. We're adding two CNAME records
-for the subdomain `test.$HOSTED_ZONE_NAME`. The first record points to `12345.$HOSTED_ZONE_NAME` and is linked with the earlier created
-health check, designated as the primary failover target. The second record points to `67890.$HOSTED_ZONE_NAME` and is set as the secondary
+Finally, we'll update the DNS records in the Route53 hosted zone identified by **`$HOSTED_ZONE_ID`**.
+We're adding two CNAME records
+for the subdomain `test.$HOSTED_ZONE_NAME`.
+The first record points to `12345.$HOSTED_ZONE_NAME` and is linked with the earlier created
+health check, designated as the primary failover target.
+The second record points to `67890.$HOSTED_ZONE_NAME` and is set as the secondary
 failover target.
 
 {{< command >}}
@@ -196,7 +211,8 @@ $ awslocal route53 change-resource-record-sets \
 {{< /command >}}
 
 This setup represents the basic failover configuration where traffic is redirected to different endpoints based on their health check
-status. To confirm that the CNAME record for `test.hello-localstack.com` points to `12345.execute-api.localhost.localstack.cloud`,
+status.
+To confirm that the CNAME record for `test.hello-localstack.com` points to `12345.execute-api.localhost.localstack.cloud`,
 you can use the following `dig` command:
 
 {{< command >}}
@@ -204,19 +220,24 @@ $ dig @localhost test.hello-localstack.com CNAME
 <disable-copy>
 .....
 ;; QUESTION SECTION:
-;test.hello-localstack.com. IN CNAME
+;test.hello-localstack.com.
+IN CNAME
 
 ;; ANSWER SECTION:
-test.hello-localstack.com. 300 IN CNAME 12345.execute-api.localhost.localstack.cloud.
+test.hello-localstack.com.
+300 IN CNAME 12345.execute-api.localhost.localstack.cloud.
 .....
 </disable-copy>
 {{< /command >}}
 
 ### Creating a controlled outage
 
-Our setup is now complete and ready for testing. To mimic a regional outage in the `us-west-1` region, we'll conduct an experiment that
-halts all service invocations in this region, including the health check function. Once the primary region becomes non-functional,
-Route 53's health checks will fail. This failure will activate the failover policy, redirecting traffic to the corresponding services
+Our setup is now complete and ready for testing.
+To mimic a regional outage in the `us-west-1` region, we'll conduct an experiment that
+halts all service invocations in this region, including the health check function.
+Once the primary region becomes non-functional,
+Route 53's health checks will fail.
+This failure will activate the failover policy, redirecting traffic to the corresponding services
 in the secondary region, thus maintaining service continuity.
 
 {{< command >}}
@@ -276,18 +297,22 @@ $ awslocal fis start-experiment --experiment-template-id <EXPERIMENT_TEMPLATE_ID
 </disable-copy>
 {{< /command >}}
 
-Replace `<EXPERIMENT_TEMPLATE_ID>` with the ID of the experiment template created in the previous step. When the experiment is active,
-Route 53's health checks will detect the failure and redirect traffic to the standby region as per the failover setup. Confirm this redirection with:
+Replace `<EXPERIMENT_TEMPLATE_ID>` with the ID of the experiment template created in the previous step.
+When the experiment is active,
+Route 53's health checks will detect the failure and redirect traffic to the standby region as per the failover setup.
+Confirm this redirection with:
 
 {{< command >}}
 $ dig @localhost test.hello-localstack.com CNAME
 <disable-copy>
 .....
 ;; QUESTION SECTION:
-;test.hello-localstack.com. IN CNAME
+;test.hello-localstack.com.
+IN CNAME
 
 ;; ANSWER SECTION:
-test.hello-localstack.com. 300 IN CNAME 67890.execute-api.localhost.localstack.cloud.
+test.hello-localstack.com.
+300 IN CNAME 67890.execute-api.localhost.localstack.cloud.
 .....
 </disable-copy>
 {{< /command >}}

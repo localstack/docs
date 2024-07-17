@@ -12,7 +12,10 @@ This documentation provides step-by-step guidance on how to access LocalStack se
 
 {{< figure src="../images/1.svg" width="400" >}}
 
-Suppose you have LocalStack installed on your machine and want to access it using the AWS CLI. To connect, you must expose port 4566 from your LocalStack instance and connect to `localhost` or a domain name that points to `localhost`. While the LocalStack CLI does this automatically, when running the Docker container directly or with docker compose, you must configure it manually. Check out the [getting started documentation]({{< ref "getting-started/installation" >}}) for more information.
+Suppose you have LocalStack installed on your machine and want to access it using the AWS CLI.
+To connect, you must expose port 4566 from your LocalStack instance and connect to `localhost` or a domain name that points to `localhost`.
+While the LocalStack CLI does this automatically, when running the Docker container directly or with docker compose, you must configure it manually.
+Check out the [getting started documentation]({{< ref "getting-started/installation" >}}) for more information.
 
 {{< callout "tip" >}}
 If you bind a domain name to `localhost`, ensure that you are not subject to [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}).
@@ -61,7 +64,8 @@ aws --endpoint-url http://localstack-main:4566 s3api list-buckets
 {{<tab header="docker-compose.yml" lang="yml">}}
 services:
   localstack:
-    # ... other configuration here
+    # ...
+other configuration here
     environment:
       MAIN_DOCKER_NETWORK=ls
     networks:
@@ -205,11 +209,13 @@ docker run --rm it --network my-network <image name>
 {{<tab header="docker-compose.yml" lang="yml">}}
 services:
   localstack:
-    # ... other configuration here
+    # ...
+other configuration here
     networks:
     - ls
   your_container:
-    # ... other configuration here
+    # ...
+other configuration here
     networks:
     - ls
 networks:
@@ -250,10 +256,12 @@ docker run --rm -it -p 4566:4566 <additional arguments> localstack
 {{<tab header="docker-compose" lang="yaml">}}
 services:
   localstack:
-    # ... other configuration here
+    # ...
+other configuration here
     ports:
       - "4566:4566"
-      # ... other ports
+      # ...
+other ports
 {{</tab>}}
 {{</tabpane>}}
 

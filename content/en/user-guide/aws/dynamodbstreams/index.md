@@ -6,15 +6,19 @@ description: Get started with DynamoDB Streams on LocalStack
 
 ## Introduction
 
-DynamoDB Streams captures data modification events in a DynamoDB table. The stream records are written to a DynamoDB stream, which is an ordered flow of information about changes to items in a table. DynamoDB Streams records data in near-real time, enabling you to develop workflows that process these streams and respond based on their contents.
+DynamoDB Streams captures data modification events in a DynamoDB table.
+The stream records are written to a DynamoDB stream, which is an ordered flow of information about changes to items in a table.
+DynamoDB Streams records data in near-real time, enabling you to develop workflows that process these streams and respond based on their contents.
 
-LocalStack supports DynamoDB Streams, allowing you to create and manage streams in a local environment. The supported APIs are available on our [DynamoDB Streams coverage page](https://docs.localstack.cloud/references/coverage/coverage_dynamodbstreams/), which provides information on the extent of DynamoDB Streams integration with LocalStack.
+LocalStack supports DynamoDB Streams, allowing you to create and manage streams in a local environment.
+The supported APIs are available on our [DynamoDB Streams coverage page](https://docs.localstack.cloud/references/coverage/coverage_dynamodbstreams/), which provides information on the extent of DynamoDB Streams integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to DynamoDB Streams and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate the following process using LocalStack:
+Start your LocalStack container using your preferred method.
+We will demonstrate the following process using LocalStack:
 
 - A user adds an entry to a DynamoDB table.
 - A new stream record is generated in DynamoDB Streams when an entry is added.
@@ -23,7 +27,8 @@ Start your LocalStack container using your preferred method. We will demonstrate
 
 ### Create a DynamoDB table
 
-You can create a DynamoDB table named `BarkTable` using the [`CreateTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html) API. Run the following command to create the table:
+You can create a DynamoDB table named `BarkTable` using the [`CreateTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html) API.
+Run the following command to create the table:
 
 {{< command >}}
 $ awslocal dynamodb create-table \
@@ -34,7 +39,8 @@ $ awslocal dynamodb create-table \
     --stream-specification StreamEnabled=true,StreamViewType=NEW_AND_OLD_IMAGES
 {{< /command >}}
 
-The `BarkTable` has a stream enabled which you can trigger by associating a Lambda function with the stream. You can notice that in the `LatestStreamArn` field of the response:
+The `BarkTable` has a stream enabled which you can trigger by associating a Lambda function with the stream.
+You can notice that in the `LatestStreamArn` field of the response:
 
 ```bash
 ...
@@ -44,7 +50,8 @@ The `BarkTable` has a stream enabled which you can trigger by associating a Lamb
 
 ### Create a Lambda function
 
-You can now create a Lambda function (`publishNewBark`) to process stream records from `BarkTable`. Create a new file named `index.js` with the following code:
+You can now create a Lambda function (`publishNewBark`) to process stream records from `BarkTable`.
+Create a new file named `index.js` with the following code:
 
 ```javascript
 'use strict';
@@ -69,7 +76,8 @@ exports.handler = (event, context, callback) => {
 };
 ```
 
-You can now create a Lambda function using the [`CreateFunction`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) API. Run the following command to create the Lambda function:
+You can now create a Lambda function using the [`CreateFunction`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) API.
+Run the following command to create the Lambda function:
 
 {{< command >}}
 $ zip index.zip index.js
@@ -85,7 +93,8 @@ $ awslocal lambda create-function \
 
 ### Invoke the Lambda function
 
-To test the Lambda function, you can invoke it using the [`Invoke`](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html) API. Create a new file named `payload.json` with the following content:
+To test the Lambda function, you can invoke it using the [`Invoke`](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html) API.
+Create a new file named `payload.json` with the following content:
 
 ```json
 {
@@ -144,13 +153,16 @@ In the `output.txt` file, you should see the following output:
 
 ### Add event source mapping
 
-To add the DynamoDB stream as an event source for the Lambda function, you need the stream ARN. You can get the stream ARN using the [`DescribeTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeTable.html) API. Run the following command to get the stream ARN:
+To add the DynamoDB stream as an event source for the Lambda function, you need the stream ARN.
+You can get the stream ARN using the [`DescribeTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeTable.html) API.
+Run the following command to get the stream ARN:
 
 {{< command >}}
 awslocal dynamodb describe-table --table-name BarkTable
 {{< /command >}}
 
-You can now create an event source mapping using the [`CreateEventSourceMapping`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html) API. Run the following command to create the event source mapping:
+You can now create an event source mapping using the [`CreateEventSourceMapping`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html) API.
+Run the following command to create the event source mapping:
 
 {{< command >}}
 awslocal lambda create-event-source-mapping \
@@ -160,7 +172,8 @@ awslocal lambda create-event-source-mapping \
     --starting-position TRIM_HORIZON
 {{< /command >}}
 
-Make sure to replace the `event-source` value with the stream ARN you obtained from the previous command. You should see the following output:
+Make sure to replace the `event-source` value with the stream ARN you obtained from the previous command.
+You should see the following output:
 
 ```bash
 {
@@ -173,7 +186,8 @@ Make sure to replace the `event-source` value with the stream ARN you obtained f
 }
 ```
 
-You can now test the event source mapping by adding an item to the `BarkTable` table using the [`PutItem`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html) API. Run the following command to add an item to the table:
+You can now test the event source mapping by adding an item to the `BarkTable` table using the [`PutItem`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html) API.
+Run the following command to add an item to the table:
 
 {{< command >}}
 $ awslocal dynamodb put-item \
@@ -185,7 +199,8 @@ You can find Lambda function being triggered in the LocalStack logs.
 
 ### Inspect the stream
 
-You can list the streams using the [`ListStreams`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ListStreams.html) API. Run the following command to list the streams:
+You can list the streams using the [`ListStreams`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ListStreams.html) API.
+Run the following command to list the streams:
 
 {{< command >}}
 awslocal dynamodbstreams list-streams
@@ -205,7 +220,8 @@ The following output shows the list of streams:
 }
 ```
 
-You can also describe the stream using the [`DescribeStream`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeStream.html) API. Run the following command to describe the stream:
+You can also describe the stream using the [`DescribeStream`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeStream.html) API.
+Run the following command to describe the stream:
 
 {{< command >}}
 $ awslocal dynamodbstreams describe-stream --stream-arn arn:aws:dynamodb:us-east-1:000000000000:table/BarkTable/stream/2024-07-12T06:18:37.101

@@ -10,12 +10,14 @@ aliases:
 
 ## Introduction
 
-LocalStack collects execution events to provide usage analytics and insights into development and testing. Stack Insights let users report AWS API usage telemetry to their LocalStack account.
+LocalStack collects execution events to provide usage analytics and insights into development and testing.
+Stack Insights let users report AWS API usage telemetry to their LocalStack account.
 
 Stack Insights show which APIs are used, which clients or integrations use specific services and API operations, and which services cause the most API errors.
 
 {{< callout "note" >}}
-Your privacy matters to us! We only collect anonymized and sanitized data.
+Your privacy matters to us!
+We only collect anonymized and sanitized data.
 No sensitive information about your application is ever collected or exposed.
 The data is only used to provide you with insights into the usage of LocalStack and to help us improve the product.
 {{< /callout >}}
@@ -26,7 +28,8 @@ The data is only used to provide you with insights into the usage of LocalStack 
 <br>
 <br>
 
-To start using this feature, log in to your [LocalStack account](https://app.localstack.cloud/) and start a [LocalStack instance on your local machine]({{< ref "getting-started/auth-token" >}}). The system will start making your events accessible on the [Stack Insights dashboard](https://app.localstack.cloud/stacks).
+To start using this feature, log in to your [LocalStack account](https://app.localstack.cloud/) and start a [LocalStack instance on your local machine]({{< ref "getting-started/auth-token" >}}).
+The system will start making your events accessible on the [Stack Insights dashboard](https://app.localstack.cloud/stacks).
 
 Click on the Stack widget to see:
 

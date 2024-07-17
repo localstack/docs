@@ -7,19 +7,23 @@ tags: ["Pro image"]
 
 ## Introduction
 
-AWS IoT Wireless is a managed service that enables customers to connect and manage wireless devices. The service provides a set of APIs to manage wireless devices, gateways, and destinations.
+AWS IoT Wireless is a managed service that enables customers to connect and manage wireless devices.
+The service provides a set of APIs to manage wireless devices, gateways, and destinations.
 
-LocalStack allows you to use the IoT Wireless APIs in your local environment from creating wireless devices and gateways. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iotwireless/), which provides information on the extent of IoT Wireless's integration with LocalStack.
+LocalStack allows you to use the IoT Wireless APIs in your local environment from creating wireless devices and gateways.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iotwireless/), which provides information on the extent of IoT Wireless's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to IoT Wireless and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to use IoT Wireless to create wireless devices and gateways with the AWS CLI.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to use IoT Wireless to create wireless devices and gateways with the AWS CLI.
 
 ### Create a Wireless Device
 
-You can create a wireless device using the [`CreateWirelessDevice`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_CreateWirelessDevice.html) API. Run the following command to create a wireless device:
+You can create a wireless device using the [`CreateWirelessDevice`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_CreateWirelessDevice.html) API.
+Run the following command to create a wireless device:
 
 {{< command >}}
 $ awslocal iotwireless create-device-profile
@@ -33,7 +37,8 @@ The following output would be retrieved:
 }
 ```
 
-You can list the device profiles using the [`ListDeviceProfiles`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_ListDeviceProfiles.html) API. Run the following command to list the device profiles:
+You can list the device profiles using the [`ListDeviceProfiles`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_ListDeviceProfiles.html) API.
+Run the following command to list the device profiles:
 
 {{< command >}}
 $ awslocal iotwireless list-device-profiles
@@ -53,7 +58,8 @@ The following output would be retrieved:
 
 ### Create a Wireless device
 
-You can create a wireless device using the [`CreateWirelessDevice`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_CreateWirelessDevice.html) API. Run the following command to create a wireless device:
+You can create a wireless device using the [`CreateWirelessDevice`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_CreateWirelessDevice.html) API.
+Run the following command to create a wireless device:
 
 {{< command >}}
 $ awslocal iotwireless create-wireless-device \
@@ -81,7 +87,8 @@ The `input.json` file contains the following content:
 }
 ```
 
-You can list the wireless devices using the [`ListWirelessDevices`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_ListWirelessDevices.html) API. Run the following command to list the wireless devices:
+You can list the wireless devices using the [`ListWirelessDevices`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_ListWirelessDevices.html) API.
+Run the following command to list the wireless devices:
 
 {{< command >}}
 $ awslocal iotwireless list-wireless-devices
@@ -107,7 +114,8 @@ The following output would be retrieved:
 
 ### Create a Wireless Gateway
 
-You can create a wireless gateway using the [`CreateWirelessGateway`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_CreateWirelessGateway.html) API. Run the following command to create a wireless gateway:
+You can create a wireless gateway using the [`CreateWirelessGateway`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_CreateWirelessGateway.html) API.
+Run the following command to create a wireless gateway:
 
 {{< command >}}
 $ awslocal iotwireless create-wireless-gateway \
@@ -124,7 +132,8 @@ The following output would be retrieved:
 }
 ```
 
-You can list the wireless gateways using the [`ListWirelessGateways`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_ListWirelessGateways.html) API. Run the following command to list the wireless gateways:
+You can list the wireless gateways using the [`ListWirelessGateways`](https://docs.aws.amazon.com/iot-wireless/2020-11-22/API_ListWirelessGateways.html) API.
+Run the following command to list the wireless gateways:
 
 {{< command >}}
 $ awslocal iotwireless list-wireless-gateways

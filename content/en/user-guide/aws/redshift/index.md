@@ -23,7 +23,8 @@ We will demonstrate how to create a RedShift cluster and database while using a 
 
 ### Define the variables
 
-First, we will define the variables we will use throughout this guide. Export the following variables in your shell:
+First, we will define the variables we will use throughout this guide.
+Export the following variables in your shell:
 
 ```bash
 REDSHIFT_CLUSTER_IDENTIFIER="redshiftcluster"
@@ -37,11 +38,13 @@ GLUE_CONNECTION_NAME="glueconnection"
 GLUE_CRAWLER_NAME="gluecrawler"
 ```
 
-The above variables will be used to create a RedShift cluster, database, table, and user. You will also create a Glue database, connection, and crawler to populate the Glue Data Catalog with the schema of the RedShift database tables.
+The above variables will be used to create a RedShift cluster, database, table, and user.
+You will also create a Glue database, connection, and crawler to populate the Glue Data Catalog with the schema of the RedShift database tables.
 
 ### Create a RedShift cluster and database
 
-You can create a RedShift cluster using the [`CreateCluster`](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html) API. The following command will create a RedShift cluster with the variables defined above:
+You can create a RedShift cluster using the [`CreateCluster`](https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html) API.
+The following command will create a RedShift cluster with the variables defined above:
 
 {{< command >}}
 $ awslocal redshift create-cluster \
@@ -52,7 +55,8 @@ $ awslocal redshift create-cluster \
       --node-type n1
 {{< / command >}}
 
-You can fetch the status of the cluster using the [`DescribeClusters`](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusters.html) API. Run the following command to extract the URL of the cluster:
+You can fetch the status of the cluster using the [`DescribeClusters`](https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusters.html) API.
+Run the following command to extract the URL of the cluster:
 
 {{< command >}}
 $ REDSHIFT_URL=$(awslocal redshift describe-clusters \
@@ -61,21 +65,24 @@ $ REDSHIFT_URL=$(awslocal redshift describe-clusters \
 
 ### Create a Glue database, connection, and crawler
 
-You can create a Glue database using the [`CreateDatabase`](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateDatabase.html) API. The following command will create a Glue database:
+You can create a Glue database using the [`CreateDatabase`](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateDatabase.html) API.
+The following command will create a Glue database:
 
 {{< command >}}
 $ awslocal glue create-database \
       --database-input "{\"Name\": \"$GLUE_DATABASE_NAME\"}"
 {{< / command >}}
 
-You can create a connection to the RedShift cluster using the [`CreateConnection`](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateConnection.html) API. The following command will create a Glue connection with the RedShift cluster:
+You can create a connection to the RedShift cluster using the [`CreateConnection`](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateConnection.html) API.
+The following command will create a Glue connection with the RedShift cluster:
 
 {{< command >}}
 $ awslocal glue create-connection \
       --connection-input "{\"Name\":\"$GLUE_CONNECTION_NAME\", \"ConnectionType\": \"JDBC\", \"ConnectionProperties\": {\"USERNAME\": \"$REDSHIFT_USERNAME\", \"PASSWORD\": \"$REDSHIFT_PASSWORD\", \"JDBC_CONNECTION_URL\": \"jdbc:redshift://$REDSHIFT_URL/$REDSHIFT_DATABASE_NAME\"}}"
 {{< / command >}}
 
-Finally, you can create a Glue crawler using the [`CreateCrawler`](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateCrawler.html) API. The following command will create a Glue crawler:
+Finally, you can create a Glue crawler using the [`CreateCrawler`](https://docs.aws.amazon.com/glue/latest/webapi/API_CreateCrawler.html) API.
+The following command will create a Glue crawler:
 
 {{< command >}}
 $ awslocal glue create-crawler \
@@ -87,7 +94,8 @@ $ awslocal glue create-crawler \
 
 ### Create table in RedShift
 
-You can create a table in RedShift using the [`CreateTable`](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html) API. The following command will create a table in RedShift:
+You can create a table in RedShift using the [`CreateTable`](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html) API.
+The following command will create a table in RedShift:
 
 {{< command >}}
 $ REDSHIFT_STATEMENT_ID=$(awslocal redshift-data execute-statement \
@@ -97,7 +105,8 @@ $ REDSHIFT_STATEMENT_ID=$(awslocal redshift-data execute-statement \
   "create table $REDSHIFT_TABLE_NAME(salesid integer not null, listid integer not null, sellerid integer not null, buyerid integer not null, eventid integer not null, dateid smallint not null, qtysold smallint not null, pricepaid decimal(8,2), commission decimal(8,2), saletime timestamp)" | jq -r .Id)
 {{< / command >}}
 
-You can check the status of the statement using the [`DescribeStatement`](https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_DescribeStatement.html) API. The following command will check the status of the statement:
+You can check the status of the statement using the [`DescribeStatement`](https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_DescribeStatement.html) API.
+The following command will check the status of the statement:
 
 {{< command >}}
 $ wait "awslocal redshift-data describe-statement \
@@ -106,21 +115,24 @@ $ wait "awslocal redshift-data describe-statement \
 
 ### Run the crawler
 
-You can run the crawler using the [`StartCrawler`](https://docs.aws.amazon.com/glue/latest/webapi/API_StartCrawler.html) API. The following command will run the crawler:
+You can run the crawler using the [`StartCrawler`](https://docs.aws.amazon.com/glue/latest/webapi/API_StartCrawler.html) API.
+The following command will run the crawler:
 
 {{< command >}}
 $ awslocal glue start-crawler \
       --name $GLUE_CRAWLER_NAME
 {{< / command >}}
 
-You can wait for the crawler to finish using the [`GetCrawler`](https://docs.aws.amazon.com/glue/latest/webapi/API_GetCrawler.html) API. The following command will wait for the crawler to finish:
+You can wait for the crawler to finish using the [`GetCrawler`](https://docs.aws.amazon.com/glue/latest/webapi/API_GetCrawler.html) API.
+The following command will wait for the crawler to finish:
 
 {{< command >}}
 $ wait "awslocal glue get-crawler \
       --name $GLUE_CRAWLER_NAME" ".Crawler.State" "READY"
 {{< / command >}}
 
-You can finally retrieve the schema of the table using the [`GetTable`](https://docs.aws.amazon.com/glue/latest/webapi/API_GetTable.html) API. The following command will retrieve the schema of the table:
+You can finally retrieve the schema of the table using the [`GetTable`](https://docs.aws.amazon.com/glue/latest/webapi/API_GetTable.html) API.
+The following command will retrieve the schema of the table:
 
 {{< command >}}
 $ awslocal glue get-table \

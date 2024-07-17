@@ -95,7 +95,8 @@ $ awslocal acm-pca describe-certificate-authority \
 
 ### Tag the Certificate Authority
 
-Tagging resources in AWS helps in managing and identifying them. Use the [`TagCertificateAuthority`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_TagCertificateAuthority.html) API to tag the created Certificate Authority.
+Tagging resources in AWS helps in managing and identifying them.
+Use the [`TagCertificateAuthority`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_TagCertificateAuthority.html) API to tag the created Certificate Authority.
 This command adds the specified tags to the specified CA.
 
 {{< command >}}

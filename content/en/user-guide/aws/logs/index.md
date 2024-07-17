@@ -8,18 +8,23 @@ persistence: supported
 
 ---
 
-[CloudWatch Logs](https://docs.aws.amazon.com/cloudwatch/index.html) allows to store and retrieve logs. While some services automatically create and write logs (e.g. Lambda), logs can also be added manually.
-CloudWatch Logs is available in the Community version. However, some specific features are only available in Pro.
+[CloudWatch Logs](https://docs.aws.amazon.com/cloudwatch/index.html) allows to store and retrieve logs.
+While some services automatically create and write logs (e.g. Lambda), logs can also be added manually.
+CloudWatch Logs is available in the Community version.
+However, some specific features are only available in Pro.
 
 ## Subscription Filters
 
-Subscription filters can be used to forward logs to certain services, e.g. Kinesis, Lambda, and Kinesis Data Firehose. You can read upon details in the [official AWS docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html).
+Subscription filters can be used to forward logs to certain services, e.g. Kinesis, Lambda, and Kinesis Data Firehose.
+You can read upon details in the [official AWS docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html).
 
 ### Subscription Filters with Kinesis Example
 
 In the following we setup a little example on how to use subscription filters with kinesis.
 
-First, we setup the required resources. Therefore, we create a kinesis stream, a log group and log stream. Then we can configure the subscription filter.
+First, we setup the required resources.
+Therefore, we create a kinesis stream, a log group and log stream.
+Then we can configure the subscription filter.
 {{< command >}}
 $ awslocal kinesis create-stream --stream-name "logtest" --shard-count 1
 $ kinesis_arn=$(awslocal kinesis describe-stream --stream-name "logtest" | jq -r .StreamDescription.StreamARN)
@@ -43,7 +48,9 @@ $ timestamp=$(($(date +'%s * 1000 + %-N / 1000000')))
 $ awslocal logs put-log-events --log-group-name test --log-stream-name test --log-events "[{\"timestamp\": ${timestamp} , \"message\": \"hello from cloudwatch\"}]"
 {{< / command >}}
 
-Now we can retrieve the data. In our example, there will only be one record. The data record is base64 encoded and compressed in gzip format:
+Now we can retrieve the data.
+In our example, there will only be one record.
+The data record is base64 encoded and compressed in gzip format:
 {{< command >}}
 $ shard_iterator=$(awslocal kinesis get-shard-iterator --stream-name logtest --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON | jq -r .ShardIterator)
 $ record=$(awslocal kinesis get-records --limit 10 --shard-iterator $shard_iterator | jq -r '.Records[0].Data')
@@ -128,7 +135,8 @@ $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern 
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for exploring CloudWatch Logs. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **CloudWatch Logs** under the **Management/Governance** section.
+The LocalStack Web Application provides a Resource Browser for exploring CloudWatch Logs.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **CloudWatch Logs** under the **Management/Governance** section.
 
 <img src="logs-resource-browser.png" alt="CloudWatch Logs Resource Browser" title="CloudWatch Logs Resource Browser" width="900" />
 <br>

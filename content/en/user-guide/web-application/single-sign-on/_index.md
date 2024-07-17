@@ -57,14 +57,16 @@ After configuring the base details for your Identity Provider (IdP), the followi
 
 - **Callback URL**: The Callback URL that you may need to configure  in the settings of your IdP.
 - **Identifier (Entity Id)**: The Identifier (Entity Id) that you may need to configure in the settings of your IdP.
-- **Sign Up Portal URL**: This is the URL that can be shared with your users to start the SSO signup flow for the LocalStack Web Application. The format of this endpoint is `https://app.localstack.cloud/auth/sso/<organizationId>/<ssoName>`
+- **Sign Up Portal URL**: This is the URL that can be shared with your users to start the SSO signup flow for the LocalStack Web Application.
+  The format of this endpoint is `https://app.localstack.cloud/auth/sso/<organizationId>/<ssoName>`
 
 <img src="additional-information-page.png" width="600px" alt="Callback URL, Sign Up Portal URL, and Identifier (Entity Id)">
 
 ## User Roles and Permissions
 
 For each new member that joins your org, you can specify user roles and permissions that should be assigned to them.
-- **Default User Role**:  The Role that should be assigned to users of your organization signing up via SSO. In most cases, this should be a Member.
+- **Default User Role**:  The Role that should be assigned to users of your organization signing up via SSO.
+  In most cases, this should be a Member.
 - **Default User Permissions**: Use this to define which permissions should be assigned to users of your organization signing up via SSO.
   - Tip: In order to enable self-serve licences (i.e., allowing your users to allocate themselves their own license), make sure to select the **Allow member to issue a license for themselves (or a legacy API key)** permission.
 

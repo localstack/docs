@@ -113,7 +113,8 @@ $ awslocal sqs purge-queue --queue-url http://sqs.us-east-1.localhost.localstack
 LocalStack's SQS implementation supports both regular [dead-letter queues (DLQ)](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html) and [DLQ redrive](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html) via move message tasks.
 Here's an end-to-end example of how to use message move tasks to test DLQ redrive.
 
-First, create three queues. One will serve as original input queue, one as DLQ, and the third as target for DLQ redrive.
+First, create three queues.
+One will serve as original input queue, one as DLQ, and the third as target for DLQ redrive.
 {{< command >}}
 $ awslocal sqs create-queue --queue-name input-queue
 $ awslocal sqs create-queue --queue-name dead-letter-queue
@@ -308,9 +309,12 @@ If you wish to disable all CloudWatch metrics for SQS, including the `Approximat
 
 ## Accessing queues from Lambdas or other containers
 
-Using the SQS Query API, Queue URLs act as accessible endpoints via HTTP. Several SDKs, such as the Java SDK, leverage the SQS Query API for SQS interaction.
+Using the SQS Query API, Queue URLs act as accessible endpoints via HTTP.
+Several SDKs, such as the Java SDK, leverage the SQS Query API for SQS interaction.
 
-By default, Queue URLs are configured to point to `http://localhost:4566`. This configuration can pose problems when Lambdas or other containers attempt to make direct calls to these queue URLs. These issues arise due to the fact that a Lambda function operates within a separate Docker container, and LocalStack is not accessible at the `localhost` address within that container.
+By default, Queue URLs are configured to point to `http://localhost:4566`.
+This configuration can pose problems when Lambdas or other containers attempt to make direct calls to these queue URLs.
+These issues arise due to the fact that a Lambda function operates within a separate Docker container, and LocalStack is not accessible at the `localhost` address within that container.
 
 For instance, users of the Java SDK often encounter the following error when trying to access an SQS queue from their Lambda functions:
 
@@ -324,11 +328,14 @@ To address this issue, you can consider the steps documented below.
 
 ### Lambda
 
-When utilizing the SQS Query API in Lambdas, we suggest configuring `SQS_ENDPOINT_STRATEGY=domain`. This configuration results in queue URLs using `*.queue.localhost.localstack.cloud` as their domain names. Our Lambda implementation automatically resolves these URLs to the LocalStack container, ensuring smooth interaction between your code and the SQS service.
+When utilizing the SQS Query API in Lambdas, we suggest configuring `SQS_ENDPOINT_STRATEGY=domain`.
+This configuration results in queue URLs using `*.queue.localhost.localstack.cloud` as their domain names.
+Our Lambda implementation automatically resolves these URLs to the LocalStack container, ensuring smooth interaction between your code and the SQS service.
 
 ### Other containers
 
-When your code run within different containers like ECS tasks or your custom ones, it's advisable to establish your Docker network setup. You can follow these steps:
+When your code run within different containers like ECS tasks or your custom ones, it's advisable to establish your Docker network setup.
+You can follow these steps:
 
 1. Override the `LOCALSTACK_HOST` variable as outlined in our [network troubleshooting guide]({{< ref "endpoint-url" >}}).
 2. Ensure that your containers can resolve `LOCALSTACK_HOST` to the LocalStack container within the Docker network.

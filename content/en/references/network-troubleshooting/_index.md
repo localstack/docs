@@ -11,7 +11,8 @@ description: >
 If you have difficulties connecting your application code to LocalStack, please choose the scenario below that best describes your networking layout.
 
 {{< callout "tip" >}}
-LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not trying to access LocalStack over IPv6.
+LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`).
+Check you are not trying to access LocalStack over IPv6.
 {{</callout>}}
 
 ---

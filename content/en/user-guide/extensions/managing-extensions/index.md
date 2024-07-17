@@ -52,7 +52,8 @@ list       List installed extension
 uninstall  Remove a LocalStack extension
 {{< / command >}}
 
-To install an extension, specify the name of the `pip` dependency that contains the extension. For example, for the official Stripe extension, you can either use the package distributed on PyPI:
+To install an extension, specify the name of the `pip` dependency that contains the extension.
+For example, for the official Stripe extension, you can either use the package distributed on PyPI:
 
 {{< command >}}
 $ localstack extensions install localstack-extension-httpbin
@@ -74,7 +75,9 @@ pip install file://./my-extensions/dist/my-extension-0.0.1.dev0.tar.gz
 
 ### Specify the `LOCALSTACK_VOLUME_DIR`
 
-Extensions should be installed in the `LOCALSTACK_VOLUME_DIR`. The default directory on your host is currently `~/.cache/localstack`. If you decide to mount a different directory to `/var/lib/localstack` in your docker-compose file, as shown below, you must specify the `LOCALSTACK_VOLUME_DIR` before installing extensions.
+Extensions should be installed in the `LOCALSTACK_VOLUME_DIR`.
+The default directory on your host is currently `~/.cache/localstack`.
+If you decide to mount a different directory to `/var/lib/localstack` in your docker-compose file, as shown below, you must specify the `LOCALSTACK_VOLUME_DIR` before installing extensions.
 
 ```yaml
 volumes:
@@ -166,7 +169,10 @@ When LocalStack starts up, you should see it tries to install the extensions and
 
 ## Extension Management within LocalStack
 
-Extensions in LocalStack are Python distributions that operate within their dedicated virtual environment, residing in the [LocalStack Volume]({{< ref "filesystem" >}}). This involves the creation of a"variable packages folder `/var/lib/localstack/lib`," where the volume management system establishes both an `extensions` folder and a virtual environment named `python_venv`. Within this environment, all extensions and their dependencies are managed. LocalStack integrates its virtual environment, ensuring the resolution of all transitive dependencies associated with extensions.
+Extensions in LocalStack are Python distributions that operate within their dedicated virtual environment, residing in the [LocalStack Volume]({{< ref "filesystem" >}}).
+This involves the creation of a"variable packages folder `/var/lib/localstack/lib`," where the volume management system establishes both an `extensions` folder and a virtual environment named `python_venv`.
+Within this environment, all extensions and their dependencies are managed.
+LocalStack integrates its virtual environment, ensuring the resolution of all transitive dependencies associated with extensions.
 
 Here's an example what the default LocalStack volume looks like after installing the MailHog extension:
 

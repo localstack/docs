@@ -14,7 +14,8 @@ url: "/academy/localstack-101/why-localstack/"
 ---
 
 Let's imagine this scenario: Alice, a software developer, takes on the task of creating a serverless
-Web application on AWS Cloud. However, she faces slow and tedious development due to cloud dependencies (DBs, VMs, MQs, etc.).
+Web application on AWS Cloud.
+However, she faces slow and tedious development due to cloud dependencies (DBs, VMs, MQs, etc.).
 Every local change needs to be packaged and uploaded to the cloud for testing.
 The solution for her trouble is LocalStack — a revolutionary platform that brings cloud resources to her
 local machine, enabling efficient development and testing.

@@ -57,11 +57,14 @@ Usage: pod save [OPTIONS] NAME [REMOTE]
   Save the current state of the LocalStack container in a Cloud Pod.
 
   A Cloud Pod can be registered and saved with different storage options,
-  called remotes. By default, Cloud Pods are hosted in the LocalStack
-  platform. However, users can decide to store their Cloud Pods in other
+  called remotes.
+  By default, Cloud Pods are hosted in the LocalStack
+  platform.
+  However, users can decide to store their Cloud Pods in other
   remotes, such as AWS S3 buckets or ORAS registries.
 
-  An optional message can be attached to any Cloud Pod. Furthermore, one
+  An optional message can be attached to any Cloud Pod.
+  Furthermore, one
   could decide to export only a subset of services with the optional
   --service option.
 
@@ -82,7 +85,8 @@ Options:
                                  the Cloud Pod (all by default)
 
   --visibility [public|private]  Set the visibility of the Cloud Pod [`public`
-                                 or `private`]. Does not create a new version
+                                 or `private`].
+  Does not create a new version
 
   -f, --format [json]            The formatting style for the save command
                                  output.
@@ -109,7 +113,8 @@ Users who want to make a Cloud Pod accessible outside their organization can mar
 $ localstack pod save --name my-pod --visibility public
 {{< / command >}}
 
-The above command does not create a new version and requires a version already registered with the platform. The CLI manual for the `save` command is as follows:
+The above command does not create a new version and requires a version already registered with the platform.
+The CLI manual for the `save` command is as follows:
 
 ### `load`
 
@@ -122,14 +127,19 @@ Usage: pod load [OPTIONS] NAME [REMOTE]
   being the default one.
 
   Loading the state of a Cloud Pod into LocalStack might cause some
-  conflicts with the current state of the container. By default, LocalStack
+  conflicts with the current state of the container.
+  By default, LocalStack
   will attempt a best-effort merging strategy between the current state and
-  the one from the Cloud Pod. For a service X present in both the current
+  the one from the Cloud Pod.
+  For a service X present in both the current
   state and the Cloud Pod, we will attempt to merge states across different
-  accounts and regions. If the service X has a state for the same account
+  accounts and regions.
+  If the service X has a state for the same account
   and region both in the running container and the Cloud Pod, the latter
-  will be used. If a service Y is present in the running container but not
-  in the Cloud Pod, it will be left untouched. With `--merge overwrite`, the
+  will be used.
+  If a service Y is present in the running container but not
+  in the Cloud Pod, it will be left untouched.
+  With `--merge overwrite`, the
   state of the Cloud Pod will completely replace the state of the running
   container.
 
@@ -139,7 +149,8 @@ Options:
   --merge [overwrite|merge]  The merge strategy to adopt when loading the
                              Cloud Pod
 
-  -y, --yes                  Automatic yes to prompts. Assume a positive
+  -y, --yes                  Automatic yes to prompts.
+  Assume a positive
                              answer to all prompts and run non-interactively
 
   --help                     Show this message and exit.
@@ -176,7 +187,8 @@ Usage: pod inspect [OPTIONS] NAME
 
   Inspect the contents of a Cloud Pod
 
-  This command shows the content of a Cloud Pod. By default, it starts a
+  This command shows the content of a Cloud Pod.
+  By default, it starts a
   curses interface which allows an interactive inspection of the contents in
   the Cloud Pod.
 
@@ -202,7 +214,8 @@ Usage: pod list [OPTIONS] [REMOTE]
 
   With the --public flag, it lists the all the available public Cloud Pods.
   A public Cloud Pod is available across the boundary of a user one/or
-  organization. In other words, any public Cloud Pod can be injected by any
+  organization.
+  In other words, any public Cloud Pod can be injected by any
   other user holding a LocalStack Pro (or above) license.
 
 Options:
@@ -225,7 +238,8 @@ Usage: pod versions [OPTIONS] NAME
 
   List all available versions for a Cloud Pod
 
-  This command lists the versions available for a Cloud Pod. Each invocation
+  This command lists the versions available for a Cloud Pod.
+  Each invocation
   of the save command is going to create a new version for a named Cloud
   Pod, if a Pod with such name already does exist in the LocalStack
   platform.
@@ -272,7 +286,8 @@ Usage: pod remote add [OPTIONS] NAME URL
 
   Add a new remote for Cloud Pods.
 
-  A remote is the place where your Cloud Pods are stored. By default, Cloud
+  A remote is the place where your Cloud Pods are stored.
+  By default, Cloud
   Pods are store in the LocalStack platform.
 
 Options:
@@ -345,8 +360,10 @@ Commands:
 Usage: state export [OPTIONS] [DESTINATION]
 
   Save the current state of the LocalStack container to a file on the local
-  disk. This file can be restored at any point in time using the `localstack
-  state import` command. Please be aware that this might not be possible
+  disk.
+  This file can be restored at any point in time using the `localstack
+  state import` command.
+  Please be aware that this might not be possible
   when importing the state with a different version of LocalStack.
 
   If you are looking for a managed solution to handle the state of your
@@ -354,7 +371,8 @@ Usage: state export [OPTIONS] [DESTINATION]
   https://docs.localstack.cloud/user-guide/tools/cloud-pods/
 
   Use the DESTINATION argument to specify an absolute path for the exported
-  file or a filename in current working directory. If no destination is
+  file or a filename in current working directory.
+  If no destination is
   specified, a file named `ls-state-export` will be saved in the current
   working directory.
 
@@ -362,11 +380,13 @@ Usage: state export [OPTIONS] [DESTINATION]
       localstack state export my-state
       localstack state export /home/johndoe/my-state
 
-  You can also specify a subset of services to export. By default, the state
+  You can also specify a subset of services to export.
+  By default, the state
   of all running services is exported.
 
 Options:
-  -s, --services TEXT  Comma-delimited list of services to reset. By default,
+  -s, --services TEXT  Comma-delimited list of services to reset.
+By default,
                        the state of all running services is exported.
 
   -f, --format [json]  The formatting style for the save command output.
@@ -380,9 +400,11 @@ Options:
 <disable-copy>
 Usage: state import [OPTIONS] SOURCE
 
-  Load the state of LocalStack from a file into the running container. The
+  Load the state of LocalStack from a file into the running container.
+  The
   SOURCE file must have been generated from a previous `localstack state
-  export` command. Please be aware that it might not be possible to import a
+  export` command.
+  Please be aware that it might not be possible to import a
   state generated from a different version of LocalStack.
 
   Examples:
@@ -403,15 +425,19 @@ Usage: state reset [OPTIONS]
   Reset the service states of the current LocalStack runtime.
 
   This command invokes a reset of services in the currently running
-  LocalStack container. By default, all services are rest. The `services`
+  LocalStack container.
+  By default, all services are rest.
+  The `services`
   options allows to select a subset of services which should be reset.
 
   This command tries to automatically discover the running LocalStack
-  instance. If LocalStack has not been started with `localstack start` (and
+  instance.
+  If LocalStack has not been started with `localstack start` (and
   is not automatically discoverable), please set `LOCALSTACK_HOST`.
 
 Options:
-  -s, --services TEXT  Comma-delimited list of services to reset. By default,
+  -s, --services TEXT  Comma-delimited list of services to reset.
+By default,
                        the state of all running services is reset.
 
   --help               Show this message and exit.

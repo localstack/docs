@@ -7,12 +7,16 @@ tags: ["Pro image"]
 
 ## Introduction
 
-Amazon SageMaker is a fully managed service provided by Amazon Web Services (AWS) that provides the tools to build, train, and deploy machine-learning models in the cloud for predictive analytics applications. It streamlines the machine learning development process, reduces the time and effort required to build and deploy models, and offers the scalability and flexibility needed for large-scale machine learning projects in the AWS cloud.
+Amazon SageMaker is a fully managed service provided by Amazon Web Services (AWS) that provides the tools to build, train, and deploy machine-learning models in the cloud for predictive analytics applications.
+It streamlines the machine learning development process, reduces the time and effort required to build and deploy models, and offers the scalability and flexibility needed for large-scale machine learning projects in the AWS cloud.
 
-LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sagemaker/), which provides information on the extent of Sagemaker's integration with LocalStack.
+LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sagemaker/), which provides information on the extent of Sagemaker's integration with LocalStack.
 
 {{< callout >}}
-LocalStack supports custom-built models in SageMaker. You can push your Docker image to LocalStack's Elastic Container Registry (ECR) and use it in SageMaker. LocalStack will use the local ECR image to create a SageMaker model.
+LocalStack supports custom-built models in SageMaker.
+You can push your Docker image to LocalStack's Elastic Container Registry (ECR) and use it in SageMaker.
+LocalStack will use the local ECR image to create a SageMaker model.
 {{< /callout >}}
 
 ## Getting started
@@ -26,7 +30,8 @@ We will demonstrate an application illustrating running a machine learning job u
 - Invokes the endpoint directly on the container via Boto3
 
 {{< callout >}}
-SageMaker is a fairly comprehensive API for now. Currently a subset of the functionality is provided locally, but new features are being added on a regular basis.
+SageMaker is a fairly comprehensive API for now.
+Currently a subset of the functionality is provided locally, but new features are being added on a regular basis.
 {{< /callout >}}
 
 ### Download the sample application
@@ -58,7 +63,8 @@ $ docker pull 763104351884.dkr.ecr.us-east-1.amazonaws.com/pytorch-inference:1.5
 
 ### Run the sample application
 
-Start your LocalStack container using your preferred method. Run the sample application by executing the following command:
+Start your LocalStack container using your preferred method.
+Run the sample application by executing the following command:
 
 {{< command >}}
 $ python3 main.,py
@@ -86,9 +92,11 @@ You can also invoke a serverless endpoint, by navigating to `main.py` and uncomm
 
 ## Resource Browser
 
-The LocalStack Web Application provides a [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/) for managing Lambda resources. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Sagemaker** under the **Compute** section.
+The LocalStack Web Application provides a [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/) for managing Lambda resources.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Sagemaker** under the **Compute** section.
 
-The Resource Browser displays Models, Endpoint Configurations and Endpoint. You can click on individual resources to view their details.
+The Resource Browser displays Models, Endpoint Configurations and Endpoint.
+You can click on individual resources to view their details.
 
 <img src="sagemaker-resource-browser.png" alt="Sagemaker Resource Browser" title="Lambda Resource Browser" width="900" />
 
@@ -98,7 +106,8 @@ The Resource Browser allows you to perform the following actions:
 
   <img src="sagemaker-create-model.png" alt="Sagemaker Resource Browser" title="Lambda Resource Browser" width="900" />
 
-- **Endpoint Configurations & Endpoints**: You can create endpoints from the resource browser that hosts your deployed machine learning model. You can also create endpoint configuration that specifies the type and number of instances that will be used to serve your model on an endpoint.
+- **Endpoint Configurations & Endpoints**: You can create endpoints from the resource browser that hosts your deployed machine learning model.
+  You can also create endpoint configuration that specifies the type and number of instances that will be used to serve your model on an endpoint.
 
 ## Examples
 

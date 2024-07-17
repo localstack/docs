@@ -11,7 +11,8 @@ type: lessons
 url: "/academy/localstack-deployment/iam-policy-stream/"
 ---
 
-In this video, we'll explore the [IAM Policy Stream](https://docs.localstack.cloud/user-guide/security-testing/iam-policy-stream/) that assists in assigning precise IAM permissions to a resource. This ensures accurate and secure access to the resource.
+In this video, we'll explore the [IAM Policy Stream](https://docs.localstack.cloud/user-guide/security-testing/iam-policy-stream/) that assists in assigning precise IAM permissions to a resource.
+This ensures accurate and secure access to the resource.
 
 Here's a breakdown of the steps we'll take:
 

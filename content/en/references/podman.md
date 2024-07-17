@@ -13,7 +13,9 @@ Podman support is still experimental, and the following docs give you an overvie
 
 From the Podman docs:
 
-> Podman is a daemonless, open source, Linux native tool designed to make it easy to find, run, build, share and deploy applications using Open Containers Initiative (OCI) Containers and Container Images. Podman provides a command line interface (CLI) familiar to anyone who has used the Docker Container Engine. Most users can simply alias Docker to Podman (`alias docker=podman`) without any problems.
+> Podman is a daemonless, open source, Linux native tool designed to make it easy to find, run, build, share and deploy applications using Open Containers Initiative (OCI) Containers and Container Images.
+> Podman provides a command line interface (CLI) familiar to anyone who has used the Docker Container Engine.
+> Most users can simply alias Docker to Podman (`alias docker=podman`) without any problems.
 
 ## Options
 
@@ -25,7 +27,8 @@ Here are several options on running LocalStack using podman:
 
 ### podman-docker
 
-The package `podman-docker` emulates the Docker CLI using podman. It creates the following links:
+The package `podman-docker` emulates the Docker CLI using podman.
+It creates the following links:
 - `/usr/bin/docker ->  /usr/bin/podman`
 - `/var/run/docker.sock -> /run/podman/podman.sock`
 
@@ -79,7 +82,8 @@ DEBUG=1 DOCKER_CMD="podman --storage-opt overlay.ignore_chown_errors=true" DOCKE
 
 ### Podman on Windows
 
-You can run Podman on Windows using [WSLv2](https://learn.microsoft.com/en-us/windows/wsl/about#what-is-wsl-2). In the guide, we use a Docker Compose setup to run LocalStack.
+You can run Podman on Windows using [WSLv2](https://learn.microsoft.com/en-us/windows/wsl/about#what-is-wsl-2).
+In the guide, we use a Docker Compose setup to run LocalStack.
 
 Initialize and start Podman:
 
@@ -88,13 +92,15 @@ $ podman machine init
 $ podman machine start
 {{< / command >}}
 
-At this stage, Podman operates in rootless mode, where exposing port 443 on Windows is not possible. To enable this, switch Podman to rootful mode using the following command:
+At this stage, Podman operates in rootless mode, where exposing port 443 on Windows is not possible.
+To enable this, switch Podman to rootful mode using the following command:
 
 {{< command >}}
 podman machine set --rootful
 {{< / command >}}
 
-For the Docker Compose setup, use the following configuration. When running in rootless mode, ensure to comment out the HTTPS gateway port, as it is unable to bind to privileged ports below 1024.
+For the Docker Compose setup, use the following configuration.
+When running in rootless mode, ensure to comment out the HTTPS gateway port, as it is unable to bind to privileged ports below 1024.
 
 ```yaml
 version: "3.8"

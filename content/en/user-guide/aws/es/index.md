@@ -289,7 +289,8 @@ $ awslocal es create-elasticsearch-domain \
 }
 {{< /command >}}
 
-3. If the `Processing` status is true, it means that the cluster is not yet healthy. You can run `describe-elasticsearch-domain` to receive the status:
+3. If the `Processing` status is true, it means that the cluster is not yet healthy.
+  You can run `describe-elasticsearch-domain` to receive the status:
 {{< command >}}
 $ awslocal es describe-elasticsearch-domain --domain-name mylogs-2
 {{< /command >}}
@@ -314,4 +315,5 @@ $ curl -X PUT mylogs-2.us-east-1.es.localhost.localstack.cloud:4566/my-index
 
 ## Current Limitations
 
-The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in LocalStack.
+The default Elasticsearch version used is 7.10.0.
+This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in LocalStack.

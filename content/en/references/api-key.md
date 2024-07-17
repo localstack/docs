@@ -10,9 +10,11 @@ aliases:
 ---
 
 {{< callout "warning" >}}
-- LocalStack is transitioning from API Keys to Auth Tokens for activation. Auth Tokens streamline license management and remove the need for developers to adjust their setup when license changes occur.
+- LocalStack is transitioning from API Keys to Auth Tokens for activation.
+  Auth Tokens streamline license management and remove the need for developers to adjust their setup when license changes occur.
 - For detailed information and guidance on migrating your LocalStack setup to Auth Tokens, please consult our [Auth Token documentation]({{< ref "auth-token" >}}).
-- API Keys will remain functional for LocalStack Pro and Enterprise users until the next major release. Following this release, LocalStack Pro and Enterprise will exclusively use Auth Tokens.
+- API Keys will remain functional for LocalStack Pro and Enterprise users until the next major release.
+  Following this release, LocalStack Pro and Enterprise will exclusively use Auth Tokens.
 {{< /callout >}}
 
 The LocalStack API key is a unique identifier to activate your LocalStack license needed to start LocalStack Pro.
@@ -20,7 +22,8 @@ You can find your API key in the [LocalStack Web app](https://app.localstack.clo
 This guide demonstrates how you can use your new LocalStack licenses and go over some best practices regarding the usage, activation, and safety of your LocalStack API key.
 
 {{< callout "warning" >}}
-- Avoid sharing your API key with anyone. Ensure that you do not commit it to any source code management systems (like Git repositories).
+- Avoid sharing your API key with anyone.
+  Ensure that you do not commit it to any source code management systems (like Git repositories).
 - If you push an API key to a public repository, it has potentially been exposed and might remain in the history (even if you try to rewrite it).
 - If you accidentally publish your API key, please [contact us](https://localstack.cloud/contact/) immediately to get your API key rotated!
 - If you want to use your API key in your CI environment, check out our [CI documentation]({{< ref "user-guide/ci" >}}) to see the proper way to handle secrets in your CI environment to store your API key securely.
@@ -28,7 +31,8 @@ This guide demonstrates how you can use your new LocalStack licenses and go over
 
 ### Starting LocalStack via CLI
 
-LocalStack expects your API key to be present in the environment variable `LOCALSTACK_API_KEY`. You can define the `LOCALSTACK_API_KEY` environment variable before or while starting LocalStack using the `localstack` CLI.
+LocalStack expects your API key to be present in the environment variable `LOCALSTACK_API_KEY`.
+You can define the `LOCALSTACK_API_KEY` environment variable before or while starting LocalStack using the `localstack` CLI.
 
 {{< tabpane >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
@@ -72,7 +76,8 @@ environment:
   - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }
 ```
 
-You can set the API key manually, or you can use the `export` command to set the API key in your current shell session. The API key will be passed into your LocalStack container, such that the key activation can take place.
+You can set the API key manually, or you can use the `export` command to set the API key in your current shell session.
+The API key will be passed into your LocalStack container, such that the key activation can take place.
 
 ## Licensing-related configuration
 
@@ -86,7 +91,8 @@ The easiest way to check if LocalStack is activated is to query the health endpo
 $ curl localhost:4566/_localstack/health | jq
 {{< / command >}}
 
-If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "xray" >}}) -- is running, LocalStack has started successfully. You can also check the logs of the LocalStack container to see if the activation was successful.
+If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "xray" >}}) -- is running, LocalStack has started successfully.
+You can also check the logs of the LocalStack container to see if the activation was successful.
 
 {{< command >}}
 [...] Successfully activated API key

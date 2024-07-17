@@ -8,7 +8,8 @@ description: >
 
 ## Introduction
 
-[BitBucket Pipeline](https://bitbucket.org/product/features/pipelines) is a CI/CD tool that allows you to build, test, and deploy your code directly from BitBucket. This guide will show you how to use LocalStack in BitBucket Pipelines.
+[BitBucket Pipeline](https://bitbucket.org/product/features/pipelines) is a CI/CD tool that allows you to build, test, and deploy your code directly from BitBucket.
+This guide will show you how to use LocalStack in BitBucket Pipelines.
 
 ## Setting up the BitBucket Pipeline
 
@@ -54,7 +55,8 @@ pipelines:
 
 ## Configuring a CI key
 
-You can enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the project's environment variables. The LocalStack container will automatically pick it up and activate the Pro features.
+You can enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the project's environment variables.
+The LocalStack container will automatically pick it up and activate the Pro features.
 
 To add a CI key to your BitBucket Pipeline:
 
@@ -85,4 +87,5 @@ pipelines:
 
 ### Mounting Volumes
 
-BitBucket Pipelines does not support mounting volumes, so you cannot mount a volume to the LocalStack container. This limitation prevents you from mounting the Docker Socket to the LocalStack container, which is required to create compute resources, such as Lambda functions or ECS tasks.
+BitBucket Pipelines does not support mounting volumes, so you cannot mount a volume to the LocalStack container.
+This limitation prevents you from mounting the Docker Socket to the LocalStack container, which is required to create compute resources, such as Lambda functions or ECS tasks.

@@ -7,24 +7,34 @@ persistence: supported with limitations
 ---
 
 {{< callout >}}
-With LocalStack 3.5 we've improved how the internal engine orders resources for deployment and deletion of stacks. Specifically it now more accurately calculates dependencies between resources and doesn't try to deploy/delete resources which don't have their dependencies available yet. Should you encounter any issues, please report them on [GitHub](https://github.com/localstack/localstack/issues/new/choose). You can temporarily revert to the old behavior with `CFN_LEGACY_TEMPLATE_DEPLOYER=1`, but be aware that this is only a temporary option.
+With LocalStack 3.5 we've improved how the internal engine orders resources for deployment and deletion of stacks.
+Specifically it now more accurately calculates dependencies between resources and doesn't try to deploy/delete resources which don't have their dependencies available yet.
+Should you encounter any issues, please report them on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
+You can temporarily revert to the old behavior with `CFN_LEGACY_TEMPLATE_DEPLOYER=1`, but be aware that this is only a temporary option.
 {{< /callout >}}
 
 ## Introduction
 
-CloudFormation is a service provided by Amazon Web Services (AWS) that allows you to define and provision infrastructure as code. It enables you to create, update, and manage resources in a repeatable and automated manner using declarative templates. With CloudFormation, you can use JSON or YAML templates to define your desired infrastructure state. You can specify resources, their configurations, dependencies, and relationships in these templates.
+CloudFormation is a service provided by Amazon Web Services (AWS) that allows you to define and provision infrastructure as code.
+It enables you to create, update, and manage resources in a repeatable and automated manner using declarative templates.
+With CloudFormation, you can use JSON or YAML templates to define your desired infrastructure state.
+You can specify resources, their configurations, dependencies, and relationships in these templates.
 
-LocalStack supports CloudFormation, allowing you to use the CloudFormation APIs in your local environment to declaratively define your architecture on the AWS, including resources such as S3 Buckets, Lambda Functions, and much more. The [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudformation/) and [feature coverage](#feature-coverage) provides information on the extent of CloudFormation's integration with LocalStack.
+LocalStack supports CloudFormation, allowing you to use the CloudFormation APIs in your local environment to declaratively define your architecture on the AWS, including resources such as S3 Buckets, Lambda Functions, and much more.
+The [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudformation/) and [feature coverage](#feature-coverage) provides information on the extent of CloudFormation's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to CloudFormation and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to deploy a simple CloudFormation stack consisting of a single S3 Bucket with the AWS CLI.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to deploy a simple CloudFormation stack consisting of a single S3 Bucket with the AWS CLI.
 
 ### Create a CloudFormation Stack
 
-CloudFormation stack is a collection of AWS resources that you can create, update, or delete as a single unit. Stacks are defined using JSON or YAML templates. Use the following code snippet and save the content in either `cfn-quickstart-stack.yaml` or `cfn-quickstart-stack.json`, depending on your preferred format.
+CloudFormation stack is a collection of AWS resources that you can create, update, or delete as a single unit.
+Stacks are defined using JSON or YAML templates.
+Use the following code snippet and save the content in either `cfn-quickstart-stack.yaml` or `cfn-quickstart-stack.json`, depending on your preferred format.
 
 {{< tabpane >}}
 {{< tab header="YAML" lang="yaml" >}}
@@ -50,7 +60,9 @@ Resources:
 
 ### Deploy the CloudFormation Stack
 
-You can deploy the CloudFormation stack using the AWS CLI with the [`deploy`](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/deploy/index.html) command. The `deploy` command creates and updates CloudFormation stacks. Run the following command to deploy the stack:
+You can deploy the CloudFormation stack using the AWS CLI with the [`deploy`](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/deploy/index.html) command.
+The `deploy` command creates and updates CloudFormation stacks.
+Run the following command to deploy the stack:
 
 {{< command >}}
 $ awslocal cloudformation deploy \
@@ -58,7 +70,8 @@ $ awslocal cloudformation deploy \
     --template-file "./cfn-quickstart-stack.yaml"
 {{< / command >}}
 
-You can verify that the stack was created successfully by listing the S3 buckets in your LocalStack container using the [`ListBucket` API](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-buckets.html). Run the following command to list the buckets:
+You can verify that the stack was created successfully by listing the S3 buckets in your LocalStack container using the [`ListBucket` API](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-buckets.html).
+Run the following command to list the buckets:
 
 {{< command >}}
 $ awslocal s3api list-buckets
@@ -66,7 +79,8 @@ $ awslocal s3api list-buckets
 
 ### Delete the CloudFormation Stack
 
-You can delete the CloudFormation stack using the [`delete-stack`](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/delete-stack.html) command. Run the following command to delete the stack along with all the resources created by the stack:
+You can delete the CloudFormation stack using the [`delete-stack`](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/delete-stack.html) command.
+Run the following command to delete the stack along with all the resources created by the stack:
 
 {{< command >}}
 $ awslocal cloudformation delete-stack \
@@ -75,20 +89,24 @@ $ awslocal cloudformation delete-stack \
 
 ## Local User-Interface
 
-You can also utilize LocalStack's local CloudFormation user-interface to deploy and manage your CloudFormation stacks using public templates. You can access the user-interface at [`localhost:4566/_localstack/cloudformation/deploy`](http://localhost:4566/_localstack/cloudformation/deploy).
+You can also utilize LocalStack's local CloudFormation user-interface to deploy and manage your CloudFormation stacks using public templates.
+You can access the user-interface at [`localhost:4566/_localstack/cloudformation/deploy`](http://localhost:4566/_localstack/cloudformation/deploy).
 
 <img src="localstack-cloudformation-local-user-interface.png" alt="Local CloudFormation UI in LocalStack" title="Local CloudFormation UI in LocalStack" width="900" />
 <br><br>
 
-You can utilize the CloudFormation user interface to provide an existing CloudFormation template URL, input the necessary parameters, and initiate the deployment directly from your browser. Let's proceed with an example template to deploy a CloudFormation stack.
+You can utilize the CloudFormation user interface to provide an existing CloudFormation template URL, input the necessary parameters, and initiate the deployment directly from your browser.
+Let's proceed with an example template to deploy a CloudFormation stack.
 
 To begin, employ the public CloudFormation template URL: [`s3.eu-central-1.amazonaws.com/cloudformation-templates-eu-central-1/DynamoDB_Secondary_Indexes.template`](https://s3.eu-central-1.amazonaws.com/cloudformation-templates-eu-central-1/DynamoDB_Secondary_Indexes.template).
 
-Following this, download the template URL and extract the stack parameters (default values will be automatically applied). Upon submission, the stack deployment will be triggered, and a result message will be displayed.
+Following this, download the template URL and extract the stack parameters (default values will be automatically applied).
+Upon submission, the stack deployment will be triggered, and a result message will be displayed.
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing CloudFormation stacks to manage your AWS resources locally. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **CloudFormation** under the **Management/Governance** section.
+The LocalStack Web Application provides a Resource Browser for managing CloudFormation stacks to manage your AWS resources locally.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **CloudFormation** under the **Management/Governance** section.
 
 <img src="cloudformation-resource-browser.png" alt="CloudFormation Resource Browser" title="CloudFormation Resource Browser" width="900" />
 
@@ -110,7 +128,9 @@ The following code snippets and sample applications provide practical examples o
 ## Feature coverage
 
 {{< callout "tip" >}}
-We are continually enhancing our CloudFormation feature coverage by consistently introducing new resource types. Your feature requests assist us in determining the priority of resource additions. Feel free to contribute by [creating a new GitHub issue](https://github.com/localstack/localstack/issues/new?assignees=&labels=feature-request&template=feature-request.yml&title=feature+request%3A+%3Ctitle%3E).
+We are continually enhancing our CloudFormation feature coverage by consistently introducing new resource types.
+Your feature requests assist us in determining the priority of resource additions.
+Feel free to contribute by [creating a new GitHub issue](https://github.com/localstack/localstack/issues/new?assignees=&labels=feature-request&template=feature-request.yml&title=feature+request%3A+%3Ctitle%3E).
 {{< /callout >}}
 
 ### Features
@@ -133,7 +153,8 @@ We are continually enhancing our CloudFormation feature coverage by consistently
 | Intrinsic Functions | Partial                                         |
 
 {{< callout >}}
-Currently, support for `UPDATE` operations on resources is limited. Prefer stack re-creation over stack update at this time.
+Currently, support for `UPDATE` operations on resources is limited.
+Prefer stack re-creation over stack update at this time.
 {{< /callout >}}
 
 ### Intrinsic Functions

@@ -20,7 +20,8 @@ If the invitee does not have a LocalStack account yet, an invitation to create a
 The user's name is used as placeholder for easier managing and will be replaced by the actual username once the account is created.
 
 {{< callout >}}
-Administrators can invite users to a workspace, and can freely assign and unassign licenses or legacy API keys to users. LocalStack automatically assigns a license to the user who is making the purchase, which can be reassigned again with no restrictions.
+Administrators can invite users to a workspace, and can freely assign and unassign licenses or legacy API keys to users.
+LocalStack automatically assigns a license to the user who is making the purchase, which can be reassigned again with no restrictions.
 {{< /callout >}}
 
 ### Removing Users

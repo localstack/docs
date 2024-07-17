@@ -58,7 +58,8 @@ If your certificate file ends with `.pem`, you can rename it to end in `.crt`.
 
 ### Starting LocalStack with the custom image
 
-LocalStack now needs to be configured to use this custom image. The workflow is different depending on how you start localstack.
+LocalStack now needs to be configured to use this custom image.
+The workflow is different depending on how you start localstack.
 
 {{< tabpane lang="bash">}}
 {{< tab header="CLI" lang="bash" >}}
@@ -77,7 +78,8 @@ services:
 
 ## Custom TLS certificates with init hooks
 
-It is recommended to create a `boot` init hook. Create a directory on your local system that includes
+It is recommended to create a `boot` init hook.
+Create a directory on your local system that includes
 
 * the certificate you wish to copy, and
 * the following shell script:
@@ -103,7 +105,8 @@ and follow the instructions fn the [init hooks documentation]({{< ref "init-hook
 
 ### Linux
 
-On linux the custom certificate should be added to your `ca-certificates` bundle. For example on Debian based systems (as root):
+On linux the custom certificate should be added to your `ca-certificates` bundle.
+For example on Debian based systems (as root):
 
 {{< command >}}
 # cp <your custom certificate.crt> /usr/local/share/ca-certificates
@@ -123,7 +126,8 @@ $ NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt \
 
 ### macOS
 
-On macOS the custom certificate should be added to your keychain. See [this Apple support article](https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac) for more information.
+On macOS the custom certificate should be added to your keychain.
+See [this Apple support article](https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac) for more information.
 
 Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`, and `NODE_EXTRA_CA_CERTS``:
 
@@ -136,4 +140,5 @@ $ NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt \
 
 ### Windows
 
-Currently host mode does not work with Windows. If you are using WSL2 you should follow the [Linux]({{< ref "#linux" >}}) steps above.
+Currently host mode does not work with Windows.
+If you are using WSL2 you should follow the [Linux]({{< ref "#linux" >}}) steps above.

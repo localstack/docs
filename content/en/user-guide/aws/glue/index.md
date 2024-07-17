@@ -19,7 +19,8 @@ Start your LocalStack container using your preferred method.
 We will demonstrate how to create databases and table metadata in Glue, run Glue ETL jobs, import databases from Athena, and run Glue Crawlers with the AWS CLI.
 
 {{< callout >}}
-In order to run Glue jobs, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Spark, Presto, Hive and other tools.
+In order to run Glue jobs, some additional dependencies have to be fetched from the network, including a Docker image of apprx.
+1.5GB which includes Spark, Presto, Hive and other tools.
 These dependencies are automatically fetched when you start up the service, so please make sure you're on a decent internet connection when pulling the dependencies for the first time.
 {{< /callout >}}
 

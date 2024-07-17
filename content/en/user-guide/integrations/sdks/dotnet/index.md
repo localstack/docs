@@ -50,7 +50,8 @@ var s3client = new AmazonS3Client(config);
 ```
 
 {{< callout >}}
-In case of issues resolving this DNS record, we can fallback to <http://localhost:4566> in combination with the provider setting `ForcePathStyle = true`. The S3 service endpoint is slightly different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
+In case of issues resolving this DNS record, we can fallback to <http://localhost:4566> in combination with the provider setting `ForcePathStyle = true`.
+The S3 service endpoint is slightly different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
 {{< /callout >}}
 
 ```csharp
@@ -65,17 +66,20 @@ var s3client = new AmazonS3Client(config);
 
 ## Alternative: Using LocalStack.NET
 
-If you're working with .NET and LocalStack, you have a few options. In addition to the AWS SDK for .NET, there's an alternative client library, `LocalStack.NET`, which facilitates integration with LocalStack.
+If you're working with .NET and LocalStack, you have a few options.
+In addition to the AWS SDK for .NET, there's an alternative client library, `LocalStack.NET`, which facilitates integration with LocalStack.
 
 ### Overview
 
-`LocalStack.NET` is a .NET client library developed to simplify the connection between .NET applications and LocalStack. It wraps around the AWS SDK for .NET and offers an alternative setup for creating LocalStack clients.
+`LocalStack.NET` is a .NET client library developed to simplify the connection between .NET applications and LocalStack.
+It wraps around the AWS SDK for .NET and offers an alternative setup for creating LocalStack clients.
 
 **LocalStack.NET Documentation:** Comprehensive guide and examples [here](https://github.com/localstack-dotnet/localstack-dotnet-client).
 
 ### How it Works
 
-Instead of manually setting the endpoint configurations when initializing a client, `LocalStack.NET` offers methods that handle these details. The library aims to reduce the boilerplate required to set up LocalStack clients in .NET.
+Instead of manually setting the endpoint configurations when initializing a client, `LocalStack.NET` offers methods that handle these details.
+The library aims to reduce the boilerplate required to set up LocalStack clients in .NET.
 
 ### Example Usage
 
@@ -119,7 +123,8 @@ var amazonS3Client = session.CreateClientByImplementation<AmazonS3Client>();
 
 ### Considerations
 
-- Both the standard AWS SDK method and `LocalStack.NET` provide ways to integrate with LocalStack using .NET. The choice depends on developer preferences and specific project needs.
+- Both the standard AWS SDK method and `LocalStack.NET` provide ways to integrate with LocalStack using .NET.
+  The choice depends on developer preferences and specific project needs.
 - `LocalStack.NET` works alongside the AWS SDK, using it as a base and providing a more focused API for LocalStack interactions.
 
 ## Resources

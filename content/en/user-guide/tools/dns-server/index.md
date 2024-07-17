@@ -97,11 +97,14 @@ $ dig test.localhost.localstack.cloud
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 65494
 ;; QUESTION SECTION:
-;test.localhost.localstack.cloud. IN A
+;test.localhost.localstack.cloud.
+IN A
 
 ;; ANSWER SECTION:
-test.localhost.localstack.cloud. 10786 IN CNAME localhost.localstack.cloud.
-localhost.localstack.cloud. 389 IN A 127.0.0.1
+test.localhost.localstack.cloud.
+10786 IN CNAME localhost.localstack.cloud.
+localhost.localstack.cloud.
+389 IN A 127.0.0.1
 
 ;; Query time: 16 msec
 ;; SERVER: 127.0.0.53#53(127.0.0.53)

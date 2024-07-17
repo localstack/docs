@@ -10,7 +10,10 @@ cascade:
 
 ## Supported Services
 
-In principle, LocalStack supports all operations. However, not all services and their operations have been tested yet. The table below lists all IAM services and operations that have been tested, noting if they were ever denied or allowed during testing. It only includes operations performed with a principal, not as root, so test setups are excluded.
+In principle, LocalStack supports all operations.
+However, not all services and their operations have been tested yet.
+The table below lists all IAM services and operations that have been tested, noting if they were ever denied or allowed during testing.
+It only includes operations performed with a principal, not as root, so test setups are excluded.
 
 |Name          |operation                   |Access denied|Access allowed|
 |--------------|----------------------------|-------------|--------------|

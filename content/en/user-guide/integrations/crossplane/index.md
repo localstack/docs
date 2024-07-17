@@ -36,7 +36,8 @@ $ helm repo update
 $ helm install crossplane crossplane-stable/crossplane --namespace crossplane-system --create-namespace
 {{</command>}}
 
-The installation may take a few minutes. In parallel, we can install the `crossplane` command-line extensions for `kubectl`:
+The installation may take a few minutes.
+In parallel, we can install the `crossplane` command-line extensions for `kubectl`:
 {{<command>}}
 $ curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | bash
 <disable-copy>...</disable-copy>
@@ -142,7 +143,8 @@ The endpoint `http://host.docker.internal:4566` in the listing above assumes tha
 {{< /callout >}}
 
 {{< callout >}}
-The Crossplane AWS provider currently requires us to specify the list of `services` for which the local `endpoint` is used as the target URL. Please make sure to extend this list accordingly if you're working with additional LocalStack services.
+The Crossplane AWS provider currently requires us to specify the list of `services` for which the local `endpoint` is used as the target URL.
+Please make sure to extend this list accordingly if you're working with additional LocalStack services.
 {{< /callout >}}
 
 ### Deploying sample resources in LocalStack
@@ -171,7 +173,8 @@ crossplane-test-bucket   True    True     crossplane-test-bucket   30s
 </disable-copy>
 {{</command>}}
 
-... and the bucket it should also be visible when querying the local S3 buckets in LocalStack via [`awslocal`](https://github.com/localstack/awscli-local):
+...
+and the bucket it should also be visible when querying the local S3 buckets in LocalStack via [`awslocal`](https://github.com/localstack/awscli-local):
 {{<command>}}
 $ awslocal s3 ls<disable-copy>
 2023-09-03 15:18:47 crossplane-test-bucket
@@ -200,7 +203,8 @@ crossplane-test-queue   True    True     http://host.docker.internal:4566/000000
 </disable-copy>
 {{</command>}}
 
-... and the queue should be visible when listing the SQS queues in LocalStack:
+...
+and the queue should be visible when listing the SQS queues in LocalStack:
 {{<command>}}
 $ awslocal sqs list-queues<disable-copy>
 {
@@ -215,7 +219,8 @@ $ awslocal sqs list-queues<disable-copy>
 
 The Crossplane AWS provider is a great way to manage AWS resources, and by leveraging the `endpoint` configuration of the provider, we can seamlessly run resource deployments against LocalStack.
 
-In this tutorial, we have provided an end-to-end walkthrough of how to provision two simple resources - an S3 bucket, and an SQS queue. Crossplane supports a vast range of additional AWS resource types, as well as advanced operations like updating, deleting, or composing resources.
+In this tutorial, we have provided an end-to-end walkthrough of how to provision two simple resources - an S3 bucket, and an SQS queue.
+Crossplane supports a vast range of additional AWS resource types, as well as advanced operations like updating, deleting, or composing resources.
 You can refer to the additional reading material to learn and explore more advanced features.
 
 ## Further Reading

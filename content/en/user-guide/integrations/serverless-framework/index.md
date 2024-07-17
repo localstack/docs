@@ -24,7 +24,8 @@ This guide assumes that you have the following tools installed.
 * LocalStack ([Install](https://docs.localstack.cloud/get-started/#installation))
 * Serverless ([Install](https://www.serverless.com/framework/docs/getting-started/))
 
-It also assumes that you already have a Serverless app set up consisting of a couple of Lambda functions and a `serverless.yml` file similar to the following. An example Serverless app integrated with LocalStack can be found here: <a href="https://github.com/localstack/serverless-python-rest-api-with-dynamodb"><i class="fab fa-github"></i>  Simple REST API using the Serverless Framework and LocalStack</a>
+It also assumes that you already have a Serverless app set up consisting of a couple of Lambda functions and a `serverless.yml` file similar to the following.
+An example Serverless app integrated with LocalStack can be found here: <a href="https://github.com/localstack/serverless-python-rest-api-with-dynamodb"><i class="fab fa-github"></i>  Simple REST API using the Serverless Framework and LocalStack</a>
 
 ```yaml
 service: my-service
@@ -100,9 +101,11 @@ dynamodb = boto3.resource('dynamodb')
 ...
 ```
 
-By default, this call attempts to create a connection via the usual AWS endpoints. However, when running services in LocalStack, we need to make sure, our applications creates a connection via the LocalStack endpoint instead.
+By default, this call attempts to create a connection via the usual AWS endpoints.
+However, when running services in LocalStack, we need to make sure, our applications creates a connection via the LocalStack endpoint instead.
 
-Usually, all of LocalStack's services are available via a specific port on localhost (e.g. `localhost:4566`). However, this endpoint only works when accessing LocalStack from outside its Docker runtime.
+Usually, all of LocalStack's services are available via a specific port on localhost (e.g. `localhost:4566`).
+However, this endpoint only works when accessing LocalStack from outside its Docker runtime.
 
 Since the Lambda functions execute within the LocalStack Docker container, Lambda functions cannot access other services via the usual localhost endpoint.
 
@@ -110,7 +113,8 @@ Instead, LocalStack provides a special environment variable `AWS_ENDPOINT_URL` w
 
 Hence, you need to configure the Lambda functions to use the `AWS_ENDPOINT_URL` endpoint when accessing other AWS services in LocalStack.
 
-In Python, this may look something like. The code detects if it is running in LocalStack by checking if the `AWS_ENDPOINT_URL` variable exists and then configures the endpoint URL accordingly.
+In Python, this may look something like.
+The code detects if it is running in LocalStack by checking if the `AWS_ENDPOINT_URL` variable exists and then configures the endpoint URL accordingly.
 
 ```python
 ...

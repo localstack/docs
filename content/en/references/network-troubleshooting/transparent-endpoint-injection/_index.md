@@ -7,7 +7,8 @@ tags:
 - networking
 ---
 
-Suppose you're attempting to access LocalStack, but you're relying on transparent endpoint injection to redirect AWS (`*.amazonaws.com`) requests. In such cases, there are different approaches you can take depending on your setup.
+Suppose you're attempting to access LocalStack, but you're relying on transparent endpoint injection to redirect AWS (`*.amazonaws.com`) requests.
+In such cases, there are different approaches you can take depending on your setup.
 
 ## From your host
 

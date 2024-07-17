@@ -20,7 +20,8 @@ For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1
 
 You can also use [Profiles](#profiles).
 
-Configurations marked as **Deprecated** will be removed in the next major version. You can find previously removed configuration variables under [Legacy](#legacy).
+Configurations marked as **Deprecated** will be removed in the next major version.
+You can find previously removed configuration variables under [Legacy](#legacy).
 
 ## Core
 

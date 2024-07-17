@@ -11,7 +11,8 @@ type: lessons
 url: "/academy/localstack-deployment/deploy-app-ls/"
 ---
 
-In this lesson, we'll guide you through deploying a [continer-based application](https://github.com/localstack/localstack-workshop/tree/main/02-serverless-api-ecs-apigateway), which mimics the complexity of a real-world application. We are using the following AWS services and their features to build our infrastructure:
+In this lesson, we'll guide you through deploying a [continer-based application](https://github.com/localstack/localstack-workshop/tree/main/02-serverless-api-ecs-apigateway), which mimics the complexity of a real-world application.
+We are using the following AWS services and their features to build our infrastructure:
 
 - [Elastic Container Service](https://docs.localstack.cloud/user-guide/aws/elastic-container-service/) to create and deploy our containerized application.
 - [DynamoDB](https://docs.localstack.cloud/user-guide/aws/dynamodb/) as a key-value and document database to persist our data.

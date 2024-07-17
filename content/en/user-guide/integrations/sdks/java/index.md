@@ -9,9 +9,12 @@ aliases:
 
 ## Overview
 
-The AWS SDK for Java provides a Java API for AWS services. Using the SDK, your Java application can interact
-with LocalStack services the same way it does with Amazon services. Support for new services is regularly added to
-the SDK. For a list of the supported services and their API versions that are
+The AWS SDK for Java provides a Java API for AWS services.
+Using the SDK, your Java application can interact
+with LocalStack services the same way it does with Amazon services.
+Support for new services is regularly added to
+the SDK.
+For a list of the supported services and their API versions that are
 included with each release of the SDK, view the [release notes](https://github.com/aws/aws-sdk-java#release-notes)
 for the version that you’re working with.
 
@@ -23,7 +26,8 @@ The Java SDK currently supports two major versions:
 ## Examples
 
 Full examples for both SDK versions can be found in the
-[example repository](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/java). This includes proper
+[example repository](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/java).
+This includes proper
 exception handling and all the necessary Maven dependencies.
 The scripts to create the AWS services on LocalStack can be found under the `src/main/resources` folder
 of each module in the repository.
@@ -136,17 +140,21 @@ ResponseInputStream<GetObjectResponse> response = s3Client.getObject(getObjectRe
 
 ### DynamoDB Service
 
-Another interesting case is interacting with the DynamoDB service. Here we can see code snippets of
-a DynamoDB client inserting an entity of type `Person` into a table with the same name. Once the object is in
+Another interesting case is interacting with the DynamoDB service.
+Here we can see code snippets of
+a DynamoDB client inserting an entity of type `Person` into a table with the same name.
+Once the object is in
 the database, we would like to retrieve it as well.
 Just like the example before, the scripts to create the AWS services on LocalStack can be found under
 the `src/main/resources` folder of each module in the repository.
 
-Pay particular attention to the handling of the data model in the v2 example. As part of improvements, some
+Pay particular attention to the handling of the data model in the v2 example.
+As part of improvements, some
 boilerplate code can be abstracted with the help of specific annotations, which help label the Java bean, the
 partition key and even specify converters for certain data types.
 Unfortunately, the enhanced mapping in v2 does not support Date type, but a handwritten converter is enough to
-cater to the application's needs. The full list of supported converters can be found
+cater to the application's needs.
+The full list of supported converters can be found
 [here](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/internal/converter/attribute/package-summary.html).
 
 #### Configuring the DynamoDB Client

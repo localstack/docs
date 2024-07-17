@@ -11,7 +11,8 @@ cascade:
 
 ## LocalStack CLI
 
-The quickest way get started with LocalStack is by using the LocalStack CLI. It allows you to start LocalStack from your command line.
+The quickest way get started with LocalStack is by using the LocalStack CLI.
+It allows you to start LocalStack from your command line.
 Please make sure that you have a working [Docker installation](https://docs.docker.com/get-docker/) on your machine before moving on.
 
 The CLI starts and manages the LocalStack Docker container.
@@ -357,7 +358,8 @@ $ docker run \
 
 {{< callout "note" >}}
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
-  If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`. Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
+  If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`.
+  Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
 
 - If you are using LocalStack with an [auth token]({{< ref "auth-token" >}}), you need to specify the image tag as `localstack/localstack-pro` in your Docker setup.
   Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
@@ -371,7 +373,8 @@ $ docker run \
   This could be seen as the "expert mode" of starting LocalStack.
   If you are looking for a simpler method of starting LocalStack, please use the [LocalStack CLI]({{< ref "#localstack-cli" >}}).
 
-- To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
+- To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker.
+  For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
 
 - To configure an auth token, refer to the [auth token]({{< ref "auth-token" >}}) documentation.
 {{< /callout >}}
@@ -444,7 +447,8 @@ $ DNS_ADDRESS=0 localstack start
 
 #### How should I access the LocalStack logs on my local machine?
 
-You can now avail logging output and error reporting using LocalStack logs. To access the logs, run the following command:
+You can now avail logging output and error reporting using LocalStack logs.
+To access the logs, run the following command:
 
 {{< command >}}
 $ localstack logs

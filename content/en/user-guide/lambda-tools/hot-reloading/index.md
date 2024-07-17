@@ -65,7 +65,8 @@ $ chmod +x bin/watchman.sh
 {{< / command >}}
 
 Now configure your build tool to unzip the FatJar to some folder, which will be
-then mounted to LocalStack. We are using `Gradle` build tool to unpack the
+then mounted to LocalStack.
+We are using `Gradle` build tool to unpack the
 `FatJar` into the `build/hot` folder:
 
 ```gradle
@@ -84,7 +85,8 @@ $ bin/watchman.sh src "./gradlew buildHot"
 {{< / command >}}
 
 Please note that you still need to configure your deployment tool to use
-local code mounting. Read the [Deployment Configuration Examples](#deployment-configuration-examples)
+local code mounting.
+Read the [Deployment Configuration Examples](#deployment-configuration-examples)
 for more information.
 
 ### Hot reloading for Python Lambdas
@@ -92,7 +94,8 @@ for more information.
 We will show you how you can do this with a simple example function, taken directly from the
 [AWS Lambda developer guide](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py).
 
-You can check out that code, or use your own lambda functions to follow along. To use the example just do:
+You can check out that code, or use your own lambda functions to follow along.
+To use the example just do:
 
 {{< command >}}
 $ cd /tmp
@@ -103,7 +106,8 @@ $ git clone git@github.com:awsdocs/aws-doc-sdk-examples.git
 
 To create the Lambda function, you just need to take care of two things:
 
-1. Deploy via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket.
+1. Deploy via an S3 Bucket.
+  You need to use the magic variable `hot-reload` as the bucket.
 2. Set the S3 key to the path of the directory your lambda function resides in.
    The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.
 
@@ -177,7 +181,8 @@ Cool!
 #### Usage with Virtualenv
 
 For [virtualenv](https://virtualenv.pypa.io)-driven projects, all dependencies should be made
-available to the Python interpreter at runtime. There are different ways to achieve that, including:
+available to the Python interpreter at runtime.
+There are different ways to achieve that, including:
 
 * expanding the Python module search path in your Lambda handler
 * creating a watchman script to copy the libraries
@@ -225,7 +230,8 @@ watch:
 .PHONY: build-hot watch
 ```
 
-To run the example above, run `make watch`. The script is copying the project module `PROJECT_MODULE_NAME`
+To run the example above, run `make watch`.
+The script is copying the project module `PROJECT_MODULE_NAME`
 along with all dependencies into the `build/hot` folder, which is then mounted into
 LocalStack's Lambda container.
 
@@ -255,7 +261,8 @@ Install the the [@types/aws-lambda](https://www.npmjs.com/package/@types/aws-lam
 $ npm install -D @types/aws-lambda esbuild
 {{< / command >}}
 
-Create a new file named `index.ts`. Add the following code to the new file:
+Create a new file named `index.ts`.
+Add the following code to the new file:
 
 ```ts
 import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
@@ -292,8 +299,10 @@ $ npm run build
 
 To create the Lambda function, you need to take care of two things:
 
-* Deploy via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket.
-* Set the S3 key to the path of the directory your lambda function resides in. The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.
+* Deploy via an S3 Bucket.
+  You need to use the magic variable `hot-reload` as the bucket.
+* Set the S3 key to the path of the directory your lambda function resides in.
+  The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.
 
 Create the Lambda Function using the `awslocal` CLI:
 
@@ -347,7 +356,9 @@ The `output.txt` file contains the following:
 
 The Lambda function is now mounted as a file in the executing container, hence any change that we save on the file will be there in an instant.
 
-Change the `Hello World!` message to `Hello LocalStack!` and run `npm run build`. Trigger the Lambda once again. You will see the following in the `output.txt` file:
+Change the `Hello World!` message to `Hello LocalStack!` and run `npm run build`.
+Trigger the Lambda once again.
+You will see the following in the `output.txt` file:
 
 ```sh
 {"statusCode":200,"body":"{\"message\":\"Hello LocalStack!\"}"}
@@ -355,7 +366,8 @@ Change the `Hello World!` message to `Hello LocalStack!` and run `npm run build`
 
 #### Webpack
 
-In this example, you can use our public [Webpack example](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-hot-reloading/lambda-typescript-webpack) to create a simple Lambda function using TypeScript and Webpack. To use the example, run the following commands:
+In this example, you can use our public [Webpack example](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-hot-reloading/lambda-typescript-webpack) to create a simple Lambda function using TypeScript and Webpack.
+To use the example, run the following commands:
 
 {{< command >}}
 $ cd /tmp
@@ -554,9 +566,12 @@ EOF
 }
 
 resource "aws_lambda_function" "exampleFunctionOne" {
-    s3_bucket     = var.STAGE == "local" ? "hot-reload" : null
-    s3_key        = var.STAGE == "local" ? var.LAMBDA_MOUNT_CWD : null
-    filename      = var.STAGE == "local" ? null : var.JAR_PATH
+    s3_bucket     = var.STAGE == "local" ?
+"hot-reload" : null
+    s3_key        = var.STAGE == "local" ?
+var.LAMBDA_MOUNT_CWD : null
+    filename      = var.STAGE == "local" ?
+null : var.JAR_PATH
     function_name = "ExampleFunctionOne"
     role          = aws_iam_role.lambda-execution-role.arn
     handler       = "org.localstack.sampleproject.api.LambdaApi"

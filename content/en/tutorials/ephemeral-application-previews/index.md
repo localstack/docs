@@ -21,11 +21,17 @@ leadimage: "ephemeral-application-previews-banner.png"
 
 ## Introduction
 
-LocalStack's core cloud emulator allows you set up your cloud infrastructure on your local machine. You can access databases, queues, and other managed services without needing to connect to a remote cloud provider. This speeds up your Software Development Life Cycle (SDLC) by making development and testing more efficient. Despite this, you still need a staging environment to do final acceptance tests before deploying your application to production.
+LocalStack's core cloud emulator allows you set up your cloud infrastructure on your local machine.
+You can access databases, queues, and other managed services without needing to connect to a remote cloud provider.
+This speeds up your Software Development Life Cycle (SDLC) by making development and testing more efficient.
+Despite this, you still need a staging environment to do final acceptance tests before deploying your application to production.
 
-In many cases, staging environments are costly and deploying changes to them takes a lot of time. Also, teams can only use one staging environment at a time, which makes it difficult to test changes quickly.
+In many cases, staging environments are costly and deploying changes to them takes a lot of time.
+Also, teams can only use one staging environment at a time, which makes it difficult to test changes quickly.
 
-With LocalStack's Ephemeral Instances, you can create short-lived, self-contained deployments of LocalStack in the cloud. These Ephemeral Instances let you deploy your application on a remote LocalStack container, creating an Application Preview. This allows you to run end-to-end tests, preview features, and collaborate within your team or across teams asynchronously.
+With LocalStack's Ephemeral Instances, you can create short-lived, self-contained deployments of LocalStack in the cloud.
+These Ephemeral Instances let you deploy your application on a remote LocalStack container, creating an Application Preview.
+This allows you to run end-to-end tests, preview features, and collaborate within your team or across teams asynchronously.
 
 This tutorial will show you how to use LocalStack's Ephemeral Instance feature to generate an Application Preview automatically for every new Pull Request (PR) using a GitHub Action workflow.
 
@@ -36,7 +42,8 @@ This tutorial will show you how to use LocalStack's Ephemeral Instance feature t
 
 ## Tutorial: Setting up Application Previews for your cloud application
 
-This tutorial uses a [public LocalStack sample](https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway) to showcase a simple note-taking application using the modular AWS SDK for JavaScript. The example application deploys several AWS resources including DynamoDB, Lambda, API Gateway, S3, Cognito, and CloudFront, functioning as follows:
+This tutorial uses a [public LocalStack sample](https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway) to showcase a simple note-taking application using the modular AWS SDK for JavaScript.
+The example application deploys several AWS resources including DynamoDB, Lambda, API Gateway, S3, Cognito, and CloudFront, functioning as follows:
 
 - Five Lambda functions handle basic CRUD functionality around note entities.
 - The frontend is built with React and served via Cloudfront and an S3 bucket.
@@ -48,7 +55,8 @@ This tutorial guides you through setting up a GitHub Action workflow to create a
 
 ### Create the GitHub Action workflow
 
-GitHub Actions serves as a continuous integration and continuous delivery (CI/CD) platform, automating software development workflows directly from GitHub. It allows customization of actions and automation throughout the software development lifecycle.
+GitHub Actions serves as a continuous integration and continuous delivery (CI/CD) platform, automating software development workflows directly from GitHub.
+It allows customization of actions and automation throughout the software development lifecycle.
 
 In this tutorial, you'll implement a workflow that:
 
@@ -56,13 +64,15 @@ In this tutorial, you'll implement a workflow that:
 - Installs necessary dependencies.
 - Deploys the application on a ephemeral LocalStack Instance using a GitHub Action Runner to generate a sharable application preview.
 
-To begin, fork the [LocalStack sample repository](https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway) on GitHub. If you're using GitHub's `gh` CLI, fork and clone the repository with this command:
+To begin, fork the [LocalStack sample repository](https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway) on GitHub.
+If you're using GitHub's `gh` CLI, fork and clone the repository with this command:
 
 ```bash
 gh repo fork https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway
 ```
 
-After forking and cloning, navigate to the `.github/workflows` directory in your forked repository and open the `preview.yml` file. This file will contain the GitHub Action workflow configuration.
+After forking and cloning, navigate to the `.github/workflows` directory in your forked repository and open the `preview.yml` file.
+This file will contain the GitHub Action workflow configuration.
 
 Now you're set to create your GitHub Action workflow, which will deploy your cloud application on an ephemeral instance using LocalStack.
 
@@ -136,7 +146,8 @@ In the provided workflow:
 - Additionally, the frontend application is built and deployed on an S3 bucket served via a CloudFront distribution.
 - The application preview URL is provided by querying the CloudFront distribution ID using `awslocal`.
 
-To complete the process, the last step attaches the application preview URL to the Pull Request (PR) as a comment. This allows for quick access to the deployed URL for validating features or enhancements pushed to your application.
+To complete the process, the last step attaches the application preview URL to the Pull Request (PR) as a comment.
+This allows for quick access to the deployed URL for validating features or enhancements pushed to your application.
 
 ```yaml
 - name: Finalize PR comment
@@ -149,7 +160,8 @@ To complete the process, the last step attaches the application preview URL to t
 
 ### Configure a CI key for GitHub Actions
 
-Before triggering your workflow, set up a continuous integration (CI) key for LocalStack. LocalStack requires a CI Key for usage in CI or similar automated environments to activate licensed features.
+Before triggering your workflow, set up a continuous integration (CI) key for LocalStack.
+LocalStack requires a CI Key for usage in CI or similar automated environments to activate licensed features.
 
 Follow these steps to add your LocalStack CI key to your forked GitHub repository:
 
@@ -161,12 +173,14 @@ Now, you can commit and push your workflow to your forked GitHub repository.
 
 ### Run the GitHub Action workflow
 
-Now that the GitHub Action Workflow is set up, each pull request in your cloud application will undergo building, deployment, and packaging as an application preview running within an ephemeral instance. The workflow will automatically update the application preview whenever new commits are pushed to the pull request.
+Now that the GitHub Action Workflow is set up, each pull request in your cloud application will undergo building, deployment, and packaging as an application preview running within an ephemeral instance.
+The workflow will automatically update the application preview whenever new commits are pushed to the pull request.
 
 <img src="github-action-pr-preview-comment.png" alt="PR preview comment for every pull request" title="PR preview comment for every pull request" width="800" />
 <br><br>
 
-In case your deployment encounters issues and fails on LocalStack, you can troubleshoot by incorporating additional steps to generate a diagnostics report. After downloading, you can visualize logs and environment variables using a tool like [`diapretty`](https://github.com/silv-io/diapretty):
+In case your deployment encounters issues and fails on LocalStack, you can troubleshoot by incorporating additional steps to generate a diagnostics report.
+After downloading, you can visualize logs and environment variables using a tool like [`diapretty`](https://github.com/silv-io/diapretty):
 
 ```yaml
 - name: Generate a Diagnostic Report
@@ -183,7 +197,8 @@ In case your deployment encounters issues and fails on LocalStack, you can troub
 
 ## Conclusion
 
-In this tutorial, you've learned how to utilize LocalStack's Ephemeral Instances to generate application previews for your cloud applications. You can explore additional use cases with Ephemeral Instances, including:
+In this tutorial, you've learned how to utilize LocalStack's Ephemeral Instances to generate application previews for your cloud applications.
+You can explore additional use cases with Ephemeral Instances, including:
 
 - Injecting a pre-defined Cloud Pod into an ephemeral instance to rapidly spin up infrastructure.
 - Running your automated end-to-end (E2E) test suite to conduct thorough testing before deploying to production.

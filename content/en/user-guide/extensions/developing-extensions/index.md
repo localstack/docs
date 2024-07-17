@@ -111,7 +111,8 @@ Your extension may break in unexpected ways, and we cannot provide support for i
 ## Packaging extensions
 
 Your extensions needs to be packaged as a Python distribution with a
-`setup.cfg` or `setup.py` config. LocalStack uses the
+`setup.cfg` or `setup.py` config.
+LocalStack uses the
 [Plux](https://github.com/localstack/plux) code loading framework to load your
 code from a Python [entry point](https://packaging.python.org/en/latest/specifications/entry-points/).
 You can either use Plux to discover the entrypoints from your code when
@@ -140,7 +141,8 @@ localstack.extensions =
 ```
 
 The entry point group is the Plux namespace `locastack.extensions`, and the
-entry point name is the plugin name `my_ready_announcer`. The object
+entry point name is the plugin name `my_ready_announcer`.
+The object
 reference points to the plugin class.
 
 ## Using the extensions developer CLI
@@ -208,7 +210,8 @@ $ localstack extensions dev enable ./my-localstack-extension
 Then, start LocalStack with `EXTENSION_DEV_MODE=1`
 
 {{< command >}}
-$ EXTENSION_DEV_MODE=1 LOCALSTACK_AUTH_TOKEN=... localstack start
+$ EXTENSION_DEV_MODE=1 LOCALSTACK_AUTH_TOKEN=...
+localstack start
 {{< / command >}}
 
 In the LocalStack logs you should then see something like:

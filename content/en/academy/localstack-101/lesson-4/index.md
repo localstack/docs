@@ -19,7 +19,8 @@ Discover multiple pathways to initiate your LocalStack experience:
 You'll understand the diverse approaches to LocalStack installation:
 
 1. Quickstart with LocalStack CLI:
-- Install `awscli-local` and `localstack` via `pip install`. On macOS you can use `brew install`.
+- Install `awscli-local` and `localstack` via `pip install`.
+  On macOS you can use `brew install`.
 - Start LocalStack using `localstack start`.
 - Create a bucket and list buckets using `awslocal s3 mb s3://test` and `awslocal s3 ls`.
 2. Alternative - Docker: Dive into an alternate installation method using Docker: pull the image and run it, it's that easy.

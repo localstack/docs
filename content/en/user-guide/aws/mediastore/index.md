@@ -18,7 +18,8 @@ The supported APIs are available on our [API Coverage Page](https://docs.localst
 
 This guide is designed for users new to Elemental MediaStore and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how you can create a MediaStore container, upload an asset, and download the asset.
+Start your LocalStack container using your preferred method.
+We will demonstrate how you can create a MediaStore container, upload an asset, and download the asset.
 
 ### Create a container
 
@@ -94,4 +95,5 @@ You should see the following output:
 
 ## Troubleshooting
 
-The Elemental MediaStore service requires the use of a custom HTTP/HTTPS endpoint. In case you encounter any issues, please consult our [Networking documentation]({{< ref "references/network-troubleshooting" >}}) for assistance.
+The Elemental MediaStore service requires the use of a custom HTTP/HTTPS endpoint.
+In case you encounter any issues, please consult our [Networking documentation]({{< ref "references/network-troubleshooting" >}}) for assistance.

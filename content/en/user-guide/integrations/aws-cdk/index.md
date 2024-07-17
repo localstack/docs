@@ -86,7 +86,9 @@ $ awslocal sns list-topics
 
 ### Updating CDK stacks
 
-Updating CDK stacks may result in deployment failures and inconsistent state within LocalStack. It is advisable to prioritize re-creating (deleting and re-deploying) over updating stacks. Our focus for this year will be on resolving issues related to the `UPDATE` support, and continuous improvements can be anticipated in this area throughout 2024.
+Updating CDK stacks may result in deployment failures and inconsistent state within LocalStack.
+It is advisable to prioritize re-creating (deleting and re-deploying) over updating stacks.
+Our focus for this year will be on resolving issues related to the `UPDATE` support, and continuous improvements can be anticipated in this area throughout 2024.
 
 ### Stacks with validated certificates
 

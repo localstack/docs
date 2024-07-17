@@ -8,11 +8,14 @@ description: >
   Overview of LocalStack and AWS specific internal endpoints for local development and testing
 ---
 
-LocalStack provides several internal endpoints for various local AWS services and LocalStack-specific features. These endpoints are not part of the official AWS API and are available in the `/_localstack` and `/_aws` paths. You can use [`cURL`](https://curl.se/) or your favourite HTTP REST client to access endpoints.
+LocalStack provides several internal endpoints for various local AWS services and LocalStack-specific features.
+These endpoints are not part of the official AWS API and are available in the `/_localstack` and `/_aws` paths.
+You can use [`cURL`](https://curl.se/) or your favourite HTTP REST client to access endpoints.
 
 ## LocalStack endpoints
 
-The API path for the LocalStack internal resources is `/_localstack`. The following endpoints are available:
+The API path for the LocalStack internal resources is `/_localstack`.
+The following endpoints are available:
 
 | Endpoint | Description |
 | ---------------------------------| --------------------------------------------------------------------------- |
@@ -28,7 +31,8 @@ The API path for the LocalStack internal resources is `/_localstack`. The follow
 | `/_localstack/state/<service>/reset` | Reset the state of the given service using the Persistence mechanism. |
 
 {{< callout "tip" >}}
-You can use the `/_localstack/health` endpoint to restart or kill the services. You can use `cURL` or your HTTP REST client to access the endpoint:
+You can use the `/_localstack/health` endpoint to restart or kill the services.
+You can use `cURL` or your HTTP REST client to access the endpoint:
 {{< command >}}
 $ curl -v --request POST --header "Content-Type: application/json"  --data '{"action":"restart"}' http://localhost:4566/_localstack/health
 $ curl -v --request POST --header "Content-Type: application/json"  --data '{"action":"kill"}' http://localhost:4566/_localstack/health
@@ -37,7 +41,8 @@ $ curl -v --request POST --header "Content-Type: application/json"  --data '{"ac
 
 ## AWS endpoints
 
-The API path for the AWS internal resources is `/_aws`. The following endpoints are available:
+The API path for the AWS internal resources is `/_aws`.
+The following endpoints are available:
 
 | Endpoint                               | Description                                               |
 |----------------------------------------|-----------------------------------------------------------|

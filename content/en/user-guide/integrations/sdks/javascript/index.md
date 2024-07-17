@@ -114,7 +114,9 @@ s3.send(new ListBucketsCommand({}))
 {{< /tabpane >}}
 
 {{< callout >}}
-In case of issues resolving S3 DNS record, we can fallback to `http://localhost:4566` in combination with the provider setting `forcePathStyle: true` (see the specific way of setting this parameter for each SDK above). The S3 service endpoint is slightly different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets. See [S3 documentation]({{< ref "user-guide/aws/s3" >}}) about endpoints.
+In case of issues resolving S3 DNS record, we can fallback to `http://localhost:4566` in combination with the provider setting `forcePathStyle: true` (see the specific way of setting this parameter for each SDK above).
+The S3 service endpoint is slightly different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
+See [S3 documentation]({{< ref "user-guide/aws/s3" >}}) about endpoints.
 {{< /callout >}}
 
 ## Resources

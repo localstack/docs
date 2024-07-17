@@ -8,9 +8,11 @@ description: Get started with Quantum Ledger Database (QLDB) on LocalStack
 ## Introduction
 
 Amazon Quantum Ledger Database is a fully managed ledger database service offered by Amazon Web
-Services. It is designed to provide transparent, immutable, and cryptographically verifiable
+Services.
+It is designed to provide transparent, immutable, and cryptographically verifiable
 transaction
-log functionality to applications. QLDB is particularly useful for applications that need a secure
+log functionality to applications.
+QLDB is particularly useful for applications that need a secure
 and scalable
 way to maintain a complete and verifiable history of data changes over time.
 
@@ -31,7 +33,8 @@ QLDB supports PartiQL, a SQL-compatible query language, which allows you to quer
 data stored in QLDB.
 You can write PartiQL statements to perform complex queries, aggregations, and transformations on
 your data.
-Amazon QLDB provides a command line shell for interaction with the transactional data API. With the
+Amazon QLDB provides a command line shell for interaction with the transactional data API.
+With the
 QLDB shell,
 you can run PartiQL statements on ledger data.
 
@@ -72,7 +75,8 @@ the ledger.
 
 **Standard** (Recommended) - A permissions mode that enables access control with finer granularity
 for ledgers,
-tables, and PartiQL commands. It is recommended using this permissions mode to maximize the security
+tables, and PartiQL commands.
+It is recommended using this permissions mode to maximize the security
 of your
 ledger data.
 By default, this mode denies all requests to run any PartiQL commands on any tables in this ledger.
@@ -119,7 +123,8 @@ qldb> CREATE TABLE VehicleRegistration
 1 document in bag (read-ios: 0, server-time: 0ms, total-time: 31ms)
 ```
 
-The `VehicleRegistration` table was created. Now it's time to add some items:
+The `VehicleRegistration` table was created.
+Now it's time to add some items:
 
 {{< command >}}
 qldb> INSERT INTO VehicleRegistration VALUE
@@ -284,7 +289,8 @@ qldb> SELECT h.data.VIN, h.data.City, h.data.Owners FROM history(VehicleRegistra
 
 ### Cleaning up resources
 
-Unused ledgers can be deleted. You'll notice that directly running the following command will lead
+Unused ledgers can be deleted.
+You'll notice that directly running the following command will lead
 to an error message.
 
 {{< command >}}
@@ -316,7 +322,8 @@ Now the `delete-ledger` command can be repeated without errors.
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing QLDB ledgers. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **QLDB** under the **Database** section.
+The LocalStack Web Application provides a Resource Browser for managing QLDB ledgers.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **QLDB** under the **Database** section.
 
 <img src="qldb-resource-browser.png" alt="QLDB Resource Browser" title="QLDB Resource Browser" width="900" />
 <br>
@@ -333,7 +340,8 @@ The Resource Browser allows you to perform the following actions:
 
 Interacting with Amazon QLDB (Quantum Ledger Database) is typically done using language-specific
 software
-development kits (SDKs) provided by AWS. These SDKs make it easier for developers to interact with
+development kits (SDKs) provided by AWS.
+These SDKs make it easier for developers to interact with
 QLDB and
 perform operations such as managing ledgers, executing PartiQL queries, and processing the results.
 When interacting with QLDB, it's common to use a combination of SDKs and PartiQL queries to achieve

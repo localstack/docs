@@ -75,7 +75,8 @@ In this tutorial, you will set up a basic example consisting of:
 - An SQS queue named `test-queue` where messages are sent.
 - An event source mapping that triggers the Lambda function when a message is sent to the SQS queue.
 
-The basic architecture for the scenario is outlined in the figure below. It shows the relationship between the resources deployed in the LocalStack container, the LocalStack AWS Proxy, and the remote AWS account.
+The basic architecture for the scenario is outlined in the figure below.
+It shows the relationship between the resources deployed in the LocalStack container, the LocalStack AWS Proxy, and the remote AWS account.
 
 <img src="aws-proxy-sqs-lambda-sample.png" alt="AWS Replicator sample use case" title="AWS Replicator sample use case" width="700" />
 
@@ -155,7 +156,8 @@ $ aws sqs create-queue --queue-name test-queue
 
 ### Invoke the Lambda function
 
-Before invoking, set up an event source mapping between the SQS queue and the Lambda function. Configure the queue for Lambda using the following command:
+Before invoking, set up an event source mapping between the SQS queue and the Lambda function.
+Configure the queue for Lambda using the following command:
 
 {{< command >}}
 $ awslocal lambda create-event-source-mapping \
@@ -209,7 +211,8 @@ To run the AWS Replicator extension:
 - Access [`https://aws-replicator.localhost.localstack.cloud:4566`](https://aws-replicator.localhost.localstack.cloud:4566/) via your web browser.
   <img src="aws-replicator-extension.png" alt="AWS Replicator extension" title="AWS Replicator extension" width="900" />
 - Provide your AWS Credentials: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and optionally `AWS_SESSION_TOKEN`.
-- Add a new YAML-based Proxy configuration to proxy requests for specific resources to AWS. For this scenario, configure it to proxy requests for the SQS queue created earlier.
+- Add a new YAML-based Proxy configuration to proxy requests for specific resources to AWS.
+  For this scenario, configure it to proxy requests for the SQS queue created earlier.
 
   ```yaml
   services:
@@ -218,7 +221,8 @@ To run the AWS Replicator extension:
         - '.*:test-queue'
    ```
 
-- Save the configuration to enable the AWS Replicator extension. Once enabled, you will see the proxy status as **enabled**.
+- Save the configuration to enable the AWS Replicator extension.
+  Once enabled, you will see the proxy status as **enabled**.
   <img src="enabled-aws-replicator-extension.png" alt="Enabled AWS Replicator extension" title="Enabled AWS Replicator extension" width="900" />
 
 To invoke the local Lambda function with the remote SQS queue:

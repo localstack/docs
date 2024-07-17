@@ -9,7 +9,8 @@ aliases:
 
 [Boto3](https://github.com/boto/boto3) is the Amazon Web Services (AWS) Software Development Kit (SDK) for Python, which allows Python developers to write software that makes use of AWS services.
 
-You can easily create a `boto3` client that interacts with your LocalStack instance. The example below creates a `boto3` client that lists all available Lambda functions:
+You can easily create a `boto3` client that interacts with your LocalStack instance.
+The example below creates a `boto3` client that lists all available Lambda functions:
 
 ```python3
 import boto3

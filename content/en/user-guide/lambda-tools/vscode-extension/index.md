@@ -19,7 +19,9 @@ aliases:
 
 ## Getting Started
 
-You can use a [sample project](https://github.com/joe4dev/lambda-python) to get started with the extension. The sample project contains a simple Lambda function and a SAM template. Clone the repository and open the project in VSCode.
+You can use a [sample project](https://github.com/joe4dev/lambda-python) to get started with the extension.
+The sample project contains a simple Lambda function and a SAM template.
+Clone the repository and open the project in VSCode.
 
 {{< command >}}
 $ git clone https://github.com/joe4dev/lambda-python.git
@@ -29,7 +31,8 @@ $ code .
 
 Install the [LocalStack VSCode Extension](https://marketplace.visualstudio.com/items?itemName=localstack.localstack) as recommended by the project.
 
-You can now open the Python handler function under `app/hello_world.py`. Click the CodeLens **Deploy Lambda function**, select the `template.yaml`, and choose a stack name such as `my-stack`.
+You can now open the Python handler function under `app/hello_world.py`.
+Click the CodeLens **Deploy Lambda function**, select the `template.yaml`, and choose a stack name such as `my-stack`.
 
 <img src="deploy-lambda-function.gif" alt="Deploying Lambda function via the VS Code Extension" title="Deploying Lambda function via the VS Code Extension" width="700" />
 <br><br>

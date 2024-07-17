@@ -7,10 +7,12 @@ description: >
 
 ## Introduction
 
-The AWS Serverless Application Model (SAM) is an open-source framework for developing serverless applications. It uses a simplified syntax to define functions, APIs, databases, and event source mappings.
+The AWS Serverless Application Model (SAM) is an open-source framework for developing serverless applications.
+It uses a simplified syntax to define functions, APIs, databases, and event source mappings.
 When you deploy, SAM converts its syntax into AWS CloudFormation syntax, helping you create serverless applications more quickly.
 
-LocalStack can work with SAM using the AWS SAM CLI for LocalStack. This CLI comes in the form of a `samlocal` wrapper script, which lets you deploy SAM applications on LocalStack.
+LocalStack can work with SAM using the AWS SAM CLI for LocalStack.
+This CLI comes in the form of a `samlocal` wrapper script, which lets you deploy SAM applications on LocalStack.
 This guide explains how to set up local AWS resources using the `samlocal` wrapper script.
 
 ## `samlocal` wrapper script
@@ -34,7 +36,8 @@ You can initialize a new SAM project using the following command:
 $ samlocal init
 {{< / command >}}
 
-Select `1` to create a new SAM application using an AWS Quick Start template. The SAM CLI will ask you for the project name and the runtime for the Lambda function.
+Select `1` to create a new SAM application using an AWS Quick Start template.
+The SAM CLI will ask you for the project name and the runtime for the Lambda function.
 
 For this example, select `1` for the Hello World example.
 Choose the Python runtime and `zip` for the packaging type.
@@ -94,4 +97,5 @@ Insert the following settings into the file:
         }
 ```
 
-The `dockerNetwork` property is essential as it allows the LocalStack container to use the `sam invoke` commands within the same network as the LocalStack container itself. Adjust the Lambda function handler and environment variables as needed.
+The `dockerNetwork` property is essential as it allows the LocalStack container to use the `sam invoke` commands within the same network as the LocalStack container itself.
+Adjust the Lambda function handler and environment variables as needed.

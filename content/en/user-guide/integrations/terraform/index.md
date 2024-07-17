@@ -9,9 +9,13 @@ aliases:
 
 ## Introduction
 
-[Terraform](https://terraform.io/) is an Infrastructure-as-Code (IaC) framework developed by HashiCorp. It enables users to define and provision infrastructure using a high-level configuration language. Terraform uses HashiCorp Configuration Language (HCL) as its configuration syntax. HCL is a domain-specific language designed for writing configurations that define infrastructure elements and their relationships.
+[Terraform](https://terraform.io/) is an Infrastructure-as-Code (IaC) framework developed by HashiCorp.
+It enables users to define and provision infrastructure using a high-level configuration language.
+Terraform uses HashiCorp Configuration Language (HCL) as its configuration syntax.
+HCL is a domain-specific language designed for writing configurations that define infrastructure elements and their relationships.
 
-LocalStack supports Terraform via the [AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) through [custom service endpoints](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack). You can configure Terraform to use LocalStack in two ways:
+LocalStack supports Terraform via the [AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) through [custom service endpoints](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack).
+You can configure Terraform to use LocalStack in two ways:
 
 - Using the [`tflocal` wrapper script](https://github.com/localstack/terraform-local) to automatically configure the service endpoints for you.
 - Manually configuring the service endpoints in your Terraform configuration with additional maintenance.
@@ -20,11 +24,14 @@ In this guide, we will demonstrate how you can create local AWS resources using 
 
 ## `tflocal` wrapper script
 
-`tflocal` is a small wrapper script to run Terraform against LocalStack. `tflocal` script uses the [Terraform Override mechanism](https://www.terraform.io/language/files/override) and creates a temporary file `localstack_providers_override.tf` to configure the endpoints for the AWS `provider` section. The endpoints for all services are configured to point to the LocalStack API (`http://localhost:4566` by default). It allows you to easily deploy your unmodified Terraform scripts against LocalStack.
+`tflocal` is a small wrapper script to run Terraform against LocalStack. `tflocal` script uses the [Terraform Override mechanism](https://www.terraform.io/language/files/override) and creates a temporary file `localstack_providers_override.tf` to configure the endpoints for the AWS `provider` section.
+The endpoints for all services are configured to point to the LocalStack API (`http://localhost:4566` by default).
+It allows you to easily deploy your unmodified Terraform scripts against LocalStack.
 
 ### Create a Terraform configuration
 
-Create a new file named `main.tf` and add a minimal S3 bucket configuration to it. The following contents should be added in the `main.tf` file:
+Create a new file named `main.tf` and add a minimal S3 bucket configuration to it.
+The following contents should be added in the `main.tf` file:
 
 ```hcl
 resource "aws_s3_bucket" "test-bucket" {
@@ -52,7 +59,8 @@ Usage: terraform [global options] <subcommand> [args]
 
 ### Deploy the Terraform configuration
 
-Start your LocalStack container using your preferred method. Initialize Terraform using the following command:
+Start your LocalStack container using your preferred method.
+Initialize Terraform using the following command:
 
 {{< command >}}
 $ tflocal init
@@ -91,11 +99,13 @@ While using `CUSTOMIZE_ACCESS_KEY`, following cases are taking precedence over e
 
 ## Manual Configuration
 
-Instead of using the `tflocal` script, you have the option to manually configure the local service endpoints and credentials. The following sections will provide detailed steps for this manual configuration.
+Instead of using the `tflocal` script, you have the option to manually configure the local service endpoints and credentials.
+The following sections will provide detailed steps for this manual configuration.
 
 ### General Configuration
 
-To begin, you need to define mock credentials for the AWS provider. Specify the following in your `main.tf` file:
+To begin, you need to define mock credentials for the AWS provider.
+Specify the following in your `main.tf` file:
 
 ```hcl
 provider "aws" {
@@ -129,7 +139,8 @@ provider "aws" {
 
 ### Services
 
-Furthermore, it's necessary to configure the individual services to use LocalStack. For S3, this configuration resembles the following snippet, where we've chosen to use the virtual hosted-style endpoint:
+Furthermore, it's necessary to configure the individual services to use LocalStack.
+For S3, this configuration resembles the following snippet, where we've chosen to use the virtual hosted-style endpoint:
 
 ```hcl
   endpoints {
@@ -138,7 +149,8 @@ Furthermore, it's necessary to configure the individual services to use LocalSta
 ```
 
 {{< callout >}}
-If there are any difficulties resolving this DNS record, you can utilize `http://localhost:4566` as a fallback option in combination with setting `s3_use_path_style = true` in the provider. It's worth noting that the S3 service endpoint differs slightly from the other service endpoints due to AWS deprecating path-style based access for hosting buckets.
+If there are any difficulties resolving this DNS record, you can utilize `http://localhost:4566` as a fallback option in combination with setting `s3_use_path_style = true` in the provider.
+It's worth noting that the S3 service endpoint differs slightly from the other service endpoints due to AWS deprecating path-style based access for hosting buckets.
 {{< /callout  >}}
 
 ### Final Configuration
@@ -169,7 +181,9 @@ resource "aws_s3_bucket" "test-bucket" {
 
 ### Endpoint Configuration
 
-Here's a configuration example with additional service endpoints. Please note that these provider configurations may not be necessary if you use the `tflocal` script (as described above). You can save the following configuration in a file named `provider.tf` and include it in your Terraform configuration.
+Here's a configuration example with additional service endpoints.
+Please note that these provider configurations may not be necessary if you use the `tflocal` script (as described above).
+You can save the following configuration in a file named `provider.tf` and include it in your Terraform configuration.
 
 ```hcl
 provider "aws" {
@@ -219,16 +233,20 @@ output "is_localstack" {
 }
 ```
 
-It will detect whether the AWS account ID is `000000000000`, which is the default value for LocalStack. If you use a different account ID within LocalStack, you can customize the snippet accordingly.
+It will detect whether the AWS account ID is `000000000000`, which is the default value for LocalStack.
+If you use a different account ID within LocalStack, you can customize the snippet accordingly.
 {{< /callout >}}
 
 ## CDK for Terraform
 
-Cloud Development Kit for Terraform (CDKTF) allows you to use general-purpose programming languages, such as TypeScript, Python, Java, and more, to create infrastructure declaratively. It allows you to create, update, and delete AWS infrastructure by leveraging a Terraform backend without manually configuring Terraform using HCL and [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) to translate your code into infrastructure configuration files for Terraform. CDKTF supports every Terraform provider and module available on the [Terraform Registry](https://registry.terraform.io/).
+Cloud Development Kit for Terraform (CDKTF) allows you to use general-purpose programming languages, such as TypeScript, Python, Java, and more, to create infrastructure declaratively.
+It allows you to create, update, and delete AWS infrastructure by leveraging a Terraform backend without manually configuring Terraform using HCL and [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) to translate your code into infrastructure configuration files for Terraform.
+CDKTF supports every Terraform provider and module available on the [Terraform Registry](https://registry.terraform.io/).
 
 ### Configuration
 
-To configure your existing CDKTF configuration to work with LocalStack, manually configure the local service endpoints and credentials. It includes:
+To configure your existing CDKTF configuration to work with LocalStack, manually configure the local service endpoints and credentials.
+It includes:
 
 - General configuration to specify mock credentials for the AWS provider (`region`, `access_key`, `secret_key`).
 - Request Management to avoid issues with routing and authentication, if needed.
@@ -324,7 +342,9 @@ new AwsProvider(this, "aws", AWS_CONFIG);
 
 ### Getting started
 
-To get started with CDKTF on LocalStack, we will set up a simple stack to create some AWS resources. We will then deploy the stack to LocalStack, and verify that the resources have been created successfully. Before we start, make sure you have the following prerequisites:
+To get started with CDKTF on LocalStack, we will set up a simple stack to create some AWS resources.
+We will then deploy the stack to LocalStack, and verify that the resources have been created successfully.
+Before we start, make sure you have the following prerequisites:
 
 - LocalStack
 - [`cdktf`](https://www.npmjs.com/package/cdktf)

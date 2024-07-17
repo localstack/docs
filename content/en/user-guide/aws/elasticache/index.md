@@ -70,7 +70,8 @@ $ awslocal elasticache create-replication-group \
   --num-cache-clusters 3
 {{< /command >}}
 
-Wait for it to be available. When running the following command, you should see one node group when running:
+Wait for it to be available.
+When running the following command, you should see one node group when running:
 
 {{< command >}}
 $ awslocal elasticache describe-replication-groups --replication-group-id my-redis-replication-group
@@ -97,7 +98,8 @@ $ awslocal elasticache create-replication-group \
   --replicas-per-node-group 2
 {{< /command >}}
 
-Note that the group nodes do not have a primary endpoint. Instead they have a `ConfigurationEndpoint`, which you can connect to using `redis-cli -c` where `-c` is for cluster mode.
+Note that the group nodes do not have a primary endpoint.
+Instead they have a `ConfigurationEndpoint`, which you can connect to using `redis-cli -c` where `-c` is for cluster mode.
 
 {{< command >}}
 $ awslocal elasticache describe-replication-groups --replication-group-id my-clustered-redis-replication-group \

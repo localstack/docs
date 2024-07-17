@@ -7,9 +7,11 @@ description: >
 
 ## Introduction
 
-OpenSearch Service is an open-source search and analytics engine, offering developers and organizations advanced search capabilities, robust data analysis, and insightful visualizations. OpenSearch Service also offers log analytics, real-time application monitoring, and clickstream analysis.
+OpenSearch Service is an open-source search and analytics engine, offering developers and organizations advanced search capabilities, robust data analysis, and insightful visualizations.
+OpenSearch Service also offers log analytics, real-time application monitoring, and clickstream analysis.
 
-LocalStack allows you to use the OpenSearch Service APIs in your local environment to create, manage, and operate the OpenSearch clusters. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_opensearch/), which provides information on the extent of OpenSearch's integration with LocalStack.
+LocalStack allows you to use the OpenSearch Service APIs in your local environment to create, manage, and operate the OpenSearch clusters.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_opensearch/), which provides information on the extent of OpenSearch's integration with LocalStack.
 
 The following versions of OpenSearch Service are supported by LocalStack:
 
@@ -22,32 +24,40 @@ The following versions of OpenSearch Service are supported by LocalStack:
 - 2.9
 - 2.11 (**default**)
 
-OpenSearch is closely coupled with the [Elasticsearch Service](../elasticsearch). Clusters generated through the OpenSearch Service will be visible within the Elasticsearch Service interface, and vice versa. You can select an Elasticsearch version with the `--engine-version` parameter while creating an OpenSearch Service domain.
+OpenSearch is closely coupled with the [Elasticsearch Service](../elasticsearch).
+Clusters generated through the OpenSearch Service will be visible within the Elasticsearch Service interface, and vice versa.
+You can select an Elasticsearch version with the `--engine-version` parameter while creating an OpenSearch Service domain.
 
 ## Getting started
 
 This guide is designed for users new to OpenSearch Service and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create a new OpenSearch Service cluster and interact with it, using the AWS CLI.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create a new OpenSearch Service cluster and interact with it, using the AWS CLI.
 
 ### Creating an OpenSearch cluster
 
-To create an OpenSearch Service cluster, you can use the [`CreateDomain`](https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_CreateDomain.html) API. OpenSearch Service domain is synonymous with an OpenSearch cluster. Execute the following command to create a new OpenSearch domain:
+To create an OpenSearch Service cluster, you can use the [`CreateDomain`](https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_CreateDomain.html) API.
+OpenSearch Service domain is synonymous with an OpenSearch cluster.
+Execute the following command to create a new OpenSearch domain:
 
 {{< command >}}
 $ awslocal opensearch create-domain --domain-name my-domain
 {{< / command >}}
 
-Each time you establish a cluster using a new version of OpenSearch, the corresponding OpenSearch binary must be downloaded, a process that might require some time to complete. In the LocalStack log you will see something like, where you can see the cluster starting up in the background.
+Each time you establish a cluster using a new version of OpenSearch, the corresponding OpenSearch binary must be downloaded, a process that might require some time to complete.
+In the LocalStack log you will see something like, where you can see the cluster starting up in the background.
 
-You can open the LocalStack logs, to see that the OpenSearch Service cluster is being created in the background. You can use the [`DescribeDomain`](https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_DescribeDomain.html) API to check the status of the cluster:
+You can open the LocalStack logs, to see that the OpenSearch Service cluster is being created in the background.
+You can use the [`DescribeDomain`](https://docs.aws.amazon.com/opensearch-service/latest/APIReference/API_DescribeDomain.html) API to check the status of the cluster:
 
 {{< command >}}
 $ awslocal opensearch describe-domain \
     --domain-name my-domain | jq ".DomainStatus.Processing"
 {{< / command >}}
 
-The `Processing` attribute will be `false` once the cluster is up and running. Once the cluster is up, you can interact with the cluster.
+The `Processing` attribute will be `false` once the cluster is up and running.
+Once the cluster is up, you can interact with the cluster.
 
 ### Interact with the cluster
 
@@ -90,7 +100,8 @@ The following output will be visible on your terminal:
 
 ## Domain Endpoints
 
-There are two configurable strategies that govern how domain endpoints are created. The strategy can be configured via the `OPENSEARCH_ENDPOINT_STRATEGY` environment variable.
+There are two configurable strategies that govern how domain endpoints are created.
+The strategy can be configured via the `OPENSEARCH_ENDPOINT_STRATEGY` environment variable.
 
 | Value   | Format                                                                              | Description                                                                                           |
 | ------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -98,11 +109,14 @@ There are two configurable strategies that govern how domain endpoints are creat
 | `path`   | `localhost:4566/<engine-type>/<region>/<domain-name>`                              | An alternative strategy useful if resolving LocalStack's localhost domain poses difficulties.       |
 | `port`   | `localhost:<port-from-range>`                                                      | Directly exposes cluster(s) via ports from [the external service port range]({{< ref "external-ports" >}}). |
 
-Irrespective of the originating service for the clusters, the domain of each cluster consistently aligns with its engine type, be it OpenSearch or Elasticsearch. Consequently, OpenSearch clusters incorporate `opensearch` within their domains (e.g., `my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566`), while Elasticsearch clusters feature `es` in their domains (e.g., `my-domain.us-east-1.es.localhost.localstack.cloud:4566`).
+Irrespective of the originating service for the clusters, the domain of each cluster consistently aligns with its engine type, be it OpenSearch or Elasticsearch.
+Consequently, OpenSearch clusters incorporate `opensearch` within their domains (e.g., `my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566`), while Elasticsearch clusters feature `es` in their domains (e.g., `my-domain.us-east-1.es.localhost.localstack.cloud:4566`).
 
 ## Custom Endpoints
 
-LocalStack allows you to define arbitrary endpoints for your clusters within the domain endpoint options. This functionality can be used to overwrite the behavior of the aforementioned endpoint strategies. Moreover, you can opt for custom domains, though it's important to incorporate the edge port (80/443, or the default 4566).
+LocalStack allows you to define arbitrary endpoints for your clusters within the domain endpoint options.
+This functionality can be used to overwrite the behavior of the aforementioned endpoint strategies.
+Moreover, you can opt for custom domains, though it's important to incorporate the edge port (80/443, or the default 4566).
 
 Run the following command to create a new OpenSearch domain with a custom endpoint:
 
@@ -119,9 +133,13 @@ $ curl http://localhost:4566/my-custom-endpoint/_cluster/health
 
 ## Re-using a single cluster instance
 
-In certain scenarios, creating a distinct cluster instance for each domain might not align with your use-case. For example, if your focus is solely on testing API interactions rather than actual OpenSearch functionality, individual clusters might be excessive. In such situations, the option to set `OPENSEARCH_MULTI_CLUSTER=0` exists, allowing all domains to be funneled into a single cluster instance.
+In certain scenarios, creating a distinct cluster instance for each domain might not align with your use-case.
+For example, if your focus is solely on testing API interactions rather than actual OpenSearch functionality, individual clusters might be excessive.
+In such situations, the option to set `OPENSEARCH_MULTI_CLUSTER=0` exists, allowing all domains to be funneled into a single cluster instance.
 
-However, it's important to be aware that it can introduce unexpected complications. This is particularly true when dealing with data persistence within OpenSearch or when working with clusters of varying versions. As a result, we advise caution when considering this approach and generally recommend against it.
+However, it's important to be aware that it can introduce unexpected complications.
+This is particularly true when dealing with data persistence within OpenSearch or when working with clusters of varying versions.
+As a result, we advise caution when considering this approach and generally recommend against it.
 
 ## Storage Layout
 
@@ -144,9 +162,13 @@ $ tree -L 4 ./volume/state
 
 ## Advanced Security Options
 
-Both OpenSearch and Elasticsearch services offer **Advanced Security Options**. Presently, OpenSearch domains are equipped with support for an internal user database. However, Elasticsearch domains are not currently covered, whether through the OpenSearch or the Elasticsearch service. IAM support is also not yet available.
+Both OpenSearch and Elasticsearch services offer **Advanced Security Options**.
+Presently, OpenSearch domains are equipped with support for an internal user database.
+However, Elasticsearch domains are not currently covered, whether through the OpenSearch or the Elasticsearch service.
+IAM support is also not yet available.
 
-A secure OpenSearch domain can be spawned with this example CLI input. Save it in a file named `opensearch_domain.json`.
+A secure OpenSearch domain can be spawned with this example CLI input.
+Save it in a file named `opensearch_domain.json`.
 
 ```json
 {
@@ -251,11 +273,15 @@ Once the container is running, you can reach OpenSearch Dashboards at `http://lo
 
 ## Custom OpenSearch backends
 
-LocalStack employs an asynchronous approach to download OpenSearch the first time you create an OpenSearch cluster. Consequently, you'll receive a prompt response from LocalStack initially, followed by the setup of your local OpenSearch cluster once the download and installation are completed.
+LocalStack employs an asynchronous approach to download OpenSearch the first time you create an OpenSearch cluster.
+Consequently, you'll receive a prompt response from LocalStack initially, followed by the setup of your local OpenSearch cluster once the download and installation are completed.
 
-However, there might be scenarios where this behavior is not desirable. For instance, you may prefer to use an existing OpenSearch cluster that is already up and running. This approach can also prove beneficial when you require a cluster with a customized configuration that isn't supported by LocalStack.
+However, there might be scenarios where this behavior is not desirable.
+For instance, you may prefer to use an existing OpenSearch cluster that is already up and running.
+This approach can also prove beneficial when you require a cluster with a customized configuration that isn't supported by LocalStack.
 
-To tailor the OpenSearch backend according to your needs, you can initiate your own local OpenSearch cluster and then direct LocalStack to utilize it through the `OPENSEARCH_CUSTOM_BACKEND` environment variable. It's important to bear in mind that only a single backend configuration is possible, resulting in behavior akin to the approach of [re-using a single cluster instance](#re-using-a-single-cluster-instance).
+To tailor the OpenSearch backend according to your needs, you can initiate your own local OpenSearch cluster and then direct LocalStack to utilize it through the `OPENSEARCH_CUSTOM_BACKEND` environment variable.
+It's important to bear in mind that only a single backend configuration is possible, resulting in behavior akin to the approach of [re-using a single cluster instance](#re-using-a-single-cluster-instance).
 
 Here is a sample `docker-compose.yaml` file that contains a single-node OpenSearch cluster and a basic LocalStack setup.
 
@@ -314,7 +340,8 @@ You can now create an OpenSearch cluster using the `awslocal` CLI:
 $ awslocal opensearch create-domain --domain-name my-domain
 {{< /command >}}
 
-If the `Processing` status shows as `true`, the cluster isn't fully operational yet. You can use the `describe-domain` command to retrieve the current status:
+If the `Processing` status shows as `true`, the cluster isn't fully operational yet.
+You can use the `describe-domain` command to retrieve the current status:
 
 {{< command >}}
 $ awslocal opensearch describe-domain --domain-name my-domain
@@ -352,12 +379,16 @@ The Resource Browser allows you to perform the following actions:
 
 ## Current Limitations
 
-Internally, LocalStack makes use of the [OpenSearch Python client 2.x](https://github.com/opensearch-project/opensearch-py). The functionalities marked as deprecated in OpenSearch 1.x and subsequently removed in OpenSearch 2.x may not operate reliably when interacting with OpenSearch 1.x clusters through LocalStack. You can refer to the [compatibility documentation](https://github.com/opensearch-project/opensearch-py/blob/main/COMPATIBILITY.md) provided by the [OpenSearch Python client repository](https://github.com/opensearch-project/opensearch-py).
+Internally, LocalStack makes use of the [OpenSearch Python client 2.x](https://github.com/opensearch-project/opensearch-py).
+The functionalities marked as deprecated in OpenSearch 1.x and subsequently removed in OpenSearch 2.x may not operate reliably when interacting with OpenSearch 1.x clusters through LocalStack.
+You can refer to the [compatibility documentation](https://github.com/opensearch-project/opensearch-py/blob/main/COMPATIBILITY.md) provided by the [OpenSearch Python client repository](https://github.com/opensearch-project/opensearch-py).
 
-AWS typically populates the `Endpoint` attribute of the cluster status only after the cluster is fully operational. In contrast, LocalStack provides the endpoint information immediately but retains `Processing = "true"` until the cluster initialization is complete.
+AWS typically populates the `Endpoint` attribute of the cluster status only after the cluster is fully operational.
+In contrast, LocalStack provides the endpoint information immediately but retains `Processing = "true"` until the cluster initialization is complete.
 
 The `CustomEndpointOptions` in LocalStack offers the flexibility to utilize arbitrary endpoint URLs, a feature that diverges from the constraints imposed by AWS.
 
 ## Troubleshooting
 
-If you encounter difficulties resolving subdomains while employing the `OPENSEARCH_ENDPOINT_STRATEGY=domain` (the default setting), it's advisable to investigate whether your DNS configuration might be obstructing rebind queries. For further insights on addressing this issue, refer to the section on [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}).
+If you encounter difficulties resolving subdomains while employing the `OPENSEARCH_ENDPOINT_STRATEGY=domain` (the default setting), it's advisable to investigate whether your DNS configuration might be obstructing rebind queries.
+For further insights on addressing this issue, refer to the section on [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}).

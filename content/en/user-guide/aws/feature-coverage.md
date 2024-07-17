@@ -26,7 +26,8 @@ LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS
 
 ## Emulation Levels
 
-* CRUD: The service accepts requests and returns proper (potentially static) responses. No additional business logic besides storing entities.
+* CRUD: The service accepts requests and returns proper (potentially static) responses.
+  No additional business logic besides storing entities.
 * Emulated: The service imitates the functionality, including synchronous and asynchronous business logic operating on service entities.
 
 ## AWS Feature Coverage
