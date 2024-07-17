@@ -43,8 +43,6 @@ Options that affect the core LocalStack system.
 | `ALLOW_NONSTANDARD_REGIONS` | `0` (default) | Allows the use of non-standard AWS regions. By default, LocalStack only accepts [standard AWS regions](https://docs.aws.amazon.com/general/latest/gr/rande.html). |
 | `PARITY_AWS_ACCESS_KEY_ID` | `0` (default) | Enables the use production-like access key IDs. By default, LocalStack issues keys with `LSIA...` and `LKIA...` prefix, and will reject keys that start with `ASIA...` or `AKIA...`. |
 
-[1]: http://docs.aws.amazon.com/cli/latest/reference/#available-services
-
 ## CLI
 
 These options are applicable when using the CLI to start LocalStack.
@@ -92,9 +90,10 @@ This section covers configuration options that are specific to certain AWS servi
 | `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
 
 ### CloudFormation
+
 | Variable | Example Values | Description |
 | - | - | - |
-| `CFN_LEGACY_TEMPLATE_DEPLOYER` | `0` (default) \|`1` | Switch back to the old deployment engine. Note that this is only available temporarily to allow for a smoother roll-out of the new deployment order. 
+| `CFN_LEGACY_TEMPLATE_DEPLOYER` | `0` (default) \|`1` | Switch back to the old deployment engine. Note that this is only available temporarily to allow for a smoother roll-out of the new deployment order.
 | `CFN_PER_RESOURCE_TIMEOUT` | `300` (default) | Set the timeout to deploy each individual CloudFormation resource.
 | `CFN_VERBOSE_ERRORS` | `0` (default) \|`1` | Show exceptions for CloudFormation deploy errors.
 | `CFN_STRING_REPLACEMENT_DENY_LIST` | `""` (default) \|`https://api-1.execute-api.us-east-2.amazonaws.com/test-resource,https://api-2.execute-api.us-east-2.amazonaws.com/test-resource` | Comma-separated list of AWS URLs that should not be modified to point to Localstack. For example, when deploying a CloudFormation template we might want to leave certain resources pointing to actual AWS URLs, or even leave environment variables with URLs like that untouched.
@@ -124,7 +123,7 @@ This section covers configuration options that are specific to certain AWS servi
 | `DYNAMODB_CORS` | `*` | Enable CORS support for specific allow-list list the domains separated by `,` use `*` for public access (default is `*`) |
 | `DYNAMODB_REMOVE_EXPIRED_ITEMS` | `0`\|`1` | Enables [Time to Live (TTL)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html) feature |
 
-### ECR 
+### ECR
 
 | Variable | Example Values | Description |
 | - | - | - |
@@ -165,7 +164,6 @@ This section covers configuration options that are specific to certain AWS servi
 | `PROVIDER_OVERRIDE_ELASTICACHE` | `legacy` | Use the legacy ElastiCache provider. |
 | `REDIS_CONTAINER_MODE` | `1`\|`0` (default) | Start ElastiCache cache nodes in separate containers instead of in the LocalStack container |
 
-
 ### Elasticsearch
 
 {{< callout >}}
@@ -180,6 +178,7 @@ See [here](#opensearch).
 | `PROVIDER_OVERRIDE_EVENTS` | `v2` | Use the new EventBridge provider. |
 
 ### IAM
+
 | Variable | Example Values | Description |
 | - | - | - |
 | `ENFORCE_IAM` | `0` (default)\|`1` | Enable IAM policy evaluation and enforcement. If this is disabled (the default), IAM policies will have no effect to your requests. |
@@ -313,7 +312,6 @@ Please be aware that the following options may have severe security implications
 | `EXTRA_CORS_EXPOSE_HEADERS` | | Comma-separated list of header names to be be added to Access-Control-Expose-Headers CORS header. |
 | `ENABLE_CONFIG_UPDATES` | `0` (default) | Whether to enable dynamic configuration updates at runtime. |
 
-
 ## Emails
 
 Please check with your SMTP email service provider for the following settings.
@@ -375,7 +373,6 @@ To learn more about these configuration options, see [Cloud Pods]({{< ref "user-
 | `DEVELOP_PORT` | | Port number for debugpy server
 | `WAIT_FOR_DEBUGGER` | | Forces LocalStack to wait for a debugger to start the services
 
-
 ## DNS
 
 To learn more about these configuration options, see [DNS Server]({{< ref "dns-server" >}}).
@@ -403,7 +400,6 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 | `LOCALSTACK_API_KEY` |                | **Deprecated since 3.0.0** [API key]({{< ref "api-key" >}}) to activate LocalStack Pro.<br/> **Use the `LOCALSTACK_AUTH_TOKEN` instead (except for [CI environments]({{< ref "user-guide/ci/" >}})).** |
 | `LOG_LICENSE_ISSUES` | `0` \| `1`&nbsp;(default)    | Whether to log issues with the license activation to the console. |
 
-
 ## Legacy
 
 These configurations have already been removed and **won't have any effect** on newer versions of LocalStack.
@@ -416,7 +412,7 @@ These configurations have already been removed and **won't have any effect** on 
 | `<SERVICE>_BACKEND` | 3.0.0 | `http://localhost:7577` |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
 | `<SERVICE>_PORT_EXTERNAL` | 3.0.0 | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
 | `ACTIVATE_NEW_POD_CLIENT` | 3.0.0 | `0`\|`1` (default) |  Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
-| `BIGDATA_MONO_CONTAINER` | 3.0.0 |`0`\|`1` (default) | Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
+| `BIGDATA_MONO_CONTAINER` | 3.0.0 |`0`\|`1` (default) | Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. |
 | `DEFAULT_REGION` | 3.0.0 | `us-east-1` (default) | AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
 | `EDGE_BIND_HOST` | 3.0.0 | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
 | `EDGE_FORWARD_URL` | 3.0.0 | `http://10.0.10.5678` | Optional target URL to forward all edge requests to (e.g., for distributed deployments) |

@@ -15,8 +15,8 @@ LocalStack allows organizations to automate their application testing and integr
 
 Here's a breakdown of the steps we'll take:
 
-- We'll look the `main.yml` file located in the `.github` directory. This file sets up LocalStack on the GitHub Action runner. 
-- We install `awslocal` and `tflocal` to deploy the local infrastructure on LocalStack's cloud emulator running in the CI pipeline. 
+- We'll look the `main.yml` file located in the `.github` directory. This file sets up LocalStack on the GitHub Action runner.
+- We install `awslocal` and `tflocal` to deploy the local infrastructure on LocalStack's cloud emulator running in the CI pipeline.
 - Following this deployment, we utilize `awslocal` to validate the deployed resources and conduct a diagnostic test on LocalStack to ensure everything is functioning correctly.
 
 Further reading:

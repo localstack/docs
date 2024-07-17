@@ -55,7 +55,7 @@ If we break down the previous command, we can identify:
   Amazon DocumentDB.
 
 Notice in the `DBClusterMembers` field of the cluster description that there are no other databases
-created. 
+created.
 As we did not specify a `MasterUsername` or `MasterUserPassword` for the creation of the database, the mongo-db will not set any credentials when starting the docker container.
 To create a new database, we can use the `create-db-instance` command, like in this example:
 
@@ -63,6 +63,7 @@ To create a new database, we can use the `create-db-instance` command, like in t
 $ awslocal docdb create-db-instance --db-instance-identifier test-company \
 --db-instance-class db.r5.large --engine docdb --db-cluster-identifier test-docdb-cluster
 {{< /command >}}
+
 ```yaml
 {
   "DBInstance": {
@@ -216,7 +217,7 @@ You need to set `DOCDB_PROXY_CONTAINER=1` when starting LocalStack to be able to
 The flag `DOCDB_PROXY_CONTAINER=1` changes the default behavior and the container will be started as proxied container. Meaning a port from the [pre-defined port]({{< ref "/references/external-ports" >}}) range will be chosen, and when using lambda, you can use `localhost.localstack.cloud` to connect to the instance.
 {{< /callout >}}
 
-In this sample we will use a Node.js lambda function to connect to a DocumentDB. 
+In this sample we will use a Node.js lambda function to connect to a DocumentDB.
 For the mongo-db connection we will use the `mongodb` lib.
 Please note, that this sample is only for demo purpose, e.g., we will set the credentials as environment variables to the lambda function.
 
@@ -298,7 +299,7 @@ exports.handler = async (event) => {
 };
 {{< /command >}}
 
-Now, you can zip the entire. 
+Now, you can zip the entire.
 Make sure you are inside `resources` directory and run:
 {{< command >}}
 $ zip -r function.zip .
@@ -321,19 +322,18 @@ $ awslocal lambda invoke --function-name MyNodeLambda outfile
 {{< /command >}}
 
 The `outfile` contains the returned value, e.g.:
+
 ```yaml
 {"statusCode":200,"body":"{\"_id\":\"6560a21ca7771a02ef128c72\",\"key\":\"value\"}"}
 ````
 
 #### Use Secret To Connect to DocDB
 
-The best-practise for accessing databases is by using secrets. 
+The best-practise for accessing databases is by using secrets.
 Secrets follow a [well-defined pattern](https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_database_secret.html).
 
 For the lambda function, you can pass the secret arn as `SECRET_NAME`.
 In the lambda, you can then retrieve the secret details like this:
-
-[This sample is a snippet from the scenario test https://github.com/localstack/localstack-ext/blob/master/tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py]: #
 
 {{< command >}}
 const AWS = require('aws-sdk');
@@ -407,4 +407,4 @@ Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage
 
 Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not have exact feature parity with Amazon DocumentDB. The database engine may support additional features that DocumentDB does not and vice versa.
 
-DocumentDB currently uses the default configuration of the latest [MongoDB Docker image](https://hub.docker.com/_/mongo). When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`. 
+DocumentDB currently uses the default configuration of the latest [MongoDB Docker image](https://hub.docker.com/_/mongo). When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`.

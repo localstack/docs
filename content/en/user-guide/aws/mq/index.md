@@ -45,7 +45,7 @@ You can use the [`DescribeBroker`](https://docs.aws.amazon.com/amazon-mq/latest/
 
 {{< command >}}
 $ awslocal mq describe-broker --broker-id
-<disable-copy> 
+<disable-copy>
 b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545
 {
     "BrokerArn": "arn:aws:mq:us-east-1:000000000000:broker:test-broker:b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545",
@@ -104,6 +104,6 @@ Currently, our MQ emulation offers only fundamental capabilities, and it comes w
 
 - **ActiveMQ Version Limitation:** Presently, only ActiveMQ version 5.16.6 is supported. RabbitMQ is not supported at this time.
 - **IAM User Management:** IAM Users are not actively enforced, although they are necessary for making correct calls within the system.
-- **Configuration Enforcement:** While it is feasible to create configurations, they are not actively enforced within the broker. 
+- **Configuration Enforcement:** While it is feasible to create configurations, they are not actively enforced within the broker.
 - **Persistence and Cloud Pods:** LocalStack does not provide support for Persistence and Cloud Pods at this time.
 - **API Coverage:** Please note that there is limited API coverage available as part of the current emulation capabilities.

@@ -395,7 +395,6 @@ $ helm upgrade --install localstack localstack-repo/localstack
 
 The Helm charts are not maintained in the main repository, but in a [separate one](https://github.com/localstack/helm-charts).
 
-
 ## Updating
 
 The LocalStack CLI allows you to easily update the different components of LocalStack.
@@ -453,9 +452,11 @@ $ localstack logs
 
 AWS requests are now logged uniformly in the INFO log level (set by default or when `DEBUG=0`).
 The format is:
+
 ```text
 AWS <service>.<operation> => <http-status> (<error type>)
 ```
+
 Requests to HTTP endpoints are logged in a similar way:
 
 ```text

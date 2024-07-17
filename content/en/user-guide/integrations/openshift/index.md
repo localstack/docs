@@ -67,7 +67,7 @@ $ awslocal s3 mb s3://my-bucket
 $ awslocal sqs create-queue --queue-name my-queue
 {{< /command >}}
 
-In the above commands, replace `<localstack-route-url>` with the route URL of the LocalStack container. The `AWS_ENDPOINT_URL` environment variable is used to specify the endpoint URL of the LocalStack container. 
+In the above commands, replace `<localstack-route-url>` with the route URL of the LocalStack container. The `AWS_ENDPOINT_URL` environment variable is used to specify the endpoint URL of the LocalStack container.
 
 {{< callout >}}
 By default, the endpoint URL for `awslocal` is `http://localhost:4566`. Since we are running LocalStack on OpenShift, we need to specify the route URL of the LocalStack container. You can swap `awslocal` with the AWS CLI, by specifying the additional `--endpoint-url` parameter.

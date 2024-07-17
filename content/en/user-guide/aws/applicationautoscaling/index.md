@@ -61,7 +61,7 @@ $ awslocal lambda create-alias \
 
 ### Register the Lambda function as a scalable target
 
-To register the Lambda function as a scalable target, you can use the [`RegisterScalableTarget`](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/register-scalable-target.html) API. We will specify the `--service-namespace` as `lambda`, `--scalable-dimension` as `lambda:function:ProvisionedConcurrency`, and `--resource-id` as `function:autoscaling-example:BLUE`. 
+To register the Lambda function as a scalable target, you can use the [`RegisterScalableTarget`](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/register-scalable-target.html) API. We will specify the `--service-namespace` as `lambda`, `--scalable-dimension` as `lambda:function:ProvisionedConcurrency`, and `--resource-id` as `function:autoscaling-example:BLUE`.
 
 Run the following command to register the scalable target:
 
@@ -83,7 +83,7 @@ awslocal application-autoscaling put-scheduled-action \
     --scalable-dimension lambda:function:ProvisionedConcurrency \
     --resource-id function:autoscaling-example:BLUE \
     --scheduled-action-name lambda-action \
-    --schedule "cron(*/2 * * * *)" \
+    --schedule "cron(*/2* ** *)" \
     --scalable-target-action MinCapacity=1,MaxCapacity=5
 {{< /command >}}
 
@@ -124,15 +124,15 @@ The Resource Browser allows you to perform the following actions:
 
 The following service namespaces are currently supported:
 
-- Elastic Container Service (ECS)
-- Elastic MapReduce (EMR)
-- Elastic Compute Cloud (EC2)
-- AppStream
-- Lambda
-- DynamoDB
-- RDS
-- Sagemaker
-- Kafka
-- Cassandra
-- Comprenhend
-- Custom Resource
+* Elastic Container Service (ECS)
+* Elastic MapReduce (EMR)
+* Elastic Compute Cloud (EC2)
+* AppStream
+* Lambda
+* DynamoDB
+* RDS
+* Sagemaker
+* Kafka
+* Cassandra
+* Comprenhend
+* Custom Resource

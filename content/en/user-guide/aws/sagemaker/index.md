@@ -5,7 +5,7 @@ description: Get started with SageMaker on LocalStack
 tags: ["Pro image"]
 ---
 
-## Introduction 
+## Introduction
 
 Amazon SageMaker is a fully managed service provided by Amazon Web Services (AWS) that provides the tools to build, train, and deploy machine-learning models in the cloud for predictive analytics applications. It streamlines the machine learning development process, reduces the time and effort required to build and deploy models, and offers the scalability and flexibility needed for large-scale machine learning projects in the AWS cloud.
 
@@ -96,13 +96,11 @@ The Resource Browser allows you to perform the following actions:
 
 - **Create and Remove Models**: You can remove existing model and create a new model with the required configuration
 
-
   <img src="sagemaker-create-model.png" alt="Sagemaker Resource Browser" title="Lambda Resource Browser" width="900" />
-
 
 - **Endpoint Configurations & Endpoints**: You can create endpoints from the resource browser that hosts your deployed machine learning model. You can also create endpoint configuration that specifies the type and number of instances that will be used to serve your model on an endpoint.
 
-## Examples 
+## Examples
 
 The following code snippets and sample applications provide practical examples of how to use Sagemaker in LocalStack for various use cases:
 

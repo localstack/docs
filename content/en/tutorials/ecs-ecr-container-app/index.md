@@ -32,10 +32,10 @@ ECS tasks can pull container images from ECR repositories and are customizable u
 
 ## Prerequisites
 
--   [LocalStack Pro](https://localstack.cloud/pricing/)
--   [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
--   [Docker](https://docker.io/)
--   [`cURL`](https://curl.se/download.html)
+- [LocalStack Pro](https://localstack.cloud/pricing/)
+- [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
+- [Docker](https://docker.io/)
+- [`cURL`](https://curl.se/download.html)
 
 ## Creating the Docker image
 

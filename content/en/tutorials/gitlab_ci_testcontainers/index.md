@@ -48,7 +48,7 @@ For this tutorial, you will need:
 
 GitLab is striving to be a complete tool for DevOps practices, offering not just source code management and continuous integration, but also features for
 monitoring, security, planning, deploying and more. By having your code and CI on the same platform, workflows are simplified and collaboration is enhanced.
-While Jenkins is still a very prominent CI/CD tool in the industry, it is up to the user to figure out where to host it and focuses 
+While Jenkins is still a very prominent CI/CD tool in the industry, it is up to the user to figure out where to host it and focuses
 solely on CI/CD features.
 
 ## GitLab architecture
@@ -57,10 +57,10 @@ solely on CI/CD features.
 
 <br>
 
-As users, we only interact directly with a GitLab instance which is responsible for hosting the application code and all the needed configurations, including the 
+As users, we only interact directly with a GitLab instance which is responsible for hosting the application code and all the needed configurations, including the
 ones for pipelines. The instance is then in charge of running the pipelines and assigning runners to execute the defined jobs.
 
-When running CI pipelines, you can choose to use [**GitLab-hosted runners**](https://docs.gitlab.com/ee/ci/runners/index.html), or provision and register 
+When running CI pipelines, you can choose to use [**GitLab-hosted runners**](https://docs.gitlab.com/ee/ci/runners/index.html), or provision and register
 [**self-managed runners**](https://docs.gitlab.com/runner/install/docker.html). This tutorial will cover both.
 
 ### Runners hosted by GitLab
@@ -69,25 +69,24 @@ The GitLab documentation highlights some key aspects about the provided runners:
 
 - They can run on Linux, Windows (beta) and MacOS (beta).
 - They are enabled by default for all projects, with no configuration required.
-- Each job is executed by a newly provisioned VM. 
+- Each job is executed by a newly provisioned VM.
 - Job runs have `sudo` access without a password.
-- VMs are isolated between job executions. 
+- VMs are isolated between job executions.
 - Their storage is shared by the operating system, the image with pre-installed software,
 and a copy of your cloned repository, meaning that the remaining disk space for jobs will be reduced.
-- The runners are configured to run in privileged mode to support Docker in Docker to build images natively or 
+- The runners are configured to run in privileged mode to support Docker in Docker to build images natively or
 run multiple containers within each job.
 
 ### Self-hosted runners
 
-Essentially, the architecture does not change, except the runners will be executing the jobs on a local machine. For developing locally, 
+Essentially, the architecture does not change, except the runners will be executing the jobs on a local machine. For developing locally,
 this approach is very convenient and there are several benefits:
 
-- **Customization**: you can configure the runners to suit your specific needs and environment. 
-- **Performance**: improved performance and faster builds by leveraging your own hardware. 
-- **Security**: enhanced control over your data and build environment, reducing exposure to external threats. 
+- **Customization**: you can configure the runners to suit your specific needs and environment.
+- **Performance**: improved performance and faster builds by leveraging your own hardware.
+- **Security**: enhanced control over your data and build environment, reducing exposure to external threats.
 - **Resource Management**: better management and allocation of resources to meet your project's demands.
 - **Cost Efficiency**: depending on your alternatives, you can avoid usage fees associated with cloud-hosted runners.
-
 
 ## Application Overview
 
@@ -107,7 +106,7 @@ We'll need to make sure that the files are correctly created and named, that the
 
 To follow along, make changes to the code or run your own pipelines, you may fork the repository from the [coffee-backend-localstack sample](https://gitlab.com/tinyg210/coffee-backend-localstack).
 <br>
-The application is developed, built and tested locally, the next step is to establish a quality gate in the pipeline, to make sure nothing breaks. 
+The application is developed, built and tested locally, the next step is to establish a quality gate in the pipeline, to make sure nothing breaks.
 
 The basis for the container used for testing looks like this:
 
@@ -164,7 +163,7 @@ For this tutorial you don't really need to dive into the specifics of the tests,
 
 The `.gitlab-ci.yml` file is a configuration file for defining GitLab CI/CD pipelines, which automate the process of building, testing,
 and deploying applications. It specifies stages (such as build, test, and deploy) and the jobs within each stage, detailing the commands
-to be executed. Jobs can define dependencies, artifacts, and environment variables. Pipelines are triggered by events like code pushes, 
+to be executed. Jobs can define dependencies, artifacts, and environment variables. Pipelines are triggered by events like code pushes,
 merge requests, or schedules, and they are executed by runners.
 This file enables automated, consistent, and repeatable workflows for software development and deployment. In this example we will focus on
 just the building and testing parts.
@@ -224,16 +223,16 @@ test_job:
 
 - `image: ubuntu:latest` - This specifies the base Docker image used for all jobs in the pipeline. `ubuntu:latest` is a popular and
 easy choice because it's a well-known, stable, and widely-supported Linux distribution. It ensures a consistent environment across
-all pipeline stages. Each job can define its own image (for example `maven` or `docker` images), but in this case a generic image with the 
+all pipeline stages. Each job can define its own image (for example `maven` or `docker` images), but in this case a generic image with the
 necessary dependencies (curl, Java, maven, docker) installed covers the needs for both stages.
 - `before_script` - these commands are run before any job script in the pipeline, on top of the Ubuntu image.
 - The two stages are defined at the top: `build` and `test`.
-- `cache` - caches the Maven dependencies to speed up subsequent pipeline runs. 
+- `cache` - caches the Maven dependencies to speed up subsequent pipeline runs.
 - `.m2/repository` - this is the default location where Maven stores its local repository of dependencies.
 - The `script` section - specifies the scripts that run for each job.
 - `artifacts` - specifies the build artifacts (e.g., JAR files) to be preserved and passed to the next stages (the `target` folder).
 - The build job runs only on the `main` branch.
-- `docker:26.1.2-dind` - specifies the service necessary to use Docker-in-Docker to run Docker commands inside the pipeline job. This is 
+- `docker:26.1.2-dind` - specifies the service necessary to use Docker-in-Docker to run Docker commands inside the pipeline job. This is
 useful for integration testing with Docker containers.
 - Variables:
   - `DOCKER_HOST: tcp://docker:2375` - sets the Docker host to communicate with the Docker daemon inside the dind service.
@@ -243,9 +242,9 @@ useful for integration testing with Docker containers.
 
 ### Executors
 
-We mentioned in the beginning that each job runs in a newly provisioned VM. You can also notice that the pipeline configuration mentions 
-a docker image, which is a template that contains instructions for creating a container. This might look confusing, but a runner is responsible 
-for the execution of one job. This runner is installed on a machine and implements 
+We mentioned in the beginning that each job runs in a newly provisioned VM. You can also notice that the pipeline configuration mentions
+a docker image, which is a template that contains instructions for creating a container. This might look confusing, but a runner is responsible
+for the execution of one job. This runner is installed on a machine and implements
 a certain [executor](https://docs.gitlab.com/runner/executors/). The executor determines the environment in which the job runs. By
 default, the GitLab-managed runners use a Docker Machine executor. Some other available executor options are: SSH, Shell, Parallels,
 VirtualBox, Docker, Docker Autoscaler, Kubernetes.
@@ -258,11 +257,12 @@ Basically, the `service` is an additional container that starts at the same time
 a Docker client, and it communicates with the Docker daemon, running in the service container, in order to spin up more containers, in this
 case for the Lambda functions.
 
-Don't forget to add your `LOCALSTACK_AUTH_TOKEN` as a masked variable in your CI/CD settings. 
+Don't forget to add your `LOCALSTACK_AUTH_TOKEN` as a masked variable in your CI/CD settings.
 
 ```vue
 Settings -> CI/CD -> Expand the Variables section -> Add variable
 ```
+
 {{< figure src="ci-variable.png" width="80%" height="auto">}}
 
 In the web interface, under the Jobs section, you can see the jobs that ran, and you can also filter them based on their status.
@@ -271,11 +271,12 @@ In the web interface, under the Jobs section, you can see the jobs that ran, and
 
 ## CI Pipeline Using Self-hosted Runners
 
-There are some cases when you want to run your pipelines locally and GitLab can provide that functionality. 
-If you're new to the GitLab ecosystem, you need to be careful in configuring this setup, because it's easy to overlook an important field which 
+There are some cases when you want to run your pipelines locally and GitLab can provide that functionality.
+If you're new to the GitLab ecosystem, you need to be careful in configuring this setup, because it's easy to overlook an important field which
 can hinder your job runs.
 
 Let's get started by using the web interface. In your GitLab project, in the left-hand side panel, follow the path:
+
 ```vue
 Settings -> CI/CD -> Expand the Runners section -> Project runners -> New project runner
 ```
@@ -352,14 +353,14 @@ Configuration loaded                                builds=0 max_builds=1
 ```
 
 Let's look at the `config.toml` file and make the final adjustment before successfully running the pipeline.
-For running a job that does not require any additional containers to be created, you can stop here. However, since 
-we need to run Docker commands in our CI/CD jobs, we must configure GitLab Runner to support those commands. 
+For running a job that does not require any additional containers to be created, you can stop here. However, since
+we need to run Docker commands in our CI/CD jobs, we must configure GitLab Runner to support those commands.
 This method requires `privileged` mode.
 
 Let's use the current running container to do that. Run the following:
 
 ```commandline
-$ docker exec -it gitlab-runner bin/bash
+docker exec -it gitlab-runner bin/bash
 ```
 
 Inside the container, let's run:
@@ -419,7 +420,7 @@ shutdown_timeout = 0
     network_mtu = 0
 ```
 
-`[CTRL] + [X]` to save and exit the file. The runner is ready to use. You can now run your pipeline by pushing changes to your project 
+`[CTRL] + [X]` to save and exit the file. The runner is ready to use. You can now run your pipeline by pushing changes to your project
 or from the dashboard, by going to `Build -> Pipelines` and using the `Run pipeline` button.
 
 ## Conclusion
@@ -428,4 +429,3 @@ In this tutorial, we've covered setting up a CI pipeline with GitLab runners and
 using a self-configured GitLab runner. Overall, the GitLab platform is an intricate system that can be used for highly complex projects to serve
 a multitude of purposes. With the steps learnt in this article, you can efficiently run end-to-end tests for your application using Testcontainers
 and LocalStack.
-

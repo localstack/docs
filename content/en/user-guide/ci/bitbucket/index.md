@@ -80,6 +80,7 @@ pipelines:
           - docker run -d --rm -p 4566:4566 -p 4510-4559:4510-4559 -e LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?} -e DEBUG=1 -e LS_LOG=trace -e DOCKER_SOCK=tcp://${BITBUCKET_DOCKER_HOST_INTERNAL}:2375 -e DOCKER_HOST=tcp://${BITBUCKET_DOCKER_HOST_INTERNAL}:2375 --name localstack-main localstack/localstack-pro
           ...
 ```
+
 ## Current Limitations
 
 ### Mounting Volumes

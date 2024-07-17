@@ -274,7 +274,6 @@ awslocal appsync evaluate-code \
 </disable-copy>
 {{< / command >}}
 
-
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing AppSync APIs, Data Sources, Schema, Query, Types, Resolvers, Functions and API keys. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **AppSync** under the **App Integration** section.

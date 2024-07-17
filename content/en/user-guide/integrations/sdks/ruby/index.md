@@ -74,7 +74,7 @@ run_demo if $PROGRAM_NAME == __FILE__
 You can run the example by saving it to a file, for example `localstack.rb`, and then running it with:
 
 {{< command >}}
-$ ruby ./localstack.rb                                                                                                        
+$ ruby ./localstack.rb
 Created bucket doc-example-bucket-b911f85f-4dd3-4668-a32e-3f69aa4e37dc.
 Your bucket's region is: us-east-2
 {{< /command >}}

@@ -12,7 +12,6 @@ The Elasticsearch Service in LocalStack lets you create one or more single-node 
 This service is, like its AWS counterpart, heavily linked with the [OpenSearch Service](../opensearch).
 Any cluster created with the Elasticsearch Service will show up in the OpenSearch Service and vice versa.
 
-
 ## Creating an Elasticsearch cluster
 
 You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) to create a new elasticsearch domain via the `aws es create-elasticsearch-domain` command.
@@ -127,7 +126,6 @@ $ curl -s http://my-domain.us-east-1.es.localhost.localstack.cloud:4566/_cluster
 }
 {{< / command >}}
 
-
 ## Advanced topics
 
 ### Endpoints
@@ -162,7 +160,6 @@ Once the domain processing is complete, you can access the cluster:
 $ curl http://localhost:4566/my-custom-endpoint/_cluster/health
 {{< / command >}}
 
-
 ### Re-using a single cluster instance
 
 In some cases, you may not want to create a new cluster instance for each domain,
@@ -170,7 +167,6 @@ for example when you are only interested in testing API interactions instead of 
 In this case, you can set `OPENSEARCH_MULTI_CLUSTER=0` (previously `ES_MULTI_CLUSTER`).
 This will multiplex all domains to the same cluster, or return the same port every time when using the `port` endpoint strategy.
 This can however lead to unexpected behavior when persisting data into Elasticsearch, or creating clusters with different versions, so we do not recommend it.
-
 
 ### Storage Layout
 
@@ -191,12 +187,11 @@ localstack@machine % tree -L 4 volume/state
 │       │   └── tmp
 ```
 
-
 ### Advanced Security Options
+
 Since LocalStack 1.4.0, the OpenSearch and ElasticSearch services support "Advanced Security Options".
 This feature is currently only supported for OpenSearch domains (which can also be created by the elasticsearch service).
 More info can be found on [the OpenSearch Service docs page](../opensearch#advanced-security-options).
-
 
 ## Custom Elasticsearch backends
 
@@ -310,7 +305,6 @@ $ curl mylogs-2.us-east-1.es.localhost.localstack.cloud:4566/_cluster/health
 $ curl -X PUT mylogs-2.us-east-1.es.localhost.localstack.cloud:4566/my-index
 {"acknowledged":true,"shards_acknowledged":true,"index":"my-index"}
 {{< /command >}}
-
 
 ## Differences to AWS
 

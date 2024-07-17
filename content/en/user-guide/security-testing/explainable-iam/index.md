@@ -97,7 +97,7 @@ DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been
 DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been implicitly denied: ["Action 'iam:PassRole' for 'arn:aws:iam::000000000000:role/lambda-role'"]
 ```
 
-Upon examination, it becomes apparent that the action `iam:PassRole` is not allowed; rather, it is implicitly denied for your user concerning the resource `arn:aws:iam::000000000000:role/lambda-role`. This implies that there is no explicit deny statement in the relevant policies, but there is also no allow statement, resulting in the implicit denial of the action. You can incorporate this action into the policy. 
+Upon examination, it becomes apparent that the action `iam:PassRole` is not allowed; rather, it is implicitly denied for your user concerning the resource `arn:aws:iam::000000000000:role/lambda-role`. This implies that there is no explicit deny statement in the relevant policies, but there is also no allow statement, resulting in the implicit denial of the action. You can incorporate this action into the policy.
 
 ### Incorporate the action into the policy
 
@@ -121,6 +121,6 @@ Re-run the Lambda [`CreateFunction`](https://docs.aws.amazon.com/lambda/latest/d
 
 ## Soft Mode
 
-Enabling `IAM_SOFT_MODE=1` allows you to review the logs and assess whether your requests would have been denied or granted while executing your entire stack without disruptions. 
+Enabling `IAM_SOFT_MODE=1` allows you to review the logs and assess whether your requests would have been denied or granted while executing your entire stack without disruptions.
 
 Using this, you can avoid the need for redeployment to address each missing permission individually, streamlining the debugging process and enhancing the efficiency of your IAM configurations.

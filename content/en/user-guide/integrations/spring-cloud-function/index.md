@@ -25,21 +25,21 @@ The primary language for the application is Kotlin powered by
 [Gradle](https://gradle.org) build tool, but the described concepts would work for
 any other JVM setup.
 
-* [Limitations](#limitations)
+* [Current Limitations](#current-limitations)
 * [Setting up an Application](#setting-up-an-application)
-    * [Starting a new Project](#starting-a-new-project)
-    * [Project Settings](#project-settings)
-    * [Configure Log4J2 for AWS Lambda](#configure-log4j2-for-aws-lambda)
-    * [Configure Spring Cloud Function for Rest API](#configure-spring-cloud-function-for-rest-api)
-    * [Define an Application class](#define-an-application-class)
-    * [Configure Jackson](#configure-jackson)
-    * [Define Logging Utility](#define-logging-utility)
-    * [Add Request/Response utilities](#add-requestresponse-utilities)
-    * [Creating a sample Model / DTO](#creating-a-sample-model--dto)
-    * [Creating Rest API endpoints](#creating-rest-api-endpoints)
-    * [Cold Start and Warmup (PRO)](#cold-start-and-warmup-pro)
-    * [Creating other lambda Handlers](#creating-other-lambda-handlers)
-* [Setting up Deployment](#settings-up-deployment)
+  * [Starting a new Project](#starting-a-new-project)
+  * [Project Settings](#project-settings)
+  * [Configure Log4J2 for AWS Lambda](#configure-log4j2-for-aws-lambda)
+  * [Configure Spring Cloud Function for Rest API](#configure-spring-cloud-function-for-rest-api)
+  * [Define an Application class](#define-an-application-class)
+  * [Configure Jackson](#configure-jackson)
+  * [Define Logging Utility](#define-logging-utility)
+  * [Add Request/Response utilities](#add-requestresponse-utilities)
+  * [Creating a sample Model / DTO](#creating-a-sample-model--dto)
+  * [Creating Rest API endpoints](#creating-rest-api-endpoints)
+  * [Cold Start and Warmup (PRO)](#cold-start-and-warmup-pro)
+  * [Creating other lambda Handlers](#creating-other-lambda-handlers)
+* [Setting up Deployment](#setting-up-deployment)
 * [Testing, Debugging and Hot Reloading](#testing-debugging-and-hot-reloading)
 * [Useful links](#useful-links)
 
@@ -243,6 +243,7 @@ spring.cloud.function.scan.packages=org.localstack.sampleproject.api
 
 Once configured, you can use `FunctionInvoker` as a handler for your Rest API lambda function.
 It will automatically pick up the configuration we have just set.
+
 ```java
 org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest
 ```
@@ -428,12 +429,10 @@ import org.localstack.sampleproject.util.buildJsonResponse
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
 
-
 private val SAMPLE_RESPONSE = mutableListOf(
     SampleModel(id = 1, name = "Sample #1"),
     SampleModel(id = 2, name = "Sample #2"),
 )
-
 
 @Component
 class SampleApi(private val objectMapper: ObjectMapper) {
@@ -479,7 +478,6 @@ import org.localstack.sampleproject.util.apiGatewayFunction
 import org.localstack.sampleproject.util.buildJsonResponse
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
-
 
 @Component
 class ScheduleApi(private val objectMapper: ObjectMapper) {
@@ -587,8 +585,8 @@ package:
   artifact: build/libs/localstack-sampleproject-all.jar
 
 plugins:
-  - serverless-localstack
-  - serverless-deployment-bucket
+* serverless-localstack
+* serverless-deployment-bucket
 
 custom:
   localstack:

@@ -21,11 +21,9 @@ LocalStack supports ElastiCache via the Pro offering, allowing you to use the El
 The supported APIs are available on our [API Coverage Page]{{< ref "coverage_elasticache" >}},
 which provides information on the extent of ElastiCache integration with LocalStack.
 
-
 ## Getting started
 
 This guide is designed for users new to ElastiCache and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
-
 
 ### Single cache cluster
 
@@ -61,7 +59,6 @@ $ redis-cli -p 4510 get foo
 "bar"
 {{< / command >}}
 
-
 ### Replication groups in non-cluster mode
 
 {{< command >}}
@@ -85,7 +82,6 @@ To retrieve the primary endpoint:
 $ awslocal elasticache describe-replication-groups --replication-group-id my-redis-replication-group \
   --query "ReplicationGroups[0].NodeGroups[0].PrimaryEndpoint"
 {{< /command >}}
-
 
 ### Replication groups in cluster mode
 
@@ -129,7 +125,6 @@ In the ElastiCache resource browser you can:
   {{< img src="elasticache-resource-browser-show.png" alt="Create a ElastiCache cluster in the resource browser" >}}
 * Create new cache clusters
   {{< img src="elasticache-resource-browser-create.png" alt="Create a ElastiCache cluster in the resource browser" >}}
-
 
 ## Current Limitations
 

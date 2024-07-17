@@ -29,7 +29,7 @@ leadimage: "route-53-failover.png"
 
 ## Introduction
 
-LocalStack allows you to integrate & test [Fault Injection Simulator (FIS)](https://docs.localstack.cloud/user-guide/aws/fis/) with [Route53](https://docs.localstack.cloud/user-guide/aws/route53/) to automatically divert users to 
+LocalStack allows you to integrate & test [Fault Injection Simulator (FIS)](https://docs.localstack.cloud/user-guide/aws/fis/) with [Route53](https://docs.localstack.cloud/user-guide/aws/route53/) to automatically divert users to
 a healthy secondary zone if the primary region fails, ensuring system availability and responsiveness. Route53's health checks and
 traffic redirection enhance architecture resilience and ensure service continuity during regional outages, crucial for uninterrupted
 user experiences.
@@ -83,8 +83,8 @@ on this region to examine the existing resilience mechanisms.
 
 {{< figure src="route53-failover-2.png" width="800">}}
 
--   The primary API Gateway includes a health check endpoint that returns a 200 HTTP status code, serving as a basic check for its availability.
--   Data synchronization across regions can be achieved with AWS-native tools like DynamoDB Streams and AWS Lambda. Here, any changes to the
+- The primary API Gateway includes a health check endpoint that returns a 200 HTTP status code, serving as a basic check for its availability.
+- Data synchronization across regions can be achieved with AWS-native tools like DynamoDB Streams and AWS Lambda. Here, any changes to the
 primary table trigger a Lambda function, replicating these changes to a secondary table. This configuration is essential for high availability
 and disaster recovery.
 
@@ -113,11 +113,11 @@ awslocal route53 create-health-check \
 )
 {{< /command >}}
 
-This command creates a Route 53 health check for an HTTP endpoint (`12345.execute-api.localhost.localstack.cloud:4566/dev/healthcheck`) 
+This command creates a Route 53 health check for an HTTP endpoint (`12345.execute-api.localhost.localstack.cloud:4566/dev/healthcheck`)
 with a 10-second request interval and captures the health check's ID. The caller reference identifier in AWS resource creation or updates
 prevents accidental duplication if requests are repeated.
 
-To update DNS records in the specified Route53 hosted zone (`$HOSTED_ZONE_ID`), add two CNAME records: `12345.$HOSTED_ZONE_NAME` 
+To update DNS records in the specified Route53 hosted zone (`$HOSTED_ZONE_ID`), add two CNAME records: `12345.$HOSTED_ZONE_NAME`
 pointing to `12345.execute-api.localhost.localstack.cloud`, and `67890.$HOSTED_ZONE_NAME` pointing to `67890.execute-api.localhost.localstack.cloud`.
 Set a TTL (Time to Live) of 60 seconds for these records.
 
@@ -196,18 +196,18 @@ $ awslocal route53 change-resource-record-sets \
 {{< /command >}}
 
 This setup represents the basic failover configuration where traffic is redirected to different endpoints based on their health check
-status. To confirm that the CNAME record for `test.hello-localstack.com` points to `12345.execute-api.localhost.localstack.cloud`, 
+status. To confirm that the CNAME record for `test.hello-localstack.com` points to `12345.execute-api.localhost.localstack.cloud`,
 you can use the following `dig` command:
 
 {{< command >}}
 $ dig @localhost test.hello-localstack.com CNAME
-<disable-copy>                                        
+<disable-copy>
 .....
 ;; QUESTION SECTION:
-;test.hello-localstack.com.	IN	CNAME
+;test.hello-localstack.com. IN CNAME
 
 ;; ANSWER SECTION:
-test.hello-localstack.com. 300	IN	CNAME	12345.execute-api.localhost.localstack.cloud.
+test.hello-localstack.com. 300 IN CNAME 12345.execute-api.localhost.localstack.cloud.
 .....
 </disable-copy>
 {{< /command >}}
@@ -236,7 +236,7 @@ $ cat region-outage-experiment.json
     "stopConditions": [],
     "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
 }
-</disable-copy>               
+</disable-copy>
 {{< /command >}}
 
 This Fault Injection Simulator (FIS) experiment template is set up to mimic a `Service Unavailable` (503 error) in the `us-west-1` region.
@@ -281,13 +281,13 @@ Route 53's health checks will detect the failure and redirect traffic to the sta
 
 {{< command >}}
 $ dig @localhost test.hello-localstack.com CNAME
-<disable-copy>                                        
+<disable-copy>
 .....
 ;; QUESTION SECTION:
-;test.hello-localstack.com.	IN	CNAME
+;test.hello-localstack.com. IN CNAME
 
 ;; ANSWER SECTION:
-test.hello-localstack.com. 300	IN	CNAME	67890.execute-api.localhost.localstack.cloud.
+test.hello-localstack.com. 300 IN CNAME 67890.execute-api.localhost.localstack.cloud.
 .....
 </disable-copy>
 {{< /command >}}

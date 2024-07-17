@@ -33,6 +33,7 @@ $ awslocal glue get-tables --database db1
 {{< /command >}}
 
 You should see the following output:
+
 ```json
 {
     "TableList": [
@@ -45,7 +46,6 @@ You should see the following output:
 ```
 
 ### Running Scripts with Scala and PySpark
-
 
 Create a new PySpark script named `job.py` with the following code:
 
@@ -91,6 +91,7 @@ $ awslocal glue get-job-run --job-name job1 --run-id <JobRunId>
 {{< / command >}}
 
 You should see the following output:
+
 ```json
 {
     "JobRun": {
@@ -108,6 +109,7 @@ For a more detailed example illustrating how to run a local Glue PySpark job, pl
 The Glue data catalog is integrated with Athena, and the database/table definitions can be imported via the `import-catalog-to-glue` API.
 
 Assume you are running the following Athena queries to create databases and table definitions:
+
 ```sql
 CREATE DATABASE db2
 CREATE EXTERNAL TABLE db2.table1 (a1 Date, a2 STRING, a3 INT) LOCATION 's3://test/table1'
@@ -127,6 +129,7 @@ $ awslocal glue get-databases
 {{< /command >}}
 
 You should see the following output:
+
 ```json
 {
     "DatabaseList": [
@@ -148,6 +151,7 @@ And you can query the databases with the `get-databases` operation:
 $ awslocal glue get-tables --database-name db2
 {{< / command >}}
 You should see the following output:
+
 ```json
 {
     "TableList": [
@@ -203,6 +207,7 @@ Finally, you can query the table metadata that has been created by the crawler:
 $ awslocal glue get-tables --database-name db1
 {{< / command >}}
 You should see the following output:
+
 ```json
 {
     "TableList": [{
@@ -217,6 +222,7 @@ You can also query the created table partitions:
 $ awslocal glue get-partitions --database-name db1 --table-name table1
 {{< / command >}}
 You should see the following output:
+
 ```json
 {
     "Partitions": [{
@@ -236,6 +242,7 @@ You can first create the local Redshift cluster via:
 $ awslocal redshift create-cluster --cluster-identifier c1 --node-type dc1.large --master-username test --master-user-password test --db-name db1
 {{< / command >}}
 The output of this command contains the endpoint address of the created Redshift database:
+
 ```json
 ...
     "Endpoint": {
@@ -286,6 +293,7 @@ $ awslocal glue create-schema --schema-name demo-schema --registry-id RegistryNa
   --schema-definition '{"type":"record","namespace":"Demo","name":"Person","fields":[{"name":"Name","type":"string"}]}'
 {{< /command >}}
 You should see the following output:
+
 ```json
 {
     "RegistryName": "demo-registry",
@@ -310,6 +318,7 @@ $ awslocal glue register-schema-version --schema-id SchemaName=demo-schema,Regis
 {{< /command >}}
 
 You should see the following output:
+
 ```json
 {
     "SchemaVersionId": "ee38732b-b299-430d-a88b-4c429d9e1208",
@@ -376,6 +385,7 @@ $ awslocal glue start-job-run --job-name job1
 {{< / command >}}
 
 The execution of the Glue job can take a few moments - once the job has finished executing, you should see a log line with the query results in the LocalStack container logs, similar to the output below:
+
 ```text
 2023-10-17 12:59:20,088 INFO scheduler.DAGScheduler: Job 15 finished: collect at /private/tmp/script-90e5371e.py:28, took 0,158257 s
 SQL result: ['{"name":"test1","key":123}', '{"name":"test2","key":456}']
@@ -411,7 +421,6 @@ The Resource Browser allows you to perform the following actions:
 
 The following Developer Hub applications are using Glue:
 {{< applications service_filter="glu">}}
-
 
 The following tutorials are using Glue:
 {{< tutorials "/tutorials/schema-evolution-glue-msk">}}

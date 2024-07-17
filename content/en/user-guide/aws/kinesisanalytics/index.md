@@ -107,5 +107,5 @@ The following output would be retrieved:
 
 ## Current Limitations
 
-- LocalStack supports basic emulation for the version 1 of the Kinesis Data Analytics API. However, the queries are not fully supported and lack parity with AWS.
-- LocalStack supports CRUD mocking for the version 2 of the Kinesis Data Analytics API.
+* LocalStack supports basic emulation for the version 1 of the Kinesis Data Analytics API. However, the queries are not fully supported and lack parity with AWS.
+* LocalStack supports CRUD mocking for the version 2 of the Kinesis Data Analytics API.

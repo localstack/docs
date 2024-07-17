@@ -213,7 +213,7 @@ mkdir package
 pip install -r requirements.txt -t package
 zip lambda.zip handler.py
 cd package
-zip -r ../lambda.zip *;
+zip -r ../lambda.zip*;
 cd ../..
 {{< /tab >}}
 {{< /tabpane >}}

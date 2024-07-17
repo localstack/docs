@@ -7,7 +7,7 @@ description: >
 
 ## Introduction
 
-Cloud Custodian is an open-source rules engine and cloud management tool designed to help organizations maintain security and compliance across their cloud environments. Cloud Custodian's YAML DSL allows definition of rules to filter and tag resources, and then apply actions to those resources. 
+Cloud Custodian is an open-source rules engine and cloud management tool designed to help organizations maintain security and compliance across their cloud environments. Cloud Custodian's YAML DSL allows definition of rules to filter and tag resources, and then apply actions to those resources.
 
 Cloud Custodian can be used to manage local AWS resources in LocalStack, resembling the live AWS environment, allowing you to test and validate your security policies locally. You can use Cloud Custodian with LocalStack by just specifying the Cloud Custodian package to use the LocalStack profile configured with your AWS CLI.
 

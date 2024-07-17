@@ -145,7 +145,7 @@ You should see the following output:
 
 ### Submit a job to the job queue
 
-You can now run a compute job. This command runs a job on the queue that you have set up previously, overriding the container command to run: `sh -c "sleep 5; pwd"`. This command simulates work being done in the container. 
+You can now run a compute job. This command runs a job on the queue that you have set up previously, overriding the container command to run: `sh -c "sleep 5; pwd"`. This command simulates work being done in the container.
 
 Run the following command to submit a job to the job queue using the [`SubmitJob`](https://docs.aws.amazon.com/cli/latest/reference/batch/submit-job.html) API:
 
@@ -166,6 +166,6 @@ You should see the following output:
 }
 ```
 
-## Current Limitations 
+## Current Limitations
 
 As mentioned in the example above, the creation of a compute environment does not entail the provisioning of EC2 or Fargate instances. Rather, it executes Batch jobs on the local Docker daemon, operating alongside LocalStack.

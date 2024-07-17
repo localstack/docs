@@ -59,7 +59,7 @@ $ awslocal managedblockchain create-network \
             }
         }
         }'
-<disable-copy> 
+<disable-copy>
 {
     "NetworkId": "n-X24AF1AK2GC6MDW11HYW5I5DQC",
     "MemberId": "m-6VWBWHP2Y15F7TQ2DS093RTCW2"
@@ -96,7 +96,7 @@ $ awslocal managedblockchain create-node \
     --network-id n-X24AF1AK2GC6MDW11HYW5I5DQC \
     --member-id m-6VWBWHP2Y15F7TQ2DS093RTCW2
 <disable-copy>
-{ 
+{
     "NodeId": "nd-77K8AI0O5BEQD1IW4L8OGKMXV7"
 }
 </disable-copy>

@@ -19,6 +19,7 @@ This page contains easily customisable snippets to show you how to manage LocalS
     image-tag: 'latest'
     install-awslocal: 'true'
 ```
+
 ### Configuration
 
 To set LocalStack configuration options, you can use the `configuration` input parameter. For example, to set the `DEBUG` configuration option, you can use the following configuration:
@@ -36,12 +37,12 @@ You can add extra configuration options by separating them with a comma.
 
 ### Configure a CI key
 
-To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables. The LocalStack container will automatically pick it up and activate the licensed features. 
+To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables. The LocalStack container will automatically pick it up and activate the licensed features.
 
 Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key. To add the CI key to your GitHub project, follow these steps:
 
 - Navigate to your repository **Settings > Secrets** and press **New repository secret**.
-- Enter `LOCALSTACK_API_KEY` as the name of the secret and paste your CI key as the value. 
+- Enter `LOCALSTACK_API_KEY` as the name of the secret and paste your CI key as the value.
 Click **Add secret** to save your secret.
 
 <img src="github-create-secret.png" alt="Adding the LocalStack CI key as secret in GitHub" title="Adding the LocalStack CI key as secret in GitHub" width="900" />
@@ -62,6 +63,7 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 ```
 
 ### Dump Localstack logs
+
 ```yaml
 - name: Show localstack logs
   run: |
@@ -73,6 +75,7 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 You can preserve your AWS infrastructure with Localstack in various ways.
 
 #### Cloud Pods
+
 ```yaml
 ...
 # Localstack is up and running already
@@ -103,6 +106,7 @@ Find more information about cloud pods [here](/user-guide/state-management/cloud
 Our Github Action contains the prebuilt functionality to spin up an ephemeral instance.
 
 First you need to deploy the preview:
+
 ```yaml
 name: Create PR Preview
 
@@ -137,6 +141,7 @@ jobs:
 Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 
 #### Artifact
+
 ```yaml
 ...
 - name: Start LocalStack and Load State

@@ -175,4 +175,4 @@ The Resource Browser allows you to perform the following actions:
 
 The following code snippets and sample applications provide practical examples of how to use Route53 in LocalStack for various use cases:
 
- - [DNS Failover with Route53 on LocalStack](https://github.com/localstack/localstack-pro-samples/tree/master/route53-dns-failover)
+- [DNS Failover with Route53 on LocalStack](https://github.com/localstack/localstack-pro-samples/tree/master/route53-dns-failover)

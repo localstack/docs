@@ -45,8 +45,8 @@ LocalStack uses following directory layout when running within a container.
 - `/var/lib/localstack/tmp`: temporary data that is not expected to survive LocalStack runs (may be cleared when LocalStack starts or stops)
 - `/var/lib/localstack/cache`: temporary data that is expected to survive LocalStack runs (is not cleared when LocalStack starts or stops)
 
-
 ### Configuration
+
 - `/etc/localstack`: configuration directory
 - `/etc/localstack/init`: root directory for [initialization hooks]({{< ref `init-hooks` >}})
 <!-- For future use, not currently in use
@@ -56,7 +56,6 @@ LocalStack uses following directory layout when running within a container.
 ### Static libraries
 
 - `/usr/lib/localstack`: static third-party packages installed into the container images
-
 
 {{< callout >}}
 Previously, directories were individually configurable, e.g., via `DATA_DIR` or `HOST_TMP_DIR`.
@@ -112,9 +111,9 @@ When using the CLI to start LocalStack, the volume directory can be configured v
 It should point to a directory on the host which is then automatically mounted into `/var/lib/localstack`.
 The defaults are:
 
-* Mac: `~/Library/Caches/localstack/volume`
-* Linux: `~/.cache/localstack/volume`
-* Windows: `%LOCALAPPDATA%\cache\localstack\volume`
+- Mac: `~/Library/Caches/localstack/volume`
+- Linux: `~/.cache/localstack/volume`
+- Windows: `%LOCALAPPDATA%\cache\localstack\volume`
 
 ## Host mode
 

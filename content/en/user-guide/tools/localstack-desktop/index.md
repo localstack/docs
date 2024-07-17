@@ -18,7 +18,7 @@ LocalStack Desktop replaces the previous LocalStack Cockpit application. Cockpit
 ## Installation
 
 You can download LocalStack Desktop from our [web application](https://app.localstack.cloud/download).
-To install LocalStack Desktop, **Docker** is the only prerequisite. 
+To install LocalStack Desktop, **Docker** is the only prerequisite.
 
 ## Features
 
@@ -38,13 +38,11 @@ You can run commands within the LocalStack container by using our CLI
 
 <img src="localstack-desktop-terminal.png" alt="LocalStack Desktop cli interaction" title="Interact with the LocalStack container with a cli" width="900" />
 
-
 ### LocalStack Insights
 
 LocalStack Desktop provides quick access to your LocalStack logs for instant insights. See what's happening in details from the Logs tab.
 
 <img src="localstack-desktop-logs.png" alt="LocalStack Desktop Logs tab" title="Check your instance logs" width="900" />
-
 
 ### Resource browser
 

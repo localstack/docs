@@ -77,7 +77,7 @@ Before running the tests, add your Personal Access Token (PAT) to your HyperExec
 You can run the tests locally using the following command:
 
 {{< command >}}
-$ hyperexecute --user '<user-name>' --key '<HE-key>' --config he.yaml   
+$ hyperexecute --user '<user-name>' --key '<HE-key>' --config he.yaml
 {{< /command >}}
 
 Swap `<user-name>` and `<HE-key>` with your HyperExecute username and access key. You can find your access key in the HyperExecute Portal.

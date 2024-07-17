@@ -236,7 +236,7 @@ Now you can start another container for OpenSearch Dashboards, which is configur
 
 {{< command >}}
 docker inspect localstack-main | \
-	jq -r '.[0].NetworkSettings.Networks | to_entries | .[].value.IPAddress'
+ jq -r '.[0].NetworkSettings.Networks | to_entries | .[].value.IPAddress'
 # prints 172.22.0.2
 
 docker run --rm -p 5601:5601 \
@@ -336,7 +336,7 @@ $ curl -X PUT my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/my-
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing OpenSearch domains. 
+The LocalStack Web Application provides a Resource Browser for managing OpenSearch domains.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **OpenSearch Service** under the **Analytics** section.
 
 <img src="opensearch-resource-browser.png" alt="OpenSearch Resource Browser" title="OpenSearch Resource Browser" width="900" />
@@ -355,7 +355,7 @@ The Resource Browser allows you to perform the following actions:
 Internally, LocalStack makes use of the [OpenSearch Python client 2.x](https://github.com/opensearch-project/opensearch-py). The functionalities marked as deprecated in OpenSearch 1.x and subsequently removed in OpenSearch 2.x may not operate reliably when interacting with OpenSearch 1.x clusters through LocalStack. You can refer to the [compatibility documentation](https://github.com/opensearch-project/opensearch-py/blob/main/COMPATIBILITY.md) provided by the [OpenSearch Python client repository](https://github.com/opensearch-project/opensearch-py).
 
 AWS typically populates the `Endpoint` attribute of the cluster status only after the cluster is fully operational. In contrast, LocalStack provides the endpoint information immediately but retains `Processing = "true"` until the cluster initialization is complete.
-    
+
 The `CustomEndpointOptions` in LocalStack offers the flexibility to utilize arbitrary endpoint URLs, a feature that diverges from the constraints imposed by AWS.
 
 ## Troubleshooting

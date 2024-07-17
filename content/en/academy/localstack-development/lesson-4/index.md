@@ -15,10 +15,10 @@ In this video, we'll utilize Terraform to deploy AWS resources locally through L
 
 Here's a breakdown of the steps we'll take:
 
--   We'll create a `main.tf` file and then apply the Terraform configuration on LocalStack.
--   We'll demonstrate various configuration options for setting up the infrastructure for our application.
--   After applying Terraform, we'll inspect the output, showcasing deployed resources such as API URLs, ECS cluster name, and VPC ID.
--   Towards the end, we'll verify the deployment and resource creation using the Resource Browser.
+- We'll create a `main.tf` file and then apply the Terraform configuration on LocalStack.
+- We'll demonstrate various configuration options for setting up the infrastructure for our application.
+- After applying Terraform, we'll inspect the output, showcasing deployed resources such as API URLs, ECS cluster name, and VPC ID.
+- Towards the end, we'll verify the deployment and resource creation using the Resource Browser.
 
 Further reading:
 

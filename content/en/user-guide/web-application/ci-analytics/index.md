@@ -27,11 +27,11 @@ If you'd like to try it out, please [contact us](https://www.localstack.cloud/de
 
 ## Key Concepts
 
--   **CI Project**: It represents an application executing builds and tests in a Continuous Integration (CI) pipeline. This corresponds to a repository or CI workflow on platforms like GitHub or GitLab.
--   **CI Run**: It refers to a single CI build within a CI project. It typically corresponds to a single instance of a LocalStack container.
--   **CI Logs**: These are the log outputs from the LocalStack container during a CI run.
--   **CI Cloud Pod**: A Cloud Pod that records the state of a project at the end of a CI run, or at specific checkpoints during the run.
--   **CI Stack Insights**: This includes the Stack Insights session and associated data for a particular CI run.
+- **CI Project**: It represents an application executing builds and tests in a Continuous Integration (CI) pipeline. This corresponds to a repository or CI workflow on platforms like GitHub or GitLab.
+- **CI Run**: It refers to a single CI build within a CI project. It typically corresponds to a single instance of a LocalStack container.
+- **CI Logs**: These are the log outputs from the LocalStack container during a CI run.
+- **CI Cloud Pod**: A Cloud Pod that records the state of a project at the end of a CI run, or at specific checkpoints during the run.
+- **CI Stack Insights**: This includes the Stack Insights session and associated data for a particular CI run.
 
 ## Getting started
 
@@ -48,21 +48,21 @@ For practical testing, you can use an existing application that employs LocalSta
 
 To create a new CI project:
 
-1.  Go to the [**CI Projects**](https://app.localstack.cloud/ci) section in the LocalStack Web Application.
-2.  Click on **Create New Project**.
+1. Go to the [**CI Projects**](https://app.localstack.cloud/ci) section in the LocalStack Web Application.
+2. Click on **Create New Project**.
 
 <img src="create-new-project.png" alt="Create a new CI project" title="Create a new CI project" width="800" class="img-fluid shadow rounded" />
 <br><br>
 
 When creating a new CI project, fill in the following information:
 
--   **Project Name**: Enter a name for your CI project.
--   **Settings**: Adjust the default-enabled options as needed:
-    -   **Store LocalStack Logs**: Check this to save logs from your LocalStack container.
-    -   **Store LocalStack Traces**: Check this to save traces of your infrastructure tests.
-    -   **Track the State of Your CI Run in a Cloud Pod**: Check this to monitor the state of your LocalStack resources during the CI run.
--   **Cloud Pod Services**: Specify the AWS services for which you want to store infrastructure states. Select from the available options.
--   **Historical CI Runs**: Set the number of past CI runs to retain (default is 100).
+- **Project Name**: Enter a name for your CI project.
+- **Settings**: Adjust the default-enabled options as needed:
+  - **Store LocalStack Logs**: Check this to save logs from your LocalStack container.
+  - **Store LocalStack Traces**: Check this to save traces of your infrastructure tests.
+  - **Track the State of Your CI Run in a Cloud Pod**: Check this to monitor the state of your LocalStack resources during the CI run.
+- **Cloud Pod Services**: Specify the AWS services for which you want to store infrastructure states. Select from the available options.
+- **Historical CI Runs**: Set the number of past CI runs to retain (default is 100).
 
 The **Cloud Pod Name** field will auto-fill with the name of your Cloud Pod, which identifies the resources created by LocalStack for your CI project. Click **Create** to finalize your CI project.
 
@@ -70,7 +70,7 @@ The **Cloud Pod Name** field will auto-fill with the name of your Cloud Pod, whi
 
 Go to the GitHub Action workflow where you intend to monitor CI analytics for your application stack. If you haven't already set up a CI pipeline using LocalStack for infrastructure deployments and tests, follow the instructions in our [GitHub Actions documentation](https://docs.localstack.cloud/user-guide/ci/github-actions/).
 
-To link your CI pipeline to the project you created, use the `LS_CI_PROJECT` configuration variable. For instance, if your CI project is named `ls-platform-integration-tests`, include the line `LS_CI_PROJECT: ls-platform-integration-tests` in your GitHub Action workflow. 
+To link your CI pipeline to the project you created, use the `LS_CI_PROJECT` configuration variable. For instance, if your CI project is named `ls-platform-integration-tests`, include the line `LS_CI_PROJECT: ls-platform-integration-tests` in your GitHub Action workflow.
 
 Here's an example of a basic workflow configuration:
 

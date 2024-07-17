@@ -151,7 +151,6 @@ This task definition creates a CloudWatch Logs log group and log stream for the 
 Finally we launch an ECS service using the task definition above.
 This will create a number of containers in replica mode meaning they are distributed over the nodes of the cluster, or in the case of Fargate, over availability zones within the region of the cluster. To create a service, execute the following command:
 
-
 {{< command >}}
 $ awslocal ecs create-service --service-name myservice --cluster mycluster --task-definition myfamily --desired-count 1
 <disable-copy>
@@ -204,7 +203,7 @@ $ awslocal ecs create-service --service-name myservice --cluster mycluster --tas
 
 You should see a new docker container has been created, using the `ubuntu:latest` image, and running the infinite loop command:
 
-```
+```bash
 $ docker ps
 CONTAINER ID   IMAGE                       COMMAND                  CREATED         STATUS                   PORTS                                                                                              NAMES
 5dfeb9376391   ubuntu                      "sh -c 'while true; …"   3 minutes ago   Up 3 minutes                                                                                                                ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d
@@ -340,7 +339,6 @@ services:
 ```
 
 Alternatively, you can download the image from the private registry before using it or employ an [Initialization Hook](https://docs.localstack.cloud/references/init-hooks/) to install the Docker client and use these credentials to download the image.
-
 
 ## Running ECS on Kubernetes
 

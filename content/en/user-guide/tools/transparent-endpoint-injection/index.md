@@ -22,7 +22,7 @@ For example, the AWS SDK client for Python called boto3 needs to be configured u
 client = boto3.client("lambda", endpoint_url=os.environ['AWS_ENDPOINT_URL'])
 ```
 
-For [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html#ss-endpoints-sdk-compat) 
+For [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html#ss-endpoints-sdk-compat)
 (including boto3 since [1.28.0](https://github.com/boto/boto3/blob/develop/CHANGELOG.rst#L892)),
 this configuration happens automatically without any custom code changes.
 
@@ -51,7 +51,6 @@ Refer to the [DNS server configuration]({{< ref "dns-server#configuration" >}}) 
 {{< callout "warning" >}}
 Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack.
 {{< /callout >}}
-
 
 ## Self-signed certificates
 

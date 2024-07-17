@@ -13,7 +13,7 @@ type: lessons
 url: "/academy/localstack-101/getting-started/"
 ---
 
-There are several LocalStack installation methods to kickstart your cloud development journey. 
+There are several LocalStack installation methods to kickstart your cloud development journey.
 Discover multiple pathways to initiate your LocalStack experience:
 
 You'll understand the diverse approaches to LocalStack installation:
@@ -33,6 +33,3 @@ Further reading:
 - [What is AWS CLI local](https://docs.localstack.cloud/user-guide/integrations/aws-cli/)
 - [Pip Documentation](https://pypi.org/project/pip/)
 - [Docker Compose Docs](https://docs.docker.com/get-started/08_using_compose/)
-
-
-

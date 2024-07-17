@@ -37,11 +37,13 @@ client = boto3.client("lambda")
 ```
 
 Alternatively, if you prefer to (or need to) set the endpoints directly, you can use the environment variable `AWS_ENDPOINT_URL`,  which is available when executing user code (e.g., Lambda functions) in LocalStack:
+
 ```python3
 import os
 client = boto3.client("lambda", endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
 ...
 ```
 
-### Further Material:
+### Further Material
+
 * [localstack-python-client](https://github.com/localstack/localstack-python-client): small Python library with additional utils for interacting with LocalStack

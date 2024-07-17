@@ -105,7 +105,7 @@ You can use the [`CreateBackupSelection`](https://docs.aws.amazon.com/aws-backup
 {{< command >}}
 $ awslocal backup create-backup-selection \
     --backup-plan-id 9337aba3 \
-    --backup-selection file://backup-plan-resources.json 
+    --backup-selection file://backup-plan-resources.json
 {{< / command >}}
 
 Replace the `--backup-plan-id` value with the `BackupPlanId` value from the output of the previous command. The following output would be retrieved:

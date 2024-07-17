@@ -11,7 +11,9 @@ This page allows to manage users and assign licenses to them.
 <img src="users-licences.png" alt="Illustrative screenshot of the LocalStack web app showing the page 'Users & Licenses'" title="Users & Licences" width="900" />
 
 ## Managing Users
+
 ### Inviting Users to the Workspace
+
 New and existing LocalStack users can be invited to a workspace in the 'Invite Users' section.
 To invite a user, provide the user's name and email address.
 If the invitee does not have a LocalStack account yet, an invitation to create an account will be sent to the provided email address.
@@ -22,16 +24,19 @@ Administrators can invite users to a workspace, and can freely assign and unassi
 {{< /callout >}}
 
 ### Removing Users
+
 A user can be removed from a workspace by clicking the user entry in the list to show the user's details.
 This users detail view also shows the 'Remove User from Workspace' button.
 Removed users can be shown by enabling the 'Show Removed' toggle on the top right hand corner of the 'Workspace Members' section.
 Removed users can be reinvited into a workspace with the 'Resend Invitation' button.
 
 ### Managing User Permissions
+
 User permissions can be managed by clicking the user in the list.
 This will expand the users detailed settings where a predefined role or advanced permissions can be set.
 
 ## Managing Licenses
+
 A license is required to use advanced features of LocalStack.
 Licenses are contained in subscriptions and plans.
 The section 'Licenses' lists the active plan/subscription in the workspace and also shows how many licenses (and legacy API keys) are currently in use.
@@ -43,9 +48,8 @@ To unassign a user's license, again, find the user in the list and click the 'x'
 
 Changes to licenses take effect immediately and require no further action of the user.
 
-
-
 ## Moving from legacy API Keys to Licenses
+
 In the past, access to LocalStack and advanced features was granted to individual developers by providing them with a (now legacy) API key.
 
 With the recent change, now the recommended way is to assign a 'license' to a user instead.
@@ -64,6 +68,7 @@ The transition to auth tokens only affects _developer_ API keys. **CI keys** are
 {{< /callout >}}
 
 ### Migrating Users to Auth Tokens and Licenses
+
 To migrate users from legacy API keys, assign a license to them in the 'Workspace Members' list.
 The list also shows the legacy API key that is currently assigned to them.
 If a user already has a legacy API key assigned, assigning a license to them will not consume an additional license.
@@ -75,6 +80,6 @@ Once the license is assigned to the user, and the user set up their system to us
 A user can find their personal auth token either in the 'Auth Token' or in the 'Getting Started' section of the web app.
 
 ### Sunsetting legacy API keys
+
 In this transition period we continue to support legacy API keys.
 We will gradually phase them out over the next months, helping customers to smoothly transition over to the new license management.
-

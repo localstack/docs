@@ -104,6 +104,7 @@ In principle, LocalStack supports all operations. However, not all services and 
 |s3            |sns           |Bucket notification    |                                                            |Yes        |Yes   |
 
 ## Supported Policy Types
+
 | Permission Type             | Details                                             |
 |-----------------------------|-----------------------------------------------------|
 | **Identity Based Permissions** |                                                     |

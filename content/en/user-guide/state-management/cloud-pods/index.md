@@ -13,10 +13,10 @@ tags: ["Teams plan"]
 
 Cloud pods are persistent state snapshots of your LocalStack instance that can easily be stored, versioned, shared, and restored. Cloud Pods can be used for various purposes, such as:
 
--  Save and manage snapshots of active LocalStack instances.
--  Share state snapshots with your team to debug collectively.
--  Automate your testing pipelines by pre-seeding CI environments.
--  Create reproducible development and testing environments locally.
+- Save and manage snapshots of active LocalStack instances.
+- Share state snapshots with your team to debug collectively.
+- Automate your testing pipelines by pre-seeding CI environments.
+- Create reproducible development and testing environments locally.
 
 <img src="pods-ui.png" alt="Cloud Pods Web UI" title="Cloud Pods Web UI" width="800px" />
 
@@ -333,8 +333,8 @@ A remote is the location where Cloud Pods are stored. By default, Cloud Pod arti
 
 LocalStack provides two types of alternative remotes:
 
--   S3 bucket remote storage.
--   [ORAS](https://oras.land/) (OCI Registry as Storage) remote storage.
+- S3 bucket remote storage.
+- [ORAS](https://oras.land/) (OCI Registry as Storage) remote storage.
 
 Cloud Pods command-line interface (CLI) allows you to create, delete, and list remotes.
 
@@ -455,6 +455,7 @@ We advise to create a strong passphrase by using the `openssl` utility, e,g.:
 {{< command >}}
 $ openssl rand --base64 32
 # 3X03eU5pgoejObUR+Y8I4QjbjeGEKjDcmVFd0FU5pCg=
+
 {{< / command >}}
 
 Users should treat the generated passphrase as a secret and they are responsible for securely sharing it within the organization.
@@ -525,8 +526,8 @@ localstack.cli.exceptions.CLIError: Failed to create Cloud Pod sample-pod ❌ - 
 
 It would be good to check if you have outdated authentication credentials (bearer token from a previous LocalStack login) in the `remotes.yaml` file for cloud pods. You have two options to fix this:
 
-1.  Run another `localstack auth login` command.
-2.  Find the `remotes.yaml` file in the `<localstack_volume>` directory on your machine and delete the file, or at least remove the `"default"` entry from it.
+1. Run another `localstack auth login` command.
+2. Find the `remotes.yaml` file in the `<localstack_volume>` directory on your machine and delete the file, or at least remove the `"default"` entry from it.
 
 Additionally, if there is a `~/.localstack/auth.json` file in your home directory, delete it as well if it still exists.
 
@@ -540,8 +541,8 @@ lsmulti-localstack  | 2024-03-15T13:06:16.358  WARN --- [functhread31] l.p.remot
 
 To fix this, clear the LocalStack cache directory and restart the LocalStack instance before trying to save the Cloud Pod again. You can find the cache directories at:
 
--   `/Users/localstack/Library/Caches/localstack`
--   `/Users/localstack/Library/Caches/localstack-cli`
+- `/Users/localstack/Library/Caches/localstack`
+- `/Users/localstack/Library/Caches/localstack-cli`
 
 Adjust the path based on your operating system.
 

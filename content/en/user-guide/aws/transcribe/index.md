@@ -8,7 +8,7 @@ persistence: supported
 
 ## Introduction
 
-Transcribe is a service provided by Amazon Web Services (AWS) that offers automatic speech recognition (ASR) capabilities. It enables developers to convert spoken language into written text, making it valuable for a wide range of applications, from transcription services to voice analytics. 
+Transcribe is a service provided by Amazon Web Services (AWS) that offers automatic speech recognition (ASR) capabilities. It enables developers to convert spoken language into written text, making it valuable for a wide range of applications, from transcription services to voice analytics.
 
 LocalStack allows you to use the Transcribe APIs for offline speech-to-text jobs in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_transcribe/), which provides information on the extent of Transcribe integration with LocalStack.
 
@@ -48,7 +48,7 @@ You can list the transcription jobs using the [`ListTranscriptionJobs`](https://
 
 {{< command >}}
 $ awslocal transcribe list-transcription-jobs
-<disable-copy> 
+<disable-copy>
 {
     "TranscriptionJobSummaries": [
         {
@@ -69,7 +69,7 @@ After the job is complete, the transcript can be retrieved from the S3 bucket us
 
 {{< command >}}
 $ awslocal transcribe get-transcription-job --transcription-job example
-<disable-copy> 
+<disable-copy>
 {
     "TranscriptionJob": {
         "TranscriptionJobName": "example",

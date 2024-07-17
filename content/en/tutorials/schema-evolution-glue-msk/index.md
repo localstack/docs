@@ -167,7 +167,7 @@ In our root pom, we configure the `producer` and the `consumer` module, some sha
 </project>
 ```
 
-While the root pom is a bit lengthy, the `pom.xml` files of the two modules are quite simple. They only reference the root pom, activate the `avro-maven-plugin`, and define a main class (we'll go into detail on the actual Java code in [the section below](#implement-a-producer-and-consumer)).
+While the root pom is a bit lengthy, the `pom.xml` files of the two modules are quite simple. They only reference the root pom, activate the `avro-maven-plugin`, and define a main class (we'll go into detail on the actual Java code in [the section below](#implementing-a-producer-and-consumer)).
 
 Here is what the producer's `pom.xml` looks like:
 
@@ -478,6 +478,7 @@ public void startConsumer() {
 ```
 
 ## Setting up the infrastructure
+
 Now that the initial coding is done, we can give it a try. Let's start LocalStack:
 
 ```bash
@@ -589,13 +590,16 @@ mvn -pl producer exec:java -Dexec.args="--bootstrap-servers localhost:4511"
 Once the producer is running, we can observe the different [steps of the producer as described in the intro](#integration-description):
 
 1. Before sending a record, the producer validates that the schema, which it is using to serialize its records, is valid:
+
    ```plaintext
    ...
    [GlueSchemaRegistrySerializerFactory][DEBUG] Returning Avro serializer instance from GlueSchemaRegistrySerializerFactory
    [AWSSchemaRegistryClient][DEBUG] Getting Schema Version Id for : schemaDefinition = {"type":"record","name":"UnicornRideRequest","namespace":"cloud.localstack.demos.gluemsk.schema","fields":[{"name":"request_id","type":"int","doc":"customer request id"},{"name":"pickup_address","type":"string","doc":"customer pickup address"},{"name":"destination_address","type":"string","doc":"customer destination address"},{"name":"ride_fare","type":"float","doc":"ride fare amount (USD)"},{"name":"ride_duration","type":"int","doc":"ride duration in minutes"},{"name":"preferred_unicorn_color","type":{"type":"enum","name":"UnicornPreferredColor","symbols":["WHITE","BLACK","RED","BLUE","GREY"]},"default":"WHITE"},{"name":"recommended_unicorn","type":{"type":"record","name":"RecommendedUnicorn","fields":[{"name":"unicorn_id","type":"int","doc":"recommended unicorn id"},{"name":"color","type":{"type":"enum","name":"unicorn_color","symbols":["WHITE","RED","BLUE"]}},{"name":"stars_rating","type":["null","int"],"doc":"unicorn star ratings based on customers feedback","default":null}]}},{"name":"customer","type":{"type":"record","name":"Customer","fields":[{"name":"customer_account_no","type":"int","doc":"customer account number"},{"name":"first_name","type":"string"},{"name":"middle_name","type":["null","string"],"default":null},{"name":"last_name","type":"string"},{"name":"email_addresses","type":["null",{"type":"array","items":"string"}]},{"name":"customer_address","type":"string","doc":"customer address"},{"name":"mode_of_payment","type":{"type":"enum","name":"ModeOfPayment","symbols":["CARD","CASH"]},"default":"CARD"},{"name":"customer_rating","type":["null","int"],"default":null}]}}]}, schemaName = unicorn-ride-request-schema-avro, dataFormat = AVRO
    ...
    ```
+
 2. Once the schema is known to be valid, the producer serializes the record, compresses it, and sends it to the Kafka cluster.
+
    ```plaintext
    ...
    [GlueSchemaRegistryKafkaSerializer][DEBUG] Schema Version Id received from the from schema registry: f95edc4b-778d-4f65-b23e-7de41c5b4e53
@@ -605,19 +609,24 @@ Once the producer is running, we can observe the different [steps of the produce
    [Producer][INFO ] {"request_id": 1, "pickup_address": "Melbourne, Victoria, Australia", "destination_address": "Sydney, NSW, Aus", "ride_fare": 1200.5, "ride_duration": 120, "preferred_unicorn_color": "WHITE", "recommended_unicorn": {"unicorn_id": 2, "color": "WHITE", "stars_rating": 5}, "customer": {"customer_account_no": 1001, "first_name": "Dummy", "middle_name": null, "last_name": "User", "email_addresses": ["demo@example.com"], "customer_address": "Flinders Street Station", "mode_of_payment": "CARD", "customer_rating": 5}}
    ...
    ```
+
    Now, the records sent by the producer are managed by the Kafka cluster and are waiting for a consumer to pick them up. We can start the consumer with the same bootstrap server address as the producer:
+
    ```bash
    mvn -pl consumer exec:java -Dexec.args="--bootstrap-servers localhost:4511"
    ```
+
    In the logs of the consumer, we can now observe the [steps of the consumer as described in the intro](#integration-description):
 
 3. The serialized and compressed record is read by the consumers:
+
    ```plaintext
    [NetworkClient][DEBUG] [Consumer clientId=consumer-unicorn.riderequest.consumer-1, groupId=unicorn.riderequest.consumer] Sending FETCH request with header RequestHeader(apiKey=FETCH, apiVersion=12, clientId=consumer-unicorn.riderequest.consumer-1, correlationId=10) and timeout 30000 to node 0: FetchRequestData(clusterId=null, replicaId=-1, maxWaitMs=500, minBytes=1, maxBytes=52428800, isolationLevel=0, sessionId=0, sessionEpoch=0, topics=[FetchTopic(topic='unicorn-ride-request-topic', partitions=[FetchPartition(partition=0, currentLeaderEpoch=0, fetchOffset=900, lastFetchedEpoch=-1, logStartOffset=-1, partitionMaxBytes=1048576)])], forgottenTopicsData=[], rackId='')
    [NetworkClient][DEBUG] [Consumer clientId=consumer-unicorn.riderequest.consumer-1, groupId=unicorn.riderequest.consumer] Received FETCH response from node 0 for request with header RequestHeader(apiKey=FETCH, apiVersion=12, clientId=consumer-unicorn.riderequest.consumer-1, correlationId=10): FetchResponseData(throttleTimeMs=0, errorCode=0, sessionId=2057133662, responses=[FetchableTopicResponse(topic='unicorn-ride-request-topic', partitionResponses=[FetchablePartitionResponse(partition=0, errorCode=0, highWatermark=1000, lastStableOffset=1000, logStartOffset=0, divergingEpoch=EpochEndOffset(epoch=-1, endOffset=-1), currentLeader=LeaderIdAndEpoch(leaderId=-1, leaderEpoch=-1), snapshotId=SnapshotId(endOffset=-1, epoch=-1), abortedTransactions=null, preferredReadReplica=-1, recordSet=MemoryRecords(size=17141, buffer=java.nio.HeapByteBuffer[pos=0 lim=17141 cap=17144]))])])
    ```
 
 4. The consumer requests the schema from the schema registry, and uses the schema to decompress and deserialize the record.
+
    ```plaintext
    [request][DEBUG] Sending Request: DefaultSdkHttpFullRequest(httpMethod=POST, protocol=https, host=localhost.localstack.cloud, port=4566, encodedPath=/, headers=[amz-sdk-invocation-id, Content-Length, Content-Type, User-Agent, X-Amz-Target], queryParameters=[])
    ...
@@ -656,12 +665,15 @@ We create the new producer by executing the following steps:
 
 - Copy the `producer` directory and rename it to `producer-2`.
 - Set a new artifact ID in the `pom.xml` of the module:
+
   ```xml
     ...
     <artifactId>producer-2</artifactId>
     ...
   ```
+
 - Add the new module to the root `pom.xml`:
+
   ```xml
   <modules>
     <module>producer</module>
@@ -669,13 +681,15 @@ We create the new producer by executing the following steps:
     <module>consumer</module>
   </modules>
   ```
+
 - Create a new version of the schema:
   - Rename the schema to `unicorn_ride_request_v2.avsc`.
   - In the schema, remove the previously required field `customer`:
+
     ```bash
     $ diff -u producer/src/main/resources/avro/unicorn_ride_request_v1.avsc producer-2/src/main/resources/avro/unicorn_ride_request_v2.avsc
-    --- producer/src/main/resources/avro/unicorn_ride_request_v1.avsc	2022-05-13 08:27:08.219354922 +0200
-    +++ producer-2/src/main/resources/avro/unicorn_ride_request_v2.avsc	2022-05-13 08:27:08.219354922 +0200
+    --- producer/src/main/resources/avro/unicorn_ride_request_v1.avsc 2022-05-13 08:27:08.219354922 +0200
+    +++ producer-2/src/main/resources/avro/unicorn_ride_request_v2.avsc 2022-05-13 08:27:08.219354922 +0200
     @@ -20,23 +20,6 @@
             {"name": "stars_rating", "type": ["null", "int"], "default": null, "doc": "unicorn star ratings based on customers feedback"}
             ]
@@ -701,13 +715,17 @@ We create the new producer by executing the following steps:
     ]
     }
     ```
+
     This change is `BACKWARD` compatible, because an updated consumer can read records for both - the current and the previous - records (new consumers don't need the customer data, they don't care if it's present or not).
 - Re-generate the Java classes for the schema:
+
   ```bash
   mvn clean generate-sources
   ```
+
 - Once the classes have been generatated, the producer code needs to be adjusted (remove the usage of `setCustomer` in the producer's `getRecord`, since the method does not exist anymore).
 - Configure the producer to automatically register its schema version in case it's not yet registered by setting the additional property `AWSSchemaRegistryConstants.SCHEMA_AUTO_REGISTRATION_SETTING` to `true`:
+
   ```java
       ...
       props.put(AWSSchemaRegistryConstants.COMPRESSION_TYPE, AWSSchemaRegistryConstants.COMPRESSION.ZLIB.name());
@@ -742,12 +760,15 @@ The complete module can be found in our [samples repository (along with the rest
 Similar to the previous scenario, we create a new producer by executing the following steps:
 - Copy the `producer-2` directory and rename it to `producer-3`.
 - Set a new artifact ID in the `pom.xml` of the module:
+
   ```xml
     ...
     <artifactId>producer-3</artifactId>
     ...
   ```
+
 - Add the new module to the root `pom.xml`:
+
   ```xml
   <modules>
     <module>producer</module>
@@ -756,13 +777,15 @@ Similar to the previous scenario, we create a new producer by executing the foll
     <module>consumer</module>
   </modules>
   ```
+
 - Create a new version of the schema:
   - Rename the schema to `unicorn_ride_request_v3.avsc`.
   - In the schema, add a new required field `unicorn_food`:
+
     ```bash
     $ diff -u producer-2/src/main/resources/avro/unicorn_ride_request_v2.avsc producer-3/src/main/resources/avro/unicorn_ride_request_v3.avsc
-    --- producer-2/src/main/resources/avro/unicorn_ride_request_v2.avsc	2022-05-13 08:27:08.219354922 +0200
-    +++ producer-3/src/main/resources/avro/unicorn_ride_request_v3.avsc	2022-05-13 08:27:08.219354922 +0200
+    --- producer-2/src/main/resources/avro/unicorn_ride_request_v2.avsc 2022-05-13 08:27:08.219354922 +0200
+    +++ producer-3/src/main/resources/avro/unicorn_ride_request_v3.avsc 2022-05-13 08:27:08.219354922 +0200
     @@ -20,6 +20,17 @@
             {"name": "stars_rating", "type": ["null", "int"], "default": null, "doc": "unicorn star ratings based on customers feedback"}
             ]
@@ -782,12 +805,16 @@ Similar to the previous scenario, we create a new producer by executing the foll
     ]
     }
     ```
+
     This change is _not_ `BACKWARD` compatible, because an updated consumer cannot read records for both - the current and the previous - records (new consumers would expect the `unicorn_food`, which is not present in old records).
 - Re-generate the Java classes for the schema:
+
   ```bash
   mvn clean generate-sources
   ```
+
 - Once the classes have been generated, the producer code needs to be adjusted (set the new required `unicorn_food` in the producer's `getRecord`):
+
   ```java
   ...
           .setStarsRating(5).build())
@@ -822,7 +849,7 @@ com.amazonaws.services.schemaregistry.exception.AWSSchemaRegistryException: Regi
 
 We've seen how the producer's schema evolution works in the previous scenarios. Now, we'll take a closer look at our consumer.
 
-In our [first schema evolution scenario](#1-producer-registering-a-new-schema-version), the producer registered a new version of the schema and afterwards published records with that schema. The `BACKWARD` schema compatibility guarantees that updated consumers can read older records, i.e., the consumers need to be updated before the producers.
+In our [first schema evolution scenario](#producer-registering-a-new-schema-version), the producer registered a new version of the schema and afterwards published records with that schema. The `BACKWARD` schema compatibility guarantees that updated consumers can read older records, i.e., the consumers need to be updated before the producers.
 
 Therefore, our old consumer will fail in consuming these records, because it is not compatible with the new schema registered by the new producer yet:
 
@@ -854,12 +881,15 @@ Finally, we will update our consumer such that it is compatible to the new versi
 Similar to the previous producer scenarios, we create a new consumer by executing the following steps:
 - Copy the `consumer` directory and rename it to `consumer-2`.
 - Set a new artifact ID in the `pom.xml` of the module:
+
   ```xml
     ...
     <artifactId>consumer-2</artifactId>
     ...
   ```
+
 - Add the new module to the root `pom.xml`:
+
   ```xml
   <modules>
     <module>producer</module>
@@ -869,8 +899,10 @@ Similar to the previous producer scenarios, we create a new consumer by executin
     <module>consumer-2</module>
   </modules>
   ```
+
 - Replace the `unicorn_ride_request_v1.avsc` with the new version used by `producer-2` (`unicorn_ride_request_v2.avsc`).
 - Re-generate the Java classes for the schema:
+
   ```bash
   mvn clean generate-sources
   ```

@@ -26,7 +26,6 @@ It re-starts the process inside the running container, not the container itself.
 However, you may lose LocalStack state if you do not use persistence.
 {{</callout>}}
 
-
 {{< figure src="extensions-manager.png" >}}
 
 ## Using the extensions CLI
@@ -104,6 +103,7 @@ The value is a comma-separated list of extensions directives that can also be sp
 If you want to use the `file://` directive, the distribution file needs to be mounted into the container.
 
 In a docker-compose file, this would look something like:
+
 ```yaml
 version: "3.8"
 
@@ -133,18 +133,23 @@ Since LocalStack extensions are essentially just Python pip packages, the `exten
 An example project could look something like this:
 
 * `extensions.txt`
-  ```
+
+  ```text
   localstack-extension-mailhog
   git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-aws-replicator&subdirectory=aws-replicator
   ```
-*  Project layout:
+
+* Project layout:
+
     ```console
     extension-install
     ├── conf.d
     │   └── extensions.txt
     └── docker-compose.yml
     ```
+
 * `docker-compose.yaml`
+
     ```yaml
     version: "3.8"
 

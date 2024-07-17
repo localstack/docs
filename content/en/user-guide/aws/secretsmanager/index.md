@@ -104,7 +104,7 @@ $ awslocal secretsmanager get-secret-value \
 {{</command>}}
 
 The following output would be retrieved:
- 
+
 {{<command>}}
 {
     "ARN": "arn:aws:secretsmanager:us-east-1:000000000000:secret:test-secret-pyfjVP",
@@ -165,7 +165,7 @@ Execute the following command:
 $ awslocal secretsmanager rotate-secret \
     --secret-id MySecret \
     --rotation-lambda-arn arn:aws:lambda:us-east-1:000000000000:function:my-rotation-function \
-    --rotation-rules "{\"ScheduleExpression\": \"cron(0 16 1,15 * ? *)\", \"Duration\": \"2h\"}"
+    --rotation-rules "{\"ScheduleExpression\": \"cron(0 16 1,15 *?*)\", \"Duration\": \"2h\"}"
 {{</command>}}
 
 ## Resource Browser

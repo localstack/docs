@@ -129,7 +129,6 @@ $ awslocal sqs create-queue --queue-name recovery-queue
 }
 {{< /command >}}
 
-
 Configure `dead-letter-queue` to be a DLQ for `input-queue`:
 {{< command >}}
 $ awslocal sqs set-queue-attributes \
@@ -151,7 +150,8 @@ $ awslocal sqs receive-message --visibility-timeout 0 --queue-url http://sqs.us-
 {{< /command >}}
 
 In the localstack logs you should see something like the following line, indicating the message was moved to the DLQ:
-```
+
+```bash
 2024-01-24T13:51:16.824 DEBUG --- [   asgi_gw_1] l.services.sqs.models      : message SqsMessage(id=5be95a04-93f0-4b9d-8bd5-6695f34758cf,group=None) has been received 2 times, marking it for DLQ
 ```
 
@@ -194,7 +194,6 @@ $ awslocal sqs receive-message --queue-url http://sqs.us-east-1.localhost.locals
 }
 {{< /command >}}
 
-
 ## SQS Query API
 
 The [SQS Query API](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html), provides SQS Queue URLs as endpoints, enabling direct HTTP requests to the queues.
@@ -213,14 +212,14 @@ You will see the following output:
 ```xml
 <?xml version='1.0' encoding='utf-8'?>
 <SendMessageResponse
-	xmlns="http://queue.amazonaws.com/doc/2012-11-05/">
-	<SendMessageResult>
-		<MD5OfMessageBody>c6be4e95a26409675447367b3e79f663</MD5OfMessageBody>
-		<MessageId>466144ab-1d03-4ec5-8d70-97535b2957fb</MessageId>
-	</SendMessageResult>
-	<ResponseMetadata>
-		<RequestId>JU40AF5GORK0WSR75MOY3VNQ1KZ3TAI7S5KAJYGK9C5P4W4XKMGF</RequestId>
-	</ResponseMetadata>
+ xmlns="http://queue.amazonaws.com/doc/2012-11-05/">
+ <SendMessageResult>
+  <MD5OfMessageBody>c6be4e95a26409675447367b3e79f663</MD5OfMessageBody>
+  <MessageId>466144ab-1d03-4ec5-8d70-97535b2957fb</MessageId>
+ </SendMessageResult>
+ <ResponseMetadata>
+  <RequestId>JU40AF5GORK0WSR75MOY3VNQ1KZ3TAI7S5KAJYGK9C5P4W4XKMGF</RequestId>
+ </ResponseMetadata>
 </SendMessageResponse>
 ```
 
@@ -237,15 +236,15 @@ The response will be in JSON format:
 
 ```json
 {
-	"SendMessageResponse": {
-		"SendMessageResult": {
-			"MD5OfMessageBody": "c6be4e95a26409675447367b3e79f663",
-			"MessageId": "748297f2-4abd-4ec2-afc0-4d1a497fe604"
-		},
-		"ResponseMetadata": {
-			"RequestId": "XEA5L5AX16RTPET25U3TIRIASN6KNIT820WIT3EY7RCH7164W68T"
-		}
-	}
+ "SendMessageResponse": {
+  "SendMessageResult": {
+   "MD5OfMessageBody": "c6be4e95a26409675447367b3e79f663",
+   "MessageId": "748297f2-4abd-4ec2-afc0-4d1a497fe604"
+  },
+  "ResponseMetadata": {
+   "RequestId": "XEA5L5AX16RTPET25U3TIRIASN6KNIT820WIT3EY7RCH7164W68T"
+  }
+ }
 }
 ```
 
@@ -331,9 +330,9 @@ When utilizing the SQS Query API in Lambdas, we suggest configuring `SQS_ENDPOIN
 
 When your code run within different containers like ECS tasks or your custom ones, it's advisable to establish your Docker network setup. You can follow these steps:
 
-1.  Override the `LOCALSTACK_HOST` variable as outlined in our [network troubleshooting guide]({{< ref "endpoint-url" >}}).
-2.  Ensure that your containers can resolve `LOCALSTACK_HOST` to the LocalStack container within the Docker network.
-3.  We recommend employing `SQS_ENDPOINT_STRATEGY=path`, which generates queue URLs in the format `http://<LOCALSTACK_HOST>/queue/...`.
+1. Override the `LOCALSTACK_HOST` variable as outlined in our [network troubleshooting guide]({{< ref "endpoint-url" >}}).
+2. Ensure that your containers can resolve `LOCALSTACK_HOST` to the LocalStack container within the Docker network.
+3. We recommend employing `SQS_ENDPOINT_STRATEGY=path`, which generates queue URLs in the format `http://<LOCALSTACK_HOST>/queue/...`.
 
 ## Developer endpoints
 
@@ -352,12 +351,12 @@ The endpoint ignores any additional parameters from the `ReceiveMessage` operati
 
 You can call the `/_aws/sqs/messages` endpoint in two different ways:
 
-1.  Using the query argument `QueueUrl`, like this:
+1. Using the query argument `QueueUrl`, like this:
     {{< command >}}
     $ http://localhost.localstack.cloud:4566/_aws/sqs/messages?QueueUrl=http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue
-    {{< / command >}} 
-    
-2.  Utilizing the path-based endpoint, as shown in this example:
+    {{< / command >}}
+
+2. Utilizing the path-based endpoint, as shown in this example:
     {{< command >}}
     $ http://localhost.localstack.cloud:4566/_aws/sqs/messages/us-east-1/000000000000/my-queue
     {{< / command >}}
@@ -641,4 +640,4 @@ The following code snippets and sample applications provide practical examples o
 
 ## Current Limitations
 
-* Updating a queue's `MessageRetentionPeriod` currently has no effect on existing messages
+- Updating a queue's `MessageRetentionPeriod` currently has no effect on existing messages

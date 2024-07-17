@@ -20,6 +20,7 @@ Crossplane AWS provider supports a comprehensive set of some [900+ resource type
 In the following, we provide a step-by-step guide for installing Crossplane in a local test environment, and creating AWS resources (S3 bucket, SQS queue) in LocalStack via Crossplane.
 
 ### Prerequisites
+
 * LocalStack running in local Docker
 * A local Kubernetes cluster:
   * We can use the [embedded Kubernetes cluster](https://docs.docker.com/desktop/kubernetes) that ships with modern versions of Docker Desktop (can be easily enabled in the Docker settings)

@@ -48,7 +48,6 @@ Resources:
 {{< /tab >}}
 {{< /tabpane >}}
 
-
 ### Deploy the CloudFormation Stack
 
 You can deploy the CloudFormation stack using the AWS CLI with the [`deploy`](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/deploy/index.html) command. The `deploy` command creates and updates CloudFormation stacks. Run the following command to deploy the stack:
@@ -273,7 +272,6 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::StepFunctions::StateMachine            |      ✅ |      ✅ |      ✅ |
 | AWS::Timestream::Database                   |      ✅ |      ✅ |      - |
 | AWS::Timestream::Table                      |      ✅ |      ✅ |      - |
-
 
 #### Pro image
 

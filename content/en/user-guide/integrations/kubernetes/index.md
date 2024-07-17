@@ -47,9 +47,9 @@ Please refer to the [Quick Start guide](https://helm.sh/docs/intro/quickstart/) 
 
 Some useful Helm client commands are:
 
--   View available charts: `helm search repo`
--   Install a chart: `helm install <name> localstack/<chart>`
--   Upgrade your application: `helm upgrade`
+- View available charts: `helm search repo`
+- Install a chart: `helm install <name> localstack/<chart>`
+- Upgrade your application: `helm upgrade`
 
 ## LocalStack on Kubernetes (`l8k`)
 
@@ -59,13 +59,13 @@ The [`localstack-on-k8s`](https://github.com/localstack/localstack-on-k8s) sampl
 
 This sample requires the following tools installed on your machine:
 
-* Python 3.7+
-* [`awslocal`](https://github.com/localstack/awscli-local)
-* [Docker](https://www.docker.com)
-* [Git](https://git-scm.com)
-* [Helm](https://helm.sh)
-* [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl)
-* [Serverless](https://www.npmjs.com/package/serverless)
+- Python 3.7+
+- [`awslocal`](https://github.com/localstack/awscli-local)
+- [Docker](https://www.docker.com)
+- [Git](https://git-scm.com)
+- [Helm](https://helm.sh)
+- [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl)
+- [Serverless](https://www.npmjs.com/package/serverless)
 
 ### Clone the sample repository
 

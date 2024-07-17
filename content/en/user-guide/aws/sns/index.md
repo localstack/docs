@@ -152,7 +152,7 @@ $ awslocal sns unsubscribe --subscription-arn "arn:aws:sns:us-east-1:00000000000
 ## Developer endpoints
 
 LocalStack’s SNS implementation offers additional endpoints for developers located at `/_aws/sns`.
-These endpoints provide the ability to access different SNS internals, like Platform Endpoint messages which are not sent to those platforms, or Subscription Tokens which you might not be able to retrieve otherwise. 
+These endpoints provide the ability to access different SNS internals, like Platform Endpoint messages which are not sent to those platforms, or Subscription Tokens which you might not be able to retrieve otherwise.
 
 ### Platform Endpoint messages
 
@@ -161,7 +161,7 @@ To learn more about SNS mobile push notifications, refer to the [AWS documentati
 
 You can access these messages in JSON format through `GET /_aws/sns/platform-endpoint-messages`.
 To retrieve specific messages, you can use query parameters to filter by `accountId`, `region`, and `endpointArn`.
-You can also call `DELETE /_aws/sns/platform-endpoint-messages` to clear the messages. 
+You can also call `DELETE /_aws/sns/platform-endpoint-messages` to clear the messages.
 
 #### Query parameters
 
@@ -176,7 +176,7 @@ You can also call `DELETE /_aws/sns/platform-endpoint-messages` to clear the mes
 | Attribute | Description |
 | - | - |
 | `platform_endpoint_messages` | Contains endpoints ARN as field names. Each endpoint will have its messages in an Array. |
-| `region` | The region of the endpoints and messages. | 
+| `region` | The region of the endpoints and messages. |
 
 <br>
 
@@ -186,6 +186,7 @@ In this example, we will create a platform endpoint in SNS and publish a message
 $ awslocal sns create-platform-application --name app-test --platform APNS --attributes {}
 {{< /command >}}
 An example response is shown below:
+
 ```json
 {
     "PlatformApplicationArn": "arn:aws:sns:us-east-1:000000000000:app/APNS/app-test"
@@ -196,6 +197,7 @@ Using the `PlatformApplicationArn` from the previous call:
 {{< command >}}
 $ awslocal sns create-platform-endpoint --platform-application-arn "arn:aws:sns:us-east-1:000000000000:app/APNS/app-test" --token my-fake-token
 {{< /command >}}
+
 ```json
 {
     "EndpointArn": "arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944"
@@ -207,6 +209,7 @@ Publish a message to the platform endpoint:
 {{< command >}}
 $ awslocal sns publish --target-arn "arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944" --message '{"APNS_PLATFORM": "{\"aps\": {\"content-available\": 1}}"}' --message-structure json
 {{< /command >}}
+
 ```json
 {
     "MessageId": "ed501a7a-caab-45aa-a941-2fcc64b5c227"
@@ -218,6 +221,7 @@ Retrieve the messages published to the platform endpoint using `cURL`:
 {{< command >}}
 $ curl "http://localhost:4566/_aws/sns/platform-endpoint-messages" | jq .
 {{< /command >}}
+
 ```json
 {
   "platform_endpoint_messages": {
@@ -235,7 +239,6 @@ $ curl "http://localhost:4566/_aws/sns/platform-endpoint-messages" | jq .
 }
 ```
 
-
 With those same filters, you can reset the saved messages at `DELETE /_aws/sns/platform-endpoint-messages`. Run the following command to reset the saved messages:
 
 {{< command >}}
@@ -245,6 +248,7 @@ We can now check that the messages have been properly deleted:
 {{< command >}}
 $ curl "http://localhost:4566/_aws/sns/platform-endpoint-messages" | jq .
 {{< /command >}}
+
 ```json
 {
   "platform_endpoint_messages": {},
@@ -274,7 +278,7 @@ You can also call `DELETE /_aws/sns/sms-messages` to clear the messages.
 | Attribute | Description |
 | - | - |
 | `sms_messages` | Contains phone numbers as field names. Each phone number will have its messages in an Array. |
-| `region` | The region from where the messages were sent. | 
+| `region` | The region from where the messages were sent. |
 
 <br>
 
@@ -286,6 +290,7 @@ Publish a message to a phone number:
 $ awslocal sns publish --phone-number "" --message "Hello World!"
 {{< /command >}}
 An example response is shown below:
+
 ```json
 {
     "MessageId": "9ce56934-dcc4-45f5-ba40-13691329fc67"
@@ -297,6 +302,7 @@ Retrieve the message published using `cURL` and `jq`:
 {{< command >}}
 $ curl "http://localhost:4566/_aws/sns/sms-messages" | jq .
 {{< /command >}}
+
 ```json
 {
   "sms_messages": {
@@ -328,6 +334,7 @@ We can now check that the messages have been properly deleted:
 {{< command >}}
 $ curl "http://localhost:4566/_aws/sns/sms-messages" | jq .
 {{< /command >}}
+
 ```json
 {
   "sms_messages": {},
@@ -342,7 +349,7 @@ In case of email and HTTP(S) subscriptions, a special message is sent to the sub
 However, when working with external integrations, the link sent will most probably point to your local environment, which won't be accessible from the external integration to confirm.
 
 To still be able to test your external integrations, we expose the subscription tokens so that you can manually confirm the subscription.
-The subscription tokens are never deleted from memory, because they can be re-used. To manually confirm the subscription, you will use [`ConfirmSubscription`](https://docs.aws.amazon.com/sns/latest/api/API_ConfirmSubscription.html). 
+The subscription tokens are never deleted from memory, because they can be re-used. To manually confirm the subscription, you will use [`ConfirmSubscription`](https://docs.aws.amazon.com/sns/latest/api/API_ConfirmSubscription.html).
 
 To learn more about confirming subscriptions, refer to the [AWS documentation](https://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.confirm.html).
 
@@ -359,7 +366,7 @@ You can access the subscription tokens in JSON format through `GET /_aws/sns/sub
 | Attribute | Description |
 | - | - |
 | `subscription_token` | The Subscription token to be used with `ConfirmSubscription`. |
-| `subscription_arn` | The Subscription ARN provided. | 
+| `subscription_arn` | The Subscription ARN provided. |
 
 <br>
 
@@ -370,15 +377,18 @@ Create an SNS topic, and create a subscription to a external HTTP SNS integratio
 {{< command >}}
 awslocal sns create-topic --name "test-external-integration"
 {{< /command >}}
+
 ```json
 {
     "TopicArn": "arn:aws:sns:us-east-1:000000000000:test-external-integration"
 }
 ```
+
 We now create an HTTP SNS subscription to an external endpoint:
 {{< command >}}
 awslocal sns subscribe --topic-arn "arn:aws:sns:us-east-1:000000000000:test-external-integration" --protocol https --notification-endpoint "https://api.opsgenie.com/v1/json/amazonsns?apiKey=b13fd59a-9" --return-subscription-arn
 {{< /command >}}
+
 ```json
 {
     "SubscriptionArn": "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8"
@@ -389,6 +399,7 @@ Now, we can check the `PendingConfirmation` status of our subscription, showing 
 {{< command >}}
 awslocal sns get-subscription-attributes --subscription-arn "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8"
 {{< /command >}}
+
 ```json
 {
     "Attributes": {
@@ -408,6 +419,7 @@ To manually confirm the subscription, we will fetch its token with our developer
 {{< command >}}
 curl "http://localhost:4566/_aws/sns/subscription-tokens/arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8" | jq .
 {{< /command >}}
+
 ```json
 {
   "subscription_token": "75732d656173742d312f3b875fb03b875fb03b875fb03b875fb03b875fb03b87",
@@ -419,6 +431,7 @@ We can now use this token to manually confirm the subscription:
 {{< command >}}
 awslocal sns confirm-subscription --topic-arn "arn:aws:sns:us-east-1:000000000000:test-external-integration" --token 75732d656173742d312f3b875fb03b875fb03b875fb03b875fb03b875fb03b87
 {{< /command >}}
+
 ```json
 {
     "SubscriptionArn": "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8"
@@ -429,6 +442,7 @@ We can now finally verify the subscription has been confirmed:
 {{< command >}}
 awslocal sns get-subscription-attributes --subscription-arn "arn:aws:sns:us-east-1:000000000000:test-external-integration:c3ab47f3-b964-461d-84eb-903d8765b0c8"
 {{< /command >}}
+
 ```json
 {
     "Attributes": {

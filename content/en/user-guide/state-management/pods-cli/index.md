@@ -98,8 +98,8 @@ To save and load the state locally, you can use the command in the `localstack s
 $ localstack pod save my-pod
 {{< / command >}}
 
-The above command generates a new version of `my-pod` and uploads it on the LocalStack platform. 
-When pushing an already existing pod, a new version is created and subsequently uploaded to the platform. 
+The above command generates a new version of `my-pod` and uploads it on the LocalStack platform.
+When pushing an already existing pod, a new version is created and subsequently uploaded to the platform.
 
 Users also have the option to select a specific subset of AWS services they want to include in the new Cloud Pod version using the `--services` option.
 
@@ -146,10 +146,11 @@ Options:
 </disable-copy>
 {{< / command >}}
 
-The `load` command is the inverse operation of `save`. 
+The `load` command is the inverse operation of `save`.
 It retrieves the content of a previously stored Cloud Pod a remote (by default, theLocalStack platform) and injects it into the LocalStack container.
 
 ### `delete`
+
 {{< command >}}
 <disable-copy>
 Usage: pod delete [OPTIONS] NAME
@@ -164,7 +165,7 @@ Options:
 </disable-copy>
 {{< / command >}}
 
-The `delete` command let users delete a Cloud Pod stored in the remote platform. 
+The `delete` command let users delete a Cloud Pod stored in the remote platform.
 The CLI manual for the `delete` command is as follows:
 
 ### `inspect`
@@ -188,7 +189,7 @@ Options:
 </disable-copy>
 {{< / command >}}
 
-The `inspect` command simply lets the user inspect the content of a Cloud Pod. 
+The `inspect` command simply lets the user inspect the content of a Cloud Pod.
 
 ### `list`
 
@@ -213,7 +214,7 @@ Options:
 </disable-copy>
 {{< / command >}}
 
-The `list` command lists all of the available Cloud Pods. 
+The `list` command lists all of the available Cloud Pods.
 It shows all the pods available for a single user and its organization by default.
 
 ### `versions`
@@ -237,7 +238,7 @@ Options:
 </disable-copy>
 {{< / command >}}
 
-The `versions` command lists all the available versions of a Cloud Pod. 
+The `versions` command lists all the available versions of a Cloud Pod.
 The CLI manual for the `version` command is as follows:
 
 ### `remote`
@@ -293,6 +294,7 @@ Options:
 {{< / command >}}
 
 #### `remote list`
+
 {{< command >}}
 <disable-copy>
 Usage: pod remote list [OPTIONS]
@@ -313,6 +315,7 @@ In addition to the commands in the `pod` group, we also offer a simple alternati
 The `state` group offers two commands to export and import the state of the LocalStack container to/from a zip file from the host machine.
 
 ## `state` syntax
+
 {{< command >}}
 <disable-copy>
 Usage: state [OPTIONS] COMMAND [ARGS]...

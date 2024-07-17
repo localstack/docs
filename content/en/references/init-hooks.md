@@ -47,7 +47,6 @@ If you use subdirectories, scripts in parent folders are executed first, and the
 If an init script fails, the remaining scripts will still be executed in order.
 A script is considered in `ERROR` state if it is a shell script and returns with a non-zero exit code, or if a Python script raises an exception during its execution.
 
-
 ## Status endpoint
 
 There is an additional endpoint at `localhost:4566/_localstack/init` which returns the state of the initialization procedure.
@@ -56,6 +55,7 @@ Boot scripts (scripts placed in `boot.d`) are currently always in the `UNKNOWN` 
 ```bash
 curl -s localhost:4566/_localstack/init | jq .
 ```
+
 ```json
 {
   "completed": {
@@ -82,9 +82,11 @@ curl -s localhost:4566/_localstack/init | jq .
 ### Query individual stages
 
 You can also query a specific stage at `localhost:4566/_localstack/init/<stage>`:
+
 ```bash
 curl -s localhost:4566/_localstack/init/ready | jq .
 ```
+
 ```json
 {
   "completed": true,
@@ -103,8 +105,8 @@ To check whether a given stage has been completed you can now run, for example:
 ```bash
 curl -s localhost:4566/_localstack/init/ready | jq .completed
 ```
-which returns either `true` or `false`.
 
+which returns either `true` or `false`.
 
 ## Usage example
 
@@ -145,6 +147,7 @@ services:
 {{< /tab >}}
 {{< tab header="CLI" lang="bash" >}}
 # DOCKER_FLAGS are additional parameters to the `docker run` command of localstack start
+
 DOCKER_FLAGS='-v /path/to/init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh' localstack start
 {{< /tab >}}
 {{< /tabpane >}}
@@ -152,21 +155,24 @@ DOCKER_FLAGS='-v /path/to/init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh' 
 Another use for init hooks can be seen when [adding custom TLS certificates to LocalStack]({{< ref "custom-tls-certificates#custom-tls-certificates-with-init-hooks" >}}).
 
 ## Troubleshooting
+
 If you are having issues with your initialization hooks not being executed, please perform the following checks:
-- Do the scripts have a known file extensions (`.sh` or `.py`)?
-  - If not, rename the files to the matching file extension.
-- Is the script marked as executable?
-  - If not, set the executable flag on the file (`chmod +x ...`).
-- If it's a shell script, does it have a shebang (e.g., `#!/bin/bash`) as the first line in the file?
-  - If not, add the shebang header (usually `#!/bin/bash`) on top of your script file.
-- Is the script being listed in the logs when running LocalStack with `DEBUG=1`?
-  - The detected scripts are logged like this:
-    ```
+* Do the scripts have a known file extensions (`.sh` or `.py`)?
+  * If not, rename the files to the matching file extension.
+* Is the script marked as executable?
+  * If not, set the executable flag on the file (`chmod +x ...`).
+* If it's a shell script, does it have a shebang (e.g., `#!/bin/bash`) as the first line in the file?
+  * If not, add the shebang header (usually `#!/bin/bash`) on top of your script file.
+* Is the script being listed in the logs when running LocalStack with `DEBUG=1`?
+  * The detected scripts are logged like this:
+
+    ```bash
     ...
     Init scripts discovered: {BOOT: [], START: [], READY: [Script(path='/etc/localstack/init/ready.d/setup.sh', stage=READY, state=UNKNOWN)], SHUTDOWN: []}
     ...
     Running READY script /etc/localstack/init/ready.d/setup.sh
     ...
     ```
-  - If your script does not show up in the list of discovered init scripts, please check your Docker volume mount.
+
+  * If your script does not show up in the list of discovered init scripts, please check your Docker volume mount.
     Most likely the scripts are not properly mounted into the Docker container.

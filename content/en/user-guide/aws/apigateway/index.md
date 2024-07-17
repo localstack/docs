@@ -11,7 +11,7 @@ persistence: supported
 
 API Gateway is a managed service that enables developers to create, deploy, and manage APIs (Application Programming Interfaces). It allows easy creation of REST, HTTP, and WebSocket APIs to securely access data, business logic, or functionality from backend services like AWS Lambda functions or EC2 instances. API Gateway supports standard HTTP methods such as `GET`, `POST`, `PUT`, `PATCH`, and `DELETE` and integrates with various AWS services, including Lambda, Cognito, CloudWatch, and X-Ray.
 
-LocalStack supports API Gateway V1 in the Community image and API Gateway V2 in the Pro image. LocalStack allows you to use the API Gateway APIs to create, deploy, and manage APIs on your local machine to invoke those exposed API endpoints. 
+LocalStack supports API Gateway V1 in the Community image and API Gateway V2 in the Pro image. LocalStack allows you to use the API Gateway APIs to create, deploy, and manage APIs on your local machine to invoke those exposed API endpoints.
 
 The supported APIs are available on the API coverage page for [API Gateway V1](https://docs.localstack.cloud/references/coverage/coverage_apigateway/) & [API Gateway V2](https://docs.localstack.cloud/references/coverage/coverage_apigatewayv2/), which provides information on the extent of API Gateway's integration with LocalStack.
 
@@ -59,7 +59,7 @@ This creates a new Lambda function named `apigw-lambda` with the code you specif
 
 ### Create a REST API
 
-We will use the API Gateway's [`CreateRestApi`](https://docs.aws.amazon.com/apigateway/latest/api/API_CreateRestApi.html) API to create a new REST API. Here's an example command: 
+We will use the API Gateway's [`CreateRestApi`](https://docs.aws.amazon.com/apigateway/latest/api/API_CreateRestApi.html) API to create a new REST API. Here's an example command:
 
 {{< command >}}
 $ awslocal apigateway create-rest-api --name 'API Gateway Lambda integration'
@@ -320,12 +320,12 @@ $ awslocal apigateway create-rest-api --name my-api --tags '{"_custom_id_":"myid
 }
 {{< / command >}}
 
-You can also configure the protocol type, the possible values being `HTTP` and `WEBSOCKET`: 
+You can also configure the protocol type, the possible values being `HTTP` and `WEBSOCKET`:
 
 {{< command >}}
 $ awslocal apigatewayv2 create-api \
   --name=my-api \
-  --protocol-type=HTTP --tags="_custom_id_=my-api"                                                                                                                   
+  --protocol-type=HTTP --tags="_custom_id_=my-api"
 {
     "ApiEndpoint": "my-api.execute-api.localhost.localstack.cloud:4566",
     "ApiId": "my-api",

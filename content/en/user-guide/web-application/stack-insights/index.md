@@ -45,6 +45,7 @@ Click on an individual stack for more details, such as:
 
 Stack insights are collected only if the session runs for less than 24 hours.
 View the list of events during the entire Stack lifetime, including:
+
 - Service
 - Operation
 - Status code

@@ -13,7 +13,7 @@ LocalStack allows you to use the WAFv2 APIs for offline web application firewall
 
 ## Getting started
 
-This guide is for users who are familiar with the AWS CLI and [`awslocal`](https://github.com/localstack/awscli-local) wrapper script. 
+This guide is for users who are familiar with the AWS CLI and [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method. We will walk you through creating, listing, tagging, and viewing tags for Web Access Control Lists (WebACLs) using the Web Application Firewall (WAF) service in a LocalStack environment using the AWS CLI.
 

@@ -107,7 +107,7 @@ By default, ECR returns a `repositoryUri` starting with `localhost.localstack.cl
 {{< callout >}}
 In this section, we assume that `localhost.localstack.cloud` resolves in your environment, and LocalStack is connected to a non-default bridge network. For more information, refer to the article about [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}).
 
-If the domain `localhost.localstack.cloud` does not resolve on your host, you can still proceed by setting `LOCALSTACK_HOST=localhost` (not recommended). 
+If the domain `localhost.localstack.cloud` does not resolve on your host, you can still proceed by setting `LOCALSTACK_HOST=localhost` (not recommended).
 
 LocalStack will take care of the DNS resolution of `localhost.localstack.cloud` within ECR itself, allowing you to use the `localhost:<port>/<repository_name>` URI for tagging and pushing the image on your host.
 {{< /callout >}}
@@ -181,7 +181,7 @@ Switched to context "arn:aws:eks:us-east-1:000000000000:cluster/cluster1".
 </disable-copy>
 {{< / command >}}
 
-You can now go ahead and add a deployment configuration for the `fancier-nginx` image. 
+You can now go ahead and add a deployment configuration for the `fancier-nginx` image.
 
 {{< command >}}
 $ cat <<EOF | kubectl apply -f -
@@ -241,7 +241,7 @@ spec:
   selector:
     app: fancier-nginx
   ports:
-  - name: http
+- name: http
     protocol: TCP
     port: 80
     targetPort: 80
@@ -260,9 +260,9 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - http:
+- http:
       paths:
-      - path: /test123
+  - path: /test123
         pathType: Prefix
         backend:
           service:
@@ -400,20 +400,20 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: eks-service-1.localhost.localstack.cloud
+- host: eks-service-1.localhost.localstack.cloud
     http:
       paths:
-      - path: /v1
+  - path: /v1
         pathType: Prefix
         backend:
           service:
             name: service-1
             port:
               number: 80
-  - host: eks-service-2.localhost.localstack.cloud
+- host: eks-service-2.localhost.localstack.cloud
     http:
       paths:
-      - path: /v1
+  - path: /v1
         pathType: Prefix
         backend:
           service:

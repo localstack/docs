@@ -16,6 +16,7 @@ If you are adapting an existing configuration, you might be able to skip certain
 ## Example
 
 ### Setup
+
 To use Architect in conjunction with LocalStack, simply install the `arclocal` command (sources can be found [here](https://github.com/localstack/architect-local)).
 {{< command >}}
 $ npm install -g architect-local @architect/architect aws-sdk

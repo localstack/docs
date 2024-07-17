@@ -138,10 +138,10 @@ You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (previ
 
 [Lambda event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) allows you to connect Lambda functions to other AWS services. The following event sources are supported in LocalStack:
 
--   [DynamoDB](https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html)
--   [Kinesis](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html)
--   [Managed Streaming for Apache Kafka (MSK)](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
--   [Simple Queue Service (SQS)](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
+- [DynamoDB](https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html)
+- [Kinesis](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html)
+- [Managed Streaming for Apache Kafka (MSK)](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
+- [Simple Queue Service (SQS)](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
 
 ## Lambda Layers (Pro)
 
@@ -220,8 +220,8 @@ but these configurations are primarily intended for LocalStack developers and co
 The LocalStack [configuration]({{< ref "configuration" >}}) `LAMBDA_DOCKER_FLAGS` can be used to configure all Lambda containers,
 for example `LAMBDA_DOCKER_FLAGS=-e LOCALSTACK_INIT_LOG_LEVEL=debug`.
 Some noteworthy configurations include:
-* `LOCALSTACK_INIT_LOG_LEVEL` defines the log level of the Golang binary. Values: `trace`, `debug`, `info`, `warn` (default), `error`, `fatal`, `panic`
-* `LOCALSTACK_USER` defines the system user executing the Lambda runtime. Values: `sbx_user1051` (default), `root` (skip dropping root privileges)
+- `LOCALSTACK_INIT_LOG_LEVEL` defines the log level of the Golang binary. Values: `trace`, `debug`, `info`, `warn` (default), `error`, `fatal`, `panic`
+- `LOCALSTACK_USER` defines the system user executing the Lambda runtime. Values: `sbx_user1051` (default), `root` (skip dropping root privileges)
 
 The full list of configurations is defined in the Golang function
 [InitLsOpts](https://github.com/localstack/lambda-runtime-init/blob/localstack/cmd/localstack/main.go#L43).
@@ -230,10 +230,10 @@ The full list of configurations is defined in the Golang function
 
 LocalStack provides various tools to help you develop, debug, and test your AWS Lambda functions more efficiently.
 
-* **Hot reloading**: With Lambda hot reloading, you can continuously apply code changes to your Lambda functions without needing to redeploy them manually. To learn more about how to use hot reloading with LocalStack, check out our [hot reloading documentation]({{< ref "hot-reloading" >}}).
-* **Remote debugging**: LocalStack's remote debugging functionality allows you to attach a debugger to your Lambda function using your preferred IDE. To get started with remote debugging in LocalStack, see our [debugging documentation]({{< ref "debugging" >}}).
-* **Lambda VS Code Extension**: LocalStack's Lambda VS Code Extension supports deploying and invoking Python Lambda functions through AWS SAM or AWS CloudFormation. To get started with the Lambda VS Code Extension, see our [Lambda VS Code Extension documentation]({{< ref "user-guide/lambda-tools/vscode-extension" >}}).
-* **API for querying Lambda runtimes**: LocalStack offers a metadata API to query the list of Lambda runtimes via `GET http://localhost.localstack.cloud:4566/_aws/lambda/runtimes`. It returns the [Supported Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) matching AWS parity (i.e., excluding deprecated runtimes) and offers additional filters for `deprecated` runtimes and `all` runtimes (`GET /_aws/lambda/runtimes?filter=all`).
+- **Hot reloading**: With Lambda hot reloading, you can continuously apply code changes to your Lambda functions without needing to redeploy them manually. To learn more about how to use hot reloading with LocalStack, check out our [hot reloading documentation]({{< ref "hot-reloading" >}}).
+- **Remote debugging**: LocalStack's remote debugging functionality allows you to attach a debugger to your Lambda function using your preferred IDE. To get started with remote debugging in LocalStack, see our [debugging documentation]({{< ref "debugging" >}}).
+- **Lambda VS Code Extension**: LocalStack's Lambda VS Code Extension supports deploying and invoking Python Lambda functions through AWS SAM or AWS CloudFormation. To get started with the Lambda VS Code Extension, see our [Lambda VS Code Extension documentation]({{< ref "user-guide/lambda-tools/vscode-extension" >}}).
+- **API for querying Lambda runtimes**: LocalStack offers a metadata API to query the list of Lambda runtimes via `GET http://localhost.localstack.cloud:4566/_aws/lambda/runtimes`. It returns the [Supported Runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) matching AWS parity (i.e., excluding deprecated runtimes) and offers additional filters for `deprecated` runtimes and `all` runtimes (`GET /_aws/lambda/runtimes?filter=all`).
 
 ## Resource Browser
 
@@ -269,23 +269,23 @@ With the new implementation, the following changes have been introduced:
 
 The following configuration options from the old provider are discontinued in the new provider:
 
-* The `LAMBDA_EXECUTOR` and specifically, the `LAMBDA_EXECUTOR=local` options are no longer supported.
-* The `LAMBDA_STAY_OPEN_MODE` is now the default behavior and can be removed. Instead, use the `LAMBDA_KEEPALIVE_MS` option to configure how long containers should be kept running in between invocations.
-* The `LAMBDA_REMOTE_DOCKER` option is not used anymore since the new provider automatically copies zip files and configures hot reloading.
-* The `LAMBDA_CODE_EXTRACT_TIME` option is no longer used because function creation is now asynchronous.
-* The `LAMBDA_FALLBACK_URL`, `SYNCHRONOUS_KINESIS_EVENTS`, `SYNCHRONOUS_SNS_EVENTS` and `LAMBDA_FORWARD_URL` options are currently not supported.
-* The `LAMBDA_CONTAINER_REGISTRY` option is not used anymore. Instead, use the more flexible `LAMBDA_RUNTIME_IMAGE_MAPPING` option to customize individual runtimes.
-* The `LAMBDA_XRAY_INIT` option is no longer needed because the X-Ray daemon is always initialized.
+- The `LAMBDA_EXECUTOR` and specifically, the `LAMBDA_EXECUTOR=local` options are no longer supported.
+- The `LAMBDA_STAY_OPEN_MODE` is now the default behavior and can be removed. Instead, use the `LAMBDA_KEEPALIVE_MS` option to configure how long containers should be kept running in between invocations.
+- The `LAMBDA_REMOTE_DOCKER` option is not used anymore since the new provider automatically copies zip files and configures hot reloading.
+- The `LAMBDA_CODE_EXTRACT_TIME` option is no longer used because function creation is now asynchronous.
+- The `LAMBDA_FALLBACK_URL`, `SYNCHRONOUS_KINESIS_EVENTS`, `SYNCHRONOUS_SNS_EVENTS` and `LAMBDA_FORWARD_URL` options are currently not supported.
+- The `LAMBDA_CONTAINER_REGISTRY` option is not used anymore. Instead, use the more flexible `LAMBDA_RUNTIME_IMAGE_MAPPING` option to customize individual runtimes.
+- The `LAMBDA_XRAY_INIT` option is no longer needed because the X-Ray daemon is always initialized.
 
 However, the new provider still supports the following configuration options:
 
-* The `BUCKET_MARKER_LOCAL` option has a new default value, `hot-reload`. The former default value `__local__` is an invalid bucket name.
-* The `LAMBDA_TRUNCATE_STDOUT` option.
-* The `LAMBDA_DOCKER_NETWORK` option.
-* The `LAMBDA_DOCKER_FLAGS` option.
-* The `LAMBDA_REMOVE_CONTAINERS` option.
-* The `LAMBDA_DOCKER_DNS` option since LocalStack 2.2.
-* The `HOSTNAME_FROM_LAMBDA` option since LocalStack 3.0.
+- The `BUCKET_MARKER_LOCAL` option has a new default value, `hot-reload`. The former default value `__local__` is an invalid bucket name.
+- The `LAMBDA_TRUNCATE_STDOUT` option.
+- The `LAMBDA_DOCKER_NETWORK` option.
+- The `LAMBDA_DOCKER_FLAGS` option.
+- The `LAMBDA_REMOVE_CONTAINERS` option.
+- The `LAMBDA_DOCKER_DNS` option since LocalStack 2.2.
+- The `HOSTNAME_FROM_LAMBDA` option since LocalStack 3.0.
 
 ## Examples
 

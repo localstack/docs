@@ -61,7 +61,7 @@ To deprecate a domain, use the [`DeprecateDomain`](https://docs.aws.amazon.com/a
 
 {{< command >}}
 $ awslocal swf deprecate-domain \
-    --name test-domain 
+    --name test-domain
 {{< /command >}}
 
 You can now list the deprecated domains using the `--registration-status DEPRECATED` flag:

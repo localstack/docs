@@ -10,7 +10,7 @@ aliases:
 
 ## Introduction
 
-AWS IoT provides cloud services to manage IoT fleet and integrate them with other AWS services 
+AWS IoT provides cloud services to manage IoT fleet and integrate them with other AWS services
 
 LocalStack Pro supports IoT Core, IoT Data, IoT Analytics and related APIs as well as an in-built MQTT broker.
 Common operations for creating and updating things, groups, policies, certificates and other entities are implemented with full CloudFormation support.
@@ -73,7 +73,7 @@ For more information, see [this](https://docs.aws.amazon.com/iot/latest/develope
 {{< /callout >}}
 
 When connecting to the endpoints, you will need to provide this root CA certificate for authentication.
-This is illustrated below with Python [AWS IoT SDK](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdks.html), 
+This is illustrated below with Python [AWS IoT SDK](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdks.html),
 
 ```py
 import awscrt
@@ -151,7 +151,6 @@ mqtt.connect().result()
 mqtt.subscribe(...)
 ```
 
-
 ## Lifecycle Events
 
 LocalStack publishes the [lifecycle events](https://docs.aws.amazon.com/iot/latest/developerguide/life-cycle-events.html) to the standard endpoints.
@@ -186,7 +185,6 @@ For example, you can use the [`CreateTopicRule`](https://docs.aws.amazon.com/iot
 
 Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.
 
-
 ## Device Shadows
 
 LocalStack supports both unnamed (classic) and named device shadows.
@@ -194,7 +192,6 @@ LocalStack supports both unnamed (classic) and named device shadows.
 You can use AWS CLI and [MQTT topics](https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html) to get, update or delete device shadow state information.
 
 The endpoint as returned by `DescribeEndpoint` currently does not support the [device shadow REST API](https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-rest-api.html#API_GetThingShadow)
-
 
 ## Current Limitations
 

@@ -20,7 +20,7 @@ More examples and tooling support for local Lambda debugging (including support 
 * [Debugging Python lambdas](#debugging-python-lambdas)
 * [Debugging JVM lambdas](#debugging-jvm-lambdas)
 * [Debugging Node.js lambdas](#debugging-nodejs-lambdas)
-* [Useful Links](#useful-links)
+* [Resources](#resources)
 
 ## Debugging Python lambdas
 
@@ -31,7 +31,6 @@ to [iterate quickly over your function code]({{< ref "user-guide/lambda-tools" >
 For a simple working example of this feature, you can refer to
 [our samples](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
 There, the necessary code fragments for enabling debugging are already present.
-
 
 ### Debugging a Python Lambda in Visual Studio Code
 
@@ -118,7 +117,7 @@ Due to the ports published by the lambda container for the debugger, you can cur
 
 ### Debugging a Python Lambda in PyCharm Professional
 
-Please be aware that [remote debugging in PyCharm](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html) is only available in the Professional version. 
+Please be aware that [remote debugging in PyCharm](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html) is only available in the Professional version.
 
 You do not need to change the `LAMBDA_DOCKER_FLAGS` when debugging with PyCharm Professional.
 
@@ -126,7 +125,7 @@ You do not need to change the `LAMBDA_DOCKER_FLAGS` when debugging with PyCharm 
 
 You can [follow the steps in the official docs](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config), which will come down to:
 
-* Create a debug configuration with the IDE host name `localhost` and the debug port `19891`. 
+* Create a debug configuration with the IDE host name `localhost` and the debug port `19891`.
 * Add path mapping with your project files on the host and map it to the remote directory `/var/task`.
 * Copy the `pip install` command, and make sure to install the correct `pydevd-pycharm` version for your PyCharm IDE.
 
@@ -142,7 +141,7 @@ pydevd_pycharm.settrace('host.docker.internal', port=19891, stdoutToServer=True,
                             stderrToServer=True)
 ```
 
-The `host.docker.internal` is a [special DNS name by Docker](https://docs.docker.com/desktop/networking/#use-cases-and-workarounds-for-all-platforms) and will make sure that the lambda running in the docker can connect to PyCharm running on your Localhost. 
+The `host.docker.internal` is a [special DNS name by Docker](https://docs.docker.com/desktop/networking/#use-cases-and-workarounds-for-all-platforms) and will make sure that the lambda running in the docker can connect to PyCharm running on your Localhost.
 
 You can use the `wait_for_debug_client` and add it to your lambda (please adapt the path to your `venv` directory if necessary):
 
@@ -266,7 +265,6 @@ For the Lambda function you will have to adjust the environment variable to `"_J
 Notice the `address=172.17.0.1:5050`.
 Here we tell the Lambda function to connect to port 5050 on 172.17.0.1. When using Docker desktop you might have to set this to `address=host.docker.internal:5050` instead.
 
-
 ### Configuring Visual Studio Code for remote JVM debugging
 
 Make sure you installed the following extensions:
@@ -329,7 +327,6 @@ services:
       - LAMBDA_DOCKER_FLAGS=-e NODE_OPTIONS=--inspect-brk=0.0.0.0:9229 -p 9229:9229
 ```
 
-
 ### Configuring Visual Studio Code for remote Node.js debugging
 
 Add a new task by creating/modifying the `.vscode/tasks.json` file:
@@ -369,6 +366,7 @@ then add the following configuration:
 ```
 
 A simple example of a Node.js lambda, `myindex.js` could look like this:
+
 ```js
 exports.handler = async (event) => {
     console.log(event);
@@ -411,7 +409,6 @@ $ awslocal lambda invoke --function-name func1 \
 {{< /command >}}
 {{% /tab %}}
 {{< /tabpane >}}
-
 
 ## Resources
 

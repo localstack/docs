@@ -24,6 +24,7 @@ To run `localstack`, simply aliasing `alias docker=podman` is not enough, for th
 Here are several options on running LocalStack using podman:
 
 ### podman-docker
+
 The package `podman-docker` emulates the Docker CLI using podman. It creates the following links:
 - `/usr/bin/docker ->  /usr/bin/podman`
 - `/var/run/docker.sock -> /run/podman/podman.sock`
@@ -34,7 +35,9 @@ This package is available for some distros:
 - https://packages.debian.org/sid/podman-docker
 
 ### Rootfull Podman with podman-docker
+
 The simplest option is to run `localstack` using `podman` by having `podman-docker` and running `localstack start` as root
+
 ```sh
 # you have to start the podman socket first
 sudo systemctl start podman
@@ -44,6 +47,7 @@ sudo sh -c 'DEBUG=1 localstack start'
 ```
 
 ### Rootfull Podman without podman-docker
+
 ```sh
 # you still have to start the podman socket first
 sudo systemctl start podman
@@ -53,6 +57,7 @@ sudo sh -c 'DEBUG=1 DOCKER_CMD=podman DOCKER_HOST=unix://run/podman/podman.sock 
 ```
 
 ### Rootless Podman
+
 You have to prepare your environment first:
 - https://wiki.archlinux.org/title/Podman#Rootless_Podman
 - https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md
@@ -67,9 +72,11 @@ DEBUG=1 DOCKER_CMD="podman" DOCKER_SOCK=$XDG_RUNTIME_DIR/podman/podman.sock DOCK
 ```
 
 If you have problems with [subuid and subgid](https://wiki.archlinux.org/title/Podman#Set_subuid_and_subgid), you could try to use [overlay.ignore_chown_errors option](https://www.redhat.com/sysadmin/controlling-access-rootless-podman-users)
+
 ```sh
 DEBUG=1 DOCKER_CMD="podman --storage-opt overlay.ignore_chown_errors=true" DOCKER_SOCK=$XDG_RUNTIME_DIR/podman/podman.sock DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock localstack start
 ```
+
 ### Podman on Windows
 
 You can run Podman on Windows using [WSLv2](https://learn.microsoft.com/en-us/windows/wsl/about#what-is-wsl-2). In the guide, we use a Docker Compose setup to run LocalStack.

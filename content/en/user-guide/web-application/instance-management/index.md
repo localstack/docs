@@ -12,10 +12,10 @@ LocalStack Instance Management lets you view and manage your LocalStack instance
 
 Instance Management offers these features:
 
--   **Status**: Shows the status of the services running in the LocalStack container.
--   **Resource Browser**: Lets you view and manage your local AWS resources.
--   **State**: Allows you to export and import the state of your LocalStack instances.
--   **Extensions**: Provides extra integrations to improve your LocalStack experience.
+- **Status**: Shows the status of the services running in the LocalStack container.
+- **Resource Browser**: Lets you view and manage your local AWS resources.
+- **State**: Allows you to export and import the state of your LocalStack instances.
+- **Extensions**: Provides extra integrations to improve your LocalStack experience.
 
 <img src="instance-management.png" alt="LocalStack Web Application's Instance Management page" title="Instance Management" width="800px" />
 
@@ -23,9 +23,9 @@ Instance Management offers these features:
 
 Instance Bookmark lets users save references to instances without directly creating or managing them. To create an Instance Bookmark, do the following:
 
--   Click on the **Add Bookmark** button on the Instance Management page.
--   Enter a name for the bookmark, specify the endpoint, and add a description.
--   Click on the **Save Bookmark** button.
+- Click on the **Add Bookmark** button on the Instance Management page.
+- Enter a name for the bookmark, specify the endpoint, and add a description.
+- Click on the **Save Bookmark** button.
 
 <img src="new-instance-bookmark.png" alt="Instance Bookmark" title="Instance Bookmark" width="800px" />
 

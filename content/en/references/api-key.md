@@ -10,9 +10,9 @@ aliases:
 ---
 
 {{< callout "warning" >}}
--   LocalStack is transitioning from API Keys to Auth Tokens for activation. Auth Tokens streamline license management and remove the need for developers to adjust their setup when license changes occur.
--   For detailed information and guidance on migrating your LocalStack setup to Auth Tokens, please consult our [Auth Token documentation]({{< ref "auth-token" >}}).
--   API Keys will remain functional for LocalStack Pro and Enterprise users until the next major release. Following this release, LocalStack Pro and Enterprise will exclusively use Auth Tokens.
+- LocalStack is transitioning from API Keys to Auth Tokens for activation. Auth Tokens streamline license management and remove the need for developers to adjust their setup when license changes occur.
+- For detailed information and guidance on migrating your LocalStack setup to Auth Tokens, please consult our [Auth Token documentation]({{< ref "auth-token" >}}).
+- API Keys will remain functional for LocalStack Pro and Enterprise users until the next major release. Following this release, LocalStack Pro and Enterprise will exclusively use Auth Tokens.
 {{< /callout >}}
 
 The LocalStack API key is a unique identifier to activate your LocalStack license needed to start LocalStack Pro.
@@ -99,7 +99,7 @@ Otherwise, check our collected most [common activation issues](#common-activatio
 Since LocalStack v2.0.0, the image `localstack/localstack-pro` requires a successful key activation to start.
 If the key activation fails, LocalStack will quit with an error messages that may look something like this:
 
-```
+```bash
 ===============================================
 API key activation failed! 🔑❌
 
@@ -113,9 +113,9 @@ Due to this error, Localstack has quit. LocalStack pro features can only be used
 ```
 
 There are several reasons a key activation can fail:
-* Missing credentials: Using `localstack/localstack-pro` requires per default to have an API key set.
-* Invalid key: there is no valid license associated with the key, for example because the license has expired.
-* License server cannot be reached: LocalStack will try to perform an offline license activation if the license server cannot be reached, but will require a re-activation every 24 hours.
+- Missing credentials: Using `localstack/localstack-pro` requires per default to have an API key set.
+- Invalid key: there is no valid license associated with the key, for example because the license has expired.
+- License server cannot be reached: LocalStack will try to perform an offline license activation if the license server cannot be reached, but will require a re-activation every 24 hours.
 
 If you are using the `localstack/localstack-pro` image, but cannot activate your license key, we recommend falling back to the community image `localstack/localstack`.
 If that is not an option, you can set `ACTIVATE_PRO=0` which will attempt to start LocalStack without pro features.

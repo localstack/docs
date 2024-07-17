@@ -107,7 +107,6 @@ $ awslocal cognito-idp create-user-pool-client --user-pool-id us-east-1_myid123 
     ...
 {{< /command >}}
 
-
 ### Signing up and confirming a user
 
 You can now use the [`SignUp`](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html) API to sign up a user. Run the following command:
@@ -129,7 +128,7 @@ You can see an output similar to the following:
 }
 ```
 
-Once the user is successfully created, a confirmation code will be generated. This code can be found in the LocalStack container logs (as shown below). Additionally, if you have [SMTP configured](#smtp-integration), the confirmation code can be optionally sent via email for enhanced convenience and user experience.
+Once the user is successfully created, a confirmation code will be generated. This code can be found in the LocalStack container logs (as shown below). Additionally, if you have [SMTP configured]({{< ref "configuration#emails" >}}), the confirmation code can be optionally sent via email for enhanced convenience and user experience.
 
 ```bash
 INFO:localstack_ext.services.cognito.cognito_idp_api: Confirmation code for Cognito user example_user: 125796
@@ -223,6 +222,7 @@ You can access the local [Cognito login form](https://docs.aws.amazon.com/cognit
 ```bash
 https://localhost.localstack.cloud/_aws/cognito-idp/login?response_type=code&client_id=<client_id>&redirect_uri=<redirect_uri>
 ```
+
 Replace `<client_id>` with the ID of your existing user pool client (for example, `example_user`), and `<redirect_uri>` with the redirect URI specific to your application (e.g., `http://example.com`).
 
 The login form should look similar to the screenshot below:

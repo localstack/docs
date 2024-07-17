@@ -7,18 +7,18 @@ tags: ["Pro image"]
 
 ## Introduction
 
-RedShift is a cloud-based data warehouse solution which allows end users to aggregate huge volumes of data and parallel processing of data. 
-RedShift is fully managed by AWS and serves as a petabyte-scale service which allows users to create visualization reports and critically analyze collected data. 
+RedShift is a cloud-based data warehouse solution which allows end users to aggregate huge volumes of data and parallel processing of data.
+RedShift is fully managed by AWS and serves as a petabyte-scale service which allows users to create visualization reports and critically analyze collected data.
 The query results can be saved to an S3 Data Lake while additional analytics can be provided by Athena or SageMaker.
 
-LocalStack allows you to use the RedShift APIs in your local environment to analyze structured and semi-structured data across local data warehouses and data lakes. 
+LocalStack allows you to use the RedShift APIs in your local environment to analyze structured and semi-structured data across local data warehouses and data lakes.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_redshift/), which provides information on the extent of RedShift's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to RedShift and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. 
+Start your LocalStack container using your preferred method.
 We will demonstrate how to create a RedShift cluster and database while using a Glue Crawler to populate the metadata store with the schema of the RedShift database tables using the AWS CLI.
 
 ### Define the variables

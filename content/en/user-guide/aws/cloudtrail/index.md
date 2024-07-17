@@ -104,13 +104,13 @@ The following output would be retrieved:
 
 ```json
 {
-	"Events": [{
-		"EventId": "218785bf-3ec4-4bdd-a055-57eca773294f",
-		"EventName": "PutObject",
-		"ReadOnly": "false",
+ "Events": [{
+  "EventId": "218785bf-3ec4-4bdd-a055-57eca773294f",
+  "EventName": "PutObject",
+  "ReadOnly": "false",
         ...
-		"CloudTrailEvent": "{\"eventVersion\": \"1.08\", ... {\"bucketName\": \"my-bucket\", \"key\": \"hello-world\"} ...}"
-	}]
+  "CloudTrailEvent": "{\"eventVersion\": \"1.08\", ... {\"bucketName\": \"my-bucket\", \"key\": \"hello-world\"} ...}"
+ }]
 }
 ```
 

@@ -21,7 +21,7 @@ Start your LocalStack container using your preferred method. We will demonstrate
 
 ### Create a local MSK Cluster
 
-To set up a local MSK (Managed Streaming for Apache Kafka) cluster, you can use the [`CreateCluster`](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#CreateCluster) API to create a cluster named `EventsCluster` with three broker nodes. 
+To set up a local MSK (Managed Streaming for Apache Kafka) cluster, you can use the [`CreateCluster`](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#CreateCluster) API to create a cluster named `EventsCluster` with three broker nodes.
 
 In this process, you'll need a JSON file named `brokernodegroupinfo.json` which specifies the three subnets where you want your local Amazon MSK to distribute the broker nodes. Create the file and add the following content to it:
 
@@ -166,7 +166,7 @@ $ ./kafka-console-producer.sh \
 
 To send messages to your Apache Kafka cluster, enter any desired message and press Enter. You can repeat this process twice or thrice, sending each line as a separate message to the Kafka cluster.
 
-Keep the connection to the client machine open, and open a separate connection to the same machine in a new window. 
+Keep the connection to the client machine open, and open a separate connection to the same machine in a new window.
 
 In this new connection, navigate to the `bin` folder and run a command, replacing `BootstrapBrokerStringTls` with the value you saved earlier. This command will allow you to interact with the Apache Kafka cluster using the saved value for secure communication.
 
@@ -180,7 +180,7 @@ $ ./kafka-console-consumer.sh \
 
 You should start seeing the messages you entered earlier when you used the console producer command. These messages are TLS encrypted in transit. Enter more messages in the producer window, and watch them appear in the consumer window.
 
-### Adding a local MSK trigger 
+### Adding a local MSK trigger
 
 You can add a Lambda Event Source Mapping API to create a mapping between a Lambda function, named `my-kafka-function`, and a Kafka topic called `LocalMSKTopic`. The configuration for this mapping sets the starting position of the topic to `LATEST`.
 
@@ -214,7 +214,7 @@ Upon successful completion of the operation to create the Lambda Event Source Ma
 }
 ```
 
-With the event source mapping feature, LocalStack offers an automated process for spawning Lambda functions whenever a message is published to the designated Kafka topic. 
+With the event source mapping feature, LocalStack offers an automated process for spawning Lambda functions whenever a message is published to the designated Kafka topic.
 
 You can use the `kafka-console-producer.sh` client script to publish messages to the topic. By doing so, you can closely monitor the execution of Lambda functions within Docker containers as new messages arrive by simply observing the LocalStack log output.
 
@@ -234,7 +234,7 @@ awslocal kafka delete-cluster --cluster-arn ClusterArn
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing MSK clusters. 
+The LocalStack Web Application provides a Resource Browser for managing MSK clusters.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Kafka** under the **Analytics** section.
 
 <img src="msk-resource-browser.png" alt="MSK Resource Browser" title="MSK Resource Browser" width="900" />

@@ -29,7 +29,7 @@ You can create a MemoryDB cluster using the [`CreateCluster`](https://docs.aws.a
 $ awslocal memorydb create-cluster \
   --cluster-name my-redis-cluster \
   --node-type db.t4g.small \
-  --acl-name open-access 
+  --acl-name open-access
 {{< /command>}}
 
 Once it becomes available, you will be able to use the cluster endpoint for Redis operations. Run the following command to retrieve the cluster endpoint using the [`DescribeClusters`](https://docs.aws.amazon.com/memorydb/latest/APIReference/API_DescribeClusters.html) API:
@@ -63,8 +63,8 @@ $ redis-cli -c -p 4510 cluster nodes
 
 ## Container mode
 
-To start Redis clusters of a specific version, enable container mode for Redis-based services in LocalStack. 
-This approach directs LocalStack to launch Redis instances in distinct containers, utilizing your chosen image tag. 
+To start Redis clusters of a specific version, enable container mode for Redis-based services in LocalStack.
+This approach directs LocalStack to launch Redis instances in distinct containers, utilizing your chosen image tag.
 Additionally, container mode is beneficial for independently examining the logs of each Redis instance. To activate this, set the `REDIS_CONTAINER_MODE` configuration variable to `1`.
 
 ## Current Limitations

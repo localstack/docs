@@ -9,17 +9,17 @@ description: >
 
 [Former2](https://github.com/iann0036/former2) allows you to generate Infrastructure-as-Code (IaC) outputs using your pre-existing AWS resources. It uses the AWS JavaScript SDK to make relevant API calls, scans your infrastructure, and provides you with a resource list. You can then select the resources for which you want to generate IaC outputs. Former2 currently supports the following outputs:
 
--   [CloudFormation](https://aws.amazon.com/cloudformation/)
--   [Terraform](https://www.terraform.io/)
--   [Troposphere](https://github.com/cloudtools/troposphere)
--   [CDK V1 (Cfn Primitives) & CDK V2 (Cfn Primitives)](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html) (TypeScript, Python, Java, C#)
--   [CDK for Terraform](https://developer.hashicorp.com/terraform/cdktf) (TypeScript)
--   [Pulumi](https://www.pulumi.com/docs/get-started/aws/) (TypeScript)
--   [Diagrams](https://diagrams.mingrammer.com/)
+- [CloudFormation](https://aws.amazon.com/cloudformation/)
+- [Terraform](https://www.terraform.io/)
+- [Troposphere](https://github.com/cloudtools/troposphere)
+- [CDK V1 (Cfn Primitives) & CDK V2 (Cfn Primitives)](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html) (TypeScript, Python, Java, C#)
+- [CDK for Terraform](https://developer.hashicorp.com/terraform/cdktf) (TypeScript)
+- [Pulumi](https://www.pulumi.com/docs/get-started/aws/) (TypeScript)
+- [Diagrams](https://diagrams.mingrammer.com/)
 
 With Former2, you can scan the resources within your LocalStack instance and produce Infrastructure-as-Code (IaC) outputs. These outputs enable you to redeploy your resources while spinning a new LocalStack instance or deploy them to a live Amazon Web Services (AWS) environment.
 
-## Getting started 
+## Getting started
 
 This guide is designed for users new to Former2 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script. We will demonstrate how you can create local AWS resources using LocalStack, and import a CloudFormation output via Former2.
 
@@ -98,8 +98,7 @@ Click on [**Continue to Parameters**](https://former2.com/#section-setup-paramet
 <img src="former2-localstack-endpoint.png" alt="LocalStack endpoint toggle on Former2 Dashboard" title="LocalStack endpoint toggle on Former2 Dashboard" width="900" />
 <br><br>
 
-
-You can now click on **Scan Account** button on the top-right corner of the dashboard to scan your LocalStack instance for resources. Once the scan is complete, you can select the resources you want to generate IaC outputs for. 
+You can now click on **Scan Account** button on the top-right corner of the dashboard to scan your LocalStack instance for resources. Once the scan is complete, you can select the resources you want to generate IaC outputs for.
 
 ### Generate IaC output
 
@@ -108,13 +107,9 @@ Navigate to [S3](https://former2.com/#section-storage-s3), [DynamoDB](https://fo
 <img src="former2-s3.png" alt="S3 Console on Former2 Dashboard" title="S3 Console on Former2 Dashboard" width="900" />
 <br><br>
 
-
 You can select the resources you want to generate IaC outputs for and click on **Add Selected**. Finally, you can click on **Generate** on the top-left corner of the dashboard to generate the IaC outputs.
-
-
 
 <img src="former2-cloudformation-output.png" alt="CloudFormation Output on Former2 Dashboard" title="CloudFormation Output on Former2 Dashboard" width="900" />
 <br><br>
-
 
 You can also choose to generate the IaC outputs in a different format by clicking on the various options available on the left-hand side of the dashboard.

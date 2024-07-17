@@ -23,12 +23,12 @@ Start your LocalStack container using your preferred method. We will demonstrate
 2. Generating a `SecretsManager` secret containing the database password.
 3. Executing a basic `SELECT 123 query` through the RDS Data API.
 
-LocalStack's RDS implementation also supports the [RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html), which allows executing data queries against RDS clusters over a JSON/REST interface. 
+LocalStack's RDS implementation also supports the [RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html), which allows executing data queries against RDS clusters over a JSON/REST interface.
 
 ### Create an RDS cluster
 
-To create an RDS cluster, you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html) API. 
-The following command creates a new cluster with the name `db1` and the engine `aurora-postgresql`. 
+To create an RDS cluster, you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html) API.
+The following command creates a new cluster with the name `db1` and the engine `aurora-postgresql`.
 Instances for the cluster must be added manually.
 
 {{< command >}}
@@ -71,7 +71,7 @@ To create a `SecretsManager` secret, you can use the [`CreateSecret`](https://do
 {{< command >}}
 $ cat << 'EOF' > mycreds.json
 {
-    "engine": "aurora-postgresql", 
+    "engine": "aurora-postgresql",
     "username": "myuser",
     "password": "mypassword",
     "host": "localhost",
@@ -101,7 +101,7 @@ You should see the following output:
 
 ### Execute a query
 
-To execute a query, you can use the [`ExecuteStatement`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ExecuteStatement.html) API. 
+To execute a query, you can use the [`ExecuteStatement`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ExecuteStatement.html) API.
 
 Make sure to replace the `secret-arn` with the ARN from the secret you just created in the previous step, and check that the `resource-arn` matches the `cluster-arn` that you have created before.
 
@@ -176,7 +176,7 @@ MariaDB will be set up as an operating system package within LocalStack. However
 
 ### MySQL Engine
 
-A MySQL community server will be launched in a new Docker container upon requesting the MySQL engine. 
+A MySQL community server will be launched in a new Docker container upon requesting the MySQL engine.
 
 The `engine-version` will serve as the tag for the Docker image, allowing you to freely select the desired MySQL version from those available on the [official MySQL Docker Hub](https://hub.docker.com/_/mysql). If you have a specific image in mind, you can also use the environment variable `MYSQL_IMAGE=<my-image:tag>`.
 
@@ -196,10 +196,10 @@ For the MSSQL engine, the database server is initiated in a fresh Docker contain
 
 The following details concern default usernames, passwords, and database names for local RDS clusters created by LocalStack:
 
--   The default values for `master-username` and `db-name` are both **test**. For the `master-user-password`, the default is **test**, except for MSSQL databases, which employ **Test123!** as the default master password.
--   When setting up a new RDS instance, you have the flexibility to utilize any `master-username`, with the exception of **postgres**. The system will automatically generate the user.
--   It's important to remember that the username **postgres** has special significance, preventing the creation of a new RDS instance under this particular name.
--   For clarity, please avoid using the `db-name` **postgres**, as it is already allocated for use by LocalStack.
+- The default values for `master-username` and `db-name` are both **test**. For the `master-user-password`, the default is **test**, except for MSSQL databases, which employ **Test123!** as the default master password.
+- When setting up a new RDS instance, you have the flexibility to utilize any `master-username`, with the exception of **postgres**. The system will automatically generate the user.
+- It's important to remember that the username **postgres** has special significance, preventing the creation of a new RDS instance under this particular name.
+- For clarity, please avoid using the `db-name` **postgres**, as it is already allocated for use by LocalStack.
 
 ## IAM Authentication Support
 
@@ -207,12 +207,12 @@ IAM authentication tokens can be employed to establish connections with RDS. As 
 
 In this example, you will be able to verify the IAM authentication process for RDS Postgres:
 
-1.  Establish a database instance and obtain the corresponding host and port information.
-2.  Connect to the database using the master username and password. Subsequently, generate a new user and assign the `rds_iam` role as follows:
-    -   `CREATE USER <username> WITH LOGIN`
-    -   `GRANT rds_iam TO <username>`
-3.  Create a token for the `<username>` using the `generate-db-auth-token` command.
-4.  Connect to the database utilizing the user you generated and the token obtained in the previous step as the password.
+1. Establish a database instance and obtain the corresponding host and port information.
+2. Connect to the database using the master username and password. Subsequently, generate a new user and assign the `rds_iam` role as follows:
+    - `CREATE USER <username> WITH LOGIN`
+    - `GRANT rds_iam TO <username>`
+3. Create a token for the `<username>` using the `generate-db-auth-token` command.
+4. Connect to the database utilizing the user you generated and the token obtained in the previous step as the password.
 
 ### Create a database instance
 
@@ -280,6 +280,7 @@ At the moment, primarily extension functions for the PostgreSQL engine are suppo
 The [`aws_lambda` extension](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL-Lambda.html) can be used in local RDS PostgreSQL databases to interact with the Lambda API.
 
 For example, in the SQL code snippet below, we are loading the `aws_lambda` extension, then generate a full ARN from a function name, and finally invoke the Lambda function directly from the SQL query:
+
 ```sql
 CREATE EXTENSION IF NOT EXISTS aws_lambda CASCADE;
 -- create a Lambda function ARN
@@ -303,6 +304,7 @@ SELECT aws_s3.table_import_from_s3(
 ```
 
 Analogously, we can use the `query_export_to_s3(..)` extension function to export data from a table `table2` into a CSV file `test.csv` in local S3 bucket `mybucket2`:
+
 ```sql
 CREATE EXTENSION IF NOT EXISTS aws_s3 CASCADE;
 SELECT aws_s3.query_export_to_s3(
@@ -316,12 +318,12 @@ SELECT aws_s3.query_export_to_s3(
 
 In addition to the `aws_*` extensions described in the sections above, LocalStack RDS supports the following PostgreSQL extensions (some of which are bundled with the [`PostGIS` extension](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.PostGIS.html)):
 
-* `address_standardizer_data_us`
-* `fuzzystrmatch`
-* `postgis`
-* `postgis_raster`
-* `postgis_tiger_geocoder`
-* `postgis_topology`
+- `address_standardizer_data_us`
+- `fuzzystrmatch`
+- `postgis`
+- `postgis_raster`
+- `postgis_tiger_geocoder`
+- `postgis_topology`
 
 ## Resource Browser
 

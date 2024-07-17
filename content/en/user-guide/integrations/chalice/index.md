@@ -101,8 +101,8 @@ Creating IAM role: localstack-test-dev
 Creating lambda function: localstack-test-dev
 Creating Rest API
 Resources deployed:
-  - Lambda ARN: arn:aws:lambda:us-east-1:000000000000:function:localstack-test-dev
-  - Rest API URL: https://y5iuni004m.execute-api.us-east-1.amazonaws.com/api/
+- Lambda ARN: arn:aws:lambda:us-east-1:000000000000:function:localstack-test-dev
+- Rest API URL: https://y5iuni004m.execute-api.us-east-1.amazonaws.com/api/
 {{< / command >}}
 
 We now have our Chalice Application deployed on a Lambda Amazon Resource Name (ARN) along with a REST API URL.

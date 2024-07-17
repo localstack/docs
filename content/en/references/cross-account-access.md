@@ -19,7 +19,9 @@ Cross-account/cross-region access happens when a client attempts to access a res
 
 {{< command >}}
 #
+
 # Create a queue in one account and region
+
 #
 
 $ AWS_ACCESS_KEY_ID=111111111111 awslocal sqs create-queue \
@@ -30,17 +32,22 @@ $ AWS_ACCESS_KEY_ID=111111111111 awslocal sqs create-queue \
 }
 
 #
+
 # Set some attributes
+
 #
 
 $ AWS_ACCESS_KEY_ID=111111111111 awslocal sqs set-queue-attributes \
     --attributes VisibilityTimeout=60 \
     --queue-url http://sqs.ap-south-1.localhost.localstack.cloud:443/111111111111/my-queue \
-    --region ap-south-1 
+    --region ap-south-1
 
 #
-# Retrieve the queue attribute from another account and region.
-# The required information for LocalStack to locate the queue is available in the queue URL.
+
+# Retrieve the queue attribute from another account and region
+
+# The required information for LocalStack to locate the queue is available in the queue URL
+
 #
 
 $ AWS_ACCESS_KEY_ID=222222222222 awslocal sqs get-queue-attributes \

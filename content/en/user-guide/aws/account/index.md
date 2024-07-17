@@ -16,7 +16,7 @@ LocalStack's Account provider is mock-only and does not support any real AWS acc
 
 ## Getting started
 
-This guide is designed for users who are new to Account and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script. 
+This guide is designed for users who are new to Account and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method. We will demonstrate how to put contact information, fetch account details, and attach an alternate contact to your account.
 

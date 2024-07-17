@@ -117,7 +117,7 @@ var amazonS3Client = session.CreateClientByImplementation<AmazonS3Client>();
 - **Adaptable Environment Transition:** Switching between LocalStack and actual AWS services can be achieved with minimal configuration changes when leveraging `LocalStack.NET`.
 - **Versatile .NET Compatibility:** Supports a broad spectrum of .NET versions, from .NET Framework 4.6.1 and .NET Standard 2.0, up to recent .NET iterations such as .NET 7.0.
 
-### Considerations:
+### Considerations
 
 - Both the standard AWS SDK method and `LocalStack.NET` provide ways to integrate with LocalStack using .NET. The choice depends on developer preferences and specific project needs.
 - `LocalStack.NET` works alongside the AWS SDK, using it as a base and providing a more focused API for LocalStack interactions.

@@ -22,7 +22,7 @@ The underlying mechanisms of all three solutions are similar, but the layout obv
 locally and Cloud Pods are very similar, as they look like `local` and `remote` versions of the same bundle. To get a better understanding of how
 these three features differ, they can be illustrated as following:
 
-<img src="persistence-pods-remote.png" alt="The difference between persistence, local state and Cloud Pods." title="LocalStack state" 
+<img src="persistence-pods-remote.png" alt="The difference between persistence, local state and Cloud Pods." title="LocalStack state"
 width="1000px" padding-bottom="10px"/>
 
 State Management is an essential feature that supports various use-cases, such as pre-seeding your fresh LocalStack instance with data, sharing your LocalStack instance's state with your team, fostering collaboration, and more.

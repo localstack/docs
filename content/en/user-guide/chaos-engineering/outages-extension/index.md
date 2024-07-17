@@ -9,11 +9,10 @@ tags: ["Enterprise plan"]
 ## Introduction
 
 The [LocalStack Outages Extension](https://pypi.org/project/localstack-extension-outages/) allows you to mimic outages across any AWS region or service.
-By integrating the Outages Extension using the [LocalStack Extension mechanism](https://docs.localstack.cloud/user-guide/extensions/), you can assess 
-your infrastructure's robustness. Intentionally triggering service outages and monitoring the system's response in situations 
+By integrating the Outages Extension using the [LocalStack Extension mechanism](https://docs.localstack.cloud/user-guide/extensions/), you can assess
+your infrastructure's robustness. Intentionally triggering service outages and monitoring the system's response in situations
 where the infrastructure is compromised offers a powerful way to test. This strategy helps gauge the effectiveness of the system's
 deployment procedures and its resilience against infrastructure disruptions, which is a key element of chaos engineering.
-
 
 {{< callout >}}
 Outages Extension is currently available as part of the **LocalStack Enterprise** plan. If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
@@ -26,7 +25,6 @@ The general prerequisites for this guide are:
 - LocalStack Pro with [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) & [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 - [Python](https://www.python.org/downloads/)
-
 
 ### Installing the extension
 
@@ -43,8 +41,8 @@ Follow our [Managing Extensions documentation](https://docs.localstack.cloud/use
 
 ### Configuration
 
-The extension is set up through an API endpoint, where the setup involves specifying a set of rules that are applied in order. 
-Each rule includes two key pieces of information: the service name and its region. You have the option to use the `*` wildcard 
+The extension is set up through an API endpoint, where the setup involves specifying a set of rules that are applied in order.
+Each rule includes two key pieces of information: the service name and its region. You have the option to use the `*` wildcard
 for flexibility in either attribute.
 
 To initiate an outage for specific service/region combinations, you can make a POST request as described below:
@@ -68,7 +66,6 @@ curl --location --request POST 'http://outages.localhost.localstack.cloud:4566/o
     }
 ]'
 {{< /command >}}
-
 
 Once activated, any API requests to the impacted services and regions will result in an HTTP 503 Service Unavailable error.
 

@@ -99,9 +99,9 @@ $ ./mvnw clean package -Dnative.
 {{< callout >}}
 Dev Services for Amazon Services is automatically enabled for each extension added to the `pom.xml`, except in the following scenarios:
 
--   When `quarkus.devservices.enabled` is set to false.
--   When `devservices.enabled` is set to false per extension (e.g., `quarkus.s3.devservices.enabled=false`).
--   When the `endpoint-override` is configured (e.g., `quarkus.s3.endpoint-override=http://localhost:4566`).
+- When `quarkus.devservices.enabled` is set to false.
+- When `devservices.enabled` is set to false per extension (e.g., `quarkus.s3.devservices.enabled=false`).
+- When the `endpoint-override` is configured (e.g., `quarkus.s3.endpoint-override=http://localhost:4566`).
 {{< /callout >}}
 
 ## Supported extensions

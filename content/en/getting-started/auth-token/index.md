@@ -12,9 +12,9 @@ The Auth Token is a personal identifier used for user authentication outside the
 The Auth Token remains unchanged unless manually rotated by the user, regardless of any license assignment changes. You can locate your Auth Token on the [Getting Started page](https://app.localstack.cloud/getting-started) or the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) in the LocalStack Web Application.
 
 {{< callout "warning" >}}
--   Previously, API keys were required to activate the LocalStack core cloud emulator. These API keys are now being replaced by Auth Tokens.
--   Currently, LocalStack supports both API Keys and Auth Tokens. However, API Keys will be discontinued in the upcoming major release of LocalStack.
--   To update your LocalStack configuration, replace your API Key with an Auth Token. Use the `LOCALSTACK_AUTH_TOKEN` environment variable in place of `LOCALSTACK_API_KEY`.
+- Previously, API keys were required to activate the LocalStack core cloud emulator. These API keys are now being replaced by Auth Tokens.
+- Currently, LocalStack supports both API Keys and Auth Tokens. However, API Keys will be discontinued in the upcoming major release of LocalStack.
+- To update your LocalStack configuration, replace your API Key with an Auth Token. Use the `LOCALSTACK_AUTH_TOKEN` environment variable in place of `LOCALSTACK_API_KEY`.
 {{< /callout >}}
 
 ## Managing your License
@@ -48,9 +48,9 @@ To view your own assigned license, visit the [My License page](https://app.local
 LocalStack requires the `LOCALSTACK_AUTH_TOKEN` environment variable to contain your Auth Token. You can configure your Auth Token in several ways, depending on your use case. The following sections describe the various methods of setting your Auth Token.
 
 {{< callout "warning">}}
--   It's crucial to keep your Auth Token confidential. Do not include it in source code management systems, such as Git repositories.
--   Be aware that if an Auth Token is committed to a public repository, it's at risk of exposure, and could remain in the repository's history, even if attempts are made to rewrite it.
--   In case your Auth Token is accidentally published, immediately rotate it on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token).
+- It's crucial to keep your Auth Token confidential. Do not include it in source code management systems, such as Git repositories.
+- Be aware that if an Auth Token is committed to a public repository, it's at risk of exposure, and could remain in the repository's history, even if attempts are made to rewrite it.
+- In case your Auth Token is accidentally published, immediately rotate it on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token).
 {{< /callout >}}
 
 ### Configuring your CI environment
@@ -138,7 +138,6 @@ $ Invoke-WebRequest -Uri http://localhost:4566/_localstack/info | ConvertFrom-Js
 
 {{< /tab >}}
 {{< /tabpane >}}
-
 
 The following output would be retrieved:
 

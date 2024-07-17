@@ -13,8 +13,8 @@ aliases:
 
 LocalStack supports Terraform via the [AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) through [custom service endpoints](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack). You can configure Terraform to use LocalStack in two ways:
 
--   Using the [`tflocal` wrapper script](https://github.com/localstack/terraform-local) to automatically configure the service endpoints for you.
--   Manually configuring the service endpoints in your Terraform configuration with additional maintenance.
+- Using the [`tflocal` wrapper script](https://github.com/localstack/terraform-local) to automatically configure the service endpoints for you.
+- Manually configuring the service endpoints in your Terraform configuration with additional maintenance.
 
 In this guide, we will demonstrate how you can create local AWS resources using Terraform and LocalStack, by using the `tflocal` wrapper script and a manual configuration example.
 
@@ -81,12 +81,12 @@ $ tflocal apply
 
 {{< callout >}}
 While using `CUSTOMIZE_ACCESS_KEY`, following cases are taking precedence over each other from top to bottom:
-1.  If the `AWS_ACCESS_KEY_ID` environment variable is set.
-2.  If `access_key` is configured in the Terraform AWS provider.
-3.  If the `AWS_PROFILE` environment variable is set and properly configured.
-4.  If the `AWS_DEFAULT_PROFILE` environment variable is set and configured.
-5.  If credentials for the `default` profile are configured.
-6.  If none of the above settings are present, it falls back to using the default `AWS_ACCESS_KEY_ID` mock value.
+1. If the `AWS_ACCESS_KEY_ID` environment variable is set.
+2. If `access_key` is configured in the Terraform AWS provider.
+3. If the `AWS_PROFILE` environment variable is set and properly configured.
+4. If the `AWS_DEFAULT_PROFILE` environment variable is set and configured.
+5. If credentials for the `default` profile are configured.
+6. If none of the above settings are present, it falls back to using the default `AWS_ACCESS_KEY_ID` mock value.
 {{< /callout >}}
 
 ## Manual Configuration
@@ -234,7 +234,7 @@ To configure your existing CDKTF configuration to work with LocalStack, manually
 - Request Management to avoid issues with routing and authentication, if needed.
 - Service configuration to point the individual services to LocalStack.
 
-Here is a configuration example to use with Python & TypeScript CDKTF configurations: 
+Here is a configuration example to use with Python & TypeScript CDKTF configurations:
 
 {{< tabpane >}}
 {{< tab header="localstack_config.py" lang="py" >}}
@@ -267,7 +267,7 @@ AWS_CONFIG = {
             "sts": "http://localhost:4566",
         }
     ],
-} 
+}
 {{< /tab >}}
 {{< tab header="localstack-config.ts" lang="ts" >}}
 export const AWS_CONFIG = {
@@ -299,7 +299,7 @@ export const AWS_CONFIG = {
       sts: "http://localhost:4566",
     },
   ],
-}; 
+};
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -326,17 +326,17 @@ new AwsProvider(this, "aws", AWS_CONFIG);
 
 To get started with CDKTF on LocalStack, we will set up a simple stack to create some AWS resources. We will then deploy the stack to LocalStack, and verify that the resources have been created successfully. Before we start, make sure you have the following prerequisites:
 
-* LocalStack
-* [`cdktf`](https://www.npmjs.com/package/cdktf)
+- LocalStack
+- [`cdktf`](https://www.npmjs.com/package/cdktf)
 
 For Python:
 
-* [`python`](https://www.python.org/downloads/)
-* [`pipenv`](https://pipenv.pypa.io/en/latest/installation.html#installing-pipenv)
+- [`python`](https://www.python.org/downloads/)
+- [`pipenv`](https://pipenv.pypa.io/en/latest/installation.html#installing-pipenv)
 
 For TypeScript:
 
-* [`tsc`](https://www.npmjs.com/package/typescript)
+- [`tsc`](https://www.npmjs.com/package/typescript)
 
 Create a new directory named `cdktf-localstack` and initialize a new CDKTF project using the following command:
 
@@ -388,16 +388,16 @@ Add the following code to import the AWS provider and create a new S3 bucket in 
 
 {{< tabpane >}}
 {{< tab header="main.py" lang="py" >}}
-#!/usr/bin/env python
+# !/usr/bin/env python
+
 from constructs import Construct
 from cdktf import App, TerraformStack
 from cdktf_cdktf_provider_aws.provider import AwsProvider
 from cdktf_cdktf_provider_aws.s3_bucket import S3Bucket
 
-
 class MyStack(TerraformStack):
-    def __init__(self, scope: Construct, id: str):
-        super().__init__(scope, id)
+    def **init**(self, scope: Construct, id: str):
+        super().**init**(scope, id)
 
         AwsProvider(self, "aws",
             region="us-east-1",

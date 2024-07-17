@@ -334,7 +334,6 @@ $ awslocal elbv2 describe-load-balancers
 }
 {{< / command >}}
 
-
 The ALB endpoints for the two Lambda functions, hello1 and hello2, are accessible at the following URLs:
 
 - [`http://lb-test-1.elb.localhost.localstack.cloud:4566/hello1`](http://lb-test-1.elb.localhost.localstack.cloud:4566/hello1)

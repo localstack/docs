@@ -20,7 +20,7 @@ Start your LocalStack container with the `DEBUG=1` and `ENFORCE_IAM=1` environme
 $ DEBUG=1 ENFORCE_IAM=1 localstack start
 {{< /command >}}
 
-We will demonstrate IAM Policy Enforcement, by creating a user and obtaining the access/secret keys. We will make an attempt to create a bucket using the user’s credentials, which inevitably fails due to insufficient permissions. 
+We will demonstrate IAM Policy Enforcement, by creating a user and obtaining the access/secret keys. We will make an attempt to create a bucket using the user’s credentials, which inevitably fails due to insufficient permissions.
 
 Lastly, a policy is attached to the user, granting the necessary `s3:CreateBucket` permission, thereby enabling the successful creation of the bucket.
 

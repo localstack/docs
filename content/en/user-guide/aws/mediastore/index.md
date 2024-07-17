@@ -7,8 +7,8 @@ tags: ["Pro image"]
 
 ## Introduction
 
-MediaStore is a scalable and highly available object storage service designed specifically for media content. 
-It provides a reliable way to store, manage, and serve media assets, such as audio, video, and images, with low latency and high performance. 
+MediaStore is a scalable and highly available object storage service designed specifically for media content.
+It provides a reliable way to store, manage, and serve media assets, such as audio, video, and images, with low latency and high performance.
 MediaStore seamlessly integrates with other AWS services like Elemental MediaConvert, Elemental MediaLive, Elemental MediaPackage, and CloudFront.
 
 LocalStack allows you to use the Elemental MediaStore APIs as a high-performance storage solution for media content in your local environment.
@@ -22,7 +22,7 @@ Start your LocalStack container using your preferred method. We will demonstrate
 
 ### Create a container
 
-You can create a container using the [`CreateContainer`](https://docs.aws.amazon.com/mediastore/latest/apireference/API_CreateContainer.html) API. 
+You can create a container using the [`CreateContainer`](https://docs.aws.amazon.com/mediastore/latest/apireference/API_CreateContainer.html) API.
 Run the following command to create a container and retrieve the the `Endpoint` value which should be used in subsequent requests:
 
 {{< command >}}
@@ -44,9 +44,9 @@ You should see the following output:
 
 ### Upload an asset
 
-To upload a file named `myfile.txt` to the container, utilize the [`PutObject`](https://docs.aws.amazon.com/mediastore/latest/apireference/API_PutObject.html) API. 
-This action will transfer the file to the specified path, `/myfolder/myfile.txt`, within the container. 
-Provide the `endpoint` obtained in the previous step for the operation to be successful. 
+To upload a file named `myfile.txt` to the container, utilize the [`PutObject`](https://docs.aws.amazon.com/mediastore/latest/apireference/API_PutObject.html) API.
+This action will transfer the file to the specified path, `/myfolder/myfile.txt`, within the container.
+Provide the `endpoint` obtained in the previous step for the operation to be successful.
 Run the following command to upload the file:
 
 {{< command >}}
@@ -68,9 +68,9 @@ You should see the following output:
 
 ### Download an asset
 
-To retrieve the file from the container, utilize the [`GetObject`](https://docs.aws.amazon.com/mediastore/latest/apireference/API_GetObject.html) API. 
-In this process, you need to specify the endpoint, the path for downloading the file, and the location where the output file, such as `/tmp/out.txt`, will be stored. 
-The downloaded file will then be accessible at the specified output path. 
+To retrieve the file from the container, utilize the [`GetObject`](https://docs.aws.amazon.com/mediastore/latest/apireference/API_GetObject.html) API.
+In this process, you need to specify the endpoint, the path for downloading the file, and the location where the output file, such as `/tmp/out.txt`, will be stored.
+The downloaded file will then be accessible at the specified output path.
 Run the following command to download the file:
 
 {{< command >}}

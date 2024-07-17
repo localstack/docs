@@ -113,7 +113,7 @@ The following output will be displayed:
 
 ## Custom Key Material for KMS Keys via Tags
 
-You can seed a KMS key with custom key material using the `_custom_key_material_` tag during creation. 
+You can seed a KMS key with custom key material using the `_custom_key_material_` tag during creation.
 This can be useful to pre-seed a development environment so values encrypted with KMS can be decrypted later.
 
 Here is an example of using custom key material with the value being base64 encoded:
@@ -152,14 +152,14 @@ In AWS KMS, cryptographic keys exhibit [multiple states](https://docs.aws.amazon
 - `PendingImport`
 - `PendingDeletion`
 
-### Multi-region keys 
+### Multi-region keys
 
 LocalStack's KMS implementation is equipped to facilitate [multi-region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html), but there's a distinct behavior compared to AWS KMS. Unlike AWS KMS, the replication of multi-region key replicas in LocalStack KMS isn't automatically synchronized with their corresponding primary key. Consequently, adjustments made to the primary key's settings won't propagate automatically to the replica.
 
-### Key aliases 
+### Key aliases
 
 While AWS KMS conveniently establishes [aliases](https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html), LocalStack follows suit by supporting these pre-configured aliases. However, it's important to note that in LocalStack, these aliases come into picture after the initial access attempt. Until that point, they are not visible.
 
-### Key specs 
+### Key specs
 
 In AWS KMS, [SM2](https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html#key-spec-sm:~:text=the%20message%20digest.-,SM2%20key%20spec%20(China%20Regions%20only),-The%20SM2%20key) is a supported key spec for asymmetric keys. However, LocalStack's KMS implementation doesn't support this key spec.

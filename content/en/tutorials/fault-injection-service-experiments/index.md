@@ -132,7 +132,7 @@ $ awslocal fis create-experiment-template --cli-input-json file://experiment-ddb
         "creationTime": 1699308754.415716,
         "lastUpdateTime": 1699308754.415716,
         "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
-    }   
+    }
 }
 </disable-copy>
 {{</ command >}}
@@ -203,8 +203,8 @@ $ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/
     "price": "29.99",
     "description": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
 }'
-<disable-copy>                                      
-A DynamoDB error occurred. Message sent to queue.      
+<disable-copy>
+A DynamoDB error occurred. Message sent to queue.
 </disable-copy>
 {{< /command >}}
 
@@ -329,6 +329,7 @@ The LocalStack FIS service can also introduce latency using the following experi
   "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
 }
 ```
+
 Save this template as `latency-experiment.json` and use it to create an experiment definition through the FIS service:
 
 {{< command >}}
@@ -377,4 +378,3 @@ $ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/
 An error occurred (InternalError) when calling the GetResources operation (reached max retries: 4): Failing as per Fault Injection Simulator configuration
 </disable-copy>
 {{< /command >}}
-

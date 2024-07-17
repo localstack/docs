@@ -18,9 +18,9 @@ This guide is designed for users who are new to the IAM Policy Stream. It assume
 
 To experiment with the IAM Policy Stream, initiate LocalStack using these flags:
 
-1.  Enable debugging: `DEBUG=1`
-2.  Set your LocalStack API key: `LOCALSTACK_API_KEY=<Your_API_Key>`
-3.  Set the IAM Soft Mode: `IAM_SOFT_MODE=1`
+1. Enable debugging: `DEBUG=1`
+2. Set your LocalStack API key: `LOCALSTACK_API_KEY=<Your_API_Key>`
+3. Set the IAM Soft Mode: `IAM_SOFT_MODE=1`
 
 You can execute the following command in your terminal to start your LocalStack container:
 
@@ -67,10 +67,10 @@ Policy:
 
 The LocalStack Web Application includes an IAM Policy Stream dashboard, which allows you to discover the necessary permissions for AWS API calls. The Web Application provides the following features:
 
-1.  Provides a live display of API calls and the specific policies each call generates.
-2.  Offers a real-time summary policy, merging all individual policies into one consolidated policy.
-3.  Includes a feature to activate or deactivate this functionality on-the-fly for performance tuning.
-4.  Presents an option to reset the stream, facilitating a clean slate to generate new policies.
+1. Provides a live display of API calls and the specific policies each call generates.
+2. Offers a real-time summary policy, merging all individual policies into one consolidated policy.
+3. Includes a feature to activate or deactivate this functionality on-the-fly for performance tuning.
+4. Presents an option to reset the stream, facilitating a clean slate to generate new policies.
 
 {{< callout "tip" >}}
 You don't need to set additional configuration variables, such as `DEBUG=1` or `IAM_SOFT_MODE=1`, when using the IAM Policy Stream with Web Application. However, it won't enforce policies or print IAM-related logs in the LocalStack container.

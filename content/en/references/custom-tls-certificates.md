@@ -24,7 +24,7 @@ They all can be summarised as:
 
 1. get your proxy's custom certificate into the system certificate store, and
 2. configure [`requests`](https://pypi.python.org/pypi/requests) to use the custom certificate,
-3. configure [`curl`](https://curl.se/) to use the custom certificate, and 
+3. configure [`curl`](https://curl.se/) to use the custom certificate, and
 4. configure [`node.js`](https://nodejs.org/) to use the custom certificate.
 
 ## Creating a custom docker image
@@ -53,7 +53,7 @@ $ docker build -t <image name> .
 
 {{< callout "tip" >}}
 Certificate files must end in `.crt` to be included in the system certificate store.
-If your certificate file ends with `.pem`, you can rename it to end in `.crt`. 
+If your certificate file ends with `.pem`, you can rename it to end in `.crt`.
 {{< /callout >}}
 
 ### Starting LocalStack with the custom image
@@ -107,7 +107,9 @@ On linux the custom certificate should be added to your `ca-certificates` bundle
 
 {{< command >}}
 # cp <your custom certificate.crt> /usr/local/share/ca-certificates
+
 # update-ca-certificates
+
 {{< / command >}}
 
 Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`, and `NODE_EXTRA_CA_CERTS``:

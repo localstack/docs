@@ -17,10 +17,10 @@ We have introduced an all-new LocalStack-native [CloudWatch provider](https://do
 
 We have migrated from storing data in Python objects within the Moto backend to a more robust system. Now, metrics are efficiently stored in SQLite, and alarm resources are managed using LocalStack stores.
 
--   Various enhancements have been made to attain greater feature parity with AWS.
--   The provider is engineered to ensure thread safety, facilitating smooth concurrent operations.
--   There’s a significant improvement in the integrity and durability of data.
--   The new provider allows for more efficient data retrieval.
+- Various enhancements have been made to attain greater feature parity with AWS.
+- The provider is engineered to ensure thread safety, facilitating smooth concurrent operations.
+- There’s a significant improvement in the integrity and durability of data.
+- The new provider allows for more efficient data retrieval.
 {{< /callout >}}
 
 ## Getting started
@@ -129,7 +129,7 @@ In LocalStack, you can use metric-alarm evaluation, explicitly utilizing the sta
 
 ### Metric Alarm Examples
 
-Metric alarms in CloudWatch allow you to evaluate the state of a metric by analyzing its data points over a specified period. With metric alarms, you can create customized thresholds and define actions based on the metric's behavior. 
+Metric alarms in CloudWatch allow you to evaluate the state of a metric by analyzing its data points over a specified period. With metric alarms, you can create customized thresholds and define actions based on the metric's behavior.
 
 To get started with creating an alarm in LocalStack using the `awslocal` integration, use the following command:
 
@@ -179,7 +179,7 @@ $ awslocal cloudwatch put-metric-alarm \
   --period 300 \
   --statistic Maximum \
   --treat-missing notBreaching \
-  --alarm-actions <topic-arn> 
+  --alarm-actions <topic-arn>
 {{< / command >}}
 
 By executing this command, you'll create an alarm named `my-alarm` that monitors the `Orders` metric in the `test` namespace. If the metric value exceeds the threshold of 50 (using the `GreaterThanThreshold` operator) during a single evaluation period of 300 seconds, the alarm will trigger the specified action on the provided SNS topic.
@@ -196,8 +196,8 @@ Please be aware of the following known limitations in LocalStack:
 
 LocalStack supports the following AWS services for integration with CloudWatch metrics:
 
--   **SQS**: Supports `Approximate*` metrics, `NumberOfMessagesSent`, and other metrics triggered by events such as message received or sending.
--   **Lambda**: Supports `Invocations` and `Errors` metrics.
+- **SQS**: Supports `Approximate*` metrics, `NumberOfMessagesSent`, and other metrics triggered by events such as message received or sending.
+- **Lambda**: Supports `Invocations` and `Errors` metrics.
 
 ## Resource Browser
 
@@ -209,14 +209,14 @@ The Resource Browser allows you to perform the following actions:
 
 <img src="cloudwatch-metrics-resource-browser.png" alt="CloudWatch Metrics Resource Browser" title="CloudWatch Metrics Resource Browser" width="900" />
 
-* **Create Log Group**: Create a new log group by specifying the `Log Group Name`, `KMS Key ID`, and `Tags`.
-* **Put metric**: Create a new metric by specifying the `Namespace` and `Metric Data`.
-* **Put Alarm**: Create a new alarm by specifying the `Alarm Name`, `Alarm Description`, `Actions Enabled`, `Metric Name`, `Namespace`, `Statistic`, `Comparison Operator`, `Threshold`, `Evaluation Periods`, `Period`, `Unit`, `Treat Missing Data`, `Tags`, and `Alarm Actions`.
-* **Check the Resources**: View and manage existing log groups, metrics, and alarms and perform actions such as `Delete`, `View`, and `Edit`.
+- **Create Log Group**: Create a new log group by specifying the `Log Group Name`, `KMS Key ID`, and `Tags`.
+- **Put metric**: Create a new metric by specifying the `Namespace` and `Metric Data`.
+- **Put Alarm**: Create a new alarm by specifying the `Alarm Name`, `Alarm Description`, `Actions Enabled`, `Metric Name`, `Namespace`, `Statistic`, `Comparison Operator`, `Threshold`, `Evaluation Periods`, `Period`, `Unit`, `Treat Missing Data`, `Tags`, and `Alarm Actions`.
+- **Check the Resources**: View and manage existing log groups, metrics, and alarms and perform actions such as `Delete`, `View`, and `Edit`.
 
 ## Examples
 
 The following code snippets and sample applications provide practical examples of how to use CloudWatch in LocalStack for various use cases:
 
-* [Creating Cloudwatch metric alarms](https://github.com/localstack/localstack-pro-samples/tree/master/cloudwatch-metrics-aws) to demonstrate a simple example for creating CloudWatch metric alarm based on the metrics of a failing Lambda function.
-* [Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3](https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo) to deploy a recruiting agency application with a job listings website and view the CloudWatch logs.
+- [Creating Cloudwatch metric alarms](https://github.com/localstack/localstack-pro-samples/tree/master/cloudwatch-metrics-aws) to demonstrate a simple example for creating CloudWatch metric alarm based on the metrics of a failing Lambda function.
+- [Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3](https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo) to deploy a recruiting agency application with a job listings website and view the CloudWatch logs.

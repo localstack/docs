@@ -7,11 +7,11 @@ tags: ["Pro image"]
 
 ## Introduction
 
-AWS Private Certificate Authority (ACM PCA) is a managed private Certificate Authority (CA) service that manages the lifecycle of your private certificates. 
+AWS Private Certificate Authority (ACM PCA) is a managed private Certificate Authority (CA) service that manages the lifecycle of your private certificates.
 ACM PCA extends ACM's certificate management capabilities to private certificates, enabling you to manage public and private certificates centrally.
 
 LocalStack allows you to use the ACM PCA APIs to create, list, and delete private certificates.
-You can creating, describing, tagging, and listing tags for a CA using ACM PCA. 
+You can creating, describing, tagging, and listing tags for a CA using ACM PCA.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_acm-pca/), which provides information on the extent of ACM PCA's integration with LocalStack.
 
 ## Getting started
@@ -20,7 +20,7 @@ This guide is designed for users who are new to ACM PCA and assumes basic knowle
 
 ### Create a Certificate Authority (CA)
 
-Start by creating a new Certificate Authority with ACM PCA using the [`CreateCertificateAuthority`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html) API. 
+Start by creating a new Certificate Authority with ACM PCA using the [`CreateCertificateAuthority`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html) API.
 This command sets up a new CA with specified configurations for key algorithm, signing algorithm, and subject information.
 
 {{< command >}}
@@ -55,7 +55,7 @@ Note the `CertificateAuthorityArn` from the output as it will be needed for subs
 
 ### Describe the Certificate Authority
 
-To retrieve the detailed information about the created Certificate Authority, use the [`DescribeCertificateAuthority`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_DescribeCertificateAuthority.html) API. 
+To retrieve the detailed information about the created Certificate Authority, use the [`DescribeCertificateAuthority`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_DescribeCertificateAuthority.html) API.
 This command returns the detailed information about the CA, including the CA's ARN, status, and configuration.
 
 {{< command >}}
@@ -95,7 +95,7 @@ $ awslocal acm-pca describe-certificate-authority \
 
 ### Tag the Certificate Authority
 
-Tagging resources in AWS helps in managing and identifying them. Use the [`TagCertificateAuthority`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_TagCertificateAuthority.html) API to tag the created Certificate Authority. 
+Tagging resources in AWS helps in managing and identifying them. Use the [`TagCertificateAuthority`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_TagCertificateAuthority.html) API to tag the created Certificate Authority.
 This command adds the specified tags to the specified CA.
 
 {{< command >}}
@@ -104,7 +104,7 @@ $ awslocal acm-pca tag-certificate-authority \
     --tags Key=Admin,Value=Alice
 {{< /command >}}
 
-After tagging your Certificate Authority, you may want to view these tags. 
+After tagging your Certificate Authority, you may want to view these tags.
 You can use the [`ListTags`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_ListTags.html) API to list all the tags associated with the specified CA.
 
 {{< command >}}

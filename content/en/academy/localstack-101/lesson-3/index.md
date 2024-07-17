@@ -13,13 +13,13 @@ type: lessons
 url: "/academy/localstack-101/why-localstack/"
 ---
 
-Let's imagine this scenario: Alice, a software developer, takes on the task of creating a serverless 
+Let's imagine this scenario: Alice, a software developer, takes on the task of creating a serverless
 Web application on AWS Cloud. However, she faces slow and tedious development due to cloud dependencies (DBs, VMs, MQs, etc.).
 Every local change needs to be packaged and uploaded to the cloud for testing.
 The solution for her trouble is LocalStack — a revolutionary platform that brings cloud resources to her
 local machine, enabling efficient development and testing.
 
-LocalStack is the ultimate platform for cloud developers, offering a wide array of benefits to enhance productivity, reduce costs, and simplify maintenance. 
+LocalStack is the ultimate platform for cloud developers, offering a wide array of benefits to enhance productivity, reduce costs, and simplify maintenance.
 This comprehensive course will equip you with the knowledge and skills to harness LocalStack's power and revolutionize your cloud development workflow.
 
 Key Takeaways:
@@ -42,4 +42,3 @@ Further reading:
 - [How Understanding Billing is Complicated and Risky](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html)
 - [LocalStack in CI](https://docs.localstack.cloud/user-guide/ci/)
 - [Third Party Integrations](https://docs.localstack.cloud/user-guide/integrations/)
-

@@ -13,7 +13,6 @@ When you deploy, SAM converts its syntax into AWS CloudFormation syntax, helping
 LocalStack can work with SAM using the AWS SAM CLI for LocalStack. This CLI comes in the form of a `samlocal` wrapper script, which lets you deploy SAM applications on LocalStack.
 This guide explains how to set up local AWS resources using the `samlocal` wrapper script.
 
-
 ## `samlocal` wrapper script
 
 `samlocal` is a wrapper for the `sam` command line interface, facilitating the use of SAM framework with LocalStack.
@@ -65,7 +64,6 @@ The `samlocal` wrapper will package and deploy the application to LocalStack.
 
 To debug your Lambda functions in VS Code while using the SAM CLI's `sam local` command alongside other services provided by LocalStack, set up a launch configuration in the `.vscode/launch.json` file.
 Insert the following settings into the file:
-
 
 ```json
 {

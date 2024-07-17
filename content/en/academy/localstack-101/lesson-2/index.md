@@ -21,7 +21,7 @@ In this lesson, we'll talk about LocalStack:
 - Tackles sophisticated and exotic APIs (QLDB, Athena, Glue) and helps enhance your skill set.
 - Contains advanced collaboration features and seamless CI integrations that foster team productivity.
 - Our mission is to empower developers with control over their environments, eliminating time-consuming cloud dev and test loops.
-- You can focus on developing exceptional products to solve real-world challenges with LocalStack as your game-changing companion. 
+- You can focus on developing exceptional products to solve real-world challenges with LocalStack as your game-changing companion.
 
 Embrace the future of cloud development and have fun exploring!
 
@@ -32,6 +32,3 @@ Further reading:
 - [LocalStack Service Coverage](https://docs.localstack.cloud/user-guide/aws/feature-coverage/)
 - [Learning Resources for Everything AWS](https://aws.amazon.com/developer/learning/)
 - [Documentation for AWS Services](https://docs.aws.amazon.com/)
-
-
-

@@ -97,7 +97,6 @@ $ curl --silent localhost.localstack.cloud:4566/_aws/ses?email=hello@example.com
 - **Filesystem:** All messages are saved to the state directory (see [filesystem layout]({{< ref "filesystem" >}})).
     The files are saved as JSON in the `ses/` subdirectory and named by the message ID.
 
-
 ## SMTP Integration
 
 The Pro image supports sending emails via an SMTP server. Refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`).

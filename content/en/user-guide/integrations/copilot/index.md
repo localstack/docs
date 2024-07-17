@@ -21,20 +21,23 @@ Using `copilotlocal` instead of `copilot` in your command line therefore ensures
 {{< tab header="Linux AMD64" lang="bash">}}
 curl -Lo copilotlocal https://github.com/localstack/copilot-cli/raw/localstack-builds/build/linux-amd64/copilotlocal && chmod +x copilotlocal
 # if you want to have copilotlocal in your $PATH, move the executable e.g. to /usr/local/bin/
+
 sudo mv copilotlocal /usr/local/bin/
 {{< /tab >}}
 {{< tab header="Linux ARM64" lang="bash">}}
 curl -Lo copilotlocal https://github.com/localstack/copilot-cli/raw/localstack-builds/build/linux-arm64/copilotlocal && chmod +x copilotlocal
 # if you want to have copilotlocal in your $PATH, move the executable e.g. to /usr/local/bin/
+
 sudo mv copilotlocal /usr/local/bin/
 {{< /tab >}}
 {{< tab header="Mac OS" lang="bash">}}
 curl -Lo copilotlocal https://github.com/localstack/copilot-cli/raw/localstack-builds/build/macos-darwin/copilotlocal && chmod +x copilotlocal
 # if you want to have copilotlocal in your $PATH, move the executable e.g. to /usr/local/bin/
+
 sudo mv copilotlocal /usr/local/bin/
 {{< /tab >}}
 {{< tab header="Windows Powershell" lang="powershell">}}
-Invoke-WebRequest -Uri https://github.com/localstack/copilot-cli/raw/localstack-builds/build/windows/copilotlocal.exe -OutFile copilotlocal.exe 
+Invoke-WebRequest -Uri https://github.com/localstack/copilot-cli/raw/localstack-builds/build/windows/copilotlocal.exe -OutFile copilotlocal.exe
 {{< /tab >}}
 {{< /tabpane >}}
 

@@ -62,11 +62,11 @@ The LocalStack Web Application provides a Resource Browser for managing Timestre
 
 The Resource Browser allows you to perform the following actions:
 
-- **Create Database**: Create a new Timestream database by clicking on the **Create Database** button and providing a name for the database among other optional details.
-- **Create Table**: Create a new Timestream table by clicking on the **Create Table** button in the database view and providing a name for the table among other optional details.
-- **Run Query**: Run a Timestream query by clicking on the **Run Query** button in the table view and providing a query string.
-- **View Database/Table Details**: Click on a database or table to view its details, including the schema, retention policy, and other metadata.
-- **Delete Database/Table**: Delete the Timestream database/table by selecting it and clicking on the **Actions** button followed by **Remove Selected** button.
+* **Create Database**: Create a new Timestream database by clicking on the **Create Database** button and providing a name for the database among other optional details.
+* **Create Table**: Create a new Timestream table by clicking on the **Create Table** button in the database view and providing a name for the table among other optional details.
+* **Run Query**: Run a Timestream query by clicking on the **Run Query** button in the table view and providing a query string.
+* **View Database/Table Details**: Click on a database or table to view its details, including the schema, retention policy, and other metadata.
+* **Delete Database/Table**: Delete the Timestream database/table by selecting it and clicking on the **Actions** button followed by **Remove Selected** button.
 
 ## Current Limitations
 

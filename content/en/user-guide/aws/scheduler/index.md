@@ -25,7 +25,7 @@ $ awslocal sqs create-queue --queue-name local-notifications
 {{< /command >}}
 
 You can fetch the Queue ARN using the [`GetQueueAttributes`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueAttributes.html) API. Run the following command to fetch the Queue ARN by specifying the Queue URL:
-    
+
 {{< command >}}
 $ awslocal sqs get-queue-attributes \
     --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/local-notifications \

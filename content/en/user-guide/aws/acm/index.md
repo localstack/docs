@@ -62,7 +62,7 @@ $ awslocal acm delete-certificate --certificate-arn arn:aws:acm:<region>:account
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing ACM Certificates. 
+The LocalStack Web Application provides a Resource Browser for managing ACM Certificates.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Certificate Manager** under the **Security Identity Compliance** section.
 
 <img src="acm-resource-browser.png" alt="ACM Resource Browser" title="ACM Resource Browser" width="900" />

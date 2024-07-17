@@ -14,9 +14,8 @@ log functionality to applications. QLDB is particularly useful for applications 
 and scalable
 way to maintain a complete and verifiable history of data changes over time.
 
-
 LocalStack allows you to use the QLDB APIs in your local environment to create and manage ledgers.
-The supported APIs are available on the [API coverage page]({{< ref "/references/coverage/coverage_qldb/index.md" >}} "QLDB service coverage page"), which provides information on the extent of QLDB's integration with LocalStack. 
+The supported APIs are available on the [API coverage page]({{< ref "/references/coverage/coverage_qldb/index.md" >}} "QLDB service coverage page"), which provides information on the extent of QLDB's integration with LocalStack.
 
 ## Getting started
 
@@ -93,8 +92,8 @@ The user can continue from here to create tables, populate and interrogate them.
 
 ### Creating tables and sample data
 
-PartiQL is a query language designed for processing structured data, allowing you to perform 
-various data manipulation tasks using familiar SQL-like syntax. 
+PartiQL is a query language designed for processing structured data, allowing you to perform
+various data manipulation tasks using familiar SQL-like syntax.
 
 {{< command >}}
 qldb> CREATE TABLE VehicleRegistration
@@ -188,12 +187,14 @@ person ID.
 qldb> UPDATE VehicleRegistration AS r SET r.Owners.PrimaryOwner.PersonId = '112233445566NO' WHERE r.VIN = 'KM8SRDHF6EU074761'
 {{< / command >}}
 The command will return the updated document ID.
+
 ```bash
 {
   documentId: "3TYR9BamzyqHWBjYOfHegE"
 }
 1 document in bag (read-ios: 0, server-time: 0ms, total-time: 62ms)
 ```
+
 The next step is to check on the updates made to the `PersonId` field of the `PrimaryOwner`:
 {{< command >}}
 qldb> SELECT r.Owners FROM VehicleRegistration AS r WHERE r.VIN = 'KM8SRDHF6EU074761'
@@ -228,6 +229,7 @@ First the unique `id` of the document must be found.
 {{< command >}}
 qldb> SELECT r_id FROM VehicleRegistration AS r BY r_id WHERE r.VIN = 'KM8SRDHF6EU074761'
 {{< / command >}}
+
 ```bash
 {
 r_id: "3TYR9BamzyqHWBjYOfHegE"

@@ -46,7 +46,6 @@ The following environment variables can be configured:
 * `AWS_ENDPOINT_URL`: The endpoint URL (i.e., protocol, host, and port) to connect to LocalStack (default: `http://localhost:4566`)
 * `LAMBDA_MOUNT_CODE`: Whether to use local Lambda code mounting (via setting `hot-reload` S3 bucket name)
 
-
 ### Example
 
 Make sure that LocalStack is installed and successfully started with the required services before running the example
@@ -97,15 +96,15 @@ When this lambda is executed locally from the `/tmp` folder, the package can not
 
 ## Other resources
 
-- [Hot-reloading Lambda functions with CDK]({{< ref "user-guide/lambda-tools/hot-reloading#aws-cloud-development-kit-cdk-configuration" >}})
+* [Hot-reloading Lambda functions with CDK]({{< ref "user-guide/lambda-tools/hot-reloading#aws-cloud-development-kit-cdk-configuration" >}})
 
 ## External resources
 
-- [aws-cdk-local](https://github.com/localstack/aws-cdk-local)
-- [AWS CDK API reference](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-construct-library.html)
-- [AWS CDK Developer Guide](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
+* [aws-cdk-local](https://github.com/localstack/aws-cdk-local)
+* [AWS CDK API reference](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-construct-library.html)
+* [AWS CDK Developer Guide](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
 
 ## Community resources
 
-- https://blog.dennisokeeffe.com/blog/2021-08-07-using-the-aws-cdk-with-localstack-and-aws-cdk-local
-- https://www.youtube.com/watch?v=3_sqr0G9zb0
+* https://blog.dennisokeeffe.com/blog/2021-08-07-using-the-aws-cdk-with-localstack-and-aws-cdk-local
+* https://www.youtube.com/watch?v=3_sqr0G9zb0
