@@ -78,7 +78,7 @@ Ephemeral Instances, by default, are created with the latest version of LocalSta
 
 ## Credit Consumption
 
-Ephemeral Instances consume credits based on the duration of the instance. Currently, for every 1 credit, you can run an Ephemeral Instance for 1 minute. You can view the available minutes under the **Lifetime in minutes** slider when creating an Ephemeral Instance. You can view existing credit consumption of your workspace in the **Credit consumption** card at the bottom. 
+Ephemeral Instances consume credits based on the resources used and the duration of the instance. You can view the credit consumption of the Ephemeral Instance in the **Ephemeral Instance** page. Currently, for every 1 credit, you can run an Ephemeral Instance for 1 minute. You can view the available minutes under the **Lifetime in minutes** slider when creating an Ephemeral Instance. You can also see the credit consumption in the **Credit Consumption** section of the Ephemeral Instance page.
 
 <img src="credit-consumption.png" alt="Credit Consumption" title="Credit Consumption" width="800" />
 <br><br>
