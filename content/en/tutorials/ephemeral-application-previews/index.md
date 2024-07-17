@@ -111,7 +111,7 @@ The following step sets up the dependencies and deploys the application preview 
 
 ```yaml 
 - name: Deploy Preview
-  uses: LocalStack/setup-localstack/ephemeral/startup@v0.2.0
+  uses: LocalStack/setup-localstack/ephemeral/startup@v0.2.2
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     localstack-api-key: ${{ secrets.LOCALSTACK_API_KEY }}
@@ -126,7 +126,7 @@ The following step sets up the dependencies and deploys the application preview 
         make bootstrap-frontend
         make deploy-frontend
         distributionId=$(awslocal cloudfront list-distributions | jq -r '.DistributionList.Items[0].Id')
-        echo "PREVIEW_URL=$AWS_ENDPOINT_URL/cloudfront/$distributionId/" >> $GITHUB_ENV
+        echo LS_PREVIEW_URL=$AWS_ENDPOINT_URL/cloudfront/$distributionId/ >> $GITHUB_ENV
 ```
 
 In the provided workflow:
