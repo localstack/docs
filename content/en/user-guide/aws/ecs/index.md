@@ -384,6 +384,12 @@ $ curl http://localhost:4566/_localstack/health
 
 You can now create ECS tasks on Kubernetes by following the steps in the [Getting Started](#getting-started) section.
 
+## Firelens for ECS Tasks
+
+LocalStack's ECS emulation supports custom log routing via FireLens. FireLens allows the ECS service to manage the configuration of the logging driver of application containers, and to create the proper configuration for the `fluentbit`/`fluentd` logging layer.
+
+However the current implementation of FireLens does not support [custom configurations via S3 buckets](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/firelens-taskdef.html#firelens-taskdef-customconfig). Additionally, you cannot use ECS on Kubernetes with FireLens.
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing ECS clusters & task definitions.
