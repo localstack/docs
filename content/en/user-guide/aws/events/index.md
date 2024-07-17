@@ -124,8 +124,10 @@ $ localstack logs
 ## Supported target types
 
 {{< callout >}}
-LocalStack now supports a new event rule engine for [EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html).
-You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (preview) to use the AWS [event-ruler](https://github.com/aws/event-ruler), which offers better parity.
+LocalStack supports a new event rule engine for [EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html).
+You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (preview) to use the AWS [event-ruler](https://github.com/aws/event-ruler), which offers better parity with AWS.
+
+If you are using the new EventBridge provider (`PROVIDER_OVERRIDE_EVENTS=v2`), you do not need to set this configuration separately. This setting is only required if you are using the old provider.
 {{< /callout >}}
 
 At this time LocalStack supports the following [target types](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-console-targets) for EventBridge rules:
