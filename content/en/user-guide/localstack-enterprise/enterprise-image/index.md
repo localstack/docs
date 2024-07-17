@@ -3,6 +3,7 @@ title: "Enterprise Image"
 linkTitle: "Enterprise Image"
 weight: 1
 description: Custom LocalStack Enterprise image for offline or air-gapped environments with preferred configurations and packages.
+tags: ["Enterprise plan"]
 ---
 
 ## Introduction

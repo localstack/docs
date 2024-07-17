@@ -3,6 +3,7 @@ title: "K8s Operator"
 linkTitle: "K8s Operator"
 weight: 2
 description: Custom K8s operator that offers LocalStack emulator as a native resource in Kubernetes environments.
+tags: ["Enterprise plan"]
 ---
 
 ## Introduction
