@@ -318,7 +318,7 @@ Please set the [`EC2_MOUNT_BLOCK_DEVICES`]({{< ref "configuration#ec2" >}}) conf
 First, we create a user data script `init.sh` which creates an ext3 file system on the block device `/ebs-dev/sda1` and mounts it under `/ebs-mounted`:
 {{< command >}}
 $ cat > init.sh <<EOF
-# !/bin/bash
+#!/bin/bash
 
 set -eo
 mkdir -p /ebs-mounted
