@@ -1,17 +1,17 @@
 ---
-title: "How To: Leveraging Terraform Init Hooks for Production-Identical Test Environments"
+title: "How To: Terraform Init Hooks for Automation & Production-Identical Test Environments"
 linkTitle: "How To: Leveraging Terraform Init Hooks for Production-Identical Test Environments"
 weight: 14
 description: >
-  This tutorial guides you through using LocalStack's new extension that supports Terraform configuration files as initialization hooks, eliminating the need for any sort of conversion. You'll learn how to leverage this new feature, and integrate it with Testcontainers for seamless testing. This approach simplifies the development and testing cycle, making it more efficient and closely aligned with real AWS infrastructure practices.
+  This tutorial guides you through using LocalStack's new extension that supports Terraform configuration files as initialization hooks. You'll learn how to leverage this feature and integrate it with Testcontainers to simplify testing cycles, making the process more efficient and closely aligned with real AWS infrastructure practices.
 type: tutorials
 teaser: "Discover how to streamline your development and testing setup using Terraform configuration files as initialization hooks. Learn to configure AWS resources directly, by using the same IaC configuration as you would use for production."
 services:
 - s3
 - lambda
 - api-gw
-- dynamodb
-- cloudwatch
+- ddb
+- cwl
 platform:
 - java
 deployment:
@@ -30,31 +30,27 @@ leadimage: "terraform-init-hooks.png"
 LocalStack is a robust tool that emulates a local AWS cloud stack, allowing engineers to test and develop apps using AWS services directly on their local environments.
 This tool is essential for enhancing developer experience, reducing development costs and increasing efficiency.
 
-In LocalStack, [**initialization hooks**](https://docs.localstack.cloud/references/init-hooks/) are scripts that customize or initialize your LocalStack instance at different stages of its lifecycle. Up until now, the supported
-hooks could be shell or Python scripts executed at predefined lifecycle phases — BOOT, START, READY, and SHUTDOWN. By placing scripts in the respective directories
-(/etc/localstack/init/{stage}.d), developers can automate tasks like setting up initial states, configuring services, or performing clean-up activities.
+In LocalStack, [**initialization hooks**](https://docs.localstack.cloud/references/init-hooks/) are scripts that customize or initialize your LocalStack instance at different stages of its lifecycle. 
+Up until now, the supported hooks could be shell or Python scripts executed at predefined lifecycle phases — BOOT, START, READY, and SHUTDOWN. 
+By placing scripts in the respective directories (/etc/localstack/init/{stage}.d), developers can automate tasks like setting up initial states, configuring services, or performing clean-up activities.
 
-[Terraform](https://www.terraform.io/), is one of the most
-widely adopted tools for provisioning AWS infrastructure, so naturally, enabling Terraform configuration files to be used 
-directly as initialization hooks boosts LocalStack's utility. The direct use of Terraform scripts as init hooks allows developers to replicate 
-production environments accurately and automate integration tests more effectively. 
+[Terraform](https://www.terraform.io/), is one of the most widely adopted tools for provisioning AWS infrastructure, so naturally, enabling Terraform configuration files to be used directly as initialization hooks boosts LocalStack's utility. 
+The direct use of Terraform scripts as init hooks allows developers to replicate production environments accurately and automate integration tests more effectively. 
 This capability ensures that the test environment mirrors the production setup as closely as possible.
 
-This tutorial guides you through using LocalStack's [**new extension**](https://github.com/localstack/localstack-extensions/tree/main/terraform-init) that supports Terraform configuration files as initialization hooks, eliminating the need for 
-any sort of conversion. You'll learn how to leverage this new feature, and integrate it with Testcontainers for seamless testing.
-This approach simplifies the development and testing cycle, making it more efficient and closely aligned with real AWS
-infrastructure practices.
+This tutorial guides you through using LocalStack's [**new extension**](https://github.com/localstack/localstack-extensions/tree/main/terraform-init) that supports Terraform configuration files as initialization hooks, and will show you how to leverage this new feature, and integrate it with Testcontainers for seamless testing.
+This approach simplifies the development and testing cycle, making it more efficient and closely aligned with real AWS infrastructure practices.
 
 
 ## Prerequisites
 
 For this tutorial, you will need:
 
-- [LocalStack Pro](https://docs.localstack.cloud/getting-started/auth-token/) to emulate the AWS services. If you don't have a subscription yet, you can just get a trial license for free.
+- [LocalStack Pro](https://docs.localstack.cloud/getting-started/auth-token/) to emulate the AWS services and to use LocalStack Extensions. If you don't have LocalStack Pro yet, you can sign up on our [webapp](https://app.localstack.cloud) to get a trial license for free.
 - [Docker](https://docker.io/)
-- [Java 17](https://openjdk.org/install/)
+- [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/)
 - [AWS CLI](https://aws.amazon.com/cli/)
-- Optional: [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/)
+- Optional for building the Lambda functions: [Java 17](https://openjdk.org/install/)
 - Optional for building the Lambda functions: [Apache Maven 3.9.8](https://maven.apache.org/install.html)
 - Optional: [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) and [terraform-local](https://github.com/localstack/terraform-local)
 
@@ -73,22 +69,13 @@ One Lambda function fetches product details by ID, and the other saves new produ
 
 ### Using init hooks directly 
 
-Let's first have a look at how you can leverage Terraform init hooks to configure services directly in LocalStack at startup. 
-After establishing this foundation, we will proceed to integrate these configurations with Testcontainers to further enhance our development and testing workflow.
-
-
-To use Terraform configuration files as initialization hooks in LocalStack, start by installing the necessary extension with the configuration flag 
-**`EXTENSION_AUTO_INSTALL="localstack-extension-terraform-init"`**. This will install both `Terraform` and `tflocal` into your LocalStack container. 
-Mount your `main.tf` file directly into the **`/etc/localstack/init/ready.d`** directory. Upon LocalStack's startup, if a `main.tf` is detected in any init stage directory,
-the extension will automatically execute **`tflocal init`** and **`tflocal apply`** within that directory.
+Let's first take a look at how you can use Terraform init hooks to create AWS resources automatically when LocalStack starts up.
+After establishing this foundation, we will proceed to integrate this feature with Testcontainers to further enhance our development and testing workflow.
 
 {{< callout "note">}}
 If you're new to Terraform, you can quickly familiarize yourself with the basic commands by reading the [getting started tutorials](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-change) 
 on their official documentation page.
 {{< /callout >}}
-
-If you mount a directory instead of a single file, the AWS Terraform provider does not need to be downloaded each time, and any state files created will be in your 
-host directory, potentially requiring `sudo` to modify or delete.
 
 #### Examples
 
@@ -103,16 +90,23 @@ $ localstack start -e EXTENSION_AUTO_INSTALL=localstack-extension-terraform-init
                 -v ./target/product-lambda.jar:/etc/localstack/init/ready.d/target/product-lambda.jar
 ```
 
-This is the easiest way to quickly spin up the necessary resources at startup.
-The command starts LocalStack with the configuration to automatically install the `localstack-extension-terraform-init` extension and
-mount the necessary files into the container: the Terraform configuration file and the Lambda JAR file. 
+This is the easiest way to quickly spin up the desired services at startup.
+The command starts LocalStack with the configuration to automatically install the **`localstack-extension-terraform-init`** [extension]({{<ref "/user-guide/extensions/">}}) and
+mount the necessary files into the container: the Terraform configuration file and the Lambda JAR file.
+The extension will install both `terraform` and `tflocal` into your LocalStack container, and enable the init hook runners to detect Terraform files.
+You can also organize your Terraform files into subdirectories if you want.
+
 If Docker gives you any trouble regarding mounting permissions, you can add `$(pwd)` in front of the local paths, to turn them into
 absolute paths.
 
+Since the initialization hook runs `terraform init`, the AWS Terraform provider will be downloaded in the container every time.
+You can avoid this by mounting a directory instead of a single file.
+Any Terraform state including the `.terraform` folder that contains the provider, will be cached on your host directory, however they may require `sudo` permissions to modify or delete, as they are created by the container.
+
+
 ##### Docker compose
 
-Another way of easily starting LocalStack with the desired resources is using `docker compose`. In the root folder, there is a 
-[`docker-compose.yml`](https://github.com/localstack-samples/terraform-init-hooks-demo/blob/main/docker-compose.yml) file with all the essential configs:
+Another way of starting LocalStack with the desired services is using `docker compose`. In the root folder, there is a [`docker-compose.yml`](https://github.com/localstack-samples/terraform-init-hooks-demo/blob/main/docker-compose.yml) file with all the essential configs:
 
 Environment Variables:
 - **LOCALSTACK_AUTH_TOKEN**: Required for using LocalStack Pro.
@@ -121,8 +115,7 @@ Environment Variables:
 
 Volumes:
 - Docker Socket: Mounts the Docker socket `/var/run/docker.sock` from the host into the container. This allows LocalStack to manage Docker containers directly, facilitating functionalities like spinning up Lambda containers.
-- Terraform Configuration: Mounts a directory containing Terraform files (./terraform) from the host to `/etc/localstack/init/ready.d` in the container. This enables the use of init hooks, as well as the AWS provider (plugins and modules) 
-which is downloaded once and reused in subsequent startups.
+- Terraform Configuration: Mounts a directory containing Terraform files (./terraform) from the host to `/etc/localstack/init/ready.d` in the container. This enables the use of init hooks, as well as the AWS provider (plugins and modules) which is downloaded once and reused in subsequent startups.
 - Lambda Function JAR: Places the `product-lambda.jar` file from the host into the `/etc/localstack/init/ready.d/target` directory in the container, making it available for use, as described in `main.tf`.
 
 After running `docker compose up`, we should keep an eye on the container logs until the `Ready.` message appears.
@@ -161,10 +154,10 @@ $ curl --location "http://ixqd52qrip.execute-api.localhost.localstack.cloud:4566
 
 #### The setup
 
-Now that we've established how seamlessly LocalStack integrates with Terraform using initialization hooks, let's explore how we can leverage this setup to enhance our testing
-processes using [Testcontainers](https://testcontainers.com/). This demo is a Java project, but the framework supports multiple other programming languages.
-We can now automate and streamline our LocalStack configurations, ensuring that every test suite includes a fresh, fully configured environment. This helps users
-build confidence in moving on to deploy to the AWS platform, as the IaC files remain unchanged.
+Now that we've established how seamlessly LocalStack integrates with Terraform using initialization hooks, let's explore how we can leverage this feature to enhance our testing processes using [Testcontainers](https://testcontainers.com/). 
+This demo is a Java project, but the framework supports multiple other programming languages.
+We can now automate and streamline our LocalStack initialization, ensuring that every test suite includes a fresh, fully configured AWS environment. 
+This helps users build confidence in moving on to deploy to the AWS platform, as the IaC files remain unchanged.
 
 To get started with Testcontainers, you need to include a few dependencies in the Maven `pom.xml` file:
 
@@ -208,7 +201,7 @@ $ mvn clean package
 ```
 
 In the provided code snippet, we configure a LocalStackContainer object using Testcontainers.
-You'll need to set the `LOCALSTACK_AUTH_TOKEN` as an environment variable. This configuration is abstracted in a superclass to be reusable across different test cases.
+Don't forget to set the `LOCALSTACK_AUTH_TOKEN` as an environment variable. This configuration is abstracted in a superclass to be reusable across different test cases.
 
 ```java
   @Container
@@ -224,25 +217,24 @@ You'll need to set the `LOCALSTACK_AUTH_TOKEN` as an environment variable. This 
           .withEnv("DEBUG", "1")
           .withStartupTimeout(Duration.of(2, ChronoUnit.MINUTES));
 ```
-Here's what each configuration line accomplishes:
+Here's what each configuration line does:
 - **LAMBDA_REMOVE_CONTAINERS="1"**: Ensures that Lambda containers are removed after execution to free up resources and avoid clutter.
-- **EXTENSION_AUTO_INSTALL="localstack-extension-terraform-init"**: Automatically installs the Terraform init hooks extension, enabling Terraform configurations to be used directly for initializing LocalStack services.
+- **EXTENSION_AUTO_INSTALL="localstack-extension-terraform-init"**: Automatically installs the Terraform init hooks extension.
 - **LOCALSTACK_AUTH_TOKEN**: Fetches the LocalStack auth token from environment variables.
 - **DEBUG="1"**: Enables verbose logging for troubleshooting and ensuring detailed logs are available for debugging.
 
-The `withFileSystemBind` commands mount the `product-lambda.jar` and the directory containing the Terraform files from the host machine into the appropriate init hook
-directory within the LocalStack container.
-The last line specifies a timeout for the container startup, set to 2 minutes. This ensures that the container has enough time to 
-initialize all services. Normally, the process runs a lot faster, but this is a worse case scenario that could include any delays cause by hardware resources or network issues.
+The `withFileSystemBind` commands mount the `product-lambda.jar` and the directory containing the Terraform files from the host machine into the appropriate init hook directory within the LocalStack container.
+The last line specifies a timeout for the container startup, set to 2 minutes.
+This ensures that the container has enough time to initialize all services. Normally, the process runs a lot faster, but this prevents a worse case scenario that could include any delays cause by hardware resources or network issues.
+
+This is very similar to the `docker-compose.yml` file we've seen before.
 
 #### The tests
 
 The test suite in the `ProductAppTests` class is checking three scenarios:
 
 - Product Persistence: Tests the ability to successfully save a new product to DynamoDB via a Lambda function, confirming the POST request and the response.
-
 - Product Retrieval: Ensures the system can accurately fetch a product by its ID from DynamoDB through a GET request.
-
 - Non-Existent Product Handling: Validates the system's response to a request for a non-existent product, ensuring the Lambda function properly returns the appropriate error message "Product not found".
 
 ![architecture-diagram](architecture-diagram-test.png)
@@ -289,14 +281,17 @@ Since the app runs entirely inside the LocalStack container, an HTTP client is u
     }
 ```
 
-It is now incredibly straightforward to utilize our Terraform configuration file directly to construct the exact, production-ready environment needed for effective testing.
+It is now incredibly straightforward to utilize our Terraform configuration file to construct the exact, production-ready environment needed for effective testing.
 
 ### About owner permissions
 
-It's important to note that this extension is still new and primarily intended for straightforward Terraform configurations. It may suffer improvement changes in the future.
-If you mount a directory instead of a single file, the AWS Terraform provider will not be downloaded each time the `init` command runs, and any state files created will be in your host directory, 
-potentially requiring `sudo` to modify or delete. The reason for this is that the container user that creates these files is `root`, and on Linux systems this will propagate 
-to your local files. MacOS, on the other hand, will not allow this to happen and your locally created files will belong to your user. Here's how it looks like:
+It's important to note that this extension is still new and primarily intended for straightforward Terraform configurations.
+It is subject to change and improvements in the future.
+We already mentioned that if you mount a directory instead of a single file, the AWS Terraform provider will not be downloaded each time the `init` command runs.
+Any state files created will be in your host directory, potentially requiring `sudo` to modify or delete. 
+The reason for this is that the container user that creates these files is `root`, and on Linux systems this will propagate to your local files. 
+MacOS, on the other hand, will not allow this to happen and your locally created files will belong to your user. 
+Here's how it looks like:
 
 ##### In the LocalStack container
 
@@ -327,11 +322,12 @@ drwxr-xr-x   3 user  staff     96 Jul 10 00:28 target/
 
 ### Using multiple TF files
 
-When organizing your Terraform files into folders, recursion can be a highly effective strategy. This approach allows you to manage multiple Terraform projects within a single structure efficiently. 
-This feature supports recursive script execution, which can be useful for various scenarios.
+Organizing multiple Terraform files into subfolders can be a highly effective strategy.
+This approach allows you to manage multiple Terraform projects within a single structure efficiently. 
 
-The scripts are executed using a preorder traversal method, where each level of the directory hierarchy is processed in alphabetical order. This ensures a consistent and predictable 
-execution sequence. For example, consider the following directory structure:
+The scripts are executed using a preorder traversal method, where each level of the directory hierarchy is processed in alphabetical order.
+This ensures a consistent and predictable execution sequence. 
+For example, consider the following directory structure:
 
 ```bash
 ready.d/myscript.sh
@@ -345,7 +341,6 @@ This alphabetical and hierarchical execution strategy helps maintain an organize
 
 ## Conclusion
 
-Leveraging Terraform init hooks allows us to precisely replicate our production infrastructure within our testing environments, ensuring that our Infrastructure as Code is
-consistently applied. This is crucial for maintaining the integrity and reliability of our systems, as it enables thorough testing under conditions that closely mirror
-the actual deployment scenario. By preserving this production-ready setup throughout the testing phase, we can confidently validate changes and catch potential 
-issues early, enhancing our deployment quality and operational stability.
+Terraform init hooks will not only allow us to replicate our production infrastructure within our testing environments, but will also bring great value in terms of automation - configurations being automatically applied, self-contained tests, and reproducibility - we can easily reproduce the setup every time.
+This is crucial for maintaining the integrity and reliability of our systems, as it enables thorough testing under conditions that closely mirror the actual deployment scenario.
+By preserving this production-ready setup throughout the testing phase, we can confidently validate changes and catch potential issues early, enhancing our deployment quality and operational stability.
