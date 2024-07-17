@@ -140,7 +140,7 @@ To complete the process, the last step attaches the application preview URL to t
 
 ```yaml 
 - name: Finalize PR comment
-  uses: LocalStack/setup-localstack/finish@v0.2.0
+  uses: LocalStack/setup-localstack/finish@v0.2.2
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     include-preview: true
