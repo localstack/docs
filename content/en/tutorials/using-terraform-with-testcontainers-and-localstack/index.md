@@ -77,9 +77,7 @@ If you're new to Terraform, you can quickly familiarize yourself with the basic 
 on their official documentation page.
 {{< /callout >}}
 
-#### Examples
-
-##### LocalStack CLI
+#### LocalStack CLI
 
 In the root folder of the demo project run:
 
@@ -104,9 +102,37 @@ You can avoid this by mounting a directory instead of a single file.
 Any Terraform state including the `.terraform` folder that contains the provider, will be cached on your host directory, however they may require `sudo` permissions to modify or delete, as they are created by the container.
 
 
-##### Docker compose
+#### Docker compose
 
-Another way of starting LocalStack with the desired services is using `docker compose`. In the root folder, there is a [`docker-compose.yml`](https://github.com/localstack-samples/terraform-init-hooks-demo/blob/main/docker-compose.yml) file with all the essential configs:
+Another way of starting LocalStack with the desired services is using `docker compose`. In the root folder, you'll find the essential configs in the `docker-compose.yml` file:
+<details>
+<summary><b>Expand file</b></summary>
+{{< command >}}
+version: "3.8"
+
+services:
+    localstack:
+        container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+        image: localstack/localstack-pro:latest  # required for Pro
+        ports:
+            - "127.0.0.1:4566:4566"            # LocalStack Gateway
+            - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+            - "127.0.0.1:443:443"              # LocalStack HTTPS Gateway (Pro)
+        environment:
+            # Activate LocalStack Pro: https://docs.localstack.cloud/getting-started/auth-token/
+            - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}  # required for Pro
+            # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+            - DEBUG=1
+            - PERSISTENCE=${PERSISTENCE:-0}
+            - EXTENSION_AUTO_INSTALL=localstack-extension-terraform-init
+        volumes:
+            - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+            - "/var/run/docker.sock:/var/run/docker.sock"
+            - "./terraform:/etc/localstack/init/ready.d"
+            - "./target/product-lambda.jar:/etc/localstack/init/ready.d/target/product-lambda.jar"
+{{< / command >}}
+
+</details>
 
 Environment Variables:
 - **LOCALSTACK_AUTH_TOKEN**: Required for using LocalStack Pro.
