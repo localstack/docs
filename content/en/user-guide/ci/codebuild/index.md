@@ -44,7 +44,7 @@ phases:
       - run: docker pull public.ecr.aws/localstack/localstack:latest
       - run: docker image tag public.ecr.aws/localstack/localstack-pro:latest localstack/localstack:latest
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           image-tag: 'latest'
           install-awslocal: 'true'
@@ -82,7 +82,7 @@ phases:
     steps:
       ...
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           image-tag: 'latest'
           configuration: LS_LOG=trace
@@ -128,7 +128,7 @@ phases:
       - run: docker pull public.ecr.aws/localstack/localstack-pro:latest
       - run: docker image tag public.ecr.aws/localstack/localstack-pro:latest localstack/localstack-pro:latest
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           image-tag: 'latest'
           use-pro: 'true'
@@ -194,7 +194,7 @@ phases:
       # LocalStack is up and running already
       - name: Load the Cloud Pod 
         continue-on-error: true  # Allow it to fail as pod does not exist at first run
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           state-backend: cloud-pods
           name: <cloud-pod-name>
@@ -202,7 +202,7 @@ phases:
           skip-startup: 'true'
       ...
       - name: Save the Cloud Pod 
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           state-backend: cloud-pods
           state-name: <cloud-pod-name>

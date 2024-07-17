@@ -14,7 +14,7 @@ This page contains easily customisable snippets to show you how to manage LocalS
 
 ```yaml
 - name: Start LocalStack
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     image-tag: 'latest'
     install-awslocal: 'true'
@@ -25,7 +25,7 @@ To set LocalStack configuration options, you can use the `configuration` input p
 
 ```yml
 - name: Start LocalStack
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     image-tag: 'latest'
     install-awslocal: 'true'
@@ -52,7 +52,7 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 
 ```yaml
 - name: Start LocalStack
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     image-tag: 'latest'
     install-awslocal: 'true'
@@ -78,7 +78,7 @@ You can preserve your AWS infrastructure with Localstack in various ways.
 # Localstack is up and running already
 - name: Load the Cloud Pod 
   continue-on-error: true  # Allow it to fail as pod does not exist at first run
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     state-backend: cloud-pods
     state-name: <cloud-pod-name>
@@ -88,7 +88,7 @@ You can preserve your AWS infrastructure with Localstack in various ways.
 ...
 
 - name: Save the Cloud Pod 
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     state-backend: cloud-pods
     state-name: <cloud-pod-name>
@@ -120,7 +120,7 @@ jobs:
       ...
 
       - name: Deploy Preview
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         env:
           AWS_DEFAULT_REGION: us-east-1
           AWS_REGION: us-east-1
@@ -140,7 +140,7 @@ Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 ```yaml
 ...
 - name: Start LocalStack and Load State
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   continue-on-error: true  # Allow it to fail as pod does not exist at first run
   with:
     install-awslocal: 'true'
@@ -153,7 +153,7 @@ Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 ...
 
 - name: Save LocalStack State
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     install-awslocal: 'true'
     state-backend: cloud-pods
