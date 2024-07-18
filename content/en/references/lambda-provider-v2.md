@@ -8,6 +8,6 @@ hide_summary: true
 ---
 
 <script>
-  anchor = window.location.href.split['#'](1)
+  anchor = window.location.href.split('#')(1)
   window.location.replace("/user-guide/aws/lambda/" + (anchor ? '#' + anchor : ''))
 </script>
