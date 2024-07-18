@@ -22,9 +22,9 @@ In the form, enter the name of the new Ephemeral Instance, select the lifetime o
 
 <img src="ephemeral-instance-creation.png" alt="Creating an Ephemeral Instance" title="Creating an Ephemeral Instance" width="800" />
 
-Optionally, you can specify a LocalStack Extension to be installed in the Ephemeral Instance.
+Optionally, you can specify a LocalStack Extension to be installed or loaded in the Ephemeral Instance.
 You can select the extension from the **Extension settings** dropdown list before launching the Ephemeral Instance.
-In case you have access to cloud pods and a pod you want to start your instance with, you can also choose it from the **Cloud Pod Settings** dropdown.
+In case you have access to Cloud Pods and a pod you want to start your instance with, you can also choose it from the **Cloud Pod Settings** dropdown.
 
 ### Interact with the Ephemeral Instance
 
@@ -66,21 +66,6 @@ In these integrations, you can change the `AWS_ENDPOINT_URL` environment variabl
 You can shut down the instance by navigating to the [Ephemeral Instances page](https://app.localstack.cloud/instances/ephemeral) and clicking on the **Shut Down** button.
 
 <img src="shutdown-ephemeral-instance.png" alt="Shutdown the LocalStack Ephemeral Instance" title="Shutdown the LocalStack Ephemeral Instance" width="800" />
-
-## Load Cloud Pod into an Ephmeral Instance
-
-You can load a Cloud Pod into an Ephemeral Instance to seed your pre-existing cloud resources into a freshly created Ephemeral Instance.
-You can further use AWS CLI or other integrations to interact with these resources, along with using other features of the LocalStack Web Application.
-
-To load a pre-defined Cloud Pod, navigate to the [Cloud Pods page](https://app.localstack.cloud/pods), click on the Cloud Pod you want to load into the Ephemeral Instance, and click on the **Load Into Instance** button.
-Select the Ephemeral Instance you want to load the Cloud Pod into and click on **Load**.
-
-You will be redirected to the **Export/Import State** page where you can click on **Load State From Pod** to load the Cloud Pod into the Ephemeral Instance.
-Alternatively, you can also specify a Cloud Pod to be loaded on startup, when filling out the instance creation form.
-<img src="cloud-pod-details-page.png" alt="Cloud Pod Details page" title="Cloud Pod Details page" width="800" />
-<br><br>
-
-You can copy the endpoint URL of the Ephemeral Instance and use it to manage your cloud resources.
 
 {{< callout "warning" >}}
 Ephemeral Instances, by default, are created with the latest version of LocalStack.
