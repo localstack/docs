@@ -10,7 +10,7 @@ services:
 - msk
 - glu
 platform:
-- java
+- Java
 deployment:
 - awscli
 tags:

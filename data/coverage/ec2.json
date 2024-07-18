@@ -2349,7 +2349,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -4001,8 +4001,8 @@
     },
     {
       "DescribeTrafficMirrorFilterRules": {
-        "implemented": true,
-        "availability": "pro",
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -8557,7 +8557,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10300,6 +10300,30 @@
       }
     },
     "CreateSecurityGroup": {
+      "Description, GroupName, TagSpecifications, VpcId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestDurableStorageSample::test_listener",
+            "test": "test_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "Description, GroupName, VpcId": {
         "ls_community": [
           {
@@ -10575,16 +10599,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
-            "test": "test_eksctl_stack",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
             "test": "test_resource_deployment",
             "response": "200",
@@ -10759,7 +10773,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12401,11 +12415,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[unformatted_json]",
-            "test": "test_full_load_replication_task[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -12631,8 +12645,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -12947,8 +12961,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -12975,8 +12989,8 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13043,11 +13057,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[unformatted_json]",
-            "test": "test_full_load_replication_task[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13371,11 +13385,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[unformatted_json]",
-            "test": "test_full_load_replication_task[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13601,8 +13615,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13759,11 +13773,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[unformatted_json]",
-            "test": "test_full_load_replication_task[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14063,7 +14077,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -14139,8 +14153,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -14337,11 +14351,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[unformatted_json]",
-            "test": "test_full_load_replication_task[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14667,8 +14681,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -15037,11 +15051,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[unformatted_json]",
-            "test": "test_full_load_replication_task[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -15417,8 +15431,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -15553,11 +15567,11 @@
       "AttributeNames": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaBaseFeatures::test_large_payloads",
-            "test": "test_large_payloads",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestRuntimeValidation::test_create_deprecated_function_runtime_with_validation_disabled",
+            "test": "test_create_deprecated_function_runtime_with_validation_disabled",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LogResult']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -15973,7 +15987,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_describe_image_with_unsupported_image_name",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_describe_image_with_unsupported_image_name",
             "test": "test_describe_image_with_unsupported_image_name",
             "response": "200",
             "error": "",
@@ -15983,7 +15997,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_describe_images",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_describe_images",
             "test": "test_describe_images",
             "response": "200",
             "error": "",
@@ -15993,7 +16007,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_describe_images_with_podman_localhost_prefix",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_describe_images_with_podman_localhost_prefix",
             "test": "test_describe_images_with_podman_localhost_prefix",
             "response": "200",
             "error": "",
@@ -16017,7 +16031,7 @@
       "Filters": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_moto_fallback",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_moto_fallback",
             "test": "test_moto_fallback",
             "response": "200",
             "error": "",
@@ -16045,7 +16059,7 @@
       "ImageIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[amazonlinux-2023]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_connect_to_localstack[amazonlinux-2023]",
             "test": "test_connect_to_localstack[amazonlinux-2023]",
             "response": "200",
             "error": "",
@@ -16055,7 +16069,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[debian-10]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_connect_to_localstack[debian-10]",
             "test": "test_connect_to_localstack[debian-10]",
             "response": "200",
             "error": "",
@@ -16065,7 +16079,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[ubuntu-22.04]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_connect_to_localstack[ubuntu-22.04]",
             "test": "test_connect_to_localstack[ubuntu-22.04]",
             "response": "200",
             "error": "",
@@ -16075,7 +16089,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_create_instance_with_ebs_create_fs",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_create_instance_with_ebs_create_fs",
             "test": "test_create_instance_with_ebs_create_fs",
             "response": "200",
             "error": "",
@@ -16085,7 +16099,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_describe_instances",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_describe_instances",
             "test": "test_describe_instances",
             "response": "200",
             "error": "",
@@ -16095,7 +16109,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_instance_metadata_service",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_instance_metadata_service",
             "test": "test_instance_metadata_service",
             "response": "200",
             "error": "",
@@ -16105,7 +16119,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_moto_fallback",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_moto_fallback",
             "test": "test_moto_fallback",
             "response": "200",
             "error": "",
@@ -16115,7 +16129,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_ssh_key_pairs[amazonlinux-2023]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_ssh_key_pairs[amazonlinux-2023]",
             "test": "test_ssh_key_pairs[amazonlinux-2023]",
             "response": "200",
             "error": "",
@@ -16125,7 +16139,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_ssh_key_pairs[debian-10]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_ssh_key_pairs[debian-10]",
             "test": "test_ssh_key_pairs[debian-10]",
             "response": "200",
             "error": "",
@@ -16135,7 +16149,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_ssh_key_pairs[ubuntu-22.04]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_ssh_key_pairs[ubuntu-22.04]",
             "test": "test_ssh_key_pairs[ubuntu-22.04]",
             "response": "200",
             "error": "",
@@ -16145,7 +16159,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_user_data",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_user_data",
             "test": "test_user_data",
             "response": "200",
             "error": "",
@@ -16275,7 +16289,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_describe_images",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_describe_images",
             "test": "test_describe_images",
             "response": "400",
             "error": "CommonServiceException",
@@ -16291,7 +16305,7 @@
       "InstanceIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_describe_instances",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_describe_instances",
             "test": "test_describe_instances",
             "response": "200",
             "error": "",
@@ -16301,7 +16315,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_instance_metadata_service",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_instance_metadata_service",
             "test": "test_instance_metadata_service",
             "response": "200",
             "error": "",
@@ -16311,7 +16325,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_user_data",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_user_data",
             "test": "test_user_data",
             "response": "200",
             "error": "",
@@ -16421,7 +16435,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_describe_instances",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_describe_instances",
             "test": "test_describe_instances",
             "response": "400",
             "error": "CommonServiceException",
@@ -16479,11 +16493,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[unformatted_json]",
-            "test": "test_full_load_replication_task[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -17069,8 +17083,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17781,11 +17795,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[unformatted_json]",
-            "test": "test_full_load_replication_task[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19375,7 +19389,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19979,7 +19993,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20173,7 +20187,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -21359,11 +21373,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[unformatted_json]",
-            "test": "test_full_load_replication_task[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -21589,8 +21603,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -21683,11 +21697,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_full_load_replication_task[unformatted_json]",
-            "test": "test_full_load_replication_task[unformatted_json]",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_s3_kinesis/test_dms.py::TestDmsScenario::test_run_task_invalid_format_cdc_file[no data valid data]",
+            "test": "test_run_task_invalid_format_cdc_file[no data valid data]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..RecoveryCheckpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -21913,8 +21927,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -21955,7 +21969,7 @@
       "KeyName, PublicKeyMaterial": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[amazonlinux-2023]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_connect_to_localstack[amazonlinux-2023]",
             "test": "test_connect_to_localstack[amazonlinux-2023]",
             "response": "200",
             "error": "",
@@ -21965,7 +21979,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[debian-10]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_connect_to_localstack[debian-10]",
             "test": "test_connect_to_localstack[debian-10]",
             "response": "200",
             "error": "",
@@ -21975,7 +21989,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[ubuntu-22.04]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_connect_to_localstack[ubuntu-22.04]",
             "test": "test_connect_to_localstack[ubuntu-22.04]",
             "response": "200",
             "error": "",
@@ -21985,7 +21999,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_ssh_key_pairs[amazonlinux-2023]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_ssh_key_pairs[amazonlinux-2023]",
             "test": "test_ssh_key_pairs[amazonlinux-2023]",
             "response": "200",
             "error": "",
@@ -21995,7 +22009,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_ssh_key_pairs[debian-10]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_ssh_key_pairs[debian-10]",
             "test": "test_ssh_key_pairs[debian-10]",
             "response": "200",
             "error": "",
@@ -22005,7 +22019,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_ssh_key_pairs[ubuntu-22.04]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_ssh_key_pairs[ubuntu-22.04]",
             "test": "test_ssh_key_pairs[ubuntu-22.04]",
             "response": "200",
             "error": "",
@@ -22021,7 +22035,7 @@
       "Attribute, InstanceId, Value": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_user_data",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_user_data",
             "test": "test_user_data",
             "response": "200",
             "error": "",
@@ -22449,7 +22463,7 @@
       "InstanceIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_user_data",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_user_data",
             "test": "test_user_data",
             "response": "200",
             "error": "",
@@ -22465,8 +22479,8 @@
       "AllocationId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy",
-            "test": "test_enforce_s3_admin_policy",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_ssm_get_attribute[with-leading-slash]",
+            "test": "test_ssm_get_attribute[with-leading-slash]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -22877,7 +22891,7 @@
       "BlockDeviceMappings, ClientToken, ImageId, MaxCount, MinCount, UserData": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_create_instance_with_ebs_create_fs",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_create_instance_with_ebs_create_fs",
             "test": "test_create_instance_with_ebs_create_fs",
             "response": "200",
             "error": "",
@@ -23015,7 +23029,7 @@
       "ClientToken, ImageId, KeyName, MaxCount, MinCount": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[amazonlinux-2023]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_connect_to_localstack[amazonlinux-2023]",
             "test": "test_connect_to_localstack[amazonlinux-2023]",
             "response": "200",
             "error": "",
@@ -23025,7 +23039,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[debian-10]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_connect_to_localstack[debian-10]",
             "test": "test_connect_to_localstack[debian-10]",
             "response": "200",
             "error": "",
@@ -23035,7 +23049,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_connect_to_localstack[ubuntu-22.04]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_connect_to_localstack[ubuntu-22.04]",
             "test": "test_connect_to_localstack[ubuntu-22.04]",
             "response": "200",
             "error": "",
@@ -23045,7 +23059,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_ssh_key_pairs[amazonlinux-2023]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_ssh_key_pairs[amazonlinux-2023]",
             "test": "test_ssh_key_pairs[amazonlinux-2023]",
             "response": "200",
             "error": "",
@@ -23055,7 +23069,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_ssh_key_pairs[debian-10]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_ssh_key_pairs[debian-10]",
             "test": "test_ssh_key_pairs[debian-10]",
             "response": "200",
             "error": "",
@@ -23065,7 +23079,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_ssh_key_pairs[ubuntu-22.04]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_ssh_key_pairs[ubuntu-22.04]",
             "test": "test_ssh_key_pairs[ubuntu-22.04]",
             "response": "200",
             "error": "",
@@ -23079,7 +23093,7 @@
       "ClientToken, ImageId, MaxCount, MinCount": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_describe_instances",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_describe_instances",
             "test": "test_describe_instances",
             "response": "200",
             "error": "",
@@ -23089,7 +23103,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_moto_fallback",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_moto_fallback",
             "test": "test_moto_fallback",
             "response": "200",
             "error": "",
@@ -23113,7 +23127,7 @@
       "ClientToken, ImageId, MaxCount, MinCount, UserData": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_instance_metadata_service",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_instance_metadata_service",
             "test": "test_instance_metadata_service",
             "response": "200",
             "error": "",
@@ -23123,7 +23137,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_user_data",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_user_data",
             "test": "test_user_data",
             "response": "200",
             "error": "",
@@ -23139,7 +23153,7 @@
       "InstanceIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_moto_fallback",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_moto_fallback",
             "test": "test_moto_fallback",
             "response": "200",
             "error": "",
@@ -23149,7 +23163,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_user_data",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_user_data",
             "test": "test_user_data",
             "response": "200",
             "error": "",
@@ -23159,7 +23173,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_stop_start_terminate_instances_for_invalid_instance_id_raises[start_instances]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_stop_start_terminate_instances_for_invalid_instance_id_raises[start_instances]",
             "test": "test_stop_start_terminate_instances_for_invalid_instance_id_raises[start_instances]",
             "response": "400",
             "error": "CommonServiceException",
@@ -23175,7 +23189,7 @@
       "InstanceIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_moto_fallback",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_moto_fallback",
             "test": "test_moto_fallback",
             "response": "200",
             "error": "",
@@ -23185,7 +23199,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_user_data",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_user_data",
             "test": "test_user_data",
             "response": "200",
             "error": "",
@@ -23195,7 +23209,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_stop_start_terminate_instances_for_invalid_instance_id_raises[stop_instances]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_stop_start_terminate_instances_for_invalid_instance_id_raises[stop_instances]",
             "test": "test_stop_start_terminate_instances_for_invalid_instance_id_raises[stop_instances]",
             "response": "400",
             "error": "CommonServiceException",
@@ -23211,7 +23225,7 @@
       "InstanceIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_moto_fallback",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_moto_fallback",
             "test": "test_moto_fallback",
             "response": "200",
             "error": "",
@@ -23341,7 +23355,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerBackend::test_stop_start_terminate_instances_for_invalid_instance_id_raises[terminate_instances]",
+            "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_stop_start_terminate_instances_for_invalid_instance_id_raises[terminate_instances]",
             "test": "test_stop_start_terminate_instances_for_invalid_instance_id_raises[terminate_instances]",
             "response": "400",
             "error": "CommonServiceException",

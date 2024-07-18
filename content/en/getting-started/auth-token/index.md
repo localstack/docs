@@ -67,13 +67,18 @@ You should set the `LOCALSTACK_AUTH_TOKEN` environment variable either before or
 
 {{< tabpane >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
-export LOCALSTACK_AUTH_TOKEN=<YOUR_AUTH_TOKEN>
+localstack auth set-token <YOUR_AUTH_TOKEN>
 localstack start
 {{< /tab >}}
 {{< tab header="Windows" lang="powershell" >}}
 $env:LOCALSTACK_AUTH_TOKEN="<YOUR_AUTH_TOKEN>"; localstack start
 {{< /tab >}}
 {{< /tabpane >}}
+
+{{< callout "note" >}}
+1. You can alternatively set the `LOCALSTACK_AUTH_TOKEN` environment variable in your shell session. This ensures the Auth Token is transmitted to your LocalStack container, enabling key activation.
+2. The `localstack auth set-token` command is only available for `localstack` CLI and cannot be used with a Docker/Docker Compose setup.
+{{< /callout >}}
 
 You have the option to run your LocalStack container in the background by appending the `-d` flag to the `localstack start` command.
 

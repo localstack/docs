@@ -51,6 +51,27 @@ $ awslocal lambda create-function \
     --role arn:aws:iam::000000000000:role/lambda-role
 {{< / command >}}
 
+{{< callout "note">}}
+To create a predictable URL for the function, you can assign a custom ID by specifying the `_custom_id_` tag on the function itself.
+{{< command >}}
+$ awslocal lambda create-function \
+    --function-name localstack-lambda-url-example \
+    --runtime nodejs18.x \
+    --zip-file fileb://function.zip \
+    --handler index.handler \
+    --role arn:aws:iam::000000000000:role/lambda-role \
+    --tags '{"_custom_id_":"my-custom-subdomain"}'
+$ awslocal lambda create-function-url-config \
+    --function-name localstack-lambda-url-example \
+    --auth-type NONE
+{
+    "FunctionUrl": "http://my-custom-subdomain.lambda-url.<region>...",
+    ....
+}
+{{< / command >}}
+You must specify the `_custom_id_` tag **before** using the `create-function-url-config` command. After the URL configuration is set up, any modifications to the tag will not affect it. At present, custom IDs can be assigned only to the `$LATEST` version of the function. LocalStack does not yet support custom IDs for function version aliases.
+{{< /callout >}}
+
 {{< callout >}}
 In the old Lambda provider, you could create a function with any arbitrary string as the role, such as `r1`. However, the new provider requires the role ARN to be in the format `arn:aws:iam::000000000000:role/lambda-role` and validates it using an appropriate regex. However, it currently does not check whether the role exists.
 {{< /callout >}}
@@ -184,6 +205,26 @@ $ aws lambda add-layer-version-permission \
 Replace `test-layer` and `1` with the name and version number of your layer, respectively.
 
 After granting access, the next time you reference the layer in one of your local Lambda functions using the AWS Lambda layer ARN, the layer will be automatically pulled down and integrated into your local dev environment.
+
+## LocalStack Lambda Runtime Interface Emulator (RIE)
+
+LocalStack uses a [custom implementation](https://github.com/localstack/lambda-runtime-init/) of the
+[AWS Lambda Runtime Interface Emulator](https://github.com/aws/aws-lambda-runtime-interface-emulator)
+to match the behavior of AWS Lambda as closely as possible while providing additional features
+such as [hot reloading]({{< ref "hot-reloading" >}}).
+We ship our custom implementation as a Golang binary, which gets copied into each Lambda container under `/var/rapid/init`.
+This init binary is used as the entry point for every Lambda container.
+
+Our custom implementation offers additional configuration options,
+but these configurations are primarily intended for LocalStack developers and could change in the future.
+The LocalStack [configuration]({{< ref "configuration" >}}) `LAMBDA_DOCKER_FLAGS` can be used to configure all Lambda containers,
+for example `LAMBDA_DOCKER_FLAGS=-e LOCALSTACK_INIT_LOG_LEVEL=debug`.
+Some noteworthy configurations include:
+* `LOCALSTACK_INIT_LOG_LEVEL` defines the log level of the Golang binary. Values: `trace`, `debug`, `info`, `warn` (default), `error`, `fatal`, `panic`
+* `LOCALSTACK_USER` defines the system user executing the Lambda runtime. Values: `sbx_user1051` (default), `root` (skip dropping root privileges)
+
+The full list of configurations is defined in the Golang function
+[InitLsOpts](https://github.com/localstack/lambda-runtime-init/blob/localstack/cmd/localstack/main.go#L43).
 
 ## Special Tools
 

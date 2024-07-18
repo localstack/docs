@@ -10,7 +10,7 @@ services:
 - elb
 - lmb
 platform:
-- javascript
+- JavaScript
 deployment:
 - serverless
 tags:

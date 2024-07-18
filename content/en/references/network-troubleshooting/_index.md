@@ -25,7 +25,7 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 <div class="row mt-2">
 
-For example, setting the `endpoint_url` parameter with a [language SDK]({{< ref "user-guide/integrations/sdks" >}}).
+For example, setting the `endpoint_url` parameter with an [AWS SDK]({{< ref "user-guide/integrations/sdks" >}}).
 
 </div>
 

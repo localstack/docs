@@ -5,7 +5,7 @@ description: >
   Running LocalStack inside Podman
 ---
 
-## Overview
+## Introduction
 
 By default, the LocalStack CLI starts the LocalStack runtime inside a Docker container.
 Docker may not be available on your system, and a popular alternative is [Podman](https://podman.io/getting-started/) which you can use to run LocalStack.
@@ -70,3 +70,46 @@ If you have problems with [subuid and subgid](https://wiki.archlinux.org/title/P
 ```sh
 DEBUG=1 DOCKER_CMD="podman --storage-opt overlay.ignore_chown_errors=true" DOCKER_SOCK=$XDG_RUNTIME_DIR/podman/podman.sock DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock localstack start
 ```
+### Podman on Windows
+
+You can run Podman on Windows using [WSLv2](https://learn.microsoft.com/en-us/windows/wsl/about#what-is-wsl-2). In the guide, we use a Docker Compose setup to run LocalStack.
+
+Initialize and start Podman:
+
+{{< command >}}
+$ podman machine init
+$ podman machine start
+{{< / command >}}
+
+At this stage, Podman operates in rootless mode, where exposing port 443 on Windows is not possible. To enable this, switch Podman to rootful mode using the following command:
+
+{{< command >}}
+podman machine set --rootful
+{{< / command >}}
+
+For the Docker Compose setup, use the following configuration. When running in rootless mode, ensure to comment out the HTTPS gateway port, as it is unable to bind to privileged ports below 1024.
+
+```yaml
+version: "3.8"
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack-pro
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+      - "0.0.0.0:443:443"
+    security_opt:
+      - "label=disable"
+    environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+      - DEBUG=${DEBUG:-0}
+      - PERSISTENCE=${PERSISTENCE:-0}
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+```
+
+The docker socket `/var/run/docker.sock` is correctly linked by default in a Podman setup.
+
+To start the services, use `docker compose up` or `podman compose up`, depending on the availability of docker-compose.

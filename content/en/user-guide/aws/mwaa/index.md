@@ -91,11 +91,14 @@ This transformation process ensures that your configuration settings are easily 
 When it comes to adding or updating DAGs in Airflow, the process is simple and efficient.
 Just upload your DAGs to the designated S3 bucket path, configured by the `DagS3Path` argument.
 
-Follow this example command to upload a sample DAG named `sample_dag.py` to your S3 bucket named `my-mwaa-bucket`:
+For example, the command below uploads a sample DAG named `sample_dag.py` to your S3 bucket named `my-mwaa-bucket`:
 
 {{< command >}} 
 $ awslocal s3 cp sample_dag.py s3://my-mwaa-bucket/dags 
 {{< /command >}}
+
+LocalStack syncs new and changed objects in the S3 bucket to the Airflow container every 30 seconds.
+The polling interval can be changed using the [`MWAA_S3_POLL_INTERVAL`]({{< ref "configuration#mwaa" >}}) config option.
 
 ## Installing custom plugins
 

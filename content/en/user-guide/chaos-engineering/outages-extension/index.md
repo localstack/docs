@@ -32,7 +32,7 @@ The general prerequisites for this guide are:
 To install the LocalStack Outages Extension, first set up your LocalStack Auth Token in your environment. Once the token is configured, use the command below to install the extension:
 
 {{< command >}}
-$ export LOCALSTACK_AUTH_TOKEN=<YOUR_LOCALSTACK_AUTH_TOKEN>
+$ localstack auth set-token <YOUR_LOCALSTACK_AUTH_TOKEN>
 $ localstack extensions install localstack-extension-outages
 {{< /command >}}
 

@@ -1,9 +1,10 @@
 ---
 title: "Application Auto Scaling"
 linkTitle: "Application Auto Scaling"
-description: >
-  Get started with Application Auto Scaling on LocalStack
+description: Get started with Application Auto Scaling on LocalStack
 tags: ["Pro image"]
+persistence: supported
+
 ---
 
 ## Introduction

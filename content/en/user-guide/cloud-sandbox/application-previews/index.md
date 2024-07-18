@@ -49,7 +49,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy Preview
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           localstack-api-key: ${{ secrets.LOCALSTACK_API_KEY }}

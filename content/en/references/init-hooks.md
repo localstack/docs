@@ -31,6 +31,7 @@ You can mount individual files, stage directories, or the entire init directory 
 
 In these directories, you can put either executable shell scripts or Python programs, which will be executed from within a Python process.
 All except `boot.d` will be run in the same Python interpreter as LocalStack, which gives additional ways of configuring/extending LocalStack.
+You can also use subdirectories to organize your init scripts.
 
 Currently, known script extensions are `.sh`, and `.py`.
 Shell scripts have to be executable, and have to have a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) (usually `#!/bin/bash`).
@@ -42,6 +43,7 @@ The remaining states should be self-explanatory.
 ### Execution order and script failures
 
 Scripts are sorted and executed in alphanumerical order.
+If you use subdirectories, scripts in parent folders are executed first, and then the directories are traversed in alphabetical order, depth first.
 If an init script fails, the remaining scripts will still be executed in order.
 A script is considered in `ERROR` state if it is a shell script and returns with a non-zero exit code, or if a Python script raises an exception during its execution.
 
