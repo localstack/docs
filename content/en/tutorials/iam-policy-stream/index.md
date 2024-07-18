@@ -20,32 +20,45 @@ platform:
 
 ## Introduction
 
-When you're developing cloud and serverless applications, you need to grant access to various AWS resources like S3 buckets and RDS databases. To handle this, you create IAM roles and assign permissions through policies. However, configuring these policies can be challenging, especially if you want to ensure minimal access of all principals to your resources.
+When you're developing cloud and serverless applications, you need to grant access to various AWS resources like S3 buckets and RDS databases.
+To handle this, you create IAM roles and assign permissions through policies.
+However, configuring these policies can be challenging, especially if you want to ensure minimal access of all principals to your resources.
 
-[LocalStack IAM Policy Stream](https://app.localstack.cloud/policy-stream) automates the generation of IAM policies for your AWS API requests on your local machine. This stream helps you identify the necessary permissions for your cloud application and allows you to detect logical errors, such as unexpected actions in your policies.
+[LocalStack IAM Policy Stream](https://app.localstack.cloud/policy-stream) automates the generation of IAM policies for your AWS API requests on your local machine.
+This stream helps you identify the necessary permissions for your cloud application and allows you to detect logical errors, such as unexpected actions in your policies.
 
-This tutorial will guide you through setting up IAM Policy Stream for a locally running AWS application. We'll use a basic example involving an S3 bucket, an SQS queue, and a bucket notification configuration. You'll generate the policy for the bucket notification configuration and insert it into the SQS queue.
+This tutorial will guide you through setting up IAM Policy Stream for a locally running AWS application.
+We'll use a basic example involving an S3 bucket, an SQS queue, and a bucket notification configuration.
+You'll generate the policy for the bucket notification configuration and insert it into the SQS queue.
 
 ## Why use IAM Policy Stream?
 
-LocalStack enables you to create and enforce local IAM roles and policies using the [`ENFORCE_IAM` feature](https://docs.localstack.cloud/user-guide/security-testing/iam-enforcement/). However, users often struggle to figure out the necessary permissions for different actions. It's important to find a balance, avoiding giving too many permissions while making sure the right ones are granted.
+LocalStack enables you to create and enforce local IAM roles and policies using the [`ENFORCE_IAM` feature](https://docs.localstack.cloud/user-guide/security-testing/iam-enforcement/).
+However, users often struggle to figure out the necessary permissions for different actions.
+It's important to find a balance, avoiding giving too many permissions while making sure the right ones are granted.
 
-This challenge becomes more complex when dealing with AWS services that make requests not directly visible to users. For instance, if an SNS topic sends a message to an SQS queue and the underlying call fails, there might be no clear error message, causing confusion, especially for those less familiar with the services.
+This challenge becomes more complex when dealing with AWS services that make requests not directly visible to users.
+For instance, if an SNS topic sends a message to an SQS queue and the underlying call fails, there might be no clear error message, causing confusion, especially for those less familiar with the services.
 
-IAM Policy Stream simplifies this by automatically generating the needed policies and showing them to users. This makes it easier to integrate with resources, roles, and users, streamlining the development process. Additionally, it serves as a useful learning tool, helping users understand the permissions linked to various AWS calls and improving the onboarding experience for newcomers to AWS.
+IAM Policy Stream simplifies this by automatically generating the needed policies and showing them to users.
+This makes it easier to integrate with resources, roles, and users, streamlining the development process.
+Additionally, it serves as a useful learning tool, helping users understand the permissions linked to various AWS calls and improving the onboarding experience for newcomers to AWS.
 
 ## Prerequisites
 
--   [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)  with  [`LOCALSTACK_AUTH_TOKEN`](https://docs.localstack.cloud/getting-started/auth-token/)
--   [Docker](https://docs.docker.com/get-docker/)
--   [Terraform](https://developer.hashicorp.com/terraform/install) & [`tflocal` wrapper](https://github.com/localstack/terraform-local)
--   [AWS](https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html)  CLI with  [`awslocal` wrapper](https://github.com/localstack/awscli-local)
--   [LocalStack Web Application account](https://app.localstack.cloud/sign-up)
--   [`jq`](https://jqlang.github.io/jq/download/)
+- [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)  with  [`LOCALSTACK_AUTH_TOKEN`](https://docs.localstack.cloud/getting-started/auth-token/)
+- [Docker](https://docs.docker.com/get-docker/)
+- [Terraform](https://developer.hashicorp.com/terraform/install) & [`tflocal` wrapper](https://github.com/localstack/terraform-local)
+- [AWS](https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html)  CLI with  [`awslocal` wrapper](https://github.com/localstack/awscli-local)
+- [LocalStack Web Application account](https://app.localstack.cloud/sign-up)
+- [`jq`](https://jqlang.github.io/jq/download/)
 
 ## Tutorial: Configure an S3 bucket for event notifications using SQS
 
-In this tutorial, you will configure a LocalStack S3 bucket to send event notifications to an SQS queue. You will then use IAM Policy Stream to generate the necessary IAM policy for the SQS queue. You will use Terraform to create the resources and the AWS CLI to interact with them. With LocalStack's IAM enforcement enabled, you can thoroughly test your policy and ensure that the development setup mirrors the production environment.
+In this tutorial, you will configure a LocalStack S3 bucket to send event notifications to an SQS queue.
+You will then use IAM Policy Stream to generate the necessary IAM policy for the SQS queue.
+You will use Terraform to create the resources and the AWS CLI to interact with them.
+With LocalStack's IAM enforcement enabled, you can thoroughly test your policy and ensure that the development setup mirrors the production environment.
 
 ### Start your LocalStack container
 
@@ -57,12 +70,13 @@ $ DEBUG=1 IAM_SOFT_MODE=1 localstack start
 
 In the above command:
 
--   `DEBUG=1` turns on detailed logging to check API calls and IAM violations.
--   `IAM_SOFT_MODE=1` lets you test IAM enforcement by logging violations without stopping the API calls.
+- `DEBUG=1` turns on detailed logging to check API calls and IAM violations.
+- `IAM_SOFT_MODE=1` lets you test IAM enforcement by logging violations without stopping the API calls.
 
 ### Create the Terraform configuration
 
-Create a new file called `main.tf` for the Terraform setup of an S3 bucket and an SQS queue. Start by using the `aws_sqs_queue` resource to create an SQS queue named `s3-event-notification-queue`.
+Create a new file called `main.tf` for the Terraform setup of an S3 bucket and an SQS queue.
+Start by using the `aws_sqs_queue` resource to create an SQS queue named `s3-event-notification-queue`.
 
 ```hcl
 resource "aws_sqs_queue" "queue" {
@@ -93,14 +107,18 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
 
 ### Deploy the Terraform configuration
 
-You can use `tflocal` to deploy your Terraform configuration within the LocalStack environment. Run the following commands to initialize and apply the Terraform configuration:
+You can use `tflocal` to deploy your Terraform configuration within the LocalStack environment.
+Run the following commands to initialize and apply the Terraform configuration:
 
 {{< command >}}
 $ tflocal init
 $ tflocal apply
 {{< /command >}}
 
-You will be prompted to confirm the changes. Type `yes` to continue. Since LocalStack is used, no real AWS resources are created. LocalStack will emulate ephemeral development resources that will be removed automatically once you stop the LocalStack container.
+You will be prompted to confirm the changes.
+Type `yes` to continue.
+Since LocalStack is used, no real AWS resources are created.
+LocalStack will emulate ephemeral development resources that will be removed automatically once you stop the LocalStack container.
 
 After applying the Terraform configuration, the output will appear similar to this:
 
@@ -118,12 +136,14 @@ Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
 
 ### Start the IAM Policy Stream
 
-Access the [LocalStack Web Application](https://app.localstack.cloud/) and go to the [IAM Policy Stream dashboard](https://app.localstack.cloud/policy-stream). This feature enables you to directly examine the generated policies, displaying the precise permissions required for each API call.
+Access the [LocalStack Web Application](https://app.localstack.cloud/) and go to the [IAM Policy Stream dashboard](https://app.localstack.cloud/policy-stream).
+This feature enables you to directly examine the generated policies, displaying the precise permissions required for each API call.
 
 <img src="iam-policy-stream-dashboard.png" alt="IAM Policy Stream dashboard" title="IAM Policy Stream dashboard" width="900" />
 <br><br>
 
-You'll observe the Stream active status icon, indicating that making any local AWS API request will trigger the generation of an IAM Policy. Now, let's proceed to upload a file to the S3 bucket to trigger the event notification and generate the IAM policy.
+You'll observe the Stream active status icon, indicating that making any local AWS API request will trigger the generation of an IAM Policy.
+Now, let's proceed to upload a file to the S3 bucket to trigger the event notification and generate the IAM policy.
 
 ### Trigger the event notification
 
@@ -134,7 +154,8 @@ $ echo "Hello, LocalStack" > some-log-file.log
 $ awslocal s3 cp some-log-file.log s3://s3-event-notification-bucket/
 {{< /command >}}
 
-Uploading a file will activate an event notification, sending a message to the SQS queue. However, since the SQS queue lacks the necessary permissions, an IAM violation will appear in the [IAM Policy Stream dashboard](https://app.localstack.cloud/policy-stream).
+Uploading a file will activate an event notification, sending a message to the SQS queue.
+However, since the SQS queue lacks the necessary permissions, an IAM violation will appear in the [IAM Policy Stream dashboard](https://app.localstack.cloud/policy-stream).
 
 <img src="iam-policy-stream-violation.png" alt="IAM Policy Stream showcasing an IAM violation" title="IAM Policy Stream showcasing an IAM violation" width="900" />
 <br><br>
@@ -151,12 +172,15 @@ You can also navigate to the LocalStack logs and observe the IAM violation messa
 
 ### Generate the IAM policy
 
-Go to the IAM Policy Stream dashboard and review the API calls such as `PutObject`, `SendMessage`, and `ReceiveMessage`. Notice that the `SendMessage` call was denied due to an IAM violation. Click on the **SQS.SendMessage** action to see the suggested IAM policy.
+Go to the IAM Policy Stream dashboard and review the API calls such as `PutObject`, `SendMessage`, and `ReceiveMessage`.
+Notice that the `SendMessage` call was denied due to an IAM violation.
+Click on the **SQS.SendMessage** action to see the suggested IAM policy.
 
 <img src="iam-policy-stream-sqs-policy.png" alt="IAM Policy Stream showcasing the required SQS policy" title="IAM Policy Stream showcasing the required SQS policy" width="900" />
 <br><br>
 
-LocalStack automatically recommends a resource-based policy for the SQS queue `arn:aws:sqs:us-east-1:000000000000:s3-event-notification-queue`. Copy this policy and incorporate it into your Terraform configuration under the `aws_sqs_queue` resource by adding the `policy` attribute:
+LocalStack automatically recommends a resource-based policy for the SQS queue `arn:aws:sqs:us-east-1:000000000000:s3-event-notification-queue`.
+Copy this policy and incorporate it into your Terraform configuration under the `aws_sqs_queue` resource by adding the `policy` attribute:
 
 ```hcl
 resource "aws_sqs_queue" "queue" {
@@ -194,7 +218,8 @@ Now, re-apply the Terraform configuration to update the SQS queue with the new p
 $ tflocal apply
 {{< /command >}}
 
-Next, trigger the event notification again by uploading a file to the S3 bucket. You can confirm that the S3 bucket is correctly set up for event notifications through the SQS queue by checking if the message is received in the SQS queue:
+Next, trigger the event notification again by uploading a file to the S3 bucket.
+You can confirm that the S3 bucket is correctly set up for event notifications through the SQS queue by checking if the message is received in the SQS queue:
 
 {{< command >}}
 $ awslocal sqs receive-message \
@@ -223,20 +248,29 @@ You can now check the IAM Policy Stream dashboard to confirm that there are no v
 
 ### Generate a comprehensive policy
 
-In scenarios where there are many AWS services, and every AWS API request generates a policy it might be cumbersome to analyze every policy. In such cases, you can generate one comprehensive policy for all your AWS resources together.
+In scenarios where there are many AWS services, and every AWS API request generates a policy it might be cumbersome to analyze every policy.
+In such cases, you can generate one comprehensive policy for all your AWS resources together.
 
-You can navigate to the **Summary Policy** tab on the IAM Policy Stream dashboard. This concatenates the policy per principle which the policy should be attached to. For the example above, you would be able to see the **Identity Policy** for the root user which has all the actions and resources inside one single policy file for the operations we performed.
+You can navigate to the **Summary Policy** tab on the IAM Policy Stream dashboard.
+This concatenates the policy per principle which the policy should be attached to.
+For the example above, you would be able to see the **Identity Policy** for the root user which has all the actions and resources inside one single policy file for the operations we performed.
 
 <img src="require-identity-based-policy.png" alt="Required identity based policy" title="Required identity based policy" width="900" />
 <br><br>
 
-On the other hand, you have the **Resource Policy** for the SQS queue, where you can see the permission necessary for the subscription. For larger AWS applications, you would be able to find multiple roles and multiple resource-based policies depending on your scenario.
+On the other hand, you have the **Resource Policy** for the SQS queue, where you can see the permission necessary for the subscription.
+For larger AWS applications, you would be able to find multiple roles and multiple resource-based policies depending on your scenario.
 
 <img src="require-resource-based-policy.png" alt="Required resource based policy" title="Required resource based policy" width="900" />
 <br><br>
 
 ## Conclusion
 
-IAM Policy Stream streamlines your development process by minimizing the manual creation of policies and confirming the necessity of granted permissions. However, it is advisable to manually confirm that your policy aligns with your intended actions. Your code may unintentionally make requests, and LocalStack considers all requests made during policy generation as valid.
+IAM Policy Stream streamlines your development process by minimizing the manual creation of policies and confirming the necessity of granted permissions.
+However, it is advisable to manually confirm that your policy aligns with your intended actions.
+Your code may unintentionally make requests, and LocalStack considers all requests made during policy generation as valid.
 
-A practical scenario is automating tests, such as integration or end-to-end testing, against your application using LocalStack. This setup allows LocalStack to automatically generate policies with the required permissions. However, it's important to note that these generated policies may not cover all possible requests, as only the requests made during testing are included. You can then review and customize the policies to meet your needs, ensuring that overly permissive policies don't find their way into production environments.
+A practical scenario is automating tests, such as integration or end-to-end testing, against your application using LocalStack.
+This setup allows LocalStack to automatically generate policies with the required permissions.
+However, it's important to note that these generated policies may not cover all possible requests, as only the requests made during testing are included.
+You can then review and customize the policies to meet your needs, ensuring that overly permissive policies don't find their way into production environments.
