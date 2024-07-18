@@ -52,13 +52,12 @@ In this tutorial, you will configure a LocalStack S3 bucket to send event notifi
 Launch the LocalStack container on your local machine using the specified command:
 
 {{< command >}}
-$ DEBUG=1 ENFORCE_IAM=1 IAM_SOFT_MODE=1 localstack start
+$ DEBUG=1 IAM_SOFT_MODE=1 localstack start
 {{< /command >}}
 
 In the above command:
 
 -   `DEBUG=1` turns on detailed logging to check API calls and IAM violations.
--   `ENFORCE_IAM=1` activates IAM enforcement to make sure only allowed actions are performed.
 -   `IAM_SOFT_MODE=1` lets you test IAM enforcement by logging violations without stopping the API calls.
 
 ### Create the Terraform configuration
@@ -240,4 +239,4 @@ On the other hand, you have the **Resource Policy** for the SQS queue, where you
 
 IAM Policy Stream streamlines your development process by minimizing the manual creation of policies and confirming the necessity of granted permissions. However, it is advisable to manually confirm that your policy aligns with your intended actions. Your code may unintentionally make requests, and LocalStack considers all requests made during policy generation as valid.
 
-A practical scenario is automating tests like integration or end-to-end testing against your application, allowing LocalStack to automatically generate policies with required permissions. You can then review and customize them to meet your needs, ensuring that overly permissive policies don't find their way into production environments.
+A practical scenario is automating tests, such as integration or end-to-end testing, against your application using LocalStack. This setup allows LocalStack to automatically generate policies with the required permissions. However, it's important to note that these generated policies may not cover all possible requests, as only the requests made during testing are included. You can then review and customize the policies to meet your needs, ensuring that overly permissive policies don't find their way into production environments.
