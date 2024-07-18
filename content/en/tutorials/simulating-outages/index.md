@@ -10,7 +10,7 @@ services:
 - agw
 - ddb
 platform:
-- Javascript
+- JavaScript
 deployment:
 - terraform
 tags:
@@ -67,7 +67,7 @@ The following diagram shows the architecture that this application builds and de
 
 Before starting any outages, it's important to verify that our application is functioning correctly.
 Start by creating an entity and saving it.
-To do this, use `cURL` to call the API Gateway endpoint for the POST method:
+To do this, use curl to call the API Gateway endpoint for the POST method:
 
 {{< command >}}
 $ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
@@ -85,9 +85,9 @@ Product added/updated successfully.
 
 ### Simulating the outage
 
-Next, we will configure the Chaos API to target all APIs of the DynamoDB resource.
-The Chaos API is powerful enough to refine outages to particular operations like `PutItem` or `GetItem`, but the objective here is to simulate a failure of entire database service.
-The following configuration will cause all API calls to fail with a 100% failure rate, each resulting in an HTTP 500 status code and a `SomethingWentWrong` error.
+Next, we will configure the Chaos API to target all DynamoDB operations.
+The Chaos API is powerful enough to refine outages to particular operations like `PutItem` or `GetItem`, but the objective here is to simulate a failure of entire service.
+The following configuration will cause all API calls to fail with a 80% failure rate, each resulting in an HTTP 500 status code and a `SomethingWentWrong` error.
 
 {{<command>}}
 curl --location --request PATCH 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
@@ -105,7 +105,7 @@ curl --location --request PATCH 'http://localhost.localstack.cloud:4566/_localst
 ]'
 {{</ command >}}
 
-This makes the database become inaccessible.
+This makes the database inaccessible.
 No external client or a LocalStack service can retrieve or add new products, resulting in the API Gateway returning an Internal Server Error.
 
 Downtime and data loss are critical issues to avoid in enterprise applications.
@@ -215,6 +215,7 @@ With this configured, you can use the same sample stack to observe and understan
 
 {{< command >}}
 $ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
+--max-time 2 \
 --header 'Content-Type: application/json' \
 --data '{
     "id": "prod-1088",
