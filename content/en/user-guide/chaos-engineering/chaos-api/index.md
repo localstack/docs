@@ -1,6 +1,6 @@
 ---
 title: "Chaos API"
-linkTitle: "Choas API"
+linkTitle: "Chaos API"
 description: Simulate outages and network failures to test the resiliency of your infrastructure
 tags: ["Enterprise plan"]
 ---
