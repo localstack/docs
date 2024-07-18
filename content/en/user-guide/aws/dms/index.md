@@ -168,7 +168,7 @@ server_id=1
 log_bin=mysqld-bin
 ```
 
-For S3 as a source, only the first 1000 files of a table in a bucket are considered for migration. 
+For S3 as a source, only the first 1000 files of a table in a bucket are considered for migration.
 
 ### Enum Values for CDC data events
 
