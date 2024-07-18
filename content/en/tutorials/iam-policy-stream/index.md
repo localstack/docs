@@ -13,7 +13,7 @@ deployment:
 - awscli
 pro: true
 leadimage: "iam-policy-stream.png"
-teaser: ""
+teaser: "iam-policy-stream.png"
 platform:
 - HCL
 ---
