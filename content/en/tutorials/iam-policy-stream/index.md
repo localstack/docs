@@ -41,7 +41,7 @@ IAM Policy Stream simplifies this by automatically generating the needed policie
 -   [Terraform](https://developer.hashicorp.com/terraform/install) & [`tflocal` wrapper](https://github.com/localstack/terraform-local)
 -   [AWS](https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html)  CLI with  [`awslocal` wrapper](https://github.com/localstack/awscli-local)
 -   [LocalStack Web Application account](https://app.localstack.cloud/sign-up)
--   [jq](https://jqlang.github.io/jq/download/)
+-   [`jq`](https://jqlang.github.io/jq/download/)
 
 ## Tutorial: Configure an S3 bucket for event notifications using SQS
 
