@@ -20,7 +20,8 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 
 This guide is designed for users new to Elastic Container Registry and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to build and push a Docker image to a local ECR repository.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to build and push a Docker image to a local ECR repository.
 
 ### Create a Docker image
 

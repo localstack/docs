@@ -136,7 +136,7 @@ $ awslocal glacier get-job-output --vault-name sample-vault --account-id - --job
 {{< /command >}}
 
 {{< callout >}}
-Please not that currently, this operation is only mocked, and will create an empty file named `my-archive.jpg`, not containing the contents of your archive. 
+Please not that currently, this operation is only mocked, and will create an empty file named `my-archive.jpg`, not containing the contents of your archive.
 {{< /callout >}}
 
 ### Retrieve the inventory information
@@ -164,6 +164,7 @@ $ awslocal glacier get-job-output \
 {{< /command >}}
 
 Inspecting the content of the `inventory.json` file, we can find an inventory of the vault:
+
 ```json
 {
   "VaultARN": "arn:aws:glacier:us-east-1:000000000000:vaults/sample-vault",

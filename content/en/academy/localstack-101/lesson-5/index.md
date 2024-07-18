@@ -18,7 +18,8 @@ In this informative video we guide you through the essential steps of the LocalS
 - Witness the seamless login flow and discover how to configure the web app.
 - Learn how to effortlessly connect your LocalStack Account to enable a smooth integration experience.
 - Explore the Resource Browser as we demonstrate how to list and create fundamental resources.
-- To create an account for LocalStack, visit [app.localstack.cloud/sign-up](https://app.localstack.cloud/sign-up). You can sign up with your email address or one of our supported social identity providers (such as GitHub).
+- To create an account for LocalStack, visit [app.localstack.cloud/sign-up](https://app.localstack.cloud/sign-up).
+  You can sign up with your email address or one of our supported social identity providers (such as GitHub).
 
 Further reading:
 

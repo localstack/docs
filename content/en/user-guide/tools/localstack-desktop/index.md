@@ -7,10 +7,12 @@ aliases:
   - /user-guide/tools/cockpit/
 ---
 
-LocalStack Desktop is a desktop client that allows users to easily control and interact with their LocalStack instance. Using LocalStack Desktop, users can start and stop their LocalStack instance with a single click, create a new container, view logs, interact with LocalStack container via cli and use our resource browser.
+LocalStack Desktop is a desktop client that allows users to easily control and interact with their LocalStack instance.
+Using LocalStack Desktop, users can start and stop their LocalStack instance with a single click, create a new container, view logs, interact with LocalStack container via cli and use our resource browser.
 
 {{< callout >}}
-LocalStack Desktop replaces the previous LocalStack Cockpit application. Cockpit isn't available or maintained anymore and we recommend you to use LocalStack Desktop instead.
+LocalStack Desktop replaces the previous LocalStack Cockpit application.
+Cockpit isn't available or maintained anymore and we recommend you to use LocalStack Desktop instead.
 {{< /callout >}}
 
 <img src="localstack-desktop-containers.png" alt="LocalStack Desktop" title="LocalStack Desktop" width="900" />
@@ -18,15 +20,17 @@ LocalStack Desktop replaces the previous LocalStack Cockpit application. Cockpit
 ## Installation
 
 You can download LocalStack Desktop from our [web application](https://app.localstack.cloud/download).
-To install LocalStack Desktop, **Docker** is the only prerequisite. 
+To install LocalStack Desktop, **Docker** is the only prerequisite.
 
 ## Features
 
-LocalStack Desktop helps users to interact with their LocalStack instance with a simple and intuitive UI. Some of the features of LocalStack Desktop includes the ability to: Control LocalStack, Interact with LocalStack, get LocalStack insights and use the Resource browser.
+LocalStack Desktop helps users to interact with their LocalStack instance with a simple and intuitive UI.
+Some of the features of LocalStack Desktop includes the ability to: Control LocalStack, Interact with LocalStack, get LocalStack insights and use the Resource browser.
 
 ### Control LocalStack
 
-Using our Desktop application you will be able to start, stop, delete and create new containers with just a click. It also allows to set up a custom URL if you are using LocalStack outside of Docker or in Kubernetes.
+Using our Desktop application you will be able to start, stop, delete and create new containers with just a click.
+It also allows to set up a custom URL if you are using LocalStack outside of Docker or in Kubernetes.
 
 <p>
 <img src="localstack-desktop-containers.png" alt="LocalStack Desktop container creation" title="Create a container directly from LocalStack Desktop" width="900" />
@@ -38,13 +42,12 @@ You can run commands within the LocalStack container by using our CLI
 
 <img src="localstack-desktop-terminal.png" alt="LocalStack Desktop cli interaction" title="Interact with the LocalStack container with a cli" width="900" />
 
-
 ### LocalStack Insights
 
-LocalStack Desktop provides quick access to your LocalStack logs for instant insights. See what's happening in details from the Logs tab.
+LocalStack Desktop provides quick access to your LocalStack logs for instant insights.
+See what's happening in details from the Logs tab.
 
 <img src="localstack-desktop-logs.png" alt="LocalStack Desktop Logs tab" title="Check your instance logs" width="900" />
-
 
 ### Resource browser
 

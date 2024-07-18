@@ -26,7 +26,6 @@ We will demonstrate how to create an Airflow environment and access the Airflow 
 Create a S3 bucket that will be used for Airflow resources.
 Run the following command to create a bucket using the [`mb`](https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html) command.
 
-
 {{< command >}}
 $ awslocal s3 mb s3://my-mwaa-bucket
 {{< /command >}}
@@ -81,8 +80,8 @@ To configure Airflow environments effectively, you can utilize the `AirflowConfi
 These options are transformed into corresponding environment variables and passed to Airflow.
 For instance:
 
--   `agent.code`:`007` is transformed into `AIRFLOW__AGENT__CODE:007`.
--   `agent.name`:`bond` is transformed into `AIRFLOW__AGENT__NAME:bond`.
+- `agent.code`:`007` is transformed into `AIRFLOW__AGENT__CODE:007`.
+- `agent.name`:`bond` is transformed into `AIRFLOW__AGENT__NAME:bond`.
 
 This transformation process ensures that your configuration settings are easily applied within the Airflow environment.
 
@@ -91,11 +90,14 @@ This transformation process ensures that your configuration settings are easily 
 When it comes to adding or updating DAGs in Airflow, the process is simple and efficient.
 Just upload your DAGs to the designated S3 bucket path, configured by the `DagS3Path` argument.
 
-Follow this example command to upload a sample DAG named `sample_dag.py` to your S3 bucket named `my-mwaa-bucket`:
+For example, the command below uploads a sample DAG named `sample_dag.py` to your S3 bucket named `my-mwaa-bucket`:
 
-{{< command >}} 
-$ awslocal s3 cp sample_dag.py s3://my-mwaa-bucket/dags 
+{{< command >}}
+$ awslocal s3 cp sample_dag.py s3://my-mwaa-bucket/dags
 {{< /command >}}
+
+LocalStack syncs new and changed objects in the S3 bucket to the Airflow container every 30 seconds.
+The polling interval can be changed using the [`MWAA_S3_POLL_INTERVAL`]({{< ref "configuration#mwaa" >}}) config option.
 
 ## Installing custom plugins
 

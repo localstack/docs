@@ -8,9 +8,11 @@ description: >
 
 ## Introduction
 
-DocumentDB is a fully managed, non-relational database service that supports MongoDB workloads. DocumentDB is compatible with MongoDB, meaning you can use the same MongoDB drivers, applications, and tools to run, manage, and scale workloads on DocumentDB without having to worry about managing the underlying infrastructure.
+DocumentDB is a fully managed, non-relational database service that supports MongoDB workloads.
+DocumentDB is compatible with MongoDB, meaning you can use the same MongoDB drivers, applications, and tools to run, manage, and scale workloads on DocumentDB without having to worry about managing the underlying infrastructure.
 
-LocalStack allows you to use the DocumentDB APIs to create and manage DocumentDB clusters and instances. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_docdb/), which provides information on the extent of DocumentDB's integration with LocalStack.
+LocalStack allows you to use the DocumentDB APIs to create and manage DocumentDB clusters and instances.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_docdb/), which provides information on the extent of DocumentDB's integration with LocalStack.
 
 ## Getting started
 
@@ -49,13 +51,16 @@ If we break down the previous command, we can identify:
 - `docdb`: The command related to Amazon DocumentDB for the `AWS CLI`.
 - `create-db-cluster`: The command to create an Amazon DocumentDB cluster.
 - `--db-cluster-identifier test-docdb-cluster`: Specifies the unique identifier for the DocumentDB
-  cluster. In this case, it is set to `test-docdb-cluster`. You can customize this identifier to a
+  cluster.
+  In this case, it is set to `test-docdb-cluster`.
+  You can customize this identifier to a
   name of your choice.
-- `--engine docdb`: Specifies the database engine. Here, it is set to `docdb`, indicating the use of
+- `--engine docdb`: Specifies the database engine.
+  Here, it is set to `docdb`, indicating the use of
   Amazon DocumentDB.
 
 Notice in the `DBClusterMembers` field of the cluster description that there are no other databases
-created. 
+created.
 As we did not specify a `MasterUsername` or `MasterUserPassword` for the creation of the database, the mongo-db will not set any credentials when starting the docker container.
 To create a new database, we can use the `create-db-instance` command, like in this example:
 
@@ -63,6 +68,7 @@ To create a new database, we can use the `create-db-instance` command, like in t
 $ awslocal docdb create-db-instance --db-instance-identifier test-company \
 --db-instance-class db.r5.large --engine docdb --db-cluster-identifier test-docdb-cluster
 {{< /command >}}
+
 ```yaml
 {
   "DBInstance": {
@@ -99,8 +105,10 @@ Some noticeable fields:
 - `--db-instance-identifier test-company`: Represents the unique identifier of the newly created
   database.
 - `--db-instance-class db.r5.large`: Is the type or class of the Amazon DocumentDB
-  instance. It determines the compute and memory capacity allocated to the instance. `db.r5.large` refers to a specific instance type in
-  the R5 family. Although the flag is required for database creation, LocalStack will only mock the `DBInstanceClass` attribute.
+  instance.
+  It determines the compute and memory capacity allocated to the instance. `db.r5.large` refers to a specific instance type in
+  the R5 family.
+  Although the flag is required for database creation, LocalStack will only mock the `DBInstanceClass` attribute.
 
   You can find out more about instance classes in
   the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -168,7 +176,8 @@ test>
 
 {{< /command >}}
 
-This command will default to accessing the `test` database that was created with the cluster. Notice the port, `39045`,
+This command will default to accessing the `test` database that was created with the cluster.
+Notice the port, `39045`,
 which is the cluster port that appears in the aforementioned description.
 
 To work with a specific database, the command is:
@@ -213,10 +222,11 @@ the [MongoDB documentation](https://www.mongodb.com/docs/).
 {{< callout >}}
 You need to set `DOCDB_PROXY_CONTAINER=1` when starting LocalStack to be able to use the returned `Endpoint`, which will be correctly resolved automatically.
 
-The flag `DOCDB_PROXY_CONTAINER=1` changes the default behavior and the container will be started as proxied container. Meaning a port from the [pre-defined port]({{< ref "/references/external-ports" >}}) range will be chosen, and when using lambda, you can use `localhost.localstack.cloud` to connect to the instance.
+The flag `DOCDB_PROXY_CONTAINER=1` changes the default behavior and the container will be started as proxied container.
+Meaning a port from the [pre-defined port]({{< ref "/references/external-ports" >}}) range will be chosen, and when using lambda, you can use `localhost.localstack.cloud` to connect to the instance.
 {{< /callout >}}
 
-In this sample we will use a Node.js lambda function to connect to a DocumentDB. 
+In this sample we will use a Node.js lambda function to connect to a DocumentDB.
 For the mongo-db connection we will use the `mongodb` lib.
 Please note, that this sample is only for demo purpose, e.g., we will set the credentials as environment variables to the lambda function.
 
@@ -298,7 +308,7 @@ exports.handler = async (event) => {
 };
 {{< /command >}}
 
-Now, you can zip the entire. 
+Now, you can zip the entire.
 Make sure you are inside `resources` directory and run:
 {{< command >}}
 $ zip -r function.zip .
@@ -321,19 +331,18 @@ $ awslocal lambda invoke --function-name MyNodeLambda outfile
 {{< /command >}}
 
 The `outfile` contains the returned value, e.g.:
+
 ```yaml
 {"statusCode":200,"body":"{\"_id\":\"6560a21ca7771a02ef128c72\",\"key\":\"value\"}"}
 ````
 
 #### Use Secret To Connect to DocDB
 
-The best-practise for accessing databases is by using secrets. 
+The best-practise for accessing databases is by using secrets.
 Secrets follow a [well-defined pattern](https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_database_secret.html).
 
 For the lambda function, you can pass the secret arn as `SECRET_NAME`.
 In the lambda, you can then retrieve the secret details like this:
-
-[This sample is a snippet from the scenario test https://github.com/localstack/localstack-ext/blob/master/tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py]: #
 
 {{< command >}}
 const AWS = require('aws-sdk');
@@ -387,7 +396,8 @@ exports.handler = async (event) => {
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing DocumentDB instances and clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **DocumentDB** under the **Database** section.
+The LocalStack Web Application provides a Resource Browser for managing DocumentDB instances and clusters.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **DocumentDB** under the **Database** section.
 
 <img src="docdb-resource-browser.png" alt="DocumentDB Resource Browser" title="DocumentDB Resource Browser" width="900" />
 <br>
@@ -403,8 +413,11 @@ The Resource Browser allows you to perform the following actions:
 
 ## Current Limitations
 
-Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it can be accessed from `localhost`. When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
+Under the hood, LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it can be accessed from `localhost`.
+When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
 
-Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not have exact feature parity with Amazon DocumentDB. The database engine may support additional features that DocumentDB does not and vice versa.
+Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not have exact feature parity with Amazon DocumentDB.
+The database engine may support additional features that DocumentDB does not and vice versa.
 
-DocumentDB currently uses the default configuration of the latest [MongoDB Docker image](https://hub.docker.com/_/mongo). When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`. 
+DocumentDB currently uses the default configuration of the latest [MongoDB Docker image](https://hub.docker.com/_/mongo).
+When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the corresponding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`.

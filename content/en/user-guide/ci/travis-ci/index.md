@@ -12,7 +12,8 @@ This guide shows how to start and use LocalStack in your Travis CI jobs.
 When you want to integrate LocalStack into your job configuration, you just have to execute the following steps:
 - Install the LocalStack CLI (and maybe also `awslocal`).
 - Make sure your LocalStack docker image is up-to-date by pulling the latest version.
-- Use the LocalStack CLI to start LocalStack. Make sure to use the `-d` flag to start the LocalStack docker container in detached mode.
+- Use the LocalStack CLI to start LocalStack.
+  Make sure to use the `-d` flag to start the LocalStack docker container in detached mode.
 - Wait for the container to report that it is up and running.
 
 The following example Travis CI job config (`.travis.yaml`) executes these steps, creates a new S3 bucket, and prints a nice message in the end:
@@ -47,7 +48,8 @@ script:
 
 ## Configuring a CI key
 
-You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the project's environment variables. The LocalStack CLI will automatically pick it up and activate the Pro features.
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the project's environment variables.
+The LocalStack CLI will automatically pick it up and activate the Pro features.
 
 Just go to the project settings in Travis CI (`More options` → `Settings`), scroll down to the `Environment Variables` section, and add your CI key:
 

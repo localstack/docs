@@ -196,6 +196,7 @@ This API allows you to query the DNS records associated with the service and per
 To explore the DNS records of your service and perform other operations, refer to the [AWS CLI documentation](https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/index.html) for comprehensive instructions and examples.
 
 ### Using filters
+
 Filters can be used to narrow down the results of a list operation.
 Filters are supported for the following operations:
 

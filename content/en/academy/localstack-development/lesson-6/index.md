@@ -11,14 +11,15 @@ type: lessons
 url: "/academy/localstack-deployment/iam-policy-stream/"
 ---
 
-In this video, we'll explore the [IAM Policy Stream](https://docs.localstack.cloud/user-guide/security-testing/iam-policy-stream/) that assists in assigning precise IAM permissions to a resource. This ensures accurate and secure access to the resource.
+In this video, we'll explore the [IAM Policy Stream](https://docs.localstack.cloud/user-guide/security-testing/iam-policy-stream/) that assists in assigning precise IAM permissions to a resource.
+This ensures accurate and secure access to the resource.
 
 Here's a breakdown of the steps we'll take:
 
-1.  Enable IAM Policy Stream on the [LocalStack Web Application](https://app.localstack.cloud/policy-stream).
-2.  Trigger an AWS API request from the CLI, triggering the generation of the necessary policy for the request.
-3.  Submit another request to generate the corresponding policy for the resource.
-4.  Explore the **Summary Policy** section to view the consolidated policy for both requests.
+1. Enable IAM Policy Stream on the [LocalStack Web Application](https://app.localstack.cloud/policy-stream).
+2. Trigger an AWS API request from the CLI, triggering the generation of the necessary policy for the request.
+3. Submit another request to generate the corresponding policy for the resource.
+4. Explore the **Summary Policy** section to view the consolidated policy for both requests.
 
 Further reading:
 

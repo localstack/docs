@@ -12,7 +12,6 @@ description: Use LocalStack in CodeBuild
 CodeBuild allows you to define your build project, set the source code location, and handles the building and testing, while supporting various programming languages, build tools, and runtime environments.
 LocalStack supports CodeBuild out of the box and can be easily integrated into your pipeline to run your tests against a cloud emulator.
 
-
 ## Snippets
 
 CodeBuild has the capability to use LocalStack's GitHub Action.
@@ -28,7 +27,7 @@ phases:
   pre_build:
     commands:
       - pip3 install localstack awscli
-      - docker pull public.ecr.aws/localstack/localstack:latest	
+      - docker pull public.ecr.aws/localstack/localstack:latest 
       - localstack start -d
       - localstack wait -t 30
 ```
@@ -44,18 +43,18 @@ phases:
       - run: docker pull public.ecr.aws/localstack/localstack:latest
       - run: docker image tag public.ecr.aws/localstack/localstack-pro:latest localstack/localstack:latest
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           image-tag: 'latest'
           install-awslocal: 'true'
 ```
-
 
 ### Configuration
 
 Get know more about the LocalStack [config options](/references/configuration/).
 
 #### Native Runner
+
 ```yml
 version: 0.2
 
@@ -82,13 +81,12 @@ phases:
     steps:
       ...
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           image-tag: 'latest'
           configuration: LS_LOG=trace
 ...
 ```
-
 
 ### Configuring a CI key
 
@@ -114,7 +112,7 @@ phases:
   pre_build:
     commands:
       - pip3 install localstack awscli
-      - docker pull public.ecr.aws/localstack/localstack-pro:latest	
+      - docker pull public.ecr.aws/localstack/localstack-pro:latest 
 ...
 ```
 
@@ -128,15 +126,15 @@ phases:
       - run: docker pull public.ecr.aws/localstack/localstack-pro:latest
       - run: docker image tag public.ecr.aws/localstack/localstack-pro:latest localstack/localstack-pro:latest
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           image-tag: 'latest'
           use-pro: 'true'
 ...
 ```
 
-
 ### Dump LocalStack logs
+
 ```yaml
 ...
 artifacts:
@@ -163,7 +161,6 @@ artifact:
     - localstack.log
 ```
 
-
 ### Store LocalStack state
 
 #### Cloud Pods
@@ -171,6 +168,7 @@ artifact:
 Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
 
 ##### Native Runner
+
 ```yml
 ...
 phases:
@@ -194,7 +192,7 @@ phases:
       # LocalStack is up and running already
       - name: Load the Cloud Pod 
         continue-on-error: true  # Allow it to fail as pod does not exist at first run
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           state-backend: cloud-pods
           name: <cloud-pod-name>
@@ -202,7 +200,7 @@ phases:
           skip-startup: 'true'
       ...
       - name: Save the Cloud Pod 
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         with:
           state-backend: cloud-pods
           state-name: <cloud-pod-name>
@@ -211,6 +209,7 @@ phases:
 ```
 
 #### Ephemeral Instances (Preview)
+
 ```yml
 ...
 phases:
@@ -253,7 +252,9 @@ artifact:
   files:
     - ls-state-pod.zip
 ```
+
 Alternatively save as a secondary artifact:
+
 ```yml
 ...
 artifact:
@@ -264,6 +265,7 @@ artifact:
         - ls-state-pod.zip
     ...
 ```
+
 To use previously stored artifacts as inputs, set them as a source in the project.
 
 #### Cache
@@ -271,6 +273,7 @@ To use previously stored artifacts as inputs, set them as a source in the projec
 Additional information about [state export and import](/user-guide/state-management/export-import-state/).
 
 ##### Native Runner
+
 ```yml
 ...
 phases:
@@ -287,6 +290,7 @@ cache:
 ```
 
 ##### GitHub Actions Runner
+
 ```yml
 ...
 phases:
@@ -301,14 +305,16 @@ cache:
     - 'ls-state-pod.zip'
 ```
 
-
 ## Current Limitations
 
-- We recommend using the `public.ecr.aws/localstack/localstack:latest` image to start LocalStack, instead of the `localstack/localstack:latest` image. LocalStack mirrors the Docker Hub image to the public ECR repository.
+- We recommend using the `public.ecr.aws/localstack/localstack:latest` image to start LocalStack, instead of the `localstack/localstack:latest` image.
+  LocalStack mirrors the Docker Hub image to the public ECR repository.
   You can use the Docker Hub image as well, though you may run into the following error:
+
   ```bash
   toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit
   ```
+
   To resolve this use your Docker Hub account credentials to pull the image.
 - LocalStack depends on the Docker socket to emulate your infrastructure.
   To enable it, update your project by ticking **Environment > Additional Configuration > Privileged > Enable this flag if you want to build Docker Images or want your builds to get elevated privileges**.

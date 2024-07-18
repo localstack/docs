@@ -20,18 +20,18 @@ More examples and tooling support for local Lambda debugging (including support 
 * [Debugging Python lambdas](#debugging-python-lambdas)
 * [Debugging JVM lambdas](#debugging-jvm-lambdas)
 * [Debugging Node.js lambdas](#debugging-nodejs-lambdas)
-* [Useful Links](#useful-links)
+* [Resources](#resources)
 
 ## Debugging Python lambdas
 
-Lambda functions debugging used to be a difficult task. LocalStack changes that
+Lambda functions debugging used to be a difficult task.
+LocalStack changes that
 with the same local code mounting functionality that also helps you
 to [iterate quickly over your function code]({{< ref "user-guide/lambda-tools" >}}).
 
 For a simple working example of this feature, you can refer to
 [our samples](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
 There, the necessary code fragments for enabling debugging are already present.
-
 
 ### Debugging a Python Lambda in Visual Studio Code
 
@@ -46,7 +46,8 @@ $ LAMBDA_DOCKER_FLAGS='-p 19891:19891' localstack start
 #### Preparing your code
 
 For providing the debug server, we use [`debugpy`](https://github.com/microsoft/debugpy)
-inside the Lambda function code. In general, all you need is the following code
+inside the Lambda function code.
+In general, all you need is the following code
 fragment placed inside your handler code:
 
 ```python
@@ -105,7 +106,8 @@ For attaching the debug server from Visual Studio Code, you need to add a run co
 }
 ```
 
-In the next step we create our function. In order to debug the function in Visual Studio Code, run the preconfigured remote debugger, which will wait about 15 seconds as defined above, and then invoke the function.
+In the next step we create our function.
+In order to debug the function in Visual Studio Code, run the preconfigured remote debugger, which will wait about 15 seconds as defined above, and then invoke the function.
 Make sure to set a breakpoint in the Lambda handler code first, which can then later be inspected.
 
 The screenshot below shows the triggered breakpoint with our `'Hello from LocalStack!'` in the variable inspection view:
@@ -114,11 +116,12 @@ The screenshot below shows the triggered breakpoint with our `'Hello from LocalS
 
 #### Current Limitations
 
-Due to the ports published by the lambda container for the debugger, you can currently only debug one Lambda at a time. Due to the port publishing, multiple concurrently running lambda environments are not supported.
+Due to the ports published by the lambda container for the debugger, you can currently only debug one Lambda at a time.
+Due to the port publishing, multiple concurrently running lambda environments are not supported.
 
 ### Debugging a Python Lambda in PyCharm Professional
 
-Please be aware that [remote debugging in PyCharm](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html) is only available in the Professional version. 
+Please be aware that [remote debugging in PyCharm](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html) is only available in the Professional version.
 
 You do not need to change the `LAMBDA_DOCKER_FLAGS` when debugging with PyCharm Professional.
 
@@ -126,7 +129,7 @@ You do not need to change the `LAMBDA_DOCKER_FLAGS` when debugging with PyCharm 
 
 You can [follow the steps in the official docs](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config), which will come down to:
 
-* Create a debug configuration with the IDE host name `localhost` and the debug port `19891`. 
+* Create a debug configuration with the IDE host name `localhost` and the debug port `19891`.
 * Add path mapping with your project files on the host and map it to the remote directory `/var/task`.
 * Copy the `pip install` command, and make sure to install the correct `pydevd-pycharm` version for your PyCharm IDE.
 
@@ -134,7 +137,8 @@ You can [follow the steps in the official docs](https://www.jetbrains.com/help/p
 
 #### Preparing your code
 
-PyCharm provides its own debugging package, called `pydevd-pycharm`. Essentially, you will add the following code to your lambda:
+PyCharm provides its own debugging package, called `pydevd-pycharm`.
+Essentially, you will add the following code to your lambda:
 
 ```python
 import pydevd_pycharm
@@ -142,7 +146,7 @@ pydevd_pycharm.settrace('host.docker.internal', port=19891, stdoutToServer=True,
                             stderrToServer=True)
 ```
 
-The `host.docker.internal` is a [special DNS name by Docker](https://docs.docker.com/desktop/networking/#use-cases-and-workarounds-for-all-platforms) and will make sure that the lambda running in the docker can connect to PyCharm running on your Localhost. 
+The `host.docker.internal` is a [special DNS name by Docker](https://docs.docker.com/desktop/networking/#use-cases-and-workarounds-for-all-platforms) and will make sure that the lambda running in the docker can connect to PyCharm running on your Localhost.
 
 You can use the `wait_for_debug_client` and add it to your lambda (please adapt the path to your `venv` directory if necessary):
 
@@ -160,14 +164,16 @@ def wait_for_debug_client():
                             stderrToServer=True)
 ```
 
-In the next step we create our function. In order to debug the function in PyCharm set a breakpoint in your function, run the Remote Debug configuration and then invoke the function.
+In the next step we create our function.
+In order to debug the function in PyCharm set a breakpoint in your function, run the Remote Debug configuration and then invoke the function.
 
 ![PyCharm Professional debugging](pycharm_lambda_debugging.png)
 
 ### Creating the Lambda function
 
 To create the Lambda function, you just need to take care of two things:
-1. Deploy the function via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket name.
+1. Deploy the function via an S3 Bucket.
+  You need to use the magic variable `hot-reload` as the bucket name.
 2. Set the S3 key to the path of the directory your lambda function resides in.
    The handler is then referenced by the filename of your lambda code and the function in that code that should be invoked.
 
@@ -264,8 +270,8 @@ Compared to the previous setup the "Wait Remote Debugger Server" run configurati
 
 For the Lambda function you will have to adjust the environment variable to `"_JAVA_OPTIONS": "-Xshare:off -agentlib:jdwp=transport=dt_socket,server=n,address=172.17.0.1:5050,suspend=y,onuncaught=n"`.
 Notice the `address=172.17.0.1:5050`.
-Here we tell the Lambda function to connect to port 5050 on 172.17.0.1. When using Docker desktop you might have to set this to `address=host.docker.internal:5050` instead.
-
+Here we tell the Lambda function to connect to port 5050 on 172.17.0.1.
+When using Docker desktop you might have to set this to `address=host.docker.internal:5050` instead.
 
 ### Configuring Visual Studio Code for remote JVM debugging
 
@@ -329,7 +335,6 @@ services:
       - LAMBDA_DOCKER_FLAGS=-e NODE_OPTIONS=--inspect-brk=0.0.0.0:9229 -p 9229:9229
 ```
 
-
 ### Configuring Visual Studio Code for remote Node.js debugging
 
 Add a new task by creating/modifying the `.vscode/tasks.json` file:
@@ -369,6 +374,7 @@ then add the following configuration:
 ```
 
 A simple example of a Node.js lambda, `myindex.js` could look like this:
+
 ```js
 exports.handler = async (event) => {
     console.log(event);
@@ -411,7 +417,6 @@ $ awslocal lambda invoke --function-name func1 \
 {{< /command >}}
 {{% /tab %}}
 {{< /tabpane >}}
-
 
 ## Resources
 

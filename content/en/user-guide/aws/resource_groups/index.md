@@ -29,7 +29,8 @@ However, you can also use CloudFormation stack-based queries to create a resourc
 ### Create a Resource Group
 
 Resource Groups in AWS are built around the concept of queries, which serve as a fundamental component.
-The tag-based queries list the resource types in the format `AWS::<service>::<resource>` (e.g. `AWS::Lambda::Function` along with specified tags. A tag-based group is created based on a query of type `TAG_FILTERS_1_0`.
+The tag-based queries list the resource types in the format `AWS::<service>::<resource>` (e.g. `AWS::Lambda::Function` along with specified tags.
+A tag-based group is created based on a query of type `TAG_FILTERS_1_0`.
 
 Use the [`CreateGroup`](https://docs.aws.amazon.com/resource-groups/latest/APIReference/API_CreateGroup.html) API to create a Resource Group.
 Run the following command to create a Resource Group named `my-resource-group`:

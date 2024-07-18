@@ -8,8 +8,10 @@ tags: ["Pro image"]
 ## Introduction
 
 [X-Ray](https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html) is a distributed tracing service that
-helps to understand cross-service interactions and facilitates debugging of performance bottlenecks. Instrumented applications generate trace data by recording trace segments with information about the work tasks of an
-application, such as timestamps, tasks names, or metadata. X-Ray supports different ways of [instrumenting your application](https://docs.aws.amazon.com/xray/latest/devguide/xray-instrumenting-your-app.html) including
+helps to understand cross-service interactions and facilitates debugging of performance bottlenecks.
+Instrumented applications generate trace data by recording trace segments with information about the work tasks of an
+application, such as timestamps, tasks names, or metadata.
+X-Ray supports different ways of [instrumenting your application](https://docs.aws.amazon.com/xray/latest/devguide/xray-instrumenting-your-app.html) including
 the [AWS X-Ray SDK](https://docs.aws.amazon.com/xray/latest/devguide/xray-instrumenting-your-app.html#xray-instrumenting-xray-sdk) and
 the [AWS Distro for OpenTelemetry (ADOT)](https://docs.aws.amazon.com/xray/latest/devguide/xray-instrumenting-your-app.html#xray-instrumenting-opentel).
 [X-Ray daemon](https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon.html) is an application that gathers
@@ -26,14 +28,18 @@ which provides information on the extent of X-Ray integration with LocalStack.
 This guide is designed for users new to X-Ray and assumes basic
 knowledge of the AWS CLI and our `awslocal` wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how you can create a minimal [trace segment](https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-fields)
-and manually send it to the X-Ray API. Notice that this trace ingestion typically happens in the background, for example by the X-Ray SDK and X-Ray daemon.
+Start your LocalStack container using your preferred method.
+We will demonstrate how you can create a minimal [trace segment](https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-fields)
+and manually send it to the X-Ray API.
+Notice that this trace ingestion typically happens in the background, for example by the X-Ray SDK and X-Ray daemon.
 
  [PutTraceSegments](https://docs.aws.amazon.com/xray/latest/api/API_PutTraceSegments.html).
 
 ### Sending trace segments
 
-You can generates a unique trace ID and constructs a JSON document with trace information. It then sends this trace segment to the AWS X-Ray API using the    [PutTraceSegments](https://docs.aws.amazon.com/xray/latest/api/API_PutTraceSegments.html) API. Run the following commands in your terminal:
+You can generates a unique trace ID and constructs a JSON document with trace information.
+It then sends this trace segment to the AWS X-Ray API using the    [PutTraceSegments](https://docs.aws.amazon.com/xray/latest/api/API_PutTraceSegments.html) API.
+Run the following commands in your terminal:
 
 {{< command >}}
 $ START_TIME=$(date +%s)
@@ -57,7 +63,8 @@ Sending trace segment to X-Ray API: {"trace_id": "1-6501ee11-056ec85fafff21f648e
 
 ### Retrieve trace summaries
 
-You can now retrieve the trace summaries from the last 10 minutes using the [GetTraceSummaries](https://docs.aws.amazon.com/xray/latest/api/API_GetTraceSummaries.html) API. Run the following commands in your terminal:
+You can now retrieve the trace summaries from the last 10 minutes using the [GetTraceSummaries](https://docs.aws.amazon.com/xray/latest/api/API_GetTraceSummaries.html) API.
+Run the following commands in your terminal:
 
 {{< command >}}
 $ EPOCH=$(date +%s)
@@ -86,7 +93,8 @@ $ awslocal xray get-trace-summaries --start-time $(($EPOCH-600)) --end-time $(($
 
 ### Retrieve full trace
 
-You can retrieve the full trace by providing the `TRACE_ID` using the [BatchGetTraces](https://docs.aws.amazon.com/xray/latest/api/API_BatchGetTraces.html) API. Run the following commands in your terminal (use the same terminal as for the first command):
+You can retrieve the full trace by providing the `TRACE_ID` using the [BatchGetTraces](https://docs.aws.amazon.com/xray/latest/api/API_BatchGetTraces.html) API.
+Run the following commands in your terminal (use the same terminal as for the first command):
 
 {{< command >}}
 $ awslocal xray batch-get-traces --trace-ids $TRACE_ID

@@ -56,7 +56,9 @@ $ awslocal ses send-email \
 {{< /command >}}
 
 {{< callout >}}
-In the Community image, no emails are actually sent. Hence this operation is mocked. In the Pro image however, emails are sent via an SMTP server.
+In the Community image, no emails are actually sent.
+Hence this operation is mocked.
+In the Pro image however, emails are sent via an SMTP server.
 {{< /callout >}}
 
 ## Sent Emails
@@ -97,10 +99,10 @@ $ curl --silent localhost.localstack.cloud:4566/_aws/ses?email=hello@example.com
 - **Filesystem:** All messages are saved to the state directory (see [filesystem layout]({{< ref "filesystem" >}})).
     The files are saved as JSON in the `ses/` subdirectory and named by the message ID.
 
-
 ## SMTP Integration
 
-The Pro image supports sending emails via an SMTP server. Refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`).
+The Pro image supports sending emails via an SMTP server.
+Refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`).
 
 {{< callout "tip" >}}
 If you do not have access to a proper SMTP server, you can use tools like [MailDev](https://github.com/maildev/maildev) or [smtp4dev](https://github.com/rnwood/smtp4dev).
@@ -118,7 +120,8 @@ LocalStack Web Application provides a resource browser for managing email identi
 
 The Resource Browser allows you to perform following actions:
 - **Create Email Identity**: Create an email identity by clicking **Create Identity** and specifying the email address.
-- **View Sent Emails**: View all sent emails from an email identity by clicking the email address. You can the view the details of a sent email by selecting them from the list.
+- **View Sent Emails**: View all sent emails from an email identity by clicking the email address.
+  You can the view the details of a sent email by selecting them from the list.
 - **Send Emails**: On selecting an email identity, click **Send Message** and specify destination fields (To, CC and BCC addresses) and the body (Plaintext, HTML) to send an email.
 
 ## Current Limitations

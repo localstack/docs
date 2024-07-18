@@ -7,7 +7,9 @@ hide_readingtime: true
 ---
 
 ## Coverage Overview
+
 {{< localstack_coverage_table service="apigatewayv2" >}}
 
 ## Testing Details
+
 {{< localstack_coverage_details service="apigatewayv2" >}}

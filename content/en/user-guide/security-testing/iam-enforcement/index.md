@@ -8,7 +8,9 @@ tags: ["Pro image"]
 
 ## Introduction
 
-IAM Policy Enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS. The environment configuration `ENFORCE_IAM=1` is required while starting LocalStack to enable this feature. Per default, IAM enforcement is disabled, and all APIs can be accessed without authentication.
+IAM Policy Enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS.
+The environment configuration `ENFORCE_IAM=1` is required while starting LocalStack to enable this feature.
+Per default, IAM enforcement is disabled, and all APIs can be accessed without authentication.
 
 ## Getting started
 
@@ -20,13 +22,15 @@ Start your LocalStack container with the `DEBUG=1` and `ENFORCE_IAM=1` environme
 $ DEBUG=1 ENFORCE_IAM=1 localstack start
 {{< /command >}}
 
-We will demonstrate IAM Policy Enforcement, by creating a user and obtaining the access/secret keys. We will make an attempt to create a bucket using the user’s credentials, which inevitably fails due to insufficient permissions. 
+We will demonstrate IAM Policy Enforcement, by creating a user and obtaining the access/secret keys.
+We will make an attempt to create a bucket using the user’s credentials, which inevitably fails due to insufficient permissions.
 
 Lastly, a policy is attached to the user, granting the necessary `s3:CreateBucket` permission, thereby enabling the successful creation of the bucket.
 
 ### Create a user
 
-To follow this guide, open two separate terminal sessions:  **Terminal 1**  for the administrative IAM commands, which will utilize the default root IAM user, and  **Terminal 2** for executing the commands under the test IAM user you are about to create. This way, we can demonstrate the differentiation in access permissions between the administrative and test users in real-time.
+To follow this guide, open two separate terminal sessions:  **Terminal 1**  for the administrative IAM commands, which will utilize the default root IAM user, and  **Terminal 2** for executing the commands under the test IAM user you are about to create.
+This way, we can demonstrate the differentiation in access permissions between the administrative and test users in real-time.
 
 In **Terminal 1**, execute the following commands to create a `test` user and obtain the access/secret keys:
 
@@ -59,7 +63,8 @@ $ awslocal iam create-access-key --user-name test
 
 ### Attempt to create a bucket
 
-Navigate to **Terminal 2**, where we will configure the access keys for the user `test` in the environment. Once the access keys are set, you will attempt to create an S3 bucket using these credentials.
+Navigate to **Terminal 2**, where we will configure the access keys for the user `test` in the environment.
+Once the access keys are set, you will attempt to create an S3 bucket using these credentials.
 
 {{< command >}}
 $ export AWS_ACCESS_KEY_ID=LKIAQAAAAAAAHFR7QTN3 AWS_SECRET_ACCESS_KEY=EYUHpIol7bRJpKd/28c/LI2C4bbEnp82LJCRwXRV
@@ -69,7 +74,8 @@ make_bucket failed: s3://mybucket An error occurred (AccessDeniedException) when
 </disable-copy>
 {{< / command >}}
 
-As anticipated, the attempt to create the bucket fails with an `AccessDeniedException` error, confirming that user `test` lacks the necessary permissions for this action. You can view the LocalStack logs to validate the policy enforcement:
+As anticipated, the attempt to create the bucket fails with an `AccessDeniedException` error, confirming that user `test` lacks the necessary permissions for this action.
+You can view the LocalStack logs to validate the policy enforcement:
 
 ```bash
 2023-11-03T12:21:10.971  INFO --- [   asgi_gw_1] l.s.i.p.handler            : Request for service 's3' by principal 'arn:aws:iam::000000000000:user/test' for operation 'CreateBucket' denied.
@@ -96,7 +102,8 @@ make_bucket: mybucket
 </disable-copy>
 {{< / command >}}
 
-The bucket creation succeeds, confirming that the user `test` now has the necessary permissions to perform this action. You can view the LocalStack logs to validate the policy enforcement:
+The bucket creation succeeds, confirming that the user `test` now has the necessary permissions to perform this action.
+You can view the LocalStack logs to validate the policy enforcement:
 
 ```bash
 2023-11-03T12:23:11.469  INFO --- [   asgi_gw_1] localstack.request.aws     : AWS iam.CreatePolicy => 200
@@ -104,4 +111,5 @@ The bucket creation succeeds, confirming that the user `test` now has the necess
 2023-11-03T12:23:22.795  INFO --- [   asgi_gw_2] localstack.request.aws     : AWS s3.CreateBucket => 200
 ```
 
-You can further use the IAM Policy Enforcement feature to test your Infrastructure as Code (IaC) deployments and ensure that your policies are correctly enforced. If the IAM policies are not correctly enforced, you will get an unsuccessful response from the API call, and the LocalStack logs will provide you with the necessary information to debug the issue.
+You can further use the IAM Policy Enforcement feature to test your Infrastructure as Code (IaC) deployments and ensure that your policies are correctly enforced.
+If the IAM policies are not correctly enforced, you will get an unsuccessful response from the API call, and the LocalStack logs will provide you with the necessary information to debug the issue.

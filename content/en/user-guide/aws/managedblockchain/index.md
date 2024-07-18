@@ -6,19 +6,23 @@ description: >
 tags: ["Pro image"]
 ---
 
-Managed Blockchain (AMB) is a managed service that enables the creation and management of blockchain networks, such as Hyperledger Fabric, Bitcoin, Polygon and Ethereum. Blockchain enables the development of applications in which multiple entities can conduct transactions and exchange data securely and transparently, eliminating the requirement for a central, trusted authority.
+Managed Blockchain (AMB) is a managed service that enables the creation and management of blockchain networks, such as Hyperledger Fabric, Bitcoin, Polygon and Ethereum.
+Blockchain enables the development of applications in which multiple entities can conduct transactions and exchange data securely and transparently, eliminating the requirement for a central, trusted authority.
 
-LocalStack allows you to use the AMB APIs to develop and deploy decentralized applications in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_managedblockchain/), which provides information on the extent of AMB integration with LocalStack.
+LocalStack allows you to use the AMB APIs to develop and deploy decentralized applications in your local environment.
+The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_managedblockchain/), which provides information on the extent of AMB integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to AMB and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create a blockchain network, a node, and a proposal.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create a blockchain network, a node, and a proposal.
 
 ### Create a blockchain network
 
-You can create a blockchain network using the [`CreateNetwork`](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateNetwork.html) API. Run the following command to create a network named `OurBlockchainNet` which uses the Hyperledger Fabric with the following configuration:
+You can create a blockchain network using the [`CreateNetwork`](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateNetwork.html) API.
+Run the following command to create a network named `OurBlockchainNet` which uses the Hyperledger Fabric with the following configuration:
 
 {{< command >}}
 $ awslocal managedblockchain create-network \
@@ -59,7 +63,7 @@ $ awslocal managedblockchain create-network \
             }
         }
         }'
-<disable-copy> 
+<disable-copy>
 {
     "NetworkId": "n-X24AF1AK2GC6MDW11HYW5I5DQC",
     "MemberId": "m-6VWBWHP2Y15F7TQ2DS093RTCW2"
@@ -71,7 +75,8 @@ Copy the `NetworkId` and `MemberId` values from the output of the above command,
 
 ### Create a node
 
-You can create a node using the [`CreateNode`](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateNode.html) API. Run the following command to create a node with the following configuration:
+You can create a node using the [`CreateNode`](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateNode.html) API.
+Run the following command to create a node with the following configuration:
 
 {{< command >}}
 $ awslocal managedblockchain create-node \
@@ -96,7 +101,7 @@ $ awslocal managedblockchain create-node \
     --network-id n-X24AF1AK2GC6MDW11HYW5I5DQC \
     --member-id m-6VWBWHP2Y15F7TQ2DS093RTCW2
 <disable-copy>
-{ 
+{
     "NodeId": "nd-77K8AI0O5BEQD1IW4L8OGKMXV7"
 }
 </disable-copy>
@@ -106,7 +111,8 @@ Replace the `NetworkId` and `MemberId` values in the above command with the valu
 
 ### Create a proposal
 
-You can create a proposal using the [`CreateProposal`](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateProposal.html) API. Run the following command to create a proposal with the following configuration:
+You can create a proposal using the [`CreateProposal`](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateProposal.html) API.
+Run the following command to create a proposal with the following configuration:
 
 {{< command >}}
 $ awslocal managedblockchain create-proposal \

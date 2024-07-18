@@ -16,6 +16,7 @@ This functionality streamlines file management processes, making it simpler and 
 Whether you're looking to facilitate file transfers or enhance your data access capabilities, the AWS Transfer API simplifies the process and extends the versatility of your cloud storage infrastructure.
 
 ## Getting started
+
 This Python code demonstrates a basic workflow for transferring a file between a local machine and AWS S3 using the AWS Transfer Family service and FTP (File Transfer Protocol).
 
 ```python
@@ -73,10 +74,12 @@ Please note that this code is a simplified example for demonstration purposes.
 In a production environment, you should use more secure practices, including setting proper IAM roles and handling sensitive credentials securely.
 Additionally, error handling and cleanup code may be needed to ensure the script behaves robustly in all scenarios.
 
-## Current Limitations 
+## Current Limitations
+
 The Transfer API does not provide a way to return the endpoint URL of created FTP servers.
 Hence, in order to determine the server endpoint, the local port is encoded as a suffix within the `ServerId` attribute, constituting the only numeric digits within the ID string.
 For example, assume the following is the response from the `CreateServer` API call, then the FTP server is accessible on port `4511` (i.e., `ftp://localhost:4511`):
+
 ```json
 {
     "ServerId": "s-afcedbffaecca4511"
