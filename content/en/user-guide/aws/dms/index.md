@@ -7,15 +7,15 @@ tags: ["Enterprise plan"]
 
 ## Introduction
 
-AWS Database Migration Service provides migration solution from databases, data warehouses, and other type of data stores (e.g. S3, SAP). 
+AWS Database Migration Service provides migration solution from databases, data warehouses, and other type of data stores (e.g. S3, SAP).
 The migration can be homogeneous (source and target have the same type), but often times is heterogeneous as it supports migration from various sources to various targets (self-hosted and AWS services).
 
-LocalStack only supports selected use cases for DMS at the moment. 
+LocalStack only supports selected use cases for DMS at the moment.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_dms/), which provides information on the extent of DMS integration with LocalStack.
 
 {{< callout "note">}}
-DMS is in a preview state, supporting only [selected use cases](#supported-use-cases). 
-It is only available as part of the **LocalStack Enterprise** plan, and you need to set the env `ENABLE_DMS=1` in order to activate it. 
+DMS is in a preview state, supporting only [selected use cases](#supported-use-cases).
+It is only available as part of the **LocalStack Enterprise** plan, and you need to set the env `ENABLE_DMS=1` in order to activate it.
 If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
 {{< /callout >}}
 
@@ -60,30 +60,30 @@ STARTING FULL LOAD FLOW
 ************
 db endpoint: localhost:3306
 
-	Cleaning tables
-	Creating tables
-	Inserting data
+ Cleaning tables
+ Creating tables
+ Inserting data
 
-	Added the following authors
+ Added the following authors
 [{'first_name': 'John', 'last_name': 'Doe'}]
 
-	Added the following accounts
+ Added the following accounts
 [{'account_balance': Decimal('1500.00'), 'name': 'Alice'}]
 
-	Added the following novels
+ Added the following novels
 [{'author_id': 1, 'title': 'The Great Adventure'},
  {'author_id': 1, 'title': 'Journey to the Stars'}]
 
 ****Full Task 1****
 
 
-	Starting Full load task 1 a%
+ Starting Full load task 1 a%
 Replication Task arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7 status: starting
 Waiting for task status stopped
 task='arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7' status='starting'
 task='arn:aws:dms:us-east-1:000000000000:task:FQWFF7YIZ4VGQHBIXCLI9FJTUUS17NSECIM0UR7' status='stopped'
 
-	Kinesis events
+ Kinesis events
 
 fetching Kinesis event
 Received: 6 events
@@ -109,13 +109,12 @@ Received: 6 events
 ...
 ```
 
-
 ## Supported Use Cases
 
 DMS is in a preview state on LocalStack and only supports some selected use cases:
 
 | Source             | Target      | Migration Types |
-| -                  | -           | -               | 
+| -                  | -           | -               |
 | MariaDB (external) | Kinesis     | full-load, cdc  |
 | MySQL (external)   | Kinesis     | full-load, cdc  |
 | RDS MariaDB        | Kinesis     | full-load, cdc  |
@@ -125,9 +124,9 @@ DMS is in a preview state on LocalStack and only supports some selected use case
 
 The LocalStack Web Application provides a Resource Browser for managing:
 
-- [Replication Instances](https://app.localstack.cloud/inst/default/resources/dms/replication-instances)
-- [Endpoints](https://app.localstack.cloud/inst/default/resources/dms/endpoints)
-- [Replication Tasks](https://app.localstack.cloud/inst/default/resources/dms/replication-tasks)
+* [Replication Instances](https://app.localstack.cloud/inst/default/resources/dms/replication-instances)
+* [Endpoints](https://app.localstack.cloud/inst/default/resources/dms/endpoints)
+* [Replication Tasks](https://app.localstack.cloud/inst/default/resources/dms/replication-tasks)
 
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Database Migration Service** under the **Migration and transfer** section.
 
@@ -138,25 +137,26 @@ The Resource Browser supports CRD (Create, Read, Delete) operations on DMS resou
 
 ### Replication Instances
 
--   **Create Replication Instance**: To create a new replication instance, click the **Create Replication Instance** button and enter details such as the Replication Instance Identifier and Replication Instance class.
--   **View Replication Instance**: To view details of a replication instance, click on its ARN.
--   **Delete Replication Instance**: To delete a replication instance, select it, go to **Actions**, and choose **Remove Selected**.
+* **Create Replication Instance**: To create a new replication instance, click the **Create Replication Instance** button and enter details such as the Replication Instance Identifier and Replication Instance class.
+* **View Replication Instance**: To view details of a replication instance, click on its ARN.
+* **Delete Replication Instance**: To delete a replication instance, select it, go to **Actions**, and choose **Remove Selected**.
 
 ### Endpoints
 
--   **Create Endpoint**: To create a new endpoint, click on the **Create Endpoint** button and fill in necessary details such as the Endpoint Identifier, Endpoint Type, and Engine Name.
--   **View Endpoint**: To see the details of an endpoint, click on its ARN. You can further click **Connections** and test a conenction by specifying the Replication Instance ARN.
--   **Delete Endpoint**: To remove an endpoint, select it, navigate to **Actions**, and click **Remove Selected**.
+* **Create Endpoint**: To create a new endpoint, click on the **Create Endpoint** button and fill in necessary details such as the Endpoint Identifier, Endpoint Type, and Engine Name.
+* **View Endpoint**: To see the details of an endpoint, click on its ARN.
+  You can further click **Connections** and test a conenction by specifying the Replication Instance ARN.
+* **Delete Endpoint**: To remove an endpoint, select it, navigate to **Actions**, and click **Remove Selected**.
 
 ### Replication Tasks
 
--   **Create Replication Task**: To create a new replication task, press the **Create Replication Task** button and specify the Task Identifier, Source Endpoint Identifier, and Target Endpoint Identifier, among other settings.
--   **View Replication Task**: To review a replication task, click on the task identifier.
--   **Delete Replication Task**: To delete a replication task, choose the task, click on **Actions**, and select **Remove Selected**.
+* **Create Replication Task**: To create a new replication task, press the **Create Replication Task** button and specify the Task Identifier, Source Endpoint Identifier, and Target Endpoint Identifier, among other settings.
+* **View Replication Task**: To review a replication task, click on the task identifier.
+* **Delete Replication Task**: To delete a replication task, choose the task, click on **Actions**, and select **Remove Selected**.
 
 ## Current Limitations
 
-For RDS MariaDB and RDS MySQL it is not yet possible to set custom db-parameters. 
+For RDS MariaDB and RDS MySQL it is not yet possible to set custom db-parameters.
 In order to make those databases work with `cdc` migration for DMS, some default db-parameters are changed upon start if the `ENABLE_DMS=1` flag is set:
 
 ```sh
@@ -167,29 +167,27 @@ server_id=1
 log_bin=mysqld-bin
 ```
 
-
 ### Enum Values for CDC data events
 
 To support Enum values for CDC data events, you need to enable the database setting `BINLOG_ROW_METADATA=FULL`
 
 ### Migration Type
 
-A replication task on LocalStack does currently only support `full-load` (migrate existing data) or `cdc` (replicate data changes only). 
+A replication task on LocalStack does currently only support `full-load` (migrate existing data) or `cdc` (replicate data changes only).
 On AWS there is also a combination for those, which is not yet implemented on LocalStack.
 
 ### ReplicationTaskSettings
 
 The `ReplicationTaskSettings` for a [replication task](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html) only considers `BeforeImageSettings`, `FullLoadSettings.CommitRate` and `FullLoadSettings.TargetTablePrepMode`
 
-
 ### Other Limitations
 
-- [DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) is not yet supported
-- [Data Validation](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Validating.html#CHAP_Validating.TaskStatistics) is not supported
-- [Reload](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.ReloadTables.html) of tables is not supported
-- [Task Logs](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.ManagingLogs), specifically CloudWatch, and CloudTrail are not supported (table statistics are supported)
-- [Time Travel](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.TimeTravel.html) is not supported
-- [Target Metadata Settings](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.TargetMetadata.html): `ParallelLoadThreads` is not supported
-- [Transformation](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Transformations.html): `"rule-type": "transformation"` is not supported
-- [AWS DMS Schema Conversion Tool](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html) is not supported
-- [AWS DMS Fleet Advisor](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_FleetAdvisor.html) is not supported
+* [DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) is not yet supported
+* [Data Validation](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Validating.html#CHAP_Validating.TaskStatistics) is not supported
+* [Reload](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.ReloadTables.html) of tables is not supported
+* [Task Logs](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.ManagingLogs), specifically CloudWatch, and CloudTrail are not supported (table statistics are supported)
+* [Time Travel](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.TimeTravel.html) is not supported
+* [Target Metadata Settings](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.TargetMetadata.html): `ParallelLoadThreads` is not supported
+* [Transformation](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Transformations.html): `"rule-type": "transformation"` is not supported
+* [AWS DMS Schema Conversion Tool](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SchemaConversion.html) is not supported
+* [AWS DMS Fleet Advisor](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_FleetAdvisor.html) is not supported

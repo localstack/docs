@@ -10,6 +10,7 @@ This page contains easily customisable snippets to show you how to manage LocalS
 ## Snippets
 
 ### Start up Localstack
+
 {{< callout "tip" >}}
 While working with a Docker-in-Docker (`dind`) setup, the Docker runner requires `privileged` mode.
 You must always use `privileged = true` in your GitLab CI's `config.toml` file while setting up LocalStack in GitLab CI runners.
@@ -24,6 +25,7 @@ HOSTNAME_EXTERNAL: localhost.localstack.cloud.
 </details>
 
 #### Service
+
 ```yaml
 ...
 variables:
@@ -41,6 +43,7 @@ services:
 ```
 
 #### Container
+
 ```yaml
 image: docker:latest
 
@@ -73,6 +76,7 @@ job:
 ```
 
 ### Configure a CI key
+
 You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the repository's environment variables.
 Go to your project's **Settings > CI/CD**  and expand the  **Variables**  section.
 Select the **Add Variable** button and fill in the necessary details.
@@ -91,10 +95,12 @@ services:
     alias: localstack
 ...
 ```
+
 You can check the logs of the LocalStack container to see if the activation was successful.
 If the CI key activation fails, LocalStack container will exit with an error code.
 
 ### Dump Localstack logs
+
 ```yaml
 ...
 job:
@@ -104,6 +110,7 @@ job:
   - localstack logs | tee localstack.log
 ... 
 ```
+
 In case of the service setup `LOCALSTACK_HOST` will be `localstack:4566`.
 
 ### Store Localstack state
@@ -111,6 +118,7 @@ In case of the service setup `LOCALSTACK_HOST` will be `localstack:4566`.
 You can preserve your AWS infrastructure with Localstack in various ways.
 
 #### Artifact
+
 ```yaml
 ...
 job:
@@ -125,9 +133,11 @@ job:
       - $CI_PROJECT_DIR/ls-state-pod.zip
 ...
 ```
+
 More info about Localstack's state export and import [here](/user-guide/state-management/export-import-state/).
 
 #### Cache
+
 ```yaml
 ...
 job:
@@ -146,9 +156,11 @@ job:
       - $CI_PROJECT_DIR/ls-state-pod.zip
 ...
 ```
+
 Additional information about state export and import [here](/user-guide/state-management/export-import-state/).
 
 #### Cloud Pod
+
 ```yaml
 ...
 job:
@@ -159,6 +171,7 @@ job:
     - localstack pod save <POD_NAME>
 ...
 ```
+
 Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
 
 #### Ephemeral Instance (Preview)

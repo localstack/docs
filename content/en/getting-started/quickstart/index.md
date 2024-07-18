@@ -10,7 +10,9 @@ cascade:
 
 ## Introduction
 
-In this quickstart guide, we'll walk you through the process of starting LocalStack on your local machine and deploying a [serverless image resizer application](https://github.com/localstack-samples/sample-serverless-image-resizer-s3-lambda) that utilizes several AWS services. This guide aims to help you understand how to use LocalStack for the development and testing of your AWS applications locally. It introduces you to the following key concepts:
+In this quickstart guide, we'll walk you through the process of starting LocalStack on your local machine and deploying a [serverless image resizer application](https://github.com/localstack-samples/sample-serverless-image-resizer-s3-lambda) that utilizes several AWS services.
+This guide aims to help you understand how to use LocalStack for the development and testing of your AWS applications locally.
+It introduces you to the following key concepts:
 
 - Starting a LocalStack instance on your local machine.
 - Deploying an AWS serverless application infrastructure locally.
@@ -46,7 +48,8 @@ An internal SES LocalStack testing endpoint (`/_localstack/aws/ses`) is configur
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) & [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
 - `jq`, `zip` & `curl`
 
-You can start LocalStack using the `localstack` CLI. Start the LocalStack Pro container with your `LOCALSTACK_AUTH_TOKEN` pre-configured:
+You can start LocalStack using the `localstack` CLI.
+Start the LocalStack Pro container with your `LOCALSTACK_AUTH_TOKEN` pre-configured:
 
 {{< tabpane >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
@@ -74,7 +77,9 @@ You can now follow the instructions below to start LocalStack, deploy the sample
 
 ### Setup a virtual environment
 
-To deploy the sample application, you need to have specific Python packages are installed. It is advisable to utilize a virtual environment for the installation process, allowing the packages to be installed in an isolated environment. Execute the following commands to create a virtual environment and install the packages in `requirements-dev.txt`:
+To deploy the sample application, you need to have specific Python packages are installed.
+It is advisable to utilize a virtual environment for the installation process, allowing the packages to be installed in an isolated environment.
+Execute the following commands to create a virtual environment and install the packages in `requirements-dev.txt`:
 
 {{< tabpane >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
@@ -90,7 +95,8 @@ pip install -r requirements-dev.txt
 {{< /tabpane >}}
 
 {{< callout "tip" >}}
-If you are encountering issues with the installation of the packages, such as Pillow, ensure you use the same version as the Python Lambdas (3.9) for Pillow to work. If you're using <a href="https://github.com/pyenv/pyenv">pyenv</a>, install and activate Python 3.9 with the following commands:
+If you are encountering issues with the installation of the packages, such as Pillow, ensure you use the same version as the Python Lambdas (3.9) for Pillow to work.
+If you're using <a href="https://github.com/pyenv/pyenv">pyenv</a>, install and activate Python 3.9 with the following commands:
 {{< command >}}
 $ pyenv install 3.9.0
 $ pyenv global 3.9.0
@@ -99,9 +105,14 @@ $ pyenv global 3.9.0
 
 ### Setup the serverless image resizer
 
-This application enables serverless image resizing using [S3](https://docs.localstack.cloud/user-guide/aws/s3/), [SSM](https://docs.localstack.cloud/user-guide/aws/ssm/), [Lambda](https://docs.localstack.cloud/user-guide/aws/lambda/), [SNS](https://docs.localstack.cloud/user-guide/aws/sns/), and [SES](https://docs.localstack.cloud/user-guide/aws/ses/). A simple web interface allows users to upload and view resized images. A Lambda function generates S3 pre-signed URLs for direct uploads, while S3 bucket notifications trigger image resizing. Another Lambda function lists and provides pre-signed URLs for browser display. The application also handles Lambda failures through SNS and SES email notifications.
+This application enables serverless image resizing using [S3](https://docs.localstack.cloud/user-guide/aws/s3/), [SSM](https://docs.localstack.cloud/user-guide/aws/ssm/), [Lambda](https://docs.localstack.cloud/user-guide/aws/lambda/), [SNS](https://docs.localstack.cloud/user-guide/aws/sns/), and [SES](https://docs.localstack.cloud/user-guide/aws/ses/).
+A simple web interface allows users to upload and view resized images.
+A Lambda function generates S3 pre-signed URLs for direct uploads, while S3 bucket notifications trigger image resizing.
+Another Lambda function lists and provides pre-signed URLs for browser display.
+The application also handles Lambda failures through SNS and SES email notifications.
 
-The sample application uses AWS CLI and our `awslocal` wrapper to deploy the application to LocalStack. You can build and deploy the sample application on LocalStack by running the following command:
+The sample application uses AWS CLI and our `awslocal` wrapper to deploy the application to LocalStack.
+You can build and deploy the sample application on LocalStack by running the following command:
 
 {{< command >}}
 $ bin/deploy.sh
@@ -110,7 +121,8 @@ $ bin/deploy.sh
 Alternatively, you can follow these instructions to deploy the sample application manually step-by-step.
 
 {{< callout "tip" >}}
-In absence of the `awslocal` wrapper, you can use the `aws` CLI directly, by configuring an [endpoint URL](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-an-endpoint-url) or a [custom profile](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-a-custom-profile) like `localstack`. You can then swap `awslocal` with `aws --endpoint-url=http://localhost:4566` or `aws --profile=localstack` in the commands below.
+In absence of the `awslocal` wrapper, you can use the `aws` CLI directly, by configuring an [endpoint URL](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-an-endpoint-url) or a [custom profile](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-a-custom-profile) like `localstack`.
+You can then swap `awslocal` with `aws --endpoint-url=http://localhost:4566` or `aws --profile=localstack` in the commands below.
 {{< /callout >}}
 
 #### Create the S3 buckets
@@ -139,7 +151,8 @@ $ awslocal ssm put-parameter \
 $ awslocal sns create-topic --name failed-resize-topic
 {{< / command >}}
 
-To receive immediate alerts in case of image resize failures, subscribe an email address to the system. You can use the following command to subscribe an email address to the SNS topic:
+To receive immediate alerts in case of image resize failures, subscribe an email address to the system.
+You can use the following command to subscribe an email address to the SNS topic:
 
 {{< command >}}
 $ awslocal sns subscribe \
@@ -213,7 +226,7 @@ mkdir package
 pip install -r requirements.txt -t package
 zip lambda.zip handler.py
 cd package
-zip -r ../lambda.zip *;
+zip -r ../lambda.zip*;
 cd ../..
 {{< /tab >}}
 {{< /tabpane >}}
@@ -270,17 +283,22 @@ To access the application, go to [**https://webapp.s3-website.localhost.localsta
 
 <img src="serverless-image-resizer-application.png" alt="Serverless image resizer application" title="Serverless image resizer application" width="800px" />
 
-Paste the `presign` and `list` Lambda function URLs into the application and click **Apply**. Alternatively, click on **Load from API** to automatically load the URLs.
+Paste the `presign` and `list` Lambda function URLs into the application and click **Apply**.
+Alternatively, click on **Load from API** to automatically load the URLs.
 
-Upload an image, and click **Upload**. The upload form uses the `presign` Lambda to request an S3 pre-signed POST URL, forwarding the POST request to S3. Asynchronous resizing (maximum 400x400 pixels) occurs through S3 bucket notifications.
+Upload an image, and click **Upload**.
+The upload form uses the `presign` Lambda to request an S3 pre-signed POST URL, forwarding the POST request to S3.
+Asynchronous resizing (maximum 400x400 pixels) occurs through S3 bucket notifications.
 
-If successful, the application displays a **success!** alert. Click **Refresh** to trigger your browser to request the `list` Lambda URL, returning a JSON document of all items in the images (`localstack-thumbnails-app-images`) and resized images (`localstack-thumbnails-app-resized`) bucket.
+If successful, the application displays a **success!** alert.
+Click **Refresh** to trigger your browser to request the `list` Lambda URL, returning a JSON document of all items in the images (`localstack-thumbnails-app-images`) and resized images (`localstack-thumbnails-app-resized`) bucket.
 
 <img src="resized-image-sample-application.png" alt="Serverless image resizer application displaying a resized image" title="Serverless image resizer application displaying a resized image" width="800px" />
 
 ### View the deployed resources
 
-You can inspect the resources deployed as part of the sample application by accessing the [**LocalStack Web Application**](https://app.localstack.cloud/). Navigate to your [**Default Instance**](https://app.localstack.cloud/inst/default/status) to view the deployed resources.
+You can inspect the resources deployed as part of the sample application by accessing the [**LocalStack Web Application**](https://app.localstack.cloud/).
+Navigate to your [**Default Instance**](https://app.localstack.cloud/inst/default/status) to view the deployed resources.
 
 <img src="localstack-web-application-status.png" alt="Status Page of the LocalStack Web Application" title="Status Page of the LocalStack Web Application" width="800px" />
 
@@ -296,13 +314,15 @@ To run automated integration tests against the sample application, use the follo
 $ pytest -v
 {{< / command >}}
 
-Additionally, you can verify that when the `resize` Lambda fails, an SNS message is sent to a topic that an SES subscription listens to, triggering an email with the raw failure message. Since there's no real email server involved, you can use the LocalStack SES developer endpoint to list messages sent via SES:
+Additionally, you can verify that when the `resize` Lambda fails, an SNS message is sent to a topic that an SES subscription listens to, triggering an email with the raw failure message.
+Since there's no real email server involved, you can use the LocalStack SES developer endpoint to list messages sent via SES:
 
 {{< command >}}
 $ curl -s http://localhost.localstack.cloud:4566/_aws/ses | jq
 {{< / command >}}
 
-An alternative option is to use a service like MailHog or `smtp4dev`. Start LocalStack with `SMTP_HOST=host.docker.internal:1025`, pointing to the mock SMTP server.
+An alternative option is to use a service like MailHog or `smtp4dev`.
+Start LocalStack with `SMTP_HOST=host.docker.internal:1025`, pointing to the mock SMTP server.
 
 ### Destroy the local infrastructure
 
@@ -312,13 +332,15 @@ Now that you've learned how to deploy a local AWS infrastructure for your sample
 $ localstack stop
 {{< / command >}}
 
-LocalStack is ephemeral, meaning it doesn't persist any data across restarts. It runs inside a Docker container, and once it's stopped, all locally created resources are automatically removed.
+LocalStack is ephemeral, meaning it doesn't persist any data across restarts.
+It runs inside a Docker container, and once it's stopped, all locally created resources are automatically removed.
 
 To persist the local cloud resources across restarts, navigate to our [persistence documentation]({{< ref "user-guide/state-management/persistence" >}}) or learn about [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}}), our next generation state management utility.
 
 ## Next Steps
 
-Congratulations on deploying an AWS application locally using LocalStack! To expand your LocalStack capabilities, explore the following based on your expertise:
+Congratulations on deploying an AWS application locally using LocalStack!
+To expand your LocalStack capabilities, explore the following based on your expertise:
 
 - [Tutorials]({{< ref "tutorials" >}}): Check out our tutorials to learn how to use LocalStack across various AWS services and application stacks.
 - [User Guide]({{< ref "user-guide" >}}): Explore LocalStack's emulated AWS services, third-party integrations, tooling, CI service providers, and more in our User Guide.

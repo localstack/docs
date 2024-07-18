@@ -6,11 +6,14 @@ description: Get started with AWS Certificate Manager (ACM) on LocalStack
 
 ## Introduction
 
-[AWS Certificate Manager (ACM)](https://aws.amazon.com/certificate-manager/) is a service that enables you to create and manage SSL/TLS certificates that can be used to secure your applications and resources in AWS. You can use ACM to provision and deploy public or private certificates trusted by browsers and other clients.
+[AWS Certificate Manager (ACM)](https://aws.amazon.com/certificate-manager/) is a service that enables you to create and manage SSL/TLS certificates that can be used to secure your applications and resources in AWS.
+You can use ACM to provision and deploy public or private certificates trusted by browsers and other clients.
 
-ACM supports securing multiple domain names and subdomains and can create wildcard SSL certificates to protect an entire domain and its subdomains. You can also use ACM to import certificates from third-party certificate authorities or to generate private certificates for internal use.
+ACM supports securing multiple domain names and subdomains and can create wildcard SSL certificates to protect an entire domain and its subdomains.
+You can also use ACM to import certificates from third-party certificate authorities or to generate private certificates for internal use.
 
-LocalStack allows you to use the ACM APIs to create, list, and delete certificates. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_acm/), which provides information on the extent of ACM's integration with LocalStack.
+LocalStack allows you to use the ACM APIs to create, list, and delete certificates.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_acm/), which provides information on the extent of ACM's integration with LocalStack.
 
 ## Getting started
 
@@ -18,7 +21,9 @@ This guide is designed for users who are new to ACM and assumes basic knowledge 
 
 ### Request a public certificate
 
-Start your LocalStack container using your preferred method, then use the [RequestCertificate API](https://docs.aws.amazon.com/acm/latest/APIReference/API_RequestCertificate.html) to request a new public ACM certificate. Specify the domain name you want to request the certificate for, and any additional options you need. Here's an example command:
+Start your LocalStack container using your preferred method, then use the [RequestCertificate API](https://docs.aws.amazon.com/acm/latest/APIReference/API_RequestCertificate.html) to request a new public ACM certificate.
+Specify the domain name you want to request the certificate for, and any additional options you need.
+Here's an example command:
 
 {{< command >}}
 $ awslocal acm request-certificate \
@@ -38,7 +43,9 @@ This command will return the Amazon Resource Name (ARN) of the new certificate, 
 
 ### List the certificates
 
-Use the [`ListCertificates` API](https://docs.aws.amazon.com/acm/latest/APIReference/API_ListCertificates.html) to list all the certificates. This command returns a list of the ARNs of all the certificates that have been requested or imported into ACM. Here's an example command:
+Use the [`ListCertificates` API](https://docs.aws.amazon.com/acm/latest/APIReference/API_ListCertificates.html) to list all the certificates.
+This command returns a list of the ARNs of all the certificates that have been requested or imported into ACM.
+Here's an example command:
 
 {{< command >}}
 $ awslocal acm list-certificates --max-items 10
@@ -46,7 +53,9 @@ $ awslocal acm list-certificates --max-items 10
 
 ### Describe the certificate
 
-Use the [`DescribeCertificate` API](https://docs.aws.amazon.com/acm/latest/APIReference/API_DescribeCertificate.html) to view the details of a specific certificate. Provide the ARN of the certificate you want to view, and this command will return information about the certificate's status, domain name, and other attributes. Here's an example command:
+Use the [`DescribeCertificate` API](https://docs.aws.amazon.com/acm/latest/APIReference/API_DescribeCertificate.html) to view the details of a specific certificate.
+Provide the ARN of the certificate you want to view, and this command will return information about the certificate's status, domain name, and other attributes.
+Here's an example command:
 
 {{< command >}}
 $ awslocal acm describe-certificate --certificate-arn arn:aws:acm:<region>:account:certificate/<certificate_ID>
@@ -54,7 +63,8 @@ $ awslocal acm describe-certificate --certificate-arn arn:aws:acm:<region>:accou
 
 ### Delete the certificate
 
-Finally you can use the [`DeleteCertificate` API](https://docs.aws.amazon.com/acm/latest/APIReference/API_DeleteCertificate.html) to delete a certificate from ACM, by passing the ARN of the certificate you want to delete. Here's an example command:
+Finally you can use the [`DeleteCertificate` API](https://docs.aws.amazon.com/acm/latest/APIReference/API_DeleteCertificate.html) to delete a certificate from ACM, by passing the ARN of the certificate you want to delete.
+Here's an example command:
 
 {{< command >}}
 $ awslocal acm delete-certificate --certificate-arn arn:aws:acm:<region>:account:certificate/<certificate_ID>
@@ -62,7 +72,7 @@ $ awslocal acm delete-certificate --certificate-arn arn:aws:acm:<region>:account
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing ACM Certificates. 
+The LocalStack Web Application provides a Resource Browser for managing ACM Certificates.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Certificate Manager** under the **Security Identity Compliance** section.
 
 <img src="acm-resource-browser.png" alt="ACM Resource Browser" title="ACM Resource Browser" width="900" />

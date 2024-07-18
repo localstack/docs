@@ -7,13 +7,17 @@ description: >
 
 ## Introduction
 
-LocalSurf is a Chrome browser plugin to repoint AWS service calls to [LocalStack](https://localstack.cloud/). While developing and testing AWS cloud Web applications locally with LocalStack, we need to make the browser connect to the local endpoint (`http://localhost:4566`) instead of the AWS production servers (`*.amazonaws.com`).  LocalSurf enables you to use the production code without changes, and have the browser make requests to LocalStack instead of AWS directly by explicitly setting the [`endpoint`  attribute](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/specifying-endpoints.html) in the [AWS JavaScript SDK](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Endpoint.html).
+LocalSurf is a Chrome browser plugin to repoint AWS service calls to [LocalStack](https://localstack.cloud/).
+While developing and testing AWS cloud Web applications locally with LocalStack, we need to make the browser connect to the local endpoint (`http://localhost:4566`) instead of the AWS production servers (`*.amazonaws.com`).
+ LocalSurf enables you to use the production code without changes, and have the browser make requests to LocalStack instead of AWS directly by explicitly setting the [`endpoint`  attribute](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/specifying-endpoints.html) in the [AWS JavaScript SDK](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Endpoint.html).
 
-> This plugin is experimental and still under active development. Please report any issues or feature requests on our [GitHub repository](https://github.com/localstack/local-surf).
+> This plugin is experimental and still under active development.
+> Please report any issues or feature requests on our [GitHub repository](https://github.com/localstack/local-surf).
 
 ## Installation
 
-This extension is not yet available in the Chrome Web Store, but can be installed directly from source. Clone the repository on your local machine to get started:
+This extension is not yet available in the Chrome Web Store, but can be installed directly from source.
+Clone the repository on your local machine to get started:
 
 {{< command >}}
 $ git clone git@github.com:localstack/local-surf.git
@@ -21,7 +25,8 @@ $ git clone git@github.com:localstack/local-surf.git
 
 Head over to `chrome://extensions/`  in Chrome, then select  `"Load unpacked"`  and point to the directory where the source code files are stored on the disk.
 
-Once installed, a new icon should appear in the Chrome extensions bar. When clicking on the icon, the plugin can be enabled/disabled by toggling the **Enable local mode** checkbox.
+Once installed, a new icon should appear in the Chrome extensions bar.
+When clicking on the icon, the plugin can be enabled/disabled by toggling the **Enable local mode** checkbox.
 
 <p>
 {{< img src="localsurf-extension.png" class="img-fluid shadow rounded" >}}
@@ -29,7 +34,8 @@ Once installed, a new icon should appear in the Chrome extensions bar. When clic
 
 ## Usage
 
-To illustrate how the plugin works, we use the AWS [Serverlesspresso](https://github.com/aws-samples/serverless-coffee-workshop) sample application. This app consists of various backend components (e.g., DynamoDB tables, Lambda functions, Cognito user pools, etc), as well as a hosted Web app user interface (UI) that can be used to interact with the backend components.
+To illustrate how the plugin works, we use the AWS [Serverlesspresso](https://github.com/aws-samples/serverless-coffee-workshop) sample application.
+This app consists of various backend components (e.g., DynamoDB tables, Lambda functions, Cognito user pools, etc), as well as a hosted Web app user interface (UI) that can be used to interact with the backend components.
 
 We can deploy the backend components to LocalStack directly, using the `samlocal` command line interface (CLI):
 
@@ -68,4 +74,5 @@ This sample demonstrates how we can take an existing Web application, without an
 
 ## Note
 
-Use this extension at your own risk - it is provided on an as-is basis,  **without**  warranties or conditions of **any** kind. In particular, it is your obligation to ensure that the use of this extension is compliant with the user license agreement and the terms & conditions of Amazon Web Services (AWS) and their services.
+Use this extension at your own risk - it is provided on an as-is basis,  **without**  warranties or conditions of **any** kind.
+In particular, it is your obligation to ensure that the use of this extension is compliant with the user license agreement and the terms & conditions of Amazon Web Services (AWS) and their services.

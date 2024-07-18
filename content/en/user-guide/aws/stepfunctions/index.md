@@ -7,19 +7,25 @@ description: >
 
 ## Introduction
 
-Step Functions is a serverless workflow engine that enables the orchestrating of multiple AWS services. It provides a JSON-based structured language called Amazon States Language (ASL) which allows to specify how to manage a sequence of tasks and actions that compose the application's workflow. Thus making it easier to build and maintain complex and distributed applications.
+Step Functions is a serverless workflow engine that enables the orchestrating of multiple AWS services.
+It provides a JSON-based structured language called Amazon States Language (ASL) which allows to specify how to manage a sequence of tasks and actions that compose the application's workflow.
+Thus making it easier to build and maintain complex and distributed applications.
 
-LocalStack allows you to use the Step Functions APIs in your local environment to create, execute, update, and delete state machines locally. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_stepfunctions/), which provides information on the extent of Step Function's integration with LocalStack.
+LocalStack allows you to use the Step Functions APIs in your local environment to create, execute, update, and delete state machines locally.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_stepfunctions/), which provides information on the extent of Step Function's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to Step Functions and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how you can create a state machine, execute it, and check the status of the execution.
+Start your LocalStack container using your preferred method.
+We will demonstrate how you can create a state machine, execute it, and check the status of the execution.
 
 ### Create a state machine
 
-You can create a state machine using the [`CreateStateMachine`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateStateMachine.html) API. The API requires the name of the state machine, the state machine definition, and the role ARN that the state machine will assume to call AWS services. Run the following command to create a state machine:
+You can create a state machine using the [`CreateStateMachine`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateStateMachine.html) API.
+The API requires the name of the state machine, the state machine definition, and the role ARN that the state machine will assume to call AWS services.
+Run the following command to create a state machine:
 
 {{< command >}}
 $ awslocal stepfunctions create-state-machine \
@@ -57,7 +63,9 @@ The output of the above command is the ARN of the state machine:
 
 ### Execute the state machine
 
-You can execute the state machine using the [`StartExecution`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) API. The API requires the state machine's ARN and the state machine's input. Run the following command to execute the state machine:
+You can execute the state machine using the [`StartExecution`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) API.
+The API requires the state machine's ARN and the state machine's input.
+Run the following command to execute the state machine:
 
 {{< command >}}
 $ awslocal stepfunctions start-execution \
@@ -75,7 +83,8 @@ The output of the above command is the execution ARN:
 
 ### Check the execution status
 
-To check the status of the execution, you can use the [`DescribeExecution`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html) API. Run the following command to describe the execution:
+To check the status of the execution, you can use the [`DescribeExecution`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html) API.
+Run the following command to describe the execution:
 
 {{< command >}}
 $ awslocal stepfunctions describe-execution \
@@ -107,7 +116,8 @@ The output of the above command is the execution status:
 
 ## Supported services and operations
 
-Step Functions integrates with AWS services, allowing you to invoke API actions for each service within your workflow. LocalStack's Step Functions emulation supports the following AWS services:
+Step Functions integrates with AWS services, allowing you to invoke API actions for each service within your workflow.
+LocalStack's Step Functions emulation supports the following AWS services:
 
 | Supported service integrations | Service                 | Request Response | Run a Job (.sync) | Run a Job (.sync2) | Wait for Callback (.waitForTaskToken) |
 |--------------------------------|-------------------------|:---:             |:---:              |:---:               |:---:                                  |
@@ -124,7 +134,8 @@ Step Functions integrates with AWS services, allowing you to invoke API actions 
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing Step Functions state machines. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Step Functions** under the **App Integration** section.
+The LocalStack Web Application provides a Resource Browser for managing Step Functions state machines.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Step Functions** under the **App Integration** section.
 
 <img src="stepfunctions-resource-browser.png" alt="Step Functions Resource Browser" title="Step Functions Resource Browser" width="900" />
 <br>

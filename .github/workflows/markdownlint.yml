@@ -1,0 +1,38 @@
+name: Lint Markdown Files
+on: [push, pull_request]
+
+jobs:
+  markdownlint:
+    name: 'Markdown Lint'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v3
+      with:
+        hugo-version: '0.125.6'
+        extended: true
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: |
+        npm install
+
+    - uses: tj-actions/changed-files@v24
+      id: changed-files
+      with:
+        files: 'content/**/*.md'
+        separator: "\n"
+  
+    - uses: DavidAnson/markdownlint-cli2-action@v6
+      if: steps.changed-files.outputs.any_changed == 'true'
+      with:
+        globs: ${{ steps.changed-files.outputs.all_changed_files }}
+        config: '.markdownlint-cli2.yaml'

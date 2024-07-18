@@ -80,8 +80,6 @@ func main() {
 }{{< /tab >}}
 {{< /tabpane >}}
 
-
-
 ## Resources
 
 * [localstack-aws-sdk-examples for Go](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/go)

@@ -49,28 +49,28 @@ The diagnose endpoint is only available if you run LocalStack with `DEBUG=1`.
 We do push a set of different image tags for the LocalStack Docker images.
 When using LocalStack, you can decide which tag you want to use.
 These tags have different semantics and will be updated on different occasions:
-- `latest` (default)
-  - This is our default tag.
+* `latest` (default)
+  * This is our default tag.
     It refers to the latest commit which has been fully tested using our extensive integration test suite.
-  - This also entails changes that are part of major releases, which means that this tag can contain breaking changes.
-  - This tag should be used if you want to stay up-to-date with the latest changes.
-- `stable`
-  - This tag refers to the latest tagged release.
+  * This also entails changes that are part of major releases, which means that this tag can contain breaking changes.
+  * This tag should be used if you want to stay up-to-date with the latest changes.
+* `stable`
+  * This tag refers to the latest tagged release.
     It will be updated with every release of LocalStack.
-  - This also entails major releases, which means that this tag can contain breaking changes.
-  - This tag should be used if you want to stay up-to-date with releases, but don't necessarily need the latest and greatest changes right away.
-- `<major>` (e.g. `3`)
-  - These tags can be used to refer to the latest release of a specific major release.
+  * This also entails major releases, which means that this tag can contain breaking changes.
+  * This tag should be used if you want to stay up-to-date with releases, but don't necessarily need the latest and greatest changes right away.
+* `<major>` (e.g. `3`)
+  * These tags can be used to refer to the latest release of a specific major release.
     It will be updated with every minor and patch release within this major release.
-  - This tag should be used if you want to avoid any potential breaking changes.
-- `<major>.<minor>` (e.g. `3.0`)
-  - These tags can be used to refer to the latest release of a specific minor release.
+  * This tag should be used if you want to avoid any potential breaking changes.
+* `<major>.<minor>` (e.g. `3.0`)
+  * These tags can be used to refer to the latest release of a specific minor release.
     It will be updated with every patch release within this minor release.
-  - This tag can be used if you want to avoid any bigger changes, like new features, but still want to update to the latest bugfix release.
-- `<major>.<minor>.<patch>` (e.g. `3.0.2`)
-  - These tags can be used if you want to use a very specific release.
+  * This tag can be used if you want to avoid any bigger changes, like new features, but still want to update to the latest bugfix release.
+* `<major>.<minor>.<patch>` (e.g. `3.0.2`)
+  * These tags can be used if you want to use a very specific release.
     It will not be updated.
-  - This tag can be used if you really want to avoid any changes to the image (not even minimal bug fixes).
+  * This tag can be used if you really want to avoid any changes to the image (not even minimal bug fixes).
 
 ### How can I access LocalStack from an alternative computer?
 
@@ -110,12 +110,12 @@ To fix this, set the following environment variables:
 Set the system locale (language for non-Unicode programs) to UTF-8 to avoid Unicode errors.
 
 Follow these steps:
-- Open the Control Panel.
-- Go to "Clock and Region" or "Region and Language."
-- Click on the "Administrative" tab.
-- Click on the "Change system locale" button.
-- Select "Beta: Use Unicode UTF-8 for worldwide language support" and click "OK."
-- Restart your computer to apply the changes.
+* Open the Control Panel.
+* Go to "Clock and Region" or "Region and Language."
+* Click on the "Administrative" tab.
+* Click on the "Change system locale" button.
+* Select "Beta: Use Unicode UTF-8 for worldwide language support" and click "OK."
+* Restart your computer to apply the changes.
 
 If you would like to keep the system locale as it is, you can mitigate the issue by using the command `localstack --no-banner`.
 
@@ -304,7 +304,7 @@ $ dig api.localstack.cloud
 If the result has some other status than `status: NOERROR,` your machine cannot resolve this domain.
 
 Some corporate DNS servers might filter requests to certain domains.
-Contact your network administrator to safelist` localstack.cloud` domains.
+Contact your network administrator to safelist`localstack.cloud` domains.
 
 ### How does LocalStack Pro handle security patches and bug fixes?
 
@@ -326,4 +326,6 @@ For more details, please take a look at our [Enterprise offering](https://locals
 
 ### How does the LocalStack Web Application communicate with the LocalStack container?
 
-The LocalStack Web Application connects to your LocalStack container running on your local machine and retrieves the information directly via the `localhost` without using the internet. Features such as Resource Browsers, IAM Policy Stream, Chaos Engineering dashboard, and others communicate directly with the LocalStack container using your browser. None of the information is sent to the internet, or stored on any external servers maintained by LocalStack.
+The LocalStack Web Application connects to your LocalStack container running on your local machine and retrieves the information directly via the `localhost` without using the internet.
+Features such as Resource Browsers, IAM Policy Stream, Chaos Engineering dashboard, and others communicate directly with the LocalStack container using your browser.
+None of the information is sent to the internet, or stored on any external servers maintained by LocalStack.

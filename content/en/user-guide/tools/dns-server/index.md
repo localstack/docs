@@ -22,7 +22,6 @@ On your host machine, `localhost.localstack.cloud` and any subdomains such as `m
 unless your router has [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}) enabled.
 {{< / callout >}}
 
-
 ### Fallback DNS server
 
 If you want to use another upstream DNS resolver than your default system DNS resolver or Google DNS (`8.8.8.8` fallback if detection fails),
@@ -49,11 +48,10 @@ For example, `https://123456789012.dkr.ecr.us-west-2.amazonaws.com` will be forw
 This can be used for hybrid setups, where certain API calls (e.g., ECR, Lambda) target AWS, whereas other services will target LocalStack.
 The regex pattern follows Python flavored-regex and can be tested at [regex101.com](https://regex101.com/r/OzIsQa/1).
 
-[The regex101 link is maintained by Joel Scheuner (requires linking to GitHub or Google account).
 It redirects to the main page if the saved example would not work.]: #
 
 {{< callout "warning" >}}
-Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack. 
+Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack.
 {{< /callout >}}
 
 ### DNS Server bind address
@@ -68,7 +66,6 @@ DNS_ADDRESS=0
 We do not recommend disabling the DNS server since this disables resolving `localhost.localstack.cloud` to the LocalStack container.
 {{< /callout >}}
 
-
 ### LocalStack endpoints
 
 If you operate behind an enterprise proxy and wish to customize the domain name returned by LocalStack services (e.g., SQS queue URL),
@@ -76,7 +73,6 @@ check out the [Configuration]({{< ref "configuration#core" >}}) `LOCALSTACK_HOST
 
 If you wish to customize internal LocalStack DNS routing of `localhost.localstack.cloud`,
 refer to the instructions in the [Route53 documentation]({{< ref "user-guide/aws/route53#customizing-internal-endpoint-resolution" >}}).
-
 
 ## DNS rebind protection
 
@@ -101,11 +97,14 @@ $ dig test.localhost.localstack.cloud
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 65494
 ;; QUESTION SECTION:
-;test.localhost.localstack.cloud. IN	A
+;test.localhost.localstack.cloud.
+IN A
 
 ;; ANSWER SECTION:
-test.localhost.localstack.cloud. 10786 IN CNAME	localhost.localstack.cloud.
-localhost.localstack.cloud. 389	IN	A	127.0.0.1
+test.localhost.localstack.cloud.
+10786 IN CNAME localhost.localstack.cloud.
+localhost.localstack.cloud.
+389 IN A 127.0.0.1
 
 ;; Query time: 16 msec
 ;; SERVER: 127.0.0.53#53(127.0.0.53)
@@ -115,7 +114,6 @@ localhost.localstack.cloud. 389	IN	A	127.0.0.1
 
 If the DNS resolves the subdomain to your localhost (127.0.0.1), your setup is working.
 If not, please check the configuration of your router / DNS if the Rebind Protection is active or [enable the LocalStack DNS on your system]({{< ref "dns-server#system-dns-configuration" >}}).
-
 
 ## System DNS configuration
 
@@ -129,7 +127,7 @@ Remember to save the default configuration and restore it after testing.
 
 1. Expose the LocalStack DNS server:
 
-    a) Since version 3.5, the LocalStack CLI does not publish port `53` anymore by default. 
+    a) Since version 3.5, the LocalStack CLI does not publish port `53` anymore by default.
        Use the CLI flag `--host-dns` to expose the port on the host.
 
     b) For Docker Compose, add the following port mappings to your `docker-compose.yml`:
@@ -142,6 +140,7 @@ Remember to save the default configuration and restore it after testing.
 
 {{< callout >}}
 If port 53 is already bound, `docker-compose up` fails with the error:
+
 ```plain
 Error response from daemon: Ports are not available: exposing port UDP 127.0.0.1:53 -> 0.0.0.0:0: command failed
 ```
@@ -222,13 +221,15 @@ If you want to perform this action manually, please do the following steps:
 1. Configure the DNS resolver for the bridge network:
 
     {{< command >}}
-    # resolvectl dns <network_name> <container_ip>
+# resolvectl dns <network_name> <container_ip>
+
     {{< / command >}}
 
 3. Set the DNS route to route only the above mentioned domain names (and subdomains) to LocalStack:
 
     {{< command >}}
-    # resolvectl domain <network_name> ~amazonaws.com ~aws.amazon.com ~cloudfront.net ~localhost.localstack.cloud
+# resolvectl domain <network_name> ~amazonaws.com ~aws.amazon.com ~cloudfront.net ~localhost.localstack.cloud
+
     {{< / command >}}
 
 In both cases, you can use `resolvectl query s3.amazonaws.com` or `resolvectl query example.com` to check which interface your DNS request is routed through, to confirm only the above mentioned domains (and its subdomains) are routed to LocalStack.

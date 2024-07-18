@@ -11,7 +11,9 @@ type: lessons
 url: "/academy/localstack-deployment/infra-cloudformation/"
 ---
 
-In this video, we'll utilize [AWS CloudFormation](https://docs.localstack.cloud/user-guide/aws/cloudformation/) to deploy AWS resources locally through LocalStack. These resources include DynamoDB tables, API Gateway, and VPC. We'll use `awslocal`, a wrapper CLI that serves as a wrapper on the `aws` CLI to execute Terraform commands against LocalStack.
+In this video, we'll utilize [AWS CloudFormation](https://docs.localstack.cloud/user-guide/aws/cloudformation/) to deploy AWS resources locally through LocalStack.
+These resources include DynamoDB tables, API Gateway, and VPC.
+We'll use `awslocal`, a wrapper CLI that serves as a wrapper on the `aws` CLI to execute Terraform commands against LocalStack.
 
 Here's a breakdown of the steps we'll take:
 
