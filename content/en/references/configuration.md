@@ -239,6 +239,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | Variable | Example Values | Description |
 | - | - | - |
 | `MWAA_PIP_TRUSTED_HOSTS` | `pypi.org,files.pythonhosted.org` | Comma-separated list of hosts for which SSL verification is not performed when installing Python dependencies for MWAA environment. |
+| `MWAA_S3_POLL_INTERVAL` | `30` (default) | Interval in seconds with which MWAA polls S3 bucket to check for new or updated assets. |
 
 ### Neptune
 
