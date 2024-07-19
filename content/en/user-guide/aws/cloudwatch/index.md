@@ -16,16 +16,18 @@ LocalStack allows you to use CloudWatch APIs on your local machine to create and
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/), which provides information on the extent of CloudWatch's integration with LocalStack.
 
 {{< callout >}}
-We have introduced an all-new LocalStack-native [CloudWatch provider](https://docs.localstack.cloud/user-guide/aws/cloudwatch/) is available behind a feature flag.
-You can activate it by configuring  `PROVIDER_OVERRIDE_CLOUDWATCH=v2` in your LocalStack configuration.
+We have introduced an all-new LocalStack-native [CloudWatch provider](https://docs.localstack.cloud/user-guide/aws/cloudwatch/) and recently made this one the default.
 
-We have migrated from storing data in Python objects within the Moto backend to a more robust system.
+With the new provider we have migrated from storing data in Python objects within the Moto backend to a more robust system.
+
 Now, metrics are efficiently stored in SQLite, and alarm resources are managed using LocalStack stores.
 
 - Various enhancements have been made to attain greater feature parity with AWS.
 - The provider is engineered to ensure thread safety, facilitating smooth concurrent operations.
 - There’s a significant improvement in the integrity and durability of data.
 - The new provider allows for more efficient data retrieval.
+
+Currently, it is still possible to switch back to the old provider using `PROVIDER_OVERRIDE_CLOUDWATCH=v1` in your LocalStack configuration.
 {{< /callout >}}
 
 ## Getting started
