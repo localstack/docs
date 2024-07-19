@@ -18,7 +18,7 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 {{< callout >}}
 We have introduced an all-new LocalStack-native [CloudWatch provider](https://docs.localstack.cloud/user-guide/aws/cloudwatch/) and recently made this one the default.
 
-With the new provider have migrated from storing data in Python objects within the Moto backend to a more robust system.
+With the new provider we have migrated from storing data in Python objects within the Moto backend to a more robust system.
 
 Now, metrics are efficiently stored in SQLite, and alarm resources are managed using LocalStack stores.
 
