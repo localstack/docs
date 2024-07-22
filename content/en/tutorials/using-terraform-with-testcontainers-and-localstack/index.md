@@ -161,7 +161,6 @@ $ aws apigateway get-rest-apis --query 'items[?name==`product-api-gateway`].id' 
 </disable-copy>
 {{< /command >}}
 
-
 This will get us the ID of the API Gateway, which is necessary to build the URL:
 
 {{< command >}}
@@ -178,7 +177,6 @@ Product added/updated successfully.
 </disable-copy>
 {{< /command >}}
 
-
 To check if the product object has been persisted to the database, we can fire a GET request against the same URL, using the product ID as a query param:
 
 {{< command >}}
@@ -188,7 +186,6 @@ $ curl --location "http://ixqd52qrip.execute-api.localhost.localstack.cloud:4566
 {"price":"29.99","name":"EcoFriendly Water Bottle","description":"A durable, eco-friendly water bottle designed to keep your drinks cold for up to 24 hours.","id":"34534"}
 </disable-copy>
 {{< /command >}}
-
 
 ### Integrating with Testcontainers
 
