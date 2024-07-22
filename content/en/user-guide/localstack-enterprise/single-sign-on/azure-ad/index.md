@@ -1,9 +1,11 @@
 ---
 title: "SSO for Azure AD"
 tags: ["Enterprise plan"]
-weight: 5
+weight: 1
 description: >
   Configuring Azure AD for Single Sign-on in LocalStack Enterprise
+aliases:
+  - /user-guide/web-application/single-sign-on/azure-ad/
 ---
 
 To configure SSO with an Azure AD Enterprise application, we provide a simple step-by-step solution below:
