@@ -35,7 +35,7 @@ This section explains the most important configuration options summarized under 
 
 ### Disable transparent endpoint injection
 
-If you do not to use Transparent Endpoint Injection in LocalStack Pro, opt out using:
+If you do not wish to use Transparent Endpoint Injection in LocalStack Pro, opt out using:
 
 ```bash
 DISABLE_TRANSPARENT_ENDPOINT_INJECTION=1
