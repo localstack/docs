@@ -5,9 +5,7 @@ description: >
   Use LocalStack in [GitLab CI](https://docs.gitlab.com/ee/ci/)
 ---
 
-This page contains easily customisable snippets to show you how to manage LocalStack in a GitLab CI pipeline. If you're looking 
-for an already configured demo project with additional explanations, please check out [End-to-End Testing in Gitlab CI with Testcontainers
-and LocalStack: Understanding Runners and Docker in Docker]({{< ref "tutorials/gitlab_ci_testcontainers/" >}}) in the Tutorials section.
+This page contains easily customisable snippets to show you how to manage LocalStack in a GitLab CI pipeline.
 
 ## Snippets
 
@@ -212,5 +210,4 @@ Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 
 ## Examples
 
-- [End-to-End Testing in Gitlab CI with Testcontainers
-and LocalStack: Understanding Runners and Docker in Docker]({{< ref "tutorials/gitlab_ci_testcontainers/" >}}) - this tutorial will walk you through the process of setting up end-to-end testing for a backend application using Testcontainers and LocalStack within GitLab.
+- [End-to-End Testing in Gitlab CI with Testcontainers and LocalStack: Understanding Runners and Docker in Docker]({{< ref "tutorials/gitlab_ci_testcontainers/" >}}) - A readily configured demo project, that will walk you through the process of setting up end-to-end testing for a backend application using Testcontainers and LocalStack within GitLab CI.
