@@ -6,6 +6,7 @@ description: Get insights into your continuous integration (CI) builds with Loca
 tags: ["Enterprise plan"]
 aliases:
   - /user-guide/ci/ci-analytics/
+  - /user-guide/web-application/ci-analytics/
 ---
 
 ## Introduction
