@@ -52,7 +52,7 @@ For this tutorial, you will need:
 - [AWS CLI](https://aws.amazon.com/cli/)
 - Optional for building the Lambda functions: [Java 17](https://openjdk.org/install/)
 - Optional for building the Lambda functions: [Apache Maven 3.9.8](https://maven.apache.org/install.html)
-- Optional: [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) and [terraform-local](https://github.com/localstack/terraform-local)
+- Optional: [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) and [tflocal](https://github.com/localstack/terraform-local)
 
 ## Project overview
 
