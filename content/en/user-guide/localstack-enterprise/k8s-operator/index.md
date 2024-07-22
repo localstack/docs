@@ -8,7 +8,8 @@ tags: ["Enterprise plan"]
 
 ## Introduction
 
-LocalStack K8s operator is a custom Kubernetes operator that offers LocalStack emulator as a native resource in Kubernetes environments. The operator is designed to simplify the deployment and management of LocalStack in Kubernetes clusters.
+LocalStack K8s operator is a custom Kubernetes operator that offers LocalStack emulator as a native resource in Kubernetes environments.
+The operator is designed to simplify the deployment and management of LocalStack in Kubernetes clusters.
 
 ## Installation
 
@@ -90,7 +91,6 @@ LocalStackList contains a list of LocalStack
 | `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `items` _[LocalStack](#localstack) array_ |  |
 
-
 #### LocalStackSpec
 
 LocalStackSpec defines the desired state of LocalStack
@@ -114,7 +114,6 @@ _Appears in:_
 | `envFrom` _[EnvFromSource](https://kubernetes.io/docs/reference/generated/kubernetes-api/v/#envfromsource-v1-core) array_ |  |
 | `env` _[EnvVar](https://kubernetes.io/docs/reference/generated/kubernetes-api/v/#envvar-v1-core) array_ |  |
 | `dnsPolicy` _[DNSPolicy](https://kubernetes.io/docs/reference/generated/kubernetes-api/v/#dnspolicy-v1-core)_ |  |
-
 
 #### LocalStackStatus
 

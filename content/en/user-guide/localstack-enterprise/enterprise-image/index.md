@@ -8,7 +8,8 @@ tags: ["Enterprise plan"]
 
 ## Introduction
 
-LocalStack offers an Enterprise image that allows offline usage and includes a customer-specific configuration. This offline functionality is enabled by:
+LocalStack offers an Enterprise image that allows offline usage and includes a customer-specific configuration.
+This offline functionality is enabled by:
 
 - Pre-installed packages required for running specific services that are usually downloaded on demand (such as `opensearch` or `dynamodb-local`).
 - A certificate keypair for `localhost.localstack.cloud` to resolve to the LocalStack container via our DNS server.
