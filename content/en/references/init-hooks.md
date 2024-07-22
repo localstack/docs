@@ -33,7 +33,8 @@ In these directories, you can put either executable shell scripts or Python prog
 All except `boot.d` will be run in the same Python interpreter as LocalStack, which gives additional ways of configuring/extending LocalStack.
 You can also use subdirectories to organize your init scripts.
 
-Currently, known script extensions are `.sh` and `.py`. Additionally, with the installation of the `localstack-extension-terraform-init` [extension]({{<ref "user-guide/extensions/">}}), `.tf` files can also be supported.
+Currently, known script extensions are `.sh` and `.py`.
+Additionally, with the installation of the `localstack-extension-terraform-init` [extension]({{<ref "user-guide/extensions/">}}), `.tf` files can also be supported.
 Shell scripts have to be executable, and have to have a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) (usually `#!/bin/bash`).
 
 A script can be in one of four states: `UNKNOWN`, `RUNNING`, `SUCCESSFUL`, `ERROR`.
@@ -211,7 +212,6 @@ services:
   -v ./main.tf:/etc/localstack/init/ready.d/main.tf
 {{< /tab >}}
 {{< /tabpane >}}
-
 
 You can wait for LocalStack to complete the startup process, and then print the created S3 bucket:
 {{< command >}}
