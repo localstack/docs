@@ -7,15 +7,19 @@ tags: ["Pro image"]
 
 ## Introduction
 
-Elastic Load Balancing (ELB) is a service that allows users to distribute incoming traffic across multiple targets, such as EC2 instances, containers, IP addresses, and lambda functions and automatically scales its request handling capacity in response to incoming traffic. It also monitors the health of its registered targets and ensures that it routes traffic only to healthy targets. You can check [the official AWS documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html) to understand the basic terms and concepts used in the ELB.
+Elastic Load Balancing (ELB) is a service that allows users to distribute incoming traffic across multiple targets, such as EC2 instances, containers, IP addresses, and lambda functions and automatically scales its request handling capacity in response to incoming traffic.
+It also monitors the health of its registered targets and ensures that it routes traffic only to healthy targets.
+You can check [the official AWS documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html) to understand the basic terms and concepts used in the ELB.
 
-Localstack allows you to use the Elastic Load Balancing APIs in your local environment to create, edit, and view load balancers, target groups, listeners, and rules. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_elbv2/), which provides information on the extent of ELB's integration with LocalStack.
+Localstack allows you to use the Elastic Load Balancing APIs in your local environment to create, edit, and view load balancers, target groups, listeners, and rules.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_elbv2/), which provides information on the extent of ELB's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to Elastic Load Balancing and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create an Application Load Balancer, along with its target group, listener, and rule, and forward requests to an IP target.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create an Application Load Balancer, along with its target group, listener, and rule, and forward requests to an IP target.
 
 ### Start a target server
 
@@ -27,7 +31,8 @@ $ docker run --rm -itd -p 5678:80 ealen/echo-server
 
 ### Create a load balancer
 
-To specify the subnet and VPC in which the load balancer will be created, you can use the [`DescribeSubnets`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeSubnets.html) API to retrieve the subnet ID and VPC ID. In this example, we will use the subnet and VPC in the `us-east-1f` availability zone.
+To specify the subnet and VPC in which the load balancer will be created, you can use the [`DescribeSubnets`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeSubnets.html) API to retrieve the subnet ID and VPC ID.
+In this example, we will use the subnet and VPC in the `us-east-1f` availability zone.
 
 {{< command >}}
 $ subnet_info=$(awslocal ec2 describe-subnets --filters Name=availability-zone,Values=us-east-1f \
@@ -38,7 +43,8 @@ $ subnet_id=$(echo $subnet_info | jq -r '.SubnetId')
 $ vpc_id=$(echo $subnet_info | jq -r '.VpcId')
 {{< /command >}}
 
-To create a load balancer, you can use the [`CreateLoadBalancer`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateLoadBalancer.html) API. The following command creates an Application Load Balancer named `example-lb`:
+To create a load balancer, you can use the [`CreateLoadBalancer`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateLoadBalancer.html) API.
+The following command creates an Application Load Balancer named `example-lb`:
 
 {{< command >}}
 $ loadBalancer=$(awslocal elbv2 create-load-balancer --name example-lb \
@@ -47,7 +53,8 @@ $ loadBalancer=$(awslocal elbv2 create-load-balancer --name example-lb \
 
 ### Create a target group
 
-To create a target group, you can use the [`CreateTargetGroup`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateTargetGroup.html) API. The following command creates a target group named `example-target-group`:
+To create a target group, you can use the [`CreateTargetGroup`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateTargetGroup.html) API.
+The following command creates a target group named `example-target-group`:
 
 {{< command >}}
 $ targetGroup=$(awslocal elbv2 create-target-group --name example-target-group \
@@ -57,7 +64,8 @@ $ targetGroup=$(awslocal elbv2 create-target-group --name example-target-group \
 
 ### Register a target
 
-To register a target, you can use the [`RegisterTargets`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_RegisterTargets.html) API. The following command registers the target with the target group created in the previous step:
+To register a target, you can use the [`RegisterTargets`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_RegisterTargets.html) API.
+The following command registers the target with the target group created in the previous step:
 
 {{< command >}}
 $ awslocal elbv2 register-targets --targets Id=127.0.0.1,Port=5678,AvailabilityZone=all \
@@ -71,7 +79,8 @@ You can find the gateway address by running `docker inspect <container_id>`.
 
 ### Create a listener and a rule
 
-We create a for the load balancer using the [`CreateListener`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateListener.html) API. The following command creates a listener for the load balancer created in the previous step:
+We create a for the load balancer using the [`CreateListener`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateListener.html) API.
+The following command creates a listener for the load balancer created in the previous step:
 
 {{< command >}}
 $ listenerArn=$(awslocal elbv2 create-listener \
@@ -79,7 +88,8 @@ $ listenerArn=$(awslocal elbv2 create-listener \
         --load-balancer-arn $loadBalancer | jq -r '.Listeners[]|.ListenerArn')
 {{< /command >}}
 
-To create a rule for the listener, you can use the [`CreateRule`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateRule.html) API. The following command creates a rule for the listener created above:
+To create a rule for the listener, you can use the [`CreateRule`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateRule.html) API.
+The following command creates a rule for the listener created above:
 
 {{< command >}}
 $ listenerRule=$(awslocal elbv2 create-rule \

@@ -94,7 +94,6 @@ Run the following command to create an FIS experiment template using the configu
 $ awslocal fis create-experiment-template --cli-input-json file://create-experiment.json
 {{< /command >}}
 
-
 The following output would be retrieved:
 
 ```json
@@ -253,7 +252,6 @@ The following actions are deprecated and marked for removal:
 - **`localstack:log-debug`**: Prints a debug message in the LocalStack logs when experiment is started and stopped.
 - **`localstack:generic:latency`**: Introduces a latency in the network call.
     Please migrate to the [Chaos API]({{< ref "chaos-api" >}}).
-
 
 ## Current Limitations
 

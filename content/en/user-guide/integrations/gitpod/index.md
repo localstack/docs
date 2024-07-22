@@ -9,13 +9,20 @@ description: >
 
 ## Overview
 
-Gitpod is an open-source platform that enables remote software development via ephemeral workspaces. It provides an automated setup with cloud-based, remote developer environments connected with a developer’s [editing experience of choice](https://www.gitpod.io/docs/references/ides-and-editors). Gitpod allow users to codify their developer environment as code. With projects codified, you can spin up a new workspace, start coding and throw away the workspace when they are done!
+Gitpod is an open-source platform that enables remote software development via ephemeral workspaces.
+It provides an automated setup with cloud-based, remote developer environments connected with a developer’s [editing experience of choice](https://www.gitpod.io/docs/references/ides-and-editors).
+Gitpod allow users to codify their developer environment as code.
+With projects codified, you can spin up a new workspace, start coding and throw away the workspace when they are done!
 
 ## LocalStack on GitPod
 
-LocalStack allows you to set up a development environment with a cloud sandbox that can be used to test and develop cloud applications. Using GitPod's environment you can run a LocalStack container inside the runtime that allows to instantiate your application on a code editor of your choice. You can then conveniently deploy your cloud application assets into LocalStack's cloud sandbox, to then preview the results.
+LocalStack allows you to set up a development environment with a cloud sandbox that can be used to test and develop cloud applications.
+Using GitPod's environment you can run a LocalStack container inside the runtime that allows to instantiate your application on a code editor of your choice.
+You can then conveniently deploy your cloud application assets into LocalStack's cloud sandbox, to then preview the results.
 
-To configure LocalStack on GitPod, you would need to set up a `.gitpod.yml` on the root of your repository. The file configures your workspace and the environment that you would like to use. You can find more information on the [GitPod documentation](https://www.gitpod.io/docs/config-gitpod-file/).
+To configure LocalStack on GitPod, you would need to set up a `.gitpod.yml` on the root of your repository.
+The file configures your workspace and the environment that you would like to use.
+You can find more information on the [GitPod documentation](https://www.gitpod.io/docs/config-gitpod-file/).
 
 ```yaml
 tasks:
@@ -53,7 +60,9 @@ ports:
     onOpen: ignore
 ```
 
-If you are using GitHub, you can also use the [GitPod Prebuilds](https://www.gitpod.io/docs/prebuilds/) feature to automatically build your workspace. This will allow you to start your workspace faster and with all the dependencies already installed. Add the following to your `.gitpod.yml` file:
+If you are using GitHub, you can also use the [GitPod Prebuilds](https://www.gitpod.io/docs/prebuilds/) feature to automatically build your workspace.
+This will allow you to start your workspace faster and with all the dependencies already installed.
+Add the following to your `.gitpod.yml` file:
 
 ```yaml
 github:
@@ -74,6 +83,8 @@ github:
     addBadge: true
 ```
 
-After adding the configuration, you can start your development & testing by creating [your workspace in GitPod](https://www.gitpod.io/docs/getting-started/#start-your-first-workspace). Upon creation, you will be able to see the LocalStack container running in the background (you can use `localstack status` to check the status of the container).
+After adding the configuration, you can start your development & testing by creating [your workspace in GitPod](https://www.gitpod.io/docs/getting-started/#start-your-first-workspace).
+Upon creation, you will be able to see the LocalStack container running in the background (you can use `localstack status` to check the status of the container).
 
-For a simple demonstration, check out the [LocalStack GitPod demo](https://github.com/Gitpod-Samples/localstack-gitpod-demo) repository. Check out our [in-depth walkthrough over the demo](https://localstack.cloud/blog/2022-09-26-localstack-x-gitpod-run-cloud-applications-with-localstack-and-gitpod/) on our blog!
+For a simple demonstration, check out the [LocalStack GitPod demo](https://github.com/Gitpod-Samples/localstack-gitpod-demo) repository.
+Check out our [in-depth walkthrough over the demo](https://localstack.cloud/blog/2022-09-26-localstack-x-gitpod-run-cloud-applications-with-localstack-and-gitpod/) on our blog!

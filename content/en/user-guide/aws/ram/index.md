@@ -37,5 +37,5 @@ $ awslocal ram create-resource-share \
 ## Current Limitations
 
 RAM on LocalStack currently functions as a CRUD interface only.
-Resource shares do not lead to IAM policies being created or attached to resources. 
+Resource shares do not lead to IAM policies being created or attached to resources.
 This means that the specified principals do not end up being granted access to the specified resources.

@@ -15,7 +15,7 @@ This technique takes different forms depending on the team:
 
 - Software developers focus on application behavior and error response
 - Architects concentrate on the strength of system design
-- Operations teams investigate the dependability of infrastructure setup. 
+- Operations teams investigate the dependability of infrastructure setup.
 
 Integrating chaos tests early in the development process helps identify and mitigate potential flaws, leading to systems that are more robust under stress and can withstand turbulent conditions.
 Chaos engineering in LocalStack encompasses the following features:

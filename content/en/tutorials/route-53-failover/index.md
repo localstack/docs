@@ -192,13 +192,15 @@ To confirm that the CNAME record for `test.hello-localstack.com` points to `1234
 
 {{< command >}}
 $ dig @localhost test.hello-localstack.com CNAME
-<disable-copy>                                        
+<disable-copy>
 .....
 ;; QUESTION SECTION:
-;test.hello-localstack.com.	IN	CNAME
+;test.hello-localstack.com.
+IN CNAME
 
 ;; ANSWER SECTION:
-test.hello-localstack.com. 300	IN	CNAME	12345.execute-api.localhost.localstack.cloud.
+test.hello-localstack.com.
+300 IN CNAME 12345.execute-api.localhost.localstack.cloud.
 .....
 </disable-copy>
 {{< /command >}}
@@ -229,13 +231,15 @@ Notice that the secondary endpoint is returned in the CNAME answer.
 
 {{< command >}}
 $ dig @localhost test.hello-localstack.com CNAME
-<disable-copy>                                        
+<disable-copy>
 .....
 ;; QUESTION SECTION:
-;test.hello-localstack.com.	IN	CNAME
+;test.hello-localstack.com.
+IN CNAME
 
 ;; ANSWER SECTION:
-test.hello-localstack.com. 300	IN	CNAME	67890.execute-api.localhost.localstack.cloud.
+test.hello-localstack.com.
+300 IN CNAME 67890.execute-api.localhost.localstack.cloud.
 .....
 </disable-copy>
 {{< /command >}}

@@ -21,4 +21,5 @@ LocalStack supports a growing number of [AWS services]({{< ref "aws" >}}), like 
 
 You can find a comprehensive list of supported APIs on our [Feature Coverage]({{< ref "feature-coverage" >}}) page.
 
-LocalStack also provides additional features to make your life as a cloud developer easier! Check out LocalStack's [Cloud Developer Tools]({{< ref "user-guide/tools" >}}).
+LocalStack also provides additional features to make your life as a cloud developer easier!
+Check out LocalStack's [Cloud Developer Tools]({{< ref "user-guide/tools" >}}).

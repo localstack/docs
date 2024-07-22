@@ -11,7 +11,8 @@ description: >
 If you have difficulties connecting your application code to LocalStack, please choose the scenario below that best describes your networking layout.
 
 {{< callout "tip" >}}
-LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not trying to access LocalStack over IPv6.
+LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`).
+Check you are not trying to access LocalStack over IPv6.
 {{</callout>}}
 
 ---
@@ -36,7 +37,6 @@ For example, setting the `endpoint_url` parameter with an [AWS SDK]({{< ref "use
   **From the same computer**
 
 {{< figure src="./images/1.svg" width="400" >}}
-
 
 </a>
 </div>
@@ -64,14 +64,12 @@ For example, setting the `endpoint_url` parameter with an [AWS SDK]({{< ref "use
 <div class="col-lg-12 col-xl-6 d-flex justify-content-center">
 <a href="{{< ref "endpoint-url#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column text-center">
 
-
 **From a separate host**
 
 {{< figure src="./images/10.svg" width="400" >}}
 
 </a>
 </div>
-
 
 </div> <!-- row -->
 
@@ -132,7 +130,6 @@ For example, you have created an OpenSearch cluster and are trying to access tha
 
 </a>
 </div>
-
 
 <div class="col-lg-12 col-xl-6 d-flex justify-content-center">
 <a href="{{< ref "created-resources#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column text-center">

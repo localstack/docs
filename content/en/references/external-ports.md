@@ -13,7 +13,7 @@ This documentation discusses two approaches to access these external services wi
 ## Proxy Functionality for External Services
 
 LocalStack offers a proxy functionality to access external services indirectly.
-In this approach, LocalStack assigns local domains to the external services based on the individual service's configuration. 
+In this approach, LocalStack assigns local domains to the external services based on the individual service's configuration.
 
 For instance, if OpenSearch is configured to use the [`OPENSEARCH_ENDPOINT_STRATEGY=domain`]({{< ref "opensearch#endpoints" >}}) setting, a cluster can be reached using the domain name `<domain-name>.<region>.<engine-type>.localhost.localstack.cloud`.
 Incoming messages to these domains are relayed to servers running on ports that do not require external accessibility.

@@ -119,8 +119,8 @@ pyenv global 3.11.9
 
 Then clone LocalStack to your machine, run `make install` and then `make start`.
 
-
 ### Raspberry Pi
+
 If you want to run LocalStack on your Raspberry Pi, make sure to use a 64bit operating system.
 In our experience, it works best on a Raspberry Pi 4 8GB with [Ubuntu Server 20.04 64Bit for Raspberry Pi](https://ubuntu.com/download/raspberry-pi).
 

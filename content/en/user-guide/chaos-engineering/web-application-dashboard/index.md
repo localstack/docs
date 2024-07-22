@@ -16,10 +16,10 @@ You can find this feature in the LocalStack web app by navigating to [app.locals
 The FIS Dashboard in LocalStack Web Application allows you to conduct Fault Injection Service experiments on infrastructure stacks.
 This control panel offers various FIS experiment options, which includes:
 
--   **500 Internal Error**: This experiment randomly terminates incoming requests, returning an `Internal Server Error` with a response code of 500.
--   **Service Unavailable**: This test causes all calls to specified services to receive a 503 `Service Unavailable` response.
--   **AWS Region Unavailable**: This experiment simulates regional outages and failovers by disabling entire AWS regions.
--   **Latency**: This test introduces specified latency to every API call, useful for simulating network latency or degraded network performance.
+- **500 Internal Error**: This experiment randomly terminates incoming requests, returning an `Internal Server Error` with a response code of 500.
+- **Service Unavailable**: This test causes all calls to specified services to receive a 503 `Service Unavailable` response.
+- **AWS Region Unavailable**: This experiment simulates regional outages and failovers by disabling entire AWS regions.
+- **Latency**: This test introduces specified latency to every API call, useful for simulating network latency or degraded network performance.
 
 {{< figure src="fis-dashboard.png" width="900" >}}
 

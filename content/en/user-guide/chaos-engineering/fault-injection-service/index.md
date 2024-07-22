@@ -54,7 +54,7 @@ $ awslocal dynamodb create-table \
         --key-schema AttributeName=id,KeyType=HASH \
         --billing-mode PAY_PER_REQUEST \
         --region us-east-1
-<disable-copy>                                        
+<disable-copy>
 {
   "TableDescription": {
     "AttributeDefinitions": [
@@ -102,14 +102,14 @@ $ awslocal dynamodb put-item --table-name Students --region us-east-1 --item '{
                                           "year": {"S": "Junior"},
                                           "enrolment date": {"S": "2023-03-19"}
                                       }'
-                                      
+
 $ awslocal dynamodb put-item --table-name Students --region us-east-1 --item '{
                                           "id": {"S": "1748"},
                                           "first name": {"S": "John"},
                                           "last name": {"S": "Doe"},
                                           "year": {"S": "Senior"},
                                           "enrolment date": {"S": "2022-03-19"}
-                                      }'                                      
+                                      }'
 {{< /command >}}
 
 And then we can look up one of the students by ID, also using the awslocal CLI:
@@ -153,7 +153,8 @@ Actions define the type of fault, parameters for the fault injection, and the ta
 **3. Targets**: Targets are the AWS resources on which the experiment actions will be applied.
 To make things even more fine-grained, a specific operation of the service can be targeted.
 
-**4. Stop Conditions**: Stop conditions are criteria that, when met, will automatically stop the experiment. 
+**4.
+Stop Conditions**: Stop conditions are criteria that, when met, will automatically stop the experiment.
 
 **5. IAM Roles and Permissions**: To run experiments, AWS FIS requires specific IAM roles and permissions.
 These are necessary for AWS FIS to perform actions on your behalf, like injecting faults into your resources.
@@ -181,7 +182,7 @@ This failure will happen 100% of the times the method is called.
                         "actionId": "localstack:generic:api-error",
                         "parameters": {
                                 "service": "dynamodb",
-				                "operation": "GetItem",
+                    "operation": "GetItem",
                                 "percentage": "100",
                                 "exception": "Service Unavailable",
                                 "errorCode": "503"
@@ -316,7 +317,7 @@ $ awslocal dynamodb put-item --table-name Students --region us-east-1 --item '{
 Finally, the experiment can be stopped using the experiment's ID with the following command:
 
 ```bash
-$ awslocal fis stop-experiment --id 1a01327a-79d5-4202-8132-e56e55c9391b
+awslocal fis stop-experiment --id 1a01327a-79d5-4202-8132-e56e55c9391b
 ```
 
 
@@ -356,6 +357,7 @@ Let's see what that would look like, in a separate file, `regional-experiment.js
   "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
 }
 ```
+
 This template defines actions to simulate internal server errors (HTTP 503) in both `us-east-1` and `us-west-2` regions, without specific stop conditions.
 These outages will affect all the resources within the regions.
 
@@ -492,7 +494,6 @@ $ awslocal dynamodb create-table \
 </disable-copy>
 {{< /command >}}
 
-
 ```bash
 awslocal dynamodb put-item --table-name Students --region eu-central-1 --item '{
                                                                                 "id": {"S": "1111"},
@@ -508,7 +509,7 @@ awslocal dynamodb put-item --table-name Students --region eu-central-1 --item '{
 Just as with the earlier experiment, this one should be stopped by running the following command:
 
 ```bash
-$ awslocal fis stop-experiment --id e49283c1-c2e0-492b-b69f-9fbd710bc1e3
+awslocal fis stop-experiment --id e49283c1-c2e0-492b-b69f-9fbd710bc1e3
 ```
 
 ### Service Latency
@@ -603,7 +604,7 @@ To extend the latency effect to a regional level, the specific service constrain
 As always, remember to stop your experiment, so it does not cause unexpected issues down the line:
 
 ```bash
-$ awslocal fis stop-experiment --id dd598567-56e6-4d00-9ef5-15c7e90e7851
+awslocal fis stop-experiment --id dd598567-56e6-4d00-9ef5-15c7e90e7851
 ```
 
 Remember to replace the IDs with your own corresponding values.
@@ -653,4 +654,3 @@ $ awslocal fis list-experiments
 }
 </disable-copy>
 {{< /command >}}
-

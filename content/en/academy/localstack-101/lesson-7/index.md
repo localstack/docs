@@ -13,7 +13,7 @@ type: lessons
 url: "/academy/localstack-101/cloud-pods/"
 ---
 
-This video will cover: 
+This video will cover:
 
 What are Cloud Pods ?
 
@@ -23,7 +23,7 @@ Deviate from the default ephemeral state by leveraging Cloud Pods' capability to
 How are cloud pods useful ?
 
 - Gain insight into the advantages they offer, including the creation of shareable local cloud sandboxes.
-Learn about the collaborative potential of distributing and sharing pods among team members and discover 
+Learn about the collaborative potential of distributing and sharing pods among team members and discover
 how Cloud Pods contribute to reproducibility in applications and pre-seeding test environments.
 
 Demo

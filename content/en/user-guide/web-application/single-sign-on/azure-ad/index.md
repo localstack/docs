@@ -28,10 +28,10 @@ To configure SSO with an Azure AD Enterprise application, we provide a simple st
 
 5. Navigate to our web application, or follow this <a href="https://app.localstack.cloud/workspace/sso">link</a>, and:
 
-  * Create a new Identity provider
-  * Enter a name for you Identity provider, and choose SAML as the provider type.
-  * Select URL for the Metadata file and paste the link that you copied previously in step 4.
-  * For the attribute mapping, provide the following value for the Email attribute: `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` - (This should match the Claim name of user.userprincipalname in your Attributes & Claims)
-  * Leave First name attribute and Last name attribute blank.
+* Create a new Identity provider
+* Enter a name for you Identity provider, and choose SAML as the provider type.
+* Select URL for the Metadata file and paste the link that you copied previously in step 4.
+* For the attribute mapping, provide the following value for the Email attribute: `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` - (This should match the Claim name of user.userprincipalname in your Attributes & Claims)
+* Leave First name attribute and Last name attribute blank.
 
 6. Let your team members sign up to your LocalStack Organization via the Sign Up Portal Link.

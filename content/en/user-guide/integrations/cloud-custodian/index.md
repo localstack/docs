@@ -7,15 +7,18 @@ description: >
 
 ## Introduction
 
-Cloud Custodian is an open-source rules engine and cloud management tool designed to help organizations maintain security and compliance across their cloud environments. Cloud Custodian's YAML DSL allows definition of rules to filter and tag resources, and then apply actions to those resources. 
+Cloud Custodian is an open-source rules engine and cloud management tool designed to help organizations maintain security and compliance across their cloud environments.
+Cloud Custodian's YAML DSL allows definition of rules to filter and tag resources, and then apply actions to those resources.
 
-Cloud Custodian can be used to manage local AWS resources in LocalStack, resembling the live AWS environment, allowing you to test and validate your security policies locally. You can use Cloud Custodian with LocalStack by just specifying the Cloud Custodian package to use the LocalStack profile configured with your AWS CLI.
+Cloud Custodian can be used to manage local AWS resources in LocalStack, resembling the live AWS environment, allowing you to test and validate your security policies locally.
+You can use Cloud Custodian with LocalStack by just specifying the Cloud Custodian package to use the LocalStack profile configured with your AWS CLI.
 
 ## Getting started
 
 This guide is designed for users who are new to Cloud Custodian and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how you can spin up an EC2 instance and tag it with the key `Custodian`, and then use Cloud Custodian to stop the instance.
+Start your LocalStack container using your preferred method.
+We will demonstrate how you can spin up an EC2 instance and tag it with the key `Custodian`, and then use Cloud Custodian to stop the instance.
 
 ### Install Cloud Custodian
 
@@ -29,7 +32,9 @@ After installing Cloud Custodian, you can configure a [custom LocalStack profile
 
 ### Create an EC2 instance
 
-You can create an EC2 instance using the `awslocal` wrapper script. You can use the [`RunInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API to create an EC2 instance. The following example creates an EC2 instance with the tag `Custodian` (any value):
+You can create an EC2 instance using the `awslocal` wrapper script.
+You can use the [`RunInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API to create an EC2 instance.
+The following example creates an EC2 instance with the tag `Custodian` (any value):
 
 {{< command >}}
 $ awslocal ec2 run-instances \
@@ -51,7 +56,8 @@ You can navigate to the LocalStack logs to verify that the EC2 instance was crea
 
 ### Create a Cloud Custodian policy
 
-You can now create a Cloud Custodian policy to stop the EC2 instances with the tag `Custodian`. Create a file named `custodian.yml` and add the following content:
+You can now create a Cloud Custodian policy to stop the EC2 instances with the tag `Custodian`.
+Create a file named `custodian.yml` and add the following content:
 
 ```yaml
 policies:
@@ -67,8 +73,10 @@ The above policy specifies the following:
 
 - `name`: The name of the policy.
 - `resource`: The AWS resource to apply the policy to.
-- `filters`: The filters to apply to the resource. In this case, the filter is `tag:Custodian` and the value is `present`.
-- `actions`: The actions to apply to the resource. In this case, the action is `stop`.
+- `filters`: The filters to apply to the resource.
+  In this case, the filter is `tag:Custodian` and the value is `present`.
+- `actions`: The actions to apply to the resource.
+  In this case, the action is `stop`.
 
 ### Run the Cloud Custodian policy
 
@@ -76,7 +84,8 @@ You can now run the Cloud Custodian policy using the following command:
 
 {{< command >}}
 $ custodian run \
-    --output-dir=. custodian.yml \
+    --output-dir=.
+custodian.yml \
     --profile localstack
 {{< / command >}}
 
@@ -101,9 +110,11 @@ You can then navigate to the LocalStack logs to verify that the EC2 instance was
 
 ### Create CloudWatch metrics for Cloud Custodian
 
-Cloud Custodian creates CloudWatch metrics for each policy. These metrics show how many resources met the filters, the time taken to gather and filter those resources, and the time required to perform actions.
+Cloud Custodian creates CloudWatch metrics for each policy.
+These metrics show how many resources met the filters, the time taken to gather and filter those resources, and the time required to perform actions.
 
-Certain filters and actions might produce their own metrics. To activate metric output, you must set the `metrics` flag running Cloud Custodian.
+Certain filters and actions might produce their own metrics.
+To activate metric output, you must set the `metrics` flag running Cloud Custodian.
 
 {{< command >}}
 $ custodian run -s . \

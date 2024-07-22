@@ -11,15 +11,20 @@ tags: ["Pro image"]
 
 ## Introduction
 
-LocalStack's Persistence mechanism enables the saving and restoration of the entire LocalStack state, including all AWS resources and data, on your local machine. It functions as a "pause and resume" feature, allowing you to take a snapshot of your LocalStack instance and save this data to disk. This mechanism ensures a quick and efficient way to preserve and continue your work with AWS resources locally.
+LocalStack's Persistence mechanism enables the saving and restoration of the entire LocalStack state, including all AWS resources and data, on your local machine.
+It functions as a "pause and resume" feature, allowing you to take a snapshot of your LocalStack instance and save this data to disk.
+This mechanism ensures a quick and efficient way to preserve and continue your work with AWS resources locally.
 
 ## Configuration
 
-To start snapshot-based persistence, launch LocalStack with the configuration option `PERSISTENCE=1`. This setting instructs LocalStack to save all AWS resources and their respective application states into the LocalStack Volume Directory. Upon restarting LocalStack, you'll be able to resume your activities exactly where you left off.
+To start snapshot-based persistence, launch LocalStack with the configuration option `PERSISTENCE=1`.
+This setting instructs LocalStack to save all AWS resources and their respective application states into the LocalStack Volume Directory.
+Upon restarting LocalStack, you'll be able to resume your activities exactly where you left off.
 
 {{< tabpane lang="bash" >}}
 {{< tab header="LocalStack CLI" lang="bash" >}}
-LOCALSTACK_AUTH_TOKEN=... PERSISTENCE=1 localstack start
+LOCALSTACK_AUTH_TOKEN=...
+PERSISTENCE=1 localstack start
 {{< /tab >}}
 {{< tab header="Docker Compose" lang="yaml" >}}
     ...
@@ -53,11 +58,15 @@ There are four strategies that you can choose from that govern when these snapsh
 You can select a particular save strategy by setting `SNAPSHOT_SAVE_STRATEGY=<strategy>`.
 
 * **`ON_REQUEST`**: On every AWS API call that potentially modifies the state of a service, LocalStack will save the state of that service.
-  This strategy minimizes the chance for data loss, but also has significant performance implications. The service has to be locked during snapshotting, meaning that any requests to the particular AWS service will be blocked until the snapshot is complete.  In many cases this is just a few milliseconds, but can become significant in some services.
+  This strategy minimizes the chance for data loss, but also has significant performance implications.
+  The service has to be locked during snapshotting, meaning that any requests to the particular AWS service will be blocked until the snapshot is complete.
+   In many cases this is just a few milliseconds, but can become significant in some services.
 * **`ON_SHUTDOWN`**: The state of all services are saved during the shutdown phase of LocalStack.
-  This strategy has zero performance impact, but is not good when you want to minimize the chance for data loss. Should LocalStack for some reason not shut down properly or is terminated before it can finalize the snapshot, you may be left with an incomplete state on disk.
+  This strategy has zero performance impact, but is not good when you want to minimize the chance for data loss.
+  Should LocalStack for some reason not shut down properly or is terminated before it can finalize the snapshot, you may be left with an incomplete state on disk.
 * **`SCHEDULED`** (**default**): Saves at regular intervals the state of all the services that have been modified since the last snapshot.
-  By default, the flush interval is 15 seconds. It can be configured via the `SNAPSHOT_FLUSH_INTERVAL` configuration variable.
+  By default, the flush interval is 15 seconds.
+  It can be configured via the `SNAPSHOT_FLUSH_INTERVAL` configuration variable.
   This is a compromise between `ON_REQUEST` and `ON_SHUTDOWN` in terms of performance and reliability.
 * **`MANUAL`**: Turns off automatic snapshotting and gives you control through the internal state endpoints.
 
@@ -65,8 +74,10 @@ You can select a particular save strategy by setting `SNAPSHOT_SAVE_STRATEGY=<st
 
 Similarly, you can configure when LocalStack should restore the state snapshots, by using `SNAPSHOT_LOAD_STRATEGY=<strategy>`.
 
-* **`ON_REQUEST`**: (**default**) The state is loaded lazily when the service is requested. This maintains LocalStack's lazy-loading behavior for AWS services.
-* **`ON_STARTUP`**: The state of all services in the snapshot is restored when LocalStack starts up. This means that services that have stored state are also started on LocalStack start, which will increase the startup time, but also give you immediate feedback whether the state was restored correctly.
+* **`ON_REQUEST`**: (**default**) The state is loaded lazily when the service is requested.
+  This maintains LocalStack's lazy-loading behavior for AWS services.
+* **`ON_STARTUP`**: The state of all services in the snapshot is restored when LocalStack starts up.
+  This means that services that have stored state are also started on LocalStack start, which will increase the startup time, but also give you immediate feedback whether the state was restored correctly.
 * **`MANUAL`**: Turns off automatic loading of snapshots and gives you control through the internal state endpoints.
 
 ### Endpoints
@@ -76,13 +87,15 @@ As mentioned, with the `MANUAL` save or load strategy you can trigger snapshotti
 * `POST /_localstack/state/<service>/save` take a snapshot the given service
 * `POST /_localstack/state/<service>/load` load the most recent snapshot of the given service
 
-For example, a snapshot for a particular service (e.g., `s3`) can be triggered by running the following command. The service name refers to the AWS service code.
+For example, a snapshot for a particular service (e.g., `s3`) can be triggered by running the following command.
+The service name refers to the AWS service code.
 
 {{< command >}}
 $ curl -X POST http://localhost:4566/_localstack/state/s3/save
 {{< /command >}}
 
-It is also possible to take and load a snapshot of all the services at once. We provide the following endpoints:
+It is also possible to take and load a snapshot of all the services at once.
+We provide the following endpoints:
 
 * `POST /_localstack/state/save`
 * `POST /_localstack/state/load`

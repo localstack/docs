@@ -9,15 +9,20 @@ persistence: supported
 
 ## Introduction
 
-CloudFront is a content delivery network (CDN) service provided by Amazon Web Services (AWS). CloudFront distributes its web content, videos, applications, and APIs with low latency and high data transfer speeds. CloudFront APIs allow you to configure distributions, customize cache behavior, secure content with access controls, and monitor the CDN's performance through real-time metrics.
+CloudFront is a content delivery network (CDN) service provided by Amazon Web Services (AWS).
+CloudFront distributes its web content, videos, applications, and APIs with low latency and high data transfer speeds.
+CloudFront APIs allow you to configure distributions, customize cache behavior, secure content with access controls, and monitor the CDN's performance through real-time metrics.
 
-LocalStack allows you to use the CloudFront APIs in your local environment to create local CloudFront distributions to transparently access your applications and file artifacts. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudfront/), which provides information on the extent of CloudFront's integration with LocalStack.
+LocalStack allows you to use the CloudFront APIs in your local environment to create local CloudFront distributions to transparently access your applications and file artifacts.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudfront/), which provides information on the extent of CloudFront's integration with LocalStack.
 
 ## Getting started
 
-This guide is intended for users who wish to get more acquainted with CloudFront over LocalStack. It assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script).
+This guide is intended for users who wish to get more acquainted with CloudFront over LocalStack.
+It assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script).
 
-Start your LocalStack container using your preferred method. We will demonstrate how you can create an S3 bucket, put a text file named `hello.txt` to the bucket, and then create a CloudFront distribution which makes the file accessible via a `https://abc123.cloudfront.net/hello.txt` proxy URL (where `abc123` is a placeholder for the real distribution ID).
+Start your LocalStack container using your preferred method.
+We will demonstrate how you can create an S3 bucket, put a text file named `hello.txt` to the bucket, and then create a CloudFront distribution which makes the file accessible via a `https://abc123.cloudfront.net/hello.txt` proxy URL (where `abc123` is a placeholder for the real distribution ID).
 
 To get started, create an S3 bucket using the `mb` command:
 
@@ -32,7 +37,8 @@ $ echo 'Hello World' > /tmp/hello.txt
 $ awslocal s3 cp /tmp/hello.txt s3://abc123/hello.txt --acl public-read
 {{< / command >}}
 
-After uploading the file to S3, you can create a CloudFront distribution using the [`CreateDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html) API call. Run the following command to create a distribution with the default settings:
+After uploading the file to S3, you can create a CloudFront distribution using the [`CreateDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html) API call.
+Run the following command to create a distribution with the default settings:
 
 {{< command >}}
 $ domain=$(awslocal cloudfront create-distribution \
@@ -45,15 +51,22 @@ If you wish to use CloudFront on system host, ensure your local DNS setup is cor
 Refer to the section on [System DNS configuration]({{< ref "dns-server#system-dns-configuration" >}}) for details.
 {{< /callout >}}
 
-In the example provided above, be aware that the final command (`curl https://$domain/hello.txt`) might encounter a temporary failure accompanied by a warning message `Could not resolve host`. This can occur because different operating systems adopt diverse DNS caching strategies, causing a delay in the availability of the CloudFront distribution's DNS name (e.g., `abc123.cloudfront.net`) within the system. Typically, after a few retries, the command should succeed. It's worth noting that similar behavior can be observed in the actual AWS environment, where CloudFront DNS names may take up to 10-15 minutes to propagate across the network.
+In the example provided above, be aware that the final command (`curl https://$domain/hello.txt`) might encounter a temporary failure accompanied by a warning message `Could not resolve host`.
+This can occur because different operating systems adopt diverse DNS caching strategies, causing a delay in the availability of the CloudFront distribution's DNS name (e.g., `abc123.cloudfront.net`) within the system.
+Typically, after a few retries, the command should succeed.
+It's worth noting that similar behavior can be observed in the actual AWS environment, where CloudFront DNS names may take up to 10-15 minutes to propagate across the network.
 
 ## Using custom URLs
 
 LocalStack Pro supports using an alternate domain name, also referred to as a `CNAME` or custom domain name, to access your applications and file artifacts instead of relying on the domain name generated by CloudFront for your distribution.
 
-To set up the custom domain name, you must configure it in your local DNS server. Once that is done, you can designate the desired domain name as an alias for the target distribution. To achieve this, you'll need to provide the `Aliases` field in the `--distribution-config` option when creating or updating a distribution. The format of this structure is similar to the one used in [AWS CloudFront options](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html#options).
+To set up the custom domain name, you must configure it in your local DNS server.
+Once that is done, you can designate the desired domain name as an alias for the target distribution.
+To achieve this, you'll need to provide the `Aliases` field in the `--distribution-config` option when creating or updating a distribution.
+The format of this structure is similar to the one used in [AWS CloudFront options](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html#options).
 
-In the given example, two domains are specified as `Aliases` for a distribution. Please note that a complete configuration would entail additional values relevant to the distribution, which have been omitted here for brevity.
+In the given example, two domains are specified as `Aliases` for a distribution.
+Please note that a complete configuration would entail additional values relevant to the distribution, which have been omitted here for brevity.
 
 {{< command >}}
 --distribution-config {...'Aliases':'{'Quantity':2, 'Items': ['custom.domain.one', 'customDomain.two']}'...}
@@ -61,7 +74,8 @@ In the given example, two domains are specified as `Aliases` for a distribution.
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for CloudFront, which allows you to view and manage your CloudFront distributions. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **CloudFront** under the **Analytics** section.
+The LocalStack Web Application provides a Resource Browser for CloudFront, which allows you to view and manage your CloudFront distributions.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **CloudFront** under the **Analytics** section.
 
 <img src="cloudfront-resource-browser.png" alt="CloudFront Resource Browser" title="CloudFront Resource Browser" width="900" />
 <br>
