@@ -7,9 +7,7 @@ hide_readingtime: true
 ---
 
 ## Coverage Overview
-
 {{< localstack_coverage_table service="codecommit" >}}
 
 ## Testing Details
-
 {{< localstack_coverage_details service="codecommit" >}}
