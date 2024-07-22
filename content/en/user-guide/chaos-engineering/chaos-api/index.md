@@ -26,7 +26,6 @@ Chaos API is available as part of the LocalStack Enterprise plan.
 If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
 {{< /alert >}}
 
-
 ## Prerequisites
 
 The prerequisites for this guide are:
@@ -34,7 +33,6 @@ The prerequisites for this guide are:
 - LocalStack Pro with [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) & [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 - [Python](https://www.python.org/downloads/)
-
 
 ## Configuration
 
@@ -88,7 +86,6 @@ This endpoint allows the following operations:
 - `GET`: Get current configuration
 - `POST`: Add new configuration
 
-
 ## Examples
 
 To cause faults, make a POST request as follows:
@@ -114,7 +111,6 @@ $ curl --location --request POST 'http://localhost.localstack.cloud:4566/_locals
 
 In this example, S3 is affected in `us-east-1` and `ap-south-1,` and Lambda is affected in all regions.
 All calls to these services in these regions will return a 503 Service Unavailable error.
-
 
 To see this in action, try to create an S3 bucket in `us-east-1`:
 
@@ -180,7 +176,6 @@ $ curl --location --request DELETE 'http://localhost.localstack.cloud:4566/_loca
 {{</ command >}}
 
 The rule to be removed must be exactly the same as in the existing configuration.
-
 
 ## Comparison with Fault Injection Service
 

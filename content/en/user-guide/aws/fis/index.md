@@ -242,12 +242,17 @@ The following actions are deprecated and marked for removal:
 - **`localstack:generic:api-error`**: Raise a custom HTTP error.
     This action accepts the following parameters.
     Please migrate to the [Chaos API]({{< ref "chaos-api" >}}) which supports this capability and more.
-    - `region`: The region name where faults will be introduced, e.g. `us-west-1`. Default: region of the experiment
-    - `service`: The service name to limit faults to, e.g. `kms`. Default: all services
-    - `operation`: The operation name for the specified service to limit faults to, e.g. `ListKeys`
-    - `percentage`: The percentage of API calls to fail among matching calls. Default: 100
-    - `exception`: The name of the exception to raise for affected API calls. Default: `InternalError`
-    - `errorCode`: The HTTP error code to return for impacted API calls. Default: 500
+  - `region`: The region name where faults will be introduced, e.g. `us-west-1`.
+      Default: region of the experiment
+  - `service`: The service name to limit faults to, e.g. `kms`.
+      Default: all services
+  - `operation`: The operation name for the specified service to limit faults to, e.g. `ListKeys`
+  - `percentage`: The percentage of API calls to fail among matching calls.
+      Default: 100
+  - `exception`: The name of the exception to raise for affected API calls.
+      Default: `InternalError`
+  - `errorCode`: The HTTP error code to return for impacted API calls.
+      Default: 500
 - **`localstack:kms:inject-api-internal-error`**: Special case of the previous action which injects an InternalError for KMS operations.
 - **`localstack:log-debug`**: Prints a debug message in the LocalStack logs when experiment is started and stopped.
 - **`localstack:generic:latency`**: Introduces a latency in the network call.

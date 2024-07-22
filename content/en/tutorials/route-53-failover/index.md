@@ -77,8 +77,8 @@ We'll focus on this region to examine the existing resilience mechanisms.
 
 {{< figure src="route53-failover-2.png" width="800">}}
 
--   The primary API Gateway includes a health check endpoint that returns a 200 HTTP status code, serving as a basic check for its availability.
--   Data synchronization across regions can be achieved with AWS-native tools like DynamoDB Streams and AWS Lambda.
+- The primary API Gateway includes a health check endpoint that returns a 200 HTTP status code, serving as a basic check for its availability.
+- Data synchronization across regions can be achieved with AWS-native tools like DynamoDB Streams and AWS Lambda.
     Here, any changes to the primary table trigger a Lambda function, replicating these changes to a secondary table.
     This configuration is essential for high availability and disaster recovery.
 

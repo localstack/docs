@@ -76,7 +76,8 @@ $ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/
     "id": "prod-2004",
     "name": "Ultimate Gadget",
     "price": "49.99",
-    "description": "The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry. Compact, powerful, and loaded with features."
+    "description": "The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry.
+Compact, powerful, and loaded with features."
 }'
 <disable-copy>
 Product added/updated successfully.
@@ -126,10 +127,12 @@ $ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/
     "id": "prod-1003",
     "name": "Super Widget",
     "price": "29.99",
-    "description": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
+    "description": "A versatile widget that can be used for a variety of purposes.
+Durable, reliable, and affordable."
 }'
 <disable-copy>
-A DynamoDB error occurred. Message sent to queue.
+A DynamoDB error occurred.
+Message sent to queue.
 </disable-copy>
 {{< /command >}}
 
@@ -167,7 +170,8 @@ $ awslocal dynamodb scan --table-name Products
             "S": "Super Widget"
         },
         "description": {
-            "S": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
+            "S": "A versatile widget that can be used for a variety of purposes.
+Durable, reliable, and affordable."
         },
         "id": {
             "S": "prod-1003"
@@ -181,7 +185,8 @@ $ awslocal dynamodb scan --table-name Products
             "S": "Ultimate Gadget"
         },
         "description": {
-            "S": "The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry. Compact, powerful, and loaded with features."
+            "S": "The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry.
+Compact, powerful, and loaded with features."
         },
         "id": {
         "S": "prod-2004"
@@ -221,7 +226,8 @@ $ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/
     "id": "prod-1088",
     "name": "Super Widget",
     "price": "29.99",
-    "description": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
+    "description": "A versatile widget that can be used for a variety of purposes.
+Durable, reliable, and affordable."
 }'
 <disable-copy>
 An error occurred (InternalError) when calling the GetResources operation (reached max retries: 4)

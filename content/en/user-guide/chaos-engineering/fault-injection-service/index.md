@@ -143,25 +143,29 @@ $ awslocal dynamodb get-item --table-name Students --key '{"id": {"S": "1216"}}'
 
 Some of the most important concepts associated with a FIS experiment are:
 
-**1. Experiment Templates**: Experiment templates define the actions, targets, and any stop conditions for your experiment.
+**1.
+Experiment Templates**: Experiment templates define the actions, targets, and any stop conditions for your experiment.
 They serve as blueprints for conducting fault injection experiments, allowing you to specify what resources are targeted, what faults are injected, and under what conditions the experiment should automatically stop.
 
-**2. Actions**: Actions are the specific fault injection operations that the experiment performs on the target resources.
+**2.
+Actions**: Actions are the specific fault injection operations that the experiment performs on the target resources.
 These can be injecting latency or throttling to API requests, completely blocking access to instances, etc.
 Actions define the type of fault, parameters for the fault injection, and the targets affected.
 
-**3. Targets**: Targets are the AWS resources on which the experiment actions will be applied.
+**3.
+Targets**: Targets are the AWS resources on which the experiment actions will be applied.
 To make things even more fine-grained, a specific operation of the service can be targeted.
 
 **4.
 Stop Conditions**: Stop conditions are criteria that, when met, will automatically stop the experiment.
 
-**5. IAM Roles and Permissions**: To run experiments, AWS FIS requires specific IAM roles and permissions.
+**5.
+IAM Roles and Permissions**: To run experiments, AWS FIS requires specific IAM roles and permissions.
 These are necessary for AWS FIS to perform actions on your behalf, like injecting faults into your resources.
 
-**6. Experiment Execution**: When you start an experiment, AWS FIS executes the actions defined in the experiment template against the specified targets, adhering to any defined stop conditions.
+**6.
+Experiment Execution**: When you start an experiment, AWS FIS executes the actions defined in the experiment template against the specified targets, adhering to any defined stop conditions.
 The execution process is logged, and detailed information about the experiment's progress and outcome is provided.
-
 
 ## Examples
 
@@ -320,14 +324,12 @@ Finally, the experiment can be stopped using the experiment's ID with the follow
 awslocal fis stop-experiment --id 1a01327a-79d5-4202-8132-e56e55c9391b
 ```
 
-
 ### Region Unavailability
 
 {{< callout "warning" >}}
 The `localstack:generic:api-error` action is deprecated and marked for removal.
 Please use the [Chaos API]({{< ref "chaos-api" >}}) to achieve the same effect.
 {{< /callout >}}
-
 
 This sort of experiment involves disabling entire regions to simulate regional outages and failovers.
 Let's see what that would look like, in a separate file, `regional-experiment.json`:
@@ -518,7 +520,6 @@ awslocal fis stop-experiment --id e49283c1-c2e0-492b-b69f-9fbd710bc1e3
 The `localstack:generic:latency` action is deprecated and marked for removal.
 Please use the [Chaos API]({{< ref "chaos-api" >}}) to achieve the same effect.
 {{< /callout >}}
-
 
 Let's now add some latency to our DynamoDB API calls.
 First the definition of a new experiment template in another file, `latency-experiment.json`:
