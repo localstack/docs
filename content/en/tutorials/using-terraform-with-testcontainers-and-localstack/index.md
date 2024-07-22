@@ -1,6 +1,6 @@
 ---
 title: "How To: Terraform Init Hooks for Automation & Production-Identical Test Environments"
-linkTitle: "How To: Leveraging Terraform Init Hooks for Production-Identical Test Environments"
+linkTitle: "How To: Terraform Init Hooks for Automation & Production-Identical Test Environments"
 weight: 14
 description: >
   This tutorial guides you through using LocalStack's new extension that supports Terraform configuration files as initialization hooks. You'll learn how to leverage this feature and integrate it with Testcontainers to simplify testing cycles, making the process more efficient and closely aligned with real AWS infrastructure practices.
