@@ -166,7 +166,7 @@ In addition, to programmatically trigger the worker at convenience, we provide t
 The response returns the number of deleted items:
 
 ```console
-curl -X DELETE localhost:4566//_aws/dynamodb/expired
+curl -X DELETE localhost:4566/_aws/dynamodb/expired
 {"ExpiredItems": 3}
 ```
 
