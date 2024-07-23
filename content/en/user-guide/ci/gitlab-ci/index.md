@@ -220,3 +220,7 @@ Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 - to be able to separate steps into their own jobs one must preserve Localstack's state, since Gitlab is not preserving job related containers/services during the pipelines
 - to start up Localstack in Gitlab CI Docker tools are necessary
 - when Localstack run as a container, it's not accessible during the `after_script` phase
+
+## Examples
+
+- [End-to-End Testing in Gitlab CI with Testcontainers and LocalStack: Understanding Runners and Docker in Docker]({{< ref "tutorials/gitlab_ci_testcontainers/" >}}) - A readily configured demo project, that will walk you through the process of setting up end-to-end testing for a backend application using Testcontainers and LocalStack within GitLab CI.
