@@ -8,7 +8,7 @@ description: Create an Application Preview to deploy your application changes in
 ## Introduction
 
 Application Preview generates a preview environment from GitHub Pull Requests (PRs). 
-It allows temporary deployment of AWS or Snowflake powered applications on a LocalStack Ephemeral Instance to preview changes. 
+It allows temporary deployment of AWS powered applications on a LocalStack Ephemeral Instance to preview changes. 
 This feature is currently only available for GitHub repositories that use GitHub Actions.
 
 {{< callout >}}
