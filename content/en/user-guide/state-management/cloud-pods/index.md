@@ -460,7 +460,7 @@ Likewise, you can execute the reverse operation to load a Cloud Pod from `oras-r
 $ localstack pod load my-pod oras-remote
 {{< / command >}}
 
-## End-to-End Encryption
+## End-to-End Encryption (Enterprise)
 
 Cloud Pods artifacts are stored in S3 buckets when using the LocalStack platform as the storage remote.
 By default, Amazon S3 encrypts all objects before saving them on disks, while the opposite operation happens at download time.
