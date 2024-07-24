@@ -198,3 +198,20 @@ $ tree -L 4
 └── tmp
     └── state
 ```
+
+## Troubleshooting
+
+### Fixing `"ModuleNotFoundError: No module named 'flask'"`
+
+After a recent update in our packaging, you may see this error in your logs when starting LocalStack with an Extension:
+
+```bash
+ModuleNotFoundError: No module named 'flask'
+```
+
+To resolve this, follow these steps:
+
+* Clear the directory mounted to the LocalStack container at `/var/lib/localstack`.
+* Pull the `latest` image of LocalStack (`localstack/localstack-pro:latest`).
+* Restart the LocalStack container.
+* Reinstall any extensions you were using, unless you have `EXTENSION_AUTO_INSTALL` enabled.
