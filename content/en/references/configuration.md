@@ -103,7 +103,7 @@ This section covers configuration options that are specific to certain AWS servi
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `PROVIDER_OVERRIDE_CLOUDWATCH` | `v2` | Use the new CloudWatch provider. |
+| `PROVIDER_OVERRIDE_CLOUDWATCH` | `v1` | Use the old CloudWatch provider. |
 
 ### DocumentDB
 
