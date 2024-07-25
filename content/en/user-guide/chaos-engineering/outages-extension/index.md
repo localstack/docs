@@ -8,8 +8,8 @@ tags: ["Enterprise plan"]
 ## Introduction
 
 {{< callout "warning" >}}
-Outages Extension is no longer supported.
-Please migrate to the [Chaos API]({{< ref "chaos-api" >}}).
+Outages Extension has been deprecated.
+It is recommended to migrate to the [Chaos API]({{< ref "chaos-api" >}}).
 {{< /callout >}}
 
 The [LocalStack Outages Extension](https://pypi.org/project/localstack-extension-outages/) allows you to mimic outages across any AWS region or service.

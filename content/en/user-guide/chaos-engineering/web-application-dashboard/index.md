@@ -9,7 +9,7 @@ tags: ["Enterprise plan"]
 
 The Chaos Engineering dashboard in LocalStack offers streamlined testing for cloud applications, enabling you to simulate server errors, service outages, regional disruptions, and network latency with ease, ensuring your app is ready for real-world challenges.
 
-You can find this feature in the LocalStack web app by navigating to [app.localstack.cloud/chaos-engineering](https://app.localstack.cloud/chaos-engineering).
+You can find this feature in the LocalStack Web Application by navigating to [**app.localstack.cloud/chaos-engineering**](https://app.localstack.cloud/chaos-engineering).
 
 ## FIS Dashboard
 
