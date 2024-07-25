@@ -11,7 +11,8 @@ LocalStack Chaos API allows you to mimic outages across any AWS region or servic
 Intentionally triggering service outages and monitoring the system's response in situations where the infrastructure is compromised offers a powerful way to test.
 This strategy helps gauge the effectiveness of the system's deployment procedures and its resilience against infrastructure disruptions, which is a key element of chaos engineering.
 
-You can use LocalStack Chaos API to cause API failures for following or any combination thereof:
+You can use LocalStack Chaos API to cause API failures for any combination of the following:
+
 - Service
 - Region
 - Operation
