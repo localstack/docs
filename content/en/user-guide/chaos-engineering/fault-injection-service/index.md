@@ -1,53 +1,51 @@
 ---
-title: "Using the Fault Injection Service"
-linkTitle: "Using the Fault Injection Service"
-weight: 1
-description: Use LocalStack Outages Extension to mimic service outages by testing your infrastructure's ability to deploy robustly and recover from unexpected events.
-tags: ["Pro image"]
+title: "AWS Fault Injection Service"
+linkTitle: "AWS Fault Injection Service"
+description: Use Fault Injection Service to simulate faults in your infrastructure and test its fault tolerance
+tags: ["Enterprise plan"]
+aliases:
+    - /tutorials/fault-injection-service-experiments/
 ---
 
 ## Introduction
 
-The [AWS Fault Injection Service](https://aws.amazon.com/fis/) is a fully managed service designed to help you improve
-the resilience of your applications by simulating
-real-world outages and operational issues.
-This service allows you to conduct controlled experiments on your AWS
-infrastructure, injecting
-faults and observing how your system responds under various conditions.
-By using the Fault Injection Service, you can
-identify weaknesses,
-test recovery procedures, and ensure that your applications can withstand unexpected disruptions.
-This proactive
-approach to reliability
-engineering enables you to enhance system robustness, minimize downtime, and maintain a high level of service
-availability for your users.
+The [Fault Injection Service](https://aws.amazon.com/fis/) is a fully managed service by AWS designed to help you improve the resilience of your applications by simulating real-world outages and operational issues.
+This service allows you to conduct controlled experiments on your AWS infrastructure, injecting faults and observing how your system responds under various conditions.
 
-To see the FIS service in action within a more complex application stack, please refer to the [Chaos Engineering Tutorials]({{< ref "tutorials" >}}).
+By using the Fault Injection Service, you can identify weaknesses, test recovery procedures, and ensure that your applications can withstand unexpected disruptions.
+This proactive approach to reliability engineering enables you to enhance system robustness, minimize downtime, and maintain a high level of service availability for your users.
 
-### Prerequisites
+To see the FIS in action within a more complex application stack, please refer to the [Chaos Engineering Tutorials]({{< ref "tutorials" >}}).
 
-The general prerequisites for this guide are:
+{{< alert title="Note">}}
+Fault Injection Service emulation is available as part of the LocalStack Enterprise plan.
+If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
+{{< /alert >}}
 
-- LocalStack Pro
-  with [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) & [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
-- [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with
-  the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+## Prerequisites
+
+The prerequisites for this guide are:
+
+- LocalStack Pro with [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) & [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
+- [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 
-Ensure to set your Auth Token as an environment variable before beginning:
+Ensure that you set the Auth Token as an environment variable before beginning:
 
 {{< command >}}
 $ LOCALSTACK_AUTH_TOKEN=<YOUR_LOCALSTACK_AUTH_TOKEN>
 $ localstack start
 {{< /command >}}
 
-### The Setup
+## Getting Started
 
-This guide is created with users who are new to FIS in mind, and assumes basic knowledge of the AWS CLI and
-our `awslocal` wrapper script.
+{{< callout "tip" >}}
+For more information on LocalStack FIS, please refer to the [FIS service docs]({{< ref "user-guide/aws/fis" >}}).
+{{< /callout >}}
 
-The following demo will depict constructing various FIS experiments designed to trigger different types of failures in a
-DynamoDB service.
+This guide is created with users who are new to FIS in mind, and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
+
+The following demo will depict constructing various FIS experiments designed to trigger different types of failures in a DynamoDB service.
 
 Let's create a simple DynamoDB table called `Students` in the `us-east-1` region.
 
@@ -116,7 +114,7 @@ $ awslocal dynamodb put-item --table-name Students --region us-east-1 --item '{
                                       }'
 {{< /command >}}
 
-And then we can look up one of the students by ID, also using the AWS local CLI:
+And then we can look up one of the students by ID, also using the awslocal CLI:
 
 {{< command >}}
 $ awslocal dynamodb get-item --table-name Students --key '{"id": {"S": "1216"}}'
@@ -143,49 +141,47 @@ $ awslocal dynamodb get-item --table-name Students --key '{"id": {"S": "1216"}}'
 </disable-copy>
 {{< /command >}}
 
-### Key concepts of FIS
+## Key concepts of FIS
 
-Some of the most important concepts associated with a FIS experiment, that we'll see in the following, are:
+Some of the most important concepts associated with a FIS experiment are:
 
 **1.
 Experiment Templates**: Experiment templates define the actions, targets, and any stop conditions for your experiment.
-They serve as
-blueprints for conducting fault injection experiments, allowing you to specify what resources are targeted, what faults are injected,
-and under what conditions the experiment should automatically stop.
+They serve as blueprints for conducting fault injection experiments, allowing you to specify what resources are targeted, what faults are injected, and under what conditions the experiment should automatically stop.
 
 **2.
 Actions**: Actions are the specific fault injection operations that the experiment performs on the target resources.
-These can be
-injecting latency or throttling to API requests, completely blocking access to instances, etc. Actions define the type of fault, parameters for
-the fault injection, and the targets affected.
+These can be injecting latency or throttling to API requests, completely blocking access to instances, etc.
+Actions define the type of fault, parameters for the fault injection, and the targets affected.
 
 **3.
 Targets**: Targets are the AWS resources on which the experiment actions will be applied.
-To make things even more fine-grained, a specific operation
-of the service can be targeted.
+To make things even more fine-grained, a specific operation of the service can be targeted.
 
 **4.
 Stop Conditions**: Stop conditions are criteria that, when met, will automatically stop the experiment.
 
 **5.
 IAM Roles and Permissions**: To run experiments, AWS FIS requires specific IAM roles and permissions.
-These are necessary for AWS FIS to
-perform actions on your behalf, like injecting faults into your resources.
+These are necessary for AWS FIS to perform actions on your behalf, like injecting faults into your resources.
 
 **6.
-Experiment Execution**: When you start an experiment, AWS FIS executes the actions defined in the experiment template against the specified targets,
-adhering to any defined stop conditions.
-The execution process is logged, and detailed information about the experiment's progress and outcome is
-provided.
+Experiment Execution**: When you start an experiment, AWS FIS executes the actions defined in the experiment template against the specified targets, adhering to any defined stop conditions.
+The execution process is logged, and detailed information about the experiment's progress and outcome is provided.
 
-### Getting started with FIS
+## Examples
 
-#### Service Unavailability
+### Service Unavailability
+
+{{< callout "warning" >}}
+The `localstack:generic:api-error` action is deprecated and marked for removal.
+Please use the [Chaos API]({{< ref "chaos-api" >}}) to achieve the same effect.
+{{< /callout >}}
 
 In a file called `dynamodb-experiment.json` let's define a FIS experiment that causes all calls to the `GetItem` API of the DynamoDB service to return a 503 `Service Unavailable` response.
 This failure will happen 100% of the times the method is called.
 
-```bash
+```json
 {
         "actions": {
                 "Test disruption": {
@@ -296,7 +292,7 @@ An error occurred (DynamoDbException) when calling the GetItem operation (reache
 
 The logs now show several attempts of performing the `GetItem` operation, before returning the error message:
 
-```bash
+```text
 2024-03-20T15:54:16.630  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS dynamodb.GetItem => 500 (DynamoDbException)
 2024-03-20T15:54:16.707  INFO --- [   asgi_gw_1] localstack.request.aws     : AWS dynamodb.GetItem => 500 (DynamoDbException)
 2024-03-20T15:54:16.825  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS dynamodb.GetItem => 500 (DynamoDbException)
@@ -330,13 +326,17 @@ Finally, the experiment can be stopped using the experiment's ID with the follow
 awslocal fis stop-experiment --id 1a01327a-79d5-4202-8132-e56e55c9391b
 ```
 
-#### Region Unavailability
+### Region Unavailability
+
+{{< callout "warning" >}}
+The `localstack:generic:api-error` action is deprecated and marked for removal.
+Please use the [Chaos API]({{< ref "chaos-api" >}}) to achieve the same effect.
+{{< /callout >}}
 
 This sort of experiment involves disabling entire regions to simulate regional outages and failovers.
-Let's see what that would look like,
-in a separate file, `regional-experiment.json`:
+Let's see what that would look like, in a separate file, `regional-experiment.json`:
 
-```bash
+```json
 {
   "actions": {
     "regionUnavailable-us-east-1": {
@@ -516,12 +516,17 @@ Just as with the earlier experiment, this one should be stopped by running the f
 awslocal fis stop-experiment --id e49283c1-c2e0-492b-b69f-9fbd710bc1e3
 ```
 
-#### Service Latency
+### Service Latency
+
+{{< callout "warning" >}}
+The `localstack:generic:latency` action is deprecated and marked for removal.
+Please use the [Chaos API]({{< ref "chaos-api" >}}) to achieve the same effect.
+{{< /callout >}}
 
 Let's now add some latency to our DynamoDB API calls.
 First the definition of a new experiment template in another file, `latency-experiment.json`:
 
-```bash
+```json
 {
   "actions": {
     "latency": {
@@ -596,10 +601,8 @@ $ awslocal fis start-experiment --experiment-template-id 1f6e0ce8-57ed-4987-a7e5
 {{< /command >}}
 
 This FIS experiment introduces a delay of 5 seconds to all DynamoDB API calls within the `us-east-1` region.
-Tables located in the `eu-central-1` region,
-or any other service, remain unaffected.
-To extend the latency effect to a regional level, the specific service constraint can be omitted,
-thereby applying the latency to all resources within the selected region.
+Tables located in the `eu-central-1` region, or any other service, remain unaffected.
+To extend the latency effect to a regional level, the specific service constraint can be omitted, thereby applying the latency to all resources within the selected region.
 
 As always, remember to stop your experiment, so it does not cause unexpected issues down the line:
 
@@ -609,10 +612,9 @@ awslocal fis stop-experiment --id dd598567-56e6-4d00-9ef5-15c7e90e7851
 
 Remember to replace the IDs with your own corresponding values.
 
-#### Experiment overview
+### Experiment overview
 
-If you want to keep track of all your experiments and make sure nothing is running in the background to hinder any other work, you can get an overview by using
-the command:
+If you want to keep track of all your experiments and make sure nothing is running in the background to hinder any other work, you can get an overview by using the command:
 
 {{< command >}}
 $ awslocal fis list-experiments
@@ -655,5 +657,3 @@ $ awslocal fis list-experiments
 }
 </disable-copy>
 {{< /command >}}
-
-For extra information or limitations of the LocalStack FIS service, please refer to the dedicated service [documentation]({{< ref "user-guide/aws/fis" >}}).

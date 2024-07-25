@@ -1,12 +1,16 @@
 ---
 title: "Outages Extension"
 linkTitle: "Outages Extension"
-weight: 3 
 description: Use LocalStack Outages Extension to mimic service outages by testing your infrastructure's ability to deploy robustly and recover from unexpected events.
 tags: ["Enterprise plan"]
 ---
 
 ## Introduction
+
+{{< callout "warning" >}}
+Outages Extension has been deprecated.
+It is recommended to migrate to the [Chaos API]({{< ref "chaos-api" >}}).
+{{< /callout >}}
 
 The [LocalStack Outages Extension](https://pypi.org/project/localstack-extension-outages/) allows you to mimic outages across any AWS region or service.
 By integrating the Outages Extension using the [LocalStack Extension mechanism](https://docs.localstack.cloud/user-guide/extensions/), you can assess
@@ -15,11 +19,6 @@ Intentionally triggering service outages and monitoring the system's response in
 where the infrastructure is compromised offers a powerful way to test.
 This strategy helps gauge the effectiveness of the system's
 deployment procedures and its resilience against infrastructure disruptions, which is a key element of chaos engineering.
-
-{{< callout >}}
-Outages Extension is currently available as part of the **LocalStack Enterprise** plan.
-If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /callout >}}
 
 ### Prerequisites
 

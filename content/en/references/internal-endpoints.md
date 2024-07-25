@@ -18,13 +18,14 @@ The API path for the LocalStack internal resources is `/_localstack`.
 The following endpoints are available:
 
 | Endpoint | Description |
-| ---------------------------------| --------------------------------------------------------------------------- |
-| `/_localstack/health`| To check the available and running AWS services in LocalStack. You can use the endpoint to restart the LocalStack services.  |
-| `/_localstack/plugins` | Shows the [Plux plugins](https://github.com/localstack/localstack/blob/master/docs/localstack-concepts/README.md#plugins) information in LocalStack. |
-| `/_localstack/init`| Shows the initialization status after setting up [Init hooks](https://docs.localstack.cloud/references/init-hooks/). |
+| ------------------------------------ | --------------------------------------------------------------------------- |
+| `/_localstack/health`                | To check the available and running AWS services in LocalStack. You can use the endpoint to restart the LocalStack services.  |
+| `/_localstack/plugins`               | Shows the [Plux plugins](https://github.com/localstack/localstack/blob/master/docs/localstack-concepts/README.md#plugins) information in LocalStack. |
+| `/_localstack/init`                  | Shows the initialization status after setting up [Init hooks](https://docs.localstack.cloud/references/init-hooks/). |
 | `/_localstack/cloudformation/deploy` | Enables you to deploy CloudFormation templates locally through a web interface. |
-| `/_localstack/diagnose`| Reports extensive and sensitive data from LocalStack instance, enabled via the `DEBUG=1` configuration variable. |
+| `/_localstack/diagnose`              | Reports extensive and sensitive data from LocalStack instance, enabled via the `DEBUG=1` configuration variable. |
 | `/_localstack/config`                | Enables dynamic configuration updates at runtime, enabled via the `ENABLE_CONFIG_UPDATES` configuration variable.  |
+| `/_localstack/chaos`                 | [Chaos API]({{< ref "chaos-api" >}}) configuration endpoint |
 | `/_localstack/state/<service>/save`  | Get a snapshot of the given AWS service using the Persistence mechanism. |
 | `/_localstack/state/<service>/load`  | Load the most recent snapshot of the given service using the Persistence mechanism. |
 | `/_localstack/state/reset`           | Reset the state of the services using the Persistence mechanism. |
