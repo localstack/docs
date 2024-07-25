@@ -20,6 +20,8 @@ tags:
 - Chaos Engineering
 pro: true
 leadimage: "banner.png"
+aliases:
+    - /tutorials/simulating-outages-in-your-application-stack/
 ---
 
 ## Introduction
