@@ -426,7 +426,7 @@ You may also need to enable virtualization support at hardware level.
 This is often labelled as 'Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
 {{< /callout >}}
 
-LocalStack requires the Libvirt socket on the host to be mounted inside the container.
+If the Docker host and Libvirt host is the same, the Libvirt socket on the host to be mounted inside the LocalStack container.
 This can be done by including the volume mounts when the LocalStack container is started.
 If you are using the [Docker Compose template]({{< ref "installation#starting-localstack-with-docker-compose" >}}), include the following line in `services.localstack.volumes` list:
 
@@ -440,8 +440,10 @@ If you are using [Docker CLI]({{< ref "installation#starting-localstack-with-doc
 -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock
 ```
 
+If you are using a remote Libvirt hypervisor, you can set the [`EC2_HYPERVISOR_URI`]({{< ref "configuration#ec2" >}}) config option with a connection URI.
+
 The Libvirt VM manager currently does not have full support for persistence.
-Underlying virtual machines and volumes are not persisted, instead only their mock respresentations are.
+Underlying virtual machines and volumes are not persisted, only their mock respresentations are.
 
 ### AMIs
 
