@@ -2,7 +2,9 @@
 title: "AWS Fault Injection Service"
 linkTitle: "AWS Fault Injection Service"
 description: Use Fault Injection Service to simulate faults in your infrastructure and test its fault tolerance
-tags: ["Pro image"]
+tags: ["Enterprise plan"]
+aliases:
+    - /tutorials/fault-injection-service-experiments/
 ---
 
 ## Introduction
