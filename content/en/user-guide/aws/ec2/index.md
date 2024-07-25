@@ -426,7 +426,7 @@ You may also need to enable virtualization support at hardware level.
 This is often labelled as 'Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
 {{< /callout >}}
 
-If the Docker host and Libvirt host is the same, the Libvirt socket on the host to be mounted inside the LocalStack container.
+If the Docker host and Libvirt host is the same, the Libvirt socket on the host must be mounted inside the LocalStack container.
 This can be done by including the volume mounts when the LocalStack container is started.
 If you are using the [Docker Compose template]({{< ref "installation#starting-localstack-with-docker-compose" >}}), include the following line in `services.localstack.volumes` list:
 
