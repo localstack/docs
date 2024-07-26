@@ -265,7 +265,7 @@ The execution log is generated at `/var/log/cloud-init-output.log` in the contai
 ### Networking
 
 {{< callout "note" >}}
-Network access to EC2 instance is not possible on macOS.
+Network access from host to EC2 instance containers is not possible on macOS.
 This is because Docker Desktop on macOS does not expose the bridge network to the host system.
 See [Docker Desktop Known Limitations](https://docs.docker.com/desktop/networking/#known-limitations).
 {{< /callout >}}
@@ -544,6 +544,29 @@ You can then use a compatible VNC client (e.g. [TigerVNC](https://tigervnc.org/)
 
 Currently all instances are behind a NAT network.
 Instances can access the internet but are inaccessible from the host machine.
+
+It is possible to allow network access to the LocalStack container from within the virtualised instance.
+This is done by configuring the Docker daemon to use the KVM network.
+Use the following configuration at `/etc/docker/daemon.json` on the host machine:
+
+```json
+{
+  "bridge": "virbr0",
+  "iptables": false
+}
+```
+
+Then restart the Docker daemon:
+
+{{< command >}}
+$ sudo systemctl restart docker
+{{< /command >}}
+
+You can now start the LocalStack container, obtain its IP address and use it from the virtualised instance.
+
+{{< command >}}
+$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' localstack_main
+{{< /command >}}
 
 ### Elastic Block Stores
 
