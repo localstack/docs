@@ -7,6 +7,7 @@ tags: ["Enterprise plan"]
 aliases:
   - /user-guide/ci/ci-analytics/
   - /user-guide/web-application/ci-analytics/
+toc_hide: true
 ---
 
 ## Introduction
