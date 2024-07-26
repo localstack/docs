@@ -33,7 +33,7 @@ spec:
   debug: trace
 
   authToken: "<my-auth-token>" # Set your LocalStack auth token here
-  autoLoadPods: ["<my-cloudpod>"] # Set your Cloud Pods to automatically load them here
+  autoLoadPods: ["<my-cloudpod>"] # Set your Cloud Pods to automatically load them here (optional)
 
   dnsProvider: coredns
   dnsConfigName: coredns
