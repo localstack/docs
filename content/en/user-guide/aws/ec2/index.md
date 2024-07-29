@@ -265,7 +265,7 @@ The execution log is generated at `/var/log/cloud-init-output.log` in the contai
 ### Networking
 
 {{< callout "note" >}}
-Network access to EC2 instance is not possible on macOS.
+Network access from host to EC2 instance containers is not possible on macOS.
 This is because Docker Desktop on macOS does not expose the bridge network to the host system.
 See [Docker Desktop Known Limitations](https://docs.docker.com/desktop/networking/#known-limitations).
 {{< /callout >}}
@@ -426,7 +426,7 @@ You may also need to enable virtualization support at hardware level.
 This is often labelled as 'Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
 {{< /callout >}}
 
-LocalStack requires the Libvirt socket on the host to be mounted inside the container.
+If the Docker host and Libvirt host is the same, the Libvirt socket on the host must be mounted inside the LocalStack container.
 This can be done by including the volume mounts when the LocalStack container is started.
 If you are using the [Docker Compose template]({{< ref "installation#starting-localstack-with-docker-compose" >}}), include the following line in `services.localstack.volumes` list:
 
@@ -440,8 +440,10 @@ If you are using [Docker CLI]({{< ref "installation#starting-localstack-with-doc
 -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock
 ```
 
+If you are using a remote Libvirt hypervisor, you can set the [`EC2_HYPERVISOR_URI`]({{< ref "configuration#ec2" >}}) config option with a connection URI.
+
 The Libvirt VM manager currently does not have full support for persistence.
-Underlying virtual machines and volumes are not persisted, instead only their mock respresentations are.
+Underlying virtual machines and volumes are not persisted, only their mock respresentations are.
 
 ### AMIs
 
@@ -542,6 +544,29 @@ You can then use a compatible VNC client (e.g. [TigerVNC](https://tigervnc.org/)
 
 Currently all instances are behind a NAT network.
 Instances can access the internet but are inaccessible from the host machine.
+
+It is possible to allow network access to the LocalStack container from within the virtualised instance.
+This is done by configuring the Docker daemon to use the KVM network.
+Use the following configuration at `/etc/docker/daemon.json` on the host machine:
+
+```json
+{
+  "bridge": "virbr0",
+  "iptables": false
+}
+```
+
+Then restart the Docker daemon:
+
+{{< command >}}
+$ sudo systemctl restart docker
+{{< /command >}}
+
+You can now start the LocalStack container, obtain its IP address and use it from the virtualised instance.
+
+{{< command >}}
+$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' localstack_main
+{{< /command >}}
 
 ### Elastic Block Stores
 
