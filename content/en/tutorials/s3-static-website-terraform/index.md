@@ -392,5 +392,5 @@ You can use the [LocalStack App](https://app.localstack.cloud) to view the creat
 Using LocalStack, you can perform various operations using emulated S3 buckets and other AWS services without creating any real AWS resources.
 
 The code for this tutorial can be found in our [LocalStack Terraform samples over GitHub](https://github.com/localstack/localstack-terraform-samples/tree/master/s3-static-website).
-Please make sure to adjust the paths for the html files in `main.tf`.
+Please make sure to adjust the paths for the HTML files in `main.tf`.
 Further documentation for S3 is available on our [S3 documentation]({{<ref "user-guide/aws/s3" >}}).
