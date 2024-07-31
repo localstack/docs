@@ -198,7 +198,7 @@ $ awslocal apigateway create-deployment \
 {{< /command >}}
 
 Your API is now ready to be invoked.
-You can use `cURL` or any HTTP REST client to invoke the API endpoint:
+You can use [curl](https://curl.se/) or any HTTP REST client to invoke the API endpoint:
 
 {{< command >}}
 $ curl -X GET http://localhost:4566/restapis/<REST_API_ID>/test/_user_request_/test

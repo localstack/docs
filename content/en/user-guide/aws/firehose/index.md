@@ -125,7 +125,7 @@ $ awslocal firehose put-record \
   --record '{ "Data": "eyJ0YXJnZXQiOiAiSGVsbG8gd29ybGQifQ==" }'
 {{< / command >}}
 
-To review the entries in Elasticsearch, you can employ `cURL` for simplicity.
+To review the entries in Elasticsearch, you can employ [curl](https://curl.se/) for simplicity.
 Remember to replace the URL with the `Endpoint` field from the initial `create-elasticsearch-domain` operation.
 
 {{< command >}}

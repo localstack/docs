@@ -47,7 +47,7 @@ Additionally, we will demonstrate how to set up ELB endpoints to efficiently for
 - [Serverless framework](https://www.serverless.com/framework/docs/getting-started/)
 - [Node.js & `npm`](https://nodejs.org/en/download/)
 - [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
-- `cURL` & `jq`
+- [curl](https://curl.se/) and [jq](https://jqlang.github.io/jq/)
 
 ## Setup a Serverless project
 

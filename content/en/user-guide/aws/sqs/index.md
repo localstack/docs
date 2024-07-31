@@ -202,7 +202,7 @@ LocalStack extends support for the Query API.
 
 With LocalStack, you can conveniently test SQS Query API calls without the need to sign or include `AUTHPARAMS` in your HTTP requests.
 
-For instance, you can use a basic `cURL` command to send a `SendMessage` command along with a MessageBody attribute:
+For instance, you can use a basic [curl](https://curl.se/) command to send a `SendMessage` command along with a MessageBody attribute:
 
 {{< command >}}
 $ curl "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/localstack-queue?Action=SendMessage&MessageBody=hello%2Fworld"
@@ -227,7 +227,7 @@ You will see the following output:
 Adding the `Accept: application/json` header will make the server return JSON:
 
 To receive JSON responses from the server, include the `Accept: application/json` header in your request.
-Here's an example using the `cURL` command:
+Here's an example using the [curl](https://curl.se/) command:
 
 {{< command >}}
 $ curl -H "Accept: application/json" "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/localstack-queue?Action=SendMessage&MessageBody=hello%2Fworld"
@@ -373,7 +373,7 @@ You can call the `/_aws/sqs/messages` endpoint in two different ways:
 You can directly call the endpoint to obtain the raw AWS XML response.
 
 {{< tabpane >}}
-{{< tab header="cURL" lang="bash" >}}
+{{< tab header="curl" lang="bash" >}}
 curl "http://localhost.localstack.cloud:4566/_aws/sqs/messages?QueueUrl=http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue"
 {{< /tab >}}
 {{< tab header="Python Requests" lang="python" >}}
@@ -449,7 +449,7 @@ An example response is shown below:
 You can include the `Accept: application/json` header in your request if you prefer a JSON response.
 
 {{< tabpane >}}
-{{< tab header="cURL" lang="bash" >}}
+{{< tab header="curl" lang="bash" >}}
 curl -H "Accept: application/json" \
     "http://localhost.localstack.cloud:4566/_aws/sqs/messages?QueueUrl=http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue"
 {{< /tab >}}
@@ -583,7 +583,7 @@ An example response is shown below:
 The developer endpoint also supports showing invisible and delayed messages via the query arguments `ShowInvisible` and `ShowDelayed`.
 
 {{< tabpane >}}
-{{< tab header="cURL" lang="bash" >}}
+{{< tab header="curl" lang="bash" >}}
 curl -H "Accept: application/json" \
     "http://localhost.localstack.cloud:4566/_aws/sqs/messages?ShowInvisible=true&ShowDelayed=true&QueueUrl=http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue
 {{< /tab >}}

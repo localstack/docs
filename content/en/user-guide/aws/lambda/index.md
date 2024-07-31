@@ -126,7 +126,7 @@ The URL will be in the format `http://<XXXXXXXX>.lambda-url.us-east-1.localhost.
 
 ### Trigger the Lambda function URL
 
-You can now trigger the Lambda function by sending a HTTP POST request to the URL using `cURL` or your REST HTTP client:
+You can now trigger the Lambda function by sending a HTTP POST request to the URL using [curl](https://curl.se/) or your REST HTTP client:
 
 {{< command >}}
 $ curl -X POST \

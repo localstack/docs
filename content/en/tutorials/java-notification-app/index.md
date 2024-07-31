@@ -603,7 +603,7 @@ The output of the command should look like this:
 }
 ```
 
-You can now use cURL to send a request to the `/list` endpoint for the queued messages:
+You can now use [curl](https://curl.se/) to send a request to the `/list` endpoint for the queued messages:
 
 {{< command >}}
 $ curl -s localhost:8080/list | jq .
