@@ -12,7 +12,7 @@ services:
 - sns
 - clf
 platform:
-- java
+- Java
 deployment:
 - aws-java-sdk
 - CloudFormation
@@ -29,11 +29,18 @@ leadimage: "java-notification-app-featured-image.png"
 ---
 
 Java is a popular platform for cloud applications that use Amazon Web Services.
-With the AWS Java SDK, Java developers can build applications that work with various AWS services, like Simple Email Service (SES), Simple Queue Service (SQS), Simple Notification Service (SNS), and more. Simple Email Service (SES) is a cloud-based email-sending service that enables developers to integrate email functionality into their applications running on AWS. SES allows developers to work without an on-prem Simple Mail Transfer Protocol (SMTP) system and send bulk emails to many recipients.
+With the AWS Java SDK, Java developers can build applications that work with various AWS services, like Simple Email Service (SES), Simple Queue Service (SQS), Simple Notification Service (SNS), and more.
+Simple Email Service (SES) is a cloud-based email-sending service that enables developers to integrate email functionality into their applications running on AWS.
+SES allows developers to work without an on-prem Simple Mail Transfer Protocol (SMTP) system and send bulk emails to many recipients.
 
-[LocalStack Pro](https://app.localstack.cloud/) supports SES along with a simple user interface to inspect email accounts and sent messages. LocalStack also supports sending SES messages through an actual SMTP email server. We will use SQS and SNS to process the emails. We would further employ a CloudFormation stack to configure the infrastructure and configure SNS & SQS subscriptions. AWS Java SDK would be employed to receive these SQS messages and to send these messages through SES further.
+[LocalStack Pro](https://app.localstack.cloud/) supports SES along with a simple user interface to inspect email accounts and sent messages.
+LocalStack also supports sending SES messages through an actual SMTP email server.
+We will use SQS and SNS to process the emails.
+We would further employ a CloudFormation stack to configure the infrastructure and configure SNS & SQS subscriptions.
+AWS Java SDK would be employed to receive these SQS messages and to send these messages through SES further.
 
-In this tutorial, we will build a Java Spring Boot application that uses locally emulated AWS infrastructure on LocalStack provisioned by CloudFormation, and that uses the Java AWS SDK to send SES, SQS, and SNS messages. We will further use [MailHog](https://github.com/mailhog/MailHog), a local SMTP server, to inspect the emails sent through SES via an intuitive user interface.
+In this tutorial, we will build a Java Spring Boot application that uses locally emulated AWS infrastructure on LocalStack provisioned by CloudFormation, and that uses the Java AWS SDK to send SES, SQS, and SNS messages.
+We will further use [MailHog](https://github.com/mailhog/MailHog), a local SMTP server, to inspect the emails sent through SES via an intuitive user interface.
 
 ## Prerequisites
 
@@ -48,7 +55,10 @@ For this tutorial, you will need:
 
 ## Project setup
 
-To get started, we will set up our Spring Boot project by implementing a single module named `example` that will house our application code. The module will contain the code required to set up our AWS configuration, notification service, and message application. We will have another directory called `resources` that will house our CloudFormation stack required to set up an SNS topic and an SQS queue. The project directory would look like this:
+To get started, we will set up our Spring Boot project by implementing a single module named `example` that will house our application code.
+The module will contain the code required to set up our AWS configuration, notification service, and message application.
+We will have another directory called `resources` that will house our CloudFormation stack required to set up an SNS topic and an SQS queue.
+The project directory would look like this:
 
 ```bash
 ├── pom.xml
@@ -145,11 +155,15 @@ In our root POM configuration, we will add the following dependencies:
 </project>
 ```
 
-In the above POM file, we have added the AWS Java SDK dependencies for SES, SNS, SQS, and CloudFormation. We have also added the Spring Boot dependencies for our application. We can move on to the next step with the initial setup complete.
+In the above POM file, we have added the AWS Java SDK dependencies for SES, SNS, SQS, and CloudFormation.
+We have also added the Spring Boot dependencies for our application.
+We can move on to the next step with the initial setup complete.
 
 ## Setting up AWS configuration
 
-To get started, we will setup the AWS configuration, to be defined in `AwsConfiguration.java`, required for our Spring Boot application. We will create a configuration class to use the Spring Bean annotation to create two beans: `SesClient` and a `SqsClient`, to connect to the SES and SQS clients respectively. We will then create a bean to retrieve the `queueUrl` for the `email-notification-queue`:
+To get started, we will setup the AWS configuration, to be defined in `AwsConfiguration.java`, required for our Spring Boot application.
+We will create a configuration class to use the Spring Bean annotation to create two beans: `SesClient` and a `SqsClient`, to connect to the SES and SQS clients respectively.
+We will then create a bean to retrieve the `queueUrl` for the `email-notification-queue`:
 
 ```java
 package com.example;
@@ -203,7 +217,8 @@ public class AwsConfiguration {
 }
 ```
 
-In the above code, we have used the `@Autowired` annotation to autowrire the dependencies that are required for the application (`SqsClient` `SesClient`, and `notificationQueueUrl` in this case). Now that we have got the URL of the queue created in the previous step, we can move on to the next step.
+In the above code, we have used the `@Autowired` annotation to autowrire the dependencies that are required for the application (`SqsClient` `SesClient`, and `notificationQueueUrl` in this case).
+Now that we have got the URL of the queue created in the previous step, we can move on to the next step.
 
 {{< callout "note" >}}
 You can also use the pre-defined clients from the [localstack-utils](https://mvnrepository.com/artifact/cloud.localstack/localstack-utils) Maven project, as an alternative to creating the AWS SDK clients with endpoint overrides manually.
@@ -211,7 +226,8 @@ You can also use the pre-defined clients from the [localstack-utils](https://mvn
 
 ## Creating a Notification Service
 
-To get started with creating a Notification Service, we would need to create a `Notification` class to define the structure of the notification that we would be sending to the SQS queue. We will create a `Notification` class in the `Notification.java` file:
+To get started with creating a Notification Service, we would need to create a `Notification` class to define the structure of the notification that we would be sending to the SQS queue.
+We will create a `Notification` class in the `Notification.java` file:
 
 ```java
 package com.example;
@@ -247,7 +263,9 @@ public class Notification {
 }
 ```
 
-In the above code, we have defined three instance variables: `address`, `subject`, and `body`. We have also defined the getters and setters for the instance variables. Let's now create a `@Component` class to listen to a queue, receive and transform the notifications into emails, and send the emails transactionally:
+In the above code, we have defined three instance variables: `address`, `subject`, and `body`.
+We have also defined the getters and setters for the instance variables.
+Let's now create a `@Component` class to listen to a queue, receive and transform the notifications into emails, and send the emails transactionally:
 
 ```java
 package com.example;
@@ -480,7 +498,9 @@ You can now build the application using the following command:
 $ mvn clean install
 {{< / command >}}
 
-If the build is successful, you will notice a `BUILD SUCCESS` message. Now that we have the application ready, let us setup the infrastructure using CloudFormation. Create a new file in ``src/main/resources` called `email-infra.yml` and add the following content:
+If the build is successful, you will notice a `BUILD SUCCESS` message.
+Now that we have the application ready, let us setup the infrastructure using CloudFormation.
+Create a new file in ``src/main/resources` called `email-infra.yml` and add the following content:
 
 ```yaml
 AWSTemplateFormatVersion: 2010-09-09
@@ -502,11 +522,13 @@ Resources:
       TopicArn: !GetAtt EmailTopic.TopicArn
 ```
 
-In the above code, we have created a queue called `email-notification-queue` and a topic called `email-notifications`. We have also created a subscription between the queue and the topic, allowing any message published to the topic to be sent to the queue.
+In the above code, we have created a queue called `email-notification-queue` and a topic called `email-notifications`.
+We have also created a subscription between the queue and the topic, allowing any message published to the topic to be sent to the queue.
 
 ## Creating the infrastructure
 
-Now that the initial coding is done, we can give it a try. Let's start LocalStack using a custom `docker-compose` setup, which includes MailHog to capture the emails sent by SES:
+Now that the initial coding is done, we can give it a try.
+Let's start LocalStack using a custom `docker-compose` setup, which includes MailHog to capture the emails sent by SES:
 
 ```yaml
 version: "3.8"
@@ -534,7 +556,8 @@ services:
       - "8025:8025"
 ```
 
-The above `docker-compose` file will start LocalStack and pull the MailHog image to start the SMTP server (if it doesn't exist yet!) on port `8025`. You can start LocalStack using the following command:
+The above `docker-compose` file will start LocalStack and pull the MailHog image to start the SMTP server (if it doesn't exist yet!) on port `8025`.
+You can start LocalStack using the following command:
 
 {{< command >}}
 $ LOCALSTACK_AUTH_TOKEN=<your-auth-token> docker-compose up -d
@@ -548,7 +571,8 @@ $ awslocal cloudformation deploy \
     --stack-name email-infra
 {{< / command >}}
 
-With our infrastructure ready, we can now start the Spring Boot application. We will set dummy AWS access credentials as environment variables in the command:
+With our infrastructure ready, we can now start the Spring Boot application.
+We will set dummy AWS access credentials as environment variables in the command:
 
 {{< command >}}
 $ AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test mvn spring-boot:run
@@ -570,7 +594,8 @@ $ awslocal sns publish \
     --message '{"subject":"hello", "address": "alice@example.com", "body": "hello world"}'
 {{< / command >}}
 
-In the above command, we have published a message to the topic `email-notifications` with a generic message body. The output of the command should look like this:
+In the above command, we have published a message to the topic `email-notifications` with a generic message body.
+The output of the command should look like this:
 
 ```json
 {
@@ -648,4 +673,5 @@ In this tutorial, we have demonstrated, how you can:
 - Use CloudFormation to provision infrastructure for SNS & SQS subscriptions on LocalStack
 - Use the AWS Java SDK and Spring Boot to build an application that sends SQS and SES messages.
 
-Using [LocalStack Pro](https://app.localstack.cloud), you can use our Web user interface to view the email messages sent by SES. The code for this tutorial can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/java-notification-app).
+Using [LocalStack Pro](https://app.localstack.cloud), you can use our Web user interface to view the email messages sent by SES.
+The code for this tutorial can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/java-notification-app).

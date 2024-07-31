@@ -32,7 +32,6 @@ $s3 = new Aws\S3\S3Client([
 
 A full example can be found [in our samples repository](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/php).
 
-
 ## Resources
 
 * [localstack-aws-sdk-examples for PHP](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/php)

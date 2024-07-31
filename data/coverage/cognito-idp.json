@@ -573,8 +573,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -717,8 +717,8 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -846,7 +846,7 @@
       "ListIdentityProviders": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -1149,8 +1149,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -2932,6 +2932,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_saml_auth_flow",
+            "test": "test_saml_auth_flow",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_signup_with_email_phone_aliases",
             "test": "test_signup_with_email_phone_aliases",
             "response": "200",
@@ -4045,6 +4055,30 @@
       }
     },
     "CreateIdentityProvider": {
+      "AttributeMapping, IdpIdentifiers, ProviderDetails, ProviderName, ProviderType, UserPoolId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_identity_providers",
+            "test": "test_identity_providers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..IdentityProvider.ProviderDetails']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_oauth2_authorize_idp_provider",
+            "test": "test_oauth2_authorize_idp_provider",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
       "AttributeMapping, ProviderDetails, ProviderName, ProviderType, UserPoolId": {
         "ls_pro": [
           {
@@ -4071,16 +4105,6 @@
       },
       "ProviderDetails, ProviderName, ProviderType, UserPoolId": {
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_identity_providers",
-            "test": "test_identity_providers",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_user_pool_client_updates",
             "test": "test_user_pool_client_updates",
@@ -4783,6 +4807,20 @@
           }
         ]
       },
+      "LambdaConfig, PoolName, UserPoolTags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_saml_auth_flow",
+            "test": "test_saml_auth_flow",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
       "LambdaConfig, PoolName, UsernameAttributes": {
         "ls_pro": [
           {
@@ -5188,9 +5226,9 @@
             "test": "test_identity_providers",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..IdentityProvider.ProviderDetails']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -5246,6 +5284,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_mfa_sms_config",
             "test": "test_mfa_sms_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_oauth2_authorize_idp_provider",
+            "test": "test_oauth2_authorize_idp_provider",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5512,16 +5560,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_saml_auth_flow",
-            "test": "test_saml_auth_flow",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_user_pool_custom_id",
             "test": "test_user_pool_custom_id",
             "response": "200",
@@ -5545,6 +5583,16 @@
       },
       "PoolName, UsernameAttributes": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_authorize_redirects_to_login",
+            "test": "test_authorize_redirects_to_login",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..client_id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_create_admin_user_with_duplicate_email",
             "test": "test_create_admin_user_with_duplicate_email",
@@ -5924,6 +5972,16 @@
       "AllowedOAuthFlows, AllowedOAuthScopes, CallbackURLs, ClientName, ExplicitAuthFlows, UserPoolId": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_authorize_redirects_to_login",
+            "test": "test_authorize_redirects_to_login",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..client_id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_saml_auth_flow",
             "test": "test_saml_auth_flow",
             "response": "200",
@@ -6288,6 +6346,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_identity_providers",
+            "test": "test_identity_providers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..IdentityProvider.ProviderDetails']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_login_incorrect_password",
             "test": "test_login_incorrect_password",
             "response": "200",
@@ -6320,6 +6388,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_mfa_sms_config",
             "test": "test_mfa_sms_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_oauth2_authorize_idp_provider",
+            "test": "test_oauth2_authorize_idp_provider",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -6874,6 +6952,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_authorize_redirects_to_login",
+            "test": "test_authorize_redirects_to_login",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..client_id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_cognito_authorizer_scopes",
@@ -7482,6 +7570,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_authorize_redirects_to_login",
+            "test": "test_authorize_redirects_to_login",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..client_id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_change_password[user-{short_uid}@example.com]",
             "test": "test_change_password[user-{short_uid}@example.com]",
             "response": "200",
@@ -7616,9 +7714,9 @@
             "test": "test_identity_providers",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..IdentityProvider.ProviderDetails']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -7704,6 +7802,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_mfa_sms_config",
             "test": "test_mfa_sms_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_oauth2_authorize_idp_provider",
+            "test": "test_oauth2_authorize_idp_provider",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8524,6 +8632,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_authorize_redirects_to_login",
+            "test": "test_authorize_redirects_to_login",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..client_id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_cognito_authorizer_scopes",
             "test": "test_cognito_authorizer_scopes",
             "response": "200",
@@ -8604,9 +8722,9 @@
             "test": "test_identity_providers",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..IdentityProvider.ProviderDetails']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -8872,6 +8990,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_authorize_redirects_to_login",
+            "test": "test_authorize_redirects_to_login",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..client_id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_change_password[user-{short_uid}@example.com]",
             "test": "test_change_password[user-{short_uid}@example.com]",
             "response": "200",
@@ -8949,6 +9077,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_identity_providers",
+            "test": "test_identity_providers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..IdentityProvider.ProviderDetails']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -9034,6 +9172,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_mfa_sms_config",
             "test": "test_mfa_sms_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_oauth2_authorize_idp_provider",
+            "test": "test_oauth2_authorize_idp_provider",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -9712,14 +9860,14 @@
       "IdpIdentifier, UserPoolId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_saml_auth_flow",
-            "test": "test_saml_auth_flow",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_identity_providers",
+            "test": "test_identity_providers",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
+            "snapshot_skipped": "['$..IdentityProvider.ProviderDetails']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -9770,6 +9918,16 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_saml_auth_flow",
+            "test": "test_saml_auth_flow",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -10504,22 +10662,6 @@
         ]
       }
     },
-    "ListIdentityProviders": {
-      "UserPoolId": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_identity_providers",
-            "test": "test_identity_providers",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
     "ListResourceServers": {
       "UserPoolId": {
         "ls_pro": [
@@ -10581,16 +10723,6 @@
     "ListUserPools": {
       "MaxResults": {
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_authorize_redirects_to_login",
-            "test": "test_authorize_redirects_to_login",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_user_pools_and_clients",
             "test": "test_user_pools_and_clients",
@@ -11664,9 +11796,9 @@
             "test": "test_identity_providers",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..IdentityProvider.ProviderDetails']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]

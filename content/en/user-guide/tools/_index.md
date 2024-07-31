@@ -18,4 +18,5 @@ With LocalStack Cloud Developer Tools you can:
 * hot-swap your Lambda code changes instantly
 * debug Lambda executions directly from your IDE
 * inject LocalStack service endpoints automatically into your application
-* ... and much more!
+* ...
+  and much more!

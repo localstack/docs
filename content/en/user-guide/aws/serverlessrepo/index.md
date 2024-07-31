@@ -30,7 +30,7 @@ To create a sample SAM application using the `samlocal` CLI, execute the followi
 $ samlocal init --runtime python3.9
 {{< /command >}}
 
-This command downloads a sample SAM application template and generates a `template.yml` file in the current directory. 
+This command downloads a sample SAM application template and generates a `template.yml` file in the current directory.
 The template includes a Lambda function and an API Gateway endpoint that supports a `GET` operation.
 
 ### Package the SAM application

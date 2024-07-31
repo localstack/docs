@@ -7,18 +7,18 @@ description: Create an Application Preview to deploy your application changes in
 
 ## Introduction
 
-Application Preview allows you to generate an preview environment from GitHub Pull Request (PR) builds. You can use Application Preview to temporarily deploy your AWS-powered application to a LocalStack Ephemeral Instance and preview your application changes. Currently, the Application Preview are only supported for GitHub repositories using GitHub Actions.
+Application Preview generates a preview environment from GitHub Pull Requests (PRs).
+It allows temporary deployment of AWS powered applications on a LocalStack Ephemeral Instance to preview changes.
+This feature is currently only available for GitHub repositories that use GitHub Actions.
 
 {{< callout >}}
-Application Preview is currently available on invite-only preview.
-If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
+Application Preview is offered as a **preview** feature and under active development.
 {{< /callout >}}
 
 ## Getting started
 
-This guide is designed for users new to Application Preview and assumes basic knowledge of GitHub Actions. We will configure a CI pipeline that runs on pull requests using GitHub Actions.
-
-To get started with a ready-to-use template, you can fork the [`bref-localstack-sample`](https://github.com/localstack-samples/bref-localstack-sample) repository. The sample application deploys a serverless PHP application using Bref and the Serverless Framework.
+This guide is designed for users new to Application Preview and assumes basic knowledge of GitHub Actions.
+We will configure a CI pipeline that runs on pull requests using GitHub Actions.
 
 ### Prerequisites
 
@@ -27,82 +27,76 @@ To get started with a ready-to-use template, you can fork the [`bref-localstack-
 
 ### Create the Application Preview
 
-To create an Application Preview, you can use the [`LocalStack/setup-localstack/ephemeral/startup` action](https://github.com/localstack/setup-localstack).
+To create an Application Preview, use the [`LocalStack/setup-localstack` action](https://github.com/localstack/setup-localstack).
 
-The sample repository has been configured to use the workflow described above. For your custom repository, create a new file named `ci-pipeline.yml` in the `.github/workflows` directory. This file will contain the CI pipeline that runs on every pull request. This pipeline deploys the application to a LocalStack Ephemeral Instance.
+Create a file named `preview-pipeline.yml` in the `.github/workflows` directory of your custom repository.
+This file should contain the CI pipeline that activates on every pull request.
 
-The workflow file to create the Application Preview looks like this:
-
-```yaml
-name: Create PR Preview
-
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Deploy Preview
-        uses: LocalStack/setup-localstack@v0.2.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          localstack-api-key: ${{ secrets.LOCALSTACK_API_KEY }}
-          preview-cmd: |
-            # Add your custom deployment commands here. 
-            # Below is an example for the Bref Serverless application.
-            export AWS_DEFAULT_REGION=us-east-1
-            npm install --include=dev
-            npm run build
-            composer require bref/bref
-            mv .env.example .env
-            php artisan key:generate
-            npm run serverless -- deploy --stage dev
-
-            pip install awscli-local[ver1]
-            apiId=$(awslocal apigatewayv2 get-apis| jq -r '.Items[0].ApiId')
-            echo "Open URL: $AWS_ENDPOINT_URL/restapis/$apiId/dev/_user_request_/"
-```
-
-You will also need to configure the `LOCALSTACK_API_KEY` as a repository secret. You can find the API key on the [LocalStack Web Application](https://app.localstack.cloud/account/apikeys). The `GITHUB_TOKEN` is automatically created by GitHub and you can use it without any additional configuration.
-
-### Attach the Preview URL
-
-You can now attach the Preview URL to the pull request by using the [`LocalStack/setup-localstack/finish` action](https://github.com/localstack/setup-localstack).
-
-The sample repository has been configured to use the workflow described above. For your custom repository, create a new file named `ci-finalize.yml` in the `.github/workflows` directory. This file contains the CI pipeline that attaches a comment to the pull request with the Preview URL of the deployed application.
-
-The workflow file to attach the Preview URL looks like this:
+The pipeline deploys the application to a LocalStack Ephemeral Instance using a `deploy.sh` script or similar for full application deployment.
+A comment containg the preview link is automatically added to a Pull Request when created.
 
 ```yaml
-name: Finalize PR Preview
-
-on:
-  workflow_run:
-    workflows: ["Create PR Preview"]
-    types:
-      - completed
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Finalize PR comment
-        uses: LocalStack/setup-localstack/finish@v0.2.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          include-preview: true
+uses: LocalStack/setup-localstack@v0.2.2
+with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    state-backend: ephemeral
+    state-action: start
+    # Adding this option prevents Ephemeral Instance to be stopped after the `preview-cmd` run
+    skip-ephemeral-stop: 'true'
+    # Optional script/command to run
+    preview-cmd: deploy.sh
+env:
+    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
 ```
 
-### Open a Pull Request
+You must also set the `LOCALSTACK_API_KEY` as a repository secret, available from the [LocalStack Web Application](https://app.localstack.cloud/account/apikeys).
+The `GITHUB_TOKEN` is automatically generated by GitHub and requires no further configuration.
 
-Once your changes are in your repository, open a new pull request. GitHub will receive the request and trigger your workflow. You can track the workflow's status and logs in the **Checks** section of the pull request.
+### Stop the Application Preview
 
-After a short delay, the workflow will update the pull request with the URL of your preview environment. Just click on it to see the changes in real-time.
+To stop the Application Preview, you can configure the `state-action` to `stop`.
 
-Each time the branch is updated, the same workflow will automatically refresh the preview environment.
+```yaml
+uses: LocalStack/setup-localstack@v0.2.2
+with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    state-backend: ephemeral
+    state-action: stop
+env:
+    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+```
+
+## Configuration
+
+| Input                        | Description                                                               | Default      |
+|------------------------------|---------------------------------------------------------------------------|--------------|
+| `auto-load-pod`              | Specifies which Cloud Pod to load during LocalStack startup                     | `None`       |
+| `extension-auto-install`     | Defines which extensions to install during LocalStack startup for Application Previews | `None`       |
+| `lifetime`                   | Duration an Application Preview remains active                            | 30           |
+| `state-backend`              | Starts an Application Preview, used with `state-action` to manage state  | `ephemeral`  |
+| `state-action`               | Commands `start`/`stop` for managing Application Previews                |              |
+| `skip-ephemeral-stop`        | Option to bypass stopping the Application Preview                        | `false`      |
+| `preview-cmd`                | Commands to generate an Application Preview of the PR (supports `$AWS_ENDPOINT_URL`) |            |
+
+## Overriding the Application Preview URL
+
+The Application Preview URL is automatically generated and added as a comment to the Pull Request.
+However, if your application is served on a different URL, you can override the URL using the `LS_PREVIEW_URL`.
+It is beneficial if you are using a CloudFront distribution or a custom domain.
+
+Here is an example of how to override the URL:
+
+```yaml
+preview-cmd: |
+    make build;
+    make bootstrap;
+    make deploy;
+    make build-frontend;
+    make deploy-frontend;
+    distributionId=$(awslocal cloudfront list-distributions | jq -r '.DistributionList.Items[0].Id');
+    echo LS_PREVIEW_URL=$AWS_ENDPOINT_URL/cloudfront/$distributionId/ >> $GITHUB_ENV;
+```
+
+## Examples
+
+- [Creating ephemeral application previews with LocalStack and GitHub Actions](https://docs.localstack.cloud/tutorials/ephemeral-application-previews/) and the [example repository](https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway)

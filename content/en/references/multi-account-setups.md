@@ -48,7 +48,8 @@ $ AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 describe-key-pairs
 }
 {{< / command >}}
 
-If no explicit Account ID is set, LocalStack falls back to default. In this example, no resources are returned.
+If no explicit Account ID is set, LocalStack falls back to default.
+In this example, no resources are returned.
 
 {{< command >}}
 $ awslocal ec2 describe-key-pairs

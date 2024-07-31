@@ -22,7 +22,7 @@ For example, the AWS SDK client for Python called boto3 needs to be configured u
 client = boto3.client("lambda", endpoint_url=os.environ['AWS_ENDPOINT_URL'])
 ```
 
-For [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html#ss-endpoints-sdk-compat) 
+For [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html#ss-endpoints-sdk-compat)
 (including boto3 since [1.28.0](https://github.com/boto/boto3/blob/develop/CHANGELOG.rst#L892)),
 this configuration happens automatically without any custom code changes.
 
@@ -35,7 +35,7 @@ This section explains the most important configuration options summarized under 
 
 ### Disable transparent endpoint injection
 
-If you do not to use Transparent Endpoint Injection in LocalStack Pro, opt out using:
+If you do not wish to use Transparent Endpoint Injection in LocalStack Pro, opt out using:
 
 ```bash
 DISABLE_TRANSPARENT_ENDPOINT_INJECTION=1
@@ -51,7 +51,6 @@ Refer to the [DNS server configuration]({{< ref "dns-server#configuration" >}}) 
 {{< callout "warning" >}}
 Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack.
 {{< /callout >}}
-
 
 ## Self-signed certificates
 
@@ -85,7 +84,9 @@ For Node.js, you can set this environment variable in your application, to allow
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 ```
 
-If you are using the Java AWS SDK v2 in Lambda, you can opt in to automatically disable SSL validation using the configuration `LAMBDA_DISABLE_JAVA_SDK_V2_CERTIFICATE_VALIDATION=1`.
+If you are using the Java AWS SDK v2 in Lambda, LocalStack will per default use bytecode instrumentation to disable certificate validation, so the endpoint injection can work.
+You can opt out of this behavior by setting `LAMBDA_DISABLE_JAVA_SDK_V2_CERTIFICATE_VALIDATION=0`.
+Opting out will lead to certificate errors when using the AWS SDK without manually overriding the endpoint url to point to LocalStack.
 
 {{< callout "warning" >}}
 Disabling SSL validation may have undesired side effects and security implications.

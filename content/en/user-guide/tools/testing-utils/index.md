@@ -10,7 +10,8 @@ aliases:
 
 ## Introduction
 
-LocalStack provides a set of tools to simplify application testing on LocalStack. These tools are available for Python and JVM (Java and Kotlin) and can be used to integrate with various unit testing frameworks and simplify the setup of AWS clients with LocalStack.
+LocalStack provides a set of tools to simplify application testing on LocalStack.
+These tools are available for Python and JVM (Java and Kotlin) and can be used to integrate with various unit testing frameworks and simplify the setup of AWS clients with LocalStack.
 
 ## Python
 

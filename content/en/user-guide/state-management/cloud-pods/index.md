@@ -11,20 +11,25 @@ tags: ["Teams plan"]
 
 ## Introduction
 
-Cloud pods are persistent state snapshots of your LocalStack instance that can easily be stored, versioned, shared, and restored. Cloud Pods can be used for various purposes, such as:
+Cloud pods are persistent state snapshots of your LocalStack instance that can easily be stored, versioned, shared, and restored.
+Cloud Pods can be used for various purposes, such as:
 
--  Save and manage snapshots of active LocalStack instances.
--  Share state snapshots with your team to debug collectively.
--  Automate your testing pipelines by pre-seeding CI environments.
--  Create reproducible development and testing environments locally.
+- Save and manage snapshots of active LocalStack instances.
+- Share state snapshots with your team to debug collectively.
+- Automate your testing pipelines by pre-seeding CI environments.
+- Create reproducible development and testing environments locally.
 
 <img src="pods-ui.png" alt="Cloud Pods Web UI" title="Cloud Pods Web UI" width="800px" />
 
 ## Installation
 
-You can save and load the persistent state of Cloud Pods, you can use the [Cloud Pods command-line interface (CLI)]({{< ref "pods-cli" >}}). LocalStack provides a remote storage backend that can be used to store the state of your running application and share it with your team members. You can interact with the Cloud Pods over the storage backend via the LocalStack Web Application.
+You can save and load the persistent state of Cloud Pods, you can use the [Cloud Pods command-line interface (CLI)]({{< ref "pods-cli" >}}).
+LocalStack provides a remote storage backend that can be used to store the state of your running application and share it with your team members.
+You can interact with the Cloud Pods over the storage backend via the LocalStack Web Application.
 
-Cloud Pods CLI is included in the [LocalStack CLI installation](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), so there's no need for additional installations to begin using it. If you're a licensed user, we suggest setting the `LOCALSTACK_AUTH_TOKEN` as an environment variable. This enables you to access the complete range of LocalStack Cloud Pods features.
+Cloud Pods CLI is included in the [LocalStack CLI installation](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), so there's no need for additional installations to begin using it.
+If you're a licensed user, we suggest setting the `LOCALSTACK_AUTH_TOKEN` as an environment variable.
+This enables you to access the complete range of LocalStack Cloud Pods features.
 
 You can access the Cloud Pods CLI by running the `pod` command from your terminal.
 
@@ -49,18 +54,21 @@ Commands:
 {{< / command >}}
 
 {{< callout >}}
-These Cloud Pods are securely stored within an AWS storage backend, where each user or organization is allocated a dedicated and isolated S3 bucket. The LocalStack Cloud Pods CLI utilizes secure S3 presigned URLs to directly interface with the S3 bucket, bypassing the need to transmit the state files through LocalStack Platform APIs.
+These Cloud Pods are securely stored within an AWS storage backend, where each user or organization is allocated a dedicated and isolated S3 bucket.
+The LocalStack Cloud Pods CLI utilizes secure S3 presigned URLs to directly interface with the S3 bucket, bypassing the need to transmit the state files through LocalStack Platform APIs.
 {{< /callout >}}
 
 ## Getting started
 
 This guide is designed for users new to Cloud Pods and assumes basic knowledge of the LocalStack CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how you can save a snapshot of your active LocalStack instance into your LocalStack account, and pull it to a running instance.
+Start your LocalStack container using your preferred method.
+We will demonstrate how you can save a snapshot of your active LocalStack instance into your LocalStack account, and pull it to a running instance.
 
 ### Create AWS resources
 
-You can use the `awslocal` CLI to create new AWS resources within your active LocalStack instance. For example, you can create an S3 bucket and add data to it using the `awslocal` CLI:
+You can use the `awslocal` CLI to create new AWS resources within your active LocalStack instance.
+For example, you can create an S3 bucket and add data to it using the `awslocal` CLI:
 
 {{< command >}}
 $ awslocal s3 mb s3://test
@@ -71,7 +79,8 @@ $ awslocal s3 ls s3://test/
 
 ### Save your Cloud Pod state
 
-You can now save your Pod state using the `save` command, specifying the desired Cloud Pod name as the first argument. This action will save the pod and register it with the LocalStack Web Application:
+You can now save your Pod state using the `save` command, specifying the desired Cloud Pod name as the first argument.
+This action will save the pod and register it with the LocalStack Web Application:
 
 {{< command >}}
 $ localstack pod save s3-test
@@ -129,7 +138,8 @@ $ localstack pod versions s3-test
 
 ### Pull your Pod state
 
-On a separate machine, start LocalStack while ensuring the auth token is properly configured. Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
+On a separate machine, start LocalStack while ensuring the auth token is properly configured.
+Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
 
 {{< command >}}
 $ localstack pod load s3-test
@@ -180,7 +190,8 @@ $ localstack state inspect --format json
 </disable-copy>
 {{< / command >}}
 
-For comprehensive instructions, navigate to our [Command-Line Interface (CLI) Guide]({{< ref "pods-cli" >}}). To access your Cloud Pods through the LocalStack Web Application, navigate to the [Cloud Pods browser](https://app.localstack.cloud/pods).
+For comprehensive instructions, navigate to our [Command-Line Interface (CLI) Guide]({{< ref "pods-cli" >}}).
+To access your Cloud Pods through the LocalStack Web Application, navigate to the [Cloud Pods browser](https://app.localstack.cloud/pods).
 
 {{< callout >}}
 Permission on Cloud Pods are assigned at organization level.
@@ -248,7 +259,10 @@ In addition to loading Cloud Pods through the Command-Line Interface (CLI) or th
 
 To automatically load a Cloud Pod at startup, utilize the `AUTO_LOAD_POD` [configuration variable](https://docs.localstack.cloud/references/configuration/).
 
-`AUTO_LOAD_POD` can accept multiple Cloud Pod names separated by commas. To autoload multiple Cloud Pods, such as `foo-pod` and `bar-pod`, use: `AUTO_LOAD_POD=foo-pod,bar-pod`. The order of Cloud Pods in `AUTO_LOAD_POD` dictates their loading sequence. When autoloading multiple Cloud Pods, later pods might overwrite the state of earlier ones if they share the same service, account, and region.
+`AUTO_LOAD_POD` can accept multiple Cloud Pod names separated by commas.
+To autoload multiple Cloud Pods, such as `foo-pod` and `bar-pod`, use: `AUTO_LOAD_POD=foo-pod,bar-pod`.
+The order of Cloud Pods in `AUTO_LOAD_POD` dictates their loading sequence.
+When autoloading multiple Cloud Pods, later pods might overwrite the state of earlier ones if they share the same service, account, and region.
 
 {{< tabpane lang="bash" >}}
 {{< tab header="LocalStack CLI" lang="bash" >}}
@@ -329,12 +343,14 @@ services:
 
 ## Remotes
 
-A remote is the location where Cloud Pods are stored. By default, Cloud Pod artifacts are stored in the LocalStack platform. However, if your organization's data regulations or sovereignty requirements prohibit storing Cloud Pod assets in a remote storage infrastructure, you have the option to persist Cloud Pods in an on-premises storage location under your complete control.
+A remote is the location where Cloud Pods are stored.
+By default, Cloud Pod artifacts are stored in the LocalStack platform.
+However, if your organization's data regulations or sovereignty requirements prohibit storing Cloud Pod assets in a remote storage infrastructure, you have the option to persist Cloud Pods in an on-premises storage location under your complete control.
 
 LocalStack provides two types of alternative remotes:
 
--   S3 bucket remote storage.
--   [ORAS](https://oras.land/) (OCI Registry as Storage) remote storage.
+- S3 bucket remote storage.
+- [ORAS](https://oras.land/) (OCI Registry as Storage) remote storage.
 
 Cloud Pods command-line interface (CLI) allows you to create, delete, and list remotes.
 
@@ -357,7 +373,8 @@ Commands:
 
 ### S3 bucket remote storage
 
-The S3 remote enables you to store Cloud Pod assets in an existing S3 bucket within an actual AWS account. The initial step is to export the necessary AWS credentials within the terminal session.
+The S3 remote enables you to store Cloud Pod assets in an existing S3 bucket within an actual AWS account.
+The initial step is to export the necessary AWS credentials within the terminal session.
 
 {{< callout >}}
 The Cloud Pods S3 remote is currently _only_ available when [installing the `localstack` CLI via `pip`](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), and not for the binary CLI distribution.
@@ -370,7 +387,8 @@ export AWS_SECRET_ACCESS_KEY=...
 
 A possible option is to obtain credentials via [AWS SSO CLI](https://github.com/synfinatic/aws-sso-cli).
 
-Next, we establish a new remote specifically designed for an S3 bucket. By running the following command, we create a remote named `s3-storage-aws` responsible for storing Cloud Pod artifacts in an S3 bucket called `ls-pods-bucket-test`.
+Next, we establish a new remote specifically designed for an S3 bucket.
+By running the following command, we create a remote named `s3-storage-aws` responsible for storing Cloud Pod artifacts in an S3 bucket called `ls-pods-bucket-test`.
 
 The `access_key_id` and `secret_access_key` placeholders ensure the correct transmission of AWS credentials to the container.
 
@@ -411,11 +429,13 @@ If you experience any difficulties, update your [LocalStack CLI](https://docs.lo
 
 ### ORAS remote storage
 
-The ORAS remote enables users to store Cloud Pods in OCI-compatible registries like Docker Hub, Nexus, or ECS registries. ORAS stands for "OCI Registry as Service," and you can find additional information about this standard [on the official website](https://oras.land/).
+The ORAS remote enables users to store Cloud Pods in OCI-compatible registries like Docker Hub, Nexus, or ECS registries.
+ORAS stands for "OCI Registry as Service," and you can find additional information about this standard [on the official website](https://oras.land/).
 
 For example, let's illustrate how you can utilize Docker Hub to store and retrieve Cloud Pods.
 
-To begin, you must configure the new remote using the LocalStack CLI. You'll need to export two essential environment variables, `ORAS_USERNAME` and `ORAS_PASSWORD`, which are necessary for authenticating with Docker Hub.
+To begin, you must configure the new remote using the LocalStack CLI.
+You'll need to export two essential environment variables, `ORAS_USERNAME` and `ORAS_PASSWORD`, which are necessary for authenticating with Docker Hub.
 
 ```bash
 export ORAS_USERNAME=docker_hub_id
@@ -440,17 +460,68 @@ Likewise, you can execute the reverse operation to load a Cloud Pod from `oras-r
 $ localstack pod load my-pod oras-remote
 {{< / command >}}
 
+## End-to-End Encryption (Enterprise)
+
+Cloud Pods artifacts are stored in S3 buckets when using the LocalStack platform as the storage remote.
+By default, Amazon S3 encrypts all objects before saving them on disks, while the opposite operation happens at download time.
+This ensures encryption **at rest** for Cloud Pods.
+
+When this is not enough, LocalStack also offers end-to-end encryption for enterprise customers as a preview feature.
+To activate this feature, make sure to start LocalStack with the `POD_ENCRYPTION` environment variable set to 1.
+
+The next step is to generate a passphrase used to encrypt and decrypt the Cloud Pods' artifacts.
+We advise to create a strong passphrase by using the `openssl` utility, e,g.:
+
+{{< command >}}
+$ openssl rand --base64 32
+# 3X03eU5pgoejObUR+Y8I4QjbjeGEKjDcmVFd0FU5pCg=
+
+{{< / command >}}
+
+Users should treat the generated passphrase as a secret and they are responsible for securely sharing it within the organization.
+The generated secret can now be provided as an option to the `save` command when creating an encrypted Cloud Pod.
+
+{{< command >}}
+$ localstack pod save my-secret-pod --secret 3X03eU5pgoejObUR+Y8I4QjbjeGEKjDcmVFd0FU5pCg=
+{{< / command >}}
+
+Loading an encrypted Cloud Pod would require a similar `load` command:
+
+{{< command >}}
+$ localstack pod load my-secret-pod --secret 3X03eU5pgoejObUR+Y8I4QjbjeGEKjDcmVFd0FU5pCg=
+{{< / command >}}
+
+### Encryption with PGP keys
+
+We also offer the option of using PGP keys to encrypt and decrypt Cloud Pods.
+The process is the following:
+
+- Customers would have to export both their private and public keys into two files, `private.pgp` and `public.pgp` respectively.
+- These files need to be mounted in a specific `pods.keys.d` folder when starting LocalStack, i.e., `localstack start -v $PWD/pods.keys.d:/etc/localstack/pods.keys.d`.
+- The `secret` option passed to the `save` and `load` command corresponds to the passphrase needed to import the private key into the LocalStack runtime.
+
+### Limitations
+
+- Both browsing the Cloud Pod content via the UI and loading Cloud Pods into ephemeral instances are currently not supported for encrypted Cloud Pods.
+- It is not possible to have both encrypted and non-encrypted versions for a Cloud Pod.
+  Encryption is set at the moment of the creation and it cannot be changed.
+
 ### Miscellaneous
 
-Unless explicitly specified, all Cloud Pods commands default to targeting the LocalStack Platform as the storage remote. It's important to note that the CLI must be authenticated correctly with our Platform.
+Unless explicitly specified, all Cloud Pods commands default to targeting the LocalStack Platform as the storage remote.
+It's important to note that the CLI must be authenticated correctly with our Platform.
 
-Custom remote configurations are stored within the [LocalStack volume directory](https://docs.localstack.cloud/references/filesystem/#localstack-volume-directory) and are managed by the LocalStack container. Consequently, when sharing Cloud Pods among your team using a custom remote, each team member must define the identical remote configuration. Once added, a remote persists even after LocalStack restarts.
+Custom remote configurations are stored within the [LocalStack volume directory](https://docs.localstack.cloud/references/filesystem/#localstack-volume-directory) and are managed by the LocalStack container.
+Consequently, when sharing Cloud Pods among your team using a custom remote, each team member must define the identical remote configuration.
+Once added, a remote persists even after LocalStack restarts.
 
 ## Cloud Pods & Persistence
 
-[Persistence]({{< ref "persistence" >}}) ensures that the service state persists across container restarts. You can enable persistence via a LocalStack config flag `PERSISTENCE=1` to restore your local resources, in case you’re stopping and re-starting the LocalStack instance on the same machine.
+[Persistence]({{< ref "persistence" >}}) ensures that the service state persists across container restarts.
+You can enable persistence via a LocalStack config flag `PERSISTENCE=1` to restore your local resources, in case you’re stopping and re-starting the LocalStack instance on the same machine.
 
-In contrast, Cloud Pods provide more detailed control over your state. Rather than just restoring a state during LocalStack restarts, Cloud Pods enable you to capture snapshots of your local instance using the `save` command and inject these snapshots into a running instance using the `load` command, all without needing to perform a full restart.
+In contrast, Cloud Pods provide more detailed control over your state.
+Rather than just restoring a state during LocalStack restarts, Cloud Pods enable you to capture snapshots of your local instance using the `save` command and inject these snapshots into a running instance using the `load` command, all without needing to perform a full restart.
 
 ### Current Limitations
 
@@ -461,8 +532,11 @@ We detect version miss-matches when using the `pod load` and prompt a confirmati
 {{< command >}}
 $ localstack pod load old-pod
 <disable-copy>
-This Cloud Pod was created with LocalStack 2.1.0. but you are running LocalStack 3.2.1. Cloud Pods might be incompatible across different LocalStack versions.
-Loading a Cloud Pod with mismatching version might lead to a corrupted state of the emulator. Do you want to continue? [y/N]:
+This Cloud Pod was created with LocalStack 2.1.0.
+but you are running LocalStack 3.2.1.
+Cloud Pods might be incompatible across different LocalStack versions.
+Loading a Cloud Pod with mismatching version might lead to a corrupted state of the emulator.
+Do you want to continue? [y/N]:
 </disable-copy>
 {{< / command >}}
 
@@ -479,10 +553,11 @@ When you try to save a Cloud Pod and see the error in LocalStack logs like this:
 localstack.cli.exceptions.CLIError: Failed to create Cloud Pod sample-pod ❌ - Unable to obtain auth token (code 401) - please log in again.
 ```
 
-It would be good to check if you have outdated authentication credentials (bearer token from a previous LocalStack login) in the `remotes.yaml` file for cloud pods. You have two options to fix this:
+It would be good to check if you have outdated authentication credentials (bearer token from a previous LocalStack login) in the `remotes.yaml` file for cloud pods.
+You have two options to fix this:
 
-1.  Run another `localstack auth login` command.
-2.  Find the `remotes.yaml` file in the `<localstack_volume>` directory on your machine and delete the file, or at least remove the `"default"` entry from it.
+1. Run another `localstack auth login` command.
+2. Find the `remotes.yaml` file in the `<localstack_volume>` directory on your machine and delete the file, or at least remove the `"default"` entry from it.
 
 Additionally, if there is a `~/.localstack/auth.json` file in your home directory, delete it as well if it still exists.
 
@@ -494,10 +569,11 @@ When you try to save a Cloud Pod and see the `license.not_found` error in LocalS
 lsmulti-localstack  | 2024-03-15T13:06:16.358  WARN --- [functhread31] l.p.remotes.remotes        : Failed to register pod sample-pod: {"error": true, "message": "licensing.license.not_found"}
 ```
 
-To fix this, clear the LocalStack cache directory and restart the LocalStack instance before trying to save the Cloud Pod again. You can find the cache directories at:
+To fix this, clear the LocalStack cache directory and restart the LocalStack instance before trying to save the Cloud Pod again.
+You can find the cache directories at:
 
--   `/Users/localstack/Library/Caches/localstack`
--   `/Users/localstack/Library/Caches/localstack-cli`
+- `/Users/localstack/Library/Caches/localstack`
+- `/Users/localstack/Library/Caches/localstack-cli`
 
 Adjust the path based on your operating system.
 
@@ -509,4 +585,6 @@ If you get an SSL certificate verification error while trying to save a Cloud Po
 An error occurred while checking remote management for pod "cloud-pod-product-app": "MyHTTPSConnectionPool(host='api.localstack.cloud', port=443): Max retries exceeded with url: /v1/cloudpods/cloud-pod-product-app (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'api.localstack.cloud'. (_ssl.c:1006)")))"
 ```
 
-Check if your machine's clock is set incorrectly or if the certificate store is outdated. This error can also occur if you use `localstack` as `LOCALSTACK_HOST`. In this case, the DNS incorrectly resolves `api.localstack.cloud` to `localhost`, causing a certificate mismatch.
+Check if your machine's clock is set incorrectly or if the certificate store is outdated.
+This error can also occur if you use `localstack` as `LOCALSTACK_HOST`.
+In this case, the DNS incorrectly resolves `api.localstack.cloud` to `localhost`, causing a certificate mismatch.

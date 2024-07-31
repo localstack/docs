@@ -3,7 +3,7 @@ title: "Fault Injection Service (FIS)"
 linkTitle: "Fault Injection Service (FIS)"
 description: >
   Get started with Fault Injection Service (FIS) on LocalStack
-tags: ["Pro image"]
+tags: ["Enterprise plan"]
 ---
 
 ## Introduction
@@ -15,6 +15,10 @@ The full list of such possible fault injections is available in the [AWS docs](h
 LocalStack allows you to use the FIS APIs in your local environment to introduce faults in other services, in order to check how your setup behaves when parts of it stop working locally.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_fis/), which provides information on the extent of FIS API's integration with LocalStack.
 
+{{< callout "tip" >}}
+LocalStack also features its own powerful chaos engineering tool, [Chaos API]({{< ref "chaos-api" >}}).
+{{< /callout >}}
+
 ## Concepts
 
 FIS defines the following elements:
@@ -25,6 +29,11 @@ FIS defines the following elements:
 
 Together this is termed as an Experiment.
 After the designated time, FIS restores systems to their original state and/or ceases introducing faults.
+
+{{< callout "note" >}}
+FIS experiment emulation is part of LocalStack Enterprise.
+If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo).
+{{< /callout >}}
 
 FIS actions can be categorized into two main types:
 
@@ -84,7 +93,6 @@ Run the following command to create an FIS experiment template using the configu
 {{< command >}}
 $ awslocal fis create-experiment-template --cli-input-json file://create-experiment.json
 {{< /command >}}
-
 
 The following output would be retrieved:
 
@@ -233,16 +241,22 @@ The following actions are deprecated and marked for removal:
 
 - **`localstack:generic:api-error`**: Raise a custom HTTP error.
     This action accepts the following parameters.
-    - `region`: The region name where faults will be introduced, e.g. `us-west-1`. Default: region of the experiment
-    - `service`: The service name to limit faults to, e.g. `kms`. Default: all services
-    - `operation`: The operation name for the specified service to limit faults to, e.g. `ListKeys`
-    - `percentage`: The percentage of API calls to fail among matching calls. Default: 100
-    - `exception`: The name of the exception to raise for affected API calls. Default: `InternalError`
-    - `errorCode`: The HTTP error code to return for impacted API calls. Default: 500
+    Please migrate to the [Chaos API]({{< ref "chaos-api" >}}) which supports this capability and more.
+  - `region`: The region name where faults will be introduced, e.g. `us-west-1`.
+      Default: region of the experiment
+  - `service`: The service name to limit faults to, e.g. `kms`.
+      Default: all services
+  - `operation`: The operation name for the specified service to limit faults to, e.g. `ListKeys`
+  - `percentage`: The percentage of API calls to fail among matching calls.
+      Default: 100
+  - `exception`: The name of the exception to raise for affected API calls.
+      Default: `InternalError`
+  - `errorCode`: The HTTP error code to return for impacted API calls.
+      Default: 500
 - **`localstack:kms:inject-api-internal-error`**: Special case of the previous action which injects an InternalError for KMS operations.
 - **`localstack:log-debug`**: Prints a debug message in the LocalStack logs when experiment is started and stopped.
 - **`localstack:generic:latency`**: Introduces a latency in the network call.
-
+    Please migrate to the [Chaos API]({{< ref "chaos-api" >}}).
 
 ## Current Limitations
 

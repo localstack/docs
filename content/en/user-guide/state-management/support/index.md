@@ -16,4 +16,3 @@ tags: ["Pro Image"]
 To test persistence, we use an approach similar to snapshot parity test:
 we first record API responses from LocalStack, we then reset and restore the snapshotted state,
 and finally verify that the same API responses matches with the initial ones.
-

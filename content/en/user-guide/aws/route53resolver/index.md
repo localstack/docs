@@ -8,7 +8,9 @@ persistence: supported
 
 ## Introduction
 
-Route 53 Resolver allows you to route DNS queries between your virtual private cloud (VPC) and your network. Route 53 Resolver forwards DNS queries for domain names to the appropriate DNS service based on the configuration you set up. Route 53 Resolver can be used to resolve domain names between your VPC and your network, and to resolve domain names between your VPCs.
+Route 53 Resolver allows you to route DNS queries between your virtual private cloud (VPC) and your network.
+Route 53 Resolver forwards DNS queries for domain names to the appropriate DNS service based on the configuration you set up.
+Route 53 Resolver can be used to resolve domain names between your VPC and your network, and to resolve domain names between your VPCs.
 
 LocalStack allows you to use the Route 53 Resolver endpoints in your local environment.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53resolver/), which provides information on the extent of Route 53 Resolver's integration with LocalStack.
@@ -17,7 +19,8 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 
 This guide is designed for users new to Route53 Resolver and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create a resolver endpoint, list the endpoints, and delete the endpoint with the AWS CLI.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create a resolver endpoint, list the endpoints, and delete the endpoint with the AWS CLI.
 
 ### Fetch the IP addresses & Security Group ID
 
@@ -63,7 +66,8 @@ $ awslocal ec2 describe-subnets --subnet-ids subnet-bdd58a47 --query 'Subnets[*]
 </disable-copy>
 {{< / command >}}
 
-Save the CIDR blocks of the subnets as you will need them later. Lastly fetch the security group ID of the default VPC:
+Save the CIDR blocks of the subnets as you will need them later.
+Lastly fetch the security group ID of the default VPC:
 
 {{< command >}}
 $ awslocal ec2 describe-security-groups \
@@ -107,7 +111,8 @@ Create a new file named `create-outbound-resolver-endpoint.json` and add the fol
 
 Replace the `Ip` and `SubnetId` values with the CIDR blocks and subnet IDs you fetched earlier.
 
-You can now use the [`CreateResolverEndpoint`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html) API to create an outbound resolver endpoint. Run the following command:
+You can now use the [`CreateResolverEndpoint`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html) API to create an outbound resolver endpoint.
+Run the following command:
 
 {{< command >}}
 $ awslocal route53resolver create-resolver-endpoint \
@@ -139,7 +144,8 @@ The following output would be retrieved:
 
 ### List the resolver endpoints
 
-You can list the resolver endpoints using the [`ListResolverEndpoints`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverEndpoints.html) API. Run the following command:
+You can list the resolver endpoints using the [`ListResolverEndpoints`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverEndpoints.html) API.
+Run the following command:
 
 {{< command >}}
 $ awslocal route53resolver list-resolver-endpoints
@@ -173,7 +179,8 @@ The following output would be retrieved:
 
 ### Delete the resolver endpoint
 
-You can delete the resolver endpoint using the [`DeleteResolverEndpoint`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html) API. Run the following command:
+You can delete the resolver endpoint using the [`DeleteResolverEndpoint`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DeleteResolverEndpoint.html) API.
+Run the following command:
 
 {{< command >}}
 $ awslocal route53resolver delete-resolver-endpoint \
@@ -184,13 +191,18 @@ Replace `rslvr-out-5d61abaff9de06b99` with the ID of the resolver endpoint you w
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Route53 Resolver for creating and managing resolver endpoints. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Route53** under the **Analytics** section. Navigate to the **Resolver Endpoints** tab to view the resolver endpoints.
+The LocalStack Web Application provides a Route53 Resolver for creating and managing resolver endpoints.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Route53** under the **Analytics** section.
+Navigate to the **Resolver Endpoints** tab to view the resolver endpoints.
 
 <img src="route53-resolver-resource-browser.png" alt="Route53Resolver Resource Browser" title="Route53Resolver Resource Browser" width="900" />
 
 The Resource Browser allows you to perform the following actions:
 
-- **Create resolver endpoint**: Create a resolver endpoint by clicking on the **Create Endpoint** button. This will open a modal where you can enter the name, VPC, and other parameters and click on the **Submit** button to create the resolver endpoint.
-- **View resolver endpoint**: View the details of a resolver endpoint by clicking on the specific resolver endpoint name. This will open a modal where you can view the resolver endpoint details.
-- **Edit resolver endpoint**: Edit the details of a resolver endpoint by clicking on the **Edit Endpoint** button in the specific resolver endpoint page. This will open a modal where you can edit the resolver endpoint details.
+- **Create resolver endpoint**: Create a resolver endpoint by clicking on the **Create Endpoint** button.
+  This will open a modal where you can enter the name, VPC, and other parameters and click on the **Submit** button to create the resolver endpoint.
+- **View resolver endpoint**: View the details of a resolver endpoint by clicking on the specific resolver endpoint name.
+  This will open a modal where you can view the resolver endpoint details.
+- **Edit resolver endpoint**: Edit the details of a resolver endpoint by clicking on the **Edit Endpoint** button in the specific resolver endpoint page.
+  This will open a modal where you can edit the resolver endpoint details.
 - **Delete resolver endpoint**: Select the resolver endpoints you want to delete by clicking on the checkbox next to the resolver endpoint name, followed by clicking on the **Actions** button and then clicking on **Remove Selected**.

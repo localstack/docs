@@ -7,7 +7,8 @@ description: >
 
 ## Introduction
 
-The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) is a unified tool for creating and managing AWS services via a command line interface. All CLI commands applicable to services implemented within [LocalStack]({{< ref "references/coverage/" >}}) can be executed when operating against LocalStack.
+The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) is a unified tool for creating and managing AWS services via a command line interface.
+All CLI commands applicable to services implemented within [LocalStack]({{< ref "references/coverage/" >}}) can be executed when operating against LocalStack.
 
 You can use the AWS CLI with LocalStack using either of the following approaches:
 
@@ -24,12 +25,13 @@ $ pip install awscli
 
 You can configure the AWS CLI to redirect AWS API requests to LocalStack using two approaches:
 
-- [Configuring an endpoint URL](#configuring-an-endpoint-url)
-- [Configuring a custom profile](#configuring-a-custom-profile)
+* [Configuring an endpoint URL](#configuring-an-endpoint-url)
+* [Configuring a custom profile](#configuring-a-custom-profile)
 
 ### Configuring an endpoint URL
 
-You can use AWS CLI with an endpoint URL by configuring test environment variables and include the `--endpoint-url=<localstack-url>` flag in your `aws` CLI commands. For example:
+You can use AWS CLI with an endpoint URL by configuring test environment variables and include the `--endpoint-url=<localstack-url>` flag in your `aws` CLI commands.
+For example:
 
 {{< command >}}
 $ export AWS_ACCESS_KEY_ID="test"
@@ -45,7 +47,8 @@ To enable the creation of pre-signed URLs for S3 buckets, please set both `AWS_A
 
 ### Configuring a custom profile
 
-You can configure a custom profile to use with LocalStack. Add the following profile to your AWS configuration file (by default, this file is at `~/.aws/config`):
+You can configure a custom profile to use with LocalStack.
+Add the following profile to your AWS configuration file (by default, this file is at `~/.aws/config`):
 
 ```bash
 [profile localstack]
@@ -86,7 +89,8 @@ $ pip install awscli-local[ver1]
 {{< / command >}}
 
 {{< callout "tip" >}}
-The above command installs the most recent version of the underlying AWS CLI version 1 (`awscli`) package. If you would rather manage your own `awscli` version (e.g., `v1` or `v2`) and only install the wrapper script, you can use the following command:
+The above command installs the most recent version of the underlying AWS CLI version 1 (`awscli`) package.
+If you would rather manage your own `awscli` version (e.g., `v1` or `v2`) and only install the wrapper script, you can use the following command:
 
 {{< command >}}
 $ pip install awscli-local
@@ -99,7 +103,8 @@ Automatic installation of AWS CLI version 2 is currently not supported yet (at t
 
 ### Usage
 
-The `awslocal` command shares identical usage with the standard `aws` command. For comprehensive usage instructions, refer to the manual pages by running `awslocal help`.
+The `awslocal` command shares identical usage with the standard `aws` command.
+For comprehensive usage instructions, refer to the manual pages by running `awslocal help`.
 
 {{< command >}}
 awslocal kinesis list-streams
@@ -118,8 +123,8 @@ awslocal kinesis list-streams
 Please note that there is a known limitation for using the `cloudformation package ...` command with the AWS CLI v2.
 The problem is that the AWS CLI v2 is [not available as a package on pypi.org](https://github.com/aws/aws-cli/issues/4947), but is instead shipped as a binary package that cannot be easily patched from `awslocal`.
 To work around this issue, you have 2 options:
-- Downgrade to the v1 AWS CLI (this is the recommended approach)
-- There is an unofficial way to install AWS CLI v2 from sources.
+* Downgrade to the v1 AWS CLI (this is the recommended approach)
+* There is an unofficial way to install AWS CLI v2 from sources.
   We do not recommend this, but it is technically possible.
   Also, you should install these libraries in a Python virtualenv, to avoid version clashes with other libraries on your system:
 
@@ -130,10 +135,12 @@ $ pip install https://github.com/boto/botocore/archive/v2.zip https://github.com
 {{< / command >}}
 
 Please also note there is a known limitation for issuing requests using
-`--no-sign-request` with the AWS CLI. LocalStack's routing mechanism depends on
+`--no-sign-request` with the AWS CLI.
+LocalStack's routing mechanism depends on
 the signature of each request to identify the correct service for the request.
 Thus, adding the flag `--no-sign-requests` provokes your request to reach the
-wrong service. One possible way to address this is to use the `awslocal` CLI
+wrong service.
+One possible way to address this is to use the `awslocal` CLI
 instead of AWS CLI.
 
 ## AWS CLI v2

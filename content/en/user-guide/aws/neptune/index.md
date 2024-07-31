@@ -8,7 +8,7 @@ tags: ["Pro image"]
 
 ## Introduction
 
-Neptune is a fully managed, highly available, and scalable graph database service offered by AWS. 
+Neptune is a fully managed, highly available, and scalable graph database service offered by AWS.
 It is designed for storing and querying highly connected data for applications that require complex relationship modeling, such as social networks, recommendation engines, and fraud detection.
 Neptune supports popular graph query languages like Gremlin and SPARQL, making it compatible with a wide range of graph applications and tools.
 
@@ -28,12 +28,15 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 | `1.2.1.1`       | `3.6.2`             |
 | `1.3.0.0`       | `3.6.2`             |
 | `1.3.1.0`       | `3.6.2`             |
+| `1.3.2.0`       | `3.7.1`             |
+| `1.3.2.1`       | `3.7.1`             |
 
 ## Getting started
 
-This guide is designed for users new to Neptune and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script. 
+This guide is designed for users new to Neptune and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate the following with AWS CLI & Python:
+Start your LocalStack container using your preferred method.
+We will demonstrate the following with AWS CLI & Python:
 
 - Creating a Neptune cluster.
 - Starting a connection to the Neptune cluster.
@@ -41,7 +44,7 @@ Start your LocalStack container using your preferred method. We will demonstrate
 
 ### Create a Neptune cluster
 
-To create a Neptune cluster you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/neptune/latest/userguide/api-clusters.html#CreateDBCluster) API. 
+To create a Neptune cluster you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/neptune/latest/userguide/api-clusters.html#CreateDBCluster) API.
 Run the following command to create a Neptune cluster:
 
 {{< command >}}
@@ -66,7 +69,7 @@ You should see the following output:
 
 ### Add an instance to the cluster
 
-To add an instance you can use the [`CreateDBInstance`](https://docs.aws.amazon.com/neptune/latest/userguide/api-instances.html#CreateDBInstance) API. 
+To add an instance you can use the [`CreateDBInstance`](https://docs.aws.amazon.com/neptune/latest/userguide/api-instances.html#CreateDBInstance) API.
 Run the following command to create a Neptune instance:
 
 {{< command >}}
@@ -134,7 +137,8 @@ if __name__ == '__main__':
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing Neptune databases and clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Neptune** under the **Database** section.
+The LocalStack Web Application provides a Resource Browser for managing Neptune databases and clusters.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Neptune** under the **Database** section.
 
 <img src="neptune-resource-browser.png" alt="Neptune Resource Browser" title="Neptune Resource Browser" width="900" />
 <br>
@@ -142,17 +146,19 @@ The LocalStack Web Application provides a Resource Browser for managing Neptune 
 
 The Resource Browser allows you to perform the following actions:
 
-* **Create Cluster**: Create a new Neptune cluster by clicking on **Create Cluster** under the **Clusters** tab and providing the required parameters.
-* **List Clusters**: View a list of all Neptune clusters in your LocalStack environment by clicking on the **Clusters** tab.
-* **View Cluster Details**: Click on a cluster name to view detailed information about the cluster, including its status, endpoint, and other configuration details.
-* **Graph Browser**: Access the Neptune Graph Browser by clicking on the **Graph Browser** tab in the cluster details. The Graph Browser allows you to interactively query and visualize the graph data stored in your Neptune cluster.
-* **Quick Actions**: Perform quick actions on the cluster, such as adding a new Node, modifying an existing one or creating a new Edge between 2 nodes. You can access the **Quick Actions** by clicking in the respective tab from the cluster details page.
-* **Create instance**: Create a new Neptune database by clicking on **Create Instance** under the **Instances** tab and providing the required parameters.
-* **List Instances**: View a list of all Neptune databases in your LocalStack environment by clicking on the **Instances** tab.
-* **View Instance Details**: Click on a database name to view detailed information about the database, including its status, endpoint, and other configuration details.
-* **Edit Instance**: Edit the configuration of a Neptune database by clicking on the **Edit Instance** button in the instance details.
+- **Create Cluster**: Create a new Neptune cluster by clicking on **Create Cluster** under the **Clusters** tab and providing the required parameters.
+- **List Clusters**: View a list of all Neptune clusters in your LocalStack environment by clicking on the **Clusters** tab.
+- **View Cluster Details**: Click on a cluster name to view detailed information about the cluster, including its status, endpoint, and other configuration details.
+- **Graph Browser**: Access the Neptune Graph Browser by clicking on the **Graph Browser** tab in the cluster details.
+  The Graph Browser allows you to interactively query and visualize the graph data stored in your Neptune cluster.
+- **Quick Actions**: Perform quick actions on the cluster, such as adding a new Node, modifying an existing one or creating a new Edge between 2 nodes.
+  You can access the **Quick Actions** by clicking in the respective tab from the cluster details page.
+- **Create instance**: Create a new Neptune database by clicking on **Create Instance** under the **Instances** tab and providing the required parameters.
+- **List Instances**: View a list of all Neptune databases in your LocalStack environment by clicking on the **Instances** tab.
+- **View Instance Details**: Click on a database name to view detailed information about the database, including its status, endpoint, and other configuration details.
+- **Edit Instance**: Edit the configuration of a Neptune database by clicking on the **Edit Instance** button in the instance details.
 
-## Examples 
+## Examples
 
 The following code snippets and sample applications provide practical examples of how to use Neptune in LocalStack for various use cases:
 
@@ -162,17 +168,25 @@ The following code snippets and sample applications provide practical examples o
 
 ### Gremlin Transactions
 
-Gremlin transactions can be enabled by setting the environment `NEPTUNE_ENABLE_TRANSACTION=1`. Be aware that the `engine_version` provided when creating your cluster will be ignored and LocalStack will use `3.7.2` Gremlin Server. This feature is in beta and any feedback is appreciated.
+Gremlin transactions can be enabled by setting the environment `NEPTUNE_ENABLE_TRANSACTION=1`.
+Be aware that the `engine_version` provided when creating your cluster will be ignored and LocalStack will use `3.7.2` Gremlin Server.
+This feature is in beta and any feedback is appreciated.
 
 #### Current Limitations
 
 - Fixed id
-  - Creating a Vertex with an id in a transaction, then deleting it. Trying to recreate a vertex with the same id will fail.
+  - Creating a Vertex with an id in a transaction, then deleting it.
+    Trying to recreate a vertex with the same id will fail.
 - Serializer considerations
-    - While it is possible to connect to the server with a lower version of Gremlin Language Variants, there are breaking changes to the default `GraphBinarySerializersV1` serializer used by most languages. One possible fix is to use the matching version for your language variant. Otherwise, using the `GraphSONSerializersV3d0` serializer also seems to be working. See example below.
-    - If using Neptune <= `1.2.0.2`, the Gryo message serializer is no longer supported. Only affects users explicitly using that serializer.
+  - While it is possible to connect to the server with a lower version of Gremlin Language Variants, there are breaking changes to the default `GraphBinarySerializersV1` serializer used by most languages.
+    One possible fix is to use the matching version for your language variant.
+    Otherwise, using the `GraphSONSerializersV3d0` serializer also seems to be working.
+    See example below.
+  - If using Neptune <= `1.2.0.2`, the Gryo message serializer is no longer supported.
+    Only affects users explicitly using that serializer.
 
 Example using `gremlinpython==3.6.2`
+
 ```python
 from gremlin_python.driver import serializer
 from gremlin_python.driver.driver_remote_connection import DriverRemoteConnection

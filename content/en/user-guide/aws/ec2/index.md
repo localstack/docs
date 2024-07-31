@@ -172,7 +172,6 @@ $ ssh -p 12862 -i key.pem root@127.0.0.1
 If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here]({{< relref "ec2#create-a-key-pair" >}}).
 {{< /callout >}}
 
-
 ## VM Managers
 
 LocalStack EC2 supports multiple methods to simulate the EC2 service.
@@ -181,7 +180,6 @@ For advanced setups, LocalStack Pro comes with emulation capability for certain 
 
 The underlying method for this can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
 You may choose between plain mocked resources, containerized or virtualized.
-
 
 ## Mock VM Manager
 
@@ -192,7 +190,6 @@ This is the default VM manager in LocalStack Community edition.
 To use this VM manager in LocalStack Pro, set [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) to `mock`.
 
 This serves as the fallback manager if an operation is not implemented in other VM managers.
-
 
 ## Docker VM Manager
 
@@ -268,7 +265,7 @@ The execution log is generated at `/var/log/cloud-init-output.log` in the contai
 ### Networking
 
 {{< callout "note" >}}
-Network access to EC2 instance is not possible on macOS. 
+Network access from host to EC2 instance containers is not possible on macOS.
 This is because Docker Desktop on macOS does not expose the bridge network to the host system.
 See [Docker Desktop Known Limitations](https://docs.docker.com/desktop/networking/#known-limitations).
 {{< /callout >}}
@@ -308,7 +305,6 @@ The port mapping details are provided in the logs during the instance initializa
 2022-12-20T19:43:44.544  INFO  Instance i-1d6327abf04e31be6 port mappings (container -> host): {'8080/tcp': 51747, '22/tcp': 55705}
 ```
 
-
 ### Elastic Block Store
 
 A common use case is to attach an EBS block device to an EC2 instance, which can then be used to create a custom filesystem for additional storage.
@@ -323,6 +319,7 @@ First, we create a user data script `init.sh` which creates an ext3 file system 
 {{< command >}}
 $ cat > init.sh <<EOF
 #!/bin/bash
+
 set -eo
 mkdir -p /ebs-mounted
 mkfs -t ext3 /ebs-dev/sda1
@@ -349,7 +346,6 @@ CONTAINER ID   IMAGE                  PORTS           NAMES
 $ docker exec 5c60cf72d84a ls /ebs-mounted
 my-test-file
 {{< /command >}}
-
 
 ### Instance Metadata Service
 
@@ -378,13 +374,11 @@ If you would like support for more metadata categories, please make a feature re
 IMDS IPv6 endpoint is currently not supported.
 {{< /callout >}}
 
-
 ### Configuration
 
 You can use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) LocalStack configuration variable to pass supplementary flags to Docker during the initiation of containerized instances.
 This allows for fine-tuned behaviours, for example, running containers in privileged mode using `--privileged` or specifying an alternate CPU platform with `--platform`.
 Keep in mind that this will apply to all instances that are launched in the LocalStack session.
-
 
 ### Operations
 
@@ -400,8 +394,6 @@ Any operation not listed below will use the mock VM manager.
 | `StopInstances`       | Pauses the Docker containers that back instances |
 | `StartInstances`      | Resumes the Docker containers that back instances |
 | `TerminateInstances`  | Stops the Docker containers that back instances |
-
-
 
 ## Libvirt VM Manager
 
@@ -434,7 +426,7 @@ You may also need to enable virtualization support at hardware level.
 This is often labelled as 'Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
 {{< /callout >}}
 
-LocalStack requires the Libvirt socket on the host to be mounted inside the container.
+If the Docker host and Libvirt host is the same, the Libvirt socket on the host must be mounted inside the LocalStack container.
 This can be done by including the volume mounts when the LocalStack container is started.
 If you are using the [Docker Compose template]({{< ref "installation#starting-localstack-with-docker-compose" >}}), include the following line in `services.localstack.volumes` list:
 
@@ -448,8 +440,10 @@ If you are using [Docker CLI]({{< ref "installation#starting-localstack-with-doc
 -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock
 ```
 
+If you are using a remote Libvirt hypervisor, you can set the [`EC2_HYPERVISOR_URI`]({{< ref "configuration#ec2" >}}) config option with a connection URI.
+
 The Libvirt VM manager currently does not have full support for persistence.
-Underlying virtual machines and volumes are not persisted, instead only their mock respresentations are.
+Underlying virtual machines and volumes are not persisted, only their mock respresentations are.
 
 ### AMIs
 
@@ -498,11 +492,13 @@ You may need run the following command to make sure the image is registered with
 
 {{< command >}}
 $ virsh pool-refresh default
+<disable-copy>
 Pool default refreshed
-
+</disable-copy>
 $ virsh vol-list --pool default
  Name                                    Path
 --------------------------------------------------------------------------------------------------------
+
  ami-1234abcd                            /var/lib/libvirt/images/ami-1234abcd
 {{< /command >}}
 
@@ -512,7 +508,6 @@ These AMIs will also have the resource tag `ec2_vm_manager:libvirt`.
 {{< command >}}
 awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=libvirt
 {{< /command >}}
-
 
 ### Instances
 
@@ -545,12 +540,33 @@ You can then use a compatible VNC client (e.g. [TigerVNC](https://tigervnc.org/)
 <img src="tiger-vnc.png" alt="Tiger VNC" title="Tiger VNC"/>
 </p>
 
-
 ### Networking
 
 Currently all instances are behind a NAT network.
 Instances can access the internet but are inaccessible from the host machine.
 
+It is possible to allow network access to the LocalStack container from within the virtualised instance.
+This is done by configuring the Docker daemon to use the KVM network.
+Use the following configuration at `/etc/docker/daemon.json` on the host machine:
+
+```json
+{
+  "bridge": "virbr0",
+  "iptables": false
+}
+```
+
+Then restart the Docker daemon:
+
+{{< command >}}
+$ sudo systemctl restart docker
+{{< /command >}}
+
+You can now start the LocalStack container, obtain its IP address and use it from the virtualised instance.
+
+{{< command >}}
+$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' localstack_main
+{{< /command >}}
 
 ### Elastic Block Stores
 
@@ -559,12 +575,9 @@ LocalStack does not resize the instance root volume, instead it inherits the pro
 
 Currently it is not possible to attach additional EBS volumes to instances.
 
-
-
 ### Instance Metadata Service
 
 The Libvirt VM manager does not support the Instance Metadata Service endpoints.
-
 
 ### Operations
 
@@ -580,7 +593,6 @@ Any operation not listed below will use the mock VM manager.
 | `RebootInstances`     | Restarts a Libvirt domain |
 | `TerminateInstances`  | Stops and undefines a Libvirt domain |
 | `CreateVolume`        | Creates a sparse Libvirt volume |
-
 
 ## Resource Browser
 

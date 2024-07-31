@@ -30,6 +30,11 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Download metrics data from Moto Integration test pipeline (GitHub)
         working-directory: docs
         run: ./scripts/get_latest_github_metrics.sh ./target main
@@ -58,7 +63,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
           REPOSITORY_NAME: localstack-ext
           ARTIFACT_ID: parity-metric-ext-raw-*
-          WORKFLOW: "Build, Test, Push" 
+          WORKFLOW: "AWS / Build, Test, Push" 
           PREFIX_ARTIFACT: pro-integration-test
       
       - name: Download coverage (capture-notimplemented) data from Pro pipeline (GitHub)
@@ -68,7 +73,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
           REPOSITORY_NAME: localstack-ext
           ARTIFACT_ID: capture-notimplemented-pro 
-          WORKFLOW: "Build, Test, Push" 
+          WORKFLOW: "AWS / Build, Test, Push" 
           RESOURCE_FOLDER: "metrics-implementation-details"
 
       - name: Download metrics data from latest Community test run (CircleCI)
@@ -85,6 +90,13 @@ jobs:
           # Move the resulting markdown file to the docs repo
           cp -r target/updated_coverage/md/* content/en/references/coverage && rm -R target/updated_coverage/md/
           mv -f target/updated_coverage/data/*.json data/coverage
+
+      - name: Format Parity Coverage Docs 
+        working-directory: docs
+        run: |
+          npm install
+          npm install markdownlint-cli2 --global
+          markdownlint-cli2 --config .markdownlint-cli2.yaml --fix
 
       - name: Check for changes
         id: check-for-changes

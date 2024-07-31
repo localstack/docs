@@ -8,24 +8,32 @@ persistence: supported
 
 ## Introduction
 
-Route 53 is a highly scalable and reliable domain name system (DNS) web service provided by Amazon Web Services. Route 53 allows you to register domain names, and associate them with IP addresses or other resources. In addition to basic DNS functionality, Route 53 offers advanced features like health checks and DNS failover. Route 53 integrates seamlessly with other AWS services, such as route traffic to CloudFront distributions, S3 buckets configured for static website hosting, EC2 instances, and more.
+Route 53 is a highly scalable and reliable domain name system (DNS) web service provided by Amazon Web Services.
+Route 53 allows you to register domain names, and associate them with IP addresses or other resources.
+In addition to basic DNS functionality, Route 53 offers advanced features like health checks and DNS failover.
+Route 53 integrates seamlessly with other AWS services, such as route traffic to CloudFront distributions, S3 buckets configured for static website hosting, EC2 instances, and more.
 
 LocalStack allows you to use the Route53 APIs in your local environment to create hosted zones and to manage DNS entries.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53/), which provides information on the extent of Route53's integration with LocalStack. LocalStack Pro image integrates with our DNS server to respond to DNS queries with these domains.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53/), which provides information on the extent of Route53's integration with LocalStack.
+LocalStack Pro image integrates with our DNS server to respond to DNS queries with these domains.
 
 {{< callout "note">}}
-LocalStack CLI does not publish port `53` anymore by default. Use the CLI flag `--host-dns` to expose the port on the host. This would be required if you want to reach out to Route53 domain names from your host machine, using the LocalStack DNS server.
+LocalStack CLI does not publish port `53` anymore by default.
+Use the CLI flag `--host-dns` to expose the port on the host.
+This would be required if you want to reach out to Route53 domain names from your host machine, using the LocalStack DNS server.
 {{< /callout >}}
 
 ## Getting started
 
 This guide is designed for users new to Route53 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create a hosted zone and query the DNS record with the AWS CLI.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create a hosted zone and query the DNS record with the AWS CLI.
 
 ### Create a hosted zone
 
-You can created a hosted zone for `example.com` using the [`CreateHostedZone`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateHostedZone.html) API. Run the following command:
+You can created a hosted zone for `example.com` using the [`CreateHostedZone`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateHostedZone.html) API.
+Run the following command:
 
 {{< command >}}
 $ zone_id=$(awslocal route53 create-hosted-zone \
@@ -42,7 +50,8 @@ The following output would be retrieved:
 
 ### Change resource record sets
 
-You can now change the resource record sets for the hosted zone `example.com` using the [`ChangeResourceRecordSets`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html) API. Run the following command:
+You can now change the resource record sets for the hosted zone `example.com` using the [`ChangeResourceRecordSets`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html) API.
+Run the following command:
 
 {{< command >}}
 $ awslocal route53 change-resource-record-sets \
@@ -94,11 +103,17 @@ The DNS name `localhost.localstack.cloud`, along with its subdomains like `mybuc
 It facilitates communication between a LocalStack compute environment (such as a Lambda function) and the LocalStack APIs, as well as your containerised applications with the LocalStack APIs.
 For example configurations, see the [Network Troubleshooting guide]({{< ref "references/network-troubleshooting/endpoint-url/#from-your-container" >}}).
 
-For most use-cases, the default configuration of the internal LocalStack DNS name requires no modification. It functions seamlessly in typical scenarios. However, there are instances where adjusting the external resolution of this DNS name becomes necessary. For instance, this might be required when your LocalStack instance operates on a distinct Docker network compared to your application code or even on a separate machine.
+For most use-cases, the default configuration of the internal LocalStack DNS name requires no modification.
+It functions seamlessly in typical scenarios.
+However, there are instances where adjusting the external resolution of this DNS name becomes necessary.
+For instance, this might be required when your LocalStack instance operates on a distinct Docker network compared to your application code or even on a separate machine.
 
-Suppose you intend to achieve a scenario in which all subdomains in the format `*.localhost.localstack.cloud` resolve to the IP address `5.6.7.8`. This IP signifies the accessibility of your LocalStack instance. This can be accomplished using Route53.
+Suppose you intend to achieve a scenario in which all subdomains in the format `*.localhost.localstack.cloud` resolve to the IP address `5.6.7.8`.
+This IP signifies the accessibility of your LocalStack instance.
+This can be accomplished using Route53.
 
-Create a hosted zone for the domain `localhost.localstack.cloud` using the [`CreateHostedZone` API](https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateHostedZone.html) API. Run the following command:
+Create a hosted zone for the domain `localhost.localstack.cloud` using the [`CreateHostedZone` API](https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateHostedZone.html) API.
+Run the following command:
 
 {{< command >}}
 $ zone_id=$(awslocal route53 create-hosted-zone \
@@ -113,7 +128,8 @@ The following output would be retrieved:
 /hostedzone/3NF6SEGOB5EBHS1
 ```
 
-You can now use the [`ChangeResourceRecordSets`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html) API to create a record set for the domain `localhost.localstack.cloud` using the `zone_id` retrieved in the previous step. Run the following command to accomplish this:
+You can now use the [`ChangeResourceRecordSets`](https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html) API to create a record set for the domain `localhost.localstack.cloud` using the `zone_id` retrieved in the previous step.
+Run the following command to accomplish this:
 
 {{< command >}}
 $ awslocal route53 change-resource-record-sets \
@@ -157,17 +173,23 @@ localhost.localstack.cloud. 300 IN      A       5.6.7.8
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Route53 for creating hosted zones and to manage DNS entries. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Route53** under the **Analytics** section.
+The LocalStack Web Application provides a Route53 for creating hosted zones and to manage DNS entries.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Route53** under the **Analytics** section.
 
 <img src="route53-resource-browser.png" alt="Route53 Resource Browser" title="Route53 Resource Browser" width="900" />
 
 The Resource Browser allows you to perform the following actions:
 
-- **Create Hosted Zone**: Create a hosted zone for a domain name by clicking on the **Create Hosted Zone** button. This will open a modal where you can enter the name, VPC, and other parameters and click on the **Submit** button to create the hosted zone.
-- **View Hosted Zone**: View the details of a hosted zone by clicking on the specific hosted zone name. This will open a modal where you can view the hosted zone details.
-- **Create Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking **Create Record** to create a record for the hosted zone. This will open a modal where you can enter the name, type, and other parameters and click on the **Submit** button to create the record.
-- **Edit Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking **Edit** on the specific record to edit the record. This will open a modal where you can edit the record details and click on the **Submit** button to save the changes.s
-- **View Records**: Click on the **Records** button on the individual hosted zone page, followed by clicking on the specific record to view the record details. This will open a modal where you can view the record details.
+- **Create Hosted Zone**: Create a hosted zone for a domain name by clicking on the **Create Hosted Zone** button.
+  This will open a modal where you can enter the name, VPC, and other parameters and click on the **Submit** button to create the hosted zone.
+- **View Hosted Zone**: View the details of a hosted zone by clicking on the specific hosted zone name.
+  This will open a modal where you can view the hosted zone details.
+- **Create Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking **Create Record** to create a record for the hosted zone.
+  This will open a modal where you can enter the name, type, and other parameters and click on the **Submit** button to create the record.
+- **Edit Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking **Edit** on the specific record to edit the record.
+  This will open a modal where you can edit the record details and click on the **Submit** button to save the changes.s
+- **View Records**: Click on the **Records** button on the individual hosted zone page, followed by clicking on the specific record to view the record details.
+  This will open a modal where you can view the record details.
 - **Delete Hosted Zone**: Select the hosted zones you want to delete by clicking on the checkbox next to the hosted zone name, followed by clicking on the **Actions** button and then clicking on **Remove Selected**.
 - **Delete Record**: Click on the **Records** button on the individual hosted zone page, followed by clicking on checkbox next to the specific record, and then clicking on the **Actions** button and then clicking on **Remove Selected**.
 
@@ -175,4 +197,4 @@ The Resource Browser allows you to perform the following actions:
 
 The following code snippets and sample applications provide practical examples of how to use Route53 in LocalStack for various use cases:
 
- - [DNS Failover with Route53 on LocalStack](https://github.com/localstack/localstack-pro-samples/tree/master/route53-dns-failover)
+- [DNS Failover with Route53 on LocalStack](https://github.com/localstack/localstack-pro-samples/tree/master/route53-dns-failover)

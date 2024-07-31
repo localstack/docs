@@ -4,10 +4,14 @@ linktitle: LambdaTest HyperExecute
 description: Executing LocalStack tests on LambdaTest's HyperExecute
 ---
 
-[HyperExecute](https://www.lambdatest.com/hyperexecute) is a test orchestration platform designed to optimize the execution of automated tests in the cloud. It supports a wide range of testing frameworks and integrates seamlessly with CI/CD pipelines, such as GitHub Actions. You can use HyperExecute to run your LocalStack tests on your local machine or in the CI pipeline using a single configuration file.
+[HyperExecute](https://www.lambdatest.com/hyperexecute) is a test orchestration platform designed to optimize the execution of automated tests in the cloud.
+It supports a wide range of testing frameworks and integrates seamlessly with CI/CD pipelines, such as GitHub Actions.
+You can use HyperExecute to run your LocalStack tests on your local machine or in the CI pipeline using a single configuration file.
 
 {{< callout >}}
-LambdaTest provides specialized runners for LocalStack. The default runners don't provide a Docker socket, which is required for LocalStack to work properly. If you want to use LocalStack with HyperExecute, you need to get in touch with the LambdaTest team to get access to the specialized runners.
+LambdaTest provides specialized runners for LocalStack.
+The default runners don't provide a Docker socket, which is required for LocalStack to work properly.
+If you want to use LocalStack with HyperExecute, you need to get in touch with the LambdaTest team to get access to the specialized runners.
 {{< /callout >}}
 
 ## Getting started
@@ -44,7 +48,8 @@ pre:
 The above minimal configuration file starts LocalStack and creates an S3 bucket, SQS queue, and SNS topic.
 
 {{< callout >}}
-To use the LocalStack Pro image, configure a LocalStack Auth Token by appending `LOCALSTACK_AUTH_TOKEN=${{ .secrets.LOCALSTACK_AUTH_TOKEN }}` to the `localstack start` command. Subsequently, you need to add your LocalStack Auth Token to your HyperExecute Portal as a secret.
+To use the LocalStack Pro image, configure a LocalStack Auth Token by appending `LOCALSTACK_AUTH_TOKEN=${{ .secrets.LOCALSTACK_AUTH_TOKEN }}` to the `localstack start` command.
+Subsequently, you need to add your LocalStack Auth Token to your HyperExecute Portal as a secret.
 {{< /callout >}}
 
 ### Enabling test execution on HyperExecute
@@ -70,21 +75,26 @@ sourcePayload:
   accessToken: ${{ .secrets.PAT }}
 ```
 
-Before running the tests, add your Personal Access Token (PAT) to your HyperExecute Portal as a secret. In this minimal configuration, you will set up our [`Serverless image resizer`](https://github.com/localstack-samples/sample-serverless-image-resizer-s3-lambda) application and run the tests using `pytest`. The `bin/deploy.sh` script is responsible for deploying the application to LocalStack. HyperExecute will automatically detect the tests and run them in parallel.
+Before running the tests, add your Personal Access Token (PAT) to your HyperExecute Portal as a secret.
+In this minimal configuration, you will set up our [`Serverless image resizer`](https://github.com/localstack-samples/sample-serverless-image-resizer-s3-lambda) application and run the tests using `pytest`.
+The `bin/deploy.sh` script is responsible for deploying the application to LocalStack.
+HyperExecute will automatically detect the tests and run them in parallel.
 
 ### Running the tests locally
 
 You can run the tests locally using the following command:
 
 {{< command >}}
-$ hyperexecute --user '<user-name>' --key '<HE-key>' --config he.yaml   
+$ hyperexecute --user '<user-name>' --key '<HE-key>' --config he.yaml
 {{< /command >}}
 
-Swap `<user-name>` and `<HE-key>` with your HyperExecute username and access key. You can find your access key in the HyperExecute Portal.
+Swap `<user-name>` and `<HE-key>` with your HyperExecute username and access key.
+You can find your access key in the HyperExecute Portal.
 
 ### Running the tests in the CI pipeline
 
-In this example, we will use GitHub Actions to run the tests in the CI pipeline. To do so, you need to add the following content to your GitHub Actions workflow file in `.github/workflows/main.yml`:
+In this example, we will use GitHub Actions to run the tests in the CI pipeline.
+To do so, you need to add the following content to your GitHub Actions workflow file in `.github/workflows/main.yml`:
 
 ```yaml
 name: Running tests on HyperExecute
@@ -111,4 +121,6 @@ jobs:
                 --config he.yaml
 ```
 
-Add your username and access key to your GitHub repository secrets. You can find your access key in the HyperExecute Portal. If you are using the LocalStack Pro image, you need to add your LocalStack Auth Token to your GitHub repository secrets.
+Add your username and access key to your GitHub repository secrets.
+You can find your access key in the HyperExecute Portal.
+If you are using the LocalStack Pro image, you need to add your LocalStack Auth Token to your GitHub repository secrets.

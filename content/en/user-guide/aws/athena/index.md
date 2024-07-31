@@ -91,7 +91,7 @@ Run the following command:
 
 {{< command >}}
 $ awslocal athena start-query-execution \
-    --query-string "select * from tbl01;" --result-configuration "OutputLocation=s3://athena-bucket/output/"     
+    --query-string "select * from tbl01;" --result-configuration "OutputLocation=s3://athena-bucket/output/"
 {{< / command >}}
 
 You can retrieve the execution details similarly using the [`GetQueryExecution`](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html) API using the `QueryExecutionId` returned by the previous step.
@@ -147,7 +147,8 @@ $ awslocal athena get-query-results --query-execution-id $queryId
 {{< / command >}}
 
 The query should yield a result similar to the output below:
-```
+
+```bash
 ...
     "Rows": [
         {
@@ -190,7 +191,7 @@ LOCATION 's3://mybucket/prefix/' TBLPROPERTIES ( 'table_type' = 'ICEBERG' )
 
 Once the table has been created and data inserted into it, you can see the Iceberg metadata and data files being created in S3:
 
-```
+```bash
 s3://mybucket/_tmp.prefix/
 s3://mybucket/prefix/data/00000-0-user1_20230212221600_cd8f8cbd-4dcc-4c3f-96a2-f08d4104d6fb-job_local1695603329_0001-00001.parquet
 s3://mybucket/prefix/data/00000-0-user1_20230212221606_eef1fd88-8ff1-467a-a15b-7a24be7bc52b-job_local1976884152_0002-00001.parquet

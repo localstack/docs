@@ -14,18 +14,20 @@ This page contains easily customisable snippets to show you how to manage LocalS
 
 ```yaml
 - name: Start LocalStack
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     image-tag: 'latest'
     install-awslocal: 'true'
 ```
+
 ### Configuration
 
-To set LocalStack configuration options, you can use the `configuration` input parameter. For example, to set the `DEBUG` configuration option, you can use the following configuration:
+To set LocalStack configuration options, you can use the `configuration` input parameter.
+For example, to set the `DEBUG` configuration option, you can use the following configuration:
 
 ```yml
 - name: Start LocalStack
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     image-tag: 'latest'
     install-awslocal: 'true'
@@ -36,12 +38,14 @@ You can add extra configuration options by separating them with a comma.
 
 ### Configure a CI key
 
-To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables. The LocalStack container will automatically pick it up and activate the licensed features. 
+To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables.
+The LocalStack container will automatically pick it up and activate the licensed features.
 
-Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key. To add the CI key to your GitHub project, follow these steps:
+Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key.
+To add the CI key to your GitHub project, follow these steps:
 
 - Navigate to your repository **Settings > Secrets** and press **New repository secret**.
-- Enter `LOCALSTACK_API_KEY` as the name of the secret and paste your CI key as the value. 
+- Enter `LOCALSTACK_API_KEY` as the name of the secret and paste your CI key as the value.
 Click **Add secret** to save your secret.
 
 <img src="github-create-secret.png" alt="Adding the LocalStack CI key as secret in GitHub" title="Adding the LocalStack CI key as secret in GitHub" width="900" />
@@ -52,7 +56,7 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 
 ```yaml
 - name: Start LocalStack
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     image-tag: 'latest'
     install-awslocal: 'true'
@@ -62,6 +66,7 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 ```
 
 ### Dump Localstack logs
+
 ```yaml
 - name: Show localstack logs
   run: |
@@ -73,12 +78,13 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
 You can preserve your AWS infrastructure with Localstack in various ways.
 
 #### Cloud Pods
+
 ```yaml
 ...
 # Localstack is up and running already
 - name: Load the Cloud Pod 
   continue-on-error: true  # Allow it to fail as pod does not exist at first run
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     state-backend: cloud-pods
     state-name: <cloud-pod-name>
@@ -88,7 +94,7 @@ You can preserve your AWS infrastructure with Localstack in various ways.
 ...
 
 - name: Save the Cloud Pod 
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     state-backend: cloud-pods
     state-name: <cloud-pod-name>
@@ -103,6 +109,7 @@ Find more information about cloud pods [here](/user-guide/state-management/cloud
 Our Github Action contains the prebuilt functionality to spin up an ephemeral instance.
 
 First you need to deploy the preview:
+
 ```yaml
 name: Create PR Preview
 
@@ -120,7 +127,7 @@ jobs:
       ...
 
       - name: Deploy Preview
-        uses: LocalStack/setup-localstack@v0.2.0
+        uses: LocalStack/setup-localstack@v0.2.2
         env:
           AWS_DEFAULT_REGION: us-east-1
           AWS_REGION: us-east-1
@@ -137,10 +144,11 @@ jobs:
 Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 
 #### Artifact
+
 ```yaml
 ...
 - name: Start LocalStack and Load State
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   continue-on-error: true  # Allow it to fail as pod does not exist at first run
   with:
     install-awslocal: 'true'
@@ -153,7 +161,7 @@ Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 ...
 
 - name: Save LocalStack State
-  uses: LocalStack/setup-localstack@v0.2.0
+  uses: LocalStack/setup-localstack@v0.2.2
   with:
     install-awslocal: 'true'
     state-backend: cloud-pods

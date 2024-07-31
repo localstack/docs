@@ -149,8 +149,8 @@ This task definition creates a CloudWatch Logs log group and log stream for the 
 ### Launch a service
 
 Finally we launch an ECS service using the task definition above.
-This will create a number of containers in replica mode meaning they are distributed over the nodes of the cluster, or in the case of Fargate, over availability zones within the region of the cluster. To create a service, execute the following command:
-
+This will create a number of containers in replica mode meaning they are distributed over the nodes of the cluster, or in the case of Fargate, over availability zones within the region of the cluster.
+To create a service, execute the following command:
 
 {{< command >}}
 $ awslocal ecs create-service --service-name myservice --cluster mycluster --task-definition myfamily --desired-count 1
@@ -204,7 +204,7 @@ $ awslocal ecs create-service --service-name myservice --cluster mycluster --tas
 
 You should see a new docker container has been created, using the `ubuntu:latest` image, and running the infinite loop command:
 
-```
+```bash
 $ docker ps
 CONTAINER ID   IMAGE                       COMMAND                  CREATED         STATUS                   PORTS                                                                                              NAMES
 5dfeb9376391   ubuntu                      "sh -c 'while true; …"   3 minutes ago   Up 3 minutes                                                                                                                ls-ecs-mycluster-75f0515e-0364-4ee5-9828-19026140c91a-0-a1afaa9d
@@ -263,7 +263,8 @@ Or if you are working with a single container, you can set `ECS_DOCKER_FLAGS="-p
 
 ## Mounting local directories for ECS tasks
 
-In some cases, it can be useful to mount code from the host filesystem into the ECS container. For example, to enable a quick debugging loop where you can test changes without having to build and redeploy the task's Docker image each time - similar to the [Lambda Hot Reloading]({{< ref "hot-reloading" >}}) feature in LocalStack.
+In some cases, it can be useful to mount code from the host filesystem into the ECS container.
+For example, to enable a quick debugging loop where you can test changes without having to build and redeploy the task's Docker image each time - similar to the [Lambda Hot Reloading]({{< ref "hot-reloading" >}}) feature in LocalStack.
 
 In order to leverage code mounting, we can use the ECS bind mounts feature, which is covered in the [AWS Bind mounts documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/bind-mounts.html).
 
@@ -341,10 +342,10 @@ services:
 
 Alternatively, you can download the image from the private registry before using it or employ an [Initialization Hook](https://docs.localstack.cloud/references/init-hooks/) to install the Docker client and use these credentials to download the image.
 
-
 ## Running ECS on Kubernetes
 
-LocalStack Enterprise image allows you to run ECS tasks on Kubernetes. The tasks are added to ELB load balancer target groups.
+LocalStack Enterprise image allows you to run ECS tasks on Kubernetes.
+The tasks are added to ELB load balancer target groups.
 You can do so by setting the `ECS_TASK_EXECUTOR` environment variable to `kubernetes` in the LocalStack container.
 
 In this guide, you will learn how to run ECS tasks on Kubernetes by using [`k3d](https://k3d.io/), a lightweight Kubernetes distribution.
@@ -360,7 +361,8 @@ $ k3d cluster create ls-cluster -p "4566:$NODE_PORT" --wait --timeout 5m
 
 ### Install LocalStack in the cluster
 
-You can now install LocalStack in the Kubernetes cluster by using LocalStack's Helm chart. The following command installs LocalStack with the `kubernetes` executor for ECS and sets the `LOCALSTACK_AUTH_TOKEN` environment variable:
+You can now install LocalStack in the Kubernetes cluster by using LocalStack's Helm chart.
+The following command installs LocalStack with the `kubernetes` executor for ECS and sets the `LOCALSTACK_AUTH_TOKEN` environment variable:
 
 {{< command >}}
 $ helm upgrade --install localstack localstack/localstack \
@@ -381,6 +383,19 @@ $ curl http://localhost:4566/_localstack/health
 {{< / command >}}
 
 You can now create ECS tasks on Kubernetes by following the steps in the [Getting Started](#getting-started) section.
+
+## Firelens for ECS Tasks
+
+{{< callout >}}
+Firelens emulation is currently available as part of the **LocalStack Enterprise** plan.
+If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
+{{< /callout >}}
+
+LocalStack's ECS emulation supports custom log routing via FireLens.
+FireLens allows the ECS service to manage the configuration of the logging driver of application containers, and to create the proper configuration for the `fluentbit`/`fluentd` logging layer.
+
+However the current implementation of FireLens does not support [custom configurations via S3 buckets](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/firelens-taskdef.html#firelens-taskdef-customconfig).
+Additionally, you cannot use ECS on Kubernetes with FireLens.
 
 ## Resource Browser
 

@@ -149,7 +149,9 @@ The following output would be retrieved:
 ```
 
 {{< callout >}}
-You can run DynamoDB in memory, which can greatly improve the performance of your database operations. However, this also means that the data will not be possible to persist on disk and will be lost even though persistence is enabled in LocalStack. To enable this feature, you need to set the environment variable `DYNAMODB_IN_MEMORY=1` while starting LocalStack.
+You can run DynamoDB in memory, which can greatly improve the performance of your database operations.
+However, this also means that the data will not be possible to persist on disk and will be lost even though persistence is enabled in LocalStack.
+To enable this feature, you need to set the environment variable `DYNAMODB_IN_MEMORY=1` while starting LocalStack.
 {{< /callout >}}
 
 ### Time To Live
@@ -164,7 +166,7 @@ In addition, to programmatically trigger the worker at convenience, we provide t
 The response returns the number of deleted items:
 
 ```console
-curl -X DELETE localhost:4566//_aws/dynamodb/expired
+curl -X DELETE localhost:4566/_aws/dynamodb/expired
 {"ExpiredItems": 3}
 ```
 
@@ -192,15 +194,15 @@ You can add your query in the editor and click on the **Execute** button to exec
 
 The following code snippets and sample applications provide practical examples of how to use IAM in LocalStack for various use cases:
 
--   [Serverless Container-based APIs with Amazon ECS & API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
--   [Full-Stack application with AWS Lambda, DynamoDB & S3 for shipment validation](https://github.com/localstack/shipment-list-demo)
--   [Step-up Authentication using Amazon Cognito](https://github.com/localstack/step-up-auth-sample)
--   [Serverless microservices with Amazon API Gateway, DynamoDB, SQS, and Lambda](https://github.com/localstack/microservices-apigateway-lambda-dynamodb-sqs-sample)
--   [Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3](https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo)
--   [Note-Taking application using AWS SDK for JavaScript](https://github.com/localstack/aws-sdk-js-notes-app)
--   [AppSync GraphQL APIs for DynamoDB and RDS Aurora PostgreSQL](https://github.com/localstack/appsync-graphql-api-sample)
--   [Loan Broker application with AWS Step Functions, DynamoDB, Lambda, SQS, and SNS](https://github.com/localstack/loan-broker-stepfunctions-lambda-app)
--   [Messaging Processing application with SQS, DynamoDB, and Fargate](https://github.com/localstack/sqs-fargate-ddb-cdk-go)
+- [Serverless Container-based APIs with Amazon ECS & API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
+- [Full-Stack application with AWS Lambda, DynamoDB & S3 for shipment validation](https://github.com/localstack/shipment-list-demo)
+- [Step-up Authentication using Amazon Cognito](https://github.com/localstack/step-up-auth-sample)
+- [Serverless microservices with Amazon API Gateway, DynamoDB, SQS, and Lambda](https://github.com/localstack/microservices-apigateway-lambda-dynamodb-sqs-sample)
+- [Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3](https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo)
+- [Note-Taking application using AWS SDK for JavaScript](https://github.com/localstack/aws-sdk-js-notes-app)
+- [AppSync GraphQL APIs for DynamoDB and RDS Aurora PostgreSQL](https://github.com/localstack/appsync-graphql-api-sample)
+- [Loan Broker application with AWS Step Functions, DynamoDB, Lambda, SQS, and SNS](https://github.com/localstack/loan-broker-stepfunctions-lambda-app)
+- [Messaging Processing application with SQS, DynamoDB, and Fargate](https://github.com/localstack/sqs-fargate-ddb-cdk-go)
 
 ## Current Limitations
 
@@ -211,7 +213,7 @@ LocalStack provides support for global tables (Version 2019), which are tables t
 However, legacy global tables (Version 2017) are not supported by LocalStack.
 Operations such as `CreateGlobalTable`, `UpdateGlobalTable`, and `DescribeGlobalTable` will not replicate globally.
 
-### Replication 
+### Replication
 
 - Removing the original table region from the replication set while retaining the replicas is currently not feasible.
 Deleting the original table will result in the removal of all replicas as well.
