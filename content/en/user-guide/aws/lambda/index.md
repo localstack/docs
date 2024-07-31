@@ -66,18 +66,10 @@ $ awslocal lambda create-function \
     --handler index.handler \
     --role arn:aws:iam::000000000000:role/lambda-role \
     --tags '{"_custom_id_":"my-custom-subdomain"}'
-$ awslocal lambda create-function-url-config \
-    --function-name localstack-lambda-url-example \
-    --auth-type NONE
-{
-    "FunctionUrl": "http://my-custom-subdomain.lambda-url.<region>...",
-    ....
-}
 {{< / command >}}
-You must specify the `_custom_id_` tag **before** using the `create-function-url-config` command.
+You must specify the `_custom_id_` tag **before** <a href="#create-a-function-url">creating a Function URL</a>.
 After the URL configuration is set up, any modifications to the tag will not affect it.
-At present, custom IDs can be assigned only to the `$LATEST` version of the function.
-LocalStack does not yet support custom IDs for function version aliases.
+LocalStack supports assigning custom IDs to both the `$LATEST` version of the function or to an existing version alias.
 {{< /callout >}}
 
 {{< callout >}}
@@ -123,6 +115,33 @@ $ awslocal lambda create-function-url-config \
 
 This will generate a HTTP URL that can be used to invoke the Lambda function.
 The URL will be in the format `http://<XXXXXXXX>.lambda-url.us-east-1.localhost.localstack.cloud:4566`.
+
+{{< callout "note">}}
+As previously mentioned, when a Lambda Function has a `_custom_id_` tag, LocalStack sets this tag's value as the subdomain in the Function's URL.
+
+{{< command >}}
+$ awslocal lambda create-function-url-config \
+    --function-name localstack-lambda-url-example \
+    --auth-type NONE
+{
+    "FunctionUrl": "http://my-custom-subdomain.lambda-url.<region>...",
+    ....
+}
+{{< / command >}}
+
+In addition, if you pass an an existing version alias as a `Qualifier` to the request, the created URL will combine the custom ID and the alias in the form `<custom-id>-<alias>`.
+
+{{< command >}}
+$ awslocal lambda create-function-url-config \
+    --function-name localstack-lambda-url-example \
+    --auth-type NONE
+    --qualifier test-alias
+{
+    "FunctionUrl": "http://my-custom-subdomain-test-alias.lambda-url.<region>...",
+    ....
+}
+{{< / command >}}
+{{< /callout >}}
 
 ### Trigger the Lambda function URL
 
