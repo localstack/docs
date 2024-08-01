@@ -114,3 +114,7 @@ The Resource Browser allows you to perform the following actions:
 The following code snippets and sample applications provide practical examples of how to use Sagemaker in LocalStack for various use cases:
 
 - [MNIST handwritten digit recognition model](https://github.com/localstack-samples/sample-mnist-digit-recognition-sagemaker) demonstrates a web application that allows users to draw a digit and submit it to a locally running SageMaker endpoint.
+
+## Limitations
+
+Currently, GPU models are not supported by the LocalStack SageMaker implementation.
