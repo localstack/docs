@@ -227,7 +227,7 @@ $ awslocal sns publish --target-arn "arn:aws:sns:us-east-1:000000000000:endpoint
 }
 ```
 
-Retrieve the messages published to the platform endpoint using `cURL`:
+Retrieve the messages published to the platform endpoint using [curl](https://curl.se/):
 
 {{< command >}}
 $ curl "http://localhost:4566/_aws/sns/platform-endpoint-messages" | jq .
@@ -309,7 +309,7 @@ An example response is shown below:
 }
 ```
 
-Retrieve the message published using `cURL` and `jq`:
+Retrieve the message published using [curl](https://curl.se/) and [jq](https://jqlang.github.io/jq/):
 
 {{< command >}}
 $ curl "http://localhost:4566/_aws/sns/sms-messages" | jq .

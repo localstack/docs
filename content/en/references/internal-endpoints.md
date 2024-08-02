@@ -10,7 +10,7 @@ description: >
 
 LocalStack provides several internal endpoints for various local AWS services and LocalStack-specific features.
 These endpoints are not part of the official AWS API and are available in the `/_localstack` and `/_aws` paths.
-You can use [`cURL`](https://curl.se/) or your favourite HTTP REST client to access endpoints.
+You can use [curl](https://curl.se/) or your favourite HTTP REST client to access endpoints.
 
 ## LocalStack endpoints
 
@@ -33,7 +33,7 @@ The following endpoints are available:
 
 {{< callout "tip" >}}
 You can use the `/_localstack/health` endpoint to restart or kill the services.
-You can use `cURL` or your HTTP REST client to access the endpoint:
+You can use [curl](https://curl.se/) or your HTTP REST client to access the endpoint:
 {{< command >}}
 $ curl -v --request POST --header "Content-Type: application/json"  --data '{"action":"restart"}' http://localhost:4566/_localstack/health
 $ curl -v --request POST --header "Content-Type: application/json"  --data '{"action":"kill"}' http://localhost:4566/_localstack/health

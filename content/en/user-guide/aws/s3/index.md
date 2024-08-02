@@ -120,7 +120,7 @@ $ awslocal s3 presign s3://sample-bucket/image.jpg
 {{< / command >}}
 
 You will see a generated pre-signed URL for your S3 object.
-You can use [`cURL`](https://curl.se/) or [`wget`](https://www.gnu.org/software/wget/) to retrieve the S3 object using the pre-signed URL.
+You can use [curl](https://curl.se/) or [`wget`](https://www.gnu.org/software/wget/) to retrieve the S3 object using the pre-signed URL.
 
 ## Path-Style and Virtual Hosted-Style Requests
 
