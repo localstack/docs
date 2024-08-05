@@ -108,27 +108,6 @@ LocalStack provides various tools to help you generate, test, and enforce IAM po
 - **Explainable IAM**: Explainable IAM logs outputs related to failed policy evaluations directly to LocalStack logs, aiding in the identification of necessary policies for successful requests.
   More details are available in the [Explainable IAM documentation]({{< ref "iam-explain" >}}).
 
-## Supported APIs
-
-IAM security enforcement is comprehensively available for all AWS APIs in LocalStack and has undergone thorough testing across multiple services.
-The services that have been rigorously tested include:
-
-- ACM
-- API Gateway
-- CloudFormation
-- CloudWatch (metrics/events/logs)
-- DynamoDB
-- DynamoDB Streams
-- Elasticsearch Service
-- EventBus, Kinesis
-- KMS
-- Lambda
-- Redshift
-- S3
-- SecretsManager
-- SNS
-- SQS
-
 ## Examples
 
 The following code snippets and sample applications provide practical examples of how to use IAM in LocalStack for various use cases:
