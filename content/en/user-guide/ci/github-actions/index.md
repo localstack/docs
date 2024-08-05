@@ -185,6 +185,6 @@ It's important to note that using this approach may result in significantly slow
 
 ### Running LocalStack on Windows runners
 
-LocalStack requires Docker to run, which is not natively supported on Windows runners. 
-Windows runners don't support Docker natively due to licensing restrictions. 
+LocalStack requires Docker to run, which is not natively supported on Windows runners.
+Windows runners don't support Docker natively due to licensing restrictions.
 It is currently not possible to run LocalStack on Windows runners.
