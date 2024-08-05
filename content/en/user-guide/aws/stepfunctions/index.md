@@ -130,7 +130,7 @@ LocalStack's Step Functions emulation supports the following AWS services:
 |                                | Amazon EventBridge      | &#10003;         |                   |                    | &#10003;                              |
 |                                | AWS Glue                | &#10003;         | &#10003;          |                    |                                       |
 |                                | AWS Step Functions      | &#10003;         | &#10003;          | &#10003;           | &#10003;                              |
-|          | AWS Batch            | &#10003;         | &#10003;          |                    |       &#10003;                                |
+|          | AWS Batch            | &#10003;         | &#10003;          |                    |                                   |
 | AWS SDK integrations           | All LocalStack services | &#10003;         |                   |                    | &#10003;                              |
 
 ## Resource Browser
