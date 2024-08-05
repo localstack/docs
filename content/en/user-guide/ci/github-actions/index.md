@@ -183,16 +183,8 @@ While the [`LAMBDA_IGNORE_ARCHITECTURE` configuration](https://docs.localstack.c
 To address this, users are recommended to leverage Docker's [`setup-qemu-action`](https://github.com/docker/setup-qemu-action) to enable emulation for the `arm64` architecture.
 It's important to note that using this approach may result in significantly slower build times.
 
-### Running LocalStack on macOS & Windows runners
+### Running LocalStack on Windows runners
 
-LocalStack requires Docker to run, which is not natively supported on macOS & Windows runners. To run LocalStack on macOS runners (`macos-latest` and other macOS versions), you can use [Colima](https://github.com/abiosoft/colima) in the following way:
-
-```yaml
-- name: Docker setup (macos only)
-  if: ${{ runner.os == 'macOS' }}
-  run: |
-    brew install docker
-    colima start
-```
-
-Windows runners don't support Docker natively due to licensing restrictions. It is currently not possible to run LocalStack on Windows runners.
+LocalStack requires Docker to run, which is not natively supported on Windows runners. 
+Windows runners don't support Docker natively due to licensing restrictions. 
+It is currently not possible to run LocalStack on Windows runners.
