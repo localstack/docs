@@ -24,7 +24,7 @@ METRICS_IMPL="$PARENT_FOLDER/metrics-implementation-details/"
 
 echo "Project: $PROJECT_SLUG."
 
-WORKFLOW_ID=$(curl -X 'GET' "https://circleci.com/api/v2/insights/${PROJECT_SLUG}/workflows/main?branch=${METRICS_ARTIFACTS_BRANCH}" -H 'accept: application/json' | jq -r '[.items[] | select(.status == "success")][0].id')
+WORKFLOW_ID=$(curl -X 'GET' "https://circleci.com/api/v2/insights/${PROJECT_SLUG}/workflows/full-run?branch=${METRICS_ARTIFACTS_BRANCH}" -H 'accept: application/json' | jq -r '[.items[] | select(.status == "success")][0].id')
 echo "Latest successful workflow: $WORKFLOW_ID"
 
 JOB_NUMBER=$(curl -X 'GET' "https://circleci.com/api/v2/workflow/${WORKFLOW_ID}/job" -H 'accept: application/json'| jq -r '.items[] | select(.name == "report") | .job_number')
