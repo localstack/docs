@@ -113,3 +113,7 @@ You can view the LocalStack logs to validate the policy enforcement:
 
 You can further use the IAM Policy Enforcement feature to test your Infrastructure as Code (IaC) deployments and ensure that your policies are correctly enforced.
 If the IAM policies are not correctly enforced, you will get an unsuccessful response from the API call, and the LocalStack logs will provide you with the necessary information to debug the issue.
+
+## Feature coverage
+
+The feature coverage is documented in the [IAM coverage documentation]({{ ref "iam-coverage"}}.
