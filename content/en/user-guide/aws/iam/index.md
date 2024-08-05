@@ -97,6 +97,17 @@ The Resource Browser allows you to perform the following actions:
 - **Edit User, Group, Role, and Policy Details**: Click on any listed resources to edit its details by clicking on the desired User, Group, Role, or Policy.
 - **Delete User, Group, Role, and Policy**: Select any listed resources to delete them by clicking the **Actions** button and selecting **Remove Selected**.
 
+## Special Tools
+
+LocalStack provides various tools to help you generate, test, and enforce IAM policies more efficiently.
+
+- **IAM Policy Stream**: IAM Policy Stream provides a real-time view of API calls and the corresponding IAM policies they generate, simplifying permission management and ensuring correct permissions are assigned.
+  Learn more in the [IAM Policy Stream documentation]({{< ref "iam-policy-stream" >}}).
+- **IAM Policy Enforcement**: This configuration enforces IAM policies when interacting with local cloud APIs, simulating a real AWS environment.
+  For additional information, refer to the [IAM Policy Enforcement documentation]({{< ref "iam-enforcement" >}}).
+- **Explainable IAM**: Explainable IAM logs outputs related to failed policy evaluations directly to LocalStack logs, aiding in the identification of necessary policies for successful requests.
+  More details are available in the [Explainable IAM documentation]({{< ref "iam-explain" >}}).
+
 ## Supported APIs
 
 IAM security enforcement is comprehensively available for all AWS APIs in LocalStack and has undergone thorough testing across multiple services.
