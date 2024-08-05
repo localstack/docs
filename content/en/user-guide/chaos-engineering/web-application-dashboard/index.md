@@ -23,9 +23,9 @@ Chaos Engineering Dashboard is offered as a **preview** feature and under active
 
 The dashboard offers the following features:
 
-* DynamoDB Error: Randomly inject `ProvisionedThroughputExceededException` errors into DynamoDB API responses.
-* Kinesis Error: Randomly inject `ProvisionedThroughputExceededException` errors into Kinesis API responses.
-* 500 Internal Error: Randomly terminate incoming requests, returning an `Internal Server Error` with a response code of 500.
-* Service Unavailable: Cause a specified percentage of service API calls to receive a 503 `Service Unavailable` response.
-* AWS Region Unavailable: Simulate regional outages and failovers by disabling entire AWS regions.
-* Latency: Introduce specified latency to every API call, useful for simulating network latency or degraded network performance.
+* **DynamoDB Error**: Randomly inject `ProvisionedThroughputExceededException` errors into DynamoDB API responses.
+* **Kinesis Error**: Randomly inject `ProvisionedThroughputExceededException` errors into Kinesis API responses.
+* **500 Internal Error**: Randomly terminate incoming requests, returning an `Internal Server Error` with a response code of 500.
+* **Service Unavailable**: Cause a specified percentage of service API calls to receive a 503 `Service Unavailable` response.
+* **AWS Region Unavailable**: Simulate regional outages and failovers by disabling entire AWS regions.
+* **Latency**: Introduce specified latency to every API call, useful for simulating network latency or degraded network performance.
