@@ -102,11 +102,11 @@ The Resource Browser allows you to perform the following actions:
 LocalStack provides various tools to help you generate, test, and enforce IAM policies more efficiently.
 
 - **IAM Policy Stream**: IAM Policy Stream provides a real-time view of API calls and the corresponding IAM policies they generate, simplifying permission management and ensuring correct permissions are assigned.
-  Learn more in the [IAM Policy Stream documentation]({{< ref "iam-policy-stream" >}}).
+  Learn more in the [IAM Policy Stream documentation]({{< ref "user-guide/security-testing/iam-policy-stream" >}}).
 - **IAM Policy Enforcement**: This configuration enforces IAM policies when interacting with local cloud APIs, simulating a real AWS environment.
   For additional information, refer to the [IAM Policy Enforcement documentation]({{< ref "iam-enforcement" >}}).
 - **Explainable IAM**: Explainable IAM logs outputs related to failed policy evaluations directly to LocalStack logs, aiding in the identification of necessary policies for successful requests.
-  More details are available in the [Explainable IAM documentation]({{< ref "iam-explain" >}}).
+  More details are available in the [Explainable IAM documentation]({{< ref "explainable-iam" >}}).
 
 ## Examples
 
