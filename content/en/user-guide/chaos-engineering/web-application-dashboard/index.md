@@ -1,28 +1,31 @@
 ---
 title: "Chaos Engineering Dashboard"
 linkTitle: "Chaos Engineering Dashboard"
-description: Effortlessly design, activate, and manage Fault Injection Service experiments
+description: Chaos Engineering Dashboard allows users to run chaos experiments within their application stack to test the system's resilience.
 tags: ["Enterprise plan"]
 ---
 
 ## Introduction
 
-The Chaos Engineering dashboard in LocalStack offers streamlined testing for cloud applications, enabling you to simulate server errors, service outages, regional disruptions, and network latency with ease, ensuring your app is ready for real-world challenges.
+The Chaos Engineering Dashboard in LocalStack offers streamlined testing for cloud applications, enabling you to simulate server errors, service outages, regional disruptions, and network latency with ease, ensuring your app is ready for real-world challenges.
+
+ The dashboard uses [LocalStack Chaos API]({{< ref "chaos-api" >}}) under the hood to offer a set of customizable templates that can be seamlessly integrated into any automation workflows.
+
+{{< figure src="chaos-engineering-dashboard.png" width="900" >}}
 
 You can find this feature in the LocalStack Web Application by navigating to [**app.localstack.cloud/chaos-engineering**](https://app.localstack.cloud/chaos-engineering).
 
-## FIS Dashboard
+{{< callout "note" >}}
+Chaos Engineering Dashboard is offered as a **preview** feature and under active development.
+{{< /callout >}}
 
-The FIS Dashboard in LocalStack Web Application allows you to conduct Fault Injection Service experiments on infrastructure stacks.
-This control panel offers various FIS experiment options, which includes:
+## Features
 
-- **500 Internal Error**: This experiment randomly terminates incoming requests, returning an `Internal Server Error` with a response code of 500.
-- **Service Unavailable**: This test causes all calls to specified services to receive a 503 `Service Unavailable` response.
-- **AWS Region Unavailable**: This experiment simulates regional outages and failovers by disabling entire AWS regions.
-- **Latency**: This test introduces specified latency to every API call, useful for simulating network latency or degraded network performance.
+The dashboard offers the following features:
 
-{{< figure src="fis-dashboard.png" width="900" >}}
-
-This LocalStack dashboard is not just an easy-to-use testing tool, it's a foundation for building reusable Fault Injection Service templates.
-By defining experiments using this interface, you create a set of customizable templates that can be seamlessly integrated into any future automation workflows.
-It's a time-saving feature, ensuring consistent and efficient testing across various stages of your application's development lifecycle.
+* DynamoDB Error: Randomly inject `ProvisionedThroughputExceededException` errors into DynamoDB API responses.
+* Kinesis Error: Randomly inject `ProvisionedThroughputExceededException` errors into Kinesis API responses.
+* 500 Internal Error: Randomly terminate incoming requests, returning an `Internal Server Error` with a response code of 500.
+* Service Unavailable: Cause a specified percentage of service API calls to receive a 503 `Service Unavailable` response.
+* AWS Region Unavailable: Simulate regional outages and failovers by disabling entire AWS regions.
+* Latency: Introduce specified latency to every API call, useful for simulating network latency or degraded network performance.
