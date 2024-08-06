@@ -21,7 +21,7 @@ leadimage: "ephemeral-application-previews-banner.png"
 
 ## Introduction
 
-LocalStack's core cloud emulator allows you set up your cloud infrastructure on your local machine.
+LocalStack's core cloud emulator allows you to set up your cloud infrastructure on your local machine.
 You can access databases, queues, and other managed services without needing to connect to a remote cloud provider.
 This speeds up your Software Development Life Cycle (SDLC) by making development and testing more efficient.
 Despite this, you still need a staging environment to do final acceptance tests before deploying your application to production.
@@ -29,8 +29,8 @@ Despite this, you still need a staging environment to do final acceptance tests 
 In many cases, staging environments are costly and deploying changes to them takes a lot of time.
 Also, teams can only use one staging environment at a time, which makes it difficult to test changes quickly.
 
-With LocalStack's Ephemeral Instances, you can create short-lived, self-contained deployments of LocalStack in the cloud.
-These Ephemeral Instances let you deploy your application on a remote LocalStack container, creating an Application Preview.
+With LocalStack's [Ephemeral Instances](/user-guide/cloud-sandbox/ephemeral-instance/), you can create short-lived, self-contained deployments of LocalStack in the cloud.
+These Ephemeral Instances also let you deploy your application on a remote LocalStack container, creating an [Application Preview](/user-guide/cloud-sandbox/application-previews/).
 This allows you to run end-to-end tests, preview features, and collaborate within your team or across teams asynchronously.
 
 This tutorial will show you how to use LocalStack's Ephemeral Instance feature to generate an Application Preview automatically for every new Pull Request (PR) using a GitHub Action workflow.
@@ -96,7 +96,7 @@ on:
 
 This configuration ensures that every time a pull request is raised, the action is triggered.
 
-A new job named `preview` specifies the GitHub-hosted runner to execute our workflow steps, while checking out the code:
+A new job named `preview` specifies the GitHub-hosted runner to execute our workflow steps, while also checking out the code we need to deploy to the application preview instance:
 
 ```yaml
 jobs:
@@ -114,7 +114,7 @@ jobs:
 To deploy the application preview, you can utilize the `LocalStack/setup-localstack/ephemeral/startup` action, which requires the following parameters:
 
 - `github-token`: Automatically configured on the GitHub Action runner.
-- `localstack-api-key`: Configuration of a LocalStack CI key (`LOCALSTACK_API_KEY`) to activate licensed features in LocalStack.
+- `localstack-api-key`: Configuration of a LocalStack [CI key](https://app.localstack.cloud/workspace/ci-keys) (`LOCALSTACK_API_KEY`) to activate licensed features in LocalStack (Note: You may need administrator permission to access creating new CI keys or legacy API keys).
 - `preview-cmd`: The set of commands necessary to deploy the application, including its infrastructure, on LocalStack.
 
 The following step sets up the dependencies and deploys the application preview on an ephemeral LocalStack instance:
@@ -169,6 +169,7 @@ Follow these steps to add your LocalStack CI key to your forked GitHub repositor
 - Scroll down to the **Generate CI Key** card, where you can provide a name, and click **Generate CI Key** to receive a new key.
 - In your [GitHub repository secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions), set the **Name** as `LOCALSTACK_API_KEY` and the **Secret** as the CI Key.
 
+If you do not have access to creating CI keys, contact your LocalStack account administrator.
 Now, you can commit and push your workflow to your forked GitHub repository.
 
 ### Run the GitHub Action workflow
