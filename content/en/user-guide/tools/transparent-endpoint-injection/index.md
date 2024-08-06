@@ -13,6 +13,17 @@ The [DNS Server]({{< ref "dns-server" >}}) resolves AWS domains such as `*.amazo
 Therefore, your application seamlessly accesses the LocalStack APIs instead of the real AWS APIs.
 For local testing, you might need to disable SSL validation as explained under [Self-signed certificates](#self-signed-certificates).
 
+{{< callout >}}
+This feature is enabled when the LocalStack DNS server is used.
+If you wish to use Transparent Endpoint Injection, do not set `DNS_ADDRESS=0` when configuring LocalStack.
+{{< /callout >}}
+
+{{< callout "warning" >}}
+Transparent endpoint injection is required when using some tooling, for example AWS CDK custom resources.
+These resources invoke lambda functions, which execute code written by the CDK authors.
+They cannot be configured to make requests against LocalStack, so Transparent Endpoint Injection is used to redirect requests made against AWS to target LocalStack.
+{{< /callout >}}
+
 ## Motivation
 
 Previously, your application code targeting AWS needs to be modified to target LocalStack.
