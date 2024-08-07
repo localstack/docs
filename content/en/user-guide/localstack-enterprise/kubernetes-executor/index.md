@@ -12,6 +12,7 @@ tags: ["Enterprise plan"]
 
 The LocalStack Enterprise image allows you to run EC2 instances on Kubernetes.
 You can do so by setting the `EC2_VM_MANAGER` environment variable to `kubernetes` in the LocalStack container.
+Each EC2 instance in the Kubernetes VM manager is backed by a Pod.
 
 The following operations are supported:
 
