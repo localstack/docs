@@ -10,7 +10,7 @@ tags: ["Enterprise plan"]
 
 ## EC2 Kubernetes Executor
 
-LocalStack Enterprise image allows you to run EC2 instances on Kubernetes.
+The LocalStack Enterprise image allows you to run EC2 instances on Kubernetes.
 You can do so by setting the `EC2_VM_MANAGER` environment variable to `kubernetes` in the LocalStack container.
 
 The following operations are supported:
@@ -34,7 +34,7 @@ You can do so by setting the `ECS_TASK_EXECUTOR` environment variable to `kubern
 
 ## Lambda Kubernetes Executor
 
-LocalStack Enterprise image allows you to execute Lambda functions as Kubernetes pods.
+The LocalStack Enterprise image allows you to execute Lambda functions as Kubernetes pods.
 You can do so by setting the `lambda.executor` configuration to `kubernetes` in the LocalStack container.
 For more information, see the [Helm Chart configuration](https://github.com/localstack/helm-charts/blob/ce47b1590605901650ab788556bc871efbd78b8d/charts/localstack/values.yaml#L178-L208).
 
@@ -50,4 +50,4 @@ For more information, see the [Helm Chart configuration](https://github.com/loca
   Persistence must be configured for the LocalStack pod.
   The `/var/lib/localstack` directory should be persisted over LocalStack runs, typically in a volume.
 
-However, Lambda hot reloading & remote debugging are not supported in the Kubernetes executor as the bind mounting into pods cannot be done at runtime.
+Lambda hot reloading & remote debugging are not supported in the Kubernetes executor as the bind mounting into pods cannot be done at runtime.
