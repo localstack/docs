@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Executor"
-weight: 4
+weight: 5
 description: >
   Configuring Kubernetes Executor for compute services in LocalStack Enterprise
 tags: ["Enterprise plan"]
@@ -8,44 +8,46 @@ tags: ["Enterprise plan"]
 
 ## Introduction
 
+## EC2 Kubernetes Executor
+
+LocalStack Enterprise image allows you to run EC2 instances on Kubernetes.
+You can do so by setting the `EC2_VM_MANAGER` environment variable to `kubernetes` in the LocalStack container.
+
+The following operations are supported:
+
+| Operation            | Notes                                  |
+| :------------------- | :------------------------------------- |
+| `DescribeInstances`  | Returns all EC2 instances              |
+| `RunInstances`       | Defines and starts an EC2 instance     |
+| `StartInstances`     | Starts an already defined EC2 instance |
+| `StopInstances`      | Stops a running EC2 instance           |
+| `TerminateInstances` | Stops and undefines a EC2 instance     |
+
+The current implementation does not support volume management, AMIs, or the SSH functionality available in the `docker` or `libvirt` executors.
+For more information, see the [EC2 VM Managers]({{< ref "ec2#vm-managers" >}}).
+
 ## ECS Kubernetes Executor
 
 LocalStack Enterprise image allows you to run ECS tasks on Kubernetes.
 The tasks are added to ELB load balancer target groups.
 You can do so by setting the `ECS_TASK_EXECUTOR` environment variable to `kubernetes` in the LocalStack container.
 
-In this guide, you will learn how to run ECS tasks on Kubernetes by using [`k3d](https://k3d.io/), a lightweight Kubernetes distribution.
+## Lambda Kubernetes Executor
 
-### Create a new cluster
+LocalStack Enterprise image allows you to execute Lambda functions as Kubernetes pods.
+You can do so by setting the `lambda.executor` configuration to `kubernetes` in the LocalStack container.
+For more information, see the [Helm Chart configuration](https://github.com/localstack/helm-charts/blob/ce47b1590605901650ab788556bc871efbd78b8d/charts/localstack/values.yaml#L178-L208).
 
-After installing `k3d`, you can run the following commands to create a Kubernetes cluster:
+- Kubernetes Lambda Executor in LocalStack scales Lambda execution by spawning new environments (running in pods) during concurrent invocations.
+  Inactive environments shut down after 10 minutes (configurable via `LAMBDA_KEEPALIVE_MS`).
+- Executor schedules multiple Lambda functions according to Kubernetes cluster defaults without specifying node affinity.
+  Users can assign labels to lambda pods using the `LAMBDA_K8S_LABELS` variable (e.g., `LAMBDA_K8S_LABELS=key=value,key2=value2`).
+- Timeout configurations similar to AWS are enforced using the `Timeout` function parameter.
+  No intrinsic limits on the number of Lambdas; default limit on concurrent executions is 1000 (`LAMBDA_LIMITS_CONCURRENT_EXECUTIONS`).
+- Custom DNS configuration for Lambda on Kubernetes can be set through the `LAMBDA_DOCKER_DNS` configuration variable.
+- Users can customize Lambda runtime behavior by building custom images, pushing them to their registry, and specifying these images using the `LAMBDA_RUNTIME_IMAGE_MAPPING` configuration variable.
+- Lambda on Kubernetes supports Warm Start and Persistence.
+  Persistence must be configured for the LocalStack pod.
+  The `/var/lib/localstack` directory should be persisted over LocalStack runs, typically in a volume.
 
-{{< command >}}
-$ export NODE_PORT=31566
-$ k3d cluster create ls-cluster -p "4566:$NODE_PORT" --wait --timeout 5m
-{{< / command >}}
-
-### Install LocalStack in the cluster
-
-You can now install LocalStack in the Kubernetes cluster by using LocalStack's Helm chart.
-The following command installs LocalStack with the `kubernetes` executor for ECS and sets the `LOCALSTACK_AUTH_TOKEN` environment variable:
-
-{{< command >}}
-$ helm upgrade --install localstack localstack/localstack \
-               --set debug=true \
-               --set image.repository=localstack/localstack-pro \
-               --set image.tag=latest \
-               --set readinessProbe.initialDelaySeconds=10 --set livenessProbe.initialDelaySeconds=10 \
-               --set service.edgeService.nodePort=$NODE_PORT \
-               --set "extraEnvVars[0].name=LOCALSTACK_AUTH_TOKEN" --set-string "extraEnvVars[0].value=${LOCALSTACK_AUTH_TOKEN}" \
-               --set "extraEnvVars[1].name=ECS_TASK_EXECUTOR" --set-string "extraEnvVars[1].value=kubernetes" \
-               --wait --timeout 5m
-{{< / command >}}
-
-After a successful installation, you can access the LocalStack running the following command:
-
-{{< command >}}
-$ curl http://localhost:4566/_localstack/health
-{{< / command >}}
-
-You can now create ECS tasks on Kubernetes by following the steps in the [ECS Getting Started]({{< ref "ecs#getting-started" >}}).
+However, Lambda hot reloading & remote debugging are not supported in the Kubernetes executor as the bind mounting into pods cannot be done at runtime.
