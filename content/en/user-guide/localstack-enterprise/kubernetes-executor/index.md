@@ -24,8 +24,7 @@ The following operations are supported:
 | `StopInstances`      | Stops a running EC2 instance           |
 | `TerminateInstances` | Stops and undefines a EC2 instance     |
 
-The current implementation does not support volume management, AMIs, or the SSH functionality available in the `docker` or `libvirt` executors.
-For more information, see the [EC2 VM Managers]({{< ref "ec2#vm-managers" >}}).
+The current implementation is in preview and does not support volumes, custom AMIs, or networking features available in other VM managers.
 
 ## ECS Kubernetes Executor
 
