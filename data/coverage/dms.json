@@ -760,8 +760,8 @@
     },
     {
       "DescribeReplicationTableStatistics": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -820,13 +820,13 @@
     },
     {
       "DescribeReplications": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1792,6 +1792,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_resource_replication_config",
+            "test": "test_resource_replication_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..describe_replication_config.ReplicationConfigs..ReplicationConfigUpdateTime']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
@@ -2400,11 +2410,11 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_create_describe_replication_config",
-            "test": "test_create_describe_replication_config",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_full_load_replication",
+            "test": "test_full_load_replication",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..describe_replication_config.ReplicationConfigs..ReplicationConfigUpdateTime']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2506,11 +2516,11 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_create_describe_replication_config",
-            "test": "test_create_describe_replication_config",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_full_load_replication",
+            "test": "test_full_load_replication",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..describe_replication_config.ReplicationConfigs..ReplicationConfigUpdateTime']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2623,6 +2633,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_full_load_replication",
+            "test": "test_full_load_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -5131,6 +5151,42 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..RecoveryTimeout']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeReplications": {
+      "Filters": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_create_describe_replication_config",
+            "test": "test_create_describe_replication_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..describe_replication_config.ReplicationConfigs..ReplicationConfigUpdateTime']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_resource_replication_config",
+            "test": "test_resource_replication_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..describe_replication_config.ReplicationConfigs..ReplicationConfigUpdateTime']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_create_describe_replication_config",
+            "test": "test_create_describe_replication_config",
+            "response": "400",
+            "error": "ResourceNotFoundFault",
+            "snapshot_skipped": "['$..describe_replication_config.ReplicationConfigs..ReplicationConfigUpdateTime']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
