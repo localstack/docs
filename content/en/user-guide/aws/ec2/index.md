@@ -443,7 +443,8 @@ If you are using [Docker CLI]({{< ref "installation#starting-localstack-with-doc
 If you are using a remote Libvirt hypervisor, you can set the [`EC2_HYPERVISOR_URI`]({{< ref "configuration#ec2" >}}) config option with a connection URI.
 
 {{< callout "tip" >}}
-If you encounter an error like `failed to connect to the hypervisor: Permission denied`, you may need to perform additional setup on the hypervisor host. Please refer to [Libvirt Wiki](https://wiki.libvirt.org/Failed_to_connect_to_the_hypervisor.html#permission-denied) for more details.
+If you encounter an error like `failed to connect to the hypervisor: Permission denied`, you may need to perform additional setup on the hypervisor host.
+Please refer to [Libvirt Wiki](https://wiki.libvirt.org/Failed_to_connect_to_the_hypervisor.html#permission-denied) for more details.
 {{< /callout >}}
 
 The Libvirt VM manager currently does not have full support for persistence.
