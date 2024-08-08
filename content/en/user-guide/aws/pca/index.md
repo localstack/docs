@@ -206,7 +206,7 @@ Using OpenSSL, you can verify that the end-entity certificate was indeed signed 
 In the following command, `local-cert.pem` refers to the end-entity certificate and `cert.pem` refers to the CA certificate.
 
 {{< command >}}
-$ openssl verify -CAfile cert.pem local-cert.pem 
+$ openssl verify -CAfile cert.pem local-cert.pem
 local-cert.pem: OK
 {{< /command >}}
 
