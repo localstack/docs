@@ -529,7 +529,8 @@ The Libvirt domains and volumes are left defined and can be used for debugging, 
 Use [Virtual Machine Manager](https://virt-manager.org/) or [virsh](https://www.libvirt.org/manpages/virsh.html) to manage the virtual machines outside of LocalStack.
 {{< /callout >}}
 
-The Libvirt VM manager currently does not support instance user data.
+The Libvirt VM manager supports basic shell scripts for user data.
+This can be passed to the `UserData` parameter of the `RunInstances` operation.
 
 To connect to the graphical display of the instance, first obtain the VNC address using:
 
