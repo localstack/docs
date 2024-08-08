@@ -19,7 +19,7 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 This guide is designed for users who are new to ACM PCA and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 We will follow the procedure to create and install a certificate for a one-level CA hosted by ACM PCA.
 
-### Create a Certificate Authority
+### Create a CA
 
 Start by creating a new Certificate Authority with ACM PCA using the [`CreateCertificateAuthority`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html) API.
 This command sets up a new CA with specified configurations for key algorithm, signing algorithm, and subject information.
@@ -33,7 +33,7 @@ $ awslocal acm-pca create-certificate-authority \
             "Country":"CH",
             "Organization":"LocalStack",
             "OrganizationalUnit":"Engineering",
-            "CommonName":"localhost.localstack.cloud"
+            "CommonName":"test.localstack.cloud"
         }
      }' \
      --certificate-authority-type "ROOT"
@@ -67,7 +67,7 @@ $ awslocal acm-pca describe-certificate-authority \
                 "Country": "CH",
                 "Organization": "LocalStack",
                 "OrganizationalUnit": "Engineering",
-                "CommonName": "localhost.localstack.cloud"
+                "CommonName": "test.localstack.cloud"
             }
         },
         "RevocationConfiguration": {
@@ -93,28 +93,9 @@ Use the [`GetCertificateAuthorityCsr`](https://docs.aws.amazon.com/privateca/lat
 $ awslocal acm-pca get-certificate-authority-csr \
     --certificate-authority-arn arn:aws:acm-pca:eu-central-1:000000000000:certificate-authority/0b20353f-ce7a-4de4-9b82-e06903a893ff \
     --output text | tee ca.csr
-<disable-copy>
------BEGIN CERTIFICATE REQUEST-----
-MIICuTCCAaECAQAwdDELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWEx
-FjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xEzARBgNVBAoMCk15IENvbXBhbnkxIzAh
-BgNVBAMMGmxvY2FsaG9zdC5sb2NhbHN0YWNrLmNsb3VkMIIBIjANBgkqhkiG9w0B
-AQEFAAOCAQ8AMIIBCgKCAQEAs+VYfE/ntonEBz5nZVdAjyoiLo7DVlMEekUY72Jc
-sj6olkrQlRhPlfLPvOTppqO63HuQ1AR/oftFTkjt+nCvIO/HFEBiY7Q8626/ryWr
-sJBRmU+9oVTTZs9oI3S2v7GzywGtb7/J3m9l8QSxYYO7wwT0h3elUzsMD+GOATor
-/DYFgyh1tc5lzyyyHUvpzJdTIDj0twwvPC/pE9zGy27PSj++R/1xtOgndShNE8PB
-wmqu3B+3sHLV9+kLW8OHUJ08jplspVa4tE/RaT4kQ+/sSh5bjj27oZnRVtCi1t20
-kkiFfcj69L1BLi6xZ9H2ETzbYeX6wctzwFCZrI/+4K5wTQIDAQABoAAwDQYJKoZI
-hvcNAQELBQADggEBABugIdtTYtvwBwjkvE4YEv+N56sw+aARFx9lrHVDYpXBjG8e
-UtstJ+LIBXkXRVJiHcvQ2I9TljZ1ECVqOKiL/0T6sjDgcMGYeVzqRBYW1KBzESpE
-sTGep7SvUyXi1KMpnQ0CoQNR/z/KDuvt+cK3Ja2BslfOXc7AFr/M8fVeY7K+BR1F
-/psR5PUz7yw6aUj6wTLnk45ezT3TXilypDvNbMIIFrIrGLe79Xz7KGCE1+cVJugr
-D0/wZWgLMLGxAWUgrWXdSwJtS5aJW4qyuc/nGHVjxVk7L9C5SxKn2ueofTOnfUbv
-m5kIFqBTYkB68FGebWpI4c7QISc5OhiiFEAC3tc=
------END CERTIFICATE REQUEST-----
-</disable-copy>
 {{< /command >}}
 
-We then sign the CSR with the CA using:
+Next, issue the certificate for the CA using this CSR.
 
 {{< command >}}
 $ awslocal acm-pca issue-certificate \
@@ -130,9 +111,9 @@ $ awslocal acm-pca issue-certificate \
 </disable-copy>
 {{< /command >}}
 
-The signed CA certificate created with the ARN `CertficiateArn`.
+The CA certificate is now created and its ARN is indicated by the `CertficiateArn` parameter.
 
-### Import CA Certificate
+### Import the CA Certificate
 
 Finally, we retrieve the signed certificate with [`GetCertificate`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_GetCertificate.html) and import it using [`ImportCertificateAuthorityCertificate`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_ImportCertificateAuthorityCertificate.html).
 
@@ -140,29 +121,7 @@ Finally, we retrieve the signed certificate with [`GetCertificate`](https://docs
 $ awslocal acm-pca get-certificate \
     --certificate-authority-arn arn:aws:acm-pca:eu-central-1:000000000000:certificate-authority/0b20353f-ce7a-4de4-9b82-e06903a893ff \
     --certificate-arn arn:aws:acm-pca:eu-central-1:000000000000:certificate-authority/0b20353f-ce7a-4de4-9b82-e06903a893ff/certificate/17ef7bbf3cc6471ba3ef0707119b8392 \
-    --output text | tee cert.pem
-<disable-copy>
------BEGIN CERTIFICATE-----
-MIIDQDCCAiigAwIBAgIUWsM4iHOoFE71RottADZQ36ePNJYwDQYJKoZIhvcNAQEN
-BQAwQDELMAkGA1UEBhMCVVMxDzANBgNVBAoMBkFtYXpvbjEVMBMGA1UECwwMU2Vy
-dmVyIENBIDFCMQkwBwYDVQQDDAAwHhcNMjQwODA4MDUyMzUxWhcNMjUwODA4MDUy
-MzUxWjB0MQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UE
-BwwNU2FuIEZyYW5jaXNjbzETMBEGA1UECgwKTXkgQ29tcGFueTEjMCEGA1UEAwwa
-bG9jYWxob3N0LmxvY2Fsc3RhY2suY2xvdWQwggEiMA0GCSqGSIb3DQEBAQUAA4IB
-DwAwggEKAoIBAQCz5Vh8T+e2icQHPmdlV0CPKiIujsNWUwR6RRjvYlyyPqiWStCV
-GE+V8s+85Ommo7rce5DUBH+h+0VOSO36cK8g78cUQGJjtDzrbr+vJauwkFGZT72h
-VNNmz2gjdLa/sbPLAa1vv8neb2XxBLFhg7vDBPSHd6VTOwwP4Y4BOiv8NgWDKHW1
-zmXPLLIdS+nMl1MgOPS3DC88L+kT3MbLbs9KP75H/XG06Cd1KE0Tw8HCaq7cH7ew
-ctX36Qtbw4dQnTyOmWylVri0T9FpPiRD7+xKHluOPbuhmdFW0KLW3bSSSIV9yPr0
-vUEuLrFn0fYRPNth5frBy3PAUJmsj/7grnBNAgMBAAEwDQYJKoZIhvcNAQENBQAD
-ggEBAC3oGUW6brHXHZlEqUr4KA7tuINh8CysXTThMfJ3qlO4yJdtj3JI/AeFBpvu
-9tBnf+lmbjzs5cWAEXKlZSj24V4npzuxIiMHLgMW38FCiy2th2KyTPxjtynP8wjz
-THy4kvBEpmtDtRAyAgMtAqs3svuGgFUTXlK77GZLgQ48wqnV3hHF9PTndJevqy9j
-C2jmoHNKMmO7pWYo6kfUGdFCzjy0X1E5SACZYw0xru1w5XM3y2usO7LSnVzJVK6n
-+3rkCfYR1NtYzyRiqMCTxnXKy4BiRpHQaSFQqRmc/2S1SZQY8mYqWPQmTp2o48zp
-as9oTVimnCEZrCqykUkc8kmELr0=
------END CERTIFICATE-----
-</disable-copy>
+    --output text > tee cert.pem
 {{< /command >}}
 
 {{< command >}}
@@ -184,15 +143,15 @@ ACTIVE
 </disable-copy>
 {{< /command >}}
 
-The CA certificate can also be retrieved at a later point using [`GetCertificateAuthorityCertificate`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_GetCertificateAuthorityCertificate.html).
-In general, this operation returns both the certificate and certificate chain.
-However, because we used a single-level CA hierarchy, the certificate chain is null.
+The CA certificate can be retrieved at a later point using [`GetCertificateAuthorityCertificate`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_GetCertificateAuthorityCertificate.html).
+In general, this operation returns both the certificate and the certificate chain.
+In this case however, only the certificate will be returned, because we used a single-level CA hierarchy and the certificate chain is null.
 
 ### Issuing End-entity Certificates
 
-With the private CA set up, you can now issue private end-entity certificates.
+With the private CA set up, you can now issue end-entity certificates.
 
-Using [OpenSSL](https://openssl-library.org/), create a CSR and the private key for the certificate:
+Using [OpenSSL](https://openssl-library.org/), create a CSR and the private key:
 
 {{< command >}}
 $ openssl req -out local-csr.pem -new -newkey rsa:2048 -nodes -keyout local-pkey.pem
@@ -222,12 +181,11 @@ Certificate Request:
     Signature Value:
         3e:23:12:26:45:af:39:35:5d:d7:b4:40:fb:1a:08:c7:16:c3:
         ...
-<disable-copy>
+</disable-copy>
 {{< /command >}}
 
-Next, using `IssueCertificate` you can generate the certificate.
-Note that there is no template specified.
-This causes an end-entity certificate to be issued.
+Next, using [`IssueCertificate`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_IssueCertificate.html) you can generate the end-entity certificate.
+Note that there is no [certificate template](https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html) specified which causes the end-entity certificate to be issued by default.
 
 {{< command >}}
 $ awslocal acm-pca issue-certificate \
