@@ -85,7 +85,7 @@ $ awslocal acm-pca describe-certificate-authority \
 Note the `PENDING_CERTIFICATE` status.
 In the following steps, we will create and attach a certificate for this CA.
 
-### Issue the CA certificate
+### Issue CA Certificate
 
 Use the [`GetCertificateAuthorityCsr`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_GetCertificateAuthorityCsr.html) operation to obtain the Certificate Signing Request (CSR) for the CA.
 
@@ -113,7 +113,7 @@ $ awslocal acm-pca issue-certificate \
 
 The CA certificate is now created and its ARN is indicated by the `CertficiateArn` parameter.
 
-### Import the CA Certificate
+### Import CA Certificate
 
 Finally, we retrieve the signed certificate with [`GetCertificate`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_GetCertificate.html) and import it using [`ImportCertificateAuthorityCertificate`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_ImportCertificateAuthorityCertificate.html).
 
@@ -147,7 +147,7 @@ The CA certificate can be retrieved at a later point using [`GetCertificateAutho
 In general, this operation returns both the certificate and the certificate chain.
 In this case however, only the certificate will be returned, because we used a single-level CA hierarchy and the certificate chain is null.
 
-### Issuing End-entity Certificates
+### Issue End-entity Certificates
 
 With the private CA set up, you can now issue end-entity certificates.
 
@@ -198,6 +198,16 @@ $ awslocal acm-pca issue-certificate \
     "CertificateArn": "arn:aws:acm-pca:eu-central-1:000000000000:certificate-authority/0b20353f-ce7a-4de4-9b82-e06903a893ff/certificate/079d0a13daf943f6802d365dd83658c7"
 }
 </disable-copy>
+{{< /command >}}
+
+### Verify Certificates
+
+Using OpenSSL, you can verify that the end-entity certificate was indeed signed by the CA.
+In the following command, `local-cert.pem` refers to the end-entity certificate and `cert.pem` refers to the CA certificate.
+
+{{< command >}}
+$ openssl verify -CAfile cert.pem local-cert.pem 
+local-cert.pem: OK
 {{< /command >}}
 
 ### Tag the Certificate Authority
