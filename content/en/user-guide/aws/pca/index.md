@@ -17,7 +17,7 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 ## Getting started
 
 This guide is designed for users who are new to ACM PCA and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
-We will follow the procedure to create and install a certificate for a one-level CA hosted by ACM PCA.
+We will follow the procedure to create and install a certificate for a single-level hierarchy CA hosted by ACM PCA.
 
 ### Create a CA
 
@@ -146,6 +146,7 @@ ACTIVE
 The CA certificate can be retrieved at a later point using [`GetCertificateAuthorityCertificate`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_GetCertificateAuthorityCertificate.html).
 In general, this operation returns both the certificate and the certificate chain.
 In this case however, only the certificate will be returned, because we used a single-level CA hierarchy and the certificate chain is null.
+For production setups, you must use a [multi-level CA hierarchy](https://docs.aws.amazon.com/privateca/latest/userguide/ca-hierarchy.html) for best security.
 
 ### Issue End-entity Certificates
 
