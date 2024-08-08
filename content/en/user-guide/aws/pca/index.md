@@ -17,7 +17,7 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 ## Getting started
 
 This guide is designed for users who are new to ACM PCA and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
-We will follow the procedure to create and install a certificate for a root CA hosted by ACM PCA.
+We will follow the procedure to create and install a certificate for a one-level CA hosted by ACM PCA.
 
 ### Create a Certificate Authority
 
@@ -185,12 +185,62 @@ ACTIVE
 {{< /command >}}
 
 The CA certificate can also be retrieved at a later point using [`GetCertificateAuthorityCertificate`](https://docs.aws.amazon.com/privateca/latest/APIReference/API_GetCertificateAuthorityCertificate.html).
+In general, this operation returns both the certificate and certificate chain.
+However, because we used a single-level CA hierarchy, the certificate chain is null.
 
 ### Issuing End-entity Certificates
 
 With the private CA set up, you can now issue private end-entity certificates.
 
-<!-- TODO -->
+Using [OpenSSL](https://openssl-library.org/), create a CSR and the private key for the certificate:
+
+{{< command >}}
+$ openssl req -out local-csr.pem -new -newkey rsa:2048 -nodes -keyout local-pkey.pem
+{{< /command >}}
+
+You may inspect the CSR using the following command.
+It should resemble the illustrated output.
+
+{{< command >}}
+$ openssl req -in local-csr.pem -text -noout
+<disable-copy>
+Certificate Request:
+    Data:
+        Version: 1 (0x0)
+        Subject: C = IN, ST = GA, O = EvilCorp, OU = Engineering, CN = evilcorp.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:a3:1d:5d:50:00:5c:4e:5d:79:a8:9a:d4:10:f4:
+                    ...
+                Exponent: 65537 (0x10001)
+        Attributes:
+            (none)
+            Requested Extensions:
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        3e:23:12:26:45:af:39:35:5d:d7:b4:40:fb:1a:08:c7:16:c3:
+        ...
+<disable-copy>
+{{< /command >}}
+
+Next, using `IssueCertificate` you can generate the certificate.
+Note that there is no template specified.
+This causes an end-entity certificate to be issued.
+
+{{< command >}}
+$ awslocal acm-pca issue-certificate \
+      --certificate-authority-arn arn:aws:acm-pca:eu-central-1:000000000000:certificate-authority/0b20353f-ce7a-4de4-9b82-e06903a893ff \
+      --csr fileb://local-csr.pem \
+      --signing-algorithm "SHA256WITHRSA" \
+      --validity Value=365,Type="DAYS"
+<disable-copy>
+{
+    "CertificateArn": "arn:aws:acm-pca:eu-central-1:000000000000:certificate-authority/0b20353f-ce7a-4de4-9b82-e06903a893ff/certificate/079d0a13daf943f6802d365dd83658c7"
+}
+</disable-copy>
+{{< /command >}}
 
 ### Tag the Certificate Authority
 
