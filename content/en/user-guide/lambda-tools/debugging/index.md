@@ -40,7 +40,7 @@ There, the necessary code fragments for enabling debugging are already present.
 First, make sure that LocalStack is started with the following configuration (see the [Configuration docs]({{< ref "configuration#lambda" >}}) for more information):
 
 {{< command >}}
-$ LAMBDA_DOCKER_FLAGS='-p 19891:19891' localstack start
+$ LAMBDA_DEBUG_MODE=1 LAMBDA_DOCKER_FLAGS='-p 19891:19891' localstack start
 {{< /command >}}
 
 #### Preparing your code
@@ -222,6 +222,7 @@ services:
     ...
     environment:
       ...
+      - LAMBDA_DEBUG_MODE=1
       - LAMBDA_DOCKER_FLAGS=-p 127.0.0.1:5050:5050
 ```
 
@@ -332,6 +333,7 @@ services:
     ...
     environment:
       ...
+      - LAMBDA_DEBUG_MODE=1
       - LAMBDA_DOCKER_FLAGS=-e NODE_OPTIONS=--inspect-brk=0.0.0.0:9229 -p 9229:9229
 ```
 
