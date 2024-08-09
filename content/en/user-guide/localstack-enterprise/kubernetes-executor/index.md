@@ -8,6 +8,11 @@ tags: ["Enterprise plan"]
 
 ## Introduction
 
+LocalStack Enterprise provides a Kubernetes executor for compute services like EC2, ECS, and Lambda.
+It allows you to run EC2 instances, ECS tasks, and Lambda functions in your Kubernetes clusters.
+By default, LocalStack uses the `docker` backend for compute services.
+You can switch to the `kubernetes` executor by setting the appropriate environment variables.
+
 ## EC2 Kubernetes Executor
 
 The LocalStack Enterprise image allows you to run EC2 instances on Kubernetes.
