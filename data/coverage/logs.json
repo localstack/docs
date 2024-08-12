@@ -402,11 +402,11 @@
       "DescribeResourcePolicies": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -1160,7 +1160,7 @@
             "test": "test_http_integration_with_lambda[HTTP]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
+            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-trace-id', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1170,7 +1170,7 @@
             "test": "test_http_integration_with_lambda[HTTP_PROXY]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
+            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-trace-id', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1710,7 +1710,7 @@
             "test": "test_disabled_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1720,7 +1720,7 @@
             "test": "test_dynamodb_event_filter[content_filter_type]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1730,7 +1730,7 @@
             "test": "test_dynamodb_event_filter[content_multiple_filters]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1740,7 +1740,7 @@
             "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1750,7 +1750,7 @@
             "test": "test_dynamodb_event_filter[date_time_conversion]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1760,7 +1760,7 @@
             "test": "test_dynamodb_event_filter[exists_filter_type]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1770,7 +1770,7 @@
             "test": "test_dynamodb_event_filter[insert_same_entry_twice]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1780,7 +1780,7 @@
             "test": "test_dynamodb_event_filter[prefix_filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1790,7 +1790,7 @@
             "test": "test_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1800,7 +1800,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1980,7 +1980,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2526,8 +2526,28 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_invocation_custom_id_aliased",
+            "test": "test_lambda_url_invocation_custom_id_aliased",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_invocation_exception",
             "test": "test_lambda_url_invocation_exception",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_persists_after_alias_delete",
+            "test": "test_lambda_url_persists_after_alias_delete",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
@@ -5436,16 +5456,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "400",
-            "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..DomainStatusList..IPAddressType', '$..DomainStatusList..DomainProcessingStatus', '$..DomainStatusList..ModifyingProperties', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..DomainConfig.IPAddressType', '$..DomainConfig.ModifyingProperties', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_search_books",
             "test": "test_search_books",
             "response": "400",
@@ -5670,7 +5680,7 @@
             "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -5680,7 +5690,7 @@
             "test": "test_dynamodb_event_filter[date_time_conversion]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -5720,7 +5730,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -6682,7 +6692,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -7608,6 +7618,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_bool_types",
+            "test": "test_lambda_bool_types",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.errors..errorType', '$..body.errors..locations', '$..body.errors..message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
             "test": "test_lambda_data_source[JS]",
             "response": "200",
@@ -7670,16 +7690,6 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_wafv2.py::TestWafV2Resources::test_stack_resources_are_deployed",
             "test": "test_stack_resources_are_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_wafv2.py::TestWafV2Resources::test_web_acl_association",
-            "test": "test_web_acl_association",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -7818,6 +7828,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_pre_generation_token_trigger_v2",
             "test": "test_pre_generation_token_trigger_v2",
             "response": "200",
@@ -7842,29 +7862,29 @@
             "test": "test_user_migration_lambda[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases1]",
-            "test": "test_user_migration_lambda[aliases1]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases2]",
-            "test": "test_user_migration_lambda[aliases2]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -8108,16 +8128,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_rds_lambda",
             "test": "test_rds_lambda",
             "response": "400",
@@ -8152,7 +8162,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8728,33 +8738,43 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "400",
+            "error": "ResourceAlreadyExistsException",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[None]",
             "test": "test_user_migration_lambda[None]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases1]",
-            "test": "test_user_migration_lambda[aliases1]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases2]",
-            "test": "test_user_migration_lambda[aliases2]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -8843,16 +8863,6 @@
             "response": "400",
             "error": "ResourceAlreadyExistsException",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
-            "response": "400",
-            "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9132,7 +9142,7 @@
             "test": "test_http_integration_with_lambda[HTTP]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
+            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-trace-id', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9142,7 +9152,7 @@
             "test": "test_http_integration_with_lambda[HTTP_PROXY]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
+            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-trace-id', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9652,7 +9662,7 @@
             "test": "test_disabled_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9662,7 +9672,7 @@
             "test": "test_dynamodb_event_filter[content_filter_type]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9672,7 +9682,7 @@
             "test": "test_dynamodb_event_filter[content_multiple_filters]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9682,7 +9692,7 @@
             "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9692,7 +9702,7 @@
             "test": "test_dynamodb_event_filter[date_time_conversion]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9702,7 +9712,7 @@
             "test": "test_dynamodb_event_filter[exists_filter_type]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9712,7 +9722,7 @@
             "test": "test_dynamodb_event_filter[insert_same_entry_twice]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9722,7 +9732,7 @@
             "test": "test_dynamodb_event_filter[prefix_filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9732,7 +9742,7 @@
             "test": "test_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9742,7 +9752,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9922,7 +9932,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10073,16 +10083,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaBaseFeatures::test_large_payloads",
-            "test": "test_large_payloads",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..LogResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10468,8 +10468,28 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_invocation_custom_id_aliased",
+            "test": "test_lambda_url_invocation_custom_id_aliased",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_invocation_exception",
             "test": "test_lambda_url_invocation_exception",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_persists_after_alias_delete",
+            "test": "test_lambda_url_persists_after_alias_delete",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
@@ -10610,6 +10630,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaCallingLocalstack::test_manual_endpoint_injection[nodejs16.x]",
             "test": "test_manual_endpoint_injection[nodejs16.x]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaCallingLocalstack::test_manual_endpoint_injection[nodejs18.x]",
+            "test": "test_manual_endpoint_injection[nodejs18.x]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13218,16 +13248,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "400",
-            "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..DomainStatusList..IPAddressType', '$..DomainStatusList..DomainProcessingStatus', '$..DomainStatusList..ModifyingProperties', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..DomainConfig.IPAddressType', '$..DomainConfig.ModifyingProperties', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_search_books",
             "test": "test_search_books",
             "response": "400",
@@ -13422,7 +13442,7 @@
             "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13432,7 +13452,7 @@
             "test": "test_dynamodb_event_filter[date_time_conversion]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13462,7 +13482,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13508,10 +13528,30 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaAliases::test_alias_routingconfig",
+            "test": "test_alias_routingconfig",
+            "response": "400",
+            "error": "ResourceAlreadyExistsException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaAliases::test_lambda_alias_moving",
             "test": "test_lambda_alias_moving",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaBaseFeatures::test_lambda_large_response",
+            "test": "test_lambda_large_response",
+            "response": "400",
+            "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -14354,7 +14394,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -15280,6 +15320,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_bool_types",
+            "test": "test_lambda_bool_types",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.errors..errorType', '$..body.errors..locations', '$..body.errors..message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
             "test": "test_lambda_data_source[JS]",
             "response": "200",
@@ -15460,6 +15510,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_pre_generation_token_trigger_v2",
             "test": "test_pre_generation_token_trigger_v2",
             "response": "200",
@@ -15484,29 +15544,29 @@
             "test": "test_user_migration_lambda[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases1]",
-            "test": "test_user_migration_lambda[aliases1]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases2]",
-            "test": "test_user_migration_lambda[aliases2]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -15690,6 +15750,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_deployed_resources",
+            "test": "test_deployed_resources",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_listener_services_are_accessible_and_returning_expected_content",
             "test": "test_listener_services_are_accessible_and_returning_expected_content",
             "response": "200",
@@ -15715,16 +15785,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -15794,7 +15854,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -16380,33 +16440,43 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "400",
+            "error": "ResourceAlreadyExistsException",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[None]",
             "test": "test_user_migration_lambda[None]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases1]",
-            "test": "test_user_migration_lambda[aliases1]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases2]",
-            "test": "test_user_migration_lambda[aliases2]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -16545,16 +16615,6 @@
             "response": "400",
             "error": "ResourceAlreadyExistsException",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
-            "response": "400",
-            "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -16730,7 +16790,7 @@
             "test": "test_http_integration_with_lambda[HTTP]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
+            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-trace-id', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -16740,7 +16800,7 @@
             "test": "test_http_integration_with_lambda[HTTP_PROXY]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
+            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-trace-id', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17080,7 +17140,7 @@
             "test": "test_disabled_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17090,7 +17150,7 @@
             "test": "test_dynamodb_event_filter[content_filter_type]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17100,7 +17160,7 @@
             "test": "test_dynamodb_event_filter[content_multiple_filters]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17110,7 +17170,7 @@
             "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17120,7 +17180,7 @@
             "test": "test_dynamodb_event_filter[date_time_conversion]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17130,7 +17190,7 @@
             "test": "test_dynamodb_event_filter[exists_filter_type]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17140,7 +17200,7 @@
             "test": "test_dynamodb_event_filter[insert_same_entry_twice]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17150,7 +17210,7 @@
             "test": "test_dynamodb_event_filter[prefix_filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17160,7 +17220,7 @@
             "test": "test_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17170,7 +17230,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17350,7 +17410,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17481,6 +17541,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaBaseFeatures::test_large_payloads",
+            "test": "test_large_payloads",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LogResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17846,8 +17916,28 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_invocation_custom_id_aliased",
+            "test": "test_lambda_url_invocation_custom_id_aliased",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_invocation_exception",
             "test": "test_lambda_url_invocation_exception",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_persists_after_alias_delete",
+            "test": "test_lambda_url_persists_after_alias_delete",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
@@ -19800,7 +19890,7 @@
             "test": "test_deletion_event_source_mapping_with_dynamodb",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19810,7 +19900,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19820,7 +19910,7 @@
             "test": "test_dynamodb_invalid_event_filter[[{\"eventName\": [\"INSERT\"=123}]]",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19830,7 +19920,7 @@
             "test": "test_dynamodb_invalid_event_filter[single-string]",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19901,16 +19991,6 @@
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaBaseFeatures::test_large_payloads",
-            "test": "test_large_payloads",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..LogResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20676,6 +20756,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaUrl::test_create_url_config_custom_id_tag_alias",
+            "test": "test_create_url_config_custom_id_tag_alias",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaUrl::test_create_url_config_custom_id_tag_invalid_id",
             "test": "test_create_url_config_custom_id_tag_invalid_id",
             "response": "400",
@@ -21012,7 +21102,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -21838,6 +21928,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_bool_types",
+            "test": "test_lambda_bool_types",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.errors..errorType', '$..body.errors..locations', '$..body.errors..message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
             "test": "test_lambda_data_source[JS]",
             "response": "200",
@@ -21883,16 +21983,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_wafv2.py::TestWafV2Resources::test_web_acl",
-            "test": "test_web_acl",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..WebACL.Capacity', '$..WebACL.LabelNamespace', '$..WebACL.ManagedByFirewallManager']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -21998,6 +22088,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_pre_generation_token_trigger_v2",
             "test": "test_pre_generation_token_trigger_v2",
             "response": "200",
@@ -22022,29 +22122,29 @@
             "test": "test_user_migration_lambda[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases1]",
-            "test": "test_user_migration_lambda[aliases1]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases2]",
-            "test": "test_user_migration_lambda[aliases2]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -22223,16 +22323,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -22433,6 +22523,16 @@
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -23298,16 +23398,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_wafv2.py::TestWafV2Resources::test_web_acl_association",
-            "test": "test_web_acl_association",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudtrail/test_cloudtrail.py::TestCloudTrail::test_cdk_trail_cw_logs",
             "test": "test_cdk_trail_cw_logs",
             "response": "200",
@@ -23486,7 +23576,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -23862,6 +23952,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda",
+            "test": "test_delivery_lambda",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_scheduled_lambda",
             "test": "test_scheduled_lambda",
             "response": "400",
@@ -23928,22 +24028,6 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
-          }
-        ]
-      }
-    },
-    "DescribeResourcePolicies": {
-      "- (without any parameters)": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       }
@@ -24072,7 +24156,7 @@
             "test": "test_disabled_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24082,7 +24166,7 @@
             "test": "test_dynamodb_event_filter[content_filter_type]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24092,7 +24176,7 @@
             "test": "test_dynamodb_event_filter[content_multiple_filters]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24102,7 +24186,7 @@
             "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24112,7 +24196,7 @@
             "test": "test_dynamodb_event_filter[date_time_conversion]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24122,7 +24206,7 @@
             "test": "test_dynamodb_event_filter[exists_filter_type]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24132,7 +24216,7 @@
             "test": "test_dynamodb_event_filter[insert_same_entry_twice]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24142,7 +24226,7 @@
             "test": "test_dynamodb_event_filter[prefix_filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24152,7 +24236,7 @@
             "test": "test_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24667,6 +24751,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -25241,18 +25335,6 @@
             "snapshot_tested": true,
             "origin": "external"
           }
-        ],
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          }
         ]
       }
     },
@@ -25281,16 +25363,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..DomainStatusList..IPAddressType', '$..DomainStatusList..DomainProcessingStatus', '$..DomainStatusList..ModifyingProperties', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..DomainConfig.IPAddressType', '$..DomainConfig.ModifyingProperties', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -25560,7 +25632,7 @@
             "test": "test_http_integration_with_lambda[HTTP]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
+            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-trace-id', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -25570,7 +25642,7 @@
             "test": "test_http_integration_with_lambda[HTTP_PROXY]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
+            "snapshot_skipped": "['$..content.headers.x-forwarded-for', '$..content.origin', '$..headers.server', '$..headers.accept-encoding', '$..headers.x-amzn-trace-id', '$..headers.x-amzn-remapped-x-amzn-requestid', '$..headers.x-amzn-remapped-server']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26070,7 +26142,7 @@
             "test": "test_disabled_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26080,7 +26152,7 @@
             "test": "test_dynamodb_event_filter[content_filter_type]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26090,7 +26162,7 @@
             "test": "test_dynamodb_event_filter[content_multiple_filters]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26100,7 +26172,7 @@
             "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26110,7 +26182,7 @@
             "test": "test_dynamodb_event_filter[date_time_conversion]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26120,7 +26192,7 @@
             "test": "test_dynamodb_event_filter[exists_filter_type]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26130,7 +26202,7 @@
             "test": "test_dynamodb_event_filter[insert_same_entry_twice]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26140,7 +26212,7 @@
             "test": "test_dynamodb_event_filter[prefix_filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26150,7 +26222,7 @@
             "test": "test_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26160,7 +26232,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26340,7 +26412,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26876,8 +26948,28 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_invocation_custom_id_aliased",
+            "test": "test_lambda_url_invocation_custom_id_aliased",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_invocation_exception",
             "test": "test_lambda_url_invocation_exception",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaURL::test_lambda_url_persists_after_alias_delete",
+            "test": "test_lambda_url_persists_after_alias_delete",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..event.headers.x-forwarded-proto', '$..event.headers.x-forwarded-port', '$..event.headers.x-amzn-trace-id']",
@@ -27018,6 +27110,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaCallingLocalstack::test_manual_endpoint_injection[nodejs16.x]",
             "test": "test_manual_endpoint_injection[nodejs16.x]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaCallingLocalstack::test_manual_endpoint_injection[nodejs18.x]",
+            "test": "test_manual_endpoint_injection[nodejs18.x]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -29496,6 +29598,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaBaseFeatures::test_lambda_large_response",
+            "test": "test_lambda_large_response",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/express/test_express_async.py::TestExpressAsync::test_base[BASE_PASS_RESULT]",
             "test": "test_base[BASE_PASS_RESULT]",
             "response": "400",
@@ -29812,7 +29924,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -30738,6 +30850,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_bool_types",
+            "test": "test_lambda_bool_types",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body.errors..errorType', '$..body.errors..locations', '$..body.errors..message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_lambda_data_source[JS]",
             "test": "test_lambda_data_source[JS]",
             "response": "200",
@@ -30928,6 +31050,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_pre_generation_token_trigger_v2",
             "test": "test_pre_generation_token_trigger_v2",
             "response": "200",
@@ -30952,29 +31084,29 @@
             "test": "test_user_migration_lambda[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases1]",
-            "test": "test_user_migration_lambda[aliases1]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases2]",
-            "test": "test_user_migration_lambda[aliases2]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -31158,6 +31290,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_deployed_resources",
+            "test": "test_deployed_resources",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_listener_services_are_accessible_and_returning_expected_content",
             "test": "test_listener_services_are_accessible_and_returning_expected_content",
             "response": "200",
@@ -31183,16 +31325,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
