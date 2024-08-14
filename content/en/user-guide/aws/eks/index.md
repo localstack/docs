@@ -170,13 +170,13 @@ $ docker pull nginx
 You can further tag the image to be pushed to ECR:
 
 {{< command >}}
-$ docker tag nginx localhost.localstack.cloud:4510/fancier-nginx
+$ docker tag nginx 000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/fancier-nginx
 {{< / command >}}
 
 Finally, you can push the image to local ECR:
 
 {{< command >}}
-$ docker push localhost.localstack.cloud:4510/fancier-nginx
+$ docker push 000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/fancier-nginx
 {{< / command >}}
 
 Now, let us set up the EKS cluster using the image pushed to local ECR.
