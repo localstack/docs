@@ -153,14 +153,6 @@ $ awslocal ecr create-repository --repository-name "fancier-nginx"
 </disable-copy>
 {{< / command >}}
 
-{{< callout >}}
-When creating an ECR repository, a port from the [external service port range]({{< ref "external-ports" >}}) is dynamically assigned.
-As a result, the port can differ from the static value `4510` used in the examples below.
-
-To ensure the correct URL and port, it's important to use the `repositoryUrl` obtained from the `create-repository` request.
-This ensures that you have the accurate endpoint to access the repository.
-{{< /callout >}}
-
 You can now pull the `nginx` image from Docker Hub using the `docker` CLI:
 
 {{< command >}}
