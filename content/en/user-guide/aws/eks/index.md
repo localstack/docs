@@ -139,7 +139,7 @@ $ awslocal ecr create-repository --repository-name "fancier-nginx"
         "repositoryArn": "arn:aws:ecr:us-east-1:000000000000:repository/fancier-nginx",
         "registryId": "c75fd0e2",
         "repositoryName": "fancier-nginx",
-        "repositoryUri": "localhost.localstack.cloud:4510/fancier-nginx",
+        "repositoryUri": "000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/fancier-nginx",
         "createdAt": "2022-04-13T14:22:47+02:00",
         "imageTagMutability": "MUTABLE",
         "imageScanningConfiguration": {
@@ -209,7 +209,7 @@ spec:
     spec:
       containers:
       - name: fancier-nginx
-        image: localhost.localstack.cloud:4510/fancier-nginx:latest
+        image: 000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/fancier-nginx:latest
         ports:
         - containerPort: 80
 EOF
@@ -224,7 +224,7 @@ $ kubectl describe pod fancier-nginx
 In the events, we can see that the pull from ECR was successful:
 
 ```bash
-  Normal  Pulled     10s   kubelet            Successfully pulled image "localhost.localstack.cloud:4510/fancier-nginx:latest" in 2.412775896s
+  Normal  Pulled     10s   kubelet            Successfully pulled image "000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/fancier-nginx:latest" in 2.412775896s
 ```
 
 {{< callout "tip" >}}
