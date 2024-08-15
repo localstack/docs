@@ -220,7 +220,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `LAMBDA_LIMITS_CODE_SIZE_ZIPPED` | `52428800` (default) | The maximum zip file size in bytes for the [CreateFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) operation. Raising this limit enables the creation of larger Lambda functions without the need to upload the code to an S3 deployment bucket. |
 | `LAMBDA_LIMITS_CREATE_FUNCTION_REQUEST_SIZE` | `70167211` (default) | The maximum HTTP request size in bytes for the [CreateFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) operation. Raising this limit enables larger HTTP requests including zipped file size. |
 | `LAMBDA_LIMITS_MAX_FUNCTION_ENVVAR_SIZE_BYTES` | `4096` (default) | The maximum size of the environment variables that you can use to configure your function. |
-| `LAMBDA_PREBUILD_IMAGES` | `0` (default) |  Prebuild images before execution which increases the cold start time but reduces the time until the Lambda function is `ACTIVE`. |
+| `LAMBDA_PREBUILD_IMAGES` | `0` (default) |  Prebuild images before execution which increases the cold start time but reduces the time until the Lambda function is `ACTIVE`. (preview) |
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove any Lambda Docker containers. |
 | `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `20` (default) | How many seconds Lambda will wait for the runtime environment to start up. Increase this timeout if I/O is slow or your Lambda deployments are large or contain many files. |
 | `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed. |
