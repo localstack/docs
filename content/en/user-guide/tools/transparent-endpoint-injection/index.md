@@ -7,6 +7,8 @@ description: >
 tags: ["Pro image"]
 ---
 
+## Introduction
+
 LocalStack provides Transparent Endpoint Injection,
 which enables seamless connectivity to LocalStack without modifying your application code targeting AWS.
 The [DNS Server]({{< ref "dns-server" >}}) resolves AWS domains such as `*.amazonaws.com` including subdomains to the LocalStack container.
@@ -103,3 +105,8 @@ Opting out will lead to certificate errors when using the AWS SDK without manual
 Disabling SSL validation may have undesired side effects and security implications.
 Make sure to use this only for local testing, and never in production.
 {{< /callout >}}
+
+## Current Limitations
+
+- The mechanism to disable certificate validation for these requests is not currently functional with Go Lambdas.
+  To work around this issue, you'll need to manually set your endpoint when creating your AWS SDK client, as detailed in our documentation on the [Go AWS SDK](https://docs.localstack.cloud/user-guide/integrations/sdks/go/).
