@@ -515,6 +515,19 @@ Custom remote configurations are stored within the [LocalStack volume directory]
 Consequently, when sharing Cloud Pods among your team using a custom remote, each team member must define the identical remote configuration.
 Once added, a remote persists even after LocalStack restarts.
 
+## State Merging
+
+Cloud Pods offers various strategies for integrating states into your LocalStack container.
+To activate the merge strategies, you can set `--strategy <strategy>` while loading the Cloud Pod.
+The available strategies are:
+
+- `overwrite`: This strategy clears the existing state and loads the new state from the Cloud Pod, completely resetting the LocalStack state.
+- `account-region-merge` (**default**): This strategy merges services based on account and region pairs.
+  It attempts to combine states from both the current state and the Cloud Pod for the same account and region.
+  If a service exists in the current state but not in the Cloud Pod, it remains unchanged.
+- `service-merge`: This strategy merges services at the account-region level, provided there's no overlap in resources.
+  It prioritizes the loaded resources when merging.
+
 ## Cloud Pods & Persistence
 
 [Persistence]({{< ref "persistence" >}}) ensures that the service state persists across container restarts.
