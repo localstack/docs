@@ -5624,6 +5624,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_keypair_create_import",
+            "test": "test_keypair_create_import",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ImportedKeyPairFingerprint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_events.py::test_event_rule_to_logs",
             "test": "test_event_rule_to_logs",
             "response": "200",
@@ -10100,7 +10110,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10961,16 +10971,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..Actions..S3Action.KmsKeyArn', '$..Actions..S3Action.ObjectKeyPrefix', '$..Actions..S3Action.TopicArn', '$..Recipients', '$..TlsPolicy']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ses.py::test_create_template",
-            "test": "test_create_template",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -11920,9 +11920,19 @@
             "test": "test_login_via_web_form",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..username']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_login_via_web_form_with_scopes",
+            "test": "test_login_via_web_form_with_scopes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -13980,7 +13990,7 @@
             "test": "test_create_task_definition_validation[$test-container-alpine-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13990,7 +14000,7 @@
             "test": "test_create_task_definition_validation[@test-container-alpine-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14000,7 +14010,7 @@
             "test": "test_create_task_definition_validation[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-alpine-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14010,7 +14020,7 @@
             "test": "test_create_task_definition_validation[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-alpine-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14020,7 +14030,7 @@
             "test": "test_create_task_definition_validation[test container-alpine-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14030,7 +14040,7 @@
             "test": "test_create_task_definition_validation[test-container-@library/alpine:latest-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14040,7 +14050,7 @@
             "test": "test_create_task_definition_validation[test-container-alpin e:3.12.0-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14050,7 +14060,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine 3.12.0-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14060,7 +14070,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14070,7 +14080,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine:3.12-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14080,7 +14090,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine:latest-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14090,7 +14100,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine:latest@sha256:1234567890-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14100,7 +14110,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine@3.12.0-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14110,7 +14120,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine@sha256:1234567890-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14120,7 +14130,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine@sha256:1fd62556954250bac80d601a196bb7fd480ceba7c10e94dd8fd4c6d1c08783d5-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14130,7 +14140,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine@sha256:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14140,7 +14150,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine@sha256:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08@-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14150,7 +14160,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine@sha256:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08@s-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14160,7 +14170,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine@sha256:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08@sha256:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14170,7 +14180,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine@sha384:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14180,7 +14190,7 @@
             "test": "test_create_task_definition_validation[test-container-alpine@sha512:9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14190,7 +14200,7 @@
             "test": "test_create_task_definition_validation[test-container-docker.io/nginx-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14200,7 +14210,7 @@
             "test": "test_create_task_definition_validation[test-container-library/@alpine:latest-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14210,7 +14220,7 @@
             "test": "test_create_task_definition_validation[test-container-library/alpine-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14220,7 +14230,7 @@
             "test": "test_create_task_definition_validation[test-container-library/alpine@latest-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14230,7 +14240,7 @@
             "test": "test_create_task_definition_validation[test-container-library/image@name-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14240,17 +14250,17 @@
             "test": "test_create_task_definition_validation[test-container-library/image@name:latest-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_create_task_definition_validation[test-container-localhost.localstack.cloud:4510/cdk-hnb659fds-container-assets-111111111111-us-east-1:5f423786c2e2f4ca36a670185bfd1e7f44f59942e3f5ad1994fcf1a1d1d66ba0-True]",
-            "test": "test_create_task_definition_validation[test-container-localhost.localstack.cloud:4510/cdk-hnb659fds-container-assets-111111111111-us-east-1:5f423786c2e2f4ca36a670185bfd1e7f44f59942e3f5ad1994fcf1a1d1d66ba0-True]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_create_task_definition_validation[test-container-localhost.localstack.cloud:4510/cdk-hnb659fds-container-assets-111111111111-us-region-1:5f423786c2e2f4ca36a670185bfd1e7f44f59942e3f5ad1994fcf1a1d1d66ba0-True]",
+            "test": "test_create_task_definition_validation[test-container-localhost.localstack.cloud:4510/cdk-hnb659fds-container-assets-111111111111-us-region-1:5f423786c2e2f4ca36a670185bfd1e7f44f59942e3f5ad1994fcf1a1d1d66ba0-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14260,7 +14270,7 @@
             "test": "test_create_task_definition_validation[test-container-public.ecr.aws/xray/aws-xray-daemon:3.x-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14270,7 +14280,7 @@
             "test": "test_create_task_definition_validation[test-container-public.ecr.aws/xray/aws-xray-daemon:v3.0.0-True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14280,7 +14290,7 @@
             "test": "test_create_task_definition_validation[test@container-alpine-False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
+            "snapshot_skipped": "['$..taskDefinition.containerDefinitions..systemControls', '$..taskDefinition.networkMode', '$..taskDefinition.registeredBy', '$..taskDefinition.requiresAttributes', '$..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -15926,58 +15936,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-FAILURE]",
-            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-FAILURE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-FAILURE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-FAILURE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-FAILURE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-FAILURE]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16020,6 +15980,16 @@
             "test": "test_api_injection_parametrized_exception",
             "response": "400",
             "error": "SomeVerySpecificException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_region",
+            "test": "test_api_injection_parametrized_region",
+            "response": "400",
+            "error": "InternalError",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
