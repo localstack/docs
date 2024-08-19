@@ -233,6 +233,8 @@ For a more complex demo project, on how to use Terraform init hooks for your tes
 If you are having issues with your initialization hooks not being executed, please perform the following checks:
 * Do the scripts have a known file extensions (`.sh` or `.py`)?
   * If not, rename the files to the matching file extension.
+* Is the script file configured to use LF endings instead of CRLF endings?
+  * If not, switch the file to LF mode as it is utilized in the Unix environment within a container.
 * Is the script marked as executable?
   * If not, set the executable flag on the file (`chmod +x ...`).
 * If it's a shell script, does it have a shebang (e.g., `#!/bin/bash`) as the first line in the file?
