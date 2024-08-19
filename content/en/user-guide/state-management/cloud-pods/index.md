@@ -528,6 +528,28 @@ The available strategies are:
 - `service-merge`: This strategy merges services at the account-region level, provided there's no overlap in resources.
   It prioritizes the loaded resources when merging.
 
+### Dry Run
+
+To preview the changes that would occur when loading a Cloud Pod, you can use the `--dry-run` flag.
+The result will depend on the selected merge strategy.
+The result will be displayed in the console, and no changes will be made to the LocalStack state.
+
+```bash
+This load operation will modify the runtime state as follows:
+
+──────────────────────────── sns ────────────────────────────
++ 2 resources added.
+~ 1 resources modified.
+
+──────────────────────── cognito-idp ────────────────────────
++ 1 resources added.
+~ 0 resources modified.
+
+──────────────────────────── sqs ────────────────────────────
++ 1 resources added.
+~ 1 resources modified.
+```
+
 ## Cloud Pods & Persistence
 
 [Persistence]({{< ref "persistence" >}}) ensures that the service state persists across container restarts.
