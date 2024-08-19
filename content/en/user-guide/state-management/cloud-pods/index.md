@@ -524,18 +524,20 @@ The available strategies are:
 - `overwrite`: This strategy clears the existing state and loads the new state from the Cloud Pod, completely resetting the LocalStack state.
 - `account-region-merge` (**default**): This strategy merges services based on account and region pairs.
   It attempts to combine states from both the current state and the Cloud Pod for the same account and region.
-  If a service exists in the current state but not in the Cloud Pod, it remains unchanged.
-  Let us take the image below as example.
-  The two non overlapping account/region pairs (`0123456789/us-east-1` for the Cloud Pod and `0123456789/us-east-2` for the runtime) will be both present in the resulting state.
-  For `0123456789/eu-central-1` however, we encounter a conflict, since both the Cloud Pod and the container hold a SQS state.
-  With this strategy, the one from the Cloud Pod will be preserved.
 - `service-merge`: This strategy merges services at the account-region level, provided there's no overlap in resources.
   It prioritizes the loaded resources when merging.
-  Let us look again at the image below.
-  The SQS resulting state will have 2 distinct queues if the queue from the Cloud Pod and the one in the container are distinct, i.e., do not have the same ARN.
-  In case of an ARN conflict, only one queue, the one from the Cloud Pod, will be present in the result.
+
+### Example scenario
+
+Let us take the image below as example.
+The two non overlapping account/region pairs (`0123456789/us-east-1` for the Cloud Pod and `0123456789/us-east-2` for the runtime) will be both present in the resulting state.
+For `0123456789/eu-central-1` however, we encounter a conflict, since both the Cloud Pod and the container hold a SQS state.
+With the `account-region-merge` strategy, the one from the Cloud Pod will be preserved.
 
 <img src="merge-strategies.png" alt="Merge Strategies" title="Merge Strategies" width="800px" />
+<br><br>
+
+On the other hand, in the `service-merge` strategy, the SQS resulting state will have 2 distinct queues if the queue from the Cloud Pod and the one in the container are distinct, i.e., do not have the same ARN. In case of an ARN conflict, only one queue, the one from the Cloud Pod, will be present in the result.
 
 ### Dry Run
 
