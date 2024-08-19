@@ -1425,7 +1425,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -1473,7 +1473,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -2325,7 +2325,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -4137,7 +4137,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -4173,7 +4173,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -5818,8 +5818,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -9174,6 +9174,20 @@
       }
     },
     "CreateKeyPair": {
+      "KeyFormat, KeyName, KeyType": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_keypair_create_import",
+            "test": "test_keypair_create_import",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ImportedKeyPairFingerprint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "KeyName": {
         "ls_community": [
           {
@@ -12955,7 +12969,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13211,8 +13225,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13232,6 +13246,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..KeyPairs..KeyType', '$..KeyPairs..Tags', '$..Error..Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_keypair_create_import",
+            "test": "test_keypair_create_import",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ImportedKeyPairFingerprint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13557,8 +13581,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13585,8 +13609,8 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13657,7 +13681,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14025,7 +14049,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14281,8 +14305,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -14473,7 +14497,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14879,8 +14903,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -15091,7 +15115,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -15447,8 +15471,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -15831,7 +15855,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -16237,8 +16261,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16305,7 +16329,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -16383,8 +16407,8 @@
       "AttributeNames": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/opensearch/test_opensearch.py::TestOpensearchProvider::test_list_versions",
-            "test": "test_list_versions",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaRuntimesCommon::test_echo_invoke[nodejs20.x]",
+            "test": "test_echo_invoke[nodejs20.x]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17363,7 +17387,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -17644,6 +17668,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..KeyPairs..KeyType', '$..KeyPairs..Tags', '$..Error..Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_keypair_create_import",
+            "test": "test_keypair_create_import",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ImportedKeyPairFingerprint']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18019,8 +18053,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -18795,7 +18829,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -22579,7 +22613,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -22835,8 +22869,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -22943,7 +22977,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -23199,8 +23233,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -23239,6 +23273,18 @@
     },
     "ImportKeyPair": {
       "KeyName, PublicKeyMaterial": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_ec2.py::test_keypair_create_import",
+            "test": "test_keypair_create_import",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ImportedKeyPairFingerprint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ec2/test_ec2.py::TestEC2DockerVMM::test_connect_to_localstack[amazonlinux-2023]",
@@ -23739,8 +23785,8 @@
       "AllocationId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[FULL-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Salary\",\"type\":[\"null\", \"int\"], \"default\": null}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "test": "test_register_avro_schema_version_compatibilities[FORWARD-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -24079,7 +24125,7 @@
             "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
