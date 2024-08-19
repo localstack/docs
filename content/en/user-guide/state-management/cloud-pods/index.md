@@ -537,7 +537,8 @@ With the `account-region-merge` strategy, the one from the Cloud Pod will be pre
 <img src="merge-strategies.png" alt="Merge Strategies" title="Merge Strategies" width="800px" />
 <br><br>
 
-On the other hand, in the `service-merge` strategy, the SQS resulting state will have 2 distinct queues if the queue from the Cloud Pod and the one in the container are distinct, i.e., do not have the same ARN. In case of an ARN conflict, only one queue, the one from the Cloud Pod, will be present in the result.
+On the other hand, in the `service-merge` strategy, the SQS resulting state will have 2 distinct queues if the queue from the Cloud Pod and the one in the container are distinct, i.e., do not have the same ARN.
+In case of an ARN conflict, only one queue, the one from the Cloud Pod, will be present in the result.
 
 ### Dry Run
 
