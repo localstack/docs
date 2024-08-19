@@ -105,6 +105,13 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `PROVIDER_OVERRIDE_CLOUDWATCH` | `v1` | Use the old CloudWatch provider. |
 
+### DMS
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `DMS_SERVERLESS_DEPROVISIONING_DELAY` | `60` (default), any positive integer | Delay the deprovisioning of serverless by defined seconds. Once deprovisioned the statistics will be reset. |
+| `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME` | `0` (default), any positive integer | Simulates a waiting time (in seconds) between status changes when the serverless replication starts. The waiting time will be applied for each status change (there are 6 status changes before the task is running). |
+
 ### DocumentDB
 
 | Variable | Example Values | Description |

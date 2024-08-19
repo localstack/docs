@@ -121,6 +121,20 @@ DMS is in a preview state on LocalStack and only supports some selected use case
 | RDS MySQL          | Kinesis     | full-load, cdc  |
 | S3                 | Kinesis     | full-load, cdc  |
 
+## Serverless
+
+[DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) can be used for the sources and targets that LocalStack already supports, and that are also [supported by AWS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.Components.html#CHAP_Serverless.SupportedVersions).
+
+In order to simulate the different states that the replication config goes through when provisioning, you can set the env `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME`, which will cause the state-change to wait the configured seconds.
+
+The waiting time is applied for every status change before the replication is actually in `running`.
+See also the [official docs for explanation about the different states](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.Components.html).
+
+Be aware that the replication table statistics on AWS is deleted automatically once the replication finished, and the replication configuration deprovisioned.
+
+For parity reasons, this is also true on LocalStack.
+In order to delay the deprovisioning, you can use the env `DMS_SERVERLESS_DEPROVISIONING_DELAY`, which by default is set to 60 seconds.
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing:
@@ -185,7 +199,6 @@ The `ReplicationTaskSettings` for a [replication task](https://docs.aws.amazon.c
 
 ### Other Limitations
 
-* [DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) is not yet supported
 * [Data Validation](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Validating.html#CHAP_Validating.TaskStatistics) is not supported
 * [Reload](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.ReloadTables.html) of tables is not supported
 * [Task Logs](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html#CHAP_Monitoring.ManagingLogs), specifically CloudWatch, and CloudTrail are not supported (table statistics are supported)
