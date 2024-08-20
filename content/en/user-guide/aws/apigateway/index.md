@@ -371,10 +371,10 @@ Ensure that you set the `_custom_id_` tag on creation of the resource.
 
 You can use custom domain names with API Gateway [REST APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html) and [HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-custom-domain-names.html).
 
-To use custom domains, you will need to set up an API Gateway Domain Name and create an API Mapping linked to your API. 
+To use custom domains, you will need to set up an API Gateway Domain Name and create an API Mapping linked to your API.
 
 If you are using [LocalStack as your DNS server](https://docs.localstack.cloud/user-guide/tools/dns-server/), you can directly target your API after configuring your custom domain.
-Assuming your custom domain is set up as `test.example.com` to point to your REST API with a base path mapping `base-path` linked to your stage named `dev`, the following command will be directed to your REST API on the `dev` stage. 
+Assuming your custom domain is set up as `test.example.com` to point to your REST API with a base path mapping `base-path` linked to your stage named `dev`, the following command will be directed to your REST API on the `dev` stage.
 
 {{< command >}}
 $ curl http://test.example.com:4566/base-path
