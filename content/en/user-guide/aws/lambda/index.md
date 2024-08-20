@@ -167,8 +167,8 @@ You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (previ
 {{< /callout >}}
 
 {{< callout >}}
-LocalStack now supports a Event Source Mapping (ESM) provider.
-You can [configure]({{< ref "configuration" >}}) `LAMBDA_EVENT_SOURCE_MAPPING=v2` (preview) to use the new ESM provider.
+LocalStack now supports a Event Source Mapping (ESM) implementation.
+You can [configure]({{< ref "configuration" >}}) `LAMBDA_EVENT_SOURCE_MAPPING=v2` (preview) to use the new ESM implementation.
 {{< /callout >}}
 
 [Lambda event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) allows you to connect Lambda functions to other AWS services.
