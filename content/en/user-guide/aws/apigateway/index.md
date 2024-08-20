@@ -373,23 +373,17 @@ You can use custom domain names with API Gateway [REST APIs](https://docs.aws.am
 
 To use custom domains, you will need to set up an API Gateway Domain Name and create an API Mapping linked to your API.
 
-If you are using [LocalStack as your DNS server](https://docs.localstack.cloud/user-guide/tools/dns-server/), you can directly target your API after configuring your custom domain.
 Assuming your custom domain is set up as `test.example.com` to point to your REST API with a base path mapping `base-path` linked to your stage named `dev`, the following command will be directed to your REST API on the `dev` stage.
 
+You should include the `Host` header with the custom domain name in your request, so you don't need to set up any custom DNS to resolve to LocalStack.
+
 {{< command >}}
-$ curl http://test.example.com:4566/base-path
+$ curl -H 'Host: test.example.com' http://localhost:4566/base-path
 {{< / command >}}
 
 The request above will be equivalent to the following request:
 {{< command >}}
 $ curl http://<your-api-id>.execute-api.localhost.localstack.cloud:4566/dev/
-{{< / command >}}
-
-If you cannot use LocalStack as your DNS server, you can include the `Host` header with the custom domain name in your request.
-With the same example as above, this is how your request would look like:
-
-{{< command >}}
-$ curl -H 'Host: test.example.com' http://localhost:4566/base-path
 {{< / command >}}
 
 ## API Gateway Resource Browser
