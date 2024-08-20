@@ -277,7 +277,7 @@ http://localhost:4566/restapis/0v1p6q6/local/_user_request_/my/path1
 
 This format is sometimes used in case of local DNS issues.
 
-### WebSocket APIs
+### WebSocket APIs (Pro)
 
 WebSocket APIs provide real-time communication channels between a client and a server.
 To use WebSockets in LocalStack, you can define a WebSocket route in your Serverless configuration:
