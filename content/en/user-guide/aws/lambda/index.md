@@ -8,7 +8,6 @@ aliases:
 - /references/lambda-asf-provider/
 - /references/lambda-v2-provider/
 persistence: supported with limitations
-
 ---
 
 ## Introduction
@@ -165,6 +164,11 @@ The product of 10 and 10 is 100%
 {{< callout >}}
 LocalStack now supports a new event rule engine for [Lambda event filtering](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
 You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (preview) to use the AWS [event-ruler](https://github.com/aws/event-ruler), which offers better parity.
+{{< /callout >}}
+
+{{< callout >}}
+LocalStack now supports a Event Source Mapping (ESM) implementation.
+You can [configure]({{< ref "configuration" >}}) `LAMBDA_EVENT_SOURCE_MAPPING=v2` (preview) to use the new ESM implementation.
 {{< /callout >}}
 
 [Lambda event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) allows you to connect Lambda functions to other AWS services.
