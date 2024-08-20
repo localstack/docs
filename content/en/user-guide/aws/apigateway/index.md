@@ -367,14 +367,29 @@ Setting the API Gateway ID via `_custom_id_` works only on the creation of the r
 Ensure that you set the `_custom_id_` tag on creation of the resource.
 {{< /callout >}}
 
-## Custom Domain Names with API Gateway
+## Custom Domain Names with API Gateway (Pro)
 
-You can use custom domain names with API Gateway V1 and V2 APIs.
-To route requests to a custom domain name for an API Gateway V2 API, include the `Host` header with the custom domain name in your request.
-For example, assuming that you have set up a custom domain name `test.example.com` to point to your LocalStack instance, you can send a request like this:
+You can use custom domain names with API Gateway [REST APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html) and [HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-custom-domain-names.html).
+
+To use custom domains, you will need to set up an API Gateway Domain Name and create an API Mapping linked to your API. 
+
+If you are using [LocalStack as your DNS server](https://docs.localstack.cloud/user-guide/tools/dns-server/), you can directly target your API after configuring your custom domain.
+Assuming your custom domain is set up as `test.example.com` to point to your REST API with a base path mapping `base-path` linked to your stage named `dev`, the following command will be directed to your REST API on the `dev` stage. 
 
 {{< command >}}
-$ curl -H 'Host: test.example.com' http://localhost:4566/test
+$ curl http://test.example.com:4566/base-path
+{{< / command >}}
+
+The request above will be equivalent to the following request:
+{{< command >}}
+$ curl http://<your-api-id>.execute-api.localhost.localstack.cloud:4566/dev/
+{{< / command >}}
+
+If you cannot use LocalStack as your DNS server, you can include the `Host` header with the custom domain name in your request.
+With the same example as above, this is how your request would look like:
+
+{{< command >}}
+$ curl -H 'Host: test.example.com' http://localhost:4566/base-path
 {{< / command >}}
 
 ## API Gateway Resource Browser
