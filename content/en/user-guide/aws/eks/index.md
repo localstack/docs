@@ -335,12 +335,23 @@ If your ingress and services are residing in a custom namespace, it is essential
 ## Use an existing Kubernetes installation
 
 You can also access the EKS API using your existing local Kubernetes installation.
-This can be achieved by mounting the `$HOME/.kube/config` file into the LocalStack container, especially when using a `docker-compose.yml` file:
+This can be achieved by setting the configuration variable `EKS_K8S_PROVIDER=local` and mounting the `$HOME/.kube/config` file into the LocalStack container.
+When using a `docker-compose.yml` file, you need to add a bind mount like this:
 
 ```yaml
 volumes:
   - "${HOME}/.kube/config:/root/.kube/config"
 ```
+
+When using the LocalStack CLI, please configure the `DOCKER_FLAGS` to mount the kubeconfig into the container:
+
+{{< command >}}
+$ DOCKER_FLAGS="-v ${HOME}/.kube/config:/root/.kube/config" localstack start
+{{</ command >}}
+
+{{< callout >}}
+Using an existing Kubernetes installation is currently only possible when the authentication with the cluster uses X509 client certificates: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#x509-client-certificates
+{{< /callout >}}
 
 In recent versions of Docker, you can enable Kubernetes as an embedded service running inside Docker.
 The picture below illustrates the Kubernetes settings in Docker for macOS (similar configurations apply for Linux/Windows).
