@@ -61,6 +61,11 @@ You can see an output similar to the following:
 }
 ```
 
+{{< callout >}}
+When setting up a local EKS cluster, if you encounter a `"status": "FAILED"` in the command output and see `Unable to start EKS cluster` in LocalStack logs, remove or rename the `~/.kube/config` file on your machine and retry.
+The CLI mounts this file automatically, leading EKS to assume you intend to use the specified cluster, a feature that has specific requirements.
+{{< /callout >}}
+
 You can use the `docker` CLI to check that some containers have been created:
 
 {{< command >}}
