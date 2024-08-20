@@ -281,6 +281,23 @@ docker run \
 The S3 Docker image has similar parity with the S3 APIs supported by LocalStack Docker image.
 You can use similar [configuration options](https://docs.localstack.cloud/references/configuration/#s3) to alter the behaviour of the S3 Docker image, such as `DEBUG` or `S3_SKIP_SIGNATURE_VALIDATION`.
 
+## SSE-C Encryption
+
+SSE-C (Server-Side Encryption with Customer-Provided Keys) is an Amazon S3 encryption method where customers provide their own encryption keys for securing objects.
+AWS handles the encryption and decryption, but the keys are managed entirely by the customer.
+
+LocalStack supports SSE-C parameter validation for the following S3 APIs:
+
+- [`PutObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
+- [`GetObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html)
+- [`HeadObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html)
+- [`GetObjectAttributes`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAttributes.html)
+- [`CopyObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html)
+- [`CreateMultipartUpload`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html)
+- [`UploadPart`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
+
+However, LocalStack does not support the actual encryption and decryption of objects using SSE-C.
+
 ## Resource Browser
 
 The LocalStack Web Application provides a [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/) for managing S3 buckets & configurations.
