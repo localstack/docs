@@ -24,7 +24,7 @@ It assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https:/
 To experiment with the IAM Policy Stream, initiate LocalStack using these flags:
 
 1. Enable debugging: `DEBUG=1`
-2. Set your LocalStack API key: `LOCALSTACK_API_KEY=<Your_API_Key>`
+2. Set your LocalStack Auth Token: `LOCALSTACK_AUTH_TOKEN=<your-auth-token>`
 3. Set the IAM Soft Mode: `IAM_SOFT_MODE=1`
 
 You can execute the following command in your terminal to start your LocalStack container:
