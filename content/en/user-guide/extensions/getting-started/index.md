@@ -20,7 +20,7 @@ In this guide, you will install and use the [official MailHog extension for Loca
 
 ## Installation
 
-To get started, start your LocalStack instance with your `LOCALSTACK_API_KEY`.
+To get started, start your LocalStack instance with your `LOCALSTACK_AUTH_TOKEN`.
 Access our [Extension Manager](https://app.localstack.cloud/inst/default/extensions/manage), and click the **Install** button for the MailHog extension.
 
 {{< figure src="install-extensions.png" alt="Extensions Manager" width="800">}}
