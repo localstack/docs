@@ -22,23 +22,23 @@ In this guide, you will learn how to use [DevContainers](https://containers.dev/
 LocalStack provides two different approaches for Templates which can be used via supporting tools.
 
 * Docker-in-Docker
-    * Advantage:
-        * strict separation from host Docker service
-        * control LocalStack with LocalStack CLI
-        * all-in-one container
-    * Disadvantage:
-        * resources are limited as the started up container will encapsulate all resources spawned by LocalStack
-        * LocalStack volume directory must exist before hand
-        * container size
-        * cannot take leverage of existing images on host system
+  * Advantage:
+    * strict separation from host Docker service
+    * control LocalStack with LocalStack CLI
+    * all-in-one container
+  * Disadvantage:
+    * resources are limited as the started up container will encapsulate all resources spawned by LocalStack
+    * LocalStack volume directory must exist before hand
+    * container size
+    * cannot take leverage of existing images on host system
 * Docker-outside-of-Docker
-    * Advantages:
-        * easy to add additional external services managed by the generated docker compose file
-        * LocalStack container provides DNS service, which allows custom domains
-    * Disadvantages:
-        * host's Docker socket mounted into container(s) so in some cases this may cause security concerns
-        * LocalStack CLI usage is limited
-        * LocalStack volume directory must exist before hand
+  * Advantages:
+    * easy to add additional external services managed by the generated docker compose file
+    * LocalStack container provides DNS service, which allows custom domains
+  * Disadvantages:
+    * host's Docker socket mounted into container(s) so in some cases this may cause security concerns
+    * LocalStack CLI usage is limited
+    * LocalStack volume directory must exist before hand
 
 #### Starting LocalStack with Docker-in-Docker DevContainer
 
@@ -73,11 +73,13 @@ devcontainer up --id-label project=localstack --workspace-folder .
 ```
 
 And connect to it by the `id-label`.
+
 ```bash
 devcontainer exec --id-label project=localstack /bin/bash
 ```
 
 Then verify the existence of the LocalStack CLI by running the command below.
+
 ```bash
 vscode ➜ ~ $ localstack --version
 3.6.0
@@ -85,6 +87,7 @@ vscode ➜ ~ $
 ```
 
 To clean up simply run the following script as the devcontainer CLI currently unable to remove the created container.
+
 ```bash
 for container in $(docker ps -q); do \
     [[ "$(docker inspect --format '{{ index .Config.Labels "project"}}' $container)" = "localstack" ]] && \
@@ -123,7 +126,7 @@ and so on.
 {{< alert severity="info" size="small" >}}
 _Note: For the volume path relative paths are accepted, however one must create the defined mount's folder before being able to build the container successfully._
 ![Volume path option](08_volume_option.png)
-    
+
 ![Volume folder exists](09_volume_folder.png)
 {{< /alert >}}
 
@@ -145,63 +148,64 @@ As a result we end up with a similar folder structure in our workspace.
 
 ###### Reference files
 
-{{< tabpane >}}
-{{< tab header="devcontainer.json" lang="json">}}
+**devcontainer.json**
+
+```json
 {
-	"name": "LocalStack DinD setup",
-	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+ "name": "LocalStack DinD setup",
+ "image": "mcr.microsoft.com/devcontainers/base:bullseye",
 
-	"remoteEnv": {
-		// Activate LocalStack Pro: https://docs.localstack.cloud/getting-started/auth-token/
-		"LOCALSTACK_AUTH_TOKEN": "${localEnv:LOCALSTACK_AUTH_TOKEN}",  // required for Pro, not processed via template due to security reasons
-		"LOCALSTACK_API_KEY": "${localEnv:LOCALSTACK_API_KEY}",
-		// LocalStack configuration: https://docs.localstack.cloud/references/configuration/
-		"ACTIVATE_PRO": false,
-		"DEBUG": true,
-		"LS_LOG": "debug",
-		"PERSISTENCE": false,
-		"AWS_ENDPOINT_URL": "http://localhost.localstack.cloud:4566",
-		"AUTO_LOAD_POD": " ",
-		"ENFORCE_IAM": false,
-		"AWS_REGION": "us-east-1",
-		"AWS_DEFAULT_REGION": "us-east-1",
-		"IMAGE_NAME": "localstack/localstack-pro:latest",
-		"LOCALSTACK_VOLUME_DIR": "/data"
-	},
+ "remoteEnv": {
+  // Activate LocalStack Pro: https://docs.localstack.cloud/getting-started/auth-token/
+  "LOCALSTACK_AUTH_TOKEN": "${localEnv:LOCALSTACK_AUTH_TOKEN}",  // required for Pro, not processed via template due to security reasons
+  "LOCALSTACK_API_KEY": "${localEnv:LOCALSTACK_API_KEY}",
+  // LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+  "ACTIVATE_PRO": false,
+  "DEBUG": true,
+  "LS_LOG": "debug",
+  "PERSISTENCE": false,
+  "AWS_ENDPOINT_URL": "http://localhost.localstack.cloud:4566",
+  "AUTO_LOAD_POD": " ",
+  "ENFORCE_IAM": false,
+  "AWS_REGION": "us-east-1",
+  "AWS_DEFAULT_REGION": "us-east-1",
+  "IMAGE_NAME": "localstack/localstack-pro:latest",
+  "LOCALSTACK_VOLUME_DIR": "/data"
+ },
 
-	// 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
-	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
-		"ghcr.io/localstack/devcontainer-feature/localstack-cli:latest": {
-			"version": "latest",
-			"awslocal": true,  // if true, add in features manually: ghcr.io/devcontainers/features/aws-cli
-			"cdklocal": false,  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/aws-cdk
-			"pulumilocal": false,  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/pulumi
-			"samlocal": false,  // if true, add in features manually: ghcr.io/customink/codespaces-features/sam-cli
-			"tflocal": false  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/terraform-asdf
-		},
-		"ghcr.io/devcontainers/features/aws-cli:1": {}
-	},
+ // 👇 Features to add to the Dev Container.
+ // More info: https://containers.dev/implementors/features.
+ "features": {
+  "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+  "ghcr.io/localstack/devcontainer-feature/localstack-cli:latest": {
+   "version": "latest",
+   "awslocal": true,  // if true, add in features manually: ghcr.io/devcontainers/features/aws-cli
+   "cdklocal": false,  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/aws-cdk
+   "pulumilocal": false,  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/pulumi
+   "samlocal": false,  // if true, add in features manually: ghcr.io/customink/codespaces-features/sam-cli
+   "tflocal": false  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/terraform-asdf
+  },
+  "ghcr.io/devcontainers/features/aws-cli:1": {}
+ },
 
-	// 👇 Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "type localstack; true && localstack start -d || true",
-	"mounts": [
-		{
-			// to persist build data and images
-			"source": "dind-var-lib-docker",
-			"target": "/var/lib/docker",
-			"type": "volume"
-		}, 
-		{ 
-			"source": "./.volume",
-			"target": "/data",
-			"type": "bind",
-			"consistency": "cached"
-		}
-	]
+ // 👇 Use 'postCreateCommand' to run commands after the container is created.
+ "postCreateCommand": "type localstack; true && localstack start -d || true",
+ "mounts": [
+  {
+   // to persist build data and images
+   "source": "dind-var-lib-docker",
+   "target": "/var/lib/docker",
+   "type": "volume"
+  },
+  {
+   "source": "./.volume",
+   "target": "/data",
+   "type": "bind",
+   "consistency": "cached"
+  }
+ ]
 }
-{{< /tab >}}
-{{< /tabpane >}}
+```
 
 #### Starting LocalStack with Docker-outside-of-Docker DevContainer
 
@@ -238,11 +242,13 @@ devcontainer up --id-label project=localstack --workspace-folder .
 ```
 
 And connect to it by the `id-label`.
+
 ```bash
 devcontainer exec --id-label project=localstack /bin/bash
 ```
 
 Then verify the existence of the LocalStack CLI by running the command below.
+
 ```bash
 vscode ➜ ~ $ localstack --version
 3.6.0
@@ -250,6 +256,7 @@ vscode ➜ ~ $
 ```
 
 To clean up simply run the following script as the devcontainer CLI currently unable to remove the created containers.
+
 ```bash
 docker compose --project-name "$(basename $PWD)_devcontainer" -f ./.devcontainer/docker-compose.yml down
 ```
@@ -283,14 +290,15 @@ the LocalStack version,
 and so on.
 
 {{< alert severity="info" size="small" >}}
-_Note: LocalStack's IP address must be in the defined CIDR range. The network CIDR defaults to `10.0.2.0/24` and the container IP to `10.0.2.20`._
+_Note: LocalStack's IP address must be in the defined CIDR range.
+The network CIDR defaults to `10.0.2.0/24` and the container IP to `10.0.2.20`._
 {{< /alert >}}
 
 {{< alert severity="info" size="small" >}}
 _Note: For the volume path relative paths are accepted, however one must create the defined mount's folder before being able to build the container successfully._
 _This defaults to `./.volume`._
 ![Volume path option](08_volume_option.png)
-    
+
 ![Volume folder exists](09_volume_folder.png)
 {{< /alert >}}
 
@@ -306,33 +314,38 @@ And some additional Features.
 ![Additional Features](11_additional_features.png)
 
 As a result we end up with the folder structure below.
-![Folder structure (DooD)](12b_folder_structure_dood.png) 
+![Folder structure (DooD)](12b_folder_structure_dood.png)
 
 ###### Reference files
-{{< tabpane >}}
-{{< tab header="devcontainer.json" lang="json">}}
-{
-	"name": "LocalStack DooD setup",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+**devcontainer.json**
 
-	// 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
-	"features": {
-		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
-		"ghcr.io/localstack/devcontainer-feature/localstack-cli:latest": {
-			"version": "latest",
-			"awslocal": true,  // if true, add in features manually: ghcr.io/devcontainers/features/aws-cli
-			"cdklocal": false,  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/aws-cdk
-			"pulumilocal": false,  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/pulumi
-			"samlocal": false,  // if true, add in features manually: ghcr.io/customink/codespaces-features/sam-cli
-			"tflocal": false  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/terraform-asdf
-		},
-		"ghcr.io/devcontainers/features/aws-cli:1": {}
-	}
+```json
+{
+ "name": "LocalStack DooD setup",
+ "dockerComposeFile": "docker-compose.yml",
+ "service": "app",
+ "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+ // 👇 Features to add to the Dev Container. 
+ // More info: https://containers.dev/implementors/features.
+ "features": {
+  "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+  "ghcr.io/localstack/devcontainer-feature/localstack-cli:latest": {
+   "version": "latest",
+   "awslocal": true,  // if true, add in features manually: ghcr.io/devcontainers/features/aws-cli
+   "cdklocal": false,  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/aws-cdk
+   "pulumilocal": false,  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/pulumi
+   "samlocal": false,  // if true, add in features manually: ghcr.io/customink/codespaces-features/sam-cli
+   "tflocal": false  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/terraform-asdf
+  },
+  "ghcr.io/devcontainers/features/aws-cli:1": {}
+ }
 }
-{{< /tab >}}
-{{< tab header="docker-compose.yml" lang="yaml">}}
+```
+
+**docker-compose.yml**
+
+```yaml
 version: "3.8"
 
 services:
@@ -376,12 +389,17 @@ networks:
       config:
         # Specify the subnet range for IP address allocation
         - subnet: 10.0.2.0/24
-{{< /tab >}}
+```
 
-{{< tab header="Dockerfile" lang="yaml">}}
+**Dockerfile**
+
+```dockerfile
 FROM mcr.microsoft.com/devcontainers/base:bookworm
-{{< /tab >}}
-{{< tab header=".env" lang="shell">}}
+```
+
+**.env**
+
+```bash
 # Activate LocalStack Pro: https://docs.localstack.cloud/getting-started/auth-token/
 LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:-}  # required for Pro, not processed via template due to security reasons
 LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY:-}
@@ -397,8 +415,7 @@ ENFORCE_IAM=false
 AWS_REGION=us-east-1
 AWS_DEFAULT_REGION=us-east-1
 IMAGE_NAME=localstack/localstack-pro:latest
-{{< /tab >}}
-{{< /tabpane >}}
+```
 
 ### Using the LocalStack Feature
 
@@ -406,7 +423,7 @@ Add the following minimal snippet to your DevContainer config.
 
 ```json
 ...
-	"features": {
+ "features": {
         "ghcr.io/localstack/devcontainer-feature/localstack-cli:latest": {}
     }
 ...
@@ -415,8 +432,8 @@ Add the following minimal snippet to your DevContainer config.
 That's it.
 By building your container the LocalStack CLI and any of the enabled local-tools will be installed.
 
-__The LocalStack Feature not taking care of the underlying tool installations.
-For more information on dependencies please refer to the Feature documentation.__
+**The LocalStack Feature not taking care of the underlying tool installations.
+For more information on dependencies please refer to the Feature documentation.**
 
 ## Useful Links
 
