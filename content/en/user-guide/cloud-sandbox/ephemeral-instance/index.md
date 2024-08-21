@@ -40,6 +40,7 @@ You will also be able to access the following features with your Ephemeral Insta
 - Resource Browser
 - State Management
 - Extensions
+- Logs
 
 <img src="localstack-ephemeral-instance.png" alt="LocalStack Ephemeral Instance" title="LocalStack Ephemeral Instance" width="800" />
 
@@ -64,6 +65,12 @@ $ aws --endpoint-url=<EPHEMERAL_INSTANCE_ENDPOINT_URL> s3 ls
 
 You can also use integrations, such as [CDK](https://docs.localstack.cloud/user-guide/integrations/aws-cdk/), [SAM CLI](https://docs.localstack.cloud/user-guide/integrations/aws-sam/), and [Terraform](https://docs.localstack.cloud/user-guide/integrations/terraform/), to interact with the Ephemeral Instance.
 In these integrations, you can change the `AWS_ENDPOINT_URL` environment variable to the endpoint URL of the Ephemeral Instance.
+
+### View the Logs of the Ephemeral Instance
+
+You can view the logs of the Ephemeral Instance by navigating to the **Logs** tab in the **LocalStack Instance Management** page.
+
+<img src="ephemeral-instance-logs.png" alt="Ephemeral Instance Logs" title="Ephemeral Instance Logs" width="800" />
 
 ### Shut Down the Ephemeral Instance
 
