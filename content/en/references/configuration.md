@@ -165,6 +165,7 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `EKS_LOADBALANCER_PORT` | `8081` (default) | Local port on which the Kubernetes load balancer is exposed on the host. |
 | `EKS_K3S_IMAGE_TAG` | `v1.22.6-k3s1` (default) | Custom tag of the `k8s/rancher` image used to spin up Kubernetes clusters locally. |
+| `EKS_K8S_PROVIDER` | `k3s` (default)\|`local` | The k8s provider which should be used to start the k8s cluster backing EKS. For more information on the providers, please see [Elastic Kubernetes Service (EKS)]({{< ref "user-guide/aws/eks" >}}) |
 
 ### ElastiCache
 
