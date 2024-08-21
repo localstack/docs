@@ -85,3 +85,11 @@ The `output.txt` will contain the following output:
     "timestamp": 1724226371
 }
 ```
+
+## Device Shadows
+
+LocalStack supports both unnamed (classic) and named device shadows.
+
+You can use AWS CLI and [MQTT topics](https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-mqtt.html) to get, update or delete device shadow state information.
+
+The endpoint as returned by `DescribeEndpoint` currently does not support the [device shadow REST API](https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-rest-api.html#API_GetThingShadow)
