@@ -15,10 +15,9 @@ In this guide, you will learn how to use [DevContainers](https://containers.dev/
 
 * [Using the LocalStack templates](#using-the-localstack-templates)
 * [Using the LocalStack feature](#using-the-localstack-feature)
-* [Useful Links](#useful-links)
 
 ### Using the LocalStack Templates
-LocalStack provides two different approaches for Templates which can be used via supporting tools.
+LocalStack provides two different approaches for [Templates](https://github.com/localstack/devcontainer-template) which can be used via [supporting tools](https://containers.dev/supporting).
 
 | **Type**                    | **Advantages**                                                                                                         | **Disadvantages**                                                                                                             |
 |-----------------------------|------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
@@ -403,28 +402,18 @@ IMAGE_NAME=localstack/localstack-pro:latest
 
 ### Using the LocalStack Feature
 
-Add the following minimal snippet to your DevContainer config.
+Add the following minimal [Feature](https://github.com/localstack/devcontainer-feature) snippet to your DevContainer config.
 
 ```json
 ...
  "features": {
-        "ghcr.io/localstack/devcontainer-feature/localstack-cli:latest": {}
-    }
+    "ghcr.io/localstack/devcontainer-feature/localstack-cli:latest": {}
+  }
 ...
 ```
 
 That's it.
-By building your container the LocalStack CLI and any of the enabled local-tools will be installed.
+By building your container the LocalStack CLI and any of the enabled local-tools (currently these are awslocal, cdklocal, pulumilocal, samlocal and tflocal) will be installed.
 
-**The LocalStack Feature not taking care of the underlying tool installations.
+**The LocalStack Feature not taking care of the underlying tool installations (ie for awslocal, aws-cli is not installed).
 For more information on dependencies please refer to the Feature documentation.**
-
-## Useful Links
-
-* https://containers.dev/
-* https://containers.dev/supporting
-* https://containers.dev/features
-* https://containers.dev/templates
-* https://code.visualstudio.com/docs/devcontainers/containers
-* https://github.com/localstack/devcontainer-template
-* https://github.com/localstack/devcontainer-feature
