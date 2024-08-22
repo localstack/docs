@@ -20,25 +20,10 @@ In this guide, you will learn how to use [DevContainers](https://containers.dev/
 ### Using the LocalStack Templates
 LocalStack provides two different approaches for Templates which can be used via supporting tools.
 
-* Docker-in-Docker
-  * Advantage:
-    * strict separation from host Docker service
-    * control LocalStack with LocalStack CLI
-    * all-in-one container
-  * Disadvantage:
-    * resources are limited as the started up container will encapsulate all resources spawned by LocalStack
-    * LocalStack volume directory must exist before hand
-    * container size
-    * cannot take leverage of existing images on host system
-* Docker-outside-of-Docker
-  * Advantages:
-    * easy to add additional external services managed by the generated docker compose file
-    * LocalStack container provides DNS service, which allows custom domains
-  * Disadvantages:
-    * host's Docker socket mounted into container(s) so in some cases this may cause security concerns
-    * LocalStack CLI usage is limited
-    * LocalStack volume directory must exist before hand
-
+| **Type**                    | **Advantages**                                                                                                         | **Disadvantages**                                                                                                             |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| **Docker-in-Docker**        | - Strict separation from host Docker service<br>- Control LocalStack with LocalStack CLI<br>- All-in-one container      | - Resources are limited as the started container will encapsulate all resources spawned by LocalStack<br>- LocalStack volume directory must exist beforehand<br>- Container size<br>- Cannot leverage existing images on host system |
+| **Docker-outside-of-Docker**| - Easy to add additional external services managed by the generated Docker Compose file<br>- LocalStack container provides DNS service, allowing custom domains | - Host's Docker socket mounted into container(s), which may cause security concerns in some cases<br>- LocalStack CLI usage is limited<br>- LocalStack volume directory must exist beforehand |
 #### Starting LocalStack with Docker-in-Docker DevContainer
 
 ##### devcontainer-cli
