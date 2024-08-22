@@ -5,7 +5,6 @@ description: >
   Use DevContainers with LocalStack
 ---
 
-![DevContainers](devcontainers-logo.png)
 ## Overview
 
 [DevContainers](https://containers.dev//) is a local tool to create a self-contained, reproducible and containerized development environment that you can setup to encapsulate your project with all its libraries and dependencies.
