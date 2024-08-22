@@ -277,7 +277,7 @@ http://localhost:4566/restapis/0v1p6q6/local/_user_request_/my/path1
 
 This format is sometimes used in case of local DNS issues.
 
-### WebSocket APIs
+### WebSocket APIs (Pro)
 
 WebSocket APIs provide real-time communication channels between a client and a server.
 To use WebSockets in LocalStack, you can define a WebSocket route in your Serverless configuration:
@@ -367,14 +367,23 @@ Setting the API Gateway ID via `_custom_id_` works only on the creation of the r
 Ensure that you set the `_custom_id_` tag on creation of the resource.
 {{< /callout >}}
 
-## Custom Domain Names with API Gateway
+## Custom Domain Names with API Gateway (Pro)
 
-You can use custom domain names with API Gateway V1 and V2 APIs.
-To route requests to a custom domain name for an API Gateway V2 API, include the `Host` header with the custom domain name in your request.
-For example, assuming that you have set up a custom domain name `test.example.com` to point to your LocalStack instance, you can send a request like this:
+You can use custom domain names with API Gateway [REST APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html) and [HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-custom-domain-names.html).
+
+To use custom domains, you will need to set up an API Gateway Domain Name and create an API Mapping linked to your API.
+
+Assuming your custom domain is set up as `test.example.com` to point to your REST API with a base path mapping `base-path` linked to your stage named `dev`, the following command will be directed to your REST API on the `dev` stage.
+
+You should include the `Host` header with the custom domain name in your request, so you don't need to set up any custom DNS to resolve to LocalStack.
 
 {{< command >}}
-$ curl -H 'Host: test.example.com' http://localhost:4566/test
+$ curl -H 'Host: test.example.com' http://localhost:4566/base-path
+{{< / command >}}
+
+The request above will be equivalent to the following request:
+{{< command >}}
+$ curl http://<your-api-id>.execute-api.localhost.localstack.cloud:4566/dev/
 {{< / command >}}
 
 ## API Gateway Resource Browser

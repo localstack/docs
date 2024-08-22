@@ -55,11 +55,11 @@ In the coverage table below, the features are marked with their respective avail
 | **API Gateway**                                                    | [Details 🔍]({{< ref "references/coverage/coverage_apigateway" >}}) |                 |       |
 | API Keys                                                           | ⭐⭐⭐              | CRUD                |       |
 | Authorizers (Pro)                                                  | ⭐⭐⭐⭐            | Emulated                |       |
-| Base Path Mappings                                                 | ⭐⭐⭐⭐            | Emulated                |       |
+| Base Path Mappings                                                 | ⭐⭐⭐⭐            | Emulated                |   (Pro) Invoking custom domains and base path mappings    |
 | Deployments                                                        | ⭐⭐⭐⭐            | CRUD                |       |
 | Documentation Parts                                                | ⭐⭐⭐              | CRUD                |       |
 | Documentation Versions                                             | ⭐⭐⭐              | CRUD                |       |
-| Domain Names                                                       | ⭐⭐⭐              | CRUD                |       |
+| Domain Names                                                       | ⭐⭐⭐              | CRUD                |  (Pro) Invoking custom domains   |
 | Gateway / Integration / Method Responses                           | ⭐⭐⭐⭐            | Emulated                |       |
 | Integrations                                                       | ⭐⭐⭐⭐            | Emulated                |       |
 | Methods                                                            | ⭐⭐⭐⭐            | Emulated                |       |

@@ -66,14 +66,6 @@ The following sections describe the various methods of setting your Auth Token.
 - In case your Auth Token is accidentally published, immediately rotate it on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token).
 {{< /callout >}}
 
-### Configuring your CI environment
-
-For use in Continuous Integration (CI) or automated test environments, a CI key is necessary.
-Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
-
-To configure your CI key, you need to set the `LOCALSTACK_API_KEY` environment variable to your CI key.
-You can find your CI key on the [CI Keys page](https://app.localstack.cloud/workspace/ci-keys) in the LocalStack Web Application.
-
 ### LocalStack CLI
 
 You should set the `LOCALSTACK_AUTH_TOKEN` environment variable either before or during the startup of LocalStack using the `localstack` command-line interface (CLI).
@@ -190,6 +182,14 @@ When you reset a token, the old one is immediately deactivated, losing its abili
 It is not possible to restore previous tokens.
 
 To rotate your Auth Token, go to the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) and select the **Reset Auth Token** option.
+
+### Configuring your CI environment
+
+For use in Continuous Integration (CI) or automated test environments, a CI key is necessary.
+Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
+
+To configure your CI key, you need to set the `LOCALSTACK_API_KEY` environment variable to your CI key.
+You can find your CI key on the [CI Keys page](https://app.localstack.cloud/workspace/ci-keys) in the LocalStack Web Application.
 
 ## Common activation issues
 

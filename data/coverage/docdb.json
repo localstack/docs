@@ -452,7 +452,7 @@
         "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -872,6 +872,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_serverless_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_serverless_cluster.yml]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
             "test": "test_create_misc_resources",
             "response": "200",
@@ -1282,11 +1292,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_full_load_replication",
-            "test": "test_full_load_replication",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
+            "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1378,11 +1388,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_full_load_replication",
-            "test": "test_full_load_replication",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
+            "test": "test_cdc_replication_data_queries",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1494,16 +1504,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_serverless_cluster.yml]",
-            "test": "test_db_cluster_deployment[rds_serverless_cluster.yml]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_rds_cluster_with_kms",
             "test": "test_rds_cluster_with_kms",
             "response": "200",
@@ -1546,6 +1546,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_rds_data_source_rds_utils",
             "test": "test_rds_data_source_rds_utils",
+            "response": "404",
+            "error": "DBClusterParameterGroupNotFoundFault",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment[rds_serverless_cluster.yml]",
+            "test": "test_db_cluster_deployment[rds_serverless_cluster.yml]",
             "response": "404",
             "error": "DBClusterParameterGroupNotFoundFault",
             "snapshot_skipped": "",

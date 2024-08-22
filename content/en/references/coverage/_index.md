@@ -18,7 +18,7 @@ function searchForServiceNameInLink() {
   var input, filter, div, elements, a, i, txtValue;
   input = document.getElementById('serviceNameCoverageInput');
   filter = input.value.toUpperCase();
-  div = document.getElementsByClassName('section-index')(0)
+  div = document.getElementsByClassName('section-index')[0]
   elements = div.getElementsByClassName('entry');
 
   // Loop through all list items, and hide those who don't match the search query

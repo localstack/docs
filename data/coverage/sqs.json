@@ -370,7 +370,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -390,9 +390,9 @@
             "test": "test_cognito_authorizer_token_types[client_credentials]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -400,9 +400,9 @@
             "test": "test_cognito_authorizer_token_types[username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -496,6 +496,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_pre_generation_token_trigger_v2",
             "test": "test_pre_generation_token_trigger_v2",
             "response": "200",
@@ -520,29 +530,29 @@
             "test": "test_user_migration_lambda[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases1]",
-            "test": "test_user_migration_lambda[aliases1]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases2]",
-            "test": "test_user_migration_lambda[aliases2]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -964,7 +974,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2476,7 +2486,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2496,9 +2506,9 @@
             "test": "test_cognito_authorizer_token_types[client_credentials]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -2506,9 +2516,9 @@
             "test": "test_cognito_authorizer_token_types[username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -2602,6 +2612,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_pre_generation_token_trigger_v2",
             "test": "test_pre_generation_token_trigger_v2",
             "response": "200",
@@ -2626,29 +2646,29 @@
             "test": "test_user_migration_lambda[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases1]",
-            "test": "test_user_migration_lambda[aliases1]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases2]",
-            "test": "test_user_migration_lambda[aliases2]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -3416,7 +3436,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -8676,7 +8696,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8838,7 +8858,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -8848,9 +8868,9 @@
             "test": "test_cognito_authorizer_token_types[client_credentials]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -8858,9 +8878,9 @@
             "test": "test_cognito_authorizer_token_types[username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -8889,6 +8909,36 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ChallengeParameters.USERNAME']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[None]",
+            "test": "test_user_migration_lambda[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -9474,7 +9524,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -14746,7 +14796,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -14766,9 +14816,9 @@
             "test": "test_cognito_authorizer_token_types[client_credentials]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -14776,9 +14826,9 @@
             "test": "test_cognito_authorizer_token_types[username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -14902,6 +14952,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_challenge_trigger_params",
+            "test": "test_custom_challenge_trigger_params",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_pre_generation_token_trigger_v2",
             "test": "test_pre_generation_token_trigger_v2",
             "response": "200",
@@ -14926,29 +14986,29 @@
             "test": "test_user_migration_lambda[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases1]",
-            "test": "test_user_migration_lambda[aliases1]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases2]",
-            "test": "test_user_migration_lambda[aliases2]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -15702,7 +15762,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -15892,7 +15952,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18216,7 +18276,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18226,9 +18286,9 @@
             "test": "test_cognito_authorizer_token_types[client_credentials]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -18236,9 +18296,9 @@
             "test": "test_cognito_authorizer_token_types[username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -18277,6 +18337,36 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ChallengeParameters.USERNAME']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[None]",
+            "test": "test_user_migration_lambda[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18610,7 +18700,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -18760,7 +18850,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20864,7 +20954,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20977,6 +21067,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_duplicate_event_source_mappings",
+            "test": "test_duplicate_event_source_mappings",
+            "response": "400",
+            "error": "QueueDoesNotExist",
+            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           }
         ]
@@ -21150,20 +21250,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          }
-        ]
-      },
-      "AttributeNames, MaxNumberOfMessages, QueueUrl": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/pipes/aws_pipes_pipe/test_basic.py::TestBasicCRD::test_black_box",
-            "test": "test_black_box",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       },
@@ -21494,6 +21580,20 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          }
+        ]
+      },
+      "MaxNumberOfMessages, MessageAttributeNames, MessageSystemAttributeNames, QueueUrl": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resource_providers/pipes/aws_pipes_pipe/test_basic.py::TestBasicCRD::test_black_box",
+            "test": "test_black_box",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       },
@@ -22944,7 +23044,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -23872,6 +23972,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/callback/test_callback.py::TestCallback::test_sqs_failure_in_wait_for_task_token",
             "test": "test_sqs_failure_in_wait_for_task_token",
+            "response": "400",
+            "error": "QueueDoesNotExist",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/callback/test_callback.py::TestCallback::test_sqs_wait_for_task_token",
+            "test": "test_sqs_wait_for_task_token",
             "response": "400",
             "error": "QueueDoesNotExist",
             "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
@@ -24850,7 +24960,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24860,9 +24970,9 @@
             "test": "test_cognito_authorizer_token_types[client_credentials]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -24870,9 +24980,9 @@
             "test": "test_cognito_authorizer_token_types[username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -24901,6 +25011,36 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ChallengeParameters.USERNAME']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[None]",
+            "test": "test_user_migration_lambda[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -25954,7 +26094,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26316,7 +26456,7 @@
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
+            "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26326,9 +26466,9 @@
             "test": "test_cognito_authorizer_token_types[client_credentials]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -26336,9 +26476,9 @@
             "test": "test_cognito_authorizer_token_types[username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "['$..UserPoolId', '$..Username']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -26426,29 +26566,29 @@
             "test": "test_user_migration_lambda[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases1]",
-            "test": "test_user_migration_lambda[aliases1]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[email]",
+            "test": "test_user_migration_lambda[email]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[aliases2]",
-            "test": "test_user_migration_lambda[aliases2]",
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_user_migration_lambda[preferred_username]",
+            "test": "test_user_migration_lambda[preferred_username]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..origin_jti', '$..req.version', \"$.initiate-auth-id-token-defined.'cognito:user_status'\", '$.initiate-auth-id-token-defined.email_verified', '$.initiate-auth-id-token-defined.jti']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -27356,7 +27496,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"

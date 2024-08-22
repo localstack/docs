@@ -111,11 +111,11 @@ jobs:
           echo "Test Execution complete!"
 ```
 
-### Configure the API key
+### Configure the CI Key
 
-The LocalStack CLI utilizes the `LOCALSTACK_API_KEY` for authentication with the LocalStack Platform.
+The LocalStack CLI utilizes a LocalStack CI key for authentication with the LocalStack Platform.
 This process enables the storage of logs and request/response traces from your CI run in the LocalStack Web Application.
-For setting up an API key, refer our [documentation on configuring an API key](https://docs.localstack.cloud/user-guide/ci/github-actions/#configuring-an-api-key).
+For setting up an CI key, refer our [documentation on configuring a CI key](https://docs.localstack.cloud/user-guide/ci/github-actions/#configure-a-ci-key).
 
 ### Review the Analytics
 

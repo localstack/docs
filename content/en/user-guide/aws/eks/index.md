@@ -61,6 +61,11 @@ You can see an output similar to the following:
 }
 ```
 
+{{< callout >}}
+When setting up a local EKS cluster, if you encounter a `"status": "FAILED"` in the command output and see `Unable to start EKS cluster` in LocalStack logs, remove or rename the `~/.kube/config` file on your machine and retry.
+The CLI mounts this file automatically for CLI versions before `3.7`, leading EKS to assume you intend to use the specified cluster, a feature that has specific requirements.
+{{< /callout >}}
+
 You can use the `docker` CLI to check that some containers have been created:
 
 {{< command >}}
@@ -139,7 +144,7 @@ $ awslocal ecr create-repository --repository-name "fancier-nginx"
         "repositoryArn": "arn:aws:ecr:us-east-1:000000000000:repository/fancier-nginx",
         "registryId": "c75fd0e2",
         "repositoryName": "fancier-nginx",
-        "repositoryUri": "localhost.localstack.cloud:4510/fancier-nginx",
+        "repositoryUri": "000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/fancier-nginx",
         "createdAt": "2022-04-13T14:22:47+02:00",
         "imageTagMutability": "MUTABLE",
         "imageScanningConfiguration": {
@@ -153,14 +158,6 @@ $ awslocal ecr create-repository --repository-name "fancier-nginx"
 </disable-copy>
 {{< / command >}}
 
-{{< callout >}}
-When creating an ECR repository, a port from the [external service port range]({{< ref "external-ports" >}}) is dynamically assigned.
-As a result, the port can differ from the static value `4510` used in the examples below.
-
-To ensure the correct URL and port, it's important to use the `repositoryUrl` obtained from the `create-repository` request.
-This ensures that you have the accurate endpoint to access the repository.
-{{< /callout >}}
-
 You can now pull the `nginx` image from Docker Hub using the `docker` CLI:
 
 {{< command >}}
@@ -170,13 +167,13 @@ $ docker pull nginx
 You can further tag the image to be pushed to ECR:
 
 {{< command >}}
-$ docker tag nginx localhost.localstack.cloud:4510/fancier-nginx
+$ docker tag nginx 000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/fancier-nginx
 {{< / command >}}
 
 Finally, you can push the image to local ECR:
 
 {{< command >}}
-$ docker push localhost.localstack.cloud:4510/fancier-nginx
+$ docker push 000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/fancier-nginx
 {{< / command >}}
 
 Now, let us set up the EKS cluster using the image pushed to local ECR.
@@ -217,7 +214,7 @@ spec:
     spec:
       containers:
       - name: fancier-nginx
-        image: localhost.localstack.cloud:4510/fancier-nginx:latest
+        image: 000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/fancier-nginx:latest
         ports:
         - containerPort: 80
 EOF
@@ -232,7 +229,7 @@ $ kubectl describe pod fancier-nginx
 In the events, we can see that the pull from ECR was successful:
 
 ```bash
-  Normal  Pulled     10s   kubelet            Successfully pulled image "localhost.localstack.cloud:4510/fancier-nginx:latest" in 2.412775896s
+  Normal  Pulled     10s   kubelet            Successfully pulled image "000000000000.dkr.ecr.us-east-1.localhost.localstack.cloud:4566/fancier-nginx:latest" in 2.412775896s
 ```
 
 {{< callout "tip" >}}
@@ -338,12 +335,23 @@ If your ingress and services are residing in a custom namespace, it is essential
 ## Use an existing Kubernetes installation
 
 You can also access the EKS API using your existing local Kubernetes installation.
-This can be achieved by mounting the `$HOME/.kube/config` file into the LocalStack container, especially when using a `docker-compose.yml` file:
+This can be achieved by setting the configuration variable `EKS_K8S_PROVIDER=local` and mounting the `$HOME/.kube/config` file into the LocalStack container.
+When using a `docker-compose.yml` file, you need to add a bind mount like this:
 
 ```yaml
 volumes:
   - "${HOME}/.kube/config:/root/.kube/config"
 ```
+
+When using the LocalStack CLI, please configure the `DOCKER_FLAGS` to mount the kubeconfig into the container:
+
+{{< command >}}
+$ DOCKER_FLAGS="-v ${HOME}/.kube/config:/root/.kube/config" localstack start
+{{</ command >}}
+
+{{< callout >}}
+Using an existing Kubernetes installation is currently only possible when the authentication with the cluster uses X509 client certificates: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#x509-client-certificates
+{{< /callout >}}
 
 In recent versions of Docker, you can enable Kubernetes as an embedded service running inside Docker.
 The picture below illustrates the Kubernetes settings in Docker for macOS (similar configurations apply for Linux/Windows).

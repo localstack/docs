@@ -105,6 +105,13 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `PROVIDER_OVERRIDE_CLOUDWATCH` | `v1` | Use the old CloudWatch provider. |
 
+### DMS
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `DMS_SERVERLESS_DEPROVISIONING_DELAY` | `60` (default), any positive integer | Delay the deprovisioning of serverless by defined seconds. Once deprovisioned the statistics will be reset. |
+| `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME` | `0` (default), any positive integer | Simulates a waiting time (in seconds) between status changes when the serverless replication starts. The waiting time will be applied for each status change (there are 6 status changes before the task is running). |
+
 ### DocumentDB
 
 | Variable | Example Values | Description |
@@ -158,6 +165,7 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `EKS_LOADBALANCER_PORT` | `8081` (default) | Local port on which the Kubernetes load balancer is exposed on the host. |
 | `EKS_K3S_IMAGE_TAG` | `v1.22.6-k3s1` (default) | Custom tag of the `k8s/rancher` image used to spin up Kubernetes clusters locally. |
+| `EKS_K8S_PROVIDER` | `k3s` (default)\|`local` | The k8s provider which should be used to start the k8s cluster backing EKS. For more information on the providers, please see [Elastic Kubernetes Service (EKS)]({{< ref "user-guide/aws/eks" >}}) |
 
 ### ElastiCache
 
@@ -212,6 +220,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables (also with `--env-file`, but the file has to be mounted into the LocalStack container), ports, volume mounts, extra hosts, networks, DNS servers, labels, ulimits, user, platform, and privileged mode. The `--env-file` argument for Docker `run` and Docker Compose have different feature sets. To provide both, we support the `--env-file` for environment files with the docker run syntax, while `--compose-env-file` supports the full docker compose features, like placeholders with `${}`, replacing quotes, etc. |
 | `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to. Limitation: `host` mode currently not supported. |
 | `LAMBDA_DOWNLOAD_AWS_LAYERS` | `1` (default, pro) | Whether to download public Lambda layers from AWS through a LocalStack proxy when creating or updating functions. |
+| `LAMBDA_EVENT_SOURCE_MAPPING` | `v2` | Use the new Lambda Event Source Mapping (ESM) implementation. (preview) |
 | `LAMBDA_IGNORE_ARCHITECTURE` | `0` (default) | Whether to ignore the AWS architectures (x86_64 or arm64) configured for the lambda function. Set to `1` to run cross-platform compatible lambda functions natively (i.e., Docker selects architecture). |
 | `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default, pro) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
 | `LAMBDA_K8S_INIT_IMAGE` | | Specify the image for downloading the init binary from LocalStack. The image must include the `curl` and `chmod` commands. This is only relevant for container-based Lambdas on Kubernetes |
@@ -220,6 +229,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `LAMBDA_LIMITS_CODE_SIZE_ZIPPED` | `52428800` (default) | The maximum zip file size in bytes for the [CreateFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) operation. Raising this limit enables the creation of larger Lambda functions without the need to upload the code to an S3 deployment bucket. |
 | `LAMBDA_LIMITS_CREATE_FUNCTION_REQUEST_SIZE` | `70167211` (default) | The maximum HTTP request size in bytes for the [CreateFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) operation. Raising this limit enables larger HTTP requests including zipped file size. |
 | `LAMBDA_LIMITS_MAX_FUNCTION_ENVVAR_SIZE_BYTES` | `4096` (default) | The maximum size of the environment variables that you can use to configure your function. |
+| `LAMBDA_PREBUILD_IMAGES` | `0` (default) |  Prebuild images before execution which increases the cold start time but reduces the time until the Lambda function is `ACTIVE`. (preview) |
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove any Lambda Docker containers. |
 | `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `20` (default) | How many seconds Lambda will wait for the runtime environment to start up. Increase this timeout if I/O is slow or your Lambda deployments are large or contain many files. |
 | `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed. |
