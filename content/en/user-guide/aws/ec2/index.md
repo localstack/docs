@@ -146,7 +146,7 @@ You should see the following output:
 ```
 
 {{< callout "note" >}}
-Similar to the setup in production AWS, the user data content is stored at `/var/lib/cloud/instances/<instance_id>/user-data.txt` within the instance.
+Similar to the setup in production AWS, the user data content is stored at `/var/lib/cloud/instances/<instance_id>/` within the instance.
 Any execution of this data is recorded in the `/var/log/cloud-init-output.log` file.
 {{< /callout >}}
 
@@ -259,7 +259,7 @@ LocalStack EC2 supports execution of user data scripts when the instance starts.
 A shell script can be passed to the `UserData` argument of `RunInstances`.
 Alternatively, the user data may also be added using the `ModifyInstanceAttribute` operation.
 
-The user data is placed at `/var/lib/cloud/instances/<InstanceId>/user-data.txt` in the container.
+The user data is placed at `/var/lib/cloud/instances/<InstanceId>/` in the container.
 The execution log is generated at `/var/log/cloud-init-output.log` in the container.
 
 ### Networking
@@ -501,22 +501,23 @@ $ virsh pool-refresh default
 Pool default refreshed
 </disable-copy>
 $ virsh vol-list --pool default
+<disable-copy>
  Name                                    Path
 --------------------------------------------------------------------------------------------------------
-
  ami-1234abcd                            /var/lib/libvirt/images/ami-1234abcd
+</disable-copy>
 {{< /command >}}
 
-Only the images that follow the above naming scheme will be recognised by LocalStack as AMIs suitable for launching virtualised instances.
+Only the images that follow the above naming scheme will be recognised by LocalStack as AMIs suitable for launching virtualized instances.
 These AMIs will also have the resource tag `ec2_vm_manager:libvirt`.
 
 {{< command >}}
-awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=libvirt
+$ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=libvirt
 {{< /command >}}
 
 ### Instances
 
-Virtualised instances can be launched with `RunInstances` operation and specifying a compatible AMI.
+Virtualized instances can be launched with `RunInstances` operation and specifying a compatible AMI.
 LocalStack will create and start a Libvirt domain to represent the instance.
 
 When instances are launched, LocalStack uses the [NoCloud](https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html) datasource to customize the virtual machine.
@@ -548,10 +549,10 @@ You can then use a compatible VNC client (e.g. [TigerVNC](https://tigervnc.org/)
 
 ### Networking
 
-Currently all instances are behind a NAT network.
-Instances can access the internet but are inaccessible from the host machine.
+All instances are assigned interfaces on the default Libvirt network.
+This makes it possible to have host/instance as well as instance/instance network communication.
 
-It is possible to allow network access to the LocalStack container from within the virtualised instance.
+It is possible to allow network access to the LocalStack container from within the virtualized instance.
 This is done by configuring the Docker daemon to use the KVM network.
 Use the following configuration at `/etc/docker/daemon.json` on the host machine:
 
@@ -568,7 +569,7 @@ Then restart the Docker daemon:
 $ sudo systemctl restart docker
 {{< /command >}}
 
-You can now start the LocalStack container, obtain its IP address and use it from the virtualised instance.
+You can now start the LocalStack container, obtain its IP address and use it from the virtualized instance.
 
 {{< command >}}
 $ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' localstack_main
