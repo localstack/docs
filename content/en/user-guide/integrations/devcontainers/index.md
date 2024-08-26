@@ -92,51 +92,68 @@ The DevContainer extension is currently reporting issues & bugs.
 Follow the [issue](https://github.com/microsoft/vscode-remote-release/issues/10180) for details.
 {{< /callout >}}
 
-Open VSCode with the DevContainers extension installed.
-From the Command Palette choose the **Dev Containers: Add Dev Container configuration file**.
-<img alt="Add Dev Container configuration file" src="01_add_devcontainer_conf.png" width="800px" />
+To get started with LocalStack and DevContainers in VS Code, follow these steps:
 
-Choose the **Add configuration to workspace** option, but for general usage feel free to choose the **Add configuration to user data folder**.
-<img alt="Add configuration to workspace" src="02_add_conf_workspace.png" width="800px" />
+* Open VS Code with the DevContainers extension installed.
+* From the Command Palette, select **Dev Containers: Add Dev Container configuration file**.
+  <br><br>
+  <img alt="Add Dev Container configuration file" src="01_add_devcontainer_conf.png" width="800px" />
+  <br><br>
 
-Select **Show All Definitions...** to show community templates.
-<img alt="Show all Template definitions" src="03_show_all_definitions.png" width="800px" />
+* Choose **Add configuration to workspace**; alternatively, select **Add configuration to user data folder** for general usage.
+  <br><br>
+  <img alt="Add configuration to workspace" src="02_add_conf_workspace.png" width="800px" />
+  <br><br>
 
-Start typing "localstack" in the search bar to filter on the official LocalStack templates and choose **LocalStack Docker-in-Docker**.
-<img alt="Select official LocalStack Template (DinD)" src="04_select_template.png" width="800px" />
+* Select **Show All Definitions...** to view community templates.
+  <br><br>
+  <img alt="Show all Template definitions" src="03_show_all_definitions.png" width="800px" />
+  <br><br>
 
-Navigate through the configuration inputs either by selecting or typing in values.
-There are defaults selected in the template navigating through the options by hitting Enter will result in a valid config.
-The template defines among others, the image variant (currently only Debian based images are supported),
-<img alt="Image variant option" src="05_option_1.png" width="800px" />
-the log level,
-<img alt="Log level option" src="06_option_2.png" width="800px" />
-the LocalStack version,
-<img alt="LocalStack version option" src="07_option_3.png" width="800px" />
-and so on.
+* Filter by typing "localstack" in the search bar and select the **LocalStack Docker-in-Docker** template.
+  <br><br>
+  <img alt="Select official LocalStack Template (DinD)" src="04a_select_template_dind.png" width="800px" />
+  <br><br>
 
-{{< alert severity="info" size="small" >}}
-_Note: For the volume path relative paths are accepted, however one must create the defined mount's folder before being able to build the container successfully._
-<img alt="Volume path option" src="08_volume_option.png" width="800px" />
+* Proceed through the configuration by selecting or entering values.
+  Pressing **Enter** through the options will apply default settings, which include:
+  <br><br>
+  * Select the image variant (only Debian-based images are supported).
+    <br><br>
+    <img alt="Image variant option" src="05_option_1.png" width="800px" />
+    <br><br>
+  * Select the log level.
+    <br><br>
+    <img alt="Log level option" src="06_option_2.png" width="800px" />
+    <br><br>
+  * Select the LocalStack version.
+    <br><br>
+    <img alt="LocalStack version option" src="07_option_3.png" width="800px" />
+    <br><br>
 
-<img alt="Volume folder exists" src="09_volume_folder.png" />
-{{< /alert >}}
+* Relative paths are acceptable for the volume path, but the specified mount folder must be created prior to building the container.
+  <br><br>
+  <img alt="Volume path option" src="08_volume_option.png" width="800px" />
+  <br><br>
+  <img alt="Volume folder exists" src="09_volume_folder.png" />
+  <br><br>
 
-Select multiple tools and config options from the checklist.
+* Select various tools and configuration options from the checklist.
+  For local tools, either select the appropriate SDK or tool feature, or install it manually.
+  The template and LocalStack CLI feature do not manage these installations.
+  <br><br>
+  <img alt="List of options (DinD)" src="10a_options_list_dind.png" width="800px" />
+  <br><br>
 
-{{< alert severity="info" size="small" >}}
-_Note: For local-tools one must select the underlying SDK or tool's feature or install it manually._
-_**The Template and the underlying LocalStack CLI Feature is not managing these installations!**_
-{{< /alert >}}
+* You can also add additional features.
+  <br><br>
+  <img alt="Additional Features" src="11_additional_features.png" width="800px" />
+  <br><br>
 
-<img alt="List of options (DinD)" src="10a_options_list_dind.png" width="800px" />
-
-And some additional Features.
-<img alt="Additional Features" src="11_additional_features.png" width="800px" />
-
-As a result we end up with a similar folder structure in our workspace.
-
-<img alt="Generated folder structure (DinD)" src="12a_folder_structure_dind.png" width="800px" />
+* This results in the following folder structure in your workspace.
+  <br><br>
+  <img alt="Generated folder structure (DinD)" src="12a_folder_structure_dind.png" width="800px" />
+  <br><br>
 
 ###### Reference files
 
