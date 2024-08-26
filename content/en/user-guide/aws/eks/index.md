@@ -1,9 +1,10 @@
 ---
 title: "Elastic Kubernetes Service (EKS)"
 linkTitle: "Elastic Kubernetes Service (EKS)"
-description: >
-  Get started with Elastic Kubernetes Service (EKS) on LocalStack
+description: Get started with Elastic Kubernetes Service (EKS) on LocalStack
 tags: ["Pro image"]
+persistence: supported with limitations
+
 ---
 
 ## Introduction
