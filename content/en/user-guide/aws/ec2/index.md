@@ -508,7 +508,7 @@ $ virsh vol-list --pool default
 </disable-copy>
 {{< /command >}}
 
-Only the images that follow the above naming scheme will be recognised by LocalStack as AMIs suitable for launching virtualised instances.
+Only the images that follow the above naming scheme will be recognised by LocalStack as AMIs suitable for launching virtualized instances.
 These AMIs will also have the resource tag `ec2_vm_manager:libvirt`.
 
 {{< command >}}
@@ -552,7 +552,7 @@ You can then use a compatible VNC client (e.g. [TigerVNC](https://tigervnc.org/)
 All instances are assigned interfaces on the default Libvirt network.
 This makes it possible to have host/instance as well as instance/instance network communication.
 
-It is possible to allow network access to the LocalStack container from within the virtualised instance.
+It is possible to allow network access to the LocalStack container from within the virtualized instance.
 This is done by configuring the Docker daemon to use the KVM network.
 Use the following configuration at `/etc/docker/daemon.json` on the host machine:
 
@@ -569,7 +569,7 @@ Then restart the Docker daemon:
 $ sudo systemctl restart docker
 {{< /command >}}
 
-You can now start the LocalStack container, obtain its IP address and use it from the virtualised instance.
+You can now start the LocalStack container, obtain its IP address and use it from the virtualized instance.
 
 {{< command >}}
 $ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' localstack_main
