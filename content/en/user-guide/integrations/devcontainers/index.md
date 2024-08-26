@@ -28,6 +28,7 @@ LocalStack provides two different approaches for [Templates](https://github.com/
 
 * [Dev Container CLI](#dev-container-cli)
 * [VS Code](#vscode)
+* [Reference file](#reference-file)
 
 #### Dev Container CLI
 
@@ -155,9 +156,9 @@ To get started with LocalStack and DevContainers in VS Code, follow these steps:
   <img alt="Generated folder structure (DinD)" src="12a_folder_structure_dind.png" width="800px" />
   <br><br>
 
-###### Reference files
+#### Reference file
 
-**devcontainer.json**
+The `devcontainer.json` will look similar to the following:
 
 ```json
 {
@@ -217,6 +218,10 @@ To get started with LocalStack and DevContainers in VS Code, follow these steps:
 ```
 
 ### Docker-outside-of-Docker
+
+* [Dev Container CLI](#dev-container-cli)
+* [VS Code](#vscode)
+* [Reference files](#reference-files)
 
 #### Dev Container CLI
 
@@ -327,16 +332,16 @@ As a result we end up with the folder structure below.
 <img alt="Folder structure (DooD)" src="12b_folder_structure_dood.png" width="800px" />
 
 ###### Reference files
-**devcontainer.json**
 
-```json
+{{< tabpane lang="json" >}}
+{{< tab header="devcontainer.json" lang="json" >}}
 {
  "name": "LocalStack DooD setup",
  "dockerComposeFile": "docker-compose.yml",
  "service": "app",
  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
- // 👇 Features to add to the Dev Container. 
+ // 👇 Features to add to the Dev Container.
  // More info: https://containers.dev/implementors/features.
  "features": {
   "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
@@ -351,9 +356,9 @@ As a result we end up with the folder structure below.
   "ghcr.io/devcontainers/features/aws-cli:1": {}
  }
 }
-```
+{{< /tab >}}
 
-**docker-compose.yml**
+{{< tab header="docker-compose.yml" lang="yaml" >}}
 
 ```yaml
 version: "3.8"
@@ -401,13 +406,17 @@ networks:
         - subnet: 10.0.2.0/24
 ```
 
-**Dockerfile**
+{{< /tab >}}
+
+{{< tab header="Dockerfile" lang="dockerfile" >}}
 
 ```dockerfile
 FROM mcr.microsoft.com/devcontainers/base:bookworm
 ```
 
-**.env**
+{{< /tab >}}
+
+{{< tab header=".env" lang="bash" >}}
 
 ```bash
 # Activate LocalStack Pro: https://docs.localstack.cloud/getting-started/auth-token/
@@ -426,6 +435,9 @@ AWS_REGION=us-east-1
 AWS_DEFAULT_REGION=us-east-1
 IMAGE_NAME=localstack/localstack-pro:latest
 ```
+
+{{< /tab >}}
+{{< /tabpane >}}
 
 ## LocalStack Feature
 
