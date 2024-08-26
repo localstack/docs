@@ -51,7 +51,7 @@ Use the command below to generate your `devcontainer.json` from the template.
 Include additional features with the `--features` option if needed.
 
 {{< command >}}
-devcontainer templates apply \
+$ devcontainer templates apply \
     --template-id ghcr.io/localstack/devcontainer-template/localstack-dind \
     --template-args "$(cat ./options.json)" \
     --features '[{"id":"ghcr.io/devcontainers/features/aws-cli:1"}]'
@@ -60,13 +60,13 @@ devcontainer templates apply \
 Start your container using the following command.
 
 {{< command >}}
-devcontainer up --id-label project=localstack --workspace-folder .
+$ devcontainer up --id-label project=localstack --workspace-folder .
 {{< /command >}}
 
 Connect to it using the `id-label`.
 
 {{< command >}}
-devcontainer exec --id-label project=localstack /bin/bash
+$ devcontainer exec --id-label project=localstack /bin/bash
 {{< /command >}}
 
 Check that the LocalStack CLI is installed by executing:
@@ -77,10 +77,10 @@ vscode ➜ ~ $ localstack --version
 vscode ➜ ~ $
 {{< /command >}}
 
-To remove the container, run this cleanup script since the devcontainer CLI cannot currently do it.
+To remove the container, run this cleanup script since the Dev Container CLI cannot currently do it.
 
 {{< command >}}
-for container in $(docker ps -q); do \
+$ for container in $(docker ps -q); do \
     [[ "$(docker inspect --format '{{ index .Config.Labels "project"}}' $container)" = "localstack" ]] && \
     docker rm -f $container; \
 done
@@ -225,7 +225,10 @@ The `devcontainer.json` will look similar to the following:
 
 #### Dev Container CLI
 
-Create a JSON file called `options.json` with the desired options in it.
+You can use the DevContainer CLI to create a  `devcontainer.json`  file from the LocalStack template.
+Before you start, ensure that you have the  [DevContainer CLI](https://code.visualstudio.com/docs/devcontainers/devcontainer-cli)  installed.
+
+Create a JSON file called  `options.json`  with the desired options in it.
 
 ```json
 {
@@ -239,29 +242,29 @@ Create a JSON file called `options.json` with the desired options in it.
 }
 ```
 
-Run the below command to build your `devcontainer.json` file from the template.
-If necessary add extra features with the `--features` option.
+Use the command below to generate your  `devcontainer.json`  from the template.
+Include additional features with the  `--features`  option if needed.
 
 {{< command >}}
-devcontainer templates apply \
+$ devcontainer templates apply \
     --template-id ghcr.io/localstack/devcontainer-template/localstack-dood \
     --template-args "$(cat ./options.json)" \
     --features '[{"id":"ghcr.io/devcontainers/features/aws-cli:1"}]'
 {{< /command >}}
 
-Then start up your container.
+Start your container using the following command.
 
 {{< command >}}
-devcontainer up --id-label project=localstack --workspace-folder .
+$ devcontainer up --id-label project=localstack --workspace-folder .
 {{< /command >}}
 
-And connect to it by the `id-label`.
+Connect to it using the `id-label`.
 
 {{< command >}}
-devcontainer exec --id-label project=localstack /bin/bash
+$ devcontainer exec --id-label project=localstack /bin/bash
 {{< /command >}}
 
-Then verify the existence of the LocalStack CLI by running the command below.
+Check that the LocalStack CLI is installed by executing:
 
 {{< command >}}
 vscode ➜ ~ $ localstack --version
@@ -269,67 +272,89 @@ vscode ➜ ~ $ localstack --version
 vscode ➜ ~ $
 {{< /command >}}
 
-To clean up simply run the following script as the devcontainer CLI currently unable to remove the created containers.
+To remove the container, run this cleanup script since the Dev Container CLI cannot currently do it.
 
 {{< command >}}
-docker compose --project-name "$(basename $PWD)_devcontainer" -f ./.devcontainer/docker-compose.yml down
+$ docker compose \
+  --project-name "$(basename $PWD)_devcontainer" \
+  -f ./.devcontainer/docker-compose.yml down
 {{< /command >}}
 
 #### VSCode
 
-{{< alert severity="error" size="small" >}}
-_Note: Currently we're experiencing buggy behavior by the DevContainer extension, follow the [issue](https://github.com/microsoft/vscode-remote-release/issues/10180) for details._
-{{< /alert >}}
+{{< callout >}}
+The DevContainer extension is currently reporting issues & bugs.
+Follow the [issue](https://github.com/microsoft/vscode-remote-release/issues/10180) for details.
+{{< /callout >}}
 
-Open VSCode with the DevContainers extension installed.
-From the Command Palette choose the **Dev Containers: Add Dev Container configuration file**.
-<img alt="Add Dev Container configuration file" src="01_add_devcontainer_conf.png" width="800px" />
+To get started with LocalStack and DevContainers in VS Code, follow these steps:
 
-Choose the **Add configuration to workspace** option, but for general usage feel free to choose the **Add configuration to user data folder**.
-<img alt="Add configuration to workspace" src="02_add_conf_workspace.png" width="800px" />
+* Open VSCode with the DevContainers extension installed.
+* From the Command Palette, choose **Dev Containers: Add Dev Container configuration file**.
+  <br><br>
+  <img alt="Add Dev Container configuration file" src="01_add_devcontainer_conf.png" width="800px" />
+  <br><br>
 
-Select **Show All Definitions...** to show community templates.
-<img alt="Show all Template definitions" src="03_show_all_definitions.png" width="800px" />
+* Choose the **Add configuration to workspace** option; alternatively, select **Add configuration to user data folder** for general usage.
+  <br><br>
+  <img alt="Add configuration to workspace" src="02_add_conf_workspace.png" width="800px" />
+  <br><br>
 
-Start typing "localstack" in the search bar to filter on the official LocalStack templates and choose **LocalStack Docker-outside-of-Docker**.
-<img alt="Select official LocalStack Template (DooD)" src="04b_select_template_dood.png" width="800px" />
+* Select **Show All Definitions...** to view community templates.
+  <br><br>
+  <img alt="Show all Template definitions" src="03_show_all_definitions.png" width="800px" />
+  <br><br>
 
-Navigate through the configuration inputs either by selecting or typing in values.
-There are defaults selected in the template navigating through the options by hitting Enter will result in a valid config.
-The template defines among others, the image variant (currently only Debian based images are supported),
-<img alt="Image variant option" src="05_option_1.png" width="800px" />
-the log level,
-<img alt="Log level option" src="06_option_2.png" width="800px" />
-the LocalStack version,
-<img alt="LocalStack version option" src="07_option_3.png" width="800px" />
-and so on.
+* Start typing "localstack" in the search bar to filter the official LocalStack templates and choose **LocalStack Docker-outside-of-Docker**.
+  <br><br>
+  <img alt="Select official LocalStack Template (DooD)" src="04b_select_template_dood.png" width="800px" />
+  <br><br>
 
-{{< alert severity="info" size="small" >}}
-_Note: LocalStack's IP address must be in the defined CIDR range.
-The network CIDR defaults to `10.0.2.0/24` and the container IP to `10.0.2.20`._
-{{< /alert >}}
+* Navigate through the configuration inputs by either selecting or typing in values.
+  The defaults provided in the template are sufficient; navigating through the options by hitting Enter will result in a valid configuration.
+  These options include:
+  <br><br>
+  * The image variant (currently only Debian-based images are supported).
+    <br><br>
+    <img alt="Image variant option" src="05_option_1.png" width="800px" />
+    <br><br>
+  * The log level.
+    <br><br>
+    <img alt="Log level option" src="06_option_2.png" width="800px" />
+    <br><br>
+  * The LocalStack version.
+    <br><br>
+    <img alt="LocalStack version option" src="07_option_3.png" width="800px" />
+    <br><br>
 
-{{< alert severity="info" size="small" >}}
-_Note: For the volume path relative paths are accepted, however one must create the defined mount's folder before being able to build the container successfully._
-_This defaults to `./.volume`._
-<img alt="Volume path option" src="08_volume_option.png" width="800px" />
+* Note that LocalStack's IP address must be within the defined CIDR range.
+  The network CIDR defaults to `10.0.2.0/24`, with the container IP set to `10.0.2.20`.
+  <br><br>
 
-<img alt="Volume folder exists" src="09_volume_folder.png" />
-{{< /alert >}}
+* For the volume path, relative paths are accepted, but you must create the specified mount's folder before successfully building the container.
+  The default is `./.volume`.
+  <br><br>
+  <img alt="Volume path option" src="08_volume_option.png" width="800px" />
+  <br><br>
+  <img alt="Volume folder exists" src="09_volume_folder.png" />
+  <br><br>
 
-Select multiple tools and config options from the checklist.
-<img alt="List of options (DooD)" src="10b_options_list_dood.png" width="800px" />
+* Select multiple tools and configuration options from the checklist.
+  For local tools, you must select the appropriate SDK or tool feature, or install it manually.
+  The template and the underlying LocalStack CLI Feature do not manage these installations.
+  <br><br>
+  <img alt="List of options (DooD)" src="10b_options_list_dood.png" width="800px" />
+  <br><br>
 
-{{< alert severity="info" size="small" >}}
-_Note: For local-tools one must select the underlying SDK or tool's feature or install it manually._
-_**The Template and the underlying LocalStack CLI Feature is not managing these installations!**_
-{{< /alert >}}
+* You can also add additional features.
+  <br><br>
+  <img alt="Additional Features" src="11_additional_features.png" width="800px" />
+  <br><br>
 
-And some additional Features.
-<img alt="Additional Features" src="11_additional_features.png" width="800px" />
-
-As a result we end up with the folder structure below.
-<img alt="Folder structure (DooD)" src="12b_folder_structure_dood.png" width="800px" />
+* As a result, you will end up with the folder structure shown below.
+  <br><br>
+  <img alt="Folder structure (DooD)" src="12b_folder_structure_dood.png" width="800px" />
+  <br><br>
 
 ###### Reference files
 
@@ -359,8 +384,6 @@ As a result we end up with the folder structure below.
 {{< /tab >}}
 
 {{< tab header="docker-compose.yml" lang="yaml" >}}
-
-```yaml
 version: "3.8"
 
 services:
@@ -382,7 +405,7 @@ services:
         ipv4_address: 10.0.2.20
   
   app:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     volumes:
@@ -404,21 +427,12 @@ networks:
       config:
         # Specify the subnet range for IP address allocation
         - subnet: 10.0.2.0/24
-```
-
 {{< /tab >}}
 
 {{< tab header="Dockerfile" lang="dockerfile" >}}
-
-```dockerfile
 FROM mcr.microsoft.com/devcontainers/base:bookworm
-```
-
 {{< /tab >}}
-
 {{< tab header=".env" lang="bash" >}}
-
-```bash
 # Activate LocalStack Pro: https://docs.localstack.cloud/getting-started/auth-token/
 LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:-}  # required for Pro, not processed via template due to security reasons
 LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY:-}
@@ -429,13 +443,11 @@ LS_LOG=debug
 PERSISTENCE=false
 AWS_ENDPOINT_URL=http://localhost.localstack.cloud:4566
 LOCALSTACK_HOST=localhost.localstack.cloud:4566
-AUTO_LOAD_POD= 
+AUTO_LOAD_POD=
 ENFORCE_IAM=false
 AWS_REGION=us-east-1
 AWS_DEFAULT_REGION=us-east-1
 IMAGE_NAME=localstack/localstack-pro:latest
-```
-
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -452,7 +464,9 @@ Add the following minimal [Feature](https://github.com/localstack/devcontainer-f
 ```
 
 That's it.
-By building your container the LocalStack CLI and any of the enabled local-tools (currently these are awslocal, cdklocal, pulumilocal, samlocal and tflocal) will be installed.
+By building your container the LocalStack CLI and any of the enabled local-tools (currently these are `awslocal`, `cdklocal`, `pulumilocal`, `samlocal` and `tflocal`) will be installed.
 
-**The LocalStack Feature not taking care of the underlying tool installations (ie for awslocal, aws-cli is not installed).
-For more information on dependencies please refer to the Feature documentation.**
+{{< callout >}}
+The LocalStack Feature does not manage the installation of underlying tools (e.g., for awslocal, aws-cli is not installed).
+For more information on dependencies, please refer to the [Feature documentation](https://github.com/localstack/devcontainer-feature).
+{{< /callout >}}
