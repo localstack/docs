@@ -7,25 +7,32 @@ description: >
 
 ## Overview
 
-[DevContainers](https://containers.dev//) is a local tool to create a self-contained, reproducible and containerized development environment that you can setup to encapsulate your project with all its libraries and dependencies.
+[DevContainers](https://containers.dev/) is a local tool to create a self-contained, reproducible and containerized development environment that you can setup to encapsulate your project with all its libraries and dependencies.
 
 In this guide, you will learn how to use [DevContainers](https://containers.dev/) with LocalStack.
+You can use the following two approaches to set up LocalStack with DevContainers:
 
-## Covered Topics
+* [LocalStack templates](#localstack-templates)
+* [LocalStack feature](#localstack-feature)
 
-* [Using the LocalStack templates](#using-the-localstack-templates)
-* [Using the LocalStack feature](#using-the-localstack-feature)
+## LocalStack Templates
 
-### Using the LocalStack Templates
 LocalStack provides two different approaches for [Templates](https://github.com/localstack/devcontainer-template) which can be used via [supporting tools](https://containers.dev/supporting).
 
-| **Type**                    | **Advantages**                                                                                                         | **Disadvantages**                                                                                                             |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
-| **Docker-in-Docker**        | - Strict separation from host Docker service<br>- Control LocalStack with LocalStack CLI<br>- All-in-one container      | - Resources are limited as the started container will encapsulate all resources spawned by LocalStack<br>- LocalStack volume directory must exist beforehand<br>- Container size<br>- Cannot leverage existing images on host system |
-| **Docker-outside-of-Docker**| - Easy to add additional external services managed by the generated Docker Compose file<br>- LocalStack container provides DNS service, allowing custom domains | - Host's Docker socket mounted into container(s), which may cause security concerns in some cases<br>- LocalStack CLI usage is limited<br>- LocalStack volume directory must exist beforehand |
-#### Starting LocalStack with Docker-in-Docker DevContainer
+| **Type**                     | **Advantages**                                                                                      | **Disadvantages**                                                                                                                                                                         |
+|------------------------------|----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Docker-in-Docker**         | • Strict separation from host Docker service<br>• Control LocalStack with LocalStack CLI<br>• All-in-one container      | • Resources are limited as all resources spawned by LocalStack are encapsulated within the container<br>• LocalStack volume directory must exist beforehand<br>• Larger container size<br>• Cannot use existing images on host system |
+| **Docker-outside-of-Docker** | • Easy addition of external services managed by Docker Compose<br>• DNS service for custom domains | • Host's Docker socket mounted into containers, raising security concerns<br>• Limited LocalStack CLI usage<br>• LocalStack volume directory must exist beforehand                        |
 
-##### devcontainer-cli
+### Docker-in-Docker
+
+* [Dev Container CLI](#dev-container-cli)
+* [VS Code](#vscode)
+
+#### Dev Container CLI
+
+You can use the DevContainer CLI to create a `devcontainer.json` file from the LocalStack template.
+Before you start, ensure that you have the [DevContainer CLI](https://code.visualstudio.com/docs/devcontainers/devcontainer-cli) installed.
 
 Create a JSON file called `options.json` with the desired options in it.
 
@@ -39,8 +46,8 @@ Create a JSON file called `options.json` with the desired options in it.
 }
 ```
 
-Run the below command to build your `devcontainer.json` file from the template.
-If necessary add extra features with the `--features` option.
+Use the command below to generate your `devcontainer.json` from the template.
+Include additional features with the `--features` option if needed.
 
 {{< command >}}
 devcontainer templates apply \
@@ -49,19 +56,19 @@ devcontainer templates apply \
     --features '[{"id":"ghcr.io/devcontainers/features/aws-cli:1"}]'
 {{< /command >}}
 
-Then start up your container.
+Start your container using the following command.
 
 {{< command >}}
 devcontainer up --id-label project=localstack --workspace-folder .
 {{< /command >}}
 
-And connect to it by the `id-label`.
+Connect to it using the `id-label`.
 
 {{< command >}}
 devcontainer exec --id-label project=localstack /bin/bash
 {{< /command >}}
 
-Then verify the existence of the LocalStack CLI by running the command below.
+Check that the LocalStack CLI is installed by executing:
 
 {{< command >}}
 vscode ➜ ~ $ localstack --version
@@ -69,7 +76,7 @@ vscode ➜ ~ $ localstack --version
 vscode ➜ ~ $
 {{< /command >}}
 
-To clean up simply run the following script as the devcontainer CLI currently unable to remove the created container.
+To remove the container, run this cleanup script since the devcontainer CLI cannot currently do it.
 
 {{< command >}}
 for container in $(docker ps -q); do \
@@ -78,10 +85,12 @@ for container in $(docker ps -q); do \
 done
 {{< /command >}}
 
-##### VSCode
-{{< alert severity="error" size="small" >}}
-_Note: Currently we're experiencing buggy behavior by the DevContainer extension, follow the [issue](https://github.com/microsoft/vscode-remote-release/issues/10180) for details._
-{{< /alert >}}
+#### VSCode
+
+{{< callout >}}
+The DevContainer extension is currently reporting issues & bugs.
+Follow the [issue](https://github.com/microsoft/vscode-remote-release/issues/10180) for details.
+{{< /callout >}}
 
 Open VSCode with the DevContainers extension installed.
 From the Command Palette choose the **Dev Containers: Add Dev Container configuration file**.
@@ -190,9 +199,9 @@ As a result we end up with a similar folder structure in our workspace.
 }
 ```
 
-#### Starting LocalStack with Docker-outside-of-Docker DevContainer
+### Docker-outside-of-Docker
 
-##### devcontainer-cli
+#### Dev Container CLI
 
 Create a JSON file called `options.json` with the desired options in it.
 
@@ -244,7 +253,8 @@ To clean up simply run the following script as the devcontainer CLI currently un
 docker compose --project-name "$(basename $PWD)_devcontainer" -f ./.devcontainer/docker-compose.yml down
 {{< /command >}}
 
-##### VSCode
+#### VSCode
+
 {{< alert severity="error" size="small" >}}
 _Note: Currently we're experiencing buggy behavior by the DevContainer extension, follow the [issue](https://github.com/microsoft/vscode-remote-release/issues/10180) for details._
 {{< /alert >}}
@@ -400,7 +410,7 @@ AWS_DEFAULT_REGION=us-east-1
 IMAGE_NAME=localstack/localstack-pro:latest
 ```
 
-### Using the LocalStack Feature
+## LocalStack Feature
 
 Add the following minimal [Feature](https://github.com/localstack/devcontainer-feature) snippet to your DevContainer config.
 
