@@ -1147,11 +1147,11 @@
       "SelectObjectContent": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -1220,7 +1220,7 @@
       }
     },
     "CompleteMultipartUpload": {
-      "Bucket, ChecksumCRC32, ChecksumCRC32C, ChecksumSHA1, ChecksumSHA256, ExpectedBucketOwner, Key, MultipartUpload, RequestPayer, SSECustomerAlgorithm, SSECustomerKey, SSECustomerKeyMD5, UploadId": {
+      "Bucket, ChecksumCRC32, ChecksumCRC32C, ChecksumSHA1, ChecksumSHA256, ExpectedBucketOwner, IfNoneMatch, Key, MultipartUpload, RequestPayer, SSECustomerAlgorithm, SSECustomerKey, SSECustomerKeyMD5, UploadId": {
         "ls_community": [
           {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_integrations.py::test_create_execute_api_vpc_endpoint",
@@ -1583,6 +1583,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_notifications_sqs.py::TestS3NotificationsToSQS::test_object_created_complete_multipart_upload",
             "test": "test_object_created_complete_multipart_upload",
             "response": "200",
@@ -1677,6 +1687,36 @@
             "test": "test_multipart_no_such_upload",
             "response": "404",
             "error": "NoSuchUpload",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "409",
+            "error": "ConditionalRequestConflict",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "412",
+            "error": "PreconditionFailed",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_put",
+            "test": "test_multipart_if_none_match_with_put",
+            "response": "412",
+            "error": "PreconditionFailed",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -1931,6 +1971,36 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive[REPLACE]",
             "test": "test_s3_copy_tagging_directive[REPLACE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[COPY]",
+            "test": "test_s3_copy_tagging_directive_versioned[COPY]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[None]",
+            "test": "test_s3_copy_tagging_directive_versioned[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "test": "test_s3_copy_tagging_directive_versioned[REPLACE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ServerSideEncryption']",
@@ -3331,6 +3401,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_secretsmanager.py::test_cdk_deployment_generates_secret_value_if_no_value_is_provided",
             "test": "test_cdk_deployment_generates_secret_value_if_no_value_is_provided",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_with_attributes",
+            "test": "test_sns_topic_with_attributes",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8399,6 +8479,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[COPY]",
+            "test": "test_s3_copy_tagging_directive_versioned[COPY]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[None]",
+            "test": "test_s3_copy_tagging_directive_versioned[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "test": "test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_delete_object_with_version_id",
             "test": "test_s3_delete_object_with_version_id",
             "response": "200",
@@ -10541,6 +10651,56 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectLock::test_put_object_lock_configuration_on_existing_bucket",
             "test": "test_put_object_lock_configuration_on_existing_bucket",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_put",
+            "test": "test_multipart_if_none_match_with_put",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match",
+            "test": "test_put_object_if_none_match",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_validation",
+            "test": "test_put_object_if_none_match_validation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_versioned_bucket",
+            "test": "test_put_object_if_none_match_versioned_bucket",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -14271,6 +14431,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_sagemaker.py::TestSageMakerEndpointStack::test_resource_deletion",
+            "test": "test_resource_deletion",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_sagemaker.py::TestSageMakerEndpointStack::test_stack_resources_are_deployed",
             "test": "test_stack_resources_are_deployed",
             "response": "200",
@@ -14979,36 +15149,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_basic.py::TestGlueCrud::test_create_job_with_cloudformation",
-            "test": "test_create_job_with_cloudformation",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -15452,6 +15592,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_put",
+            "test": "test_multipart_if_none_match_with_put",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -16055,6 +16215,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_secretsmanager.py::test_cdk_deployment_generates_secret_value_if_no_value_is_provided",
             "test": "test_cdk_deployment_generates_secret_value_if_no_value_is_provided",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_with_attributes",
+            "test": "test_sns_topic_with_attributes",
             "response": "204",
             "error": "",
             "snapshot_skipped": "",
@@ -17415,6 +17585,36 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive[REPLACE]",
             "test": "test_s3_copy_tagging_directive[REPLACE]",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[COPY]",
+            "test": "test_s3_copy_tagging_directive_versioned[COPY]",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[None]",
+            "test": "test_s3_copy_tagging_directive_versioned[None]",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "test": "test_s3_copy_tagging_directive_versioned[REPLACE]",
             "response": "204",
             "error": "",
             "snapshot_skipped": "['$..ServerSideEncryption']",
@@ -19523,6 +19723,56 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_put",
+            "test": "test_multipart_if_none_match_with_put",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match",
+            "test": "test_put_object_if_none_match",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_validation",
+            "test": "test_put_object_if_none_match_validation",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_versioned_bucket",
+            "test": "test_put_object_if_none_match_versioned_bucket",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3PublicAccessBlock::test_crud_public_access_block",
             "test": "test_crud_public_access_block",
             "response": "204",
@@ -21105,6 +21355,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_sagemaker.py::TestSageMakerEndpointStack::test_endpoint_config_description",
+            "test": "test_endpoint_config_description",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..EnableNetworkIsolation']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_sagemaker.py::TestSageMakerEndpointStack::test_resource_deletion",
             "test": "test_resource_deletion",
             "response": "204",
@@ -21452,16 +21712,6 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "204",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -26969,6 +27219,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match",
+            "test": "test_put_object_if_none_match",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_versioned_bucket",
+            "test": "test_put_object_if_none_match_versioned_bucket",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_list_operations.py::TestS3ListObjectVersions::test_list_objects_versions_markers",
             "test": "test_list_objects_versions_markers",
             "response": "204",
@@ -31063,6 +31343,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[COPY]",
+            "test": "test_s3_copy_tagging_directive_versioned[COPY]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[None]",
+            "test": "test_s3_copy_tagging_directive_versioned[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "test": "test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_delete_object_with_version_id",
             "test": "test_s3_delete_object_with_version_id",
             "response": "200",
@@ -32503,6 +32813,56 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_put",
+            "test": "test_multipart_if_none_match_with_put",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match",
+            "test": "test_put_object_if_none_match",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_validation",
+            "test": "test_put_object_if_none_match_validation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_versioned_bucket",
+            "test": "test_put_object_if_none_match_versioned_bucket",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_concurrency.py::TestParallelBucketCreation::test_parallel_object_creation_and_listing",
             "test": "test_parallel_object_creation_and_listing",
             "response": "200",
@@ -33752,16 +34112,6 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -45111,26 +45461,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_customresources.py::test_customresource_lambda_backed",
             "test": "test_customresource_lambda_backed",
             "response": "404",
@@ -47205,6 +47535,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[COPY]",
+            "test": "test_s3_copy_tagging_directive_versioned[COPY]",
+            "response": "404",
+            "error": "ObjectLockConfigurationNotFoundError",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[None]",
+            "test": "test_s3_copy_tagging_directive_versioned[None]",
+            "response": "404",
+            "error": "ObjectLockConfigurationNotFoundError",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "test": "test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "response": "404",
+            "error": "ObjectLockConfigurationNotFoundError",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_delete_object_with_version_id",
             "test": "test_s3_delete_object_with_version_id",
             "response": "404",
@@ -49185,6 +49545,56 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "404",
+            "error": "ObjectLockConfigurationNotFoundError",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_put",
+            "test": "test_multipart_if_none_match_with_put",
+            "response": "404",
+            "error": "ObjectLockConfigurationNotFoundError",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match",
+            "test": "test_put_object_if_none_match",
+            "response": "404",
+            "error": "ObjectLockConfigurationNotFoundError",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_validation",
+            "test": "test_put_object_if_none_match_validation",
+            "response": "404",
+            "error": "ObjectLockConfigurationNotFoundError",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_versioned_bucket",
+            "test": "test_put_object_if_none_match_versioned_bucket",
+            "response": "404",
+            "error": "ObjectLockConfigurationNotFoundError",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3PublicAccessBlock::test_crud_public_access_block",
             "test": "test_crud_public_access_block",
             "response": "404",
@@ -50755,16 +51165,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "404",
-            "error": "ObjectLockConfigurationNotFoundError",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           }
         ]
       }
@@ -50861,6 +51261,36 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive[REPLACE]",
             "test": "test_s3_copy_tagging_directive[REPLACE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[COPY]",
+            "test": "test_s3_copy_tagging_directive_versioned[COPY]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[None]",
+            "test": "test_s3_copy_tagging_directive_versioned[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "test": "test_s3_copy_tagging_directive_versioned[REPLACE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ServerSideEncryption']",
@@ -51639,26 +52069,6 @@
             "error": "NoSuchBucket",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_invalid_vault_name",
-            "test": "test_invalid_vault_name",
-            "response": "404",
-            "error": "NoSuchBucket",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_basic.py::TestGlueCrud::test_create_job_with_cloudformation",
-            "test": "test_create_job_with_cloudformation",
-            "response": "404",
-            "error": "NoSuchBucket",
-            "snapshot_skipped": "",
-            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -59569,26 +59979,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           }
         ]
       }
@@ -59653,6 +60043,20 @@
     },
     "ListBuckets": {
       "- (without any parameters)": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_cors.py::TestS3Cors::test_cors_options_fails_partial_origin",
+            "test": "test_cors_options_fails_partial_origin",
+            "response": "403",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..x-amz-id-2']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ContinuationToken, MaxBuckets": {
         "ls_community": [
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_changesets.py::test_create_and_then_remove_supported_resource_change_set",
@@ -59902,16 +60306,6 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_cors.py::TestS3Cors::test_cors_options_fails_partial_origin",
-            "test": "test_cors_options_fails_partial_origin",
-            "response": "403",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..x-amz-id-2']",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "external"
           }
         ],
@@ -61431,6 +61825,36 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive[REPLACE]",
             "test": "test_s3_copy_tagging_directive[REPLACE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[COPY]",
+            "test": "test_s3_copy_tagging_directive_versioned[COPY]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[None]",
+            "test": "test_s3_copy_tagging_directive_versioned[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "test": "test_s3_copy_tagging_directive_versioned[REPLACE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ServerSideEncryption']",
@@ -63501,6 +63925,56 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectLock::test_put_object_lock_configuration_on_existing_bucket",
             "test": "test_put_object_lock_configuration_on_existing_bucket",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_put",
+            "test": "test_multipart_if_none_match_with_put",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match",
+            "test": "test_put_object_if_none_match",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_validation",
+            "test": "test_put_object_if_none_match_validation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_versioned_bucket",
+            "test": "test_put_object_if_none_match_versioned_bucket",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -65039,16 +65513,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           }
         ]
       }
@@ -65921,6 +66385,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_secretsmanager.py::test_cdk_deployment_generates_secret_value_if_no_value_is_provided",
             "test": "test_cdk_deployment_generates_secret_value_if_no_value_is_provided",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_with_attributes",
+            "test": "test_sns_topic_with_attributes",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -67261,6 +67735,36 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive[REPLACE]",
             "test": "test_s3_copy_tagging_directive[REPLACE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[COPY]",
+            "test": "test_s3_copy_tagging_directive_versioned[COPY]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[None]",
+            "test": "test_s3_copy_tagging_directive_versioned[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "test": "test_s3_copy_tagging_directive_versioned[REPLACE]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ServerSideEncryption']",
@@ -69331,6 +69835,56 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectLock::test_put_object_lock_configuration_on_existing_bucket",
             "test": "test_put_object_lock_configuration_on_existing_bucket",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_put",
+            "test": "test_multipart_if_none_match_with_put",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match",
+            "test": "test_put_object_if_none_match",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_validation",
+            "test": "test_put_object_if_none_match_validation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_versioned_bucket",
+            "test": "test_put_object_if_none_match_versioned_bucket",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -71301,6 +71855,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_sagemaker.py::TestSageMakerEndpointStack::test_endpoint_config_description",
+            "test": "test_endpoint_config_description",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EnableNetworkIsolation']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_sagemaker.py::TestSageMakerEndpointStack::test_resource_deletion",
             "test": "test_resource_deletion",
             "response": "200",
@@ -71658,16 +72222,6 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -73627,6 +74181,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[COPY]",
+            "test": "test_s3_copy_tagging_directive_versioned[COPY]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[None]",
+            "test": "test_s3_copy_tagging_directive_versioned[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "test": "test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_delete_object_with_version_id",
             "test": "test_s3_delete_object_with_version_id",
             "response": "200",
@@ -73759,6 +74343,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectLock::test_put_object_lock_configuration_on_existing_bucket",
             "test": "test_put_object_lock_configuration_on_existing_bucket",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_versioned_bucket",
+            "test": "test_put_object_if_none_match_versioned_bucket",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -74172,7 +74766,7 @@
           }
         ]
       },
-      "ACL, Body, Bucket, BucketKeyEnabled, CacheControl, ChecksumAlgorithm, ChecksumCRC32, ChecksumCRC32C, ChecksumSHA1, ChecksumSHA256, ContentDisposition, ContentEncoding, ContentLanguage, ContentLength, ContentMD5, ContentType, ExpectedBucketOwner, Expires, GrantFullControl, GrantRead, GrantReadACP, GrantWriteACP, Key, Metadata, ObjectLockLegalHoldStatus, ObjectLockMode, ObjectLockRetainUntilDate, RequestPayer, SSECustomerAlgorithm, SSECustomerKey, SSECustomerKeyMD5, SSEKMSEncryptionContext, SSEKMSKeyId, ServerSideEncryption, StorageClass, Tagging, WebsiteRedirectLocation": {
+      "ACL, Body, Bucket, BucketKeyEnabled, CacheControl, ChecksumAlgorithm, ChecksumCRC32, ChecksumCRC32C, ChecksumSHA1, ChecksumSHA256, ContentDisposition, ContentEncoding, ContentLanguage, ContentLength, ContentMD5, ContentType, ExpectedBucketOwner, Expires, GrantFullControl, GrantRead, GrantReadACP, GrantWriteACP, IfNoneMatch, Key, Metadata, ObjectLockLegalHoldStatus, ObjectLockMode, ObjectLockRetainUntilDate, RequestPayer, SSECustomerAlgorithm, SSECustomerKey, SSECustomerKeyMD5, SSEKMSEncryptionContext, SSEKMSKeyId, ServerSideEncryption, StorageClass, Tagging, WebsiteRedirectLocation": {
         "ls_community": [
           {
             "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_setup",
@@ -79635,6 +80229,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[COPY]",
+            "test": "test_s3_copy_tagging_directive_versioned[COPY]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[None]",
+            "test": "test_s3_copy_tagging_directive_versioned[None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "test": "test_s3_copy_tagging_directive_versioned[REPLACE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_delete_object_with_version_id",
             "test": "test_s3_delete_object_with_version_id",
             "response": "200",
@@ -85075,20 +85699,10 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       },
-      "ACL, Bucket, BucketKeyEnabled, CacheControl, ChecksumAlgorithm, ChecksumCRC32, ChecksumCRC32C, ChecksumSHA1, ChecksumSHA256, ContentDisposition, ContentEncoding, ContentLanguage, ContentLength, ContentMD5, ContentType, ExpectedBucketOwner, Expires, GrantFullControl, GrantRead, GrantReadACP, GrantWriteACP, Key, Metadata, ObjectLockLegalHoldStatus, ObjectLockMode, ObjectLockRetainUntilDate, RequestPayer, SSECustomerAlgorithm, SSECustomerKey, SSECustomerKeyMD5, SSEKMSEncryptionContext, SSEKMSKeyId, ServerSideEncryption, StorageClass, Tagging, WebsiteRedirectLocation": {
+      "ACL, Bucket, BucketKeyEnabled, CacheControl, ChecksumAlgorithm, ChecksumCRC32, ChecksumCRC32C, ChecksumSHA1, ChecksumSHA256, ContentDisposition, ContentEncoding, ContentLanguage, ContentLength, ContentMD5, ContentType, ExpectedBucketOwner, Expires, GrantFullControl, GrantRead, GrantReadACP, GrantWriteACP, IfNoneMatch, Key, Metadata, ObjectLockLegalHoldStatus, ObjectLockMode, ObjectLockRetainUntilDate, RequestPayer, SSECustomerAlgorithm, SSECustomerKey, SSECustomerKeyMD5, SSEKMSEncryptionContext, SSEKMSKeyId, ServerSideEncryption, StorageClass, Tagging, WebsiteRedirectLocation": {
         "ls_community": [
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_copy_in_place_with_bucket_encryption",
@@ -85181,6 +85795,56 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_put",
+            "test": "test_multipart_if_none_match_with_put",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match",
+            "test": "test_put_object_if_none_match",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_validation",
+            "test": "test_put_object_if_none_match_validation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_versioned_bucket",
+            "test": "test_put_object_if_none_match_versioned_bucket",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_cors.py::TestS3Cors::test_cors_match_methods",
             "test": "test_cors_match_methods",
             "response": "200",
@@ -85246,6 +85910,36 @@
             "response": "400",
             "error": "InvalidArgument",
             "snapshot_skipped": "['$..ServerSideEncryption']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match",
+            "test": "test_put_object_if_none_match",
+            "response": "412",
+            "error": "PreconditionFailed",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_versioned_bucket",
+            "test": "test_put_object_if_none_match_versioned_bucket",
+            "response": "412",
+            "error": "PreconditionFailed",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_put_object_if_none_match_validation",
+            "test": "test_put_object_if_none_match_validation",
+            "response": "501",
+            "error": "NotImplemented",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -85947,22 +86641,6 @@
         ]
       }
     },
-    "SelectObjectContent": {
-      "Bucket, ExpectedBucketOwner, Expression, ExpressionType, InputSerialization, Key, OutputSerialization, SSECustomerAlgorithm, SSECustomerKey, SSECustomerKeyMD5": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_select_query_archive",
-            "test": "test_select_query_archive",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..location']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          }
-        ]
-      }
-    },
     "UploadPart": {
       "Body, Bucket, ChecksumAlgorithm, ChecksumCRC32, ChecksumCRC32C, ChecksumSHA1, ChecksumSHA256, ContentLength, ContentMD5, ExpectedBucketOwner, Key, PartNumber, RequestPayer, SSECustomerAlgorithm, SSECustomerKey, SSECustomerKeyMD5, UploadId": {
         "ls_community": [
@@ -86352,6 +87030,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ETag']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_delete",
+            "test": "test_multipart_if_none_match_with_delete",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3ObjectWritePrecondition::test_multipart_if_none_match_with_put",
+            "test": "test_multipart_if_none_match_with_put",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
