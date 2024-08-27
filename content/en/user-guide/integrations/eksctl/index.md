@@ -35,9 +35,31 @@ You can use the `--profile` flag to [specify the LocalStack profile](https://doc
 
 Run the following command to create a cluster:
 
+{{< tabpane text=true >}}
+{{< tab header="**Older Versions (<= eksctl v0.180.0)**" >}}
 {{< command >}}
+
 $ eksctl create cluster --nodes 1 --profile localstack
+
 {{< / command >}}
+{{< /tab >}}
+
+{{< tab header="**Newer Versions (>= eksctl v0.181.0)**" >}}
+{{< command >}}
+
+export AWS_CLOUDFORMATION_ENDPOINT=http://localhost.localstack.cloud:4566
+export AWS_EC2_ENDPOINT=http://localhost.localstack.cloud:4566
+export AWS_EKS_ENDPOINT=http://localhost.localstack.cloud:4566
+export AWS_ELB_ENDPOINT=http://localhost.localstack.cloud:4566
+export AWS_ELBV2_ENDPOINT=http://localhost.localstack.cloud:4566
+export AWS_IAM_ENDPOINT=http://localhost.localstack.cloud:4566
+export AWS_STS_ENDPOINT=http://localhost.localstack.cloud:4566
+
+eksctl create cluster --nodes 1
+
+{{< / command >}}
+{{< /tab >}}
+{{< /tabpane >}}
 
 ### Get the nodes
 
