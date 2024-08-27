@@ -20,7 +20,13 @@ Cockpit isn't available or maintained anymore and we recommend you to use LocalS
 ## Installation
 
 You can download LocalStack Desktop from our [web application](https://app.localstack.cloud/download).
-To install LocalStack Desktop, **Docker** is the only prerequisite.
+To install LocalStack Desktop, **Docker** is the only prerequisite. 
+
+Once it's installed, in case that LocalStack Desktop is being used in a **Windows** environment, it will be required to set the Socket Path to **//./pipe/docker_engine** in the configuration menu. This is required as Windows uses a different socket path than Linux environments.
+
+<p>
+<img src="localstack-desktop-windows-socket-path.png" alt="LocalStack Desktop Windows configuration" title="Configure the Socket Path in Windows environment" width="900" />
+</p>
 
 ## Features
 
