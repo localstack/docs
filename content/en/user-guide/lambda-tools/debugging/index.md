@@ -20,6 +20,7 @@ More examples and tooling support for local Lambda debugging (including support 
 * [Debugging Python lambdas](#debugging-python-lambdas)
 * [Debugging JVM lambdas](#debugging-jvm-lambdas)
 * [Debugging Node.js lambdas](#debugging-nodejs-lambdas)
+* [Lambda Debug Mode (preview)](#lambda-debug-mode-preview)
 * [Resources](#resources)
 
 ## Debugging Python lambdas
@@ -417,6 +418,105 @@ $ awslocal lambda invoke --function-name func1 \
 {{< /command >}}
 {{% /tab %}}
 {{< /tabpane >}}
+
+## Lambda Debug Mode (Preview)
+
+Lambda Debug Mode is a preview feature in LocalStack designed to enhance your Lambda debugging workflows.
+This feature provides an optimized environment for debugging Lambda functions, ensuring that you have the
+necessary tools and flexibility to troubleshoot effectively.
+
+### Key Features
+* **Automatic Timeout Management**: Integrates with API Gateway to prevent Lambda function timeouts,
+giving developers ample time to connect remote debuggers and inspect the function's behavior.
+* **Multi-Function Debugging**: Supports debugging multiple Lambda functions concurrently.
+
+### Enabling Lambda Debug Mode
+
+To enable Lambda Debug Mode, set the `LAMBDA_DEBUG_MODE` environment variable as shown below:
+
+{{< command >}}
+LAMBDA_DEBUG_MODE=1 \
+LAMBDA_DOCKER_FLAGS='-p 19891:19891' \
+localstack start
+{{< /command >}}
+
+When enabled, Lambda Debug Mode automatically adjusts timeouts to accommodate debugging needs:
+* **Lambda Container Startup Timeout**: Provides additional time for debugger connection during container creation.
+* **Lambda Execution Timeout**: Extends the execution window, allowing for in-depth remote debugging.
+* **API Gateway-Lambda Integration Timeout**: Increases timeout settings to avoid premature terminations.
+
+### Advanced Configuration
+
+For further customization, you can use a configuration file.
+Specify the path to this file with the `LAMBDA_DEBUG_MODE_CONFIG_PATH` environment variable, ensuring the
+file is mounted.
+In most cases, manually setting `LAMBDA_DOCKER_FLAGS` is unnecessary when using this configuration.
+
+{{< command >}}
+LAMBDA_DEBUG_MODE=1 \
+LAMBDA_DEBUG_MODE_CONFIG_PATH=debug_config.yaml \
+localstack start
+{{< /command >}}
+
+The configuration file should contain a `functions` block where you can define debug settings
+for each specific Lambda function ARN.
+
+#### Example: Basic Debugging Configuration
+This example configures Lambda Debug Mode to use port 19891 for the remote debugger.
+
+```yaml
+functions:
+  arn:aws:lambda:eu-central-1:000000000000:function:func-one:
+    debug-port: 19891
+```
+
+#### Example: Disabling Automatic Timeout Handling
+In this example, the automatic timeout handling feature is disabled for the specified Lambda function,
+enforcing the predefined timeouts instead.
+
+```yaml
+functions:
+  arn:aws:lambda:eu-central-1:000000000000:function:func-one:
+    debug-port: 19891
+    enforce-timeouts: true
+```
+
+### Handling Unqualified ARNs
+
+Specifying an unqualified Lambda ARN in the configuration is equivalent to specifying the ARN
+with the `$LATEST` version qualifier.
+
+```yaml
+functions:
+  arn:aws:lambda:eu-central-1:000000000000:function:func-one:$LATEST:
+    debug-port: 19891
+```
+
+### Debugging Multiple Functions
+
+To debug multiple Lambda functions simultaneously, assign a different debug port to each function.
+Note that this configuration affects the container's internal debugger port as well, so the debugger
+port must be set accordingly.
+
+```yaml
+functions:
+  arn:aws:lambda:eu-central-1:000000000000:function:func-one:
+    debug-port: 19891
+  arn:aws:lambda:eu-central-1:000000000000:function:func-two:
+    debug-port: 19892
+```
+
+### Debugging Different Versions
+
+You can also debug different versions of the same Lambda function by assigning unique ports to each version.
+
+```yaml
+functions:
+  arn:aws:lambda:eu-central-1:000000000000:function:func-one:1:
+    debug-port: 19891
+  arn:aws:lambda:eu-central-1:000000000000:function:func-two:2:
+    debug-port: 19892
+```
 
 ## Resources
 
