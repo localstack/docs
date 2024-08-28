@@ -434,11 +434,11 @@ giving developers ample time to connect remote debuggers and inspect the functio
 
 To enable Lambda Debug Mode, set the `LAMBDA_DEBUG_MODE` environment variable as shown below:
 
-```bash
-$ LAMBDA_DEBUG_MODE=1 \
-  LAMBDA_DOCKER_FLAGS='-p 19891:19891' \
-  localstack start
-```
+{{< command >}}
+LAMBDA_DEBUG_MODE=1 \
+LAMBDA_DOCKER_FLAGS='-p 19891:19891' \
+localstack start
+{{< /command >}}
 
 When enabled, Lambda Debug Mode automatically adjusts timeouts to accommodate debugging needs:
 * **Lambda Container Startup Timeout**: Provides additional time for debugger connection during container creation.
@@ -448,14 +448,15 @@ When enabled, Lambda Debug Mode automatically adjusts timeouts to accommodate de
 ### Advanced Configuration
 
 For further customization, you can use a configuration file.
-Specify the path to this file with the `LAMBDA_DEBUG_MODE_CONFIG_PATH` environment variable.
+Specify the path to this file with the `LAMBDA_DEBUG_MODE_CONFIG_PATH` environment variable, ensuring the
+file is mounted.
 In most cases, manually setting `LAMBDA_DOCKER_FLAGS` is unnecessary when using this configuration.
 
-```bash
-$ LAMBDA_DEBUG_MODE=1 \
-  LAMBDA_DEBUG_MODE_CONFIG_PATH=debug_config.yaml \
-  localstack start
-```
+{{< command >}}
+LAMBDA_DEBUG_MODE=1 \
+LAMBDA_DEBUG_MODE_CONFIG_PATH=debug_config.yaml \
+localstack start
+{{< /command >}}
 
 The configuration file should contain a `functions` block where you can define debug settings
 for each specific Lambda function ARN.
