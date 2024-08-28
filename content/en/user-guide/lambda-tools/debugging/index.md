@@ -426,9 +426,9 @@ This feature provides an optimized environment for debugging Lambda functions, e
 necessary tools and flexibility to troubleshoot effectively.
 
 ### Key Features
-- **Automatic Timeout Management**: Integrates with API Gateway to prevent Lambda function timeouts,
+* **Automatic Timeout Management**: Integrates with API Gateway to prevent Lambda function timeouts,
 giving developers ample time to connect remote debuggers and inspect the function's behavior.
-- **Multi-Function Debugging**: Supports debugging multiple Lambda functions concurrently.
+* **Multi-Function Debugging**: Supports debugging multiple Lambda functions concurrently.
 
 ### Enabling Lambda Debug Mode
 
@@ -441,15 +441,15 @@ $ LAMBDA_DEBUG_MODE=1 \
 ```
 
 When enabled, Lambda Debug Mode automatically adjusts timeouts to accommodate debugging needs:
-- **Lambda Container Startup Timeout**: Provides additional time for debugger connection during container creation.
-- **Lambda Execution Timeout**: Extends the execution window, allowing for in-depth remote debugging.
-- **API Gateway-Lambda Integration Timeout**: Increases timeout settings to avoid premature terminations.
+* **Lambda Container Startup Timeout**: Provides additional time for debugger connection during container creation.
+* **Lambda Execution Timeout**: Extends the execution window, allowing for in-depth remote debugging.
+* **API Gateway-Lambda Integration Timeout**: Increases timeout settings to avoid premature terminations.
 
 ### Advanced Configuration
 
-For further customization, you can use a configuration file. Specify the path to this file with the
-`LAMBDA_DEBUG_MODE_CONFIG_PATH` environment variable. In most cases, manually setting
-`LAMBDA_DOCKER_FLAGS` is unnecessary when using this configuration.
+For further customization, you can use a configuration file.
+Specify the path to this file with the `LAMBDA_DEBUG_MODE_CONFIG_PATH` environment variable.
+In most cases, manually setting `LAMBDA_DOCKER_FLAGS` is unnecessary when using this configuration.
 
 ```bash
 $ LAMBDA_DEBUG_MODE=1 \
