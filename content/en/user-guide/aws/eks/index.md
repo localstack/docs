@@ -253,10 +253,10 @@ spec:
   selector:
     app: fancier-nginx
   ports:
-- name: http
-    protocol: TCP
-    port: 80
-    targetPort: 80
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
 EOF
 {{< /command >}}
 
@@ -272,15 +272,15 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-- http:
-      paths:
-  - path: /test123
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx
-            port:
-              number: 80
+    - http:
+        paths:
+          - path: /test123
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
 EOF
 {{< /command >}}
 
