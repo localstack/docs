@@ -76,6 +76,7 @@ This section covers configuration options that are specific to certain AWS servi
 | Variable | Example Values | Description |
 | - | - | - |
 | `GRAPHQL_ENDPOINT_STRATEGY` | `legacy`\|`domain`\|`path` |  Governs how AppSync endpoints are created to access a GraphQL API (see [AppSync Endpoints]({{< ref "/tags/appsync#endpoints" >}})) |
+| `APPSYNC_JS_LIBS_VERSION` | `latest`(default) \|`refresh`\|`<commit or tag>` | Control the version of the `@aws-appsync/utils` package to use. `latest` means fetch the latest but only if not present. `refresh` means always fetch the latest version. `<commit or tag>` means use a specific git reference. |
 
 ### Batch
 
