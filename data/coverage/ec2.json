@@ -44,8 +44,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -1437,7 +1437,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -2337,7 +2337,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -4149,7 +4149,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -12846,18 +12846,6 @@
             "snapshot_tested": true,
             "origin": "internal"
           }
-        ],
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_resource_replication_config",
-            "test": "test_resource_replication_config",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..describe_replication_config.ReplicationConfigs..ReplicationConfigUpdateTime']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          }
         ]
       },
       "PrivateDnsEnabled, ServiceName, VpcEndpointType, VpcId": {
@@ -12910,6 +12898,38 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..endpointConfiguration.types', '$..policy.Statement..Resource']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
+            "test": "test_cdc_replication_data_queries",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_full_load_replication",
+            "test": "test_full_load_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -13051,11 +13071,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13091,8 +13111,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13311,8 +13331,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13467,8 +13487,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13667,8 +13687,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13695,8 +13715,8 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13763,11 +13783,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13803,8 +13823,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -14131,11 +14151,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14171,8 +14191,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -14391,8 +14411,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -14579,11 +14599,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14619,8 +14639,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -14989,8 +15009,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -15197,11 +15217,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -15237,8 +15257,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -15557,8 +15577,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -15967,11 +15987,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -16007,8 +16027,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16377,8 +16397,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16448,7 +16468,27 @@
             "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_full_load_replication",
+            "test": "test_full_load_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
@@ -17499,11 +17539,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -17539,8 +17579,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17929,8 +17969,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -18169,8 +18209,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -18941,11 +18981,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -18981,8 +19021,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -19995,11 +20035,41 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
+            "test": "test_cdc_replication_data_queries",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_full_load_replication",
+            "test": "test_full_load_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_resource_replication_config",
             "test": "test_resource_replication_config",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..describe_replication_config.ReplicationConfigs..ReplicationConfigUpdateTime']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20973,6 +21043,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_invalid_k8s_versions[test]",
+            "test": "test_invalid_k8s_versions[test]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
             "test": "test_create_app_in_k3s_cluster",
             "response": "200",
@@ -21200,6 +21280,50 @@
       }
     },
     "DescribeVpcEndpoints": {
+      "Filters": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
+            "test": "test_cdc_replication_data_queries",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_full_load_replication",
+            "test": "test_full_load_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-secret-manager]",
+            "test": "test_vpc_endpoints[without-secret-manager]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "MaxResults": {
         "ls_community": [
           {
@@ -21242,6 +21366,38 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..DnsEntries', '$..Groups', '$..NetworkInterfaceIds', '$..SubnetIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
+            "test": "test_cdc_replication_data_queries",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_full_load_replication",
+            "test": "test_full_load_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -21463,6 +21619,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_invalid_k8s_versions[test]",
+            "test": "test_invalid_k8s_versions[test]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
@@ -22755,11 +22921,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -22795,8 +22961,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -23015,8 +23181,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -23119,11 +23285,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -23159,8 +23325,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -23379,8 +23545,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -23931,8 +24097,8 @@
       "AllocationId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glacier/test_glacier.py::TestGlacier::test_inventory_retrieval",
-            "test": "test_inventory_retrieval",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -23975,8 +24141,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -24191,8 +24357,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -24267,11 +24433,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_cdc_replication_data_queries",
-            "test": "test_cdc_replication_data_queries",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_serverless/test_dms_serverless.py::TestDmsScenario::test_vpc_endpoints[without-kinesis-streams]",
+            "test": "test_vpc_endpoints[without-kinesis-streams]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ReplicationStats.FullLoadFinishDate', '$..ReplicationStats.FullLoadStartDate', '$..Replication.ReplicationStats.StopDate']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -24297,8 +24463,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_db_connection",
-            "test": "test_db_connection",
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
+            "test": "test_cloudwatch_logs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
