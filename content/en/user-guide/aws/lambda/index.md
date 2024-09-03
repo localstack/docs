@@ -163,12 +163,12 @@ The product of 10 and 10 is 100%
 ## Lambda Event Source Mappings
 
 {{< callout >}}
-LocalStack now supports a new event rule engine for [Lambda event filtering](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
+Since [3.4.0](https://discuss.localstack.cloud/t/localstack-release-v3-4-0/871#new-experimental-event-rule-engine-2), LocalStack supports a new event rule engine for [Lambda event filtering](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
 You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (preview) to use the AWS [event-ruler](https://github.com/aws/event-ruler), which offers better parity.
 {{< /callout >}}
 
 {{< callout >}}
-LocalStack now supports a Event Source Mapping (ESM) implementation.
+Since [3.7.0](https://blog.localstack.cloud/2024-08-29-localstack-release-v-3-7-0/#new-lambda-event-source-mapping-implementation), LocalStack supports a Event Source Mapping (ESM) implementation.
 You can [configure]({{< ref "configuration" >}}) `LAMBDA_EVENT_SOURCE_MAPPING=v2` (preview) to use the new ESM implementation.
 {{< /callout >}}
 
@@ -179,6 +179,36 @@ The following event sources are supported in LocalStack:
 - [Kinesis](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html)
 - [Managed Streaming for Apache Kafka (MSK)](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
 - [Simple Queue Service (SQS)](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
+
+### New Lambda Event Source Mapping implementation (Preview)
+
+LocalStack now supports a new implementation for [Lambda Event Source Mapping](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) (ESM) with improved reliability, performance, and AWS parity.
+You can use the `LAMBDA_EVENT_SOURCE_MAPPING=v2` configuration variable to use the new ESM implementation.
+The ESM v2 implementation is also compatible with the Java-based event pattern rule engine (`EVENT_RULE_ENGINE=java`).
+However, the new ESM implementation is still in preview and may not support all features.
+
+The improvements over ESM v1 include:
+- Improved reliability through internal retries and separation of concern such that single exceptions or timeouts don't affect other event source mappings.
+- Improved performance by enabling concurrent event source mappings rather than having a single thread handling everything.
+- Improved AWS parity, for example related to filtering and SQS polling.
+
+The limitations compared to ESM v1 include:
+- Lambda Failure Destinations do not yet support FIFO SQS queues and SNS topics.
+- Lambda Failure Destination Messages do not yet match the AWS structure, using a `context` similar to EventBridge Pipes instead of `requestContext` and `responseContext`.
+- Partial Batch Responses using `FunctionResponseTypes` are not yet fully supported.
+- Managed Streaming for Apache Kafka (MSK) event source is not yet supported.
+- ESM Lifecycle State Updates only provide basic support for state updates, such as no failure states, and `LastProcessingResult` is not consistently updated.
+- Persistence is not yet supported
+
+The limitations compared to AWS include:
+- Lambda Success Destinations are not supported.
+- Only very basic validations are performed upon creating and updating ESM.
+- Streaming Pollers for Kinesis and DynamoDB do not implement features like:
+    - `BisectBatchOnFunctionError`
+    - `MaximumBatchingWindowInSeconds`
+    - `ParallelizationFactor`
+    - `ScalingConfig`
+    - `TumblingWindowInSeconds`.
 
 ## Lambda Layers (Pro)
 
