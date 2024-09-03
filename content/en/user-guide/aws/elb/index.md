@@ -79,7 +79,7 @@ You can find the gateway address by running `docker inspect <container_id>`.
 
 ### Create a listener and a rule
 
-We create a for the load balancer using the [`CreateListener`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateListener.html) API.
+We create a listener for the load balancer using the [`CreateListener`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateListener.html) API.
 The following command creates a listener for the load balancer created in the previous step:
 
 {{< command >}}
