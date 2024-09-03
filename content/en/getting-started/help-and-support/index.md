@@ -22,6 +22,8 @@ The support you receive depends on the plan you are on.
 | Teams Plan | [Dedicated Support](#dedicated-support) |
 | Enterprise Plan | [Enterprise Support](#enterprise-support) |
 
+If you are encountering issues, you can check the status of LocalStack's services on [status.localstack.cloud](https://status.localstack.cloud).
+
 ## Community Support
 
 LocalStack's Community support is available to all users of the LocalStack Community Edition & Hobby Plan users.
