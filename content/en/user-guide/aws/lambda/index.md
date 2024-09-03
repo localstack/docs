@@ -204,11 +204,11 @@ The limitations compared to AWS include:
 - Lambda Success Destinations are not supported.
 - Only very basic validations are performed upon creating and updating ESM.
 - Streaming Pollers for Kinesis and DynamoDB do not implement features like:
-    - `BisectBatchOnFunctionError`
-    - `MaximumBatchingWindowInSeconds`
-    - `ParallelizationFactor`
-    - `ScalingConfig`
-    - `TumblingWindowInSeconds`.
+  - `BisectBatchOnFunctionError`
+  - `MaximumBatchingWindowInSeconds`
+  - `ParallelizationFactor`
+  - `ScalingConfig`
+  - `TumblingWindowInSeconds`.
 
 ## Lambda Layers (Pro)
 
