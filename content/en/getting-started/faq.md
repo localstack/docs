@@ -240,6 +240,10 @@ For more details visit [Docker WSL documentation](https://docs.docker.com/deskto
 
 ## LocalStack Platform FAQs
 
+### Where can I check the status of LocalStack's services?
+
+LocalStack will provide the current status of it's services and any relevant details regarding any outages or incidents at [status.localstack.cloud](https://status.localstack.cloud).
+
 ### Where are my Cloud Pods stored?
 
 LocalStack provides a secure storage mechanism to store Cloud Pods on the Web Application.
