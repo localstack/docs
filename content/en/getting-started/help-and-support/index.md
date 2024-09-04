@@ -153,8 +153,6 @@ As part of our Priority support plan, we are committed to providing faster respo
 Please note that all responses are provided during our normal operating hours.
 While we strive to respond within a 24-hour timeframe, we cannot guarantee that every response will meet this timeline.
 
-Apart from other [Support Channels](#support-channels), Priority support users also get access to [Support ticketing portal](https://support.localstack.cloud/portal) where you can view, open, and reply to your support tickets.
-
 To enhance issue identification and provide a more efficient troubleshooting experience, our support engineers may offer scheduled live screen sharing sessions.
 During these sessions, our support engineers can directly observe and diagnose the issues you are encountering, ensuring a quicker and more effective resolution.
 
