@@ -432,20 +432,20 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-- host: eks-service-1.localhost.localstack.cloud
+  - host: eks-service-1.localhost.localstack.cloud
     http:
       paths:
-  - path: /v1
+      - path: /v1
         pathType: Prefix
         backend:
           service:
             name: service-1
             port:
               number: 80
-- host: eks-service-2.localhost.localstack.cloud
+  - host: eks-service-2.localhost.localstack.cloud
     http:
       paths:
-  - path: /v1
+      - path: /v1
         pathType: Prefix
         backend:
           service:
