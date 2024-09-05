@@ -15,20 +15,21 @@ hide_readingtime: true
 
 To resolve the SSL issues due to revoked local certificate, we strongly recommend updating to the latest LocalStack version for the most reliable and seamless experience.
 
-#### Older LocalStack versions
+If issues persist, please follow the steps outlined below:
 
-- **CI/CLI usage**: Older images were encountering issues downloading the certificate from GitHub and the CDN, resulting in a fallback to a self-signed certificate that affected CI/CLI functionality.
-  We’ve implemented a fix to restore certificate downloads from GitHub, resolving the CI/CLI issues with older LS images.
-- **Web Application usage**: If you continue to experience certificates being revoked issues, previously mentioned workarounds still apply.
-
-#### Temporary workarounds
-
-1. Set the environment variable `SKIP_SSL_CERT_DOWNLOAD=1` to use a self-signed SSL certificate.
-2. Use `http://` instead of `https://` where possible.
-
-#### Long-term solution
-
-We continue working on a permanent fix and will update you as we progress.
+1. **Disable Certificate Download**: To prevent downloading a revoked certificate, set the environment variable  `SKIP_SSL_CERT_DOWNLOAD=1`.
+  This will cause LocalStack to use a self-signed SSL certificate.
+  Additionally, it’s important to clear the cached certificate from your host machine.
+  This can be done by deleting the cached certificate file.
+  For example, on Linux systems, you can locate and remove the file at  `~/.cache/localstack/volume/cache/server.test.pem`.
+  The exact path may differ depending on your operating system and how you’ve started LocalStack.
+  Please refer to our [documentation](https://docs.localstack.cloud/references/filesystem/#localstack-volume) for specific instructions.
+2. **Use HTTP Instead of HTTPS**: Where possible, use  `http://`  instead of  `https://`  to avoid issues related to the revoked certificates.
+  This workaround works with most browsers.
+  However, Safari requires additional steps:  
+    2.1.  **Safari Users**: To make this work, you’ll need to first navigate to the page in a new tab and accept the security warning.
+  To do this, make sure that LocalStack is started with  `SKIP_SSL_CERT_DOWNLOAD=1`  and that you have cleared the cached certificate as mentioned above.
+  Once you’ve accepted the warning, you should be able to proceed.
 
 ### How to update my LocalStack CLI?
 
