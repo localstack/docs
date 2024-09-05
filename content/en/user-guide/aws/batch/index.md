@@ -153,6 +153,16 @@ You should see the following output:
 }
 ```
 
+In case that you would like to pass the arguments to the command as **parameters**, it can be done by using the `Reff::` declaration to set placeholders for parameter substitution:
+
+{{< command >}}
+$  awslocal batch register-job-definition \
+    --job-definition-name myjobdefn \
+    --type container \
+    --parameters '{"time":"10"}' \
+    --container-properties '{"image":"busybox","vcpus":1,"memory":128,"command":["sleep","Reff::time"]}'
+{{< / command >}}
+
 ### Submit a job to the job queue
 
 You can now run a compute job.
