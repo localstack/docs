@@ -46,7 +46,7 @@ The simplest option is to run `localstack` using `podman` by having `podman-dock
 sudo systemctl start podman
 
 # then
-sudo sh -c 'DEBUG=1 localstack start'
+sudo sh -c 'DEBUG=1 localstack start --network podman'
 ```
 
 ### Rootfull Podman without podman-docker
@@ -56,7 +56,7 @@ sudo sh -c 'DEBUG=1 localstack start'
 sudo systemctl start podman
 
 # you have to pass a bunch of env variables
-sudo sh -c 'DEBUG=1 DOCKER_CMD=podman DOCKER_HOST=unix://run/podman/podman.sock DOCKER_SOCK=/run/podman/podman.sock localstack start'
+sudo sh -c 'DEBUG=1 DOCKER_CMD=podman DOCKER_HOST=unix://run/podman/podman.sock DOCKER_SOCK=/run/podman/podman.sock localstack start --network podman'
 ```
 
 ### Rootless Podman
@@ -71,13 +71,13 @@ You have to prepare your environment first:
 systemctl --user start podman.service
 
 # and then localstack
-DEBUG=1 DOCKER_CMD="podman" DOCKER_SOCK=$XDG_RUNTIME_DIR/podman/podman.sock DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock localstack start
+DEBUG=1 DOCKER_CMD="podman" DOCKER_SOCK=$XDG_RUNTIME_DIR/podman/podman.sock DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock localstack start --network podman
 ```
 
 If you have problems with [subuid and subgid](https://wiki.archlinux.org/title/Podman#Set_subuid_and_subgid), you could try to use [overlay.ignore_chown_errors option](https://www.redhat.com/sysadmin/controlling-access-rootless-podman-users)
 
 ```sh
-DEBUG=1 DOCKER_CMD="podman --storage-opt overlay.ignore_chown_errors=true" DOCKER_SOCK=$XDG_RUNTIME_DIR/podman/podman.sock DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock localstack start
+DEBUG=1 DOCKER_CMD="podman --storage-opt overlay.ignore_chown_errors=true" DOCKER_SOCK=$XDG_RUNTIME_DIR/podman/podman.sock DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock localstack start --network podman
 ```
 
 ### Podman on Windows
@@ -112,6 +112,8 @@ services:
       - "127.0.0.1:4566:4566"
       - "127.0.0.1:4510-4559:4510-4559"
       - "0.0.0.0:443:443"
+    networks:
+      - podman
     security_opt:
       - "label=disable"
     environment:
