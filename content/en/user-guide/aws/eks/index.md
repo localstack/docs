@@ -421,7 +421,7 @@ For instance, you might have multiple microservices, each following a common pat
 In such cases, path-based routing may not be ideal if you need the services to be accessible in a uniform manner.
 
 To address this requirement, we recommend utilizing host-based routing rules, as demonstrated in the example below:
-<!-- markdownlint-disable -->
+<!-- markdownlint-disable MD007 -->
 {{< command >}}
 $ cat <<EOF | kubectl apply -f -
 apiVersion: networking.k8s.io/v1
@@ -454,7 +454,7 @@ spec:
               number: 80
 EOF
 {{< /command >}}
-<!-- markdownlint-enable -->
+<!-- markdownlint-enable MD007 -->
 The example defines routing rules for two local endpoints - the first rule points to a service `service-1` accessible under `/v1`, and the second rule points to a service `service-2` accessible under the same path `/v1`.
 
 In the provided example, we define routing rules for two local endpoints.
