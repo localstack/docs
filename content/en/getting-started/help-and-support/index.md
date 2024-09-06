@@ -143,9 +143,7 @@ To create a support ticket:
 
 ### Priority support
 
-Priority support is available to all LocalStack users with active Teams or Enterprise subscription.
-With priority support, you get access to dedicated 1v1 priority support.
-As part of our Priority support plan, we are committed to providing faster response times which are as following:
+Priority support is available for users with active Teams or Enterprise subscriptions, offering dedicated 1v1 assistance and faster response times:
 
 - **First response time**: first response within 24h
 - **Follow-up response time:** response to all follow-ups within 24h.
