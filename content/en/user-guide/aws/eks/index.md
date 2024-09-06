@@ -253,10 +253,10 @@ spec:
   selector:
     app: fancier-nginx
   ports:
-- name: http
-    protocol: TCP
-    port: 80
-    targetPort: 80
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
 EOF
 {{< /command >}}
 
@@ -272,15 +272,15 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-- http:
-      paths:
-  - path: /test123
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx
-            port:
-              number: 80
+    - http:
+        paths:
+          - path: /test123
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
 EOF
 {{< /command >}}
 
@@ -421,7 +421,7 @@ For instance, you might have multiple microservices, each following a common pat
 In such cases, path-based routing may not be ideal if you need the services to be accessible in a uniform manner.
 
 To address this requirement, we recommend utilizing host-based routing rules, as demonstrated in the example below:
-
+<!-- markdownlint-disable MD007 -->
 {{< command >}}
 $ cat <<EOF | kubectl apply -f -
 apiVersion: networking.k8s.io/v1
@@ -432,20 +432,20 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-- host: eks-service-1.localhost.localstack.cloud
+  - host: eks-service-1.localhost.localstack.cloud
     http:
       paths:
-  - path: /v1
+      - path: /v1
         pathType: Prefix
         backend:
           service:
             name: service-1
             port:
               number: 80
-- host: eks-service-2.localhost.localstack.cloud
+  - host: eks-service-2.localhost.localstack.cloud
     http:
       paths:
-  - path: /v1
+      - path: /v1
         pathType: Prefix
         backend:
           service:
@@ -454,7 +454,7 @@ spec:
               number: 80
 EOF
 {{< /command >}}
-
+<!-- markdownlint-enable MD007 -->
 The example defines routing rules for two local endpoints - the first rule points to a service `service-1` accessible under `/v1`, and the second rule points to a service `service-2` accessible under the same path `/v1`.
 
 In the provided example, we define routing rules for two local endpoints.
