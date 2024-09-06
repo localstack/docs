@@ -21,7 +21,7 @@ However, technical support does not cover:
 
 - Support for AWS services
 - General troubleshooting of your application
-- Billing, account issues, or other questions that are not technical
+- Billing, account-related issues, or non-technical questions
 
 For operational support related to billing, account inquiries, or other non-technical matters, contact us at [support@localstack.cloud](mailto:support@localstack.cloud) or via our [contact form](https://localstack.cloud/contact/).
 
