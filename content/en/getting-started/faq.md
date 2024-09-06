@@ -11,6 +11,26 @@ hide_readingtime: true
 
 ## LocalStack Core FAQs
 
+### How do I resolve SSL issues due to revoked local certificate for `localhost.localstack.cloud`?
+
+To resolve the SSL issues due to revoked local certificate, we strongly recommend updating to the latest LocalStack version for the most reliable and seamless experience.
+
+If issues persist, please follow the steps outlined below:
+
+1. **Disable Certificate Download**: To prevent downloading a revoked certificate, set the environment variable  `SKIP_SSL_CERT_DOWNLOAD=1`.
+  This will cause LocalStack to use a self-signed SSL certificate.
+  Additionally, it’s important to clear the cached certificate from your host machine.
+  This can be done by deleting the cached certificate file.
+  For example, on Linux systems, you can locate and remove the file at  `~/.cache/localstack/volume/cache/server.test.pem`.
+  The exact path may differ depending on your operating system and how you’ve started LocalStack.
+  Please refer to our [documentation](https://docs.localstack.cloud/references/filesystem/#localstack-volume) for specific instructions.
+2. **Use HTTP Instead of HTTPS**: Where possible, use  `http://`  instead of  `https://`  to avoid issues related to the revoked certificates.
+  This workaround works with most browsers.
+  However, Safari requires additional steps:  
+    2.1.  **Safari Users**: To make this work, you’ll need to first navigate to the page in a new tab and accept the security warning.
+  To do this, make sure that LocalStack is started with  `SKIP_SSL_CERT_DOWNLOAD=1`  and that you have cleared the cached certificate as mentioned above.
+  Once you’ve accepted the warning, you should be able to proceed.
+
 ### How to update my LocalStack CLI?
 
 If the LocalStack CLI version is heavily outdated, it might lead to issues with container startup and debug commands.
@@ -29,9 +49,9 @@ $ localstack update localstack-cli
 ### Is using `localhost.localstack.cloud:4566` to set as the endpoint for AWS services recommended?
 
 `localhost.localstack.cloud` is the recommended endpoint - especially for S3, in order to enable host-based bucket endpoints.
-* When using this domain within LocalStack compute environments like Lambda, ECS or EC2, this domain name resolves to the LocalStack container via our DNS server available in version 2.3.
-* By configuring your environment, your applications can also use `localhost.localstack.cloud` to resolve to the LocalStack container via our DNS server.
-* In addition, we also publish an SSL certificate that is automatically used inside LocalStack, in order to enable HTTPS endpoints with valid certificates.
+- When using this domain within LocalStack compute environments like Lambda, ECS or EC2, this domain name resolves to the LocalStack container via our DNS server available in version 2.3.
+- By configuring your environment, your applications can also use `localhost.localstack.cloud` to resolve to the LocalStack container via our DNS server.
+- In addition, we also publish an SSL certificate that is automatically used inside LocalStack, in order to enable HTTPS endpoints with valid certificates.
 
 Across our docs, we use `localhost:4566` instead of `localhost.localstack.cloud`, to provide a fallback option to users.
 The primary reason being that some users are behind a corporate firewall or an internet service provider that does not allow resolving `localhost.localstack.cloud` properly.
@@ -49,28 +69,28 @@ The diagnose endpoint is only available if you run LocalStack with `DEBUG=1`.
 We do push a set of different image tags for the LocalStack Docker images.
 When using LocalStack, you can decide which tag you want to use.
 These tags have different semantics and will be updated on different occasions:
-* `latest` (default)
-  * This is our default tag.
+- `latest` (default)
+  - This is our default tag.
     It refers to the latest commit which has been fully tested using our extensive integration test suite.
-  * This also entails changes that are part of major releases, which means that this tag can contain breaking changes.
-  * This tag should be used if you want to stay up-to-date with the latest changes.
-* `stable`
-  * This tag refers to the latest tagged release.
+  - This also entails changes that are part of major releases, which means that this tag can contain breaking changes.
+  - This tag should be used if you want to stay up-to-date with the latest changes.
+- `stable`
+  - This tag refers to the latest tagged release.
     It will be updated with every release of LocalStack.
-  * This also entails major releases, which means that this tag can contain breaking changes.
-  * This tag should be used if you want to stay up-to-date with releases, but don't necessarily need the latest and greatest changes right away.
-* `<major>` (e.g. `3`)
-  * These tags can be used to refer to the latest release of a specific major release.
+  - This also entails major releases, which means that this tag can contain breaking changes.
+  - This tag should be used if you want to stay up-to-date with releases, but don't necessarily need the latest and greatest changes right away.
+- `<major>` (e.g. `3`)
+  - These tags can be used to refer to the latest release of a specific major release.
     It will be updated with every minor and patch release within this major release.
-  * This tag should be used if you want to avoid any potential breaking changes.
-* `<major>.<minor>` (e.g. `3.0`)
-  * These tags can be used to refer to the latest release of a specific minor release.
+  - This tag should be used if you want to avoid any potential breaking changes.
+- `<major>.<minor>` (e.g. `3.0`)
+  - These tags can be used to refer to the latest release of a specific minor release.
     It will be updated with every patch release within this minor release.
-  * This tag can be used if you want to avoid any bigger changes, like new features, but still want to update to the latest bugfix release.
-* `<major>.<minor>.<patch>` (e.g. `3.0.2`)
-  * These tags can be used if you want to use a very specific release.
+  - This tag can be used if you want to avoid any bigger changes, like new features, but still want to update to the latest bugfix release.
+- `<major>.<minor>.<patch>` (e.g. `3.0.2`)
+  - These tags can be used if you want to use a very specific release.
     It will not be updated.
-  * This tag can be used if you really want to avoid any changes to the image (not even minimal bug fixes).
+  - This tag can be used if you really want to avoid any changes to the image (not even minimal bug fixes).
 
 ### How can I access LocalStack from an alternative computer?
 
@@ -110,12 +130,12 @@ To fix this, set the following environment variables:
 Set the system locale (language for non-Unicode programs) to UTF-8 to avoid Unicode errors.
 
 Follow these steps:
-* Open the Control Panel.
-* Go to "Clock and Region" or "Region and Language."
-* Click on the "Administrative" tab.
-* Click on the "Change system locale" button.
-* Select "Beta: Use Unicode UTF-8 for worldwide language support" and click "OK."
-* Restart your computer to apply the changes.
+- Open the Control Panel.
+- Go to "Clock and Region" or "Region and Language."
+- Click on the "Administrative" tab.
+- Click on the "Change system locale" button.
+- Select "Beta: Use Unicode UTF-8 for worldwide language support" and click "OK."
+- Restart your computer to apply the changes.
 
 If you would like to keep the system locale as it is, you can mitigate the issue by using the command `localstack --no-banner`.
 
