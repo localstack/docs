@@ -12,10 +12,10 @@ cascade:
 
 The support team is available to help you with:
 
-- Troubleshooting LocalStack issues
-- Answering questions about LocalStack features and functionality
-- Providing guidance on how to use LocalStack
-- Providing guidance on how to integrate LocalStack with your application
+- LocalStack issues troubleshooting
+- Questions about features and functionality
+- Help integrating LocalStack with your application
+- Guidance on using LocalStack
 
 However, support does not include:
 
