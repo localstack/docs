@@ -153,7 +153,7 @@ You should see the following output:
 }
 ```
 
-If you want to pass arguments to the command as [parameters](https://docs.aws.amazon.com/batch/latest/userguide/job_definition_parameters.html#parameters), you can use the `Ref::` declaration to set placeholders for parameter substitution. 
+If you want to pass arguments to the command as [parameters](https://docs.aws.amazon.com/batch/latest/userguide/job_definition_parameters.html#parameters), you can use the `Ref::` declaration to set placeholders for parameter substitution.
 This allows the dynamic passing of values at runtime for specific job definitions.
 
 {{< command >}}
