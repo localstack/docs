@@ -10,7 +10,7 @@ cascade:
 
 ## Introduction
 
-The support team is available to help you with:
+Our support team is here to assist with:
 
 - LocalStack issues troubleshooting
 - Questions about features and functionality
