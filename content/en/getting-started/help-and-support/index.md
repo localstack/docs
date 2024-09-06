@@ -145,7 +145,7 @@ To create a support ticket:
 
 Priority support is available for users with active Teams or Enterprise subscriptions, offering dedicated 1v1 assistance and faster response times:
 
-- **First response time**: first response within 24h
+- **First response**: within 24 hours
 - **Follow-up response time:** response to all follow-ups within 24h.
 
 Please note that all responses are provided during our normal operating hours.
