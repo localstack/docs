@@ -162,7 +162,7 @@ To learn more about the support available to **Enterprise** plan users, refer to
 
 ## Support Business Hours
 
-Our support operates in CET timezone Monday to Friday from 8 AM to 4 PM, excluding the following days:
+Our support team operates in the CET timezone, Monday to Friday, from 8 AM to 4 PM, excluding the following holidays:
 
 - January 1st,
 - May 1st,
