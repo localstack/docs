@@ -153,6 +153,17 @@ You should see the following output:
 }
 ```
 
+If you want to pass arguments to the command as [parameters](https://docs.aws.amazon.com/batch/latest/userguide/job_definition_parameters.html#parameters), you can use the `Ref::` declaration to set placeholders for parameter substitution.
+This allows the dynamic passing of values at runtime for specific job definitions.
+
+{{< command >}}
+$  awslocal batch register-job-definition \
+    --job-definition-name myjobdefn \
+    --type container \
+    --parameters '{"time":"10"}' \
+    --container-properties '{"image":"busybox","vcpus":1,"memory":128,"command":["sleep","Ref::time"]}'
+{{< / command >}}
+
 ### Submit a job to the job queue
 
 You can now run a compute job.
