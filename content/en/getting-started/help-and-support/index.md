@@ -27,19 +27,19 @@ For operational support related to billing, account inquiries, or other non-tech
 
 ## Support Coverage
 
-| Plan                | Support Level                                            |
+| Plan                | Tier |
 |---------------------|----------------------------------------------------------|
 | Community Edition    | [Basic Support](#basic-support)                          |
-| Hobby Plan           | [Basic Support](#basic-support)                          |
-| Trial Plan           | [Standard Support](#standard-support)                    |
-| Starter Plan         | [Standard Support](#standard-support)                    |
-| Teams Plan           | [Priority Support](#priority-support)                    |
-| Enterprise Plan      | [Enterprise Support](#enterprise-support)                |
+| Hobby Subscription | [Basic Support](#basic-support)                          |
+| Trial Subscription | [Standard Support](#standard-support)                    |
+| Starter Subscription | [Standard Support](#standard-support)                    |
+| Team Subscription | [Priority Support](#priority-support)                    |
+| Enterprise Subscription | [Enterprise Support](#enterprise-support)                |
 
 ## Support features
 
 | Features                     | Basic | Standard | Priority | Enterprise |
-| ---------------------------- | ----- | -------- | -------- | ---------- |
+| ---------------------------- |:-------:|:----------:|:----------:|:------------:|
 | LocalStack documentation     | ✅    | ✅       | ✅       | ✅         |
 | Community support            | ✅    | ✅       | ✅       | ✅         |
 | Operational support          | ✅    | ✅       | ✅       | ✅         |
@@ -58,7 +58,7 @@ For operational support related to billing, account inquiries, or other non-tech
 ## Support channels
 
 | Channels              | Basic | Standard | Priority | Enterprise |
-| --------------------- | ----- | -------- | -------- | ---------- |
+| --------------------- |:-------:|:----------:|:----------:|:------------:|
 | Slack community       | ✅    | ✅       | ✅       | ✅         |
 | GitHub Issues         | ✅    | ✅       | ✅       | ✅         |
 | Support email         |       | ✅       | ✅       | ✅         |
@@ -69,28 +69,26 @@ For operational support related to billing, account inquiries, or other non-tech
 
 ## Support plans
 
-Find the details about different support services and what they entitle bellow.
-Please refer to the [Support Features](#support-features) to see which features are included in each plan.
+Find details about the various support services and what they include below.
+Refer to the [Support Features](#support-features) section for a breakdown of which features are available in each plan.
 
 ### Basic support
 
-Basic Support is included for all LocalStack users, and provides access to our documentation, community support, account management support (operational support).
+Basic Support is available to all LocalStack users and includes access to documentation, community support, and account management (operational support).
 
-You can avail community support through the following channels:
+Community support is available through the following channels:
 
-- [LocalStack Discuss](https://discuss.localstack.cloud/)
 - [LocalStack Slack Community](https://localstack.cloud/slack)
 - [GitHub Issue](https://github.com/localstack/docs/issues/new)
 
-Community support is provided on a best-effort basis and is not guaranteed.
-We also encourage you to help others in the community by answering questions and sharing your experiences.
+Note that community support is provided on a best-effort basis and is not guaranteed.
+Users are encouraged to help others by sharing their knowledge and experiences.
 
 ### Standard support
 
-Standard support is available to all LocalStack users with an active Starter or Trial subscription.
-With standard support, you get access to 1v1 support based on best effort basis.
-With the best effort support, we do not provide fixed response times.
-However, as we understand the importance of timely assistance, our support team always strives to respond to inquiries and requests within 24–48 hours during our [regular business hours](#support-business-hours).
+Standard support is available to users with an active Starter or Trial subscription.
+This includes 1v1 support on a best-effort basis, without guaranteed response times.
+However, the support team aims to respond to inquiries within 24–48 hours during [regular business hours](#support-business-hours).
 
 #### Troubleshooting Guidelines
 
@@ -103,9 +101,9 @@ In case you encounter any issues with LocalStack, follow these troubleshooting g
 - Seek guidance from the community through the user forum.
 
 {{< callout "note" >}}
-In many scenarios, we ask our customers to use Diagnosis endpoint to help us retrieve additional information.
+In many scenarios, we ask our customers to use the diagnostics endpoint to provide additional information.
 
-To use LocalStack's Diagnosis endpoint:
+To use LocalStack's diagnostics endpoint:
 
 - Set the environment variable `LS_LOG=trace`
 - Start LocalStack
@@ -113,12 +111,12 @@ To use LocalStack's Diagnosis endpoint:
 - Call the diagnostic endpoint `curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz` (Endpoint URL depends on your configuration)
 - Send the output file to our Slack chat
 
-Ensure that you avoid sending the diagnostic output to public channels or forums, as it may contain sensitive information.
+<span style="color: darkred;">**Ensure that you avoid sending the diagnostic output to public channels or forums, as it may contain sensitive information.**</span>
 {{< /callout >}}
 
 #### Channels
 
-You can avail standard support through the following channels:
+Standard support can be accessed through the following channels:
 
 - [LocalStack Slack Bot](https://localstack.cloud/slack)
 - [LocalStack Web Application](https://app.localstack.cloud)
@@ -126,6 +124,13 @@ You can avail standard support through the following channels:
 ##### LocalStack Support Bot
 
 To create a support ticket:
+
+- Search for the LocalStack Pro Support in our [Slack Community](https://localstack.cloud/slack).
+- Navigate to Messages and type your request.
+- Include relevant details such as error logs, configuration settings, and steps to reproduce the issue.
+
+Providing detailed information upfront helps our team respond more quickly and efficiently.
+After submitting, the support team will respond as soon as possible.
 
 - Search for the **LocalStack Pro Support** in our [Slack Community](https://localstack.cloud/slack).
 - Navigate to **Messages** and type your message to LocalStack Pro Support.
