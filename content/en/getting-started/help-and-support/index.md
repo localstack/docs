@@ -23,7 +23,7 @@ However, technical support does not cover:
 - General troubleshooting of your application
 - Billing, account issues, or other questions that are not technical
 
-If you have questions about billing, account issues, or other questions that are not technical, please contact us at [support@localstack.cloud](mailto:support@localstack.cloud)  or through our  [contact form](https://localstack.cloud/contact/).
+For operational support related to billing, account inquiries, or other non-technical matters, contact us at [support@localstack.cloud](mailto:support@localstack.cloud) or via our [contact form](https://localstack.cloud/contact/).
 
 ## Support Coverage
 
