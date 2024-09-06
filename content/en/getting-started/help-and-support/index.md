@@ -17,7 +17,7 @@ Our support team is here to assist with:
 - Help integrating LocalStack with your application
 - Guidance on using LocalStack
 
-However, support does not include:
+However, technical support does not cover:
 
 - Support for AWS services
 - General troubleshooting of your application
