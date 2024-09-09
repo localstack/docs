@@ -68,8 +68,6 @@ We welcome any feedback as we continue to improve LocalStack for all users.
 
 ## Support plans
 
-Find details about the various support services and what they include below.
-Refer to the [Support Features](#support-features) section for a breakdown of which features are available in each plan.
 
 ### Basic support
 
