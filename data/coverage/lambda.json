@@ -1228,21 +1228,21 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_http_integration_keeps_body_intact",
-            "test": "test_http_integration_keeps_body_intact",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$.create-integration.ConnectionType', '$.create-route.ApiKeyRequired', '$.create-stage.DefaultRouteSettings', '$.create-stage.LastUpdatedDate', '$.create-stage.RouteSettings', '$.create-stage.StageVariables', '$.create-stage.Tags', '$.invoke-api.headers.via', '$.invoke-api.headers.x-amzn-trace-id', '$.invoke-api.headers.x-amzn-tls-cipher-suite', '$.invoke-api.headers.x-amzn-tls-version', '$.invoke-api.headers.x-forwarded-for', '$.invoke-api.headers.x-forwarded-proto', '$.invoke-api.headers.x-localstack-edge', '$.invoke-api.origin']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_lambda_token_authorizer",
             "test": "test_lambda_token_authorizer",
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..connectionType', '$..passthroughBehavior', '$..requestParameters', '$..timeoutInMillis', '$..methodResponses', '$..authType', '$..authorizerResultTtlInSeconds', 'token_authorizer_allow..origin', 'token_authorizer_allow..url', '$..origin', '$..Type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_integration_keeps_body_intact",
+            "test": "test_http_integration_keeps_body_intact",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.create-integration.ConnectionType', '$.create-route.ApiKeyRequired', '$.invoke-api.headers.via', '$.invoke-api.headers.x-amzn-trace-id', '$.invoke-api.headers.x-amzn-tls-cipher-suite', '$.invoke-api.headers.x-amzn-tls-version', '$.invoke-api.headers.x-forwarded-for', '$.invoke-api.headers.x-forwarded-proto', '$.invoke-api.origin']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2474,6 +2474,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_message_sign_up_trigger",
+            "test": "test_custom_message_sign_up_trigger",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_pre_generation_token_trigger_v2",
             "test": "test_pre_generation_token_trigger_v2",
             "response": "201",
@@ -3389,6 +3399,34 @@
           }
         ]
       },
+      "BatchSize, FunctionName, SelfManagedEventSource, SelfManagedKafkaEventSourceConfig, SourceAccessConfigurations, StartingPosition, Topics": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_self_managed",
+            "test": "test_create_event_source_self_managed",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "BatchSize, FunctionName, SelfManagedEventSource, SelfManagedKafkaEventSourceConfig, SourceAccessConfigurations, Topics": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_self_managed",
+            "test": "test_create_event_source_self_managed",
+            "response": "409",
+            "error": "ResourceConflictException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "EventSourceArn, FilterCriteria, FunctionName, MaximumBatchingWindowInSeconds": {
         "ls_community": [
           {
@@ -3732,6 +3770,44 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_event_source_mapping_exceptions",
             "test": "test_event_source_mapping_exceptions",
+            "response": "400",
+            "error": "InvalidParameterValueException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "FunctionName, SelfManagedEventSource, SourceAccessConfigurations, Topics": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_self_managed",
+            "test": "test_create_event_source_self_managed",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_self_managed",
+            "test": "test_create_event_source_self_managed",
+            "response": "409",
+            "error": "ResourceConflictException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "FunctionName, SelfManagedEventSource, Topics": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_self_managed",
+            "test": "test_create_event_source_self_managed",
             "response": "400",
             "error": "InvalidParameterValueException",
             "snapshot_skipped": "",
@@ -6586,6 +6662,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_self_managed",
+            "test": "test_create_event_source_self_managed",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_validation",
             "test": "test_create_event_source_validation",
             "response": "201",
@@ -8678,16 +8764,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_http_integration_keeps_body_intact",
-            "test": "test_http_integration_keeps_body_intact",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$.create-integration.ConnectionType', '$.create-route.ApiKeyRequired', '$.create-stage.DefaultRouteSettings', '$.create-stage.LastUpdatedDate', '$.create-stage.RouteSettings', '$.create-stage.StageVariables', '$.create-stage.Tags', '$.invoke-api.headers.via', '$.invoke-api.headers.x-amzn-trace-id', '$.invoke-api.headers.x-amzn-tls-cipher-suite', '$.invoke-api.headers.x-amzn-tls-version', '$.invoke-api.headers.x-forwarded-for', '$.invoke-api.headers.x-forwarded-proto', '$.invoke-api.headers.x-localstack-edge', '$.invoke-api.origin']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_http_lambda_authorizers[primary-region-UrlType.HOST_BASED-1.0-ANY]",
             "test": "test_http_lambda_authorizers[primary-region-UrlType.HOST_BASED-1.0-ANY]",
             "response": "201",
@@ -9288,6 +9364,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_integration_keeps_body_intact",
+            "test": "test_http_integration_keeps_body_intact",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.create-integration.ConnectionType', '$.create-route.ApiKeyRequired', '$.invoke-api.headers.via', '$.invoke-api.headers.x-amzn-trace-id', '$.invoke-api.headers.x-amzn-tls-cipher-suite', '$.invoke-api.headers.x-amzn-tls-version', '$.invoke-api.headers.x-forwarded-for', '$.invoke-api.headers.x-forwarded-proto', '$.invoke-api.origin']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_cognito_authorization_auth_context_propagated",
             "test": "test_cognito_authorization_auth_context_propagated",
             "response": "201",
@@ -9475,6 +9561,16 @@
             "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_message_sign_up_trigger",
+            "test": "test_custom_message_sign_up_trigger",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -11540,21 +11636,21 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_http_integration_keeps_body_intact",
-            "test": "test_http_integration_keeps_body_intact",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$.create-integration.ConnectionType', '$.create-route.ApiKeyRequired', '$.create-stage.DefaultRouteSettings', '$.create-stage.LastUpdatedDate', '$.create-stage.RouteSettings', '$.create-stage.StageVariables', '$.create-stage.Tags', '$.invoke-api.headers.via', '$.invoke-api.headers.x-amzn-trace-id', '$.invoke-api.headers.x-amzn-tls-cipher-suite', '$.invoke-api.headers.x-amzn-tls-version', '$.invoke-api.headers.x-forwarded-for', '$.invoke-api.headers.x-forwarded-proto', '$.invoke-api.headers.x-localstack-edge', '$.invoke-api.origin']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_lambda_token_authorizer",
             "test": "test_lambda_token_authorizer",
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..connectionType', '$..passthroughBehavior', '$..requestParameters', '$..timeoutInMillis', '$..methodResponses', '$..authType', '$..authorizerResultTtlInSeconds', 'token_authorizer_allow..origin', 'token_authorizer_allow..url', '$..origin', '$..Type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_integration_keeps_body_intact",
+            "test": "test_http_integration_keeps_body_intact",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.create-integration.ConnectionType', '$.create-route.ApiKeyRequired', '$.invoke-api.headers.via', '$.invoke-api.headers.x-amzn-trace-id', '$.invoke-api.headers.x-amzn-tls-cipher-suite', '$.invoke-api.headers.x-amzn-tls-version', '$.invoke-api.headers.x-forwarded-for', '$.invoke-api.headers.x-forwarded-proto', '$.invoke-api.origin']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12284,6 +12380,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::test_report_batch_item_failures_on_lambda_error",
             "test": "test_report_batch_item_failures_on_lambda_error",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_self_managed",
+            "test": "test_create_event_source_self_managed",
             "response": "202",
             "error": "",
             "snapshot_skipped": "",
@@ -14650,6 +14756,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventInvokeConfig::test_lambda_eventinvokeconfig_lifecycle",
             "test": "test_lambda_eventinvokeconfig_lifecycle",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_self_managed",
+            "test": "test_create_event_source_self_managed",
             "response": "204",
             "error": "",
             "snapshot_skipped": "",
@@ -18410,16 +18526,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_http_integration_keeps_body_intact",
-            "test": "test_http_integration_keeps_body_intact",
-            "response": "204",
-            "error": "",
-            "snapshot_skipped": "['$.create-integration.ConnectionType', '$.create-route.ApiKeyRequired', '$.create-stage.DefaultRouteSettings', '$.create-stage.LastUpdatedDate', '$.create-stage.RouteSettings', '$.create-stage.StageVariables', '$.create-stage.Tags', '$.invoke-api.headers.via', '$.invoke-api.headers.x-amzn-trace-id', '$.invoke-api.headers.x-amzn-tls-cipher-suite', '$.invoke-api.headers.x-amzn-tls-version', '$.invoke-api.headers.x-forwarded-for', '$.invoke-api.headers.x-forwarded-proto', '$.invoke-api.headers.x-localstack-edge', '$.invoke-api.origin']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_http_lambda_authorizers[primary-region-UrlType.HOST_BASED-1.0-ANY]",
             "test": "test_http_lambda_authorizers[primary-region-UrlType.HOST_BASED-1.0-ANY]",
             "response": "204",
@@ -19020,6 +19126,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_integration_keeps_body_intact",
+            "test": "test_http_integration_keeps_body_intact",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$.create-integration.ConnectionType', '$.create-route.ApiKeyRequired', '$.invoke-api.headers.via', '$.invoke-api.headers.x-amzn-trace-id', '$.invoke-api.headers.x-amzn-tls-cipher-suite', '$.invoke-api.headers.x-amzn-tls-version', '$.invoke-api.headers.x-forwarded-for', '$.invoke-api.headers.x-forwarded-proto', '$.invoke-api.origin']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_cognito_authorization_auth_context_propagated",
             "test": "test_cognito_authorization_auth_context_propagated",
             "response": "204",
@@ -19307,6 +19423,16 @@
             "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_message_sign_up_trigger",
+            "test": "test_custom_message_sign_up_trigger",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -23174,6 +23300,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_self_managed",
+            "test": "test_create_event_source_self_managed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_validation",
             "test": "test_create_event_source_validation",
             "response": "200",
@@ -26946,16 +27082,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_http_integration_keeps_body_intact",
-            "test": "test_http_integration_keeps_body_intact",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$.create-integration.ConnectionType', '$.create-route.ApiKeyRequired', '$.create-stage.DefaultRouteSettings', '$.create-stage.LastUpdatedDate', '$.create-stage.RouteSettings', '$.create-stage.StageVariables', '$.create-stage.Tags', '$.invoke-api.headers.via', '$.invoke-api.headers.x-amzn-trace-id', '$.invoke-api.headers.x-amzn-tls-cipher-suite', '$.invoke-api.headers.x-amzn-tls-version', '$.invoke-api.headers.x-forwarded-for', '$.invoke-api.headers.x-forwarded-proto', '$.invoke-api.headers.x-localstack-edge', '$.invoke-api.origin']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_http_lambda_authorizers[primary-region-UrlType.HOST_BASED-1.0-ANY]",
             "test": "test_http_lambda_authorizers[primary-region-UrlType.HOST_BASED-1.0-ANY]",
             "response": "200",
@@ -27556,6 +27682,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_integration_keeps_body_intact",
+            "test": "test_http_integration_keeps_body_intact",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.create-integration.ConnectionType', '$.create-route.ApiKeyRequired', '$.invoke-api.headers.via', '$.invoke-api.headers.x-amzn-trace-id', '$.invoke-api.headers.x-amzn-tls-cipher-suite', '$.invoke-api.headers.x-amzn-tls-version', '$.invoke-api.headers.x-forwarded-for', '$.invoke-api.headers.x-forwarded-proto', '$.invoke-api.origin']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_cognito_authorization_auth_context_propagated",
             "test": "test_cognito_authorization_auth_context_propagated",
             "response": "200",
@@ -27853,6 +27989,16 @@
             "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_message_sign_up_trigger",
+            "test": "test_custom_message_sign_up_trigger",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -31304,13 +31450,13 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/test_stepfunctions_v2.py::TestStateMachine::test_create_choice_state_machine",
-            "test": "test_create_choice_state_machine",
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/intrinsic_functions/test_generic.py::TestGeneric::test_format_1",
+            "test": "test_format_1",
             "response": "500",
             "error": "ServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..tracingConfiguration']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           }
         ],
@@ -33458,13 +33604,13 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/timeouts/test_heartbeats.py::TestHeartbeats::test_heartbeat_timeout",
-            "test": "test_heartbeat_timeout",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda",
+            "test": "test_events_sqs_sns_lambda",
             "response": "500",
             "error": "ServiceException",
-            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -34487,6 +34633,16 @@
             "snapshot_skipped": "['$..version', '$..iss', '$..origin_jti']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_custom_message_sign_up_trigger",
+            "test": "test_custom_message_sign_up_trigger",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
