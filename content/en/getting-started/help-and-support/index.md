@@ -104,30 +104,6 @@ While we strive to provide comprehensive support for LocalStack, there are certa
 - **AWS Services in Production**: We do not provide support for the deployment, management, or troubleshooting of AWS services in a production environment.
   Our focus is solely on the emulated services within LocalStack.
 
-#### Troubleshooting Guidelines
-
-In case you encounter any issues with LocalStack, follow these troubleshooting guidelines:
-
-- Review the documentation and FAQs for possible solutions.
-- Check the system requirements to ensure compatibility.
-- Verify the configuration settings against the documentation.
-- Consult the error logs for any relevant error messages or warnings.
-- Seek guidance from the community through the user forum.
-
-{{< callout "note" >}}
-In many scenarios, we ask our customers to use the diagnostics endpoint to provide additional information.
-
-To use LocalStack's diagnostics endpoint:
-
-- Set the environment variable `LS_LOG=trace`
-- Start LocalStack
-- Run the affected task(s)
-- Call the diagnostic endpoint `curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz` (Endpoint URL depends on your configuration)
-- Send the output file to our Slack chat
-
-<span style="color: darkred;">**Ensure that you avoid sending the diagnostic output to public channels or forums, as it may contain sensitive information.**</span>
-{{< /callout >}}
-
 #### Channels
 
 Standard support can be accessed through the following channels:
@@ -198,3 +174,27 @@ Our support team operates in the CET timezone, Monday to Friday, from 8 AM to 4 
 - May 1st,
 - August 15th,
 - December 24th, 25th and 31st
+
+## Troubleshooting Guidelines
+
+In case you encounter any issues with LocalStack, follow these troubleshooting guidelines:
+
+- Review the documentation and FAQs for possible solutions.
+- Check the system requirements to ensure compatibility.
+- Verify the configuration settings against the documentation.
+- Consult the error logs for any relevant error messages or warnings.
+- Seek guidance from the community through the user forum.
+
+{{< callout "note" >}}
+In many scenarios, we ask our customers to use the diagnostics endpoint to provide additional information.
+
+To use LocalStack's diagnostics endpoint:
+
+- Set the environment variable `LS_LOG=trace`
+- Start LocalStack
+- Run the affected task(s)
+- Call the diagnostic endpoint `curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz` (Endpoint URL depends on your configuration)
+- Send the output file to our Slack chat
+
+<span style="color: darkred;">**Ensure that you avoid sending the diagnostic output to public channels or forums, as it may contain sensitive information.**</span>
+{{< /callout >}}
