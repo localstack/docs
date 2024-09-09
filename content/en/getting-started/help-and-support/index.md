@@ -10,20 +10,19 @@ cascade:
 
 ## Introduction
 
-Our support team is here to assist with:
+LocalStack provides various support channels to help users troubleshoot issues and integrate the platform into their workflows.
+The level of support available depends on the plan associated with your account.
 
-- LocalStack issues troubleshooting
-- Questions about features and functionality
-- Help integrating LocalStack with your application
-- Guidance on using LocalStack
+Our team assists with:
 
-However, technical support does not cover:
+- Troubleshooting LocalStack-specific issues
+- Feature usage and functionality questions
+- Integration guidance for using LocalStack in your application
+- Best practices for working with LocalStack services
 
-- Support for AWS services
-- General troubleshooting of your application
-- Billing, account-related issues, or non-technical questions
+For non-technical issues, such as billing or account inquiries, please contact support via [support@localstack.cloud](mailto:support@localstack.cloud).
 
-For operational support related to billing, account inquiries, or other non-technical matters, contact us at [support@localstack.cloud](mailto:support@localstack.cloud) or via our [contact form](https://localstack.cloud/contact/).
+We welcome any feedback as we continue to improve LocalStack for all users.
 
 ## Support Coverage
 
