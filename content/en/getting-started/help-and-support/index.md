@@ -90,6 +90,21 @@ Standard support is available to users with an active Starter or Trial subscript
 This includes 1v1 support on a best-effort basis, without guaranteed response times.
 However, the support team aims to respond to inquiries within 24–48 hours during [regular business hours](#support-business-hours).
 
+#### Scope
+
+Our objective is to respond to your inquiries and provide guidance on using LocalStack environment with all its features to the best of our abilities.
+It is important to note that our best effort support may have certain limitations.
+
+LocalStack's usage is subject to various factors such as the complexity of your IT environment, specific integrations, and dependencies.
+While we strive to provide comprehensive support for LocalStack, there are certain areas that fall outside our scope:
+
+- **Third-Party Tools**: We do not offer support for third-party tools or software that integrate with or work alongside LocalStack.
+  This includes, but is not limited to external monitoring tools, third-party plugins, development environments and build tools.
+- **Customer-Specific Code**: Our support does not extend to the custom code that customers build using LocalStack.
+  This includes debugging, optimizing, or modifying customer-written scripts, applications, or workflows.
+- **AWS Services in Production**: We do not provide support for the deployment, management, or troubleshooting of AWS services in a production environment.
+  Our focus is solely on the emulated services within LocalStack.
+
 #### Troubleshooting Guidelines
 
 In case you encounter any issues with LocalStack, follow these troubleshooting guidelines:
@@ -157,6 +172,20 @@ Please note that all responses are provided during our normal operating hours.
 While we strive to respond within a 24-hour timeframe, we cannot guarantee that every response will meet this timeline.
 
 Our support engineers may schedule live screen sharing sessions to directly observe and diagnose issues, ensuring faster and more effective resolutions.
+
+#### Scope
+
+As part of our Priority support plan, we offer limited support for third-party tools that integrate with LocalStack.
+This support is provided on a best-effort basis and covers tools that are officially supported and mentioned in our documentation.
+
+Our aim is to enhance your development experience by assisting with the integration and basic troubleshooting of these tools.
+While we strive to provide comprehensive assistance, there are certain limitations to our third-party tools support:
+
+- **Best Effort Basis:** Support for third-party tools is provided on a best-effort basis, meaning that while we will do our utmost to assist, we cannot guarantee resolution for all issues.
+- **Officially Supported Tools Only:** Our support is limited to officially integrated third-party tools with LocalStack.
+  For other tools, we recommend consulting the tool's official support channels or resources.
+- **Basic Troubleshooting:** Our support focuses on basic troubleshooting and integration guidance.
+  We do not provide in-depth support for advanced configurations, customizations, or optimization of third-party tools.
 
 ### Enterprise support
 
