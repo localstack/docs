@@ -221,15 +221,80 @@ $ curl http://localhost:4566/.well-known/jwks_uri
 
 Cognito offers a variety of lifecycle hooks called Cognito Lambda triggers, which allow you to react to different lifecycle events and customize the behavior of user signup, confirmation, migration, and more.
 
-To illustrate, suppose you wish to define a _user migration_ Lambda trigger.
-In this case, you can start by creating a Lambda function, let's say named `"f1"`, responsible for performing the migration.
+To illustrate, suppose you wish to define a _user migration_ Lambda trigger in order to migrate users from your existing user directory into Amazon Cognito user pools at sign-in.
+In this case, you can start by creating a Lambda function, let's say named `"migrate_users"`, responsible for performing the migration by using this code:
+
+```javascript
+const validUsers = {
+  belladonna: { password: "12345678Aa!", emailAddress: "bella@example.com" },
+};
+
+// Replace this mock with a call to a real authentication service.
+const authenticateUser = (username, password) => {
+  if (validUsers[username] && validUsers[username].password === password) {
+    return validUsers[username];
+  } else {
+    return null;
+  }
+};
+
+const lookupUser = (username) => {
+  const user = validUsers[username];
+
+  if (user) {
+    return { emailAddress: user.emailAddress };
+  } else {
+    return null;
+  }
+};
+
+exports.handler = async (event) => {
+  if (event.triggerSource == "UserMigration_Authentication") {
+    // Authenticate the user with your existing user directory service
+    const user = authenticateUser(event.userName, event.request.password);
+    if (user) {
+      event.response.userAttributes = {
+        email: user.emailAddress,
+        email_verified: "true",
+      };
+      event.response.finalUserStatus = "CONFIRMED";
+      event.response.messageAction = "SUPPRESS";
+    }
+  } else if (event.triggerSource == "UserMigration_ForgotPassword") {
+    // Look up the user in your existing user directory service
+    const user = lookupUser(event.userName);
+    if (user) {
+      event.response.userAttributes = {
+        email: user.emailAddress,
+        // Required to enable password-reset code to be sent to user
+        email_verified: "true",
+      };
+      event.response.messageAction = "SUPPRESS";
+    }
+  }
+
+  return event;
+};
+```
+Enter the following commands to create the Lambda function:
+
+{{< command >}}
+$ zip function.zip index.js
+$ awslocal lambda create-function \
+    --function-name migrate_users \
+    --runtime nodejs18.x \
+    --zip-file fileb://function.zip \
+    --handler index.handler \
+    --role arn:aws:iam::000000000000:role/lambda-role
+{{</ command >}}
+
 Subsequently, you can define the corresponding `--lambda-config` when creating the user pool to link it with the Lambda function:
 
 {{< command >}}
 $ awslocal cognito-idp create-user-pool \
   --pool-name test2 \
-  --lambda-config '{"UserMigration":"arn:aws:lambda:us-east-1:000000000000:function:f1"}'
-{{< /command >}}
+  --lambda-config '{"UserMigration":"arn:aws:lambda:us-east-1:000000000000:function:migrate_users"}'
+{{</ command >}}
 
 Upon successful authentication of a non-registered user, Cognito will automatically trigger the migration Lambda function, allowing the user to be added to the pool after migration.
 
