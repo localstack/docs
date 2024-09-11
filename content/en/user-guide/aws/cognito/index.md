@@ -222,7 +222,7 @@ $ curl http://localhost:4566/.well-known/jwks_uri
 Cognito offers a variety of lifecycle hooks called Cognito Lambda triggers, which allow you to react to different lifecycle events and customize the behavior of user signup, confirmation, migration, and more.
 
 To illustrate, suppose you wish to define a _user migration_ Lambda trigger in order to migrate users from your existing user directory into Amazon Cognito user pools at sign-in.
-In this case, you can start by creating a Lambda function, let's say named `"migrate_users"`, responsible for performing the migration by using this code:
+In this case, you can start by creating a Lambda function, let's say named `"migrate_users"`, responsible for performing the migration by creating a new file `index.js` with the following code:
 
 ```javascript
 const validUsers = {
