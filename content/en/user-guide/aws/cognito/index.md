@@ -276,6 +276,7 @@ exports.handler = async (event) => {
   return event;
 };
 ```
+
 Enter the following commands to create the Lambda function:
 
 {{< command >}}
