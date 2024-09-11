@@ -12,18 +12,19 @@ hide_readingtime: true
 ## LocalStack Core FAQs
 
 ### How do I resolve SSL issues due to revoked local certificate for `localhost.localstack.cloud`?
-
-To resolve the SSL issues due to revoked local certificate, we strongly recommend updating to the latest LocalStack version for the most reliable and seamless experience.
-
-If issues persist, please follow the steps outlined below:
-
-1. **Disable Certificate Download**: To prevent downloading a revoked certificate, set the environment variable  `SKIP_SSL_CERT_DOWNLOAD=1`.
-  This will cause LocalStack to use a self-signed SSL certificate.
-  Additionally, it’s important to clear the cached certificate from your host machine.
+To resolve the issue follow the steps:
+1. **Update to the latest LocalStack version:** To resolve the SSL issues due to revoked certificate, we strongly recommend updating to the latest LocalStack version (v3.7.0 and above)for the most reliable and seamless experience.
+2. **Clear the cached certificate:** It’s important to clear the cached certificate if you continue to experience the issue when updating to the latest LS version. 
   This can be done by deleting the cached certificate file.
   For example, on Linux systems, you can locate and remove the file at  `~/.cache/localstack/volume/cache/server.test.pem`.
   The exact path may differ depending on your operating system and how you’ve started LocalStack.
   Please refer to our [documentation](https://docs.localstack.cloud/references/filesystem/#localstack-volume) for specific instructions.
+
+**Workarounds for older (<v3.7.0) LocalStack versions:**
+
+1. **Disable Certificate Download**: To prevent downloading a revoked certificate, set the environment variable  `SKIP_SSL_CERT_DOWNLOAD=1`.
+  This will cause LocalStack to use a self-signed SSL certificate.
+  Additionally, it’s important to clear the cached certificate from your host machine as mentioned above.
 2. **Use HTTP Instead of HTTPS**: Where possible, use  `http://`  instead of  `https://`  to avoid issues related to the revoked certificates.
   This workaround works with most browsers.
   However, Safari requires additional steps:  
