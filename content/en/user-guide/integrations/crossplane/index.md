@@ -37,16 +37,17 @@ $ helm install crossplane crossplane-stable/crossplane --namespace crossplane-sy
 {{</command>}}
 
 The installation may take a few minutes.
-In parallel, we can install the `crossplane` command-line extensions for `kubectl`:
+In parallel, we can install the `crossplane` command-line tool.
 {{<command>}}
 $ curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | bash
 <disable-copy>...</disable-copy>
-$ sudo mv kubectl-crossplane /usr/local/bin
+$ sudo mv crossplane /usr/local/bin
 {{</command>}}
-To confirm that the installation was successful, we can run these `kubectl` commands, which should yield output similar to the following:
+To confirm that the installation was successful we can run these commands, which should yield output similar to the following:
 {{<command>}}
-$ kubectl crossplane --version
-<disable-copy>v1.13.2</disable-copy>
+$ crossplane version
+<disable-copy>Client Version: v1.17.0
+Server Version: v1.17.0</disable-copy>
 
 $ kubectl get crds | grep crossplane
 <disable-copy>compositions.apiextensions.crossplane.io                     2023-09-03T11:30:36Z
