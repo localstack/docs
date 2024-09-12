@@ -43,7 +43,7 @@ $ curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/instal
 <disable-copy>...</disable-copy>
 $ sudo mv crossplane /usr/local/bin
 {{</command>}}
-To confirm that the installation was successful we can run these commands, which should yield output similar to the following:
+To confirm that the installation was successful, we can run these commands, which should yield output similar to the following:
 {{<command>}}
 $ crossplane version
 <disable-copy>Client Version: v1.17.0
