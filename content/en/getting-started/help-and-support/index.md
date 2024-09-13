@@ -68,7 +68,6 @@ We welcome any feedback as we continue to improve LocalStack for all users.
 
 ## Support plans
 
-
 ### Basic support
 
 Basic Support is available to all LocalStack users and includes access to documentation, community support, and account management (operational support).
@@ -109,6 +108,9 @@ Standard support can be accessed through the following channels:
 - [LocalStack Slack Bot](https://localstack.cloud/slack)
 - [LocalStack Web Application](https://app.localstack.cloud)
 
+Providing detailed information upfront helps our team respond more quickly and efficiently.
+After submitting, the support team will respond as soon as possible.
+
 ##### LocalStack Support Bot
 
 To create a support ticket:
@@ -116,14 +118,6 @@ To create a support ticket:
 - Search for the LocalStack Pro Support in our [Slack Community](https://localstack.cloud/slack).
 - Navigate to Messages and type your request.
 - Include relevant details such as error logs, configuration settings, and steps to reproduce the issue.
-
-Providing detailed information upfront helps our team respond more quickly and efficiently.
-After submitting, the support team will respond as soon as possible.
-
-- Search for the **LocalStack Pro Support** in our [Slack Community](https://localstack.cloud/slack).
-- Navigate to **Messages** and type your message to LocalStack Pro Support.
-
-Sending a message to LocalStack Pro Support will create a support ticket, and our support team will respond to your request as quickly as possible.
 
 ##### LocalStack Web Application
 
