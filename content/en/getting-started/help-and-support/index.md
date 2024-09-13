@@ -66,6 +66,13 @@ We welcome any feedback as we continue to improve LocalStack for all users.
 | Ticketing portal      |       |          |          | ✅         |
 | Slack connect channel |       |          |          | ✅         |
 
+## Support Resources
+
+Our support team comprises highly qualified experts who possess extensive expertise in AWS and other pertinent tools.
+We utilize a range of resources, including documentation, knowledge bases, and industry best practices, to provide you with accurate and reliable guidance.
+However, please note that our support resources are subject to availability, therefore our best effort support is provided asynchronously.
+Inquiries may be prioritized based on urgency and impact.
+
 ## Support plans
 
 ### Basic support
@@ -79,6 +86,25 @@ Community support is available through the following channels:
 
 Note that community support is provided on a best-effort basis and is not guaranteed.
 Users are encouraged to help others by sharing their knowledge and experiences.
+
+#### LocalStack Slack Community
+
+LocalStack Slack Community includes LocalStack users, contributors, and maintainers.
+If you need help with the community version of LocalStack, please use the `#help` channel.
+You can sign up for the [LocalStack Slack Community](https://localstack.cloud/slack) by creating an account.
+
+However, the messages on Slack are not accessible after three months, so it is not the best place to ask questions that may be useful to others in the future.
+For that, we recommend using LocalStack Discuss.
+
+#### GitHub Issue
+
+You can use GitHub Issue to:
+
+- [Request new features](https://github.com/localstack/localstack/issues/new?assignees=&labels=type%3A+feature%2Cstatus%3A+triage+needed&template=feature-request.yml&title=feature+request%3A+%3Ctitle%3E)
+- [Report existing bugs](https://github.com/localstack/localstack/issues/new?assignees=&labels=type%3A+bug%2Cstatus%3A+triage+needed&template=bug-report.yml&title=bug%3A+%3Ctitle%3E)
+
+Make sure to follow the issue templates and provide as much information as possible.
+If you have encountered outdated documentation, please report it on our [documentation repository](https://github.com/localstack/docs).
 
 ### Standard support
 
@@ -130,15 +156,13 @@ To create a support ticket:
 
 ### Priority support
 
-Priority support is available for users with active Teams or Enterprise subscriptions, offering dedicated 1v1 assistance and faster response times:
+Priority support is available for users with active Teams subscription, offering dedicated 1v1 assistance and faster response times:
 
 - **First response**: within 24 hours
 - **Follow-up responses:** within 24 hours
 
 Please note that all responses are provided during our normal operating hours.
 While we strive to respond within a 24-hour timeframe, we cannot guarantee that every response will meet this timeline.
-
-Our support engineers may schedule live screen sharing sessions to directly observe and diagnose issues, ensuring faster and more effective resolutions.
 
 #### Scope
 
@@ -153,6 +177,11 @@ While we strive to provide comprehensive assistance, there are certain limitatio
   For other tools, we recommend consulting the tool's official support channels or resources.
 - **Basic Troubleshooting:** Our support focuses on basic troubleshooting and integration guidance.
   We do not provide in-depth support for advanced configurations, customizations, or optimization of third-party tools.
+
+#### Screen sharing sessions
+
+To enhance issue identification and provide a more efficient troubleshooting experience, our support engineers may offer scheduled live screen sharing sessions.
+During these sessions, our support engineers can directly observe and diagnose the issues you are encountering, ensuring a quicker and more effective resolution.
 
 ### Enterprise support
 
