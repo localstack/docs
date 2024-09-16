@@ -259,8 +259,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -493,7 +493,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -1249,7 +1249,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -1451,7 +1451,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -1602,6 +1602,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_firehose.py::test_firehose_stack_with_kinesis_as_source",
+            "test": "test_firehose_stack_with_kinesis_as_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Destinations']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_dynamodb_source",
             "test": "test_cfn_lambda_dynamodb_source",
             "response": "200",
@@ -1612,11 +1622,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter_update",
-            "test": "test_lambda_w_dynamodb_event_filter_update",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_update_lambda_function",
+            "test": "test_update_lambda_function",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "all",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
@@ -2022,16 +2032,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_source_mapping",
-            "test": "test_dynamodb_event_source_mapping",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
@@ -2217,7 +2217,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -2359,7 +2359,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -2465,7 +2465,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2475,7 +2475,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2555,7 +2555,7 @@
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -3216,6 +3216,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/test_iam.py::test_managed_policy_with_empty_resource",
+            "test": "test_managed_policy_with_empty_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Policy.Description', '$..Policy.IsAttachable', '$..Policy.PermissionsBoundaryUsageCount', '$..Policy.Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/test_iam.py::test_server_certificate",
             "test": "test_server_certificate",
             "response": "200",
@@ -3416,21 +3426,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_cfn_function_url",
+            "test": "test_cfn_function_url",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Metadata', '$..DriftInformation', '$..Type', '$..Message', '$..access-control-allow-headers', '$..access-control-allow-methods', '$..access-control-allow-origin', '$..access-control-expose-headers', '$..server', '$..content-length', '$..InvokeMode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter_update",
             "test": "test_lambda_w_dynamodb_event_filter_update",
             "response": "200",
             "error": "",
             "snapshot_skipped": "all",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_update_lambda_function",
-            "test": "test_update_lambda_function",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
@@ -4186,16 +4196,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_lambda_task_service.py::TestTaskServiceLambda::test_invoke",
-            "test": "test_invoke",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/test_error_injection.py::TestErrorInjection::test_kinesis_error_injection",
             "test": "test_kinesis_error_injection",
             "response": "200",
@@ -4256,32 +4256,12 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_dynamodb_stream_handler_deployed",
-            "test": "test_dynamodb_stream_handler_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_event_rules_deployed",
             "test": "test_event_rules_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_queue_handler_deployed",
-            "test": "test_queue_handler_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -4291,18 +4271,8 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ec2/aws_ec2_networkacl/test_basic.py::TestBasicCRD::test_black_box",
-            "test": "test_black_box",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..NetworkAcls..Entries', '$..NetworkAcls..Tags', '$..NetworkAcls..Tags..Key', '$..NetworkAcls..Tags..Value', '$..NetworkAcls..VpcId']",
             "aws_validated": true,
-            "snapshot_tested": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -4356,6 +4326,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_firehose.py::test_firehose_stack_with_kinesis_as_source",
+            "test": "test_firehose_stack_with_kinesis_as_source",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..Destinations']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_dynamodb_source",
             "test": "test_cfn_lambda_dynamodb_source",
             "response": "400",
@@ -4371,16 +4351,6 @@
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "['$..Metadata', '$..DriftInformation', '$..Type', '$..Message', '$..access-control-allow-headers', '$..access-control-allow-methods', '$..access-control-allow-origin', '$..access-control-expose-headers', '$..server', '$..content-length', '$..InvokeMode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudwatch/test_cloudwatch_metrics.py::TestCloudWatchLambdaMetrics::test_lambda_invoke_successful",
-            "test": "test_lambda_invoke_successful",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4656,13 +4626,13 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_lambda_task_service.py::TestTaskServiceLambda::test_invoke",
-            "test": "test_invoke",
+            "node_id": "LocalStack Community: tests/aws/test_error_injection.py::TestErrorInjection::test_dynamodb_error_injection",
+            "test": "test_dynamodb_error_injection",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
-            "aws_validated": true,
-            "snapshot_tested": true,
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -4676,12 +4646,22 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/test_multi_accounts.py::TestMultiAccounts::test_account_id_namespacing_for_moto_backends",
+            "test": "test_account_id_namespacing_for_moto_backends",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_s3_bucket_deployed",
             "test": "test_s3_bucket_deployed",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -4939,7 +4919,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -5380,22 +5360,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_dynamodb_stream_handler_deployed",
-            "test": "test_dynamodb_stream_handler_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_event_rules_deployed",
             "test": "test_event_rules_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -5405,7 +5375,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -5440,41 +5410,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_cfn_function_url",
-            "test": "test_cfn_function_url",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_kinesis_source",
+            "test": "test_cfn_lambda_kinesis_source",
             "response": "400",
             "error": "ResourceInUseException",
-            "snapshot_skipped": "['$..Metadata', '$..DriftInformation', '$..Type', '$..Message', '$..access-control-allow-headers', '$..access-control-allow-methods', '$..access-control-allow-origin', '$..access-control-expose-headers', '$..server', '$..content-length', '$..InvokeMode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_cfn_function_url",
-            "test": "test_cfn_function_url",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..Metadata', '$..DriftInformation', '$..Type', '$..Message', '$..access-control-allow-headers', '$..access-control-allow-methods', '$..access-control-allow-origin', '$..access-control-expose-headers', '$..server', '$..content-length', '$..InvokeMode']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_stepfunctions.py::test_statemachine_definitionsubstitution",
-            "test": "test_statemachine_definitionsubstitution",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_deletion_event_source_mapping_with_dynamodb",
-            "test": "test_deletion_event_source_mapping_with_dynamodb",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..Configuration.CodeSize', '$..Tags', '$..StreamDescription.StreamModeDetails', '$..Configuration.Layers', '$..TumblingWindowInSeconds', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -5484,26 +5424,6 @@
             "test": "test_deletion_event_source_mapping_with_dynamodb",
             "response": "400",
             "error": "ResourceInUseException",
-            "snapshot_skipped": "['$..LastProcessingResult']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_disabled_dynamodb_event_source_mapping",
-            "test": "test_disabled_dynamodb_event_source_mapping",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "['$..LastProcessingResult']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_disabled_dynamodb_event_source_mapping",
-            "test": "test_disabled_dynamodb_event_source_mapping",
-            "response": "400",
-            "error": "ResourceNotFoundException",
             "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -5530,8 +5450,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_multiple_filters]",
-            "test": "test_dynamodb_event_filter[content_multiple_filters]",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_or_filter]",
+            "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "400",
             "error": "ResourceInUseException",
             "snapshot_skipped": "['$..LastProcessingResult']",
@@ -5540,8 +5460,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_multiple_filters]",
-            "test": "test_dynamodb_event_filter[content_multiple_filters]",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_or_filter]",
+            "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "['$..LastProcessingResult']",
@@ -5550,8 +5470,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_or_filter]",
-            "test": "test_dynamodb_event_filter[content_or_filter]",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[date_time_conversion]",
+            "test": "test_dynamodb_event_filter[date_time_conversion]",
             "response": "400",
             "error": "ResourceInUseException",
             "snapshot_skipped": "['$..LastProcessingResult']",
@@ -5560,8 +5480,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_or_filter]",
-            "test": "test_dynamodb_event_filter[content_or_filter]",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[date_time_conversion]",
+            "test": "test_dynamodb_event_filter[date_time_conversion]",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "['$..LastProcessingResult']",
@@ -5650,11 +5570,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisEventFiltering::test_kinesis_event_filtering_json_pattern",
-            "test": "test_kinesis_event_filtering_json_pattern",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisSource::test_create_kinesis_event_source_mapping",
+            "test": "test_create_kinesis_event_source_mapping",
             "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "error": "ResourceInUseException",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -5663,18 +5583,8 @@
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisSource::test_duplicate_event_source_mappings",
             "test": "test_duplicate_event_source_mappings",
             "response": "400",
-            "error": "ResourceNotFoundException",
+            "error": "ResourceInUseException",
             "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDLQ::test_dead_letter_queue",
-            "test": "test_dead_letter_queue",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..DeadLetterConfig', '$..result', '$..LoggingConfig']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -5682,16 +5592,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.12]",
             "test": "test_lambda_send_message_to_sqs[python3.12]",
-            "response": "400",
-            "error": "ResourceInUseException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_integration.py::test_kinesis_lambda_forward_chain",
-            "test": "test_kinesis_lambda_forward_chain",
             "response": "400",
             "error": "ResourceInUseException",
             "snapshot_skipped": "",
@@ -6394,26 +6294,6 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/kinesis/test_kinesis.py::TestKinesis::test_subscribe_to_shard_timeout",
-            "test": "test_subscribe_to_shard_timeout",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/kinesis/test_kinesis.py::TestKinesis::test_subscribe_to_shard_with_at_timestamp",
-            "test": "test_subscribe_to_shard_with_at_timestamp",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..Records..EncryptionType']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ],
         "ls_pro": [
@@ -7505,7 +7385,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -9113,7 +8993,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
