@@ -180,12 +180,18 @@ The rule to be removed must be exactly the same as in the existing configuration
 
 ## Comparison with Fault Injection Service
 
-AWS [Fault Injection Service (FIS)]({{< ref "fis" >}}) also allows controlled chaos engineering experiments on infrastructure.
+AWS [Fault Injection Service (FIS)]({{< ref "fis" >}}) also allows controlled chaos engineering experiments on infrastructure.While similar in purpose, there are notable differences between FIS and LocalStack's Chaos API.
 
-When it comes to fault injection, Chaos API has some overlaps with FIS, but it is designed to have a broader application.
-For example, the FIS action `aws:fis:inject-api-internal-error` injects Internal Errors into requests, but only for EC2.
-The Chaos API has not such limitation.
+This table highlights those differences, offering a detailed comparison of how each service approaches chaos engineering, their capabilities, and their integration options.
 
-Another difference is that FIS is capable of running procedural experiments where it can invoke API actions that affect AWS resources.
-For example, the action `aws:ec2:stop-instances` can stop EC2 instances.
-The Chaos API focuses on declarative effects that impact the AWS API.
+| **Aspect**                        | **AWS Fault Injection Service (FIS)**                                                                                                              | **LocalStack Chaos API**                                                                                                                          |
+|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Fault Types**                   | • EC2 Stop/Terminate Instances<br>• RDS Reboot Instances<br>• SSM Send Command<br>• Inject API errors (e.g., `aws:fis:inject-api-internal-error` for EC2 only)  | • API failures (HTTP error codes and messages for any service)<br>• Network effects (latency)<br>• Can be probabilistic and customized.          |
+| **Procedural vs Declarative**     | • Capable of running procedural experiments where it invokes API actions affecting AWS resources (e.g., `aws:ec2:stop-instances`).                    | • Focuses on declarative effects impacting the AWS API, such as returning errors or adding latency, without invoking AWS resource actions.       |
+| **Experiment Execution**          | • Requires creating and running controlled experiments with predefined templates. Systems are restored after disruption duration.                   | • Faults are applied dynamically based on configuration rules. Can inject faults on-the-fly without predefining experiments.                     |
+| **Customization**                 | • Limited to predefined actions (e.g., stopping EC2 instances, inducing specific errors like InternalError for EC2).                                | • Highly customizable, including probabilistic failures, custom error codes, HTTP status codes, and errors for any AWS operation.               |
+| **Service Coverage**              | • Covers specific AWS services such as EC2, RDS, and SSM.                                                                                           | • Covers all AWS services and operations (e.g., S3, Lambda, Kinesis) with no service-specific restrictions.                                      |
+| **Network Effects**               | • Not supported.                                                                                                                                   | • Supports adding network latency to simulate slow network conditions.                                                                            |
+| **API Interaction**               | • `create-experiment-template` to create templates<br>• `start-experiment` to begin experiments<br> | • `POST` to `/chaos/faults` to configure faults<br>• `POST` to `/chaos/effects` to introduce network effects.<br> |
+| **Probabilistic Failure Injection** | • Not available.                                                                                                                                  | • Supports probabilistic failure injection, introducing partial failures, which mimic intermittent outages.                                       |
+| **Broader Fault Injection**       | • Limited to predefined actions (e.g., stop instances, reboot databases, inject errors for specific services).                                      | • Broader fault injection for any AWS operation (e.g., PutObject for S3, Invoke for Lambda).                                                     |
