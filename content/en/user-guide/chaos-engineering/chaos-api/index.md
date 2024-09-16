@@ -180,7 +180,8 @@ The rule to be removed must be exactly the same as in the existing configuration
 
 ## Comparison with Fault Injection Service
 
-AWS [Fault Injection Service (FIS)]({{< ref "fis" >}}) also allows controlled chaos engineering experiments on infrastructure.While similar in purpose, there are notable differences between FIS and LocalStack's Chaos API.
+AWS [Fault Injection Service (FIS)]({{< ref "fis" >}}) also allows controlled chaos engineering experiments on infrastructure.
+While similar in purpose, there are notable differences between FIS and LocalStack Chaos API.
 
 This table highlights those differences, offering a detailed comparison of how each service approaches chaos engineering, their capabilities, and their integration options.
 
