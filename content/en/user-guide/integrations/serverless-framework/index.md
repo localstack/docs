@@ -17,6 +17,14 @@ In particular, the setup consists of the following two steps.
 1. Installing and configuring the [Serverless-LocalStack plugin](https://github.com/localstack/serverless-localstack).
 2. Adjusting AWS endpoints in Lambda functions.
 
+{{< callout "note" >}}
+Currently, the Serverless Framework integration with LocalStack via the `serverless-localstack` plugin only provides support up to Serverless Framework version 3.39.
+Serverless Framework V4 requires a subscription and a license to use.
+
+The `serverless-localstack` plugin has not been updated or tested against version 4 of the Serverless Framework, and breaking changes are expected if attempted.
+As of now, there is no ETA on when or if an update will be released to ensure compatibility with Serverless Framework V4.
+{{< /callout >}}
+
 ## Prerequisites
 
 This guide assumes that you have the following tools installed.
