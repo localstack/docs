@@ -22,7 +22,7 @@ Currently, the Serverless Framework integration with LocalStack via the `serverl
 Serverless Framework V4 requires a subscription and a license to use.
 
 The `serverless-localstack` plugin has not been updated or tested against version 4 of the Serverless Framework, and breaking changes are expected if attempted.
-As of now, there is no ETA on when or if an update will be released to ensure compatibility with Serverless Framework V4.
+Currently there is no timeline on when an update will be released to enable compatibility with Serverless Framework V4.
 {{< /callout >}}
 
 ## Prerequisites
