@@ -8,6 +8,21 @@ tags: ["Enterprise plan"]
 
 ## Introduction
 
+Enterprise support offers organizations personalized resources, direct communication channels with the LocalStack team, and flexible service level agreements (SLAs) to meet specific business requirements.
+The key components of our enterprise support offering include:
+
+- **Direct Slack Connect Channel**: A dedicated Slack Connect channel is available to maintain a direct communication link with the LocalStack engineering team.
+  This setup ensures quick issue resolution and streamlined collaboration, improving overall service efficiency.
+- **Dedicated Customer Success Manager (CSM) and Solutions Architect (SA)**: Enterprise customers are assigned a CSM and SA.
+  The CSM acts as a strategic advisor to help fully utilize LocalStack's offerings, while the SA provides expert technical assistance in designing and optimizing solutions tailored to your needs.
+- **Custom Service Level Agreements (SLAs)**: Tailor your service levels and response times to meet your organization's requirements.
+  Custom SLAs can be negotiated to align with your business objectives and ensure optimal system performance.
+- **Support Ticketing Portal**: Access the [support ticketing portal](https://support.localstack.cloud/portal) to view, create, and respond to support tickets, ensuring organized tracking of all queries.
+- **Real-time Chat Support**: Real-time Level 1 (L1) chat support is available during support operating hours.
+  While immediate resolutions are prioritized, complex issues may require additional time and resources for thorough handling.
+
+## Customer portal
+
 A customer portal is a home behind a login where customers can view, open, and reply to their support tickets.
 Currently, the **customer portal** is only **available to Enterprise customers**.
 
