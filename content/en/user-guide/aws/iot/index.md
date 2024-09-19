@@ -89,8 +89,9 @@ event_loop_group = io.EventLoopGroup(1)
 host_resolver = io.DefaultHostResolver(event_loop_group)
 client_bootstrap = io.ClientBootstrap(event_loop_group, host_resolver)
 
-credentials_provider = awscrt.auth.AwsCredentialsProvider.new_default_chain(
-    client_bootstrap=client_bootstrap
+credentials_provider = awscrt.auth.AwsCredentialsProvider.new_static(
+    access_key_id='...',
+    secret_access_key='...',
 )
 
 client_id = 'example-client'
