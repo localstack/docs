@@ -136,11 +136,11 @@ This can be useful to pre-seed a development environment so values encrypted wit
 Here is an example of using custom key material with the value being base64 encoded:
 
 {{< command >}}
-$ echo 'c3VwZXIgc2VjcmV0IGtleQo=' | base64 -d
+$ echo 'dGhpc2lzYXNlY3VyZWtleQ==' | base64 -d
 <disable-copy>
-super secret key
+thisisasecurekey
 </disable-copy>
-$ awslocal kms create-key --tags '[{"TagKey":"_custom_key_material_","TagValue":"c3VwZXIgc2VjcmV0IGtleQo="}]'
+$ awslocal kms create-key --tags '[{"TagKey":"_custom_key_material_","TagValue":"dGhpc2lzYXNlY3VyZWtleQ=="}]'
 <disable-copy>
 {
     "KeyMetadata": {
