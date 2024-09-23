@@ -18,7 +18,7 @@ to browse the Swagger UI, visualize and interact with all the API's resources im
 ### LocalStack endpoints
 
 The API path for the LocalStack internal resources is `/_localstack`.
-Several endpoints are available under this path. 
+Several endpoints are available under this path.
 For instance, `/_localstack/health` checks the available and running AWS services in LocalStack while
 `/_localstack/diagnose` (enable with the `DEBUG=1` configuration variable), reports extensive and sensitive data from
 the LocalStack instance.
@@ -35,5 +35,5 @@ $ curl -v --request POST --header "Content-Type: application/json"  --data '{"ac
 ### AWS endpoints
 
 The API path for the AWS internal resources is `/_aws`.
-These endpoints offer LocalStack-specific features in addition to the ones offered by the AWS services. 
+These endpoints offer LocalStack-specific features in addition to the ones offered by the AWS services.
 For instance, `/aws/sqs/messages` conveniently access all messages withing a SQS queue, without deleting them.
