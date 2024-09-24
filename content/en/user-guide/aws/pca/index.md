@@ -121,7 +121,7 @@ Finally, we retrieve the signed certificate with [`GetCertificate`](https://docs
 $ awslocal acm-pca get-certificate \
     --certificate-authority-arn arn:aws:acm-pca:eu-central-1:000000000000:certificate-authority/0b20353f-ce7a-4de4-9b82-e06903a893ff \
     --certificate-arn arn:aws:acm-pca:eu-central-1:000000000000:certificate-authority/0b20353f-ce7a-4de4-9b82-e06903a893ff/certificate/17ef7bbf3cc6471ba3ef0707119b8392 \
-    --output text > tee cert.pem
+    --output text | tee cert.pem
 {{< /command >}}
 
 {{< command >}}
