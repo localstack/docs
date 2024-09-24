@@ -35,13 +35,34 @@ $ awslocal ec2 create-key-pair \
     --output text | tee key.pem
 {{< /command >}}
 
-You can assign necessary permissions to the key pair file using the following command:
+You can assign necessary permissions to the key pair file using the following commands:
+
+{{< tabpane text=true >}}
+
+{{< tab header="**Linux**" >}}
 
 {{< command >}}
 $ chmod 400 key.pem
 {{< /command >}}
 
+{{< /tab >}}
+
+{{< tab header="**Windows**" >}}
+
+{{< command >}}
+$acl = Get-Acl -Path "key.pem"
+$fileSystemAccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("$env:username", "Read", "Allow")
+$acl.SetAccessRule($fileSystemAccessRule)
+$acl.SetAccessRuleProtection($true, $false)
+Set-Acl -Path "key.pem" -AclObject $acl
+{{< /command >}}
+
+{{< /tab >}}
+
+{{< /tabpane >}}
+
 Alternatively, we can import an existing key pair, for example if you have an SSH public key in your home directory under `~/.ssh/id_rsa.pub`:
+
 {{< command >}}
 $ awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub
 {{< /command >}}
