@@ -124,7 +124,7 @@ Run the following command to run an EC2 instance by adding the appropriate Secur
 
 {{< command >}}
 $ awslocal ec2 run-instances \
-    --image-id ami-ff0fea8310f3 \
+    --image-id ami-df5de72bdb3b \
     --count 1 \
     --instance-type t3.nano \
     --key-name my-key \
