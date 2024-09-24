@@ -61,11 +61,29 @@ Set-Acl -Path "key.pem" -AclObject $acl
 
 {{< /tabpane >}}
 
-Alternatively, we can import an existing key pair, for example if you have an SSH public key in your home directory under `~/.ssh/id_rsa.pub`:
+Alternatively, you can import an existing key pair, such as an SSH public key located in your home directory at `~/.ssh/id_rsa.pub`.
+Additionally, you can produce a public key from an existing private key with the `ssh-keygen` command, which means you don't need to generate a new key pair each time you use LocalStack.
+
+{{< tabpane text=true >}}
+
+{{< tab header="**Existing Key Pair**" >}}
 
 {{< command >}}
 $ awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub
 {{< /command >}}
+
+{{< /tab >}}
+
+{{< tab header="**Generate Public Key**" >}}
+
+{{< command >}}
+$ ssh-keygen -y -f key.pem > key.pub
+$ awslocal ec2 import-key-pair --key-name my-key --public-key-material fileb://key.pub
+{{< /command >}}
+
+{{< /tab >}}
+
+{{< /tabpane >}}
 
 ### Add rules to your security group
 
