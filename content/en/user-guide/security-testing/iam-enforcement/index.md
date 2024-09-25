@@ -116,4 +116,4 @@ If the IAM policies are not correctly enforced, you will get an unsuccessful res
 
 ## Feature coverage
 
-The feature coverage is documented in the [IAM coverage documentation](https://docs.localstack.cloud/references/iam-coverage/).
+The feature coverage is documented in the [IAM coverage documentation]({{< ref "references/coverage/coverage_iam" >}}).
