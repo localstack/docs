@@ -748,7 +748,7 @@ We create the new producer by executing the following steps:
   mvn clean generate-sources
   ```
 
-- Once the classes have been generatated, the producer code needs to be adjusted (remove the usage of `setCustomer` in the producer's `getRecord`, since the method does not exist anymore).
+- Once the classes have been generated, the producer code needs to be adjusted (remove the usage of `setCustomer` in the producer's `getRecord`, since the method does not exist anymore).
 - Configure the producer to automatically register its schema version in case it's not yet registered by setting the additional property `AWSSchemaRegistryConstants.SCHEMA_AUTO_REGISTRATION_SETTING` to `true`:
 
   ```java
