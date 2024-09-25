@@ -14,7 +14,7 @@ By centralizing access control, administrators can enforce the principle of leas
 
 LocalStack allows you to use the IAM APIs in your local environment to create and manage users, groups, and roles, granting permissions that adhere to the principle of least privilege.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iam/), which provides information on the extent of IAM's integration with LocalStack.
-The policy coverage is documented in the [IAM coverage documentation]({{ ref "iam-coverage"}}.
+The policy coverage is documented in the [IAM coverage documentation](https://docs.localstack.cloud/references/iam-coverage/).
 
 ## Getting started
 
