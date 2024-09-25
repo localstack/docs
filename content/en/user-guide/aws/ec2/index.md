@@ -23,7 +23,9 @@ LocalStack Pro running on a Linux host is required as network access to containe
 
 Start your LocalStack container using your preferred method.
 
-### Create a key pair
+### Create or import a key pair
+
+Key pairs are SSH public key/private key combinations that are used to log in to created instances.
 
 To create a key pair, you can use the [`CreateKeyPair`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html) API.
 Run the following command to create the key pair and pipe the output to a file named `key.pem`:
@@ -35,7 +37,8 @@ $ awslocal ec2 create-key-pair \
     --output text | tee key.pem
 {{< /command >}}
 
-You can assign necessary permissions to the key pair file using the following commands:
+You may need to assign necessary permissions to the key files for security reasons.
+This can be done using the following commands:
 
 {{< tabpane text=true >}}
 
@@ -47,7 +50,7 @@ $ chmod 400 key.pem
 
 {{< /tab >}}
 
-{{< tab header="**Windows**" >}}
+{{< tab header="**Windows (Powershell)**" >}}
 
 {{< command >}}
 $acl = Get-Acl -Path "key.pem"
@@ -59,31 +62,29 @@ Set-Acl -Path "key.pem" -AclObject $acl
 
 {{< /tab >}}
 
+{{< tab header="**Windows (Command Prompt)**" >}}
+
+{{< command >}}
+icacls.exe key.pem /reset
+icacls.exe key.pem /grant:r "$($env:username):(r)"
+icacls.exe key.pem /inheritance:r
+{{< /command >}}
+
+{{< /tab >}}
+
 {{< /tabpane >}}
 
-Alternatively, you can import an existing key pair, such as an SSH public key located in your home directory at `~/.ssh/id_rsa.pub`.
-Additionally, you can produce a public key from an existing private key with the `ssh-keygen` command, which means you don't need to generate a new key pair each time you use LocalStack.
-
-{{< tabpane text=true >}}
-
-{{< tab header="**Existing Key Pair**" >}}
+If you already have an SSH public key that you wish to use, such as the one located in your home directory at `~/.ssh/id_rsa.pub`, you can import it instead.
 
 {{< command >}}
 $ awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub
 {{< /command >}}
 
-{{< /tab >}}
-
-{{< tab header="**Generate Public Key**" >}}
+If you only have the SSH private key, a public key can be generated using the following command, and then imported:
 
 {{< command >}}
-$ ssh-keygen -y -f key.pem > key.pub
-$ awslocal ec2 import-key-pair --key-name my-key --public-key-material fileb://key.pub
+$ ssh-keygen -y -f id_rsa > id_rsa.pub
 {{< /command >}}
-
-{{< /tab >}}
-
-{{< /tabpane >}}
 
 ### Add rules to your security group
 
