@@ -18,7 +18,7 @@ It supports popular open-source caching engines like Redis and Memcached (LocalS
 providing a means to efficiently store and retrieve frequently accessed data with minimal latency.
 
 LocalStack supports ElastiCache via the Pro offering, allowing you to use the ElastiCache APIs in your local environment.
-The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_elasticache/),
+The supported APIs are available on our [API Coverage Page]({{< ref "references/coverage/coverage_elasticache" >}}),
 which provides information on the extent of ElastiCache integration with LocalStack.
 
 ## Getting started
