@@ -16,10 +16,10 @@ The new replicator tool enables seamless copying of real AWS resources into Loca
 By extracting and replicating AWS configurations, services, and data, this tool ensures an accurate reflection of your cloud setup within LocalStack.
 Whether for development, testing, or troubleshooting, this tool provides a quick and efficient way to mirror live resources in an emulated environment, enabling you to work locally with the same infrastructure you'd deploy on AWS.
 
-## Usage 
+## Usage
 To use the replicator tool, follow these steps: (Add steps here)
 
-## Coverage 
+## Coverage
 The tool is capable of replicating the following resources into LocalStack.
 
 {{< localstack_replicator_table >}}
