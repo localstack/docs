@@ -1,0 +1,41 @@
+<div class="coverage-report">
+    <table>
+        <thead>
+            <tr>
+            <th class="coverage-report-header-1">Service</th>
+            <th class="coverage-report-header-2">Resource</th>
+            <th class="coverage-report-header-1">Properties Replication</th>
+            <th class="coverage-report-header-2">Data Replication</th>
+            <th class="coverage-report-header-1">Supported relations</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ $data := .Site.Data.replication.coverage }}
+
+            {{ range $data }}
+            <tr>
+                <!-- Service -->
+                <td>{{ .service_name }} (<small>{{.service}}</small>)</td>
+                <!-- Resource -->
+                <td>{{ .name }} (<small>{{.type}}</small>)</td>
+                <!-- Properties Replication  -->
+                <td class="coverage-shadow-overlay-green">
+                    {{ if or (eq .properties_replication true)  -}}
+                    ✔️
+                    {{ end }}
+                </td>
+                <!-- Data Replication -->
+                <td class="coverage-shadow-overlay-green">{{ if (.data_replication) }} ✔️ {{ end }}</td>
+                <!-- Relationships -->
+                <td>
+                    {{ $relations := .supported_relations }}
+                    {{ range $relations }}
+                        <b>{{.property_name}}:</b>{{.type}}<br/>
+                    {{end -}}
+                </td>
+            </tr>
+            {{ end -}}
+        </tbody>
+    </table>
+    <br/>
+</div>
