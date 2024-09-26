@@ -22,7 +22,7 @@ This guide will show you how to set up local AWS resources using both the `pulum
 
 {{< callout >}}
 `pulumi-local` currently does not support the `aws-native` package as it relies on the AWS Cloud Control API.
-Follow the [issue](https://github.com/localstack/localstack/issues/11523).
+For additional information, refer to the [GitHub issue](https://github.com/localstack/localstack/issues/11523).
 {{< /callout >}}
 
 `pulumilocal` is a wrapper for the `pulumi` command line interface, facilitating the use of Pulumi with LocalStack.
