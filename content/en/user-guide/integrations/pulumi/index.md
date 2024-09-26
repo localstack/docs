@@ -20,6 +20,11 @@ This guide will show you how to set up local AWS resources using both the `pulum
 
 ## `pulumilocal` wrapper script
 
+{{< callout >}}
+`pulumi-local` currently does not support the `aws-native` package as it relies on the AWS Cloud Control API.
+For additional information, refer to the [GitHub issue](https://github.com/localstack/localstack/issues/11523).
+{{< /callout >}}
+
 `pulumilocal` is a wrapper for the `pulumi` command line interface, facilitating the use of Pulumi with LocalStack.
 When executing deployment commands like `pulumilocal ["up", "destroy", "preview", "cancel"]`, the script configures the Pulumi settings for LocalStack and runs the specified Pulumi command.
 
