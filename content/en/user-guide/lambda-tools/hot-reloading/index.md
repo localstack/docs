@@ -45,9 +45,8 @@ When hot reloading is active for a Lambda layer (Pro), the function can use at m
 {{< callout >}}
 The file sharing mechanism in Rancher Desktop or Colima distributions requires additional configuration for Lambda to be reloaded automatically.
 
-- For Rancher Desktop it is required to set the configuration `LAMBDA_DOCKER_FLAGS=-e LOCALSTACK_FILE_WATCHER_STRATEGY=polling`.
-
-- In case of Colima, we recommend starting it with Virtiofs mount type like this: `colima start --vm-type vz --mount-type virtiofs`.
+* For Rancher Desktop it is required to set the configuration `LAMBDA_DOCKER_FLAGS=-e LOCALSTACK_FILE_WATCHER_STRATEGY=polling`.
+* In case of Colima, we recommend starting it with Virtiofs mount type like this: `colima start --vm-type vz --mount-type virtiofs`.
 
 More information about this behavior can be found in the following [GitHub issue.](https://github.com/localstack/localstack/issues/11415#issuecomment-2341140998)
 
