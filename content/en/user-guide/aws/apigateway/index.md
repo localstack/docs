@@ -210,12 +210,13 @@ $ curl -X GET http://localhost:4566/restapis/<REST_API_ID>/test/_user_request_/t
 
 {{< callout >}}
 
-Since [3.8.0](link here), LocalStack supports a new API Gateway implementation for both API Gateway v1 (REST API) and v2 (HTTP API). 
+Since [3.8.0](link here), LocalStack supports a new API Gateway implementation for both API Gateway v1 (REST API) and v2 (HTTP API).
 
 You can [set the following flag]({{< ref "configuration" >}}) `PROVIDER_OVERRIDE_APIGATEWAY=next_gen` to use the new implementation.
 {{< /callout >}}
 
-We're entirely reworked how REST and HTTP APIs are invoked, to closely match the behavior on AWS. This new implementation has improved parity on several key areas:
+We're entirely reworked how REST and HTTP APIs are invoked, to closely match the behavior on AWS.
+This new implementation has improved parity on several key areas:
 
 - for [REST APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-rest-api.html):
   - properly applying the [request and response data mappings](https://docs.aws.amazon.com/apigateway/latest/developerguide/request-response-data-mappings.html) for all integrations
@@ -238,7 +239,8 @@ We're entirely reworked how REST and HTTP APIs are invoked, to closely match the
 
 Currently, [WebSockets APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html) are still using the default implementation.
 
-As we're closely following AWS, for REST and HTTP APIs, you now need to create a deployment in order for your API to be reachable. Thanks to this improvement, you can now create different stages point to different deployments of your API (for example, `dev` and `production`) with different settings and stage variables, and those will be reflected in LocalStack.
+As we're closely following AWS, for REST and HTTP APIs, you now need to create a deployment in order for your API to be reachable.
+Thanks to this improvement, you can now create different stages point to different deployments of your API (for example, `dev` and `production`) with different settings and stage variables, and those will be reflected in LocalStack.
 
 ## LocalStack features
 
