@@ -206,6 +206,40 @@ $ curl -X GET http://localhost:4566/restapis/<REST_API_ID>/test/_user_request_/t
 {"message":"Hello World"}
 {{< /command >}}
 
+## New API Gateway implementation
+
+{{< callout >}}
+
+Since [3.8.0](link here), LocalStack supports a new API Gateway implementation for both API Gateway v1 (REST API) and v2 (HTTP API). 
+
+You can [set the following flag]({{< ref "configuration" >}}) `PROVIDER_OVERRIDE_APIGATEWAY=next_gen` to use the new implementation.
+{{< /callout >}}
+
+We're entirely reworked how REST and HTTP APIs are invoked, to closely match the behavior on AWS. This new implementation has improved parity on several key areas:
+
+- for [REST APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-rest-api.html):
+  - properly applying the [request and response data mappings](https://docs.aws.amazon.com/apigateway/latest/developerguide/request-response-data-mappings.html) for all integrations
+  - better parity for VTL template rendering ([Mapping Templates](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)) for the integrations supporting it (`AWS`, `HTTP` and `MOCK`)
+  - properly supporting [Mapping Templates overrides](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-override-request-response-parameters.html)
+  - better parity for `AWS_PROXY` integration payloads
+  - out of the box support for most of `AWS` integrations
+  - support for [Gateway Responses](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-gatewayResponse-definition.html)
+    - we currently only support overriding the Status Code and returning the proper exception, and do not apply mapping template (response body) or parameter mappings (response headers)
+- for [HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api.html):
+  - better validation and parity for most API operations related to HTTP APIs
+  - better parity and properly applying [request and response Parameter Mappings](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html) for all integrations
+  - we've properly implemented the `AWS_PROXY` [Lambda integration](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html) and `REQUEST` [Lambda Authorizer](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html) payloads to be fully on parity with AWS
+  - better [routing](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-routes.html) handling
+  - better [CORS](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html) handling, especially around automatic `OPTIONS` responses
+  - support for [automatic deployments](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-stages.html) of your stages
+- For both REST and HTTP APIs:
+  - support Stage and Deployments, meaning you can now have different stages pointing to different deployments like in AWS
+  - better logging on the different steps in the LocalStack logs
+
+Currently, [WebSockets APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html) are still using the default implementation.
+
+As we're closely following AWS, for REST and HTTP APIs, you now need to create a deployment in order for your API to be reachable. Thanks to this improvement, you can now create different stages point to different deployments of your API (for example, `dev` and `production`) with different settings and stage variables, and those will be reflected in LocalStack.
+
 ## LocalStack features
 
 LocalStack provides additional features and functionality on top of the official AWS APIs, to help you develop, debug, and test your local API Gateway APIs.
@@ -254,7 +288,7 @@ http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/local/my/path2
 ```
 
 Note that the local stage ID is added in this example.
-Adding the stage ID is required for API Gateway V1 APIs, but optional for API Gateway V2 APIs (in case they include the wildcard `$default` stage).
+Adding the stage ID is required for API Gateway V1 APIs, but optional for API Gateway V2 APIs (in case a `$default` stage is created).
 For v2 APIs, the following URL should also work:
 
 ```shell
@@ -262,6 +296,16 @@ http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/my/path1
 ```
 
 #### Alternative URL format
+
+{{< callout >}}
+If you are using the [new API Gateway implementation]({{< ref "#new-api-gateway-implementation" >}}), the `_user_request_` format is deprecated, and you should use the following:
+
+```shell
+http://localhost:4566/_aws/execute-api/<apiId>/<stageId>/<path>
+```
+
+This new endpoint more closely resembles the recommended URL format, and allows you to use HTTP APIs with a `$default` stage.
+{{< /callout >}}
 
 The alternative URL format is an endpoint with the predefined path marker `_user_request_`:
 
