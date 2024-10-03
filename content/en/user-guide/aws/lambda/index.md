@@ -188,7 +188,7 @@ The new ESM v2 implementation is also compatible with the Java-based event patte
 The improvements over ESM v1 include:
 - Improved reliability through internal retries and separation of concern such that single exceptions or timeouts don't affect other event source mappings.
 - Improved performance by enabling concurrent event source mappings rather than having a single thread handling everything.
-- Improved AWS parity, for example related to filtering, SQS polling, and (partial) batch failure handling.
+- Improved AWS parity, related to events filtering, configuring failure destinations, (partial) batch failure handling, and SQS, Kinesis, & DynamoDB Streams events polling.
 - Improved Kafka support for Amazon MSK and Self-Managed Kafka.
 
 Create a [GitHub issue](https://github.com/localstack/localstack/issues/new/choose) or reach out to [LocalStack support](https://docs.localstack.cloud/getting-started/help-and-support/) if you experience any challenges.
