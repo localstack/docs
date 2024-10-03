@@ -71,6 +71,12 @@ Options to configure how LocalStack interacts with Docker.
 
 This section covers configuration options that are specific to certain AWS services.
 
+### API Gateway
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `PROVIDER_OVERRIDE_APIGATEWAY` | `next_gen` | Use [the new API Gateway implementation]({{< ref "user-guide/aws/apigateway#new-api-gateway-implementation" >}}) for both API Gateway v1 and v2, available since LocalStack 3.8. |
+
 ### AppSync
 
 | Variable | Example Values | Description |
