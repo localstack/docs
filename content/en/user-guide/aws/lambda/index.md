@@ -180,25 +180,20 @@ The following event sources are supported in LocalStack:
 - [Managed Streaming for Apache Kafka (MSK)](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
 - [Simple Queue Service (SQS)](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
 
-### New Lambda Event Source Mapping implementation (Preview)
+### New Lambda Event Source Mapping implementation
 
-LocalStack now supports a new implementation for [Lambda Event Source Mapping](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) (ESM) with improved reliability, performance, and AWS parity.
-You can use the `LAMBDA_EVENT_SOURCE_MAPPING=v2` configuration variable to use the new ESM implementation.
-The ESM v2 implementation is also compatible with the Java-based event pattern rule engine (`EVENT_RULE_ENGINE=java`).
-However, the new ESM implementation is still in preview and may not support all features.
+Since v3.8, LocalStack uses a new default implementation for [Lambda Event Source Mapping](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) (ESM) with improved reliability, performance, and AWS parity.
+The new ESM v2 implementation is also compatible with the Java-based event pattern rule engine (`EVENT_RULE_ENGINE=java`) for better event filtering.
 
 The improvements over ESM v1 include:
 - Improved reliability through internal retries and separation of concern such that single exceptions or timeouts don't affect other event source mappings.
 - Improved performance by enabling concurrent event source mappings rather than having a single thread handling everything.
-- Improved AWS parity, for example related to filtering and SQS polling.
+- Improved AWS parity, for example related to filtering, SQS polling, and (partial) batch failure handling.
+- Improved Kafka support for Amazon MSK and Self-Managed Kafka.
 
-The limitations compared to ESM v1 include:
-- Lambda Failure Destinations do not yet support FIFO SQS queues and SNS topics.
-- Lambda Failure Destination Messages do not yet match the AWS structure, using a `context` similar to EventBridge Pipes instead of `requestContext` and `responseContext`.
-- Partial Batch Responses using `FunctionResponseTypes` are not yet fully supported.
-- Managed Streaming for Apache Kafka (MSK) event source is not yet supported.
-- ESM Lifecycle State Updates only provide basic support for state updates, such as no failure states, and `LastProcessingResult` is not consistently updated.
-- Persistence is not yet supported
+Create a [GitHub issue](https://github.com/localstack/localstack/issues/new/choose) or reach out to [LocalStack support](https://docs.localstack.cloud/getting-started/help-and-support/) if you experience any challenges.
+You can temporarily switch back to the old implementation using the configuration `LAMBDA_EVENT_SOURCE_MAPPING=v1`.
+The old implementation won't be available in the next major release.
 
 The limitations compared to AWS include:
 - Lambda Success Destinations are not supported.
