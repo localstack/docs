@@ -151,6 +151,7 @@ At this time LocalStack supports the following [target types](https://docs.aws.a
 - API destination
 - Kinesis
 - CloudWatch log group
+- API Gateway
 
 ## Resource Browser
 
