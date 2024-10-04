@@ -33,6 +33,7 @@ which can be released as patch version because we are committed to make LocalSta
 
 | Version  | Release Date       | Release Notes                                                                                      |
 |----------|--------------------|----------------------------------------------------------------------------------------------------|
+| `v3.8.0` | October 3, 2024    | [v3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/)                                |
 | `v3.7.0` | August 29, 2024    | [v3.7.0](https://blog.localstack.cloud/2024-08-29-localstack-release-v-3-7-0/)                     |
 | `v3.6.0` | July 25, 2024      | [v3.6.0](https://discuss.localstack.cloud/t/localstack-release-v3-6-0/997)                         |
 | `v3.5.0` | June 13, 2024      | [v3.5.0](https://discuss.localstack.cloud/t/localstack-release-v3-5-0/947)                         |
