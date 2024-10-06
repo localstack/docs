@@ -210,7 +210,7 @@ $ curl -X GET http://localhost:4566/restapis/<REST_API_ID>/test/_user_request_/t
 
 {{< callout >}}
 
-Since [3.8.0](link here), LocalStack supports a new API Gateway implementation for both API Gateway v1 (REST API) and v2 (HTTP API).
+Since [3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/#new-api-gateway-provider), LocalStack supports a new API Gateway implementation for both API Gateway v1 (REST API) and v2 (HTTP API).
 
 You can [set the following flag]({{< ref "configuration#api-gateway" >}}) `PROVIDER_OVERRIDE_APIGATEWAY=next_gen` to use the new implementation.
 {{< /callout >}}
