@@ -8,7 +8,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -20,7 +20,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -32,7 +32,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -68,7 +68,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -80,7 +80,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -92,7 +92,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -104,7 +104,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -128,7 +128,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -152,7 +152,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -250,7 +250,7 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_custom_domain_dns_resolution",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_custom_domain_dns_resolution",
             "test": "test_custom_domain_dns_resolution",
             "response": "200",
             "error": "",
@@ -267,6 +267,26 @@
             "snapshot_skipped": "['$..DomainNameConfigurations..ApiGatewayDomainName', '$..DomainNameConfigurations..CertificateArn', '$..DomainNameConfigurations..HostedZoneId']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_custom_domain.py::TestApigatewayV2CustomDomain::test_custom_domains_outside_of_cert[<random>.example.com]",
+            "test": "test_custom_domains_outside_of_cert[<random>.example.com]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_custom_domain.py::TestApigatewayV2CustomDomain::test_custom_domains_outside_of_cert[<random>.localhost]",
+            "test": "test_custom_domains_outside_of_cert[<random>.localhost]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -412,7 +432,7 @@
       "Certificate, CertificateChain, PrivateKey": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_custom_domain_dns_resolution",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_custom_domain_dns_resolution",
             "test": "test_custom_domain_dns_resolution",
             "response": "200",
             "error": "",
@@ -422,11 +442,11 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_delete_domain_name_deletes_mapping",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_delete_domain_name_deletes_mapping",
             "test": "test_delete_domain_name_deletes_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ResponseMetadata.HTTPStatusCode']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -439,6 +459,36 @@
             "snapshot_skipped": "['$..DomainNameConfigurations..ApiGatewayDomainName', '$..DomainNameConfigurations..CertificateArn', '$..DomainNameConfigurations..HostedZoneId']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_custom_domain.py::TestApigatewayV2CustomDomain::test_custom_domains",
+            "test": "test_custom_domains",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body', '$..headers', '$..multiValueHeaders.Connection', '$..multiValueHeaders.X-Amzn-Trace-Id', '$..multiValueHeaders.X-Forwarded-Port', '$..multiValueHeaders.X-Forwarded-Proto', '$..multiValueHeaders.x-localstack-edge', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..rawPath', '$..requestContext.authorizer', '$..requestContext.eventType', '$..requestContext.extendedRequestId', '$..requestContext.identity', '$..requestContext.messageId', '$..requestContext.path', '$..requestContext.requestId', '$..requestContext.resourceId', '$..requestContext.resourcePath', '$..requestContext.routeKey', '$..requestContext.version', '$..stageVariables', '$..ApiMappingKey', '$..HostedZoneId', '$.invocation-v2-base-path-dev.requestContext.http.path']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_custom_domain.py::TestApigatewayV2CustomDomain::test_custom_domains_outside_of_cert[<random>.example.com]",
+            "test": "test_custom_domains_outside_of_cert[<random>.example.com]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_custom_domain.py::TestApigatewayV2CustomDomain::test_custom_domains_outside_of_cert[<random>.localhost]",
+            "test": "test_custom_domains_outside_of_cert[<random>.localhost]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -632,250 +682,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          }
-        ]
-      },
-      "DomainName, IdempotencyToken, ValidationMethod": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.example.com-1.0]",
-            "test": "test_custom_domains[--<random>.example.com-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.example.com-2.0]",
-            "test": "test_custom_domains[--<random>.example.com-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.localhost-1.0]",
-            "test": "test_custom_domains[--<random>.localhost-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.localhost-2.0]",
-            "test": "test_custom_domains[--<random>.localhost-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.localhost.localstack.cloud-1.0]",
-            "test": "test_custom_domains[--<random>.localhost.localstack.cloud-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.localhost.localstack.cloud-2.0]",
-            "test": "test_custom_domains[--<random>.localhost.localstack.cloud-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.example.com-1.0]",
-            "test": "test_custom_domains[-base1-<random>.example.com-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.example.com-2.0]",
-            "test": "test_custom_domains[-base1-<random>.example.com-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.localhost-1.0]",
-            "test": "test_custom_domains[-base1-<random>.localhost-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.localhost-2.0]",
-            "test": "test_custom_domains[-base1-<random>.localhost-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.localhost.localstack.cloud-1.0]",
-            "test": "test_custom_domains[-base1-<random>.localhost.localstack.cloud-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.localhost.localstack.cloud-2.0]",
-            "test": "test_custom_domains[-base1-<random>.localhost.localstack.cloud-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.example.com-1.0]",
-            "test": "test_custom_domains[stage1--<random>.example.com-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.example.com-2.0]",
-            "test": "test_custom_domains[stage1--<random>.example.com-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.localhost-1.0]",
-            "test": "test_custom_domains[stage1--<random>.localhost-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.localhost-2.0]",
-            "test": "test_custom_domains[stage1--<random>.localhost-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.localhost.localstack.cloud-1.0]",
-            "test": "test_custom_domains[stage1--<random>.localhost.localstack.cloud-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.localhost.localstack.cloud-2.0]",
-            "test": "test_custom_domains[stage1--<random>.localhost.localstack.cloud-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.example.com-1.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.example.com-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.example.com-2.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.example.com-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.localhost-1.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.localhost-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.localhost-2.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.localhost-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.localhost.localstack.cloud-1.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.localhost.localstack.cloud-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.localhost.localstack.cloud-2.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.localhost.localstack.cloud-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ]
       },
