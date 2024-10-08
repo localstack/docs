@@ -24,6 +24,11 @@ For non-technical issues, such as billing or account inquiries, please contact s
 
 We welcome any feedback as we continue to improve LocalStack for all users.
 
+{{< callout >}}
+At the moment, we only provide support in `English`, as we are an international team with members from various regions.
+ This allows us to maintain clear and consistent internal communication across all our locations.
+{{< /callout >}}
+
 ## Support Coverage
 
 | Plan                | Tier |
