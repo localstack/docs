@@ -47,8 +47,8 @@ LocalStack supports a wide range of AWS regions, including commercial, governmen
 | af-south-1      | ✔️         |                                              |
 | me-south-1      | ✔️         |                                              |
 | me-central-1    | ✔️         |                                              |
-| cn-north-1      | ✔️         |                                              |
-| cn-northwest-1  | ✔️         |                                              |
+| cn-north-1      | ✔️         | Available in LocalStack Enterprise only    |
+| cn-northwest-1  | ✔️         | Available in LocalStack Enterprise only    |
 | us-gov-east-1   | ✔️         | Available in LocalStack Enterprise only    |
 | us-gov-west-1   | ✔️         | Available in LocalStack Enterprise only    |
 | il-central-1    | ✔️         |                                              |
