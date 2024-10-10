@@ -24,7 +24,6 @@ For non-technical issues, such as billing or account inquiries, please contact s
 
 We welcome any feedback as we continue to improve LocalStack for all users.
 
-
 ## Support Coverage
 
 | Plan                | Tier |
@@ -71,7 +70,7 @@ We welcome any feedback as we continue to improve LocalStack for all users.
 
 Our support team comprises highly qualified experts who possess extensive expertise in AWS and other pertinent tools.
 We utilize a range of resources, including documentation, knowledge bases, and industry best practices, to provide you with accurate and reliable guidance.
-However, please note that our support is provided only in `English`, and our resources are subject to availability. 
+However, please note that our support is provided only in `English`, and our resources are subject to availability.
 Therefore, our best effort support is provided asynchronously, and inquiries may be prioritized based on urgency and impact.
 
 ## Support plans
