@@ -24,10 +24,6 @@ For non-technical issues, such as billing or account inquiries, please contact s
 
 We welcome any feedback as we continue to improve LocalStack for all users.
 
-{{< callout >}}
-At the moment, we only provide support in `English`, as we are an international team with members from various regions.
- This allows us to maintain clear and consistent internal communication across all our locations.
-{{< /callout >}}
 
 ## Support Coverage
 
@@ -75,8 +71,8 @@ At the moment, we only provide support in `English`, as we are an international 
 
 Our support team comprises highly qualified experts who possess extensive expertise in AWS and other pertinent tools.
 We utilize a range of resources, including documentation, knowledge bases, and industry best practices, to provide you with accurate and reliable guidance.
-However, please note that our support resources are subject to availability, therefore our best effort support is provided asynchronously.
-Inquiries may be prioritized based on urgency and impact.
+However, please note that our support is provided only in `English`, and our resources are subject to availability. 
+Therefore, our best effort support is provided asynchronously, and inquiries may be prioritized based on urgency and impact.
 
 ## Support plans
 
