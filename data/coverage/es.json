@@ -246,10 +246,10 @@
       "DescribeElasticsearchDomains": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
+        "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -685,6 +685,62 @@
             "snapshot_skipped": "['$..DomainStatus.AdvancedSecurityOptions.AnonymousAuthEnabled', '$..DomainStatus.AutoTuneOptions.State', '$..DomainStatus.ChangeProgressDetails', '$..DomainStatus.DomainProcessingStatus', '$..DomainStatus.EBSOptions.VolumeSize', '$..DomainStatus.ElasticsearchClusterConfig.DedicatedMasterCount', '$..DomainStatus.ElasticsearchClusterConfig.InstanceCount', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessConfig', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessEnabled', '$..DomainStatus.Endpoint', '$..DomainStatus.ModifyingProperties', '$..DomainStatus.Processing', '$..DomainStatus.ServiceSoftwareOptions.CurrentVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeElasticsearchDomains": {
+      "DomainNames": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_elasticsearch",
+            "test": "test_enforce_policy_elasticsearch",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_elasticsearch_two_domains",
+            "test": "test_enforce_policy_elasticsearch_two_domains",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_elasticsearch_two_domains_two_policies",
+            "test": "test_enforce_policy_elasticsearch_two_domains_two_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_elasticsearch",
+            "test": "test_enforce_policy_elasticsearch",
+            "response": "400",
+            "error": "AccessDeniedException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_elasticsearch_two_domains",
+            "test": "test_enforce_policy_elasticsearch_two_domains",
+            "response": "400",
+            "error": "AccessDeniedException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]

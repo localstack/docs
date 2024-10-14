@@ -6,11 +6,11 @@
       "CreateApp": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -210,11 +210,11 @@
       "DeleteApp": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -366,11 +366,11 @@
       "DeleteSmsChannel": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -486,11 +486,11 @@
       "GetApp": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -954,11 +954,11 @@
       "GetSmsChannel": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1398,11 +1398,11 @@
       "UpdateSmsChannel": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1467,5 +1467,302 @@
       }
     }
   ],
-  "details": {}
+  "details": {
+    "CreateApp": {
+      "CreateApplicationRequest": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpoint::test_pinpoint_app_operations",
+            "test": "test_pinpoint_app_operations",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.get_app_response.ApplicationResponse.tags', '$.delete_app_response.ApplicationResponse.tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_lifecycle",
+            "test": "test_pinpoint_sms_channel_lifecycle",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_multiple_delete",
+            "test": "test_pinpoint_sms_channel_multiple_delete",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_versions",
+            "test": "test_pinpoint_sms_channel_versions",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_update_sms_channel_validation",
+            "test": "test_pinpoint_update_sms_channel_validation",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message', '$..Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteApp": {
+      "ApplicationId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpoint::test_pinpoint_app_operations",
+            "test": "test_pinpoint_app_operations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.get_app_response.ApplicationResponse.tags', '$.delete_app_response.ApplicationResponse.tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_lifecycle",
+            "test": "test_pinpoint_sms_channel_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_multiple_delete",
+            "test": "test_pinpoint_sms_channel_multiple_delete",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_versions",
+            "test": "test_pinpoint_sms_channel_versions",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_update_sms_channel_validation",
+            "test": "test_pinpoint_update_sms_channel_validation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message', '$..Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpoint::test_pinpoint_app_operations",
+            "test": "test_pinpoint_app_operations",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "['$.get_app_response.ApplicationResponse.tags', '$.delete_app_response.ApplicationResponse.tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpoint::test_pinpoint_app_operations_on_non_existent_app",
+            "test": "test_pinpoint_app_operations_on_non_existent_app",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "['$..RequestID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteSmsChannel": {
+      "ApplicationId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_lifecycle",
+            "test": "test_pinpoint_sms_channel_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_multiple_delete",
+            "test": "test_pinpoint_sms_channel_multiple_delete",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_versions",
+            "test": "test_pinpoint_sms_channel_versions",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_non_existent_app",
+            "test": "test_pinpoint_sms_channel_non_existent_app",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetApp": {
+      "ApplicationId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpoint::test_pinpoint_app_operations",
+            "test": "test_pinpoint_app_operations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.get_app_response.ApplicationResponse.tags', '$.delete_app_response.ApplicationResponse.tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpoint::test_pinpoint_app_operations_on_non_existent_app",
+            "test": "test_pinpoint_app_operations_on_non_existent_app",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "['$..RequestID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetSmsChannel": {
+      "ApplicationId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_lifecycle",
+            "test": "test_pinpoint_sms_channel_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_lifecycle",
+            "test": "test_pinpoint_sms_channel_lifecycle",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_non_existent_app",
+            "test": "test_pinpoint_sms_channel_non_existent_app",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdateSmsChannel": {
+      "ApplicationId, SMSChannelRequest": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_lifecycle",
+            "test": "test_pinpoint_sms_channel_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_versions",
+            "test": "test_pinpoint_sms_channel_versions",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_update_sms_channel_validation",
+            "test": "test_pinpoint_update_sms_channel_validation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message', '$..Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_update_sms_channel_validation",
+            "test": "test_pinpoint_update_sms_channel_validation",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "['$..Error.Message', '$..Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pinpoint/test_pinpoint.py::TestPinpointSMSChannel::test_pinpoint_sms_channel_non_existent_app",
+            "test": "test_pinpoint_sms_channel_non_existent_app",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    }
+  }
 }

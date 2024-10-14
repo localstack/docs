@@ -30,7 +30,7 @@
       "AddApplicationInputProcessingConfiguration": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -102,7 +102,7 @@
       "DeleteApplicationInputProcessingConfiguration": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -162,7 +162,7 @@
       "ListApplications": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": false,
@@ -174,7 +174,7 @@
       "ListTagsForResource": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": false,
@@ -210,7 +210,7 @@
       "TagResource": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -222,7 +222,7 @@
       "UntagResource": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -234,7 +234,7 @@
       "UpdateApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": false,
@@ -244,6 +244,22 @@
     }
   ],
   "details": {
+    "AddApplicationInputProcessingConfiguration": {
+      "ApplicationName, CurrentApplicationVersionId, InputId, InputProcessingConfiguration": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_input_processing_configuration",
+            "test": "test_input_processing_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "AddApplicationOutput": {
       "ApplicationName, CurrentApplicationVersionId, Output": {
         "ls_pro": [
@@ -261,6 +277,40 @@
       }
     },
     "CreateApplication": {
+      "ApplicationCode, ApplicationDescription, ApplicationName, Inputs, Outputs": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_input_processing_configuration",
+            "test": "test_input_processing_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_list_and_update_applications",
+            "test": "test_list_and_update_applications",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_tag_list_tag_untag_resource",
+            "test": "test_tag_list_tag_untag_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
       "ApplicationDescription, ApplicationName, Inputs": {
         "ls_pro": [
           {
@@ -288,6 +338,52 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_input_processing_configuration",
+            "test": "test_input_processing_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_list_and_update_applications",
+            "test": "test_list_and_update_applications",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_tag_list_tag_untag_resource",
+            "test": "test_tag_list_tag_untag_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteApplicationInputProcessingConfiguration": {
+      "ApplicationName, CurrentApplicationVersionId, InputId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_input_processing_configuration",
+            "test": "test_input_processing_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       }
@@ -329,6 +425,116 @@
             "snapshot_skipped": "['$..ApplicationDetail']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_input_processing_configuration",
+            "test": "test_input_processing_configuration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_list_and_update_applications",
+            "test": "test_list_and_update_applications",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_tag_list_tag_untag_resource",
+            "test": "test_tag_list_tag_untag_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListApplications": {
+      "- (without any parameters)": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_list_and_update_applications",
+            "test": "test_list_and_update_applications",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListTagsForResource": {
+      "ResourceARN": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_tag_list_tag_untag_resource",
+            "test": "test_tag_list_tag_untag_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "TagResource": {
+      "ResourceARN, Tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_tag_list_tag_untag_resource",
+            "test": "test_tag_list_tag_untag_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UntagResource": {
+      "ResourceARN, TagKeys": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_tag_list_tag_untag_resource",
+            "test": "test_tag_list_tag_untag_resource",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdateApplication": {
+      "ApplicationName, ApplicationUpdate, CurrentApplicationVersionId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_list_and_update_applications",
+            "test": "test_list_and_update_applications",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
