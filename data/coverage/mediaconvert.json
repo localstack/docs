@@ -30,11 +30,11 @@
       "CreateJob": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -66,11 +66,11 @@
       "CreateQueue": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -114,11 +114,11 @@
       "DeleteQueue": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -150,11 +150,11 @@
       "GetJob": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -222,11 +222,11 @@
       "ListJobs": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -246,10 +246,10 @@
       "ListQueues": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
+        "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -363,5 +363,256 @@
       }
     }
   ],
-  "details": {}
+  "details": {
+    "CreateJob": {
+      "AccelerationSettings, ClientRequestToken, Priority, Queue, Role, Settings, StatusUpdateInterval, UserMetadata": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestTranscode::test_run_transcode_events",
+            "test": "test_run_transcode_events",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..OutputGroupDetails', '$..Timing.FinishTime', '$..Timing.StartTime', '$..UserMetadata', '$..Warnings', '$..Body.detail.blackVideoDetected', '$..Body.detail.outputGroupDetails', '$..Body.detail.paddingInserted', '$..Body.detail.timestamp', '$..Body.detail.userMetadata', '$..Body.detail.warnings']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestTranscode::test_run_transcode_polling",
+            "test": "test_run_transcode_polling",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..UserMetadata', '$..Job.OutputGroupDetails', '$..Job.Timing.FinishTime', '$..Job.Timing.StartTime', '$..Job.Warnings']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ClientRequestToken, Queue, Role, Settings": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestJobsCrud::test_create_job",
+            "test": "test_create_job",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestJobsCrud::test_list_jobs",
+            "test": "test_list_jobs",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..UserMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreateQueue": {
+      "Description, Name": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestJobsCrud::test_create_job",
+            "test": "test_create_job",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestJobsCrud::test_list_jobs",
+            "test": "test_list_jobs",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..UserMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestQueuesCrud::test_create_queue",
+            "test": "test_create_queue",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestQueuesCrud::test_list_queues",
+            "test": "test_list_queues",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestTranscode::test_run_transcode_events",
+            "test": "test_run_transcode_events",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..OutputGroupDetails', '$..Timing.FinishTime', '$..Timing.StartTime', '$..UserMetadata', '$..Warnings', '$..Body.detail.blackVideoDetected', '$..Body.detail.outputGroupDetails', '$..Body.detail.paddingInserted', '$..Body.detail.timestamp', '$..Body.detail.userMetadata', '$..Body.detail.warnings']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestTranscode::test_run_transcode_polling",
+            "test": "test_run_transcode_polling",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..UserMetadata', '$..Job.OutputGroupDetails', '$..Job.Timing.FinishTime', '$..Job.Timing.StartTime', '$..Job.Warnings']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteQueue": {
+      "Name": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestJobsCrud::test_create_job",
+            "test": "test_create_job",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestJobsCrud::test_list_jobs",
+            "test": "test_list_jobs",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..UserMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestQueuesCrud::test_create_queue",
+            "test": "test_create_queue",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestQueuesCrud::test_list_queues",
+            "test": "test_list_queues",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestTranscode::test_run_transcode_events",
+            "test": "test_run_transcode_events",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..OutputGroupDetails', '$..Timing.FinishTime', '$..Timing.StartTime', '$..UserMetadata', '$..Warnings', '$..Body.detail.blackVideoDetected', '$..Body.detail.outputGroupDetails', '$..Body.detail.paddingInserted', '$..Body.detail.timestamp', '$..Body.detail.userMetadata', '$..Body.detail.warnings']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestTranscode::test_run_transcode_polling",
+            "test": "test_run_transcode_polling",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..UserMetadata', '$..Job.OutputGroupDetails', '$..Job.Timing.FinishTime', '$..Job.Timing.StartTime', '$..Job.Warnings']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestQueuesCrud::test_delete_default_queue",
+            "test": "test_delete_default_queue",
+            "response": "403",
+            "error": "ForbiddenException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetJob": {
+      "Id": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestTranscode::test_run_transcode_events",
+            "test": "test_run_transcode_events",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..OutputGroupDetails', '$..Timing.FinishTime', '$..Timing.StartTime', '$..UserMetadata', '$..Warnings', '$..Body.detail.blackVideoDetected', '$..Body.detail.outputGroupDetails', '$..Body.detail.paddingInserted', '$..Body.detail.timestamp', '$..Body.detail.userMetadata', '$..Body.detail.warnings']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestTranscode::test_run_transcode_polling",
+            "test": "test_run_transcode_polling",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..UserMetadata', '$..Job.OutputGroupDetails', '$..Job.Timing.FinishTime', '$..Job.Timing.StartTime', '$..Job.Warnings']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListJobs": {
+      "Queue": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestJobsCrud::test_list_jobs",
+            "test": "test_list_jobs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ClientRequestToken', '$..UserMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListQueues": {
+      "- (without any parameters)": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/mediaconvert/test_mediaconvert.py::TestQueuesCrud::test_list_queues",
+            "test": "test_list_queues",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    }
+  }
 }

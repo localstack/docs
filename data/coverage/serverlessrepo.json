@@ -6,11 +6,11 @@
       "CreateApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -18,7 +18,7 @@
       "CreateApplicationVersion": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -30,7 +30,7 @@
       "CreateCloudFormationChangeSet": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -42,7 +42,7 @@
       "CreateCloudFormationTemplate": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -54,11 +54,11 @@
       "DeleteApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -66,11 +66,11 @@
       "GetApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -90,7 +90,7 @@
       "GetCloudFormationTemplate": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -114,10 +114,10 @@
       "ListApplicationVersions": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
+        "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -126,7 +126,7 @@
       "ListApplications": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -171,5 +171,288 @@
       }
     }
   ],
-  "details": {}
+  "details": {
+    "CreateApplication": {
+      "Author, Description, Name": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_application_versions",
+            "test": "test_crud_application_versions",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_applications",
+            "test": "test_crud_applications",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepoParity::test_minimal_app_without_version",
+            "test": "test_minimal_app_without_version",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationId', '$..IsVerifiedAuthor', '$..Labels']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "Author, Description, Name, SemanticVersion, TemplateBody": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepoParity::test_minimal_app_with_version",
+            "test": "test_minimal_app_with_version",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationId', '$..IsVerifiedAuthor', '$..Labels', '$..Version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreateApplicationVersion": {
+      "ApplicationId, SemanticVersion": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_application_versions",
+            "test": "test_crud_application_versions",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreateCloudFormationChangeSet": {
+      "ApplicationId, Capabilities, ChangeSetName, ParameterOverrides, StackName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_create_cloud_formation_change_set",
+            "test": "test_create_cloud_formation_change_set",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreateCloudFormationTemplate": {
+      "ApplicationId, SemanticVersion": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_create_cloud_formation_change_set",
+            "test": "test_create_cloud_formation_change_set",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_formation_template",
+            "test": "test_crud_formation_template",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteApplication": {
+      "ApplicationId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_create_cloud_formation_change_set",
+            "test": "test_create_cloud_formation_change_set",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_application_versions",
+            "test": "test_crud_application_versions",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_applications",
+            "test": "test_crud_applications",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepoParity::test_minimal_app_with_version",
+            "test": "test_minimal_app_with_version",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationId', '$..IsVerifiedAuthor', '$..Labels', '$..Version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepoParity::test_minimal_app_without_version",
+            "test": "test_minimal_app_without_version",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationId', '$..IsVerifiedAuthor', '$..Labels']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetApplication": {
+      "ApplicationId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_applications",
+            "test": "test_crud_applications",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepoParity::test_minimal_app_with_version",
+            "test": "test_minimal_app_with_version",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationId', '$..IsVerifiedAuthor', '$..Labels', '$..Version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApplicationId, SemanticVersion": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepoParity::test_minimal_app_with_version",
+            "test": "test_minimal_app_with_version",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationId', '$..IsVerifiedAuthor', '$..Labels', '$..Version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetCloudFormationTemplate": {
+      "ApplicationId, TemplateId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_formation_template",
+            "test": "test_crud_formation_template",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListApplicationVersions": {
+      "ApplicationId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_application_versions",
+            "test": "test_crud_application_versions",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_lookup_predefined_application",
+            "test": "test_lookup_predefined_application",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_application_versions",
+            "test": "test_crud_application_versions",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_not_existing_version",
+            "test": "test_not_existing_version",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListApplications": {
+      "- (without any parameters)": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/serverlessrepo/test_serverlessrepo.py::TestServerlessRepo::test_crud_applications",
+            "test": "test_crud_applications",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    }
+  }
 }
