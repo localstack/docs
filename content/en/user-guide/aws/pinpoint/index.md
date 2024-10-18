@@ -98,11 +98,13 @@ The following output would be retrieved:
 
 The operations [`SentOTPMessage`](https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-otp.html#SendOTPMessage) and [`VerifyOTPMessage`](https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-verify-otp.html#VerifyOTPMessage) are used for one-time password (OTP) verification.
 
-On production AWS, `SendOTPMessage` sends an actual SMS text message with the OTP code.
+On production AWS, `SendOTPMessage` sends an SMS text message with the OTP code.
 The OTP can then be verified against the reference ID using `VerifyOTPMessage`
 
-LocalStack however can not send an actual SMS text message with the OTP code.
-There are alternative ways to retrieve the true OTP code as illustrated below:
+LocalStack however can not send real SMS text messages.
+Instead it provides alternative ways to retrieve the actual OTP code as illustrated below.
+
+Begin by making a OTP request:
 
 {{< command >}}
 $ awslocal pinpoint send-otp-message \
@@ -111,7 +113,7 @@ $ awslocal pinpoint send-otp-message \
       "BrandName": "LocalStack Community",
       "Channel": "SMS",
       "DestinationIdentity": "+1224364860",
-      "ReferenceId": "meetup2024",
+      "ReferenceId": "liftoffcampaign",
       "OriginationIdentity": "+1123581321",
       "CodeLength": 6,
       "AllowedAttempts": 3,
@@ -129,14 +131,14 @@ $ awslocal pinpoint send-otp-message \
 You can use the debug endpoint `/_aws/pinpoint/<application_id>/<reference_id>` to retrieve the OTP message details:
 
 {{< command >}}
-$ curl http://localhost:4566/_aws/pinpoint/fff5a801e01643c18a13a763e22a8fbf/meetup2024 | jq .
+$ curl http://localhost:4566/_aws/pinpoint/fff5a801e01643c18a13a763e22a8fbf/liftoffcampaign | jq .
 {
   "AllowedAttempts": 3,
   "BrandName": "LocalStack Community",
   "CodeLength": 6,
   "DestinationIdentity": "+1224364860",
   "OriginationIdentity": "+1123581321",
-  "ReferenceId": "meetup2024",
+  "ReferenceId": "liftoffcampaign",
   "ValidityPeriod": 2,
   "Attempts": 0,
   "ApplicationId": "fff5a801e01643c18a13a763e22a8fbf",
@@ -145,19 +147,19 @@ $ curl http://localhost:4566/_aws/pinpoint/fff5a801e01643c18a13a763e22a8fbf/meet
 }
 {{< /command >}}
 
-Futhermore, the OTP code is printed as an `INFO` level log message:
+The OTP code is also printed in an `INFO` level message in the LocalStack log output:
 
 ```text
-2024-10-17T11:08:24.044 INFO : OTP for application ID fff5a801e01643c18a13a763e22a8fbf reference ID meetup2024: 655745
+2024-10-17T11:08:24.044 INFO : OTP for application ID fff5a801e01643c18a13a763e22a8fbf reference ID liftoffcampaign: 655745
 ```
 
-It can then verified using:
+Finally, the OTP code can be verified using:
 
 {{< command >}}
 $ awslocal pinpoint verify-otp-message \
   --application-id fff5a801e01643c18a13a763e22a8fbf \
   --verify-otp-message-request-parameters '{
-      "ReferenceId": "meetup2024",
+      "ReferenceId": "liftoffcampaign",
       "DestinationIdentity": "+1224364860",
       "Otp": "655745"
   }'
@@ -170,5 +172,5 @@ $ awslocal pinpoint verify-otp-message \
 </disable-copy>
 {{< /command >}}
 
-When validating OTP codes, LocalStack accounts for the number of allowed attempts and the validity period.
+When validating OTP codes, LocalStack checks for the number of allowed attempts and the validity period.
 Unlike AWS, there is no lower limit for validity period.
