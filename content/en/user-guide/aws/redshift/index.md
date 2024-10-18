@@ -14,6 +14,10 @@ The query results can be saved to an S3 Data Lake while additional analytics can
 LocalStack allows you to use the RedShift APIs in your local environment to analyze structured and semi-structured data across local data warehouses and data lakes.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_redshift/), which provides information on the extent of RedShift's integration with LocalStack.
 
+{{< callout "Note" >}}
+The Community edition of LocalStack provides RedShift with mocked CRUD operations, while the Pro edition provides emulation capabilities.
+{{< /callout >}}
+
 ## Getting started
 
 This guide is designed for users new to RedShift and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
