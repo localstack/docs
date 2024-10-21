@@ -2718,16 +2718,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::test_failing_lambda_retries_after_visibility_timeout",
-            "test": "test_failing_lambda_retries_after_visibility_timeout",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda.py::TestLambdaBaseFeatures::test_large_payloads",
             "test": "test_large_payloads",
             "response": "200",
@@ -9120,11 +9110,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
+            "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10923,16 +10923,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Policy.IsAttachable', '$..Policy.PermissionsBoundaryUsageCount', '$..Policy.Tags']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::test_failing_lambda_retries_after_visibility_timeout",
-            "test": "test_failing_lambda_retries_after_visibility_timeout",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17030,11 +17020,21 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
+            "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18802,7 +18802,7 @@
             "test": "test_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18812,7 +18812,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18822,7 +18822,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18832,7 +18832,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18852,7 +18852,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18862,7 +18862,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18872,17 +18872,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::test_failing_lambda_retries_after_visibility_timeout",
-            "test": "test_failing_lambda_retries_after_visibility_timeout",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -25920,6 +25910,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
+            "test": "test_load_balancing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/glue/test_basic.py::TestGlueCrud::test_create_job_with_cloudformation",
             "test": "test_create_job_with_cloudformation",
             "response": "200",
@@ -28818,6 +28828,16 @@
       "PolicyArn": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/scenario/kinesis_firehose/test_kinesis_firehose.py::TestKinesisFirehoseScenario::test_kinesis_firehose_s3",
+            "test": "test_kinesis_firehose_s3",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_basic.py::TestAPIGateway::test_api_gateway_lambda_asynchronous_invocation",
             "test": "test_api_gateway_lambda_asynchronous_invocation",
             "response": "200",
@@ -29028,8 +29048,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_modules.py::TestExtensionsModules::test_module_usage",
-            "test": "test_module_usage",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_drift_detection.py::test_drift_detection_on_lambda",
+            "test": "test_drift_detection_on_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_resourcetypes.py::TestExtensionsResourceTypes::test_deploy_resource_type",
+            "test": "test_deploy_resource_type",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -29048,6 +29078,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/aws_iam_user/test_exploration.py::TestAttributeAccess::test_getatt[PermissionsBoundary]",
+            "test": "test_getatt[PermissionsBoundary]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/test_iam.py::test_managed_policy_with_empty_resource",
             "test": "test_managed_policy_with_empty_resource",
             "response": "200",
@@ -29056,26 +29096,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ssm/test_parameter.py::TestUpdates::test_update_without_replacement",
-            "test": "test_update_without_replacement",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_cloudtrail_trace.py::test_cloudtrail_trace_example",
-            "test": "test_cloudtrail_trace_example",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_to_default_eventbus_for_custom_eventbus",
@@ -32173,16 +32193,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_ecs_task_service.py::TestTaskServiceECS::test_run_task_sync_raise_failure",
-            "test": "test_run_task_sync_raise_failure",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Attachments..Details', '$..Attachments..Id', '$..Attachments..Status', '$..Attachments..Type', '$..AvailabilityZone', '$..ClusterArn', '$..Connectivity', '$..ConnectivityAt', '$..Cpu', '$..DesiredStatus', '$..ExecutionStoppedAt', '$..GpuIds', '$..Group', '$..HealthStatus', '$..ImageDigest', '$..InferenceAccelerators', '$..LastStatus', '$..ManagedAgents', '$..Memory', '$..NetworkInterfaces', '$..Overrides.ContainerOverrides', '$..Overrides.InferenceAcceleratorOverrides', '$..PlatformFamily', '$..PullStartedAt', '$..PullStoppedAt', '$..RuntimeId', '$..SdkHttpMetadata', '$..SdkResponseMetadata', '$..StartedAt', '$..StopCode', '$..StoppedAt', '$..StoppedReason', '$..StoppingAt', '$..TaskDefinitionArn', '$..Version', '$..parameters.Cluster']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35240,12 +35250,12 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
-            "test": "test_api_failure_with_latency",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_patterns.py::TestEcsFirelensStackFluentD::test_log_emission",
+            "test": "test_log_emission",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -35906,6 +35916,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/scenario/kinesis_firehose/test_kinesis_firehose.py::TestKinesisFirehoseScenario::test_kinesis_firehose_s3",
+            "test": "test_kinesis_firehose_s3",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/scenario/lambda_destination/test_lambda_destination_scenario.py::TestLambdaDestinationScenario::test_destination_sns",
             "test": "test_destination_sns",
             "response": "200",
@@ -36296,8 +36316,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_modules.py::TestExtensionsModules::test_module_usage",
-            "test": "test_module_usage",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_drift_detection.py::test_drift_detection_on_lambda",
+            "test": "test_drift_detection_on_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_resourcetypes.py::TestExtensionsResourceTypes::test_deploy_resource_type",
+            "test": "test_deploy_resource_type",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -36324,6 +36354,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/aws_iam_user/test_exploration.py::TestAttributeAccess::test_getatt[PermissionsBoundary]",
+            "test": "test_getatt[PermissionsBoundary]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/test_iam.py::test_cfn_handle_iam_role_resource_no_role_name",
@@ -36384,16 +36424,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ssm/test_parameter.py::TestUpdates::test_update_without_replacement",
-            "test": "test_update_without_replacement",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_apigateway.py::TestServerlessApigwLambda::test_serverless_like_deployment_with_update",
@@ -36796,16 +36826,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_cloudtrail_trace.py::test_cloudtrail_trace_example",
-            "test": "test_cloudtrail_trace_example",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_template_engine.py::TestMacros::test_capabilities_requirements",
             "test": "test_capabilities_requirements",
             "response": "200",
@@ -36980,7 +37000,7 @@
             "test": "test_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -36990,7 +37010,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37000,7 +37020,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37010,7 +37030,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37030,7 +37050,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37040,7 +37060,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37050,7 +37070,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -40186,16 +40206,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_ecs_task_service.py::TestTaskServiceECS::test_run_task_sync_raise_failure",
-            "test": "test_run_task_sync_raise_failure",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Attachments..Details', '$..Attachments..Id', '$..Attachments..Status', '$..Attachments..Type', '$..AvailabilityZone', '$..ClusterArn', '$..Connectivity', '$..ConnectivityAt', '$..Cpu', '$..DesiredStatus', '$..ExecutionStoppedAt', '$..GpuIds', '$..Group', '$..HealthStatus', '$..ImageDigest', '$..InferenceAccelerators', '$..LastStatus', '$..ManagedAgents', '$..Memory', '$..NetworkInterfaces', '$..Overrides.ContainerOverrides', '$..Overrides.InferenceAcceleratorOverrides', '$..PlatformFamily', '$..PullStartedAt', '$..PullStoppedAt', '$..RuntimeId', '$..SdkHttpMetadata', '$..SdkResponseMetadata', '$..StartedAt', '$..StopCode', '$..StoppedAt', '$..StoppedReason', '$..StoppingAt', '$..TaskDefinitionArn', '$..Version', '$..parameters.Cluster']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_events_task_service.py::TestTaskServiceEvents::test_put_events_base",
             "test": "test_put_events_base",
             "response": "200",
@@ -42918,6 +42928,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_get_wordpress",
+            "test": "test_get_wordpress",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_authorizers.py::TestRestApiAuthorizers::test_authorizer_event_lambda_request",
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
@@ -44048,6 +44068,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_patterns.py::TestEcsFirelensStackFluentD::test_log_emission",
+            "test": "test_log_emission",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_patterns.py::TestEcsNetworkLoadBalancedFargate::test_port_connection",
             "test": "test_port_connection",
             "response": "200",
@@ -44110,16 +44140,6 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_pull_public_s3_image_with_transparent_endpoint_injection",
             "test": "test_pull_public_s3_image_with_transparent_endpoint_injection",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
-            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -45654,7 +45674,7 @@
             "test": "test_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -45664,7 +45684,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -45674,7 +45694,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -45684,7 +45704,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -45704,7 +45724,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -45714,7 +45734,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -45724,7 +45744,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -45884,6 +45904,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_cloudwatch_logs",
             "test": "test_cloudwatch_logs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_get_wordpress",
+            "test": "test_get_wordpress",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -48180,6 +48210,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/scenario/kinesis_firehose/test_kinesis_firehose.py::TestKinesisFirehoseScenario::test_kinesis_firehose_s3",
+            "test": "test_kinesis_firehose_s3",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/scenario/lambda_destination/test_lambda_destination_scenario.py::TestLambdaDestinationScenario::test_destination_sns",
             "test": "test_destination_sns",
             "response": "200",
@@ -48430,8 +48470,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_modules.py::TestExtensionsModules::test_module_usage",
-            "test": "test_module_usage",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_drift_detection.py::test_drift_detection_on_lambda",
+            "test": "test_drift_detection_on_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_extensions_resourcetypes.py::TestExtensionsResourceTypes::test_deploy_resource_type",
+            "test": "test_deploy_resource_type",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/aws_iam_user/test_exploration.py::TestAttributeAccess::test_getatt[PermissionsBoundary]",
+            "test": "test_getatt[PermissionsBoundary]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -48458,16 +48518,6 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/ssm/test_parameter.py::TestUpdates::test_update_without_replacement",
-            "test": "test_update_without_replacement",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_apigateway.py::test_account",
@@ -48788,16 +48838,6 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_cloudtrail_trace.py::test_cloudtrail_trace_example",
-            "test": "test_cloudtrail_trace_example",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_template_engine.py::TestMacros::test_capabilities_requirements",
@@ -51930,16 +51970,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_ecs_task_service.py::TestTaskServiceECS::test_run_task_sync_raise_failure",
-            "test": "test_run_task_sync_raise_failure",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Attachments..Details', '$..Attachments..Id', '$..Attachments..Status', '$..Attachments..Type', '$..AvailabilityZone', '$..ClusterArn', '$..Connectivity', '$..ConnectivityAt', '$..Cpu', '$..DesiredStatus', '$..ExecutionStoppedAt', '$..GpuIds', '$..Group', '$..HealthStatus', '$..ImageDigest', '$..InferenceAccelerators', '$..LastStatus', '$..ManagedAgents', '$..Memory', '$..NetworkInterfaces', '$..Overrides.ContainerOverrides', '$..Overrides.InferenceAcceleratorOverrides', '$..PlatformFamily', '$..PullStartedAt', '$..PullStoppedAt', '$..RuntimeId', '$..SdkHttpMetadata', '$..SdkResponseMetadata', '$..StartedAt', '$..StopCode', '$..StoppedAt', '$..StoppedReason', '$..StoppingAt', '$..TaskDefinitionArn', '$..Version', '$..parameters.Cluster']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_events_task_service.py::TestTaskServiceEvents::test_put_events_base",
             "test": "test_put_events_base",
             "response": "200",
@@ -55162,6 +55192,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_patterns.py::TestEcsFirelensStackFluentD::test_log_emission",
+            "test": "test_log_emission",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestDurableStorageSample::test_listener",
             "test": "test_listener",
             "response": "200",
@@ -55184,16 +55224,6 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_pull_public_s3_image_with_transparent_endpoint_injection",
             "test": "test_pull_public_s3_image_with_transparent_endpoint_injection",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
-            "test": "test_api_failure_with_latency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -56040,7 +56070,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -56606,7 +56636,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -57434,7 +57464,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -57960,16 +57990,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestLambdaEventSourceMappings::test_kinesis_event_source_mapping",
-            "test": "test_kinesis_event_source_mapping",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/sagemaker/test_sagemaker.py::TestSagemaker::test_custom_model_deployment",
             "test": "test_custom_model_deployment",
             "response": "404",
@@ -58332,53 +58352,23 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_register_avro_schema_version_compatibilities[NONE-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
-            "test": "test_register_avro_schema_version_compatibilities[NONE-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"}]}-None-{\"type\":\"record\",\"namespace\":\"Test\",\"name\":\"Person\",\"fields\":[{\"name\":\"Name\",\"type\":\"string\"},{\"name\":\"Age\",\"type\":\"int\"}]}-AVAILABLE]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestDurableStorageSample::test_listener",
+            "test": "test_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_listener_services_are_accessible_and_returning_expected_content",
+            "test": "test_listener_services_are_accessible_and_returning_expected_content",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/glue/test_schema_registry.py::TestGlueSchemaRegistry::test_update_schema_only_description",
-            "test": "test_update_schema_only_description",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_abac.py::TestIAMABAC::test_dynamodb_leading_keys_tags",
-            "test": "test_dynamodb_leading_keys_tags",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_abac.py::TestIAMABAC::test_s3_iam_principal_tag_on_session",
-            "test": "test_s3_iam_principal_tag_on_session",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_lambda_cross_account_invoke",
-            "test": "test_lambda_cross_account_invoke",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -61320,6 +61310,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_get_wordpress",
+            "test": "test_get_wordpress",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_authorizers.py::TestRestApiAuthorizers::test_authorizer_event_lambda_request",
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
@@ -62454,7 +62454,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -66544,6 +66544,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/wordpress_blog/test_wordpress_blog.py::TestWordpressBlogScenario::test_get_wordpress",
+            "test": "test_get_wordpress",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_authorizers.py::TestRestApiAuthorizers::test_authorizer_event_lambda_request",
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
@@ -67678,7 +67688,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -70568,7 +70578,7 @@
             "test": "test_dynamodb_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -70578,7 +70588,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -70588,7 +70598,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -70598,7 +70608,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -70618,7 +70628,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -70628,7 +70638,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -70638,7 +70648,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
