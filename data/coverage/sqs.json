@@ -670,7 +670,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -994,7 +994,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3506,7 +3506,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3516,7 +3516,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3526,7 +3526,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3536,7 +3536,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3546,7 +3546,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3556,7 +3556,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3566,7 +3566,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3576,7 +3576,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3586,7 +3586,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3596,7 +3596,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3606,7 +3606,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3616,7 +3616,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3626,7 +3626,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3636,7 +3636,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3646,7 +3646,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3656,7 +3656,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3666,7 +3666,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3676,7 +3676,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3896,7 +3896,7 @@
             "test": "test_event_source_mapping_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3906,7 +3906,7 @@
             "test": "test_function_name_variations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7618,7 +7618,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -9646,7 +9646,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9898,7 +9898,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10564,7 +10564,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10574,7 +10574,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10584,7 +10584,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10594,7 +10594,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10604,7 +10604,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10614,7 +10614,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10624,7 +10624,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10634,7 +10634,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10644,7 +10644,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10654,7 +10654,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10664,7 +10664,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10674,7 +10674,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10684,7 +10684,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10694,7 +10694,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10704,7 +10704,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10714,7 +10714,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10724,7 +10724,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10734,7 +10734,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10954,7 +10954,7 @@
             "test": "test_event_source_mapping_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10964,7 +10964,7 @@
             "test": "test_function_name_variations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -16386,7 +16386,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17432,7 +17432,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17442,7 +17442,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17452,7 +17452,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17462,7 +17462,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17472,7 +17472,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17482,7 +17482,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17492,7 +17492,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17502,7 +17502,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17512,7 +17512,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17522,7 +17522,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17532,7 +17532,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17542,7 +17542,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17552,7 +17552,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17562,7 +17562,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17572,7 +17572,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17582,7 +17582,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17592,7 +17592,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17602,7 +17602,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17852,7 +17852,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17862,7 +17862,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -18012,7 +18012,7 @@
             "test": "test_event_source_mapping_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18022,7 +18022,7 @@
             "test": "test_function_name_variations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19694,7 +19694,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19704,7 +19704,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -21420,7 +21420,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -21430,7 +21430,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -22542,7 +22542,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -24496,7 +24496,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -24566,7 +24566,7 @@
             "test": "test_function_name_variations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -24602,6 +24602,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_queue_handler_deployed",
+            "test": "test_queue_handler_deployed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_s3_bucket_deployed",
             "test": "test_s3_bucket_deployed",
             "response": "200",
@@ -24628,7 +24638,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -24768,7 +24778,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "403",
             "error": "AccessDeniedException",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26376,7 +26386,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26386,7 +26396,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26396,7 +26406,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26406,7 +26416,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26416,7 +26426,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26426,7 +26436,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26436,7 +26446,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26446,7 +26456,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26456,7 +26466,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26466,7 +26476,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26476,7 +26486,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26486,7 +26496,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26496,7 +26506,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26506,7 +26516,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26516,7 +26526,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26526,7 +26536,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26536,7 +26546,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26546,7 +26556,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -27470,36 +27480,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/callback/test_callback.py::TestCallback::test_sqs_failure_in_wait_for_task_token",
-            "test": "test_sqs_failure_in_wait_for_task_token",
-            "response": "400",
-            "error": "QueueDoesNotExist",
-            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/callback/test_callback.py::TestCallback::test_sqs_wait_for_task_tok_with_heartbeat",
-            "test": "test_sqs_wait_for_task_tok_with_heartbeat",
-            "response": "400",
-            "error": "QueueDoesNotExist",
-            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/callback/test_callback.py::TestCallback::test_sqs_wait_for_task_token_call_chain",
-            "test": "test_sqs_wait_for_task_token_call_chain",
-            "response": "400",
-            "error": "QueueDoesNotExist",
-            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ],
         "ls_pro": [
@@ -27518,7 +27498,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -28912,7 +28892,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29920,7 +29900,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State']",
+            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -30516,7 +30496,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -30526,7 +30506,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31144,6 +31124,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/chaos/test_network_effects.py::TestNetworkEffects::test_latency[500]",
+            "test": "test_latency[500]",
+            "response": "400",
+            "error": "QueueDoesNotExist",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_sqs_subscription",
             "test": "test_sns_sqs_subscription",
             "response": "403",
@@ -31432,7 +31422,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31442,7 +31432,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31452,7 +31442,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31462,7 +31452,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31472,7 +31462,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31482,7 +31472,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31492,7 +31482,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31502,7 +31492,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31512,7 +31502,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31522,7 +31512,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31532,7 +31522,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31542,7 +31532,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31552,7 +31542,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31562,7 +31552,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31572,7 +31562,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31582,7 +31572,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -33218,16 +33208,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/test_sfn_api.py::TestSnfApi::test_start_execution_idempotent",
-            "test": "test_start_execution_idempotent",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..tracingConfiguration']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/timeouts/test_heartbeats.py::TestHeartbeats::test_heartbeat_no_timeout",
             "test": "test_heartbeat_no_timeout",
             "response": "200",
@@ -33356,6 +33336,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/test_sfn_api.py::TestSnfApi::test_start_execution_idempotent",
+            "test": "test_start_execution_idempotent",
+            "response": "500",
+            "error": "InternalError",
+            "snapshot_skipped": "['$..tracingConfiguration']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ],
         "ls_pro": [
@@ -33404,7 +33394,7 @@
             "test": "test_lambda_sqs_cross_account_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -34548,7 +34538,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "['$..EventSourceMappingArn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -34558,7 +34548,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
