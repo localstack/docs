@@ -127,10 +127,10 @@ The certificate is signed by the LocalStack root CA.
 result = iot_client.create_keys_and_certificate(setAsActive=True)
 
 # Path to file with saved content `result["certificatePem"]`
-cert_file = '...'  
+cert_file = '...'
 
 # Path to file with saved content `result["keyPair"]["PrivateKey"]`
-priv_key_file = '...'  
+priv_key_file = '...'
 
 tls_ctx_options = awscrt.io.TlsContextOptions.create_client_with_mtls_from_path(
     cert_file, priv_key_file
@@ -184,7 +184,13 @@ It is possible to use actions with SQL queries for IoT Topic Rules.
 
 For example, you can use the [`CreateTopicRule`](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html) operation to define a topic rule with a SQL query `SELECT * FROM 'my/topic' where attr=123` which will execute a trigger whenever a message with attribute `attr=123` is received on the MQTT topic `my/topic`.
 
-Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.
+The following actions are supported:
+- [Lambda](https://docs.aws.amazon.com/iot/latest/developerguide/lambda-rule-action.html)
+- [SQS](https://docs.aws.amazon.com/iot/latest/developerguide/sqs-rule-action.html)
+- [Kinesis](https://docs.aws.amazon.com/iot/latest/developerguide/kinesis-rule-action.html)
+- [Firehose](https://docs.aws.amazon.com/iot/latest/developerguide/kinesis-firehose-rule-action.html)
+- [DynamoDBv2](https://docs.aws.amazon.com/iot/latest/developerguide/dynamodb-v2-rule-action.html)
+- [HTTP](https://docs.aws.amazon.com/iot/latest/developerguide/https-rule-action.html) (URL confirmation is not implemented)
 
 ## Current Limitations
 
