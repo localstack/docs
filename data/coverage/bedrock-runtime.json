@@ -1,0 +1,110 @@
+{
+  "service": "bedrock-runtime",
+  "pro_support": true,
+  "operations": [
+    {
+      "ApplyGuardrail": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "Converse": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ConverseStream": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "InvokeModel": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "InvokeModelWithResponseStream": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    }
+  ],
+  "details": {
+    "Converse": {
+      "messages, modelId, system": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/bedrock/test_bedrock.py::TestBedrock::test_converse",
+            "test": "test_converse",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..metrics.latencyMs', '$..output.message.content..text', '$..usage.outputTokens', '$..usage.inputTokens', '$..usage.totalTokens']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "InvokeModel": {
+      "body, modelId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/bedrock/test_bedrock.py::TestBedrock::test_invoke_llama",
+            "test": "test_invoke_llama",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/bedrock/test_bedrock.py::TestBedrock::test_invoke_unknown_model",
+            "test": "test_invoke_unknown_model",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    }
+  }
+}
