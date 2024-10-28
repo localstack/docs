@@ -199,6 +199,7 @@ Our support team operates in the CET timezone, Monday to Friday, from 8 AM to 4 
 - January 1st,
 - May 1st,
 - August 15th,
+- November 1st,
 - December 24th, 25th and 31st
 
 ## Troubleshooting Guidelines
