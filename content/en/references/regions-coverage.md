@@ -11,7 +11,6 @@ cascade:
 ## Introduction
 
 LocalStack ships with multi-region support, enabling users to emulate different AWS regions and namespace resources based on the region.
-With IAM Policy Enforcement, you can ensure that access control and permissions are applied accurately across supported regions.
 LocalStack supports a wide range of AWS regions, including commercial, government, and China regions, providing a realistic environment for development and testing across multiple regions on your local machine.
 
 ## Supported Regions
@@ -23,7 +22,7 @@ LocalStack supports a wide range of AWS regions, including commercial, governmen
 | us-west-1       | ✔️         |                                              |
 | us-west-2       | ✔️         |                                              |
 | ca-central-1    | ✔️         |                                              |
-| ca-west-1       | ❌         | Not supported in LocalStack                |
+| ca-west-1      | ✔️         | Available in LocalStack Enterprise only    |
 | eu-north-1      | ✔️         |                                              |
 | eu-west-1       | ✔️         |                                              |
 | eu-west-2       | ✔️         |                                              |
@@ -41,7 +40,7 @@ LocalStack supports a wide range of AWS regions, including commercial, governmen
 | ap-southeast-2  | ✔️         |                                              |
 | ap-southeast-3  | ✔️         |                                              |
 | ap-southeast-4  | ✔️         |                                              |
-| ap-southeast-5  | ❌         | Not supported in LocalStack                |
+| ap-southeast-5  | ✔️         | Available in LocalStack Enterprise only    |
 | ap-east-1       | ✔️         |                                              |
 | sa-east-1       | ✔️         |                                              |
 | af-south-1      | ✔️         |                                              |
