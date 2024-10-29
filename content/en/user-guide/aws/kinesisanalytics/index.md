@@ -1,24 +1,20 @@
 ---
-title: "Kinesis Data Analytics"
-linkTitle: "Kinesis Data Analytics"
+title: "Kinesis Data Analytics for SQL Applications"
+linkTitle: "Kinesis Data Analytics for SQL Applications"
 description: >
-  Get started with Kinesis Data Analytics on LocalStack
+  Get started with Kinesis Data Analytics for SQL Applications on LocalStack
 tags: ["Pro image"]
 ---
 
 ## Introduction
 
-Kinesis Data Analytics is a service offered by Amazon Web Services (AWS) that enables you to process and analyze streaming data in real-time.
-Kinesis Data Analytics allows you to apply transformations, filtering, and enrichment to streaming data using standard SQL syntax.
-You can also run Java or Scala programs against streaming sources to perform various operations on the data using Apache Flink.
+Kinesis Data Analytics for SQL Applications is a service offered by Amazon Web Services (AWS) that enables you to process and analyze streaming data in real-time.
+It allows you to apply transformations, filtering, and enrichment to streaming data using standard SQL syntax.
 
 LocalStack allows you to use the Kinesis Data Analytics APIs in your local environment.
 The API coverage is available on:
 
-* [Kinesis Data Analytics V1](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalytics/)
-* [Kinesis Data Analytics V2](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/)
-
-This provides information on the extent of Kinesis Data Analytics integration with LocalStack.
+* [Kinesis Data Analytics](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalytics/)
 
 ## Getting started
 
@@ -107,6 +103,5 @@ The following output would be retrieved:
 
 ## Current Limitations
 
-* LocalStack supports basic emulation for the version 1 of the Kinesis Data Analytics API.
+* LocalStack supports basic emulation for Kinesis Data Analytics for SQL Applications.
   However, the queries are not fully supported and lack parity with AWS.
-* LocalStack supports CRUD mocking for the version 2 of the Kinesis Data Analytics API.
