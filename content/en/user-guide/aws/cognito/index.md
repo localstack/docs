@@ -330,6 +330,66 @@ Ensuring this match is crucial for the proper functioning of the authentication 
   'http://localhost:4566/_aws/cognito-idp/oauth2/token'
 {"access_token": "eyJ0eXAi…lKaHx44Q", "expires_in": 86400, "token_type": "Bearer", "refresh_token": "e3f08304", "id_token": "eyJ0eXAi…ADTXv5mA"}
 ```
+### Client credentials grant
+
+The client credentials grant is designed for machine-to-machine (M2M) communication.
+In contrast, the authorization code and implicit grants provide tokens to authenticated human users.
+The client credentials grant allows for scope-based authorization from a non-interactive system to an API.
+Your app can directly request client credentials from the token endpoint to receive an access token.
+
+To request the token from LocalStack the correct URL is `http://cognito-idp.localhost.localstack-test.cloud:4566/_aws/cognito-idp/oauth2/token`.
+In case that there is more than one user pool, LocalStack detects the right one by inspecting the `clientId` of the requests.
+
+Here is an example on how to set it up:
+```sh
+#Create user pool.
+export pool_id=$(awslocal cognito-idp create-user-pool --pool-name test   --username-configuration "CaseSensitive=False"  | jq -rc ".UserPool.Id")
+
+#Create client user pool with a client.
+export client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_id --client-name test-client --generate-secret  | jq -rc ".UserPoolClient.ClientId")
+
+#Retrieve secret.
+export client_secret=$(awslocal cognito-idp describe-user-pool-client --user-pool-id $pool_id --client-id $client_id | jq -r '.UserPoolClient.ClientSecret')
+
+#Create resource server
+awslocal cognito-idp create-resource-server \
+  --user-pool-id $pool_id \
+  --identifier "api-client-organizations" \
+  --name "vitalera API Clients Organizations Resource Server" \
+  --scopes '[{"ScopeName":"read","ScopeDescription":"Read access to Organizations"}]' 
+```
+
+Then you could retrieve the token from your application like this:
+
+```python
+import requests, os
+from requests.auth import HTTPBasicAuth
+
+def get_access_token_with_secret():
+    client_id = os.environ['client_id']
+    client_secret = os.environ['client_secret']
+    scope = 'api-client-organizations/read'
+    url = 'http://cognito-idp.localhost.localstack.cloud:4566/_aws/cognito-idp/oauth2/token'
+    
+
+    headers = {
+        'Content-Type' : 'application/x-www-form-urlencoded'
+    }
+
+    auth = HTTPBasicAuth(client_id,client_secret)
+
+    payload = {
+        'grant_type': 'client_credentials',
+        'client_id':client_id,
+        'scope':scope
+    }
+    response = requests.post(url,headers=headers,auth=auth,data=payload)
+
+    print(response.content)
+
+if __name__ == "__main__":
+    get_access_token_with_secret()
+```
 
 ## Serverless and Cognito
 
