@@ -6,6 +6,11 @@ description: >
 tags: ["Pro image"]
 ---
 
+
+{{< callout >}}
+This service was formerly known as Kinesis Data Analytics for Apache Flink.
+{{< /callout >}}
+
 ## Introduction
 
 [Kinesis Data Analytics v2](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/)
