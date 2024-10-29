@@ -341,6 +341,7 @@ To request the token from LocalStack the correct URL is `http://cognito-idp.loca
 In case that there is more than one user pool, LocalStack detects the right one by inspecting the `clientId` of the requests.
 
 Here is an example on how to set it up:
+
 ```sh
 #Create user pool.
 export pool_id=$(awslocal cognito-idp create-user-pool --pool-name test   --username-configuration "CaseSensitive=False"  | jq -rc ".UserPool.Id")
