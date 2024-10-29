@@ -330,6 +330,7 @@ Ensuring this match is crucial for the proper functioning of the authentication 
   'http://localhost:4566/_aws/cognito-idp/oauth2/token'
 {"access_token": "eyJ0eXAi…lKaHx44Q", "expires_in": 86400, "token_type": "Bearer", "refresh_token": "e3f08304", "id_token": "eyJ0eXAi…ADTXv5mA"}
 ```
+
 ### Client credentials grant
 
 The client credentials grant is designed for machine-to-machine (M2M) communication.
@@ -357,7 +358,8 @@ awslocal cognito-idp create-resource-server \
   --user-pool-id $pool_id \
   --identifier "api-client-organizations" \
   --name "vitalera API Clients Organizations Resource Server" \
-  --scopes '[{"ScopeName":"read","ScopeDescription":"Read access to Organizations"}]' 
+  --scopes '[{"ScopeName":"read","ScopeDescription":"Read access to Organizations"}]'
+
 ```
 
 Then you could retrieve the token from your application like this:
