@@ -357,7 +357,7 @@ export client_secret=$(awslocal cognito-idp describe-user-pool-client --user-poo
 awslocal cognito-idp create-resource-server \
   --user-pool-id $pool_id \
   --identifier "api-client-organizations" \
-  --name "vitalera API Clients Organizations Resource Server" \
+  --name "Resource Server Name" \
   --scopes '[{"ScopeName":"read","ScopeDescription":"Read access to Organizations"}]'
 
 ```
