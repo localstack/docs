@@ -14,3 +14,15 @@ This service was formerly known as Kinesis Data Analytics for Apache Flink.
 ## Introduction
 
 [Kinesis Data Analytics v2](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/)
+
+## Runtime Properties
+
+TODO
+
+## Limitations
+
+- In-place version upgrades and roll-backs are not supported
+- CloudWatch integration is not implemented
+- Snapshot/savepoint management is not implemented
+- Only S3 zipfile code is supported
+- Application versions are not maintained
