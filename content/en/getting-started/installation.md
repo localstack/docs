@@ -241,8 +241,6 @@ Docker Compose v1.9.0 and above is supported.
 
 {{< tabpane lang="yml" >}}
 {{< tab header="Community" lang="yml" >}}
-version: "3.8"
-
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
@@ -258,8 +256,6 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
 {{< /tab >}}
 {{< tab header="Pro" lang="yml" >}}
-version: "3.8"
-
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
