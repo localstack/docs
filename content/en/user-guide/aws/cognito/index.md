@@ -338,7 +338,7 @@ In contrast, the authorization code and implicit grants provide tokens to authen
 The client credentials grant allows for scope-based authorization from a non-interactive system to an API.
 Your app can directly request client credentials from the token endpoint to receive an access token.
 
-To request the token from LocalStack the correct URL is `http://cognito-idp.localhost.localstack-test.cloud:4566/_aws/cognito-idp/oauth2/token`.
+To request the token from LocalStack the correct URL is `http://cognito-idp.localhost.localstack.cloud:4566/_aws/cognito-idp/oauth2/token`.
 In case that there is more than one user pool, LocalStack detects the right one by inspecting the `clientId` of the requests.
 
 Here is an example on how to set it up:
