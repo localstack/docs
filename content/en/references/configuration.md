@@ -90,6 +90,12 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `BATCH_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the batch container. Same restrictions as `LAMBDA_DOCKER_FLAGS`. |
 
+### Bedrock
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `LOCALSTACK_ENABLE_BEDROCK` | `1` | Use the Bedrock provider |
+
 ### BigData (EMR, Athena, Glue)
 
 | Variable | Example Values | Description |
