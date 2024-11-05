@@ -23,6 +23,11 @@ More examples and tooling support for local Lambda debugging (including support 
 * [Lambda Debug Mode (preview)](#lambda-debug-mode-preview)
 * [Resources](#resources)
 
+{{< callout tip >}}
+Due to the ports published by the lambda container for the debugger, it is currently only possible to debug one Lambda function at a time.
+For complex debugging scenarios that require multiple ports, please consult the [Lambda Debug Mode (preview)]({{< relref "debugging#lambda-debug-mode-preview" >}}) section.
+{{< /callout >}}
+
 ## Debugging Python lambdas
 
 Lambda functions debugging used to be a difficult task.
