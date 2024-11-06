@@ -204,7 +204,7 @@ custom:
 When this flag is set, the lambda code will be mounted into the container running the function directly from your local directory instead of packaging and uploading it.
 
 ## Custom API deployment IDs
-By default localstack generates random dployment ids for the API gateway which in turn get populated into the endpoint URLs. As these IDs can literally change every time you deploy (depending on your setup) This makes continual local development practically impossibly in situations where you rely on consistant urls (eg the url for your api for your frontend code)
+By default localstack generates random deployment ids for the API gateway which in turn get populated into the endpoint URLs. As these IDs can literally change every time you deploy (depending on your setup) This makes continual local development practically impossible in situations where you rely on consistant urls (eg the url for your api for your frontend code)
 
 localstack provides a method to use a fixed custom id instead by passing a tag _custom_id_ to the API during creation. It has to be done during creation and it has to be on either the v2 API or the v1 RestApi.
 
