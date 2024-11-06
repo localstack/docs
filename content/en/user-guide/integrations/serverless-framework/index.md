@@ -234,9 +234,9 @@ resources:
 ```
 
 ### Hot reload
-To get hot-relaod up and running quickly. put the following into a script before you run sls deploy.
+To get hot-reload up and running quickly, put the following into a script before you run sls deploy.
 
-You need the region set to the same region you are using otherwise the bucket and ssm param can't be found by the sls deployment
+You need the region set to the same region in your config otherwise the bucket and ssm param can't be found by the sls deployment
 
 - note: this requires the localstack awslocal cli to be installed
 
@@ -248,7 +248,7 @@ AWS_DEFAULT_REGION=ap-southeast-2 awslocal ssm put-parameter \
     --value "{\"bucketName\":\"hot-reload\",\"bucketRegion\":\"ap-southeast-2\"}"
 ```
 
-Then in your serverless.yaml Use the custom variables to set the names. this uses the default option to set the name to the same as serverless does when deploying 
+Then in your serverless.yaml use the custom variables to set the names. This uses the default option to set the name to the same as serverless does when deploying 
 
 ```yaml
 
