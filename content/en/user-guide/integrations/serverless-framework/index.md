@@ -216,7 +216,7 @@ http://localhost:4566/restapis/mytag/development/_user_request_  (v1)
 rather than a continually changing ID
 http://localhost:4566/restapis/jh345798dx/development/_user_request_
 
-```
+```yaml
 resources:
   extensions:
     ApiGatewayRestApi:  #for v1
@@ -232,7 +232,35 @@ resources:
             Value: mytag
 
 ```
- 
+
+## Hot reload
+To get hot-relaod up and running quickly. put the following into a script before you run sls deploy.
+
+You need the region set to the same region you are using otherwise the bucket and ssm param can't be found by the sls deployment
+
+- note: this requires the localstack awslocal cli to be installed
+
+```bash
+awslocal s3api create-bucket --bucket hot-reload --create-bucket-configuration LocationConstraint=ap-southeast-2
+AWS_DEFAULT_REGION=ap-southeast-2 awslocal ssm put-parameter \
+    --name "/serverless-framework/deployment/s3-bucket" \
+    --type "String" \
+    --value "{\"bucketName\":\"hot-reload\",\"bucketRegion\":\"ap-southeast-2\"}"
+```
+
+Then in your serverless.yaml Use the custom variables to set the names. this uses the default option to set the name to the same as serverless does when deploying 
+
+```yaml
+
+custom:
+  development:
+    bucket: 'hot-reload'
+
+provider:
+  deploymentBucket: ${self:custom.${self:provider.stage}.bucket, serverless-deployment-bucket-${self:service}-${self:provider.stage}}
+
+```
+
 
 ## Ran into trouble?
 
