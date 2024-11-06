@@ -213,6 +213,9 @@ Serverless can do this out of the box with resource extensions. See below for th
 This will produce endpoints like
 http://localhost:4566/restapis/mytag/development/_user_request_  (v1)
 
+or for the newer localstack 
+http://localhost:4566/_aws/execute-api/mytag/development
+
 rather than a continually changing ID
 http://localhost:4566/restapis/jh345798dx/development/_user_request_
 
