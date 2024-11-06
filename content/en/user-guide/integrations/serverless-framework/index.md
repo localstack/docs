@@ -203,6 +203,37 @@ custom:
 
 When this flag is set, the lambda code will be mounted into the container running the function directly from your local directory instead of packaging and uploading it.
 
+## Custom API deployment IDs
+By default localstack generates random dployment ids for the API gateway which in turn get populated into the endpoint URLs. As these IDs can literally change every time you deploy (depending on your setup) This makes continual local development practically impossibly in situations where you rely on consistant urls (eg the url for your api for your frontend code)
+
+localstack provides a method to use a fixed custom id instead by passing a tag _custom_id_ to the API during creation. It has to be done during creation and it has to be on either the v2 API or the v1 RestApi.
+
+Serverless can do this out of the box with resource extensions. See below for the v1/v2 implementation.
+
+This will produce endpoints like
+http://localhost:4566/restapis/mytag/development/_user_request_  (v1)
+
+rather than a continually changing ID
+http://localhost:4566/restapis/jh345798dx/development/_user_request_
+
+```
+resources:
+  extensions:
+    ApiGatewayRestApi:  #for v1
+      Properties:
+        Tags:
+          - Key: _custom_id_
+            Value: mytag
+
+    MyHTTPApi:  #for v2
+      Properties:
+        Tags:
+          - Key: _custom_id_
+            Value: mytag
+
+```
+ 
+
 ## Ran into trouble?
 
 If you run into any issues or problems while integrating LocalStack with your Serverless app, please [submit an issue](https://github.com/localstack/serverless-localstack/issues).
