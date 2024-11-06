@@ -142,7 +142,7 @@ LocalStack provides various features for managing local state, including Cloud P
 
 ### Cloud Pods
 
-Cloud Pods feature enables storing and managing snapshots of the current state.
+Cloud Pods is a feature that enables storing and managing snapshots of the current state.
 This code snippet shows listing available pods, saving a new pod, loading it, and then deleting it.
 You need to set your `LOCALSTACK_AUTH_TOKEN` in your terminal session before running the snippet.
 
