@@ -261,7 +261,6 @@ $ docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001
 The above example will make LocalStack treat the `ubuntu:focal` Docker image as an AMI with name `ubuntu-focal-ami` and ID `ami-000001`.
 
 At startup, LocalStack downloads the following AMIs that can be used to launch Dockerized instances.
-- Ubuntu 20.04 `ami-ff0fea8310f3` (deprecated and marked for removal in the next major release)
 - Ubuntu 22.04 `ami-df5de72bdb3b`
 - Amazon Linux 2023 `ami-024f768332f0`
 
