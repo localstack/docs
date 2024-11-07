@@ -206,7 +206,7 @@ $ curl -X GET http://<REST_API_ID>.execute-api.localhost.localstack.cloud:4566/d
 {"message":"Hello World"}
 {{< /command >}}
 
-You can also use our [alternative URL format]({{< ref "#alternative-u-r-l-format" >}})  in case of DNS issues:
+You can also use our [alternative URL format]({{< ref "#alternative-url-format" >}})  in case of DNS issues:
 {{< command >}}
 $ curl -X GET http://localhost:4566/_aws/execute-api/<REST_API_ID>/dev/test
 
