@@ -194,14 +194,21 @@ Create a new deployment for the API using the [`CreateDeployment`](https://docs.
 {{< command >}}
 $ awslocal apigateway create-deployment \
   --rest-api-id <REST_API_ID> \
-  --stage-name test
+  --stage-name dev
 {{< /command >}}
 
 Your API is now ready to be invoked.
 You can use [curl](https://curl.se/) or any HTTP REST client to invoke the API endpoint:
 
 {{< command >}}
-$ curl -X GET http://localhost:4566/restapis/<REST_API_ID>/test/_user_request_/test
+$ curl -X GET http://<REST_API_ID>.execute-api.localhost.localstack.cloud:4566/dev/test
+
+{"message":"Hello World"}
+{{< /command >}}
+
+You can also use our [alternative URL format]({{< ref "#alternative-url-format" >}})  in case of DNS issues:
+{{< command >}}
+$ curl -X GET http://localhost:4566/_aws/execute-api/<REST_API_ID>/dev/test
 
 {"message":"Hello World"}
 {{< /command >}}
@@ -210,9 +217,11 @@ $ curl -X GET http://localhost:4566/restapis/<REST_API_ID>/test/_user_request_/t
 
 {{< callout >}}
 
-Since [3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/#new-api-gateway-provider), LocalStack supports a new API Gateway implementation for both API Gateway v1 (REST API) and v2 (HTTP API).
+Since `4.0`, LocalStack uses a new API Gateway implementation for both API Gateway v1 (REST API) and v2 (HTTP API) by default.
 
-You can [set the following flag]({{< ref "configuration#api-gateway" >}}) `PROVIDER_OVERRIDE_APIGATEWAY=next_gen` to use the new implementation.
+It was released in [3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/#new-api-gateway-provider).
+If you are using LocalStack 4.0 and have been using the new implementation, please remove the [following flag]({{< ref "configuration#api-gateway" >}}) `PROVIDER_OVERRIDE_APIGATEWAY=next_gen` as it is now default.
+
 {{< /callout >}}
 
 We're entirely reworked how REST and HTTP APIs are invoked, to closely match the behavior on AWS.
@@ -299,29 +308,29 @@ http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/my/path1
 
 #### Alternative URL format
 
-{{< callout >}}
-If you are using the [new API Gateway implementation]({{< ref "#new-api-gateway-implementation" >}}), the `_user_request_` format is deprecated, and you should use the following:
+The alternative URL format is an endpoint with the predefined base path `/_aws/execute-api`:
 
 ```shell
 http://localhost:4566/_aws/execute-api/<apiId>/<stageId>/<path>
 ```
 
-This new endpoint more closely resembles the recommended URL format, and allows you to use HTTP APIs with a `$default` stage.
-{{< /callout >}}
+For the example above, the URL would be:
 
-The alternative URL format is an endpoint with the predefined path marker `_user_request_`:
+```shell
+http://localhost:4566/_aws/execute-api/0v1p6q6/local/my/path1
+```
+
+This format is sometimes used in case of local DNS issues.
+
+{{< callout >}}
+
+If you are using LocalStack 4.0, the following `_user_request_` format is deprecated, and you should use the format above.
 
 ```shell
 http://localhost:4566/restapis/<apiId>/<stageId>/_user_request_/<path>
 ```
 
-For the example above, the URL would be:
-
-```shell
-http://localhost:4566/restapis/0v1p6q6/local/_user_request_/my/path1
-```
-
-This format is sometimes used in case of local DNS issues.
+{{< / callout >}}
 
 ### WebSocket APIs (Pro)
 

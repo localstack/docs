@@ -75,7 +75,7 @@ This section covers configuration options that are specific to certain AWS servi
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `PROVIDER_OVERRIDE_APIGATEWAY` | `next_gen` | Use [the new API Gateway implementation]({{< ref "user-guide/aws/apigateway#new-api-gateway-implementation" >}}) for both API Gateway v1 and v2, available since LocalStack 3.8. |
+| `PROVIDER_OVERRIDE_APIGATEWAY` | `legacy`\|`next_gen` (default)| The [new API Gateway implementation]({{< ref "user-guide/aws/apigateway#new-api-gateway-implementation" >}}) is active by default since LocalStack 4.0. |
 
 ### AppSync
 
@@ -296,10 +296,8 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `S3_DIR` || **Deprecated since 3.0.0** This is only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 | `S3_SKIP_SIGNATURE_VALIDATION`| `0` \| `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. Note that validation can only pass if the `AWS_SECRET_ACCESS_KEY` is set to `test` or if using credentials returned from `STS.AssumeRole`  |
 | `S3_SKIP_KMS_KEY_VALIDATION` | `0` \| `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
-| `PROVIDER_OVERRIDE_S3` | `legacy_v2` \| `v3` (default) | The new LocalStack-native S3 provider (v3) is active by default since LocalStack 3.0. |
 
 ### StepFunctions
 
@@ -433,6 +431,7 @@ These configurations have already been removed and **won't have any effect** on 
 
 | Variable | Removed in | Example Values | Description |
 | - | - | - | - |
+| `S3_DIR` | 4.0.0 | `/path/to/root` | This was only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 | `<SERVICE>_BACKEND` | 3.0.0 | `http://localhost:7577` |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
 | `<SERVICE>_PORT_EXTERNAL` | 3.0.0 | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
 | `ACTIVATE_NEW_POD_CLIENT` | 3.0.0 | `0`\|`1` (default) |  Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
