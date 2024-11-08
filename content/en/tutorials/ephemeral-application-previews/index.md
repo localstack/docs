@@ -190,7 +190,7 @@ After downloading, you can visualize logs and environment variables using a tool
 
 - name: Upload the Diagnostic Report
   if: failure()
-  uses: actions/upload-artifact@v3
+  uses: actions/upload-artifact@v4
   with:
     name: diagnose.json.gz
     path: ./diagnose.json.gz
