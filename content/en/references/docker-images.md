@@ -23,7 +23,7 @@ $ docker pull localstack/localstack:latest
 {{< / command >}}
 
 To use the LocalStack Community image, you don't need to sign-up for an account on [LocalStack Web Application](https://app.localstack.cloud).
-The Community image is free to use and does not require any API key to run.
+The Community image is free to use and does not require a license to run.
 The Community image can be used to run [local AWS services](https://docs.localstack.cloud/user-guide/aws/) with [integrations](https://docs.localstack.cloud/user-guide/integrations/) on your local machine or in your [continuous integration pipelines](https://docs.localstack.cloud/user-guide/ci/).
 
 The Community image also covers a limited set of [LocalStack Tools](https://docs.localstack.cloud/user-guide/tools/) to make your life as a cloud developer easier.

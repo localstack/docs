@@ -64,9 +64,6 @@ The benefits of this new systems are:
 - An admin can manage users's licenses, not requiring any configuration change of the user.
   Previously users had to manually update their (legacy) API key.
 
-{{< callout >}}
-The transition to auth tokens only affects _developer_ API keys. **CI keys** are unaffected by this transition and are still the only way to activate a LocalStack instance for use in CI or other automated contexts.
-{{< /callout >}}
 
 ### Migrating Users to Auth Tokens and Licenses
 

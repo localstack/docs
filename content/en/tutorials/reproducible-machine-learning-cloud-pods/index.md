@@ -26,7 +26,7 @@ leadimage: "reproducible-machine-learning-cloud-pods-featured-image.png"
 
 [LocalStack Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}}) enable you to create persistent state snapshots of your LocalStack instance, which can then be versioned, shared, and restored.
 It allows next-generation state management and team collaboration for your local cloud development environment, which you can utilize to create persistent shareable cloud sandboxes.
-Cloud Pods works directly with the [LocalStack CLI]({{< ref "getting-started/installation#localstack-cli" >}}) to save, merge, and restore snapshots of your LocalStack state.
+Cloud Pods works directly with the [LocalStack CLI]({{< ref "getting-started/starting-localstack#localstack-cli" >}}) to save, merge, and restore snapshots of your LocalStack state.
 You can always tear down your LocalStack instance and restore it from a snapshot at any point in time.
 
 Cloud Pods is supported in [LocalStack Team](https://app.localstack.cloud/).
