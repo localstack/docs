@@ -64,7 +64,6 @@ The benefits of this new systems are:
 - An admin can manage users's licenses, not requiring any configuration change of the user.
   Previously users had to manually update their (legacy) API key.
 
-
 ### Migrating Users to Auth Tokens and Licenses
 
 To migrate users from legacy API keys, assign a license to them in the 'Workspace Members' list.

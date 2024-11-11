@@ -210,8 +210,6 @@ Now that you have LocalStack up and running, the following resources might be us
 - [Checkout LocalStack's Cloud Developer Tools]({{< ref "user-guide/tools" >}}) to further increase your development efficiency with LocalStack.
 - Find out about the ways you can [configure LocalStack]({{< ref "configuration" >}}).
 
-
-
 ## Alternative ways to start LocalStack
 
 Besides using the CLI, there are other ways of starting and managing your LocalStack instance:
@@ -559,7 +557,6 @@ Another way to confirm this is by checking the logs of the LocalStack container 
 {{< command >}}
 [...] Successfully activated license
 {{< / command >}}
-
 
 #### Missing Credentials
 
