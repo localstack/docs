@@ -45,14 +45,16 @@ After starting your trial or subscribing to a plan, you can manage the license a
 
 ## Configuring CI environments
 
-CI environments are also configured the same way but **require the use of a CI Auth Token**. A developer Auth Token can not be used in CI.
+CI environments are also configured the same way but **require the use of a CI Auth Token**.
+A developer Auth Token can not be used in CI.
 CI Auth Tokens can also be found on the [Auth Tokens page](https://app.localstack.cloud/workspace/auth-tokens) page and are configured similarly to develop Auth Tokens.
 
 ## Activating older versions of localstack ( < v3.0)
 
 Before Auth Tokens were introduced, _API keys_ and the `LOCALSTACK_API_KEY` environment variable were used.
 
-To allow backwards compatibility with the new Auth Tokens, we updated our back-end so that a new Auth Token can be used inside the `LOCALSTACK_API_KEY` variable. Just use the new Auth Token and configure it as you did with the API key in the past.
+To allow backwards compatibility with the new Auth Tokens, we updated our back-end so that a new Auth Token can be used inside the `LOCALSTACK_API_KEY` variable.
+Just use the new Auth Token and configure it as you did with the API key in the past.
 
 ### Sunsetting legacy API keys (early 2025)
 
@@ -63,5 +65,3 @@ During the sunsetting period, the legacy service will undergo scheduled downtime
 This schedule will be designed to encourage the transition, but to limit the impact on users if they were not able to update yet.
 
 The schedule will be communicated in advance, giving users enough time to make the switch to the new Auth Tokens.
-
-
