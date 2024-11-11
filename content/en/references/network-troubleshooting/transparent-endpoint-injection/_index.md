@@ -14,7 +14,7 @@ In such cases, there are different approaches you can take depending on your set
 
 {{< figure src="../images/2.svg" width="400" >}}
 
-If you're using LocalStack with an [auth token]({{<ref "getting-started/auth-token">}}), then you can utilize the [DNS server]({{<ref "dns-server">}}) to perform requests to LocalStack as if it were AWS.
+If you're using LocalStack with an [Auth Token]({{<ref "getting-started/auth-token">}}), then you can utilize the [DNS server]({{<ref "dns-server">}}) to perform requests to LocalStack as if it were AWS.
 You need to make two changes:
 
 * Publish port 53 from the LocalStack docker container to your host.

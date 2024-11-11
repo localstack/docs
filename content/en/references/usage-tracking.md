@@ -23,7 +23,7 @@ Collecting basic anonymized usage of AWS services helps us better direct enginee
 The current usage event collection on the client side includes:
 
 - A randomly generated ID pertaining to the session
-- The auth token or legacyAPI key (if any)
+- The Auth Token or legacyAPI key (if any)
 - A randomly generated machine ID is kept throughout the session but deleted once the LocalStack cache directory is removed
 - The operating system (mostly Linux since LocalStack typically runs in our Debian container)
 - The LocalStack version being used
@@ -88,7 +88,7 @@ For the community image, we only track service, operation, status code, and how 
 ### CLI invocations
 
 We collect an anonymized event if a CLI command was invoked, but do not collect any of the parameter values.
-This event is not connected to the session or the auth token.
+This event is not connected to the session or the Auth Token.
 
 Here is an example of a CLI invocation event:
 

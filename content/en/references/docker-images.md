@@ -42,8 +42,8 @@ To use the LocalStack Pro image, you can pull the image from Docker Hub:
 $ docker pull localstack/localstack-pro:latest
 {{< / command >}}
 
-To use the LocalStack Pro image, you must configure an environment variable named `LOCALSTACK_AUTH_TOKEN` to contain your auth token.
-The LocalStack Pro image will display a warning if you do not set an auth token (or if the license is invalid/expired) and will not activate the Pro features.
+To use the LocalStack Pro image, you must configure an environment variable named `LOCALSTACK_AUTH_TOKEN` to contain your Auth Token.
+The LocalStack Pro image will display a warning if you do not set an Auth Token (or if the license is invalid/expired) and will not activate the Pro features.
 LocalStack Pro gives you access to the complete set of LocalStack features, including the [LocalStack Web Application](https://app.localstack.cloud) and [dedicated customer support](https://docs.localstack.cloud/getting-started/help-and-support/#pro-support).
 
 You can use the Pro image to start your LocalStack container using various [installation methods](https://docs.localstack.cloud/getting-started/installation/).
