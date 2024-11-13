@@ -115,7 +115,7 @@ The sample application uses AWS CLI and our `awslocal` wrapper to deploy the app
 You can build and deploy the sample application on LocalStack by running the following command:
 
 {{< command >}}
-$ bin/deploy.sh
+$ deployment/awslocal/deploy.sh
 {{< / command >}}
 
 Alternatively, you can follow these instructions to deploy the sample application manually step-by-step.
