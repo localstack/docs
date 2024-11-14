@@ -298,13 +298,6 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `S3_SKIP_SIGNATURE_VALIDATION`| `0` \| `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. Note that validation can only pass if the `AWS_SECRET_ACCESS_KEY` is set to `test` or if using credentials returned from `STS.AssumeRole`  |
 | `S3_SKIP_KMS_KEY_VALIDATION` | `0` \| `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
 
-### StepFunctions
-
-| Variable | Example Values | Description |
-| - | - | - |
-| `PROVIDER_OVERRIDE_STEPFUNCTIONS` | `legacy` \| `v2` (default) | The new LocalStack-native StepFunctions provider (v2) is active by default since LocalStack 3.0. |
-| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | **Deprecated since 3.0.0** This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. <br> **Removed in new provider.** |
-
 ### SQS
 
 | Variable | Example Values | Description |
@@ -431,6 +424,8 @@ These configurations have already been removed and **won't have any effect** on 
 | Variable | Removed in | Example Values | Description |
 | - | - | - | - |
 | `LAMBDA_EVENT_SOURCE_MAPPING` | 4.0.0 | `v2` (default since [3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/#new-default-lambda-event-source-mapping-implementation)) \| `v1` | Feature flag to switch Lambda Event Source Mapping (ESM) implementations. |
+| `PROVIDER_OVERRIDE_STEPFUNCTIONS` | 4.0.0 | `v2` (default) \| `legacy` | The new LocalStack-native StepFunctions provider (v2) is active by default since LocalStack 3.0. |
+| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | 4.0.0 | `default` | This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
 | `S3_DIR` | 4.0.0 | `/path/to/root` | This was only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 | `<SERVICE>_BACKEND` | 3.0.0 | `http://localhost:7577` |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
 | `<SERVICE>_PORT_EXTERNAL` | 3.0.0 | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
