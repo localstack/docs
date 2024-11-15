@@ -232,7 +232,6 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables (also with `--env-file`, but the file has to be mounted into the LocalStack container), ports, volume mounts, extra hosts, networks, DNS servers, labels, ulimits, user, platform, and privileged mode. The `--env-file` argument for Docker `run` and Docker Compose have different feature sets. To provide both, we support the `--env-file` for environment files with the docker run syntax, while `--compose-env-file` supports the full docker compose features, like placeholders with `${}`, replacing quotes, etc. |
 | `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to. Limitation: `host` mode currently not supported. |
 | `LAMBDA_DOWNLOAD_AWS_LAYERS` | `1` (default, pro) | Whether to download public Lambda layers from AWS through a LocalStack proxy when creating or updating functions. |
-| `LAMBDA_EVENT_SOURCE_MAPPING` | `v2` | Use the new Lambda Event Source Mapping (ESM) implementation. (preview) |
 | `LAMBDA_IGNORE_ARCHITECTURE` | `0` (default) | Whether to ignore the AWS architectures (x86_64 or arm64) configured for the lambda function. Set to `1` to run cross-platform compatible lambda functions natively (i.e., Docker selects architecture). |
 | `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default, pro) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
 | `LAMBDA_K8S_INIT_IMAGE` | | Specify the image for downloading the init binary from LocalStack. The image must include the `curl` and `chmod` commands. This is only relevant for container-based Lambdas on Kubernetes |
@@ -431,6 +430,7 @@ These configurations have already been removed and **won't have any effect** on 
 
 | Variable | Removed in | Example Values | Description |
 | - | - | - | - |
+| `LAMBDA_EVENT_SOURCE_MAPPING` | 4.0.0 | `v2` (default since [3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/#new-default-lambda-event-source-mapping-implementation)) \| `v1` | Feature flag to switch Lambda Event Source Mapping (ESM) implementations. |
 | `S3_DIR` | 4.0.0 | `/path/to/root` | This was only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 | `<SERVICE>_BACKEND` | 3.0.0 | `http://localhost:7577` |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
 | `<SERVICE>_PORT_EXTERNAL` | 3.0.0 | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
