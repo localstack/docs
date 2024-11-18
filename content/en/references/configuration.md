@@ -94,7 +94,8 @@ This section covers configuration options that are specific to certain AWS servi
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `LOCALSTACK_ENABLE_BEDROCK` | `1` | Use the Bedrock provider |
+| `BEDROCK_PREWARM` | `0` (default) \| `1` | Pre-warm the Bedrock engine directly on LocalStack startup instead of on demand. |
+| `DEFAULT_BEDROCK_MODEL` | `qwen2.5:0.5b` (default) | The model to use to handle text model invocations in Bedrock. Any text-based model available for Ollama is usable. |
 
 ### BigData (EMR, Athena, Glue)
 
