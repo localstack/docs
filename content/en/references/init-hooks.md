@@ -242,6 +242,7 @@ If you are having issues with your initialization hooks not being executed, plea
   * If not, add the shebang header (usually `#!/bin/bash`) on top of your script file.
 * Is the script being listed in the logs when running LocalStack with `DEBUG=1`?
   * The detected scripts are logged like this:
+
     ```bash
     ...
     Init scripts discovered: {BOOT: [], START: [], READY: [Script(path='/etc/localstack/init/ready.d/setup.sh', stage=READY, state=UNKNOWN)], SHUTDOWN: []}
@@ -249,7 +250,8 @@ If you are having issues with your initialization hooks not being executed, plea
     Running READY script /etc/localstack/init/ready.d/setup.sh
     ...
     ```
+
   * If your script does not show up in the list of discovered init scripts, please check your Docker volume mount.
     Most likely the scripts are not properly mounted into the Docker container.
 * Are resources not being created?
-  * Ensure that AWS [credentials]({{< ref "references/credentials" >}}) are set. For awscli and Boto3, please set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+  * Ensure that AWS [credentials]({{< ref "references/credentials" >}}) are set, e.g. through `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables.
