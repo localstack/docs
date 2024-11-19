@@ -234,7 +234,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to. Limitation: `host` mode currently not supported. |
 | `LAMBDA_DOWNLOAD_AWS_LAYERS` | `1` (default, pro) | Whether to download public Lambda layers from AWS through a LocalStack proxy when creating or updating functions. |
 | `LAMBDA_IGNORE_ARCHITECTURE` | `0` (default) | Whether to ignore the AWS architectures (x86_64 or arm64) configured for the lambda function. Set to `1` to run cross-platform compatible lambda functions natively (i.e., Docker selects architecture). |
-| `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default, pro) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
+| `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default, enterprise) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
 | `LAMBDA_K8S_INIT_IMAGE` | | Specify the image for downloading the init binary from LocalStack. The image must include the `curl` and `chmod` commands. This is only relevant for container-based Lambdas on Kubernetes |
 | `LAMBDA_KEEPALIVE_MS` | `600000` (default 10min) | Time in milliseconds until lambda shuts down the execution environment after the last invocation has been processed. Set to `0` to immediately shut down the execution environment after an invocation. |
 | `LAMBDA_LIMITS_CONCURRENT_EXECUTIONS` | `1000` (default) | The maximum number of events that functions can process simultaneously in the current Region. See [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/lambda-service.html) |
@@ -245,7 +245,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove any Lambda Docker containers. |
 | `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `20` (default) | How many seconds Lambda will wait for the runtime environment to start up. Increase this timeout if I/O is slow or your Lambda deployments are large or contain many files. |
 | `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed. |
-| | `kubernetes` (pro) | Execute lambdas in a Kubernetes cluster. |
+| | `kubernetes` (enterprise) | Execute lambdas in a Kubernetes cluster. |
 | `LAMBDA_RUNTIME_IMAGE_MAPPING` | [base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html) (default) | Customize the Docker image of Lambda runtimes, either by:<br> a) pattern with `<runtime>` placeholder, e.g. `custom-repo/lambda-<runtime>:2022` <br> b) json dict mapping the `<runtime>` to an image, e.g. `{"python3.9": "custom-repo/lambda-py:thon3.9"}` |
 | `LAMBDA_RUNTIME_VALIDATION` | `0` (default) | Set to `1` to enforce strict [AWS parity](https://blog.localstack.cloud/2022-08-04-parity-explained/) by raising an exception when using a deprecated [Lambda runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) for the API operation [CreateFunction](https://docs.aws.amazon.com/lambda/latest/api/API_CreateFunction.html). Deprecated Lambda runtimes (e.g., `nodejs14.x`) can be used with disabled validation (current default). |
 | `LAMBDA_SYNCHRONOUS_CREATE` | `0` (default) | Set to `1` to create lambda functions synchronously (not recommended). |
