@@ -21,6 +21,7 @@ We will demonstrate how to use Bedrock by following these steps:
 1. Listing available foundation models
 2. Invoking a model for inference
 3. Using the conversation API
+4. Using batch processing
 
 ### Pre-warming the Bedrock engine
 
@@ -84,7 +85,50 @@ $ awslocal bedrock-runtime converse \
     }]'
 {{< / command >}}
 
+### Model Invocation Batch Processing
+
+Bedrock offers the feature to handle large batches of model invocation requests defined in S3 buckets using the [`CreateModelInvocationJob`](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateModelInvocationJob.html) API.
+
+First, you need to create a `JSONL` file that contains all your prompts:
+
+{{< command >}}
+$ cat batch_input.jsonl
+{"prompt": "Tell me a quick fact about Vienna.", "max_tokens": 50, "temperature": 0.5}
+{"prompt": "Tell me a quick fact about Zurich.", "max_tokens": 50, "temperature": 0.5}
+{"prompt": "Tell me a quick fact about Las Vegas.", "max_tokens": 50, "temperature": 0.5}
+{{< / command >}}
+
+Then, you need to define buckets for the input as well as the output and upload the file in the input bucket:
+
+{{< command >}}
+$ awslocal s3 mb s3://in-bucket
+make_bucket: in-bucket
+
+$ awslocal s3 cp batch_input.jsonl s3://in-bucket
+upload: ./batch_input.jsonl to s3://in-bucket/batch_input.jsonl
+
+$ awslocal s3 mb s3://out-bucket
+make_bucket: out-bucket
+{{< / command >}}
+
+Afterwards you can run the invocation job like this:
+
+{{< command >}}
+$ awslocal bedrock create-model-invocation-job \
+  --job-name "my-batch-job" \
+  --model-id "mistral.mistral-small-2402-v1:0" \
+  --role-arn "arn:aws:iam::123456789012:role/MyBatchInferenceRole" \
+  --input-data-config '{"s3InputDataConfig": {"s3Uri": "s3://in-bucket"}}' \
+  --output-data-config '{"s3OutputDataConfig": {"s3Uri": "s3://out-bucket"}}'
+{
+    "jobArn": "arn:aws:bedrock:us-east-1:000000000000:model-invocation-job/12345678"
+}
+{{< / command >}}
+
+The results will be at the S3 URL `s3://out-bucket/12345678/batch_input.jsonl.out`
+
 ## Limitations
 
-* LocalStack Bedrock currently only officially supports text-based models.
+* At this point, we have only tested text-based models in LocalStack.
+Other models available with Ollama might also work, but are not officially supported by the Bedrock implementation.
 * Currently, GPU models are not supported by the LocalStack Bedrock implementation.
