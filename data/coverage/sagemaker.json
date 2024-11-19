@@ -222,11 +222,11 @@
       "CreateDomain": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -748,13 +748,13 @@
     },
     {
       "CreateUserProfile": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -930,11 +930,11 @@
       "DeleteDomain": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1372,13 +1372,13 @@
     },
     {
       "DeleteUserProfile": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1602,11 +1602,11 @@
       "DescribeDomain": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -2140,13 +2140,13 @@
     },
     {
       "DescribeUserProfile": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -3184,8 +3184,8 @@
     },
     {
       "ListUserProfiles": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -3688,8 +3688,8 @@
     },
     {
       "UpdateDomain": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -4000,13 +4000,13 @@
     },
     {
       "UpdateUserProfile": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -4036,6 +4036,22 @@
     }
   ],
   "details": {
+    "CreateDomain": {
+      "AuthMode, DefaultUserSettings, DomainName, SubnetIds, VpcId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/sagemaker/test_sagemaker.py::TestSagemaker::test_domain_user_profile_lifecycle",
+            "test": "test_domain_user_profile_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "CreateEndpoint": {
       "EndpointConfigName, EndpointName": {
         "ls_pro": [
@@ -4114,6 +4130,38 @@
         ]
       }
     },
+    "CreateUserProfile": {
+      "DomainId, UserProfileName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/sagemaker/test_sagemaker.py::TestSagemaker::test_domain_user_profile_lifecycle",
+            "test": "test_domain_user_profile_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteDomain": {
+      "DomainId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/sagemaker/test_sagemaker.py::TestSagemaker::test_domain_user_profile_lifecycle",
+            "test": "test_domain_user_profile_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "DeleteEndpoint": {
       "EndpointName": {
         "ls_pro": [
@@ -4185,6 +4233,48 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteUserProfile": {
+      "DomainId, UserProfileName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/sagemaker/test_sagemaker.py::TestSagemaker::test_domain_user_profile_lifecycle",
+            "test": "test_domain_user_profile_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeDomain": {
+      "DomainId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/sagemaker/test_sagemaker.py::TestSagemaker::test_domain_user_profile_lifecycle",
+            "test": "test_domain_user_profile_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/sagemaker/test_sagemaker.py::TestSagemaker::test_domain_user_profile_lifecycle",
+            "test": "test_domain_user_profile_lifecycle",
+            "response": "400",
+            "error": "ResourceNotFound",
+            "snapshot_skipped": "['$..Status']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4355,6 +4445,48 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeUserProfile": {
+      "DomainId, UserProfileName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/sagemaker/test_sagemaker.py::TestSagemaker::test_domain_user_profile_lifecycle",
+            "test": "test_domain_user_profile_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/sagemaker/test_sagemaker.py::TestSagemaker::test_domain_user_profile_lifecycle",
+            "test": "test_domain_user_profile_lifecycle",
+            "response": "400",
+            "error": "ResourceNotFound",
+            "snapshot_skipped": "['$..Status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdateUserProfile": {
+      "DomainId, UserProfileName, UserSettings": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/sagemaker/test_sagemaker.py::TestSagemaker::test_domain_user_profile_lifecycle",
+            "test": "test_domain_user_profile_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]

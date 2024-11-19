@@ -326,6 +326,16 @@
         ],
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_authorizers.py::TestRestApiAuthorizers::test_authorizer_cognito_scopes",
+            "test": "test_authorizer_cognito_scopes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..claims.iss', '$..claims.iat', '$..claims.version', '$..claims.at_hash', '$..claims.jti', '$..claims[\"cognito:user_status\"]']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_authorizers.py::TestRestApiAuthorizers::test_authorizer_event_lambda_request",
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
@@ -333,16 +343,6 @@
             "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_apigw_v2_http_jwt_authorizer",
-            "test": "test_apigw_v2_http_jwt_authorizer",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -1004,7 +1004,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2502,6 +2502,16 @@
         ],
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_authorizers.py::TestRestApiAuthorizers::test_authorizer_cognito_scopes",
+            "test": "test_authorizer_cognito_scopes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..claims.iss', '$..claims.iat', '$..claims.version', '$..claims.at_hash', '$..claims.jti', '$..claims[\"cognito:user_status\"]']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_authorizers.py::TestRestApiAuthorizers::test_authorizer_event_lambda_request",
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
@@ -2509,16 +2519,6 @@
             "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_apigw_v2_http_jwt_authorizer",
-            "test": "test_apigw_v2_http_jwt_authorizer",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -2966,6 +2966,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
+            "test": "test_cfn_lambda_sqs_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_cfn_dead_letter_config_async_invocation",
             "test": "test_lambda_cfn_dead_letter_config_async_invocation",
             "response": "200",
@@ -3120,7 +3130,7 @@
             "test": "test_wait_for_callback",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..tracingConfiguration']",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3566,7 +3576,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3576,7 +3586,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3586,7 +3596,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3596,7 +3606,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3606,7 +3616,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3616,7 +3626,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3626,7 +3636,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3636,7 +3646,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3646,7 +3656,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3956,7 +3966,17 @@
             "test": "test_event_source_mapping_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
+            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_event_source_mapping_lifecycle_delete_function",
+            "test": "test_event_source_mapping_lifecycle_delete_function",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3966,7 +3986,7 @@
             "test": "test_function_name_variations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -9672,6 +9692,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
+            "test": "test_cfn_lambda_sqs_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sam.py::test_sam_sqs_event",
             "test": "test_sam_sqs_event",
             "response": "200",
@@ -9806,7 +9836,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9876,7 +9906,7 @@
             "test": "test_wait_for_callback",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..tracingConfiguration']",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10267,6 +10297,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
+            "test": "test_cfn_lambda_sqs_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -10734,7 +10774,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10744,7 +10784,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10754,7 +10794,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10764,7 +10804,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10774,7 +10814,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10784,7 +10824,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10794,7 +10834,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10804,7 +10844,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10814,7 +10854,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11124,7 +11164,17 @@
             "test": "test_event_source_mapping_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
+            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_event_source_mapping_lifecycle_delete_function",
+            "test": "test_event_source_mapping_lifecycle_delete_function",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11134,7 +11184,7 @@
             "test": "test_function_name_variations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -15684,7 +15734,7 @@
             "test": "test_wait_for_callback",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..tracingConfiguration']",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -16252,6 +16302,16 @@
         ],
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_authorizers.py::TestRestApiAuthorizers::test_authorizer_cognito_scopes",
+            "test": "test_authorizer_cognito_scopes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..claims.iss', '$..claims.iat', '$..claims.version', '$..claims.at_hash', '$..claims.jti', '$..claims[\"cognito:user_status\"]']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_authorizers.py::TestRestApiAuthorizers::test_authorizer_event_lambda_request",
             "test": "test_authorizer_event_lambda_request",
             "response": "200",
@@ -16259,16 +16319,6 @@
             "snapshot_skipped": "['$..authType', '$..event.headers', '$..event.multiValueHeaders', '$..event.version', '$..authorizationToken', '$..requestContext.extendedRequestId', '$..requestContext.domainName', '$..requestContext.deploymentId', '$..requestContext.protocol', '$..requestContext.requestId', '$..requestContext.requestTime', '$..requestContext.requestTimeEpoch', '$..requestContext.identity']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_apigw_v2_http_jwt_authorizer",
-            "test": "test_apigw_v2_http_jwt_authorizer",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -17238,6 +17288,26 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
+            "test": "test_cfn_lambda_sqs_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
+            "test": "test_cfn_lambda_sqs_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_cfn_dead_letter_config_async_invocation",
             "test": "test_lambda_cfn_dead_letter_config_async_invocation",
             "response": "200",
@@ -17732,7 +17802,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17742,7 +17812,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17752,7 +17822,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17762,7 +17832,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17772,7 +17842,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17782,7 +17852,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17792,7 +17862,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17802,7 +17872,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -17812,7 +17882,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18152,7 +18222,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18162,7 +18232,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -18312,7 +18382,17 @@
             "test": "test_event_source_mapping_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
+            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_event_source_mapping_lifecycle_delete_function",
+            "test": "test_event_source_mapping_lifecycle_delete_function",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18322,7 +18402,7 @@
             "test": "test_function_name_variations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19832,7 +19912,7 @@
             "test": "test_wait_for_callback",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..tracingConfiguration']",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20840,6 +20920,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
+            "test": "test_cfn_lambda_sqs_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_cfn_dead_letter_config_async_invocation",
             "test": "test_lambda_cfn_dead_letter_config_async_invocation",
             "response": "200",
@@ -21134,7 +21224,7 @@
             "test": "test_wait_for_callback",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..tracingConfiguration']",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -21760,7 +21850,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -23814,16 +23904,6 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_service",
-            "test": "test_api_injection_parametrized_service",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_policy_generation.py::TestPolicyGeneration::test_policy_generation_reset",
             "test": "test_policy_generation_reset",
             "response": "200",
@@ -24692,6 +24772,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
+            "test": "test_cfn_lambda_sqs_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sam.py::test_sam_sqs_event",
             "test": "test_sam_sqs_event",
             "response": "200",
@@ -24846,7 +24936,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -24916,7 +25006,7 @@
             "test": "test_function_name_variations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn', '$..UUID', '$..FunctionArn']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -24956,7 +25046,7 @@
             "test": "test_wait_for_callback",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..tracingConfiguration']",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26756,7 +26846,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26766,7 +26856,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26776,7 +26866,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26786,7 +26876,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26796,7 +26886,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26806,7 +26896,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26816,7 +26906,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26826,7 +26916,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26836,7 +26926,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -27857,6 +27947,26 @@
             "response": "400",
             "error": "QueueDoesNotExist",
             "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/callback/test_callback.py::TestCallback::test_sqs_wait_for_task_token",
+            "test": "test_sqs_wait_for_task_token",
+            "response": "400",
+            "error": "QueueDoesNotExist",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/error_handling/test_task_service_sqs.py::TestTaskServiceSqs::test_sqs_failure_in_wait_for_task_tok",
+            "test": "test_sqs_failure_in_wait_for_task_tok",
+            "response": "400",
+            "error": "QueueDoesNotExist",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata', '$..cause', '$..Cause']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -30280,7 +30390,7 @@
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult', '$..State', '$..EventSourceMappingArn']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -30916,7 +31026,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31544,8 +31654,18 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/chaos/test_network_effects.py::TestNetworkEffects::test_latency[3000]",
-            "test": "test_latency[3000]",
+            "node_id": "LocalStack Pro: tests/integration/chaos/test_network_effects.py::TestNetworkEffects::test_latency[500]",
+            "test": "test_latency[500]",
+            "response": "400",
+            "error": "QueueDoesNotExist",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/core/test_replicator_api.py::TestReplicatorApi::test_trigger_replication_lifecycle",
+            "test": "test_trigger_replication_lifecycle",
             "response": "400",
             "error": "QueueDoesNotExist",
             "snapshot_skipped": "",
@@ -31606,6 +31726,16 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
+            "test": "test_cfn_lambda_sqs_source",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_s3.py::test_cfn_handle_s3_notification_configuration",
@@ -31852,7 +31982,7 @@
             "test": "test_dynamodb_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31862,7 +31992,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31872,7 +32002,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31882,7 +32012,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31892,7 +32022,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31902,7 +32032,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31912,7 +32042,7 @@
             "test": "test_dynamodb_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31922,7 +32052,7 @@
             "test": "test_dynamodb_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -33632,7 +33762,7 @@
             "test": "test_wait_for_callback",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..tracingConfiguration']",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -33663,6 +33793,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata', '$..cause', '$..Cause']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/test_sfn_api.py::TestSnfApi::test_start_execution_idempotent",
+            "test": "test_start_execution_idempotent",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -33793,16 +33933,6 @@
             "response": "400",
             "error": "QueueDoesNotExist",
             "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata', '$..cause', '$..Cause']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/test_sfn_api.py::TestSnfApi::test_start_execution_idempotent",
-            "test": "test_start_execution_idempotent",
-            "response": "500",
-            "error": "InternalError",
-            "snapshot_skipped": "['$..tracingConfiguration']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -34998,7 +35128,7 @@
             "test": "test_dynamodb_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EventSourceMappingArn']",
+            "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
