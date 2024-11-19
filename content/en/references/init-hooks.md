@@ -7,7 +7,7 @@ aliases:
   - /localstack/init-hooks/
 ---
 
-## Lifecycle stages and hooks
+## Lifecycle Stages and Hooks
 
 LocalStack has four well-known lifecycle phases or stages:
 * `BOOT`: the container is running but the LocalStack runtime has not been started
@@ -41,14 +41,14 @@ A script can be in one of four states: `UNKNOWN`, `RUNNING`, `SUCCESSFUL`, `ERRO
 Scripts are by default in the `UNKNOWN` state once they have been discovered.
 The remaining states should be self-explanatory.
 
-### Execution order and script failures
+### Execution Order and Script Failures
 
 Scripts are sorted and executed in alphanumerical order.
 If you use subdirectories, scripts in parent folders are executed first, and then the directories are traversed in alphabetical order, depth first.
 If an init script fails, the remaining scripts will still be executed in order.
 A script is considered in `ERROR` state if it is a shell script and returns with a non-zero exit code, or if a Python script raises an exception during its execution.
 
-## Status endpoint
+## Status Endpoint
 
 There is an additional endpoint at `localhost:4566/_localstack/init` which returns the state of the initialization procedure.
 Boot scripts (scripts placed in `boot.d`) are currently always in the `UNKNOWN` state, since they are executed outside the LocalStack process and we don't know whether they have been successfully executed or not.
@@ -80,7 +80,7 @@ curl -s localhost:4566/_localstack/init | jq .
 }
 ```
 
-### Query individual stages
+### Querying Stages
 
 You can also query a specific stage at `localhost:4566/_localstack/init/<stage>`:
 
@@ -109,12 +109,14 @@ curl -s localhost:4566/_localstack/init/ready | jq .completed
 
 which returns either `true` or `false`.
 
-## Usage example
+## Example
 
 A common use case for init hooks is pre-seeding LocalStack with custom state.
-If you have more complex state, [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}})  and  [how to auto-load them on startup]({{< ref "user-guide/state-management/cloud-pods#auto-loading-cloud-pods" >}})  may be a good option to look into!
+For example if you want to have a certain S3 bucket or DynamoDB table created when starting LocalStack, init hooks can be very useful.
 
-But for simple state, for example if you want to have a certain S3 bucket or DynamoDB table created when starting LocalStack, init hooks can be very useful.
+{{< callout "tip" >}}
+If you have more complex states, [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}})  and  [how to auto-load them on startup]({{< ref "user-guide/state-management/cloud-pods#auto-loading-cloud-pods" >}})  may be a good option to look into!
+{{< /callout >}}
 
 To execute aws cli commands when LocalStack becomes ready,
 simply create a script `init-aws.sh` and mount it into `/etc/localstack/init/ready.d/`.
@@ -123,6 +125,9 @@ You can use anything available inside the container, including `awslocal`:
 
 ```bash
 #!/bin/bash
+
+export AWS_ACCESS_KEY_ID=000000000000 AWS_SECRET_ACCESS_KEY=000000000000
+
 awslocal s3 mb s3://my-bucket
 awslocal sqs create-queue --queue-name my-queue
 ```
@@ -155,24 +160,20 @@ DOCKER_FLAGS='-v /path/to/init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh' 
 
 Another use for init hooks can be seen when [adding custom TLS certificates to LocalStack]({{< ref "custom-tls-certificates#custom-tls-certificates-with-init-hooks" >}}).
 
-### Terraform configuration files as init hooks
+### Terraform Files as Init Hooks
 
 Running Terraform configuration files as init hooks requires the installation of a special extension.
 For more information on how to manage [LocalStack extensions]({{< ref "user-guide/extensions/" >}}), please refer to the dedicated documentation page,
 and for more details on running init hooks in development mode, you can check out the [extension repository description](https://github.com/localstack/localstack-extensions/tree/main/terraform-init).
-
-##### Usage
 
 Start LocalStack with **`EXTENSION_AUTO_INSTALL="localstack-extension-terraform-init"`**.
 Mount a **`main.tf`** file into **`/etc/localstack/init/ready.d`**
 When LocalStack starts up, it will install the extension, which in turn installs Terraform and [`tflocal`](https://github.com/localstack/terraform-local) into the container.
 If one of the init stage directories contain a `main.tf` file, the extension will run `tflocal init` and `tflocal apply` on that directory.
 
-##### Example
-
-main.tf:
-
 ```terraform
+# main.tf
+
 resource "aws_s3_bucket" "example" {
 bucket = "my-tf-test-bucket"
 
@@ -183,7 +184,7 @@ Environment = "Dev"
 }
 ```
 
-Start LocalStack Pro with mounted main.tf:
+Start LocalStack Pro with mounted `main.tf`:
 
 {{< tabpane >}}
 {{< tab header="docker-compose.yml" lang="yml" >}}
@@ -241,7 +242,6 @@ If you are having issues with your initialization hooks not being executed, plea
   * If not, add the shebang header (usually `#!/bin/bash`) on top of your script file.
 * Is the script being listed in the logs when running LocalStack with `DEBUG=1`?
   * The detected scripts are logged like this:
-
     ```bash
     ...
     Init scripts discovered: {BOOT: [], START: [], READY: [Script(path='/etc/localstack/init/ready.d/setup.sh', stage=READY, state=UNKNOWN)], SHUTDOWN: []}
@@ -249,6 +249,7 @@ If you are having issues with your initialization hooks not being executed, plea
     Running READY script /etc/localstack/init/ready.d/setup.sh
     ...
     ```
-
   * If your script does not show up in the list of discovered init scripts, please check your Docker volume mount.
     Most likely the scripts are not properly mounted into the Docker container.
+* Are resources not being created?
+  * Ensure that AWS [credentials]({{< ref "references/credentials" >}}) are set. For awscli and Boto3, please set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
