@@ -6,18 +6,20 @@ description: >
   Credentials for accessing LocalStack AWS API
 ---
 
-Like AWS, LocalStack requires access key IDs to be set in all operations.
-The choice of access key ID will affect [multi-account namespacing]({{< ref "multi-account-setups" >}}).
-Values of secret access keys are currently ignored by LocalStack.
+Like AWS, LocalStack requires AWS credentials to be supplied in all API operations.
+
+## Access Key ID
+
+For root accounts, the choice of access key ID affects [multi-account namespacing]({{< ref "multi-account-setups" >}}).
 
 Access key IDs can be one of following patterns:
 
-## Accounts IDs
+### Accounts IDs
 
 You can specify a 12-digit number which will be taken by LocalStack as the account ID.
 For example, `112233445566`.
 
-## Structured access key ID
+### Structured access key ID
 
 You can specify a structured key like `LSIAQAAAAAAVNCBMPNSG` (which translates to account ID `000000000042`).
 This must be at least 20 characters in length and must be decodable to an account ID.
@@ -34,7 +36,13 @@ We strongly recommend leaving it on.
 
 Please refer to the [IAM docs]({{< ref "user-guide/aws/iam" >}}) to learn how to create access keys in LocalStack.
 
-## Alphanumeric string
+### Alphanumeric string
 
 You can also specify an arbitrary alphanumeric access key ID like `test` or `foobar123`.
-In all such cases, the account ID will be evaluated to `000000000000`.
+In all such cases, the account ID is evaluated to `000000000000`.
+
+## Secret Access Key
+
+The value of the secret access key are currently ignored by LocalStack.
+
+We recommend using the same value as access key ID or `test`
