@@ -6,6 +6,10 @@ description: >
 tags: ["Pro image"]
 ---
 
+{{< callout "warning" >}}
+This service is deprecated and marked for removal.
+{{< /callout >}}
+
 ## Introduction
 
 Kinesis Data Analytics for SQL Applications is a service offered by Amazon Web Services (AWS) that enables you to process and analyze streaming data in real-time.
