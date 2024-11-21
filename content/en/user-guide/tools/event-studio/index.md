@@ -1,8 +1,7 @@
 ---
 title: "Event Studio"
 weight: 12
-description: >
-  Event Studio allows you to debug, profile, and test events locally while developing event-driven applications!
+description: Event Studio allows you to record, trace, debug and replay any events exchanged between AWS services.
 tags: ["Pro image"]
 ---
 
@@ -11,6 +10,7 @@ tags: ["Pro image"]
 Event Studio allows users to view, collect, and inspect data exchanges, including event payloads and metadata, between AWS services.
 It enhances system observability by displaying the data exchanged at every stage, facilitating clear understanding of event flows.
 It further centralizes debugging by enabling event replay at any system stage for detailed analysis and troubleshooting.
+In addition, it serves as a single point of truth to understand potential errors, service configuration mismatches and IAM permission issues.
 
 With Event Studio, you can:
 
