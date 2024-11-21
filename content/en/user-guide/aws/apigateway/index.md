@@ -216,12 +216,11 @@ $ curl -X GET http://localhost:4566/_aws/execute-api/<REST_API_ID>/dev/test
 ## New API Gateway implementation
 
 {{< callout >}}
+The new API Gateway implementation for both v1 (REST API) and v2 (HTTP API), introduced in [LocalStack 3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/#new-api-gateway-provider), is now the default in 4.0.
+If you were using the `PROVIDER_OVERRIDE_APIGATEWAY=next_gen` flag, please remove it as it is no longer required.
 
-Since `4.0`, LocalStack uses a new API Gateway implementation for both API Gateway v1 (REST API) and v2 (HTTP API) by default.
-
-It was released in [3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/#new-api-gateway-provider).
-If you are using LocalStack 4.0 and have been using the new implementation, please remove the [following flag]({{< ref "configuration#api-gateway" >}}) `PROVIDER_OVERRIDE_APIGATEWAY=next_gen` as it is now default.
-
+The legacy provider (`PROVIDER_OVERRIDE_APIGATEWAY=legacy`) is temporarily available but deprecated and will be removed in the next major release.
+We strongly recommend migrating to the new implementation.
 {{< /callout >}}
 
 We're entirely reworked how REST and HTTP APIs are invoked, to closely match the behavior on AWS.
