@@ -35,7 +35,7 @@ To install it, use the `extensions` sub-command in the `localstack` CLI.
 Run the following command to install Event Studio:
 
 {{< command >}}
-$ localstack extension install localstack-extension-event-studio
+$ localstack extensions install localstack-extension-event-studio
 {{< / command >}}
 
 Check the LocalStack logs for Event Studio output, where you should see logs like:
