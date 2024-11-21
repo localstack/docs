@@ -9,7 +9,8 @@ description: Stack Overview reflects the current state of your LocalStack enviro
 
 The Stack Overview provides a summary of deployed resources, categorized services with configurations, and quick access to resource details like identifiers and endpoints.
 
-You can access the Stack Overview on the [LocalStack Web Application](https://app.localstack.cloud/inst/default/overview) which would reflect a high-level visualization of your locally running cloud app architecture.
+You can access the Stack Overview in the [LocalStack Web Application](https://app.localstack.cloud/inst/default/overview).
+Alternatively, go to your LocalStack Instance and click on **Overview** to see a high-level visualization of your locally running cloud app architecture.
 
 <img src="stack-overview.png" width="900px" alt="Stack Overview">
 <br>
