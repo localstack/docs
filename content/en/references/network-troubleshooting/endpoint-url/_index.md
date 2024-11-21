@@ -15,7 +15,7 @@ This documentation provides step-by-step guidance on how to access LocalStack se
 Suppose you have LocalStack installed on your machine and want to access it using the AWS CLI.
 To connect, you must expose port 4566 from your LocalStack instance and connect to `localhost` or a domain name that points to `localhost`.
 While the LocalStack CLI does this automatically, when running the Docker container directly or with docker compose, you must configure it manually.
-Check out the [getting started documentation]({{< ref "getting-started/starting-localstack" >}}) for more information.
+Check out the [getting started documentation]({{< ref "getting-started/installation" >}}) for more information.
 
 {{< callout "tip" >}}
 If you bind a domain name to `localhost`, ensure that you are not subject to [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}).

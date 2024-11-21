@@ -1,17 +1,20 @@
 ---
-title: "Starting LocalStack"
-weight: 20
+title: "Installation"
+weight: 10
 hide_readingtime: true
 description: >
   Basic installation guide to get started with LocalStack on your local machine.
 cascade:
   type: docs
 ---
-## Install LocalStack CLI
+
+## LocalStack CLI
 
 The quickest way get started with LocalStack is by using the LocalStack CLI.
 It allows you to start LocalStack from your command line.
 Please make sure that you have a working [Docker installation](https://docs.docker.com/get-docker/) on your machine before moving on.
+
+### Installing LocalStack CLI
 
 The CLI starts and manages the LocalStack Docker container.
 For alternative methods of managing the LocalStack container, see our [alternative installation instructions]({{< ref "#alternatives" >}}).
@@ -180,6 +183,8 @@ It should be installed and started entirely under a local non-root user.
 {{< /tab >}}
 {{< /tabpane >}}
 
+### Starting LocalStack
+
 To verify that the LocalStack CLI was installed correctly, you can check the version in your terminal:
 {{< command >}}
 $ localstack --version
@@ -187,30 +192,58 @@ $ localstack --version
 {{< / command >}}
 
 You are all set!
+You can now start LocalStack with the following command:
 
-### Start LocalStack via the CLI
-
-Now that the CLI is installed you can use it to quickly start LocalStack!
 {{< command >}}
-$ localstack auth set-token <YOUR_AUTH_TOKEN> # only needed once
-$ localstack start # use -d flag to start localstack in background (detached)
-{{< localstack-latest-version >}}
+$ localstack start # start localstack in background with -d flag
+<disable-copy>
+     ___________             __
+    / /   ____  _________ _/ / _**// /**___ _**_**/ /**
+   / /   /__ \/ ___/ __ `/ /\__ \/ __/ __`/ **_/ //_/
+  / /**_/ /_/ / /**/ /_/ / /**_/ / /_/ /_/ / /**/ ,<
+ /**_**/\_**_/\_**/\__,_/_//_**_/\__/\__,_/\_**/_/|_|
+
+ 💻 LocalStack CLI 4.0.0
+ 👤 Profile: default
+
+[12:47:13] starting LocalStack in Docker mode 🐳                       localstack.py:494
+           preparing environment                                       bootstrap.py:1240
+           configuring container                                       bootstrap.py:1248
+           starting container                                          bootstrap.py:1258
+[12:47:15] detaching                                                   bootstrap.py:1262
+</disable-copy>
 {{< / command >}}
 
-## What's next?
+{{< callout >}}
+To use all of LocalStack's features we recommend to [get a LocalStack account and set up your auth token]({{< ref "auth-token" >}}).
+Afterwards, check out our [Quickstart guide]({{< ref "quickstart" >}}) to start your local development cloud!
+{{< /callout >}}
 
-Now that you have LocalStack up and running, the following resources might be useful for your next steps:
-- Check out our [Quickstart guide]({{< ref "quickstart" >}}) if you are a new user to get started with LocalStack quickly.
-- [Use the LocalStack integrations]({{< ref "integrations" >}}) to interact with LocalStack and other integrated tools, for example:
-  - Use `awslocal` to use the AWS CLI against your local cloud!
-  - Use the Serverless Framework with LocalStack!
-  - And many more!
-- [Find out how to configure LocalStack]({{< ref "configuration" >}}) such that it perfectly fits your need.
-- [Use LocalStack in your CI environment]({{< ref "user-guide/ci" >}}) to increase your code quality.
-- [Checkout LocalStack's Cloud Developer Tools]({{< ref "user-guide/tools" >}}) to further increase your development efficiency with LocalStack.
-- Find out about the ways you can [configure LocalStack]({{< ref "configuration" >}}).
+### Updating LocalStack CLI
 
-## Alternative ways to start LocalStack
+The LocalStack CLI allows you to easily update the different components of LocalStack.
+To check the various options available for updating, run:
+{{< command >}}
+$ localstack update --help
+Usage: localstack update [OPTIONS] COMMAND [ARGS]...
+
+  Update different LocalStack components.
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  all             Update all LocalStack components
+  docker-images   Update docker images LocalStack depends on
+  localstack-cli  Update LocalStack CLI
+{{< / command >}}
+
+{{< callout >}}
+Updating the LocalStack CLI using `localstack update localstack-cli` and `localstack update all` will work only if it was installed from the Python distribution.
+If it was installed using the pre-built binary or via Brew, please run the installation steps again to update to the latest version.
+{{< /callout >}}
+
+## Alternatives
 
 Besides using the CLI, there are other ways of starting and managing your LocalStack instance:
 
@@ -261,6 +294,21 @@ You can start LocalStack with [Docker Compose](https://docs.docker.com/compose/)
 Docker Compose v1.9.0 and above is supported.
 
 {{< tabpane lang="yml" >}}
+{{< tab header="Community" lang="yml" >}}
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=${DEBUG:-0}
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+{{< /tab >}}
 {{< tab header="Pro" lang="yml" >}}
 services:
   localstack:
@@ -276,21 +324,6 @@ services:
       # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
       - DEBUG=${DEBUG:-0}
       - PERSISTENCE=${PERSISTENCE:-0}
-    volumes:
-      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-{{< /tab >}}
-{{< tab header="Community" lang="yml" >}}
-services:
-  localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
-    image: localstack/localstack
-    ports:
-      - "127.0.0.1:4566:4566"            # LocalStack Gateway
-      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
-    environment:
-      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
-      - DEBUG=${DEBUG:-0}
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
@@ -378,7 +411,7 @@ $ docker run \
   If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`.
   Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
 
-- If you are using LocalStack with an [Auth Tsoken]({{< ref "auth-token" >}}), you need to specify the image tag as `localstack/localstack-pro` in your Docker setup.
+- If you are using LocalStack with an [Auth Token]({{< ref "auth-token" >}}), you need to specify the image tag as `localstack/localstack-pro` in your Docker setup.
   Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
@@ -415,33 +448,22 @@ $ helm upgrade --install localstack localstack-repo/localstack
 
 The Helm charts are not maintained in the main repository, but in a [separate one](https://github.com/localstack/helm-charts).
 
-## Updating
+## What's next?
 
-The LocalStack CLI allows you to easily update the different components of LocalStack.
-To check the various options available for updating, run:
-{{< command >}}
-$ localstack update --help
-Usage: localstack update [OPTIONS] COMMAND [ARGS]...
-
-  Update different LocalStack components.
-
-Options:
-  -h, --help  Show this message and exit.
-
-Commands:
-  all             Update all LocalStack components
-  docker-images   Update docker images LocalStack depends on
-  localstack-cli  Update LocalStack CLI
-{{< / command >}}
-
-{{< callout >}}
-Updating the LocalStack CLI using `localstack update localstack-cli` and `localstack update all` will work only if it was installed from the Python distribution.
-If it was installed using the pre-built binary or via Brew, please run the installation steps again to update to the latest version.
-{{< /callout >}}
+Now that you have LocalStack up and running, the following resources might be useful for your next steps:
+- Check out our [Quickstart guide]({{< ref "quickstart" >}}) if you are a new user to get started with LocalStack quickly.
+- [Use the LocalStack integrations]({{< ref "integrations" >}}) to interact with LocalStack and other integrated tools, for example:
+  - Use `awslocal` to use the AWS CLI against your local cloud!
+  - Use the Serverless Framework with LocalStack!
+  - And many more!
+- [Find out how to configure LocalStack]({{< ref "configuration" >}}) such that it perfectly fits your need.
+- [Use LocalStack in your CI environment]({{< ref "user-guide/ci" >}}) to increase your code quality.
+- [Checkout LocalStack's Cloud Developer Tools]({{< ref "user-guide/tools" >}}) to further increase your development efficiency with LocalStack.
+- Find out about the ways you can [configure LocalStack]({{< ref "configuration" >}}).
 
 ## Troubleshooting
 
-### The LocalStack CLI installation is successful, but I cannot execute `localstack`
+#### The LocalStack CLI installation is successful, but I cannot execute `localstack`
 
 If you can successfully install LocalStack using `pip` but you cannot use it in your terminal, you most likely haven't set up your operating system's / terminal's `PATH` variable (in order to tell them where to find programs installed via `pip`).
 - If you are using Windows, you can enable the `PATH` configuration when installing Python, [as described in the official docs of Python](https://docs.python.org/3/using/windows.html#finding-the-python-executable).
@@ -452,7 +474,7 @@ As a workaround you can call the LocalStack CLI python module directly:
 $ python3 -m localstack.cli.main
 {{< / command >}}
 
-### The `localstack` CLI does not start the LocalStack container
+#### The `localstack` CLI does not start the LocalStack container
 
 If you are using the `localstack` CLI to start LocalStack, but the container is not starting, please check the following:
 - Uncheck the **Use kernel networking for UDP** option in Docker Desktop (**Settings** → **Resources** → **Network**) or follow the steps in our [documentation](https://docs.localstack.cloud/user-guide/tools/dns-server/#system-dns-configuration) to disable it.
@@ -462,7 +484,7 @@ $ DNS_ADDRESS=0 localstack start
 {{< / command >}}
 - Remove port 53 as indicated in our [standard `docker-compose.yml`  file](https://github.com/localstack/localstack/blob/master/docker-compose-pro.yml).
 
-### How should I access the LocalStack logs on my local machine?
+#### How should I access the LocalStack logs on my local machine?
 
 You can now avail logging output and error reporting using LocalStack logs.
 To access the logs, run the following command:
@@ -487,109 +509,7 @@ Requests to HTTP endpoints are logged in a similar way:
 2022-09-12T11:01:55.799  INFO --- [   asgi_gw_0] localstack.request.http    : GET / => 200
 ```
 
-### Common activation issues
-
-Starting from version 2.0.0, the `localstack/localstack-pro` image in LocalStack demands a successful license activation for startup.
-If the activation of the license is unsuccessful, LocalStack will exit and display error messages.
-
-```bash
-===============================================
-License activation failed! 🔑❌
-
-Reason: The credentials defined in your environment are invalid. lease make sure to set the
-        ENV_LOCALSTACK_AUTH_TOKEN variable to a valid auth token. You can find your auth
-        token in the LocalStack web app https://app.localstack.cloud."
-
-Due to this error, Localstack has quit. LocalStack pro features can only be used with a valid license.
-
-- Please check that your credentials are set up correctly and that you have an active license.
-  You can find your credentials in our webapp at https://app.localstack.cloud.
-- If you want to continue using LocalStack without pro features you can set `ACTIVATE_PRO=0`.
-```
-
-The activation of LocalStack may fail for several reasons, and the most common ones are listed below in this section.
-
-#### Licensing-related configuration
-
-To avoid logging any licensing-related error messages, set `LOG_LICENSE_ISSUES=0` in your environment.
-Refer to our [configuration guide](https://docs.localstack.cloud/references/configuration/#localstack-pro) for more information.
-
-#### Checking license activation
-
-The simplest method to verify if LocalStack is active is by querying the health endpoint for a list of running services:
-
-{{< tabpane text=true >}}
-{{< tab header="macOS/Linux" lang="shell" >}}
-
-{{< command >}}
-$ curl http://localhost:4566/_localstack/info | jq
-{{< / command >}}
-
-{{< /tab >}}
-{{< tab header="Windows" lang="powershell" >}}
-
-{{< command >}}
-$ Invoke-WebRequest -Uri http://localhost:4566/_localstack/info | ConvertFrom-Json
-{{< / command >}}
-
-{{< /tab >}}
-{{< /tabpane >}}
-
-The following output would be retrieved:
-
-```bash
-{
-  "version": "3.0.0:6dd3f3d",
-  "edition": "pro",
-  "is_license_activated": true,
-  "session_id": "7132da5f-a380-44ca-8897-6f0fdfd7b1c9",
-  "machine_id": "0c49752c",
-  "system": "linux",
-  "is_docker": true,
-  "server_time_utc": "2023-11-21T05:41:33",
-  "uptime": 161
-}
-````
-
-You can notice the `edition` field is set to `pro` and the `is_license_activated` field is set to `true`.
-Another way to confirm this is by checking the logs of the LocalStack container for a message indicating successful license activation:
-
-{{< command >}}
-[...] Successfully activated license
-{{< / command >}}
-
-#### Missing Credentials
-
-You need to provide an Auth Token to start the LocalStack Pro image successfully.
-You can find your Auth Token on the [Auth Token page](https://app.localstack.cloud/workspace/auth-tokens) in the LocalStack Web App.
-
-If you are using the `localstack` CLI, you can set the `LOCALSTACK_AUTH_TOKEN` environment variable to your Auth Token or use the following command to set it up:
-
-{{< command >}}
-$ localstack auth set-token <YOUR_AUTH_TOKEN>
-{{< / command >}}
-
-#### Invalid License
-
-The issue may occur if there is no valid license linked to your account due to expiration or if the license has not been assigned.
-You can check your license status in the LocalStack Web Application on the [My License page](https://app.localstack.cloud/workspace/my-license).
-
-#### License Server Unreachable
-
-LocalStack initiates offline activation when the license server is unreachable, requiring re-activation every 24 hours.
-Log output may indicate issues with your machine resolving the LocalStack API domain, which can be verified using a tool like `dig`:
-
-{{< command >}}
-$ dig api.localstack.cloud
-{{< / command >}}
-
-If the result shows a status other than `status: NOERROR`, your machine is unable to resolve this domain.
-Certain corporate DNS servers may filter requests to specific domains.
-Kindly reach out to your network administrator to safelist `localstack.cloud` domain.
-
-If you have any further problems concerning your license activation, or if the steps do not help, do not hesitate to [contact us](https://localstack.cloud/contact/).
-
-### How should I share the LocalStack logs for troubleshooting?
+#### How should I share the LocalStack logs for troubleshooting?
 
 You can share the LocalStack logs with us to help us identify issues.
 To share the logs, call the diagnostic endpoint:
@@ -601,7 +521,7 @@ $ curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz
 Ensure that the diagnostic endpoint is run after you have tried reproducing the affected task.
 After running the task, run the diagnostic endpoint and share the archive file with your team members or LocalStack Support.
 
-### My application cannot reach LocalStack over the network
+#### My application cannot reach LocalStack over the network
 
 We have extensive network troubleshooting documentation available [here]({{< ref "references/network-troubleshooting" >}}).
 
