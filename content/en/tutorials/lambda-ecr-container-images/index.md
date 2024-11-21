@@ -111,7 +111,7 @@ The resulting image will contain your function code and any specified dependenci
 
 Now that the initial setup is complete let's explore how to leverage LocalStack's AWS emulation by pushing our image to ECR and deploying the Lambda container image.
 Start LocalStack by executing the following command.
-Make sure to replace `<your-auth-token>` with your actual auth token:
+Make sure to replace `<your-auth-token>` with your actual Auth Token:
 
 {{< command >}}
 $ LOCALSTACK_AUTH_TOKEN=<your-auth-token> DEBUG=1 localstack start -d

@@ -83,8 +83,8 @@ In the root folder of the demo project run:
 
 ```bash
 $ export LOCALSTACK_AUTH_TOKEN=<your_auth_token>
-$ localstack start -e EXTENSION_AUTO_INSTALL=localstack-extension-terraform-init 
-                -v ./terraform/main.tf:/etc/localstack/init/ready.d/main.tf 
+$ localstack start -e EXTENSION_AUTO_INSTALL=localstack-extension-terraform-init
+                -v ./terraform/main.tf:/etc/localstack/init/ready.d/main.tf
                 -v ./target/product-lambda.jar:/etc/localstack/init/ready.d/target/product-lambda.jar
 ```
 
@@ -260,7 +260,7 @@ This configuration is abstracted in a superclass to be reusable across different
 Here's what each configuration line does:
 - **LAMBDA_REMOVE_CONTAINERS="1"**: Ensures that Lambda containers are removed after execution to free up resources and avoid clutter.
 - **EXTENSION_AUTO_INSTALL="localstack-extension-terraform-init"**: Automatically installs the Terraform init hooks extension.
-- **LOCALSTACK_AUTH_TOKEN**: Fetches the LocalStack auth token from environment variables.
+- **LOCALSTACK_AUTH_TOKEN**: Fetches the LocalStack Auth Token from environment variables.
 - **DEBUG="1"**: Enables verbose logging for troubleshooting and ensuring detailed logs are available for debugging.
 
 The `withFileSystemBind` commands mount the `product-lambda.jar` and the directory containing the Terraform files from the host machine into the appropriate init hook directory within the LocalStack container.

@@ -131,6 +131,21 @@ $ awslocal sqs receive-message \
     --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/target-queue
 {{< /command >}}
 
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing EventBridge Pipes.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **EventBridge Pipes** under the **App Integration** section.
+
+<img src="pipes-resource-browser.png" alt="EventBridge Pipes Resource Browser" title="EventBridge Pipes Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser for EventBridge Pipes in LocalStack allows you to perform the following actions:
+
+1. **Create a Pipe**: Click on the **Create Pipe** button to set up a new pipe with a source and target service, filter criteria, and more.
+2. **View Pipe Details**: Click on the pipe name to view detailed information, including source, target, batch size, state, and more.
+3. **Delete a Pipe**: Select a pipe and click on the **Actions** dropdown menu, followed by **Remove Selected**, to delete the pipe.
+
 ## Supported sources
 
 LocalStack supports the following [sources](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-source.html) for Pipes:

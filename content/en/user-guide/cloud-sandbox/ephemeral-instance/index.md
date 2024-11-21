@@ -83,6 +83,103 @@ Ephemeral Instances, by default, are created with the latest version of LocalSta
 If you have created a Cloud Pod from an older version of LocalStack, you need to update the Cloud Pod to the latest version before loading it into an Ephemeral Instance.
 {{< /callout >}}
 
+## Ephemeral Instances CLI
+
+The Ephemeral Instances CLI is included in the [LocalStack CLI installation](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), so no additional installations are needed to start using it.
+If you're a licensed user, setting the `LOCALSTACK_AUTH_TOKEN` as an environment variable is recommended to access all features of the Ephemeral Instances CLI.
+
+Access the Ephemeral Instances CLI by running the `localstack ephemeral` command from your terminal.
+
+{{< command >}}
+$ localstack ephemeral --help
+<disable-copy>
+Usage: localstack ephemeral [OPTIONS] COMMAND [ARGS]...
+
+  (Preview) Manage ephemeral LocalStack instances in the cloud.
+
+  This command group allows you to create, list, and delete ephemeral
+  LocalStack instances.
+  Ephemeral instances are temporary cloud instances that
+  can be used for testing and development.
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  create  Create a new ephemeral instance
+  delete  Delete an ephemeral instance
+  list    List all ephemeral instances
+  logs    Fetch logs from an ephemeral instance
+</disable-copy>
+{{< / command >}}
+
+To start an Ephemeral Instance, run the following command:
+
+{{< command >}}
+$ localstack ephemeral create --name my-instance-123
+{{< / command >}}
+
+The output of the command should look like this:
+
+```bash
+{
+  "creation_time": 1731347416,
+  "endpoint_url": "https://ls-ji9gajoqrveou.sandbox.localstack.cloud",
+  "expiry_time": 1731351016,
+  "id": "ji9gajoqrveou",
+  "image": {
+    "image_name": "localstack/localstack-pro",
+    "tag": "latest"
+  },
+  "instance_name": "my-instance-123",
+  "labels": {
+    "image-name": "localstack/localstack-pro",
+    "image-tag": "latest",
+    "instance-name": "my-instance-123",
+    "requestor": "4e60f2cb"
+  },
+  "requestor": "4e60f2cb",
+  "shape": {
+    "memory_megabytes": 2048,
+    "virtual_cpus": 1
+  },
+  "status": "running"
+}
+```
+
+List your available running Ephemeral Instances with:
+
+{{< command >}}
+$ localstack ephemeral list
+{{< / command >}}
+
+Retrieve your Ephemeral Instance logs with:
+
+{{< command >}}
+$ localstack ephemeral logs --name my-instance-123
+{{< / command >}}
+
+The logs output will look like this:
+
+```bash
+LocalStack version: 3.8.2.dev98
+LocalStack build date: 2024-11-11
+LocalStack build git hash: c624ee66
+
+2024-11-11T17:50:42.373  INFO --- [  MainThread] l.p.c.b.licensingv2        : Successfully requested and activated new license 636c4b55-b09c-4a93-bef6-2f6d024f7d8a:enterprise 🔑✅
+2024-11-11T17:50:43.504  INFO --- [  MainThread] l.p.c.extensions.platform  : loaded 0 extensions
+Ready.
+```
+
+Finally, delete your Ephemeral Instance with:
+
+{{< command >}}
+$ localstack ephemeral delete --name my-instance-123
+<disable-copy>
+Successfully deleted instance: my-instance-123 ✅
+</disable-copy>
+{{< / command >}}
+
 ## Credit Consumption
 
 Ephemeral Instances consume credits based on the resources used and the duration of the instance.

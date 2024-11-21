@@ -15,17 +15,28 @@ The supported APIs are available on our [API Coverage Page](https://docs.localst
 
 This guide is designed for users new to AWS Bedrock and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
 
-Start your LocalStack container using your preferred method using the `LOCALSTACK_ENABLE_BEDROCK=1` configuration variable.
+Start your LocalStack container using your preferred method with or without pre-warming the Bedrock engine.
 We will demonstrate how to use Bedrock by following these steps:
 
 1. Listing available foundation models
 2. Invoking a model for inference
 3. Using the conversation API
+4. Using batch processing
+
+### Pre-warming the Bedrock engine
+
+The startup of the Bedrock engine can take some time.
+Per default, we only start it once you send a request to one of the `bedrock-runtime` APIs.
+However, if you want to start the engine when localstack starts to avoid long wait times on your first request you can set the flag `BEDROCK_PREWARM`.
 
 ### List available foundation models
 
 You can view all available foundation models using the [`ListFoundationModels`](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_ListFoundationModels.html) API.
-This will show you which models are available for use in your local environment.
+This will show you which models are available on AWS Bedrock.
+{{< callout "note">}}
+The actual model that will be used for emulation will differ from the ones defined in this list.
+You can define the used model with `DEFAULT_BEDROCK_MODEL`
+{{< / callout >}}
 
 Run the following command:
 
@@ -36,7 +47,8 @@ $ awslocal bedrock list-foundation-models
 ### Invoke a model
 
 You can use the [`InvokeModel`](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModel.html) API to send requests to a specific model.
-In this example, we'll use the Llama 3 model to process a simple prompt.
+In this example, we selected the Llama 3 model to process a simple prompt.
+However, the actual model will be defined by the `DEFAULT_BEDROCK_MODEL` environment variable.
 
 Run the following command:
 
@@ -73,7 +85,50 @@ $ awslocal bedrock-runtime converse \
     }]'
 {{< / command >}}
 
+### Model Invocation Batch Processing
+
+Bedrock offers the feature to handle large batches of model invocation requests defined in S3 buckets using the [`CreateModelInvocationJob`](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateModelInvocationJob.html) API.
+
+First, you need to create a `JSONL` file that contains all your prompts:
+
+{{< command >}}
+$ cat batch_input.jsonl
+{"prompt": "Tell me a quick fact about Vienna.", "max_tokens": 50, "temperature": 0.5}
+{"prompt": "Tell me a quick fact about Zurich.", "max_tokens": 50, "temperature": 0.5}
+{"prompt": "Tell me a quick fact about Las Vegas.", "max_tokens": 50, "temperature": 0.5}
+{{< / command >}}
+
+Then, you need to define buckets for the input as well as the output and upload the file in the input bucket:
+
+{{< command >}}
+$ awslocal s3 mb s3://in-bucket
+make_bucket: in-bucket
+
+$ awslocal s3 cp batch_input.jsonl s3://in-bucket
+upload: ./batch_input.jsonl to s3://in-bucket/batch_input.jsonl
+
+$ awslocal s3 mb s3://out-bucket
+make_bucket: out-bucket
+{{< / command >}}
+
+Afterwards you can run the invocation job like this:
+
+{{< command >}}
+$ awslocal bedrock create-model-invocation-job \
+  --job-name "my-batch-job" \
+  --model-id "mistral.mistral-small-2402-v1:0" \
+  --role-arn "arn:aws:iam::123456789012:role/MyBatchInferenceRole" \
+  --input-data-config '{"s3InputDataConfig": {"s3Uri": "s3://in-bucket"}}' \
+  --output-data-config '{"s3OutputDataConfig": {"s3Uri": "s3://out-bucket"}}'
+{
+    "jobArn": "arn:aws:bedrock:us-east-1:000000000000:model-invocation-job/12345678"
+}
+{{< / command >}}
+
+The results will be at the S3 URL `s3://out-bucket/12345678/batch_input.jsonl.out`
+
 ## Limitations
 
-* LocalStack Bedrock implementation is mock-only and does not run any LLM model locally.
+* At this point, we have only tested text-based models in LocalStack.
+Other models available with Ollama might also work, but are not officially supported by the Bedrock implementation.
 * Currently, GPU models are not supported by the LocalStack Bedrock implementation.

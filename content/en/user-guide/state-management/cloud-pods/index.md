@@ -138,7 +138,7 @@ $ localstack pod versions s3-test
 
 ### Pull your Pod state
 
-On a separate machine, start LocalStack while ensuring the auth token is properly configured.
+On a separate machine, start LocalStack while ensuring the Auth Token is properly configured.
 Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
 
 {{< command >}}
@@ -236,7 +236,9 @@ To export the state, follow these steps:
 1. Navigate to the **Cloud Pod** tab within the [Export/Import State](https://app.localstack.cloud/inst/default/state) page.
 2. Create AWS resources locally as needed.
 3. Enter the Pod name and toggle between the **New Pod** and **Existing Pod** options.
-4. Click on **Create New Pod**.
+4. Enter the services to save resources for.
+  By default, all available service resources are saved.
+5. Click on **Create New Pod**.
 
 A new Cloud Pod will be created and will be available for import into another LocalStack instance.
 You can check out the list of available Cloud Pods in the [Cloud Pod](https://app.localstack.cloud/pods) page.
@@ -518,7 +520,6 @@ Once added, a remote persists even after LocalStack restarts.
 ## State Merging
 
 Cloud Pods offers various strategies for integrating states into your LocalStack container.
-To activate the merge strategies, you can set `--strategy <strategy>` while loading the Cloud Pod.
 The available strategies are:
 
 - `overwrite`: This strategy clears the existing state and loads the new state from the Cloud Pod, completely resetting the LocalStack state.
@@ -526,6 +527,22 @@ The available strategies are:
   It attempts to combine states from both the current state and the Cloud Pod for the same account and region.
 - `service-merge`: This strategy merges services at the account-region level, provided there's no overlap in resources.
   It prioritizes the loaded resources when merging.
+
+### LocalStack CLI
+
+To activate merge strategies, set `--strategy <strategy>` when loading a Cloud Pod using the LocalStack CLI.
+For instance, to load a Cloud Pod named `test-pod-s3-sqs` with the `service-merge` strategy, run the following command:
+
+{{< command >}}
+$ localstack pod load test-pod-s3-sqs --strategy service-merge
+{{< / command >}}
+
+### LocalStack Web Application
+
+To activate merge strategies, navigate to the **Cloud Pods** tab on the [Export/Import State page](https://app.localstack.cloud/inst/default/state).
+Enter the name of the Cloud Pod, select the version, choose the strategy from a dropdown, and click **Load State from Pod**.
+
+<img src="merge-strategy-web-app.png" alt="Merge Strategy Web UI" title="Merge Strategy Web UI" width="800px" />
 
 ### Example scenario
 
@@ -592,7 +609,7 @@ However, state management might not yet work reliably for every service.
 
 ## Troubleshooting
 
-### Unable to obtain auth token
+### Unable to obtain Auth Token
 
 When you try to save a Cloud Pod and see the error in LocalStack logs like this:
 

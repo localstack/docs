@@ -54,19 +54,15 @@ Changes to licenses take effect immediately and require no further action of the
 In the past, access to LocalStack and advanced features was granted to individual developers by providing them with a (now legacy) API key.
 
 With the recent change, now the recommended way is to assign a 'license' to a user instead.
-Instead of using the legacy API key, the user sets up their personal auth token to access LocalStack advanced features.
-Upon authentication, the the auth token is used to identify the user and to retrieve and activate an assigned license.
+Instead of using the legacy API key, the user sets up their personal Auth Token to access LocalStack advanced features.
+Upon authentication, the the Auth Token is used to identify the user and to retrieve and activate an assigned license.
 
 The benefits of this new systems are:
 
 - Auth tokens are longer and more secure (more bits of entropy)
-- A user can freely rotate their auth token (if needed) without any changes to their license.
+- A user can freely rotate their Auth Token (if needed) without any changes to their license.
 - An admin can manage users's licenses, not requiring any configuration change of the user.
   Previously users had to manually update their (legacy) API key.
-
-{{< callout >}}
-The transition to auth tokens only affects _developer_ API keys. **CI keys** are unaffected by this transition and are still the only way to activate a LocalStack instance for use in CI or other automated contexts.
-{{< /callout >}}
 
 ### Migrating Users to Auth Tokens and Licenses
 
@@ -77,8 +73,8 @@ A user holding both a legacy API key and a license is only counted once when the
 
 If a user uses an API key that was not assigned to them, then it might be necessary to first remove the API key before a license can be assigned.
 
-Once the license is assigned to the user, and the user set up their system to use the new auth token, their legacy API key can be deleted from the workspace.
-A user can find their personal auth token either in the 'Auth Token' or in the 'Getting Started' section of the web app.
+Once the license is assigned to the user, and the user set up their system to use the new Auth Token, their legacy API key can be deleted from the workspace.
+A user can find their personal Auth Token either in the 'Auth Token' or in the 'Getting Started' section of the web app.
 
 ### Sunsetting legacy API keys
 
