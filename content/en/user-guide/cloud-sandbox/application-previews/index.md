@@ -40,7 +40,7 @@ A comment containing the preview link is automatically added to a Pull Request w
 This preview is available for 30 minutes
 
 ```yaml
-uses: LocalStack/setup-localstack@v0.2.2
+uses: LocalStack/setup-localstack@v0.2.3
 with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     state-backend: ephemeral

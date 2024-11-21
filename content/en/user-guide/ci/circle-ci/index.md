@@ -90,19 +90,17 @@ jobs:
 
 ### Configuring a CI key
 
-To enable LocalStack Pro+, you need to add your LocalStack CI key to the project's environment variables.
+To enable LocalStack Pro+, you need to add your LocalStack CI Auth Token to the project's environment variables.
 The LocalStack container will automatically pick it up and activate the licensed features.
 
-Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key.
-To add the CI key to your CircleCI project, follow these steps:
+Go to the [CI Auth Token page](https://app.localstack.cloud/workspace/auth-tokens) and copy your CI Auth Token.
+To add the CI Auth Token to your CircleCI project, follow these steps:
 
 - Click on **Project Settings**.
 - Select **Environment Variables** from the left side menu.
 - Click **Add Environment Variable**.
-- Name your environment variable `LOCALSTACK_API_KEY`.
-- Paste your CI key into the input field.
-
-<img src="circleci-env-config.png" width="800px" alt="Adding the LocalStack CI key in CircleCI" />
+- Name your environment variable `LOCALSTACK_AUTH_TOKEN`.
+- Paste your CI Auth Token into the input field.
 
 After the above steps, just start up LocalStack using our official orb as usual.
 

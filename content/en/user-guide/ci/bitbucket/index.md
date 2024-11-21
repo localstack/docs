@@ -55,16 +55,17 @@ pipelines:
 
 ## Configuring a CI key
 
-You can enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the project's environment variables.
+You can enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI Auth Token to the project's environment variables.
 The LocalStack container will automatically pick it up and activate the Pro features.
 
-To add a CI key to your BitBucket Pipeline:
+Go to the [CI Auth Token page](https://app.localstack.cloud/workspace/auth-tokens) and copy your CI Auth Token.
+To add a CI Auth Token to your BitBucket Pipeline:
 
 - Select a workspace from the BitBucket dashboard.
 - Select the **Settings** on the top navigation bar.
 - Select **Workspace settings** from the **Settings dropdown** menu.
-- On left-hand menu, navigate to **Pipelines** and click on **Workspace variables**.
-- Add a new variable with the name `LOCALSTACK_API_KEY` and the value of your CI key.
+- On the left-hand menu, navigate to **Pipelines** and click on **Workspace variables**.
+- Add a new variable with the name `LOCALSTACK_AUTH_TOKEN` and the value of your CI Auth Token.
 
 Navigate to your BitBucket Pipeline and add the following lines to the `bitbucket-pipelines.yaml` file:
 

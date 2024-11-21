@@ -1,5 +1,6 @@
 ---
 title: "Installation"
+linkTitle: "Installation"
 weight: 10
 hide_readingtime: true
 description: >
@@ -264,8 +265,7 @@ Besides using the CLI, there are other ways of starting and managing your LocalS
 
 LocalStack runs inside a Docker container, and the above options are different ways to start and manage the LocalStack Docker container.
 
-The localstack emulator is released and made available vie docker hub in two editions: The Community Edition `localstack/localstack` and the the Pro Edition `localstack/localstack-pro`.
-To use advanced features and access additional emulated services in LocalStack, the use of the `localstack/localstack-pro` image is required.
+The LocalStack emulator is available on Docker Hub in two editions: the Community Edition (`localstack/localstack`) and the Pro Edition (`localstack/localstack-pro`).
 
 For a comprehensive overview of the LocalStack images, check out our [Docker images documentation]({{< ref "docker-images" >}}).
 

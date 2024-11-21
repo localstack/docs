@@ -75,20 +75,20 @@ job:
     - DOCKER_HOST="tcp://${dind_ip}:2375" localstack start -d
 ```
 
-### Configure a CI key
+### Configure a CI Auth Token
 
-You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the repository's environment variables.
-Go to your project's **Settings > CI/CD**  and expand the  **Variables**  section.
-Select the **Add Variable** button and fill in the necessary details.
-After you create a variable, you can use it in the `.gitlab-ci.yml` file.
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your [CI Auth Token](https://app.localstack.cloud/workspace/auth-tokens) to the repository's environment variables as `LOCALSTACK_AUTH_TOKEN`.
+Go to your project's **Settings > CI/CD** and expand the **Variables** section.
+Select the **Add Variable** button and fill in the necessary details with `LOCALSTACK_AUTH_TOKEN` as the key and your CI Auth Token as the value.
+After you create the variable, you can use it in the `.gitlab-ci.yml` file.
 
-However Variables set in the GitLab UI are not passed down to service containers.
-We need to assign them to variables in the UI, and then re-assign them in our `.gitlab-ci.yml`
+However, variables set in the GitLab UI are not automatically passed down to service containers.
+You need to assign them as variables in the UI, and then re-assign them in your `.gitlab-ci.yml`.
 
 ```yaml
 ...
 variables:
-  LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
+  LOCALSTACK_AUTH_TOKEN: $LOCALSTACK_AUTH_TOKEN
 ...
 services:
   - name: localstack/localstack-pro:latest
@@ -179,7 +179,7 @@ Find more information about cloud pods [here](/user-guide/state-management/cloud
 ```yaml
 ...
 variables:
-  LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
+  LOCALSTACK_AUTH_TOKEN: $LOCALSTACK_AUTH_TOKEN
 ...
 setup-job:
   stage: build

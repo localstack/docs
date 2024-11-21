@@ -90,15 +90,15 @@ phases:
 
 ### Configuring a CI key
 
-To enable LocalStack Pro features, you need to add your LocalStack CI API key to the project's environment variables.
+To enable LocalStack Pro features, you need to add your LocalStack CI Auth Token to the project's environment variables.
 The LocalStack container will automatically pick it up and activate the licensed features.
 
-Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key.
-To add the CI key to your CodeBuild project, follow these steps:
+Go to the [CI Auth Token page](https://app.localstack.cloud/workspace/auth-tokens) and copy your CI Auth Token.
+To add the CI Auth Token to your CodeBuild project, follow these steps:
 
 - Navigate to your project dashboard, click **Edit** to open the dropdown, and select **Environment**.
 - Click on **Additional configuration** and navigate to the **Environment variables** section.
-- Specify **Name** as `LOCALSTACK_API_KEY` and **Value** as your CI key.
+- Specify **Name** as `LOCALSTACK_AUTH_TOKEN` and **Value** as your CI Auth Token.
 Specify **Type** as per your requirement.
 
 Click on **Update environment** to save your environment variables.

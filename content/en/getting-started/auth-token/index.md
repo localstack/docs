@@ -147,7 +147,7 @@ It is not possible to restore previous tokens.
 
 To rotate your Auth Token, go to the [Auth Token page](https://app.localstack.cloud/workspace/auth-tokens) and select the **Reset Auth Token** option.
 
-## Licensing configuration & activation
+## Licensing configuration & activation checkup
 
 To avoid logging any licensing-related error messages, set `LOG_LICENSE_ISSUES=0` in your environment.
 Refer to our [configuration guide](https://docs.localstack.cloud/references/configuration/#localstack-pro) for more information.

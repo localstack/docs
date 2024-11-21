@@ -36,33 +36,29 @@ For example, to set the `DEBUG` configuration option, you can use the following 
 
 You can add extra configuration options by separating them with a comma.
 
-### Configure a CI key
+### Configure a CI Auth Token
 
-To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables.
+To enable LocalStack Pro, you need to add your LocalStack CI Auth Token to the project's environment variables.
 The LocalStack container will automatically pick it up and activate the licensed features.
 
-Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key.
-To add the CI key to your GitHub project, follow these steps:
+Go to the [CI Auth Token page](https://app.localstack.cloud/workspace/auth-tokens) and copy your CI Auth Token.
+To add the CI Auth Token to your GitHub project, follow these steps:
 
 - Navigate to your repository **Settings > Secrets** and press **New repository secret**.
-- Enter `LOCALSTACK_API_KEY` as the name of the secret and paste your CI key as the value.
+- Enter `LOCALSTACK_AUTH_TOKEN` as the name of the secret and paste your CI Auth Token as the value.
 Click **Add secret** to save your secret.
 
-<img src="github-create-secret.png" alt="Adding the LocalStack CI key as secret in GitHub" title="Adding the LocalStack CI key as secret in GitHub" width="900" />
-<br>
-<br>
-
-Additionally, you need to modify your GitHub Action workflow to use the `localstack/localstack-pro` image and use the `LOCALSTACK_API_KEY` environment variable.
+You can then use our [`setup-localstack`](https://github.com/localstack/setup-localstack) GitHub Action to start your LocalStack container, with the `LOCALSTACK_AUTH_TOKEN` environment variable:
 
 ```yaml
 - name: Start LocalStack
-  uses: LocalStack/setup-localstack@v0.2.2
+  uses: LocalStack/setup-localstack@v0.2.3
   with:
     image-tag: 'latest'
     install-awslocal: 'true'
     use-pro: 'true'
   env:
-    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+    LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
 ```
 
 ### Dump Localstack logs
@@ -156,7 +152,7 @@ Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
     state-action: load
     state-name: my-ls-state
   env:
-    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+    LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
 
 ...
 
@@ -168,7 +164,7 @@ Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
     state-action: save
     state-name: my-ls-state
   env:
-    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+    LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
 ...
 ```
 
