@@ -97,7 +97,7 @@ services:
 ```
 
 You can check the logs of the LocalStack container to see if the activation was successful.
-If the CI key activation fails, LocalStack container will exit with an error code.
+If the CI Auth Token activation fails, LocalStack container will exit with an error code.
 
 ### Dump Localstack logs
 

@@ -53,7 +53,7 @@ pipelines:
           - awslocal s3 ls
 ```
 
-## Configuring a CI key
+## Configuring a CI Auth Token
 
 You can enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI Auth Token to the project's environment variables.
 The LocalStack container will automatically pick it up and activate the Pro features.

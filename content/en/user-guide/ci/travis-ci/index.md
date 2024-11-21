@@ -46,7 +46,7 @@ script:
   - echo "Execute your tests here :)"
 ```
 
-## Configuring a CI key
+## Configuring a CI Auth Token
 
 You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your [CI Auth Token](https://app.localstack.cloud/workspace/auth-tokens) to the project's environment variables as `LOCALSTACK_AUTH_TOKEN`.
 The LocalStack CLI will automatically detect it and activate the Pro features.
