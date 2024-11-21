@@ -27,7 +27,7 @@ To resolve the issue follow the steps:
   Additionally, it’s important to clear the cached certificate from your host machine as mentioned above.
 2. **Use HTTP Instead of HTTPS**: Where possible, use  `http://`  instead of  `https://`  to avoid issues related to the revoked certificates.
   This workaround works with most browsers.
-  However, Safari requires additional steps:  
+  However, Safari requires additional steps:
     2.1.  **Safari Users**: To make this work, you’ll need to first navigate to the page in a new tab and accept the security warning.
   To do this, make sure that LocalStack is started with  `SKIP_SSL_CERT_DOWNLOAD=1`  and that you have cleared the cached certificate as mentioned above.
   Once you’ve accepted the warning, you should be able to proceed.
@@ -280,20 +280,20 @@ $ curl localhost:4566/_localstack/health | jq
 {{< / command >}}
 
 If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "xray" >}}) -- is running, LocalStack Pro or Enterprise has started successfully.
-If your auth token is invalid, you will see an error message like this in the logs of LocalStack:
+If your Auth Token is invalid, you will see an error message like this in the logs of LocalStack:
 
 ```bash
 license activation failed! Reason: ...
 ```
 
-If this error occurs, something is wrong with your auth token or license.
-Make sure your auth token is set correctly (check for typos!) and your license is valid.
-If the auth token still does not work, please [contact us](https://localstack.cloud/contact/).
+If this error occurs, something is wrong with your Auth Token or license.
+Make sure your Auth Token is set correctly (check for typos!) and your license is valid.
+If the Auth Token still does not work, please [contact us](https://localstack.cloud/contact/).
 
 ### How are CI credits in LocalStack calculated?
 
-A CI key allows you to use LocalStack in your CI environment.
-Every activation of a CI key consumes one build credit.
+A CI Auth Token allows you to use LocalStack in your CI environment.
+Every activation with a CI Auth Token consumes one CI credit.
 This means that with every build triggered through the LocalStack container you will consume one credit.
 To understand the CI pricing across our product tiers, follow up with our [LocalStack in CI]({{<ref "user-guide/ci">}}) documentation.
 
@@ -329,7 +329,7 @@ $ dig api.localstack.cloud
 If the result has some other status than `status: NOERROR,` your machine cannot resolve this domain.
 
 Some corporate DNS servers might filter requests to certain domains.
-Contact your network administrator to safelist`localstack.cloud` domains.
+Contact your network administrator to safelist `localstack.cloud` domains.
 
 ### How does LocalStack Pro handle security patches and bug fixes?
 

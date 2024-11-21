@@ -32,7 +32,7 @@ spec:
   image: localstack/localstack-pro:3.5.0
   debug: trace
 
-  authToken: "<my-auth-token>" # Set your LocalStack auth token here
+  authToken: "<my-auth-token>" # Set your LocalStack Auth Token here
   autoLoadPods: ["<my-cloudpod>"] # Set your Cloud Pods to automatically load them here (optional)
 
   dnsProvider: coredns

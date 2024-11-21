@@ -96,7 +96,7 @@ jobs:
     steps:
       - name: Start LocalStack
         env:
-          LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+          LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
           LS_CI_PROJECT: ls-platform-integration-tests
         run: |
           pip install localstack awscli-local[ver1]

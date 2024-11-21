@@ -88,21 +88,19 @@ jobs:
 ...
 ```
 
-### Configuring a CI key
+### Configuring a CI Auth Token
 
-To enable LocalStack Pro+, you need to add your LocalStack CI key to the project's environment variables.
+To enable LocalStack Pro+, you need to add your LocalStack CI Auth Token to the project's environment variables.
 The LocalStack container will automatically pick it up and activate the licensed features.
 
-Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key.
-To add the CI key to your CircleCI project, follow these steps:
+Go to the [CI Auth Token page](https://app.localstack.cloud/workspace/auth-tokens) and copy your CI Auth Token.
+To add the CI Auth Token to your CircleCI project, follow these steps:
 
 - Click on **Project Settings**.
 - Select **Environment Variables** from the left side menu.
 - Click **Add Environment Variable**.
-- Name your environment variable `LOCALSTACK_API_KEY`.
-- Paste your CI key into the input field.
-
-<img src="circleci-env-config.png" width="800px" alt="Adding the LocalStack CI key in CircleCI" />
+- Name your environment variable `LOCALSTACK_AUTH_TOKEN`.
+- Paste your CI Auth Token into the input field.
 
 After the above steps, just start up LocalStack using our official orb as usual.
 
@@ -127,7 +125,7 @@ jobs:
 ### Store LocalStack state
 
 You can preserve your AWS infrastructure with LocalStack in various ways.
-To be able to use any of the below samples, you must [set a valid CI key](#configuring-a-ci-key).
+To be able to use any of the below samples, you must [set a valid CI Auth Token](#configuring-a-ci-auth-token).
 
 _Note: For best result we recommend to use a combination of the below techniques and you should familiarise yourself with CircleCI's data persistance approach, see their [official documentation](https://circleci.com/docs/persist-data/)._
 

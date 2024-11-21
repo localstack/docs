@@ -23,7 +23,7 @@ $ docker pull localstack/localstack:latest
 {{< / command >}}
 
 To use the LocalStack Community image, you don't need to sign-up for an account on [LocalStack Web Application](https://app.localstack.cloud).
-The Community image is free to use and does not require any API key to run.
+The Community image is free to use and does not require a license to run.
 The Community image can be used to run [local AWS services](https://docs.localstack.cloud/user-guide/aws/) with [integrations](https://docs.localstack.cloud/user-guide/integrations/) on your local machine or in your [continuous integration pipelines](https://docs.localstack.cloud/user-guide/ci/).
 
 The Community image also covers a limited set of [LocalStack Tools](https://docs.localstack.cloud/user-guide/tools/) to make your life as a cloud developer easier.
@@ -42,8 +42,8 @@ To use the LocalStack Pro image, you can pull the image from Docker Hub:
 $ docker pull localstack/localstack-pro:latest
 {{< / command >}}
 
-To use the LocalStack Pro image, you must configure an environment variable named `LOCALSTACK_AUTH_TOKEN` to contain your auth token.
-The LocalStack Pro image will display a warning if you do not set an auth token (or if the license is invalid/expired) and will not activate the Pro features.
+To use the LocalStack Pro image, you must configure an environment variable named `LOCALSTACK_AUTH_TOKEN` to contain your Auth Token.
+The LocalStack Pro image will display a warning if you do not set an Auth Token (or if the license is invalid/expired) and will not activate the Pro features.
 LocalStack Pro gives you access to the complete set of LocalStack features, including the [LocalStack Web Application](https://app.localstack.cloud) and [dedicated customer support](https://docs.localstack.cloud/getting-started/help-and-support/#pro-support).
 
 You can use the Pro image to start your LocalStack container using various [installation methods](https://docs.localstack.cloud/getting-started/installation/).

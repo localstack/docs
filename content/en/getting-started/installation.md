@@ -15,12 +15,14 @@ The quickest way get started with LocalStack is by using the LocalStack CLI.
 It allows you to start LocalStack from your command line.
 Please make sure that you have a working [Docker installation](https://docs.docker.com/get-docker/) on your machine before moving on.
 
+### Installing LocalStack CLI
+
 The CLI starts and manages the LocalStack Docker container.
 For alternative methods of managing the LocalStack container, see our [alternative installation instructions]({{< ref "#alternatives" >}}).
 
 {{< tabpane text=true >}}
 
-<!-- 
+<!--
 Linux
 -->
 
@@ -75,8 +77,8 @@ $ brew install localstack/tap/localstack-cli
 
 {{< /tab >}}
 
-<!-- 
-MacOS 
+<!--
+MacOS
 -->
 
 {{< tab header="**MacOS**" >}}
@@ -182,6 +184,8 @@ It should be installed and started entirely under a local non-root user.
 {{< /tab >}}
 {{< /tabpane >}}
 
+### Starting LocalStack
+
 To verify that the LocalStack CLI was installed correctly, you can check the version in your terminal:
 {{< command >}}
 $ localstack --version
@@ -189,9 +193,56 @@ $ localstack --version
 {{< / command >}}
 
 You are all set!
+You can now start LocalStack with the following command:
 
+{{< command >}}
+$ localstack start # start localstack in background with -d flag
+<disable-copy>
+     __                     _______ __             __
+    / /   ____  _________ _/ / ___// /_____ ______/ /__
+   / /   / __ \/ ___/ __ `/ /\__ \/ __/ __ `/ ___/ //_/
+  / /___/ /_/ / /__/ /_/ / /___/ / /_/ /_/ / /__/ ,<
+ /_____/\____/\___/\__,_/_//____/\__/\__,_/\___/_/|_|
+ 
+ 💻 LocalStack CLI 4.0.0
+ 👤 Profile: default
+
+[12:47:13] starting LocalStack in Docker mode 🐳                       localstack.py:494
+           preparing environment                                       bootstrap.py:1240
+           configuring container                                       bootstrap.py:1248
+           starting container                                          bootstrap.py:1258
+[12:47:15] detaching                                                   bootstrap.py:1262
+</disable-copy>
+{{< / command >}}
+
+{{< callout >}}
 To use all of LocalStack's features we recommend to [get a LocalStack account and set up your auth token]({{< ref "auth-token" >}}).
-Afterwards, check out our [Quickstart guide]({{< ref "quickstart" >}}) to start your local cloud!
+Afterwards, check out our [Quickstart guide]({{< ref "quickstart" >}}) to start your local development cloud!
+{{< /callout >}}
+
+### Updating LocalStack CLI
+
+The LocalStack CLI allows you to easily update the different components of LocalStack.
+To check the various options available for updating, run:
+{{< command >}}
+$ localstack update --help
+Usage: localstack update [OPTIONS] COMMAND [ARGS]...
+
+  Update different LocalStack components.
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  all             Update all LocalStack components
+  docker-images   Update docker images LocalStack depends on
+  localstack-cli  Update LocalStack CLI
+{{< / command >}}
+
+{{< callout >}}
+Updating the LocalStack CLI using `localstack update localstack-cli` and `localstack update all` will work only if it was installed from the Python distribution.
+If it was installed using the pre-built binary or via Brew, please run the installation steps again to update to the latest version.
+{{< /callout >}}
 
 ## Alternatives
 
@@ -213,6 +264,9 @@ Besides using the CLI, there are other ways of starting and managing your LocalS
   Use Helm to create a LocalStack deployment in a Kubernetes cluster.
 
 LocalStack runs inside a Docker container, and the above options are different ways to start and manage the LocalStack Docker container.
+
+The LocalStack emulator is available on Docker Hub in two editions: the Community Edition (`localstack/localstack`) and the Pro Edition (`localstack/localstack-pro`).
+
 For a comprehensive overview of the LocalStack images, check out our [Docker images documentation]({{< ref "docker-images" >}}).
 
 ### LocalStack Desktop
@@ -286,7 +340,7 @@ $ docker-compose up
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
   If you want to use a specific version, set the appropriate LocalStack image tag at `services.localstack.image` in the `docker-compose.yml` file (for example `localstack/localstack:<version>`).
 
-- If you are using LocalStack with an [auth token]({{< ref "auth-token" >}}), you need to specify the image tag as `localstack/localstack-pro` in the `docker-compose.yml` file.
+- If you are using LocalStack with an [Auth Token]({{< ref "auth-token" >}}), you need to specify the image tag as `localstack/localstack-pro` in the `docker-compose.yml` file.
   Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
@@ -300,7 +354,7 @@ $ docker-compose up
 - If using the Docker default bridge network using `network_mode: bridge`, container name resolution will not work inside your containers.
   Please consider removing it, if this functionality is needed.
 
-- To configure an auth token, refer to the [auth token]({{< ref "auth-token" >}}) documentation.
+- To configure an Auth Token, refer to the [Auth Token]({{< ref "auth-token" >}}) documentation.
 {{< /callout >}}
 
 Please note that there are a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, and environment variables).
@@ -357,7 +411,7 @@ $ docker run \
   If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`.
   Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
 
-- If you are using LocalStack with an [auth token]({{< ref "auth-token" >}}), you need to specify the image tag as `localstack/localstack-pro` in your Docker setup.
+- If you are using LocalStack with an [Auth Token]({{< ref "auth-token" >}}), you need to specify the image tag as `localstack/localstack-pro` in your Docker setup.
   Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
@@ -372,7 +426,7 @@ $ docker run \
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker.
   For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
 
-- To configure an auth token, refer to the [auth token]({{< ref "auth-token" >}}) documentation.
+- To configure an Auth Token, refer to the [Auth Token]({{< ref "auth-token" >}}) documentation.
 {{< /callout >}}
 
 ### Helm
@@ -394,29 +448,18 @@ $ helm upgrade --install localstack localstack-repo/localstack
 
 The Helm charts are not maintained in the main repository, but in a [separate one](https://github.com/localstack/helm-charts).
 
-## Updating
+## What's next?
 
-The LocalStack CLI allows you to easily update the different components of LocalStack.
-To check the various options available for updating, run:
-{{< command >}}
-$ localstack update --help
-Usage: localstack update [OPTIONS] COMMAND [ARGS]...
-
-  Update different LocalStack components.
-
-Options:
-  -h, --help  Show this message and exit.
-
-Commands:
-  all             Update all LocalStack components
-  docker-images   Update docker images LocalStack depends on
-  localstack-cli  Update LocalStack CLI
-{{< / command >}}
-
-{{< callout >}}
-Updating the LocalStack CLI using `localstack update localstack-cli` and `localstack update all` will work only if it was installed from the Python distribution.
-If it was installed using the pre-built binary or via Brew, please run the installation steps again to update to the latest version.
-{{< /callout >}}
+Now that you have LocalStack up and running, the following resources might be useful for your next steps:
+- Check out our [Quickstart guide]({{< ref "quickstart" >}}) if you are a new user to get started with LocalStack quickly.
+- [Use the LocalStack integrations]({{< ref "integrations" >}}) to interact with LocalStack and other integrated tools, for example:
+  - Use `awslocal` to use the AWS CLI against your local cloud!
+  - Use the Serverless Framework with LocalStack!
+  - And many more!
+- [Find out how to configure LocalStack]({{< ref "configuration" >}}) such that it perfectly fits your need.
+- [Use LocalStack in your CI environment]({{< ref "user-guide/ci" >}}) to increase your code quality.
+- [Checkout LocalStack's Cloud Developer Tools]({{< ref "user-guide/tools" >}}) to further increase your development efficiency with LocalStack.
+- Find out about the ways you can [configure LocalStack]({{< ref "configuration" >}}).
 
 ## Troubleshooting
 
@@ -483,16 +526,3 @@ After running the task, run the diagnostic endpoint and share the archive file w
 We have extensive network troubleshooting documentation available [here]({{< ref "references/network-troubleshooting" >}}).
 
 If this does not solve your problem then please [reach out]({{< ref "help-and-support" >}}).
-
-## What's next?
-
-Now that you have LocalStack up and running, the following resources might be useful for your next steps:
-- Check out our [Quickstart guide]({{< ref "quickstart" >}}) if you are a new user to get started with LocalStack quickly.
-- [Use the LocalStack integrations]({{< ref "integrations" >}}) to interact with LocalStack and other integrated tools, for example:
-  - Use `awslocal` to use the AWS CLI against your local cloud!
-  - Use the Serverless Framework with LocalStack!
-  - And many more!
-- [Find out how to configure LocalStack]({{< ref "configuration" >}}) such that it perfectly fits your need.
-- [Use LocalStack in your CI environment]({{< ref "user-guide/ci" >}}) to increase your code quality.
-- [Checkout LocalStack's Cloud Developer Tools]({{< ref "user-guide/tools" >}}) to further increase your development efficiency with LocalStack.
-- Find out about the ways you can [configure LocalStack]({{< ref "configuration" >}}).

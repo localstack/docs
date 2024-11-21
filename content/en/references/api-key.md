@@ -13,8 +13,10 @@ aliases:
 - LocalStack is transitioning from API Keys to Auth Tokens for activation.
   Auth Tokens streamline license management and remove the need for developers to adjust their setup when license changes occur.
 - For detailed information and guidance on migrating your LocalStack setup to Auth Tokens, please consult our [Auth Token documentation]({{< ref "auth-token" >}}).
-- API Keys will remain functional for LocalStack Pro and Enterprise users until the next major release.
-  Following this release, LocalStack Pro and Enterprise will exclusively use Auth Tokens.
+- API Keys will remain functional for LocalStack Pro and Enterprise users till early 2025
+- After the sunsetting period, legacy API and legacy CI keys will no longer activate or work with LocalStack.
+- During the sunsetting period, the legacy service will experience scheduled downtimes.
+- We strongly encourage users to transition to new Auth Tokens while minimizing impact for those who have not yet updated.
 {{< /callout >}}
 
 The LocalStack API key is a unique identifier to activate your LocalStack license needed to start LocalStack Pro.

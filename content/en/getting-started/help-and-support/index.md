@@ -55,7 +55,7 @@ At the moment, we only provide support in `English`, as we are an international 
 | Support ticketing portal     |       |          |          | ✅         |
 | SLAs                         |       |          |          | ✅         |
 | Direct Slack connect channel |       |          |          | ✅         |
-| Dedicated CSM and AM         |       |          |          | ✅         |
+| Dedicated CSM and TAM         |       |          |          | ✅         |
 
 - Real time chat support is offered during our [Support Business Hours](#support-business-hours)
 

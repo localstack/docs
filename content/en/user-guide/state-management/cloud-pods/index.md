@@ -138,7 +138,7 @@ $ localstack pod versions s3-test
 
 ### Pull your Pod state
 
-On a separate machine, start LocalStack while ensuring the auth token is properly configured.
+On a separate machine, start LocalStack while ensuring the Auth Token is properly configured.
 Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
 
 {{< command >}}
@@ -592,7 +592,7 @@ However, state management might not yet work reliably for every service.
 
 ## Troubleshooting
 
-### Unable to obtain auth token
+### Unable to obtain Auth Token
 
 When you try to save a Cloud Pod and see the error in LocalStack logs like this:
 
