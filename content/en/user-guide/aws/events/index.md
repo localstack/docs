@@ -16,9 +16,7 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 For information on EventBridge Pipes, please refer to the [EventBridge Pipes]({{< ref "user-guide/aws/pipes" >}}) section.
 
 {{< callout >}}
-We have introduced an all-new LocalStack-native EventBridge provider available behind a feature flag.
-You can activate it by configuring `PROVIDER_OVERRIDE_EVENTS=v2` in your LocalStack configuration.
-Learn more about the new provider in the [EventBridge v2 Discuss post](https://discuss.localstack.cloud/t/introducing-eventbridge-v2-in-localstack/946).
+The native EventBridge provider, introduced in [LocalStack 3.5.0](https://discuss.localstack.cloud/t/localstack-release-v3-5-0/947), is now the default in 4.0. The legacy provider can still be enabled using the `PROVIDER_OVERRIDE_EVENTS=v1` configuration, but it is deprecated and will be removed in the next major release. We strongly recommend migrating to the new provider.
 {{< /callout >}}
 
 ## Getting Started
@@ -136,8 +134,6 @@ $ localstack logs
 {{< callout >}}
 LocalStack supports a new event rule engine for [EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html).
 You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (preview) to use the AWS [event-ruler](https://github.com/aws/event-ruler), which offers better parity with AWS.
-
-If you are using the new EventBridge provider (`PROVIDER_OVERRIDE_EVENTS=v2`), you do not need to set this configuration separately. This setting is only required if you are using the old provider.
 {{< /callout >}}
 
 At this time LocalStack supports the following [target types](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-console-targets) for EventBridge rules:

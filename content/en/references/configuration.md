@@ -198,7 +198,7 @@ See [here](#opensearch).
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `PROVIDER_OVERRIDE_EVENTS` | `v2` | Use the new EventBridge provider. |
+| `PROVIDER_OVERRIDE_EVENTS` | `legacy`\|`v2` (default) | The [new EventBridge provider](https://discuss.localstack.cloud/t/introducing-eventbridge-v2-in-localstack/946) is active by default since LocalStack 4.0. |
 
 ### IAM
 
