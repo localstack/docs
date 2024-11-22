@@ -352,5 +352,5 @@ For more details, please take a look at our [Enterprise offering](https://locals
 ### How does the LocalStack Web Application communicate with the LocalStack container?
 
 The LocalStack Web Application connects to your LocalStack container running on your local machine and retrieves the information directly via the `localhost` without using the internet.
-Features such as Resource Browsers, IAM Policy Stream, Chaos Engineering dashboard, and others communicate directly with the LocalStack container using your browser.
+Features such as Resource Browsers, IAM Policy Stream, Chaos Experiments, and others communicate directly with the LocalStack container using your browser.
 None of the information is sent to the internet, or stored on any external servers maintained by LocalStack.
