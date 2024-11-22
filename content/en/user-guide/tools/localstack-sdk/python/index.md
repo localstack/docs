@@ -18,7 +18,7 @@ The LocalStack SDK for Python supports these features:
 - Retrieve and delete sent SES messages.
 
 {{< callout >}}
-This project is still in a preview phase, and will be subject to fast and breaking changes.
+This SDK is still in a preview phase, and will be subject to fast and breaking changes.
 {{< /callout >}}
 
 ## Installation
