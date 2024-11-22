@@ -1,29 +1,28 @@
 ---
-title: "Chaos Engineering Dashboard"
-linkTitle: "Chaos Engineering Dashboard"
-description: Chaos Engineering Dashboard allows users to run chaos experiments within their application stack to test the system's resilience.
+title: "Chaos Experiments"
+linkTitle: "Chaos Experiments"
+description: Chaos Experiments allows users to conduct chaos engineering experiments and test system reliability by injecting stress or failure in some part of a system.
 tags: ["Enterprise plan"]
 aliases:
   - /user-guide/chaos-engineering/web-application-dashboard/
+  - /user-guide/chaos-engineering/chaos-application-dashboard/
 ---
 
 ## Introduction
 
-The Chaos Engineering Dashboard in LocalStack offers streamlined testing for cloud applications, enabling you to simulate server errors, service outages, regional disruptions, and network latency with ease, ensuring your app is ready for real-world challenges.
-
-The dashboard uses [LocalStack Chaos API]({{< ref "chaos-api" >}}) under the hood to offer a set of customizable templates that can be seamlessly integrated into any automation workflows.
-
-{{< figure src="chaos-engineering-dashboard.png" width="900" >}}
-
-You can find this feature in the LocalStack Web Application by navigating to [**app.localstack.cloud/chaos-engineering**](https://app.localstack.cloud/chaos-engineering).
+[Chaos Experiments](https://app.localstack.cloud/chaos) in LocalStack offer streamlined testing for cloud applications, enabling you to simulate server errors, service outages, regional disruptions, and network latency with ease, ensuring your app is ready for real-world challenges.
 
 {{< callout "note" >}}
-Chaos Engineering Dashboard is offered as a **preview** feature and under active development.
+Chaos Experiments is offered as a **preview** feature and under active development.
 {{< /callout >}}
+
+Chaos Experiments use the [LocalStack Chaos API]({{< ref "chaos-api" >}}) under the hood to offer a set of customizable templates that can be seamlessly integrated into any automation workflows.
+
+{{< figure src="chaos-experiments.png" width="900" >}}
 
 ## Features
 
-The dashboard offers the following features:
+Chaos Experiments offer the following features:
 
 * **DynamoDB Error**: Randomly inject `ProvisionedThroughputExceededException` errors into DynamoDB API responses.
 * **Kinesis Error**: Randomly inject `ProvisionedThroughputExceededException` errors into Kinesis API responses.

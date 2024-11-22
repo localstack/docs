@@ -10,7 +10,7 @@ cascade:
 
 ## Introduction
 
-Chaos engineering via LocalStack is a method to enhance system resilience by deliberately introducing controlled disruptions.
+Chaos Engineering via LocalStack is a method to enhance system resilience by deliberately introducing controlled disruptions.
 This technique takes different forms depending on the team:
 
 - Software developers focus on application behavior and error response
@@ -18,7 +18,8 @@ This technique takes different forms depending on the team:
 - Operations teams investigate the dependability of infrastructure setup.
 
 Integrating chaos tests early in the development process helps identify and mitigate potential flaws, leading to systems that are more robust under stress and can withstand turbulent conditions.
-Chaos engineering in LocalStack encompasses the following features:
+
+Chaos Engineering in LocalStack encompasses the following features:
 
 - **Application behavior and error management** through Fault Injection Service (FIS) experiments.
 - **Robust architecture** tested via failover scenarios using the Chaos API.
