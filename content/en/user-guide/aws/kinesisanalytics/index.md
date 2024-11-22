@@ -105,7 +105,7 @@ The following output would be retrieved:
 }
 ```
 
-## Current Limitations
+## Limitations
 
 * LocalStack supports basic emulation for Kinesis Data Analytics for SQL Applications.
   However, the queries are not fully supported and lack parity with AWS.
