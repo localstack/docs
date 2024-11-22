@@ -204,7 +204,7 @@ $ localstack start # start localstack in background with -d flag
   / /___/ /_/ / /__/ /_/ / /___/ / /_/ /_/ / /__/ ,<
  /_____/\____/\___/\__,_/_//____/\__/\__,_/\___/_/|_|
  
- 💻 LocalStack CLI 4.0.0
+ 💻 LocalStack CLI {{< localstack-latest-version >}}
  👤 Profile: default
 
 [12:47:13] starting LocalStack in Docker mode 🐳                       localstack.py:494
