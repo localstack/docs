@@ -454,14 +454,42 @@ When enabled, Lambda Debug Mode automatically adjusts timeouts to accommodate de
 
 For further customization, you can use a configuration file.
 Specify the path to this file with the `LAMBDA_DEBUG_MODE_CONFIG_PATH` environment variable, ensuring the
-file is mounted.
-In most cases, manually setting `LAMBDA_DOCKER_FLAGS` is unnecessary when using this configuration.
+file is mounted into the LocalStack container.
+Manually setting `LAMBDA_DOCKER_FLAGS` is unnecessary when using this configuration.
 
-{{< command >}}
-LAMBDA_DEBUG_MODE=1 \
-LAMBDA_DEBUG_MODE_CONFIG_PATH=debug_config.yaml \
-localstack start
-{{< /command >}}
+Here is an example of mounting a `debug_config.yaml` in your LocalStack container to start your Debug Mode:
+
+{{< tabpane >}}
+{{< tab header="LocalStack CLI" lang="shell" >}}
+LOCALSTACK_LAMBDA_DEBUG_MODE=1 \
+LOCALSTACK_LAMBDA_DEBUG_MODE_CONFIG_PATH=/tmp/debug_config.yaml \
+localstack start --volume /path/to/debug-config.yaml:/tmp/lambda_debug_mode_config.yaml
+{{< /tab >}}
+{{< tab header="Docker Compose" lang="yaml" >}}
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack-pro  # required for Pro
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+      - "127.0.0.1:443:443"              # LocalStack HTTPS Gateway (Pro)
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=${DEBUG:-0}
+      - LAMBDA_DEBUG_MODE=1
+      - LAMBDA_DEBUG_MODE_CONFIG_PATH=/tmp/debug_config.yaml
+    volumes:
+      - "./debug_config.yaml:/tmp/debug_config.yaml"
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+{{< /tab >}}
+{{< /tabpane >}}
+
+Any change to the configuration file on your local filesystem would be automatically picked by the LocalStack container.
+After debugging a Lambda function, its associated container will automatically stop.
 
 The configuration file should contain a `functions` block where you can define debug settings
 for each specific Lambda function ARN.
@@ -527,3 +555,7 @@ functions:
 
 * [Lambda Code Mounting and Debugging (Python)](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging)
 * [Spring Cloud Function on LocalStack (Kotlin JVM)](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice)
+* [Enable Lambda Debug Mode to Automatically Raise Execution Timeouts (Java)](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-debug-mode/java/base-enable-lambda-debug-mode)
+* [Enable Lambda Debug Mode to Automatically Raise Execution Timeouts (Python)](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-debug-mode/python/base-multiple-lambda-debug-mode)
+* [Enable Lambda Debug Mode to Automatically Raise Execution Timeouts for multiple Lambdas (Python)](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-debug-mode/python/base-multiple-lambda-debug-mode)
+* [Enable Lambda Debug Mode to Automatically Handle Concurrent Function Invocations (Python)](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-debug-mode/python/base-concurrent-lambda-debug-mode)
