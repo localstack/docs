@@ -1,12 +1,13 @@
 ---
 title: "Hot Reloading"
-date: 2021-09-27
 weight: 1
 description: >
   Hot code reloading continuously applies code changes to Lambda functions
 aliases:
   - /user-guide/tools/lambda-tools/hot-reloading/
 ---
+
+## Introduction
 
 Hot reloading (formerly known as hot swapping) continuously applies code changes to Lambda functions without manual redeployment.
 
@@ -674,6 +675,24 @@ Please note the single quotes `'` which prevent our shell to replace `$HOST_LAMB
 With the above example, you can make hot-reloading paths sharable between machines, as long as there is a point on the host to which the relative paths will stay the same.
 One example for this are checked out git repositories, where the code is located in the same structure - the absolute location of the checked out repository on the machine might however differ.
 If the chosen variable always points to the checked out directory, you can set the path using the placeholder in the checked out IaC template, or can share a Cloud Pod between machines.
+
+## Hot Reloading on LocalStack Web Application
+
+You can use the LocalStack Web Application to hot reload your Lambda functions.
+The  [Lambda Resource Browser](https://app.localstack.cloud/inst/default/resources/lambda/functions)  allows you to update your Lambda function and specify the file path for your Lambda code and dependencies.
+
+To set up Lambda Hot Reloading via the LocalStack Web Application:
+
+1. Navigate to the [Lambda Resource Browser](https://app.localstack.cloud/inst/default/resources/lambda/functions).
+2. Click  **Create** to create a new Lambda function, or select **Update Function Code** for an existing Lambda function.
+3. In the  **Code Source** section, choose **Hot Reload**.
+4. Enter the path to the directory containing your Lambda code for hot reloading.
+5. Click **Submit** to save the configuration.
+
+LocalStack will automatically set up the magic S3 bucket and the S3 key pointing to your specified file path.
+Changes to your Lambda code locally will be reflected immediately upon saving.
+
+<img src="hot-reload-lambda-web-app.png" alt="Setting Hot Reload on Web App" title="Setting Hot Reload on Web App" width="800px" />
 
 ## Useful Links
 
