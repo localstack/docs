@@ -8,10 +8,10 @@ tags: ["Enterprise plan"]
 
 ## Introduction
 
-LocalStack Enterprise provides a Kubernetes executor for compute services like EC2, ECS, and Lambda.
-It allows you to run EC2 instances, ECS tasks, and Lambda functions in your Kubernetes clusters.
-By default, LocalStack uses the `docker` backend for compute services.
-You can switch to the `kubernetes` executor by setting the appropriate environment variables.
+LocalStack Enterprise provides a Kubernetes executor for various emulated services.
+It allows you to run these services as Kubernetes pods in your Kubernetes clusters.
+By default, LocalStack uses the `docker` backend for these services.
+You can use either service-specific configuration variables or the generic  `CONTAINER_RUNTIME`  variable set to  `kubernetes`  to enable the Kubernetes executor.
 
 ## EC2 Kubernetes Executor
 
@@ -33,14 +33,14 @@ The current implementation is in preview and does not support volumes, custom AM
 
 ## ECS Kubernetes Executor
 
-LocalStack Enterprise image allows you to run ECS tasks on Kubernetes.
+The LocalStack Enterprise image allows you to run ECS tasks on Kubernetes.
 The tasks are added to ELB load balancer target groups.
 You can do so by setting the `ECS_TASK_EXECUTOR` environment variable to `kubernetes` in the LocalStack container.
 
 ## Lambda Kubernetes Executor
 
 The LocalStack Enterprise image allows you to execute Lambda functions as Kubernetes pods.
-You can do so by setting the `lambda.executor` configuration to `kubernetes` in the LocalStack container.
+You can do so by setting `LAMBDA_RUNTIME_EXECUTOR` ( or `lambda.executor` when using the Helm configuration) to `kubernetes`.
 For more information, see the [Helm Chart configuration](https://github.com/localstack/helm-charts/blob/ce47b1590605901650ab788556bc871efbd78b8d/charts/localstack/values.yaml#L178-L208).
 
 - Kubernetes Lambda Executor in LocalStack scales Lambda execution by spawning new environments (running in pods) during concurrent invocations.
@@ -56,3 +56,14 @@ For more information, see the [Helm Chart configuration](https://github.com/loca
   The `/var/lib/localstack` directory should be persisted over LocalStack runs, typically in a volume.
 
 Lambda hot reloading & remote debugging are not supported in the Kubernetes executor as the bind mounting into pods cannot be done at runtime.
+
+## Other services
+
+You can run the following services on Kubernetes clusters using the LocalStack Enterprise image:
+
+- [DocumentDB](https://docs.localstack.cloud/user-guide/aws/docdb/)
+- [MWAA](https://docs.localstack.cloud/user-guide/aws/docdb/)
+- [RDS](https://docs.localstack.cloud/user-guide/aws/rds/)  ([MySQL](https://docs.localstack.cloud/user-guide/aws/rds/#mysql-engine)  &  [MSSQL](https://docs.localstack.cloud/user-guide/aws/rds/#microsoft-sql-server-engine))
+
+To use Kubernetes as the runtime backend, set the `CONTAINER_RUNTIME` configuration variable to `kubernetes`.
+Note that there are no service-specific configuration variables for these services.
