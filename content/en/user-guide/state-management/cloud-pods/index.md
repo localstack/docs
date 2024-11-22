@@ -205,6 +205,7 @@ The LocalStack Web Application enables you to :
 
 - Browse your Cloud Pods and access your version history.
 - Export & import Cloud Pods to and from LocalStack instances.
+- View Cloud Pods metadata, resources, regions, and version history.
 
 ### Browse Cloud Pods
 
@@ -221,6 +222,25 @@ The Cloud Pods Browser provides the following functionalities:
 - **View Cloud Pod Details**: View the details of a specific Cloud Pod version by clicking on the version.
 - **View Cloud Pod storage**: View the organization storage usage and user storage usage on top of the Cloud Pods Browser.
 - **Delete Cloud Pod**: Delete a Cloud Pod by selecting the Cloud Pod and navigating to the **Actions** button, followed by **Delete**.
+
+### View Cloud Pods metadata
+
+You can view Cloud Pods metadata by selecting any Cloud Pod in the  [Cloud Pods Browser](https://app.localstack.cloud/pods).
+The metadata includes details such as:
+
+- The user who created the Cloud Pod
+- The creation timestamp
+- The LocalStack version used to create the Cloud Pod
+- The size of the Cloud Pod
+- The service resources contained in the Cloud Pod
+
+You can view detailed information within a Cloud Pod, including available resources, categorized services with configurations, and quick access to resource identifiers and endpoints—all without loading the Cloud Pod into your LocalStack runtime.
+
+To save metadata with resource details in the Cloud Pod, ensure your LocalStack container is running and save the Cloud Pod with `ENABLE_POD_RESOURCES=1`.
+Cloud Pods saved without this configuration enabled will not display granular details.
+
+<img src="cloud-pod-details.png" alt="Cloud Pods details" title="Cloud Pods details" width="900" />
+<br><br>
 
 ### Export & Import Cloud Pods
 
