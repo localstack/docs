@@ -2,7 +2,7 @@
 title: "Bedrock"
 linkTitle: "Bedrock"
 description: Use foundation models running on your device with LocalStack!
-tags: ["Enterprise image"]
+tags: ["Enterprise plan"]
 ---
 
 ## Introduction

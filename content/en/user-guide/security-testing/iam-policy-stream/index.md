@@ -14,6 +14,10 @@ This is typically a service resource for resource-based policies, or an IAM prin
 Subsequently, it displays the suggested policy.
 This feature aids in identifying the correct permissions for cloud applications and can help spot logical errors, such as unexpected actions in a policy.
 
+{{< callout "note" >}}
+IAM Policy Stream is offered as a **preview** feature and under active development.
+{{< /callout >}}
+
 ## Getting started
 
 This guide is designed for users who are new to the IAM Policy Stream.

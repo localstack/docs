@@ -16,6 +16,10 @@ Alternatively, go to your LocalStack Instance and click on **Overview** to see a
 <br>
 <br>
 
+{{< callout "note" >}}
+Stack Overview is offered as a **preview** feature and under active development.
+{{< /callout >}}
+
 ## Supported Resources
 
 The following resources are supported by Stack Overview:
