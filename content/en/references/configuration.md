@@ -357,6 +357,7 @@ To learn more about these configuration options, see [Cloud Pods]({{< ref "user-
 | `AUTO_LOAD_POD` |  | Comma-separated list of Cloud Pods to be automatically loaded at startup time. This feature is disabled when snapshot persistence is set via the `PERSISTENCE` variable. |
 | `POD_LOAD_CLI_TIMEOUT` | 60 (default) | Timeout in seconds to wait before returning from load operations on the Cloud Pods CLI |
 | `POD_ENCRYPTION` | `0` (default) \| `1` | Whether to encrypt the Cloud Pods artifacts at rest. |
+| `ENABLE_POD_RESOURCES=1` | `0` (default) \| `1`  | Whether to save a detailed Stack Overview including available resources for the Cloud Pod |
 
 ## Extensions
 
