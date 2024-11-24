@@ -150,6 +150,13 @@ Currently, support for `UPDATE` operations on resources is limited.
 Prefer stack re-creation over stack update at this time.
 {{< /callout >}}
 
+{{< callout >}}
+Currently, support for `NoEcho` parameters is limited.
+Parameters will be masked only in the CLI: `describe-stacks` and `describe-change-set` or respective API responses in `Parameters` section.
+This might expose sensitive information.
+Please exercise caution when using parameters with `NoEcho`.
+{{< /callout >}}
+
 ### Intrinsic Functions
 
 | Intrinsic Function | Supported | Explanation                                                  |
