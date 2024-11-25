@@ -2,6 +2,8 @@
 title: "EventBridge"
 linkTitle: "EventBridge"
 description: Get started with EventBridge on LocalStack
+persistence: supported with limitations
+
 ---
 
 ## Introduction
