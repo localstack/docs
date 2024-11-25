@@ -56,7 +56,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -92,7 +92,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -104,7 +104,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -116,7 +116,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -152,7 +152,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -164,7 +164,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -188,7 +188,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -212,7 +212,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -236,7 +236,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -260,7 +260,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -272,7 +272,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -979,16 +979,6 @@
     "CreateQueue": {
       "Attributes, QueueName": {
         "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_scheduled_expression_events",
-            "test": "test_scheduled_expression_events",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::test_failing_lambda_retries_after_visibility_timeout",
             "test": "test_failing_lambda_retries_after_visibility_timeout",
@@ -3106,21 +3096,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetStepFunctions::test_put_events_with_target_statefunction_machine",
+            "test": "test_put_events_with_target_statefunction_machine",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_cfn_resource.py::test_adding_tags",
             "test": "test_adding_tags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "[\"$..Tags.'aws:cloudformation:logical-id'\", \"$..Tags.'aws:cloudformation:stack-id'\", \"$..Tags.'aws:cloudformation:stack-name'\"]",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationEventbridge::test_invoke_lambda_eventbridge",
-            "test": "test_invoke_lambda_eventbridge",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..AWSTraceHeader', '$..SenderId', '$..eventSourceARN']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3332,6 +3322,76 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-custom]",
+            "test": "test_list_archive_with_events[False-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-default]",
+            "test": "test_list_archive_with_events[False-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-custom]",
+            "test": "test_list_archive_with_events[True-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-default]",
+            "test": "test_list_archive_with_events[True-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[domain]",
+            "test": "test_put_events_bus_to_bus[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[path]",
+            "test": "test_put_events_bus_to_bus[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[standard]",
+            "test": "test_put_events_bus_to_bus[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_nonexistent_event_bus",
             "test": "test_put_events_nonexistent_event_bus",
             "response": "200",
@@ -3392,6 +3452,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventTarget::test_add_exceed_fife_targets_per_rule",
+            "test": "test_add_exceed_fife_targets_per_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventTarget::test_list_target_by_rule_limit",
+            "test": "test_list_target_by_rule_limit",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventTarget::test_put_list_remove_target[custom]",
             "test": "test_put_list_remove_target[custom]",
             "response": "200",
@@ -3422,6 +3502,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_response_entries_order",
+            "test": "test_put_events_response_entries_order",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_time",
             "test": "test_put_events_time",
             "response": "200",
@@ -3432,13 +3522,83 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_scheduled_expression_events",
-            "test": "test_scheduled_expression_events",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_with_target_delivery_failure",
+            "test": "test_put_events_with_target_delivery_failure",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::TestEventsCrossAccountRegion::test_put_events[custom-account]",
+            "test": "test_put_events[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -3484,6 +3644,76 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputPath::test_put_events_with_input_path_nested[event_detail1]",
             "test": "test_put_events_with_input_path_nested[event_detail1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "test": "test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "test": "test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_json",
+            "test": "test_put_events_with_input_transformer_input_template_json",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_missing_keys",
+            "test": "test_put_events_with_input_transformer_missing_keys",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::test_put_event_input_path_and_input_transformer",
+            "test": "test_put_event_input_path_and_input_transformer",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3544,6 +3774,66 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_schedule.py::TestScheduleRate::tests_schedule_rate_target_sqs",
             "test": "tests_schedule_rate_target_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination0]",
+            "test": "test_put_events_with_target_events[bus_combination0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination1]",
+            "test": "test_put_events_with_target_events[bus_combination1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination2]",
+            "test": "test_put_events_with_target_events[bus_combination2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[domain]",
+            "test": "test_put_events_with_target_sns[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[path]",
+            "test": "test_put_events_with_target_sns[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[standard]",
+            "test": "test_put_events_with_target_sns[standard]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3804,16 +4094,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter3-item_matching3-item_not_matching3]",
             "test": "test_sqs_event_filter[filter3-item_matching3-item_not_matching3]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "test": "test_sqs_event_filter[filter4-item_matching4-this is a test string]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
@@ -7582,6 +7862,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.13]",
+            "test": "test_lambda_send_message_to_sqs[python3.13]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.8]",
             "test": "test_lambda_send_message_to_sqs[python3.8]",
             "response": "200",
@@ -8314,6 +8604,76 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-custom]",
+            "test": "test_list_archive_with_events[False-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-default]",
+            "test": "test_list_archive_with_events[False-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-custom]",
+            "test": "test_list_archive_with_events[True-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-default]",
+            "test": "test_list_archive_with_events[True-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[domain]",
+            "test": "test_put_events_bus_to_bus[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[path]",
+            "test": "test_put_events_bus_to_bus[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[standard]",
+            "test": "test_put_events_bus_to_bus[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_nonexistent_event_bus",
             "test": "test_put_events_nonexistent_event_bus",
             "response": "200",
@@ -8354,8 +8714,88 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_response_entries_order",
+            "test": "test_put_events_response_entries_order",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_time",
             "test": "test_put_events_time",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::TestEventsCrossAccountRegion::test_put_events[custom-account]",
+            "test": "test_put_events[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region_account]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8406,6 +8846,56 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputPath::test_put_events_with_input_path_nested[event_detail1]",
             "test": "test_put_events_with_input_path_nested[event_detail1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "test": "test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "test": "test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_json",
+            "test": "test_put_events_with_input_transformer_input_template_json",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8466,6 +8956,66 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_schedule.py::TestScheduleRate::tests_schedule_rate_target_sqs",
             "test": "tests_schedule_rate_target_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination0]",
+            "test": "test_put_events_with_target_events[bus_combination0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination1]",
+            "test": "test_put_events_with_target_events[bus_combination1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination2]",
+            "test": "test_put_events_with_target_events[bus_combination2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[domain]",
+            "test": "test_put_events_with_target_sns[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[path]",
+            "test": "test_put_events_with_target_sns[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[standard]",
+            "test": "test_put_events_with_target_sns[standard]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -9762,16 +10312,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "test": "test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter5-item_matching5-item_not_matching5]",
             "test": "test_sqs_event_filter[filter5-item_matching5-item_not_matching5]",
             "response": "200",
@@ -9867,16 +10407,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationEventbridge::test_invoke_lambda_eventbridge",
-            "test": "test_invoke_lambda_eventbridge",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..AWSTraceHeader', '$..SenderId', '$..eventSourceARN']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10520,6 +11050,76 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-custom]",
+            "test": "test_list_archive_with_events[False-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-default]",
+            "test": "test_list_archive_with_events[False-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-custom]",
+            "test": "test_list_archive_with_events[True-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-default]",
+            "test": "test_list_archive_with_events[True-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[domain]",
+            "test": "test_put_events_bus_to_bus[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[path]",
+            "test": "test_put_events_bus_to_bus[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[standard]",
+            "test": "test_put_events_bus_to_bus[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_nonexistent_event_bus",
             "test": "test_put_events_nonexistent_event_bus",
             "response": "200",
@@ -10580,6 +11180,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventTarget::test_add_exceed_fife_targets_per_rule",
+            "test": "test_add_exceed_fife_targets_per_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventTarget::test_list_target_by_rule_limit",
+            "test": "test_list_target_by_rule_limit",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventTarget::test_put_list_remove_target[custom]",
             "test": "test_put_list_remove_target[custom]",
             "response": "200",
@@ -10610,6 +11230,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_response_entries_order",
+            "test": "test_put_events_response_entries_order",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_time",
             "test": "test_put_events_time",
             "response": "200",
@@ -10620,13 +11250,83 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_scheduled_expression_events",
-            "test": "test_scheduled_expression_events",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_with_target_delivery_failure",
+            "test": "test_put_events_with_target_delivery_failure",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::TestEventsCrossAccountRegion::test_put_events[custom-account]",
+            "test": "test_put_events[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -10672,6 +11372,76 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputPath::test_put_events_with_input_path_nested[event_detail1]",
             "test": "test_put_events_with_input_path_nested[event_detail1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "test": "test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "test": "test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_json",
+            "test": "test_put_events_with_input_transformer_input_template_json",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_missing_keys",
+            "test": "test_put_events_with_input_transformer_missing_keys",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::test_put_event_input_path_and_input_transformer",
+            "test": "test_put_event_input_path_and_input_transformer",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -10740,6 +11510,66 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination0]",
+            "test": "test_put_events_with_target_events[bus_combination0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination1]",
+            "test": "test_put_events_with_target_events[bus_combination1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination2]",
+            "test": "test_put_events_with_target_events[bus_combination2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[domain]",
+            "test": "test_put_events_with_target_sns[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[path]",
+            "test": "test_put_events_with_target_sns[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[standard]",
+            "test": "test_put_events_with_target_sns[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSqs::test_put_events_with_target_sqs",
             "test": "test_put_events_with_target_sqs",
             "response": "200",
@@ -10758,6 +11588,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetStepFunctions::test_put_events_with_target_statefunction_machine",
+            "test": "test_put_events_with_target_statefunction_machine",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_cfn_resource.py::test_adding_tags",
@@ -11010,16 +11850,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "test": "test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter5-item_matching5-item_not_matching5]",
             "test": "test_sqs_event_filter[filter5-item_matching5-item_not_matching5]",
             "response": "200",
@@ -11218,16 +12048,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationEventbridge::test_invoke_lambda_eventbridge",
-            "test": "test_invoke_lambda_eventbridge",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..AWSTraceHeader', '$..SenderId', '$..eventSourceARN']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationSqs::test_assess_lambda_destination_invocation[payload0]",
@@ -15900,6 +16720,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.13]",
+            "test": "test_lambda_send_message_to_sqs[python3.13]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.8]",
             "test": "test_lambda_send_message_to_sqs[python3.8]",
             "response": "200",
@@ -16010,13 +16840,13 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_scheduled_expression_events",
-            "test": "test_scheduled_expression_events",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_with_target_delivery_failure",
+            "test": "test_put_events_with_target_delivery_failure",
             "response": "400",
             "error": "QueueDoesNotExist",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -17558,6 +18388,76 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-custom]",
+            "test": "test_list_archive_with_events[False-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-default]",
+            "test": "test_list_archive_with_events[False-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-custom]",
+            "test": "test_list_archive_with_events[True-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-default]",
+            "test": "test_list_archive_with_events[True-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[domain]",
+            "test": "test_put_events_bus_to_bus[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[path]",
+            "test": "test_put_events_bus_to_bus[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[standard]",
+            "test": "test_put_events_bus_to_bus[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_nonexistent_event_bus",
             "test": "test_put_events_nonexistent_event_bus",
             "response": "200",
@@ -17618,6 +18518,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventTarget::test_add_exceed_fife_targets_per_rule",
+            "test": "test_add_exceed_fife_targets_per_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventTarget::test_list_target_by_rule_limit",
+            "test": "test_list_target_by_rule_limit",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventTarget::test_put_list_remove_target[custom]",
             "test": "test_put_list_remove_target[custom]",
             "response": "200",
@@ -17648,8 +18568,98 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_response_entries_order",
+            "test": "test_put_events_response_entries_order",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_time",
             "test": "test_put_events_time",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_with_target_delivery_failure",
+            "test": "test_put_events_with_target_delivery_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::TestEventsCrossAccountRegion::test_put_events[custom-account]",
+            "test": "test_put_events[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region_account]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17700,6 +18710,76 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputPath::test_put_events_with_input_path_nested[event_detail1]",
             "test": "test_put_events_with_input_path_nested[event_detail1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "test": "test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "test": "test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_json",
+            "test": "test_put_events_with_input_transformer_input_template_json",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_missing_keys",
+            "test": "test_put_events_with_input_transformer_missing_keys",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::test_put_event_input_path_and_input_transformer",
+            "test": "test_put_event_input_path_and_input_transformer",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17768,6 +18848,66 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination0]",
+            "test": "test_put_events_with_target_events[bus_combination0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination1]",
+            "test": "test_put_events_with_target_events[bus_combination1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination2]",
+            "test": "test_put_events_with_target_events[bus_combination2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[domain]",
+            "test": "test_put_events_with_target_sns[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[path]",
+            "test": "test_put_events_with_target_sns[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[standard]",
+            "test": "test_put_events_with_target_sns[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSqs::test_put_events_with_target_sqs",
             "test": "test_put_events_with_target_sqs",
             "response": "200",
@@ -17786,6 +18926,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetStepFunctions::test_put_events_with_target_statefunction_machine",
+            "test": "test_put_events_with_target_statefunction_machine",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_cfn_resource.py::test_adding_tags",
@@ -18070,26 +19220,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter3-item_matching3-item_not_matching3]",
             "test": "test_sqs_event_filter[filter3-item_matching3-item_not_matching3]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "test": "test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "test": "test_sqs_event_filter[filter4-item_matching4-this is a test string]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
@@ -18436,16 +19566,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationEventbridge::test_invoke_lambda_eventbridge",
-            "test": "test_invoke_lambda_eventbridge",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..AWSTraceHeader', '$..SenderId', '$..eventSourceARN']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationSqs::test_assess_lambda_destination_invocation[payload0]",
@@ -21070,6 +22190,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetStepFunctions::test_put_events_with_target_statefunction_machine",
+            "test": "test_put_events_with_target_statefunction_machine",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_cfn_resource.py::test_adding_tags",
             "test": "test_adding_tags",
             "response": "200",
@@ -21138,16 +22268,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationEventbridge::test_invoke_lambda_eventbridge",
-            "test": "test_invoke_lambda_eventbridge",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..AWSTraceHeader', '$..SenderId', '$..eventSourceARN']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/sqs/test_sqs.py::TestSqsProvider::test_external_hostname_via_host_header",
@@ -21252,6 +22372,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.12]",
             "test": "test_lambda_send_message_to_sqs[python3.12]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.13]",
+            "test": "test_lambda_send_message_to_sqs[python3.13]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -21656,6 +22786,76 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-custom]",
+            "test": "test_list_archive_with_events[False-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-default]",
+            "test": "test_list_archive_with_events[False-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-custom]",
+            "test": "test_list_archive_with_events[True-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-default]",
+            "test": "test_list_archive_with_events[True-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[domain]",
+            "test": "test_put_events_bus_to_bus[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[path]",
+            "test": "test_put_events_bus_to_bus[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[standard]",
+            "test": "test_put_events_bus_to_bus[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_nonexistent_event_bus",
             "test": "test_put_events_nonexistent_event_bus",
             "response": "200",
@@ -21696,6 +22896,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_response_entries_order",
+            "test": "test_put_events_response_entries_order",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_time",
             "test": "test_put_events_time",
             "response": "200",
@@ -21706,13 +22916,73 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_scheduled_expression_events",
-            "test": "test_scheduled_expression_events",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::TestEventsCrossAccountRegion::test_put_events[custom-account]",
+            "test": "test_put_events[custom-account]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -21758,6 +23028,56 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputPath::test_put_events_with_input_path_nested[event_detail1]",
             "test": "test_put_events_with_input_path_nested[event_detail1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "test": "test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "test": "test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_json",
+            "test": "test_put_events_with_input_transformer_input_template_json",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -21818,6 +23138,66 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_schedule.py::TestScheduleRate::tests_schedule_rate_target_sqs",
             "test": "tests_schedule_rate_target_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination0]",
+            "test": "test_put_events_with_target_events[bus_combination0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination1]",
+            "test": "test_put_events_with_target_events[bus_combination1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination2]",
+            "test": "test_put_events_with_target_events[bus_combination2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[domain]",
+            "test": "test_put_events_with_target_sns[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[path]",
+            "test": "test_put_events_with_target_sns[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[standard]",
+            "test": "test_put_events_with_target_sns[standard]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -21891,16 +23271,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..DeadLetterConfig', '$..result', '$..LoggingConfig']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationEventbridge::test_invoke_lambda_eventbridge",
-            "test": "test_invoke_lambda_eventbridge",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..AWSTraceHeader', '$..SenderId', '$..eventSourceARN']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -22876,6 +24246,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_with_target_delivery_failure",
+            "test": "test_put_events_with_target_delivery_failure",
+            "response": "400",
+            "error": "QueueDoesNotExist",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_notifications_sqs.py::TestS3NotificationsToSQS::test_invalid_sqs_arn",
             "test": "test_invalid_sqs_arn",
             "response": "400",
@@ -23702,6 +25082,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaCallingLocalstack::test_manual_endpoint_injection[python3.13]",
+            "test": "test_manual_endpoint_injection[python3.13]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_common.py::TestLambdaCallingLocalstack::test_manual_endpoint_injection[python3.8]",
             "test": "test_manual_endpoint_injection[python3.8]",
             "response": "200",
@@ -24016,6 +25406,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/lambda_/test_lambda_endpoint_injection.py::TestLambdaCallingLocalstack::test_transparent_endpoint_injection[python3.12]",
             "test": "test_transparent_endpoint_injection[python3.12]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/lambda_/test_lambda_endpoint_injection.py::TestLambdaCallingLocalstack::test_transparent_endpoint_injection[python3.13]",
+            "test": "test_transparent_endpoint_injection[python3.13]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -24862,16 +26262,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "test": "test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter5-item_matching5-item_not_matching5]",
             "test": "test_sqs_event_filter[filter5-item_matching5-item_not_matching5]",
             "response": "200",
@@ -25027,16 +26417,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationEventbridge::test_invoke_lambda_eventbridge",
-            "test": "test_invoke_lambda_eventbridge",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..AWSTraceHeader', '$..SenderId', '$..eventSourceARN']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -25652,6 +27032,76 @@
       "MaxNumberOfMessages, QueueUrl, WaitTimeSeconds": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-custom]",
+            "test": "test_list_archive_with_events[False-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-default]",
+            "test": "test_list_archive_with_events[False-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-custom]",
+            "test": "test_list_archive_with_events[True-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-default]",
+            "test": "test_list_archive_with_events[True-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[domain]",
+            "test": "test_put_events_bus_to_bus[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[path]",
+            "test": "test_put_events_bus_to_bus[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[standard]",
+            "test": "test_put_events_bus_to_bus[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_to_default_eventbus_for_custom_eventbus",
             "test": "test_put_events_to_default_eventbus_for_custom_eventbus",
             "response": "200",
@@ -25682,8 +27132,98 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_response_entries_order",
+            "test": "test_put_events_response_entries_order",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_time",
             "test": "test_put_events_time",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_with_target_delivery_failure",
+            "test": "test_put_events_with_target_delivery_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::TestEventsCrossAccountRegion::test_put_events[custom-account]",
+            "test": "test_put_events[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region_account]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -25734,6 +27274,56 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputPath::test_put_events_with_input_path_nested[event_detail1]",
             "test": "test_put_events_with_input_path_nested[event_detail1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "test": "test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "test": "test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_json",
+            "test": "test_put_events_with_input_transformer_input_template_json",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -25794,6 +27384,66 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_schedule.py::TestScheduleRate::tests_schedule_rate_target_sqs",
             "test": "tests_schedule_rate_target_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination0]",
+            "test": "test_put_events_with_target_events[bus_combination0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination1]",
+            "test": "test_put_events_with_target_events[bus_combination1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination2]",
+            "test": "test_put_events_with_target_events[bus_combination2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[domain]",
+            "test": "test_put_events_with_target_sns[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[path]",
+            "test": "test_put_events_with_target_sns[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[standard]",
+            "test": "test_put_events_with_target_sns[standard]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -26392,6 +28042,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.13]",
+            "test": "test_lambda_send_message_to_sqs[python3.13]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.8]",
             "test": "test_lambda_send_message_to_sqs[python3.8]",
             "response": "200",
@@ -26832,12 +28492,12 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_scheduled_expression_events",
-            "test": "test_scheduled_expression_events",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetStepFunctions::test_put_events_with_target_statefunction_machine",
+            "test": "test_put_events_with_target_statefunction_machine",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -27054,16 +28714,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter3-item_matching3-item_not_matching3]",
             "test": "test_sqs_event_filter[filter3-item_matching3-item_not_matching3]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "test": "test_sqs_event_filter[filter4-item_matching4-this is a test string]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
@@ -27942,31 +29592,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/callback/test_callback.py::TestCallback::test_sqs_failure_in_wait_for_task_token",
-            "test": "test_sqs_failure_in_wait_for_task_token",
-            "response": "400",
-            "error": "QueueDoesNotExist",
-            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/callback/test_callback.py::TestCallback::test_sqs_wait_for_task_token",
             "test": "test_sqs_wait_for_task_token",
             "response": "400",
             "error": "QueueDoesNotExist",
             "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/error_handling/test_task_service_sqs.py::TestTaskServiceSqs::test_sqs_failure_in_wait_for_task_tok",
-            "test": "test_sqs_failure_in_wait_for_task_tok",
-            "response": "400",
-            "error": "QueueDoesNotExist",
-            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata', '$..cause', '$..Cause']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -30376,16 +32006,6 @@
       "MessageBody, MessageGroupId, QueueUrl": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_scheduled_expression_events",
-            "test": "test_scheduled_expression_events",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::test_fifo_message_group_parallelism",
             "test": "test_fifo_message_group_parallelism",
             "response": "200",
@@ -31017,6 +32637,36 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..MetricAlarms..StateReason', '$..MetricAlarms..StateReasonData.evaluatedDatapoints', '$..MetricAlarms..StateReasonData.startDate', '$..MetricAlarms..StateTransitionedTimestamp', '$..NewStateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[domain]",
+            "test": "test_put_events_with_target_sns[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[path]",
+            "test": "test_put_events_with_target_sns[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[standard]",
+            "test": "test_put_events_with_target_sns[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31654,16 +33304,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/chaos/test_network_effects.py::TestNetworkEffects::test_latency[500]",
-            "test": "test_latency[500]",
-            "response": "400",
-            "error": "QueueDoesNotExist",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/replicator/core/test_replicator_api.py::TestReplicatorApi::test_trigger_replication_lifecycle",
             "test": "test_trigger_replication_lifecycle",
             "response": "400",
@@ -31778,6 +33418,76 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-custom]",
+            "test": "test_list_archive_with_events[False-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-default]",
+            "test": "test_list_archive_with_events[False-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-custom]",
+            "test": "test_list_archive_with_events[True-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-default]",
+            "test": "test_list_archive_with_events[True-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[domain]",
+            "test": "test_put_events_bus_to_bus[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[path]",
+            "test": "test_put_events_bus_to_bus[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[standard]",
+            "test": "test_put_events_bus_to_bus[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_nonexistent_event_bus",
             "test": "test_put_events_nonexistent_event_bus",
             "response": "200",
@@ -31818,6 +33528,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_response_entries_order",
+            "test": "test_put_events_response_entries_order",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_time",
             "test": "test_put_events_time",
             "response": "200",
@@ -31828,13 +33548,73 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_scheduled_expression_events",
-            "test": "test_scheduled_expression_events",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::TestEventsCrossAccountRegion::test_put_events[custom-account]",
+            "test": "test_put_events[custom-account]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -31880,6 +33660,56 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputPath::test_put_events_with_input_path_nested[event_detail1]",
             "test": "test_put_events_with_input_path_nested[event_detail1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "test": "test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "test": "test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_json",
+            "test": "test_put_events_with_input_transformer_input_template_json",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -31948,6 +33778,36 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination0]",
+            "test": "test_put_events_with_target_events[bus_combination0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination1]",
+            "test": "test_put_events_with_target_events[bus_combination1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination2]",
+            "test": "test_put_events_with_target_events[bus_combination2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSqs::test_put_events_with_target_sqs",
             "test": "test_put_events_with_target_sqs",
             "response": "200",
@@ -31965,6 +33825,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetStepFunctions::test_put_events_with_target_statefunction_machine",
+            "test": "test_put_events_with_target_statefunction_machine",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -32178,16 +34048,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "test": "test_sqs_event_filter[filter4-item_matching4-this is a test string]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_sqs.py::TestSQSEventSourceMapping::test_sqs_event_filter[filter5-item_matching5-item_not_matching5]",
             "test": "test_sqs_event_filter[filter5-item_matching5-item_not_matching5]",
             "response": "200",
@@ -32303,16 +34163,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Attributes.AWSTraceHeader']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationEventbridge::test_invoke_lambda_eventbridge",
-            "test": "test_invoke_lambda_eventbridge",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..AWSTraceHeader', '$..SenderId', '$..eventSourceARN']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -33868,6 +35718,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.13]",
+            "test": "test_lambda_send_message_to_sqs[python3.13]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.8]",
             "test": "test_lambda_send_message_to_sqs[python3.8]",
             "response": "200",
@@ -34944,6 +36804,76 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-custom]",
+            "test": "test_list_archive_with_events[False-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[False-default]",
+            "test": "test_list_archive_with_events[False-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-custom]",
+            "test": "test_list_archive_with_events[True-custom]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_archive_and_replay.py::TestArchive::test_list_archive_with_events[True-default]",
+            "test": "test_list_archive_with_events[True-default]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SizeBytes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[domain]",
+            "test": "test_put_events_bus_to_bus[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[path]",
+            "test": "test_put_events_bus_to_bus[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_bus_to_bus[standard]",
+            "test": "test_put_events_bus_to_bus[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEventBus::test_put_events_nonexistent_event_bus",
             "test": "test_put_events_nonexistent_event_bus",
             "response": "200",
@@ -34984,8 +36914,88 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_response_entries_order",
+            "test": "test_put_events_response_entries_order",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events.py::TestEvents::test_put_events_time",
             "test": "test_put_events_time",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::TestEventsCrossAccountRegion::test_put_events[custom-account]",
+            "test": "test_put_events[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[custom-region_account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-account]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_cross_account_region.py::test_event_bus_to_event_bus_cross_account_region[default-region_account]",
+            "test": "test_event_bus_to_event_bus_cross_account_region[default-region_account]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -35036,6 +37046,76 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputPath::test_put_events_with_input_path_nested[event_detail1]",
             "test": "test_put_events_with_input_path_nested[event_detail1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "test": "test_input_transformer_predefined_variables[\"Message containing all pre defined variables <aws.events.rule-arn> <aws.events.rule-name> <aws.events.event.ingestion-time>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "test": "test_input_transformer_predefined_variables[{\"originalEvent\": <aws.events.event>, \"originalEventJson\": <aws.events.event.json>}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_json",
+            "test": "test_put_events_with_input_transformer_input_template_json",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"Event of <detail-type> type, at time <timestamp>, info extracted from detail <command>\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "test": "test_put_events_with_input_transformer_input_template_string[\"{[/Check with special starting characters for event of <detail-type> type\"]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::TestInputTransformer::test_put_events_with_input_transformer_missing_keys",
+            "test": "test_put_events_with_input_transformer_missing_keys",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_inputs.py::test_put_event_input_path_and_input_transformer",
+            "test": "test_put_event_input_path_and_input_transformer",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -35104,6 +37184,66 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination0]",
+            "test": "test_put_events_with_target_events[bus_combination0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination1]",
+            "test": "test_put_events_with_target_events[bus_combination1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetEvents::test_put_events_with_target_events[bus_combination2]",
+            "test": "test_put_events_with_target_events[bus_combination2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[domain]",
+            "test": "test_put_events_with_target_sns[domain]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[path]",
+            "test": "test_put_events_with_target_sns[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[standard]",
+            "test": "test_put_events_with_target_sns[standard]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSqs::test_put_events_with_target_sqs",
             "test": "test_put_events_with_target_sqs",
             "response": "200",
@@ -35142,16 +37282,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_destinations.py::TestLambdaDestinationEventbridge::test_invoke_lambda_eventbridge",
-            "test": "test_invoke_lambda_eventbridge",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..AWSTraceHeader', '$..SenderId', '$..eventSourceARN']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_notifications_eventbridge.py::TestS3NotificationsToEventBridge::test_object_created_put",
