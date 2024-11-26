@@ -299,6 +299,12 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `S3_SKIP_SIGNATURE_VALIDATION`| `0` \| `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. Note that validation can only pass if the `AWS_SECRET_ACCESS_KEY` is set to `test` or if using credentials returned from `STS.AssumeRole`  |
 | `S3_SKIP_KMS_KEY_VALIDATION` | `0` \| `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
 
+### SNS
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `SNS_SES_SENDER_ADDRESS` | `no-reply@sns.localstack.cloud` \| `admin@localstack.com` (default) | The email address used to send SNS `email` and `email-json` notifications. |
+
 ### SQS
 
 | Variable | Example Values | Description |
