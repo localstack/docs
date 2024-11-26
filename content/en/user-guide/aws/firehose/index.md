@@ -8,7 +8,7 @@ aliases:
 ---
 
 {{< callout >}}
-This service was formerly called as Kinesis Data Firehose.
+This service was formerly called as 'Kinesis Data Firehose'.
 {{< /callout >}}
 
 ## Introduction
