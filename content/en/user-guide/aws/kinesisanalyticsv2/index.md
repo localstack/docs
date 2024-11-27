@@ -34,7 +34,7 @@ Start your LocalStack container using your preferred method.
 
 ### Build Application Code
 
-Start by clone the AWS sample repository.
+Begin by cloning the AWS sample repository.
 We will use the [S3 Sink](https://github.com/aws-samples/amazon-managed-service-for-apache-flink-examples/tree/main/java/S3Sink) application in this example.
 
 {{< command >}}
@@ -42,33 +42,64 @@ $ git clone https://github.com/aws-samples/amazon-managed-service-for-apache-fli
 $ cd java/S3Sink
 {{< /command >}}
 
-Next, use [Maven](https://maven.apache.org/) to compile and package the Flink application.
+Next, use [Maven](https://maven.apache.org/) to compile and package the Flink application into a jar.
 
 {{< command >}}
 $ mvn package
 {{< /command >}}
 
-This will build the Flink application jar file in the `./target/flink-kds-s3.jar` directory, which we will deploy to LocalStack MSAF next.
+The Flink application jar file will be placed in the `./target/flink-kds-s3.jar` directory.
 
-### Upload to S3
+### Upload Application Code
 
 MSAF requires that all application code resides in S3.
 
-Create an S3 bucket and upload the compiled Flink jar.
+Create an S3 bucket and upload the compiled Flink application jar.
 
 {{< command >}}
-$ awslocal s3api create-bucket --bucket demo
-$ awslocal s3api put-object --bucket demo --key job.jar --body ./target/flink-kds-s3.jar
+$ awslocal s3api create-bucket --bucket flink-bucket
+$ awslocal s3api put-object --bucket flink-bucket --key job.jar --body ./target/flink-kds-s3.jar
+{{< /command >}}
+
+### Output Sink
+
+As mentioned earlier, this Flink application writes the output to an S3 bucket.
+
+Create the S3 bucket that will serve as the sink.
+
+{{< command >}}
+$ awslocal s3api create-bucket --bucket sink-bucket
 {{< /command >}}
 
 ### Permissions
 
 MSAF requires a service execution role which allows it to connect to other services.
-Without the proper permissions policy and role, our example application will not be able to connect to S3 and save the output.
+Without the proper permissions policy and role, this example application will not be able to connect to S3 sink bucket to output the result.
 
-Create a permissions policy that allows read and write to S3.
+Create an IAM role for the running MSAF application to assume.
 
 ```json
+# role.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {"Service": "kinesisanalytics.amazonaws.com"},
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+```
+
+{{< command >}}
+$ awslocal iam create-role --role-name msaf-role --assume-role-policy-document file://role.json
+{{< /command >}}
+
+Next create add a permissions policy to this role that permits read and write access to S3.
+
+```json
+# policy.json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -82,32 +113,47 @@ Create a permissions policy that allows read and write to S3.
 ```
 
 {{< command >}}
-$ TODO
+$ awslocal iam put-role-policy --role-name msaf-role --policy-name msaf-policy --policy-document file://policy.json
 {{< /command >}}
 
-Next, this policy is attached to an IAM role. MSAF assumes this role, and this gives it the necessary permissions to write to the sink.
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {"Service": "kinesisanalytics.amazonaws.com"},
-            "Action": "sts:AssumeRole"
-        }
-    ]
-}
-```
-
+Now, when the running MSAF application assumes this role, it will have the necessary permissions to write to the S3 sink.
 
 ### Deploy Application
 
+With all prerequisite resources in place, the Flink application can now be created and started.
 
+{{< command >}}
+$ awslocal kinesisanalyticsv2 create-application \
+    --application-name msaf-app \
+    --runtime-environment FLINK-1_20 \
+    --application-mode STREAMING \
+    --service-execution-role arn:aws:iam::000000000000:role/msaf-role \
+    --application-configuration '{
+        "ApplicationCodeConfiguration": {
+            "CodeContent": {
+                "S3ContentLocation": {
+                    "BucketARN": "arn:aws:s3:::flink-bucket",
+                    "FileKey": "job.jar"
+                }
+            },
+            "CodeContentType": "ZIPFILE"
+        },
+        "EnvironmentProperties": {
+            "PropertyGroups": [{
+                "PropertyGroupId": "bucket", "PropertyMap": {"name": "sink-bucket"}
+            }]
+        }
+    }'
 
-### Runtime Properties
+$ awslocal kinesisanalyticsv2 start-application --application-name msaf-app
+{{< /command >}}
 
+Once the Flink cluster is up and running, the application will output results to the sink S3 bucket.
+You can verify this with:
 
+{{< command >}}
+$ awslocal s3api list-objects --bucket sink-bucket
+{{< /command >}}
 
 ## Supported Flink Versions
 
