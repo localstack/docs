@@ -24,7 +24,6 @@ The emulated MSAF provider was introduced in LocalStack v4.1 and was made the de
 If you wish to use the older mock provider, you can set `PROVIDER_OVERRIDE_KINESISANALYTICSV2=legacy`.
 {{< /callout >}}
 
-
 ## Getting Started
 
 This guide builds and deploys a demo Flink appplication to LocalStack.
