@@ -6,7 +6,6 @@ description: >
 tags: ["Pro image"]
 ---
 
-
 {{< callout >}}
 This service was formerly known as 'Kinesis Data Analytics for Apache Flink'.
 {{< /callout >}}
@@ -14,12 +13,12 @@ This service was formerly known as 'Kinesis Data Analytics for Apache Flink'.
 ## Introduction
 
 [Apache Flink](https://flink.apache.org/) is a framework for building applications that process and analyze streaming data.
-[Managed Service for Apache Flink (MSAF)](https://docs.aws.amazon.com/managed-flink/latest/java/what-is.html) is an AWS service that provides the underlying infrastructure for running Apache Flink applications.
+[Managed Service for Apache Flink (MSAF)](https://docs.aws.amazon.com/managed-flink/latest/java/what-is.html) is an AWS service that provides the underlying infrastructure and a hosted Apache Flink cluster that can run your Flink applications.
 
-LocalStack lets you to run your Flink applications locally and implements [several common API operations](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/).
+LocalStack lets you to run your Flink applications locally and implements [several MSAF API operations](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/).
 
 {{< callout "note" >}}
-The emulated MSAF provider was introduced in LocalStack v4.1 and was made the default.
+The emulated MSAF provider was introduced and made the default in LocalStack v4.1.
 
 If you wish to use the older mock provider, you can set `PROVIDER_OVERRIDE_KINESISANALYTICSV2=legacy`.
 {{< /callout >}}
@@ -34,10 +33,10 @@ Start your LocalStack container using your preferred method.
 ### Build Application Code
 
 Begin by cloning the AWS sample repository.
-We will use the [S3 Sink](https://github.com/aws-samples/amazon-managed-service-for-apache-flink-examples/tree/main/java/S3Sink) application in this example.
+We will use the [S3 Sink](https://github.com/localstack-samples/amazon-managed-service-for-apache-flink-examples/tree/main/java/S3Sink) application in this example.
 
 {{< command >}}
-$ git clone https://github.com/aws-samples/amazon-managed-service-for-apache-flink-examples.git
+$ git clone https://github.com/localstack-samples/amazon-managed-service-for-apache-flink-examples.git
 $ cd java/S3Sink
 {{< /command >}}
 
@@ -170,5 +169,7 @@ $ awslocal s3api list-objects --bucket sink-bucket
 - [Tagging](https://docs.aws.amazon.com/managed-flink/latest/java/how-tagging.html) is not supported
 - In-place [version upgrades](https://docs.aws.amazon.com/managed-flink/latest/java/how-in-place-version-upgrades.html) and [roll-backs](https://docs.aws.amazon.com/managed-flink/latest/java/how-system-rollbacks.html) are not supported
 - [Snapshot/savepoint management](https://docs.aws.amazon.com/managed-flink/latest/java/how-snapshots.html) is not implemented
+- Values of 20,000 ms for `execution.checkpointing.interval` and 5,000 ms for `execution.checkpointing.min-pause` are used for checkpointing. They can not be overridden.
 - Only S3 zipfile code is supported
 - CloudWatch integration is not implemented
+- CloudTrail integration is not implemented
