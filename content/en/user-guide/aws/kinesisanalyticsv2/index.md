@@ -13,9 +13,9 @@ This service was formerly known as 'Kinesis Data Analytics for Apache Flink'.
 ## Introduction
 
 [Apache Flink](https://flink.apache.org/) is a framework for building applications that process and analyze streaming data.
-[Managed Service for Apache Flink (MSAF)](https://docs.aws.amazon.com/managed-flink/latest/java/what-is.html) is an AWS service that provides the underlying infrastructure and a hosted Apache Flink cluster that can run your Flink applications.
+[Managed Service for Apache Flink (MSAF)](https://docs.aws.amazon.com/managed-flink/latest/java/what-is.html) is an AWS service that provides the underlying infrastructure and a hosted Apache Flink cluster that can run Apache Flink applications.
 
-LocalStack lets you to run your Flink applications locally and implements [several MSAF API operations](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/).
+LocalStack lets you to run Flink applications locally and implements several [AWS-compatible API operations](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/).
 
 {{< callout "note" >}}
 The emulated MSAF provider was introduced and made the default in LocalStack v4.1.
@@ -25,10 +25,10 @@ If you wish to use the older mock provider, you can set `PROVIDER_OVERRIDE_KINES
 
 ## Getting Started
 
-This guide builds and deploys a demo Flink appplication to LocalStack.
+This guide builds a demo Flink application and deploys it to LocalStack.
 The application generates synthetic records, processes them and sends the output to an S3 bucket.
 
-Start your LocalStack container using your preferred method.
+Start the LocalStack container using your preferred method.
 
 ### Build Application Code
 
@@ -146,7 +146,7 @@ $ awslocal kinesisanalyticsv2 create-application \
 $ awslocal kinesisanalyticsv2 start-application --application-name msaf-app
 {{< /command >}}
 
-Once the Flink cluster is up and running, the application will output results to the sink S3 bucket.
+Once the Flink cluster is up and running, the application will stream the results to the sink S3 bucket.
 You can verify this with:
 
 {{< command >}}
@@ -166,10 +166,9 @@ $ awslocal s3api list-objects --bucket sink-bucket
 ## Limitations
 
 - Application versions are not maintained
+- Only S3 zipfile code is supported
+- Values of 20,000 ms for `execution.checkpointing.interval` and 5,000 ms for `execution.checkpointing.min-pause` are used for checkpointing. They can not be overridden.
 - [Tagging](https://docs.aws.amazon.com/managed-flink/latest/java/how-tagging.html) is not supported
 - In-place [version upgrades](https://docs.aws.amazon.com/managed-flink/latest/java/how-in-place-version-upgrades.html) and [roll-backs](https://docs.aws.amazon.com/managed-flink/latest/java/how-system-rollbacks.html) are not supported
 - [Snapshot/savepoint management](https://docs.aws.amazon.com/managed-flink/latest/java/how-snapshots.html) is not implemented
-- Values of 20,000 ms for `execution.checkpointing.interval` and 5,000 ms for `execution.checkpointing.min-pause` are used for checkpointing. They can not be overridden.
-- Only S3 zipfile code is supported
-- CloudWatch integration is not implemented
-- CloudTrail integration is not implemented
+- CloudWatch and CloudTrail integration is not implemented
