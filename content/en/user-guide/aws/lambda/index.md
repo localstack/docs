@@ -162,11 +162,6 @@ The product of 10 and 10 is 100%
 
 ## Lambda Event Source Mappings
 
-{{< callout >}}
-Since [3.4.0](https://discuss.localstack.cloud/t/localstack-release-v3-4-0/871#new-experimental-event-rule-engine-2), LocalStack supports a new event rule engine for [Lambda event filtering](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
-You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (preview) to use the AWS [event-ruler](https://github.com/aws/event-ruler), which offers better parity.
-{{< /callout >}}
-
 [Lambda event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) allows you to connect Lambda functions to other AWS services.
 The following event sources are supported in LocalStack:
 
