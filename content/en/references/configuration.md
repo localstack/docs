@@ -376,7 +376,7 @@ To learn more about these configuration options, see [Cloud Pods]({{< ref "user-
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `EVENT_RULE_ENGINE` | `python` (default) \| `java` (deprecated) | Engine for [event pattern matching](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html) used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping. Our latest `python` implementation introduced with [4.0.3](https://github.com/localstack/localstack/pull/11960) makes the `java` engine (previously in preview) using AWS [event-ruler](https://github.com/aws/event-ruler) obsolete. |
+| `EVENT_RULE_ENGINE` | `python` (default) \| `java` (deprecated) | Engine for [event pattern matching](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html) used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping. Our [new](https://github.com/localstack/localstack/pull/11960) `python` implementation introduced with [4.0.3](https://github.com/localstack/localstack/releases/tag/v4.0.3) makes the `java` engine (previously in preview) using AWS [event-ruler](https://github.com/aws/event-ruler) obsolete. |
 | `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud |
 | `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud |
 | `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins |
