@@ -31,7 +31,7 @@ You can use Maven to import the entire SDK into your project.
 </dependency>
 ```
 
-Similarly, you can copy the following line in the dependencies blog of your `build.gradle(.kts)` file if you are using Gradle as a build tool.
+Similarly, you can copy the following line in the dependencies block of your `build.gradle(.kts)` file, if you are using Gradle as a build tool.
 
 ```kotlin
 implementation("cloud.localstack:localstack-sdk:0.0.1")
@@ -43,8 +43,8 @@ Currently, the LocalStack SDK for Java only supports Chaos and Cloud Pods APIs.
 Both these features have a client that can be instantiated from the `cloud.localstack.sdk.chaos` and
 `cloud.localstack.sdk.pods` package, respectively.
 
-The clients build requests by using the [builder pattern](https://en.wikipedia.org/wiki/Builder_pattern).
-For instance, let us imagine the case in which we want to add a fault rule for S3 on the `us-east-1` region.
+The clients accept requests built by using the [builder pattern](https://en.wikipedia.org/wiki/Builder_pattern).
+For instance, let us imagine the case in which you want to add a fault rule for S3 on the `us-east-1` region.
 You first need to use the `FaultRuleRequest` class to build a fault rule request.
 Then, you need to pass such a request object to the `addFaultRules` method of a created `ChaosClient`.
 
@@ -58,8 +58,7 @@ var addedRules = client.addFaultRules(request);
 ```
 
 As a second example, let us look at the necessary code to save and load a Cloud Pod.
-The `PodsClient` exposes two functions, `savePod` and `loadPod`, which expect a `SavePodRequest` and a
-`LoadPodRequest`, respectively.
+Similarly to the `ChaosClient`, the `PodsClient` exposes two functions, `savePod` and `loadPod`, which expect a `SavePodRequest` and a `LoadPodRequest`, respectively.
 The resulting code is the following:
 
 ```java
