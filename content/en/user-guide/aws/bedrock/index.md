@@ -127,6 +127,16 @@ $ awslocal bedrock create-model-invocation-job \
 
 The results will be at the S3 URL `s3://out-bucket/12345678/batch_input.jsonl.out`
 
+## Troubleshooting
+
+Users of Docker Desktop on macOS might run into the issue of Bedrock becoming unresponsive after some usage.
+A common reason for that is insufficient storage or memory space in the Docker Desktop VM.
+To resolve this issue you can increase those amounts directly in Docker Desktop or clean up unused artifacts with the Docker CLI like this
+
+{{< command >}}
+$ docker system prune
+{{< / command >}}
+
 ## Limitations
 
 * At this point, we have only tested text-based models in LocalStack.
