@@ -344,9 +344,6 @@ In case that there is more than one user pool, LocalStack detects the right one 
 Here is an example on how to set it up:
 
 ```sh
-#Create user pool.
-export pool_id=$(awslocal cognito-idp create-user-pool --pool-name test   --username-configuration "CaseSensitive=False"  | jq -rc ".UserPool.Id")
-
 #Create client user pool with a client.
 export client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_id --client-name test-client --generate-secret  | jq -rc ".UserPoolClient.ClientId")
 
@@ -364,34 +361,38 @@ awslocal cognito-idp create-resource-server \
 
 Then you could retrieve the token from your application like this:
 
-```python
-import requests, os
-from requests.auth import HTTPBasicAuth
+```javascript
+require('dotenv').config();
+const axios = require('axios');
 
-def get_access_token_with_secret():
-    client_id = os.environ['client_id']
-    client_secret = os.environ['client_secret']
-    scope = 'api-client-organizations/read'
-    url = 'http://cognito-idp.localhost.localstack.cloud:4566/_aws/cognito-idp/oauth2/token'
-    
+async function getAccessTokenWithSecret() {
+    const clientId = process.env.client_id;
+    const clientSecret = process.env.client_secret;
+    const scope = 'api-client-organizations/read';
+    const url = 'http://cognito-idp.localhost.localstack.cloud:4566/_aws/cognito-idp/oauth2/token';
 
-    headers = {
-        'Content-Type' : 'application/x-www-form-urlencoded'
+    const authHeader = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+
+    const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': `Basic ${authHeader}`
+    };
+
+    const payload = new URLSearchParams({
+        grant_type: 'client_credentials',
+        client_id: clientId,
+        scope: scope
+    });
+
+    try {
+        const response = await axios.post(url, payload, { headers });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error fetching access token:', error.response ? error.response.data : error.message);
     }
+}
 
-    auth = HTTPBasicAuth(client_id,client_secret)
-
-    payload = {
-        'grant_type': 'client_credentials',
-        'client_id':client_id,
-        'scope':scope
-    }
-    response = requests.post(url,headers=headers,auth=auth,data=payload)
-
-    print(response.content)
-
-if __name__ == "__main__":
-    get_access_token_with_secret()
+getAccessTokenWithSecret();
 ```
 
 ## Serverless and Cognito
