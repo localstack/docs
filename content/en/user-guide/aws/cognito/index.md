@@ -341,7 +341,7 @@ Your app can directly request client credentials from the token endpoint to rece
 To request the token from the LocalStack URL, use the following endpoint: `://cognito-idp.localhost.localstack.cloud:4566/_aws/cognito-idp/oauth2/token`.
 For additional information on our endpoints you can check our [Internal Endpoints](https://docs.localstack.cloud/references/internal-endpoints/) documentation.
 
-In case that there is more than one user pool, LocalStack detects the right one by inspecting the `clientId` of the requests.
+If there are multiple user pools, LocalStack identifies the appropriate one by examining the `clientid` of the request.
 
 Here is an example on how to set it up:
 
