@@ -338,7 +338,7 @@ The Client Credentials Grant allows the machine (client) to authenticate itself 
 The client credentials grant allows for scope-based authorization from a non-interactive system to an API.
 Your app can directly request client credentials from the token endpoint to receive an access token.
 
-To request the token from LocalStack the correct URL is `http://cognito-idp.localhost.localstack.cloud:4566/_aws/cognito-idp/oauth2/token`.
+To request the token from the LocalStack URL, use the following endpoint: `://cognito-idp.localhost.localstack.cloud:4566/_aws/cognito-idp/oauth2/token`.
 For additional information on our endpoints you can check our [Internal Endpoints](https://docs.localstack.cloud/references/internal-endpoints/) documentation.
 
 In case that there is more than one user pool, LocalStack detects the right one by inspecting the `clientId` of the requests.
