@@ -343,7 +343,7 @@ For additional information on our endpoints you can check our [Internal Endpoint
 
 If there are multiple user pools, LocalStack identifies the appropriate one by examining the `clientid` of the request.
 
-Here is an example on how to set it up:
+To get started, follow the example below:
 
 ```sh
 #Create client user pool with a client.
