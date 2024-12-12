@@ -1,27 +1,27 @@
 ---
-title: "Kinesis Data Firehose"
-linkTitle: "Kinesis Data Firehose"
+title: "Data Firehose"
+linkTitle: "Data Firehose"
 description: >
-  Get started with Kinesis Data Firehose on LocalStack
+  Get started with Data Firehose on LocalStack
 aliases:
 - /user-guide/aws/kinesis-firehose/
 ---
 
 {{< callout >}}
-Amazon recently renamed Kinesis Data Firehose to Data Firehose.
+This service was formerly called as 'Kinesis Data Firehose'.
 {{< /callout >}}
 
 ## Introduction
 
-Kinesis Data Firehose is a service provided by AWS that allows you to extract, transform and load streaming data into various destinations, such as Amazon S3, Amazon Redshift, and Elasticsearch.
-With Kinesis Data Firehose, you can ingest and deliver real-time data from different sources as it automates data delivery, handles buffering and compression, and scales according to the data volume.
+Data Firehose is a service provided by AWS that allows you to extract, transform and load streaming data into various destinations, such as Amazon S3, Amazon Redshift, and Elasticsearch.
+With Data Firehose, you can ingest and deliver real-time data from different sources as it automates data delivery, handles buffering and compression, and scales according to the data volume.
 
-LocalStack allows you to use the Kinesis Data Firehose APIs in your local environment to load and transform real-time data.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_firehose/), which provides information on the extent of Kinesis Data Firehose's integration with LocalStack.
+LocalStack allows you to use the Data Firehose APIs in your local environment to load and transform real-time data.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_firehose/), which provides information on the extent of Data Firehose's integration with LocalStack.
 
 ## Getting started
 
-This guide is designed for users new to Kinesis Data Firehouse and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+This guide is designed for users new to Data Firehouse and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method.
 We will demonstrate how to use Firehose to load Kinesis data into Elasticsearch with S3 Backup with the AWS CLI.
@@ -162,7 +162,7 @@ Additionally, take a look at the designated S3 bucket to ensure the backup proce
 
 ## Examples
 
-The following code snippets and sample applications provide practical examples of how to use Kinesis Data Firehose in LocalStack for various use cases:
+The following code snippets and sample applications provide practical examples of how to use Data Firehose in LocalStack for various use cases:
 
 - [Search application with Lambda, Kinesis, Firehose, ElasticSearch, S3](https://github.com/localstack/sample-fuzzy-movie-search-lambda-kinesis-elasticsearch)
 - [Streaming Data Pipeline with Kinesis, Tinybird, CloudWatch, Lambda](https://github.com/localstack/serverless-streaming-data-pipeline)
