@@ -361,7 +361,7 @@ awslocal cognito-idp create-resource-server \
 
 ```
 
-Then you can retrieve the token from your application by using the mentioned endpoint: `http://cognito-idp.localhost.localstack.cloud:4566/_aws/cognito-idp/oauth2/token` endpoint.
+You can retrieve the token from your application using the specified endpoint: `http://cognito-idp.localhost.localstack.cloud:4566/_aws/cognito-idp/oauth2/token`.
 
 ```javascript
 require('dotenv').config();
