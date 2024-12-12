@@ -334,7 +334,7 @@ Ensuring this match is crucial for the proper functioning of the authentication 
 ### Client credentials grant
 
 The client credentials grant is designed for machine-to-machine (M2M) communication.
-In contrast, the authorization code and implicit grants provide tokens to authenticated human users.
+The Client Credentials Grant allows the machine (client) to authenticate itself directly with the authorization server using its credentials, such as a client ID and client secret.
 The client credentials grant allows for scope-based authorization from a non-interactive system to an API.
 Your app can directly request client credentials from the token endpoint to receive an access token.
 
