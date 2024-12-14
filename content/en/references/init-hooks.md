@@ -95,7 +95,7 @@ curl -s localhost:4566/_localstack/init/ready | jq .
     {
       "stage": "READY",
       "name": "pre_seed.py",
-      "state": "OK"
+      "state": "SUCCESSFUL"
     }
   ]
 }
