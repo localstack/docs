@@ -214,7 +214,7 @@ $ awslocal opensearch create-domain --cli-input-json file://./opensearch_domain.
 Once the domain setup is complete (`Processing: false`), the cluster can only be accessed with the given master user credentials, via HTTP basic authentication:
 
 {{< command >}}
-$ curl -u "admin:really-secure-passwordAa!1" http://secure-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/health
+$ curl -u 'admin:really-secure-passwordAa!1' http://secure-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/health
 {{< /command >}}
 
 The following output will be visible on your terminal:
@@ -265,7 +265,7 @@ docker run --rm -p 5601:5601 \
   --network ls \
   --dns 172.22.0.2 \
   -e "OPENSEARCH_HOSTS=http://secure-domain.us-east-1.opensearch.localhost.localstack.cloud:4566" \
-  -e "OPENSEARCH_USERNAME=admin" -e "OPENSEARCH_PASSWORD=really-secure-passwordAa!1" \
+  -e "OPENSEARCH_USERNAME=admin" -e 'OPENSEARCH_PASSWORD=really-secure-passwordAa!1' \
   opensearchproject/opensearch-dashboards:2.11.0
 {{< /command >}}
 
