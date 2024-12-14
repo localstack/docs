@@ -29,7 +29,7 @@ You can create an S3 bucket using the [`CreateBucket`](https://docs.aws.amazon.c
 Run the following command to create an S3 bucket named `sample-bucket`:
 
 {{< command >}}
-$ awslocal s3api create-bucket --bucket sample-bucket
+$ awslocal s3api create-bucket --bucket sample-bucket --region us-east-1
 {{< / command >}}
 
 You can list your S3 buckets using the [`ListBuckets`](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-buckets.html) API.
