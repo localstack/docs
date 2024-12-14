@@ -60,30 +60,8 @@ ports:
     onOpen: ignore
 ```
 
-If you are using GitHub, you can also use the [Gitpod Prebuilds](https://www.gitpod.io/docs/prebuilds/) feature to automatically build your workspace.
-This will allow you to start your workspace faster and with all the dependencies already installed.
-Add the following to your `.gitpod.yml` file:
+Enabling [Gitpod Prebuilds](https://www.gitpod.io/docs/configure/repositories/prebuilds) helps save time by executing `init` tasks defined in the `.gitpod.yml` ahead of time, allowing your workspace to start faster and with all the dependencies already installed.
 
-```yaml
-github:
-  prebuilds:
-    # enable for the default branch
-    master: true
-    # enable for all branches in this repo
-    branches: true
-    # enable for pull requests coming from this repo
-    pullRequests: true
-    # enable for pull requests coming from forks
-    pullRequestsFromForks: true
-    # add a check to pull requests
-    addCheck: true
-    # add a "Review in Gitpod" button as a comment to pull requests
-    addComment: false
-    # add a "Review in Gitpod" button to the pull request's description
-    addBadge: true
-```
-
-After adding the configuration, you can start your development & testing by creating [your workspace in Gitpod](https://www.gitpod.io/docs/getting-started/#start-your-first-workspace).
 Upon creation, you will be able to see the LocalStack container running in the background (you can use `localstack status` to check the status of the container).
 
 For a simple demonstration, check out the [LocalStack Gitpod demo](https://github.com/Gitpod-Samples/localstack-gitpod-demo) repository.
