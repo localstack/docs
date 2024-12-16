@@ -168,32 +168,36 @@ The following event sources are supported in LocalStack:
 - [Simple Queue Service (SQS)](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
 - [DynamoDB](https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html)
 - [Kinesis](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html)
-- [Managed Streaming for Apache Kafka (MSK)](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
-- [Self-Managed Apache Kafka](https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html)
+- [Managed Streaming for Apache Kafka (MSK)](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html) ⭐️
+- [Self-Managed Apache Kafka](https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html) ⭐️
 
-### Coverage
+### Behaviour Coverage
 
-The coverage table below shows feature-level coverage for all supported event sources for the latest version of LocalStack.
+The table below shows feature coverage for all supported event sources for the latest version of LocalStack.
+
+Unlike [API operation coverage](https://docs.localstack.cloud/references/coverage/coverage_lambda/), this table illustrates the **functional and behavioural coverage** of LocalStack's Lambda Event Source Mapping implementation.
 
 Where necessary, footnotes are used to provide additional context.
 
-#### Legend
-- ⭐️ Only Available in Pro
+{{< callout >}}
+Feature availability and coverage is categorized with the following system:
+- ⭐️ Only Available in LocalStack Pro image
 - 🟢 Fully Implemented
 - 🟡 Partially Implemented
 - 🟠 Not Implemented
 - ➖ Not Applicable (Not Supported by AWS)
+{{</callout >}}
 
 | | <th colspan="2" style="text-align:center;">SQS</th> <th colspan="2" style="text-align:center;">Stream</th> <th colspan="2" style="text-align:center;">Kafka ⭐️</th>
 |--------------------------------|-------------------------------------------------|:--------:|:----:|:---------:|:----------:|:----------:|:------------:|
 | **Parameter**                  | **Description**                                 | **Standard** | **FIFO** | **Kinesis** | **DynamoDB** | **Amazon MSK** | **Self-Managed** |
 | BatchSize                      | Batching events by count.                       | 🟡 [^1]   | 🟢    | 🟢       | 🟢        | 🟢          | 🟢            |
-| ➖                             | Batch when ≥ 6 MB limit.                        | 🟠        | 🟠    | 🟠       | 🟠        | 🟢          | 🟢            |
+| *Not Configurable*                             | Batch when ≥ 6 MB limit.                        | 🟠        | 🟠    | 🟠       | 🟠        | 🟢          | 🟢            |
 | MaximumBatchingWindowInSeconds | Batch by Time Window.                           | 🟠        | ➖    | 🟠       | 🟠        | 🟢          | 🟢            |
 | MaximumRetryAttempts           | Discard after N retries.                        | ➖        | ➖    | 🟢       | 🟢        | ➖          | ➖            |
 | MaximumRecordAgeInSeconds      | Discard records older than time `t`.            | ➖        | ➖    | 🟢       | 🟢        | ➖          | ➖            |
 | Enabled                        | Enabling/Disabling.                             | 🟢        | 🟢    | 🟢       | 🟢        | 🟢          | 🟢            |
-| FilterCriteria                 | Filter criteria object.                         | 🟢        | 🟢    | 🟢       | 🟢        | 🟢          | 🟢            |
+| FilterCriteria                 | Filter pattern evaluating. [^2] [^3]                    | 🟢        | 🟢    | 🟢       | 🟢        | 🟢          | 🟢            |
 | FunctionResponseTypes          | Enabling ReportBatchItemFailures.               | 🟢        | 🟢    | 🟢       | 🟢        | ➖          | ➖            |
 | BisectBatchOnFunctionError     | Bisect a batch on error and retry.              | ➖        | ➖    | 🟠       | 🟠        | ➖          | ➖            |
 | ScalingConfig                  | The scaling configuration for the event source. | 🟠        | 🟠    | ➖       | ➖        | ➖          | ➖            |
@@ -210,6 +214,8 @@ Where necessary, footnotes are used to provide additional context.
 | Topics ⭐️                      | Kafka topics to read from.                      | ➖        | ➖    | ➖       | ➖        | 🟢          | 🟢            |
 
 [^1]: SQS event-source mappings are limited to sending batches of up to `10` records at a time when invoking Lambda functions.
+[^2]: Read more at [Control which events Lambda sends to your function](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html)
+[^3]: The available Metadata properties may not have full parity with AWS depending on the event source. Read more at [Understanding event filtering basics](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics).
 
 Create a [GitHub issue](https://github.com/localstack/localstack/issues/new/choose) or reach out to [LocalStack support](https://docs.localstack.cloud/getting-started/help-and-support/) if you experience any challenges.
 
