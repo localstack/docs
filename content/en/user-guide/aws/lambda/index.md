@@ -215,7 +215,7 @@ Feature availability and coverage is categorized with the following system:
 
 [^1]: SQS event-source mappings are limited to sending batches of up to `10` records at a time when invoking Lambda functions.
 [^2]: Read more at [Control which events Lambda sends to your function](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html)
-[^3]: The available Metadata properties may not have full parity with AWS depending on the event source. Read more at [Understanding event filtering basics](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics).
+[^3]: The available Metadata properties may not have full parity with AWS depending on the event source (read more at [Understanding event filtering basics](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics)).
 
 Create a [GitHub issue](https://github.com/localstack/localstack/issues/new/choose) or reach out to [LocalStack support](https://docs.localstack.cloud/getting-started/help-and-support/) if you experience any challenges.
 
