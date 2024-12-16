@@ -28,8 +28,8 @@
     },
     {
       "AddApplicationInputProcessingConfiguration": {
-        "implemented": true,
-        "availability": "pro",
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -40,8 +40,8 @@
     },
     {
       "AddApplicationOutput": {
-        "implemented": true,
-        "availability": "pro",
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -78,11 +78,11 @@
       "CreateApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -114,11 +114,11 @@
       "DeleteApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -136,8 +136,8 @@
     },
     {
       "DeleteApplicationInputProcessingConfiguration": {
-        "implemented": true,
-        "availability": "pro",
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -198,11 +198,11 @@
       "DescribeApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -294,18 +294,18 @@
       "ListApplications": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
     {
       "ListTagsForResource": {
-        "implemented": true,
-        "availability": "pro",
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -328,32 +328,32 @@
     },
     {
       "StartApplication": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
     {
       "StopApplication": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
     {
       "TagResource": {
-        "implemented": true,
-        "availability": "pro",
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -364,8 +364,8 @@
     },
     {
       "UntagResource": {
-        "implemented": true,
-        "availability": "pro",
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -378,11 +378,11 @@
       "UpdateApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -399,5 +399,312 @@
       }
     }
   ],
-  "details": {}
+  "details": {
+    "CreateApplication": {
+      "ApplicationConfiguration, ApplicationMode, ApplicationName, RuntimeEnvironment, ServiceExecutionRole": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_connect_to_localstack",
+            "test": "test_connect_to_localstack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_runtime_properties",
+            "test": "test_runtime_properties",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_s3_sink",
+            "test": "test_s3_sink",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteApplication": {
+      "ApplicationName, CreateTimestamp": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_connect_to_localstack",
+            "test": "test_connect_to_localstack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_runtime_properties",
+            "test": "test_runtime_properties",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_s3_sink",
+            "test": "test_s3_sink",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeApplication": {
+      "ApplicationName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_runtime_properties",
+            "test": "test_runtime_properties",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_s3_sink",
+            "test": "test_s3_sink",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListApplications": {
+      "- (without any parameters)": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "StartApplication": {
+      "ApplicationName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_connect_to_localstack",
+            "test": "test_connect_to_localstack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_runtime_properties",
+            "test": "test_runtime_properties",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_s3_sink",
+            "test": "test_s3_sink",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "400",
+            "error": "ResourceInUseException",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "StopApplication": {
+      "ApplicationName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "400",
+            "error": "ResourceInUseException",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdateApplication": {
+      "ApplicationConfigurationUpdate, ApplicationName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_runtime_properties",
+            "test": "test_runtime_properties",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApplicationConfigurationUpdate, ApplicationName, CurrentApplicationVersionId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_managed_flink.py::TestKinesisDataAnalyticsV2::test_crud",
+            "test": "test_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSnapshotConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.ApplicationSystemRollbackConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.FlinkApplicationConfigurationDescription', '$..ApplicationDetail.ApplicationConfigurationDescription.RunConfigurationDescription', '$..ApplicationDetail.ApplicationMaintenanceConfigurationDescription', '$..ApplicationDetail.ApplicationVersionCreateTimestamp', '$..ApplicationDetail.ApplicationVersionUpdatedFrom', '$..CodeMD5', '$..CodeSize', '$..ConditionalToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    }
+  }
 }
