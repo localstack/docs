@@ -190,7 +190,7 @@ This provider has the following configuration options:
 ### Native
 
 This provider is implemented purely in Python.
-It can be enabled by setting the configuration option `PROVIDER_OVERRIDE_KINESIS=nextgen`
+It can be enabled by setting the configuration option `PROVIDER_OVERRIDE_KINESIS=native`
 
 ## Resource Browser
 
