@@ -169,7 +169,6 @@ $ awslocal s3api list-objects --bucket sink-bucket
 - Only S3 zipfile code is supported
 - Values of 20,000 ms for `execution.checkpointing.interval` and 5,000 ms for `execution.checkpointing.min-pause` are used for checkpointing.
   They can not be overridden.
-- [Tagging](https://docs.aws.amazon.com/managed-flink/latest/java/how-tagging.html) is not supported
 - In-place [version upgrades](https://docs.aws.amazon.com/managed-flink/latest/java/how-in-place-version-upgrades.html) and [roll-backs](https://docs.aws.amazon.com/managed-flink/latest/java/how-system-rollbacks.html) are not supported
 - [Snapshot/savepoint management](https://docs.aws.amazon.com/managed-flink/latest/java/how-snapshots.html) is not implemented
 - CloudWatch and CloudTrail integration is not implemented
