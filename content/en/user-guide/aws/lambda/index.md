@@ -202,8 +202,8 @@ Feature availability and coverage is categorized with the following system:
 | BisectBatchOnFunctionError     | Bisect a batch on error and retry.              | ➖        | ➖    | 🟠       | 🟠        | ➖          | ➖            |
 | ScalingConfig                  | The scaling configuration for the event source. | 🟠        | 🟠    | ➖       | ➖        | ➖          | ➖            |
 | ParallelizationFactor          | Parallel batch processing by shard.             | ➖        | ➖    | 🟠       | 🟠        | ➖          | ➖            |
-| DestinationConfig.OnFailure    | SQS Failure Destination.                        | ➖        | ➖    | 🟢       | 🟢        | 🟢          | 🟢            |
-|                                | SNS Failure Destination.                        | ➖        | ➖    | 🟢       | 🟢        | 🟢          | 🟢            |
+| DestinationConfig.OnFailure    | SQS Failure Destination.                        | ➖        | ➖    | 🟢       | 🟢        | 🟠          | 🟠            |
+|                                | SNS Failure Destination.                        | ➖        | ➖    | 🟢       | 🟢        | 🟠          | 🟠            |
 |                                | S3 Failure Destination.                         | ➖        | ➖    | 🟠       | 🟠        | 🟠          | 🟠            |
 | DestinationConfig.OnSuccess    | Success Destinations.                           | ➖        | ➖    | ➖       | ➖        | ➖          | ➖            |
 | MetricsConfig                  | CloudWatch metrics.                             | 🟠        | 🟠    | 🟠       | 🟠        | 🟠          | 🟠            |
