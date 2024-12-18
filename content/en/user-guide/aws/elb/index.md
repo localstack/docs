@@ -148,6 +148,15 @@ The following output will be retrieved:
 }
 ```
 
+#### Alternative URL structure
+
+If a request cannot be made to a subdomain of `localhost.localstack.cloud`, an alternative URL structure is available, however it is not returned by AWS management API methods.
+To make a request against an ELB with id `<elb-id>`, use the URL:
+
+```
+http(s)://localhost.localstack.cloud:4566/_aws/elb/<elb-id>/<elb-path>
+```
+
 ## Examples
 
 The following code snippets and sample applications provide practical examples of how to use ELB in LocalStack for various use cases:
