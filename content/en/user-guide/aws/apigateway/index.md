@@ -288,7 +288,7 @@ There are two alternative URL formats to access these endpoints.
 The recommended URL format for accessing APIs is to use the following URL syntax with an `execute-api` hostname:
 
 ```shell
-http://<apiId>.execute-api.localhost.localstack.cloud:4566/<stageId>/<path>
+http://<apiId>.execute-api.localhost.localstack.cloud:4566/<stageName>/<path>
 ```
 
 Here's an example of how you would access the HTTP/REST API with an ID of `0v1p6q6`:
@@ -310,7 +310,7 @@ http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/my/path1
 The alternative URL format is an endpoint with the predefined base path `/_aws/execute-api`:
 
 ```shell
-http://localhost:4566/_aws/execute-api/<apiId>/<stageId>/<path>
+http://localhost:4566/_aws/execute-api/<apiId>/<stageName>/<path>
 ```
 
 For the example above, the URL would be:
@@ -326,7 +326,7 @@ This format is sometimes used in case of local DNS issues.
 If you are using LocalStack 4.0, the following `_user_request_` format is deprecated, and you should use the format above.
 
 ```shell
-http://localhost:4566/restapis/<apiId>/<stageId>/_user_request_/<path>
+http://localhost:4566/restapis/<apiId>/<stageName>/_user_request_/<path>
 ```
 
 {{< / callout >}}

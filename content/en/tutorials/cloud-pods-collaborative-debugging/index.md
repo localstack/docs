@@ -149,7 +149,7 @@ $ export rest_api_id=$(cd terraform; tflocal output --raw rest_api_id)
 The endpoint for the API Gateway is constructed similarly to the one on AWS:
 
 **`
-https://<apiId>.execute-api.localhost.localstack.cloud:4566/<stageId>/<path>
+https://<apiId>.execute-api.localhost.localstack.cloud:4566/<stageName>/<path>
 `**
 
 So adding two products to the database is straightforward using `curl`:
