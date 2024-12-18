@@ -153,7 +153,7 @@ The following output will be retrieved:
 If a request cannot be made to a subdomain of `localhost.localstack.cloud`, an alternative URL structure is available, however it is not returned by AWS management API methods.
 To make a request against an ELB with id `<elb-id>`, use the URL:
 
-```
+```bash
 http(s)://localhost.localstack.cloud:4566/_aws/elb/<elb-id>/<elb-path>
 ```
 
