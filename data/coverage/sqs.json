@@ -994,7 +994,7 @@
             "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1024,7 +1024,7 @@
             "test": "test_redrive_policy_with_failing_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1034,7 +1034,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2976,11 +2976,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaDestinations::test_generic_destination_routing[sqs-sqs]",
+            "test": "test_generic_destination_routing[sqs-sqs]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3996,7 +4006,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4006,7 +4016,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4016,7 +4026,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4026,7 +4036,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4036,7 +4046,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4046,7 +4056,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4056,7 +4066,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4066,7 +4076,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4076,7 +4086,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4086,7 +4096,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4096,7 +4106,7 @@
             "test": "test_event_source_mapping_default_batch_size",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4106,7 +4116,7 @@
             "test": "test_sqs_event_filter[and]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4116,7 +4126,7 @@
             "test": "test_sqs_event_filter[exists]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4126,7 +4136,7 @@
             "test": "test_sqs_event_filter[numeric-bigger]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4136,7 +4146,7 @@
             "test": "test_sqs_event_filter[numeric-range]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4146,7 +4156,7 @@
             "test": "test_sqs_event_filter[numeric-smaller]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4156,7 +4166,7 @@
             "test": "test_sqs_event_filter[or]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4166,7 +4176,7 @@
             "test": "test_sqs_event_filter[prefix]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4176,7 +4186,7 @@
             "test": "test_sqs_event_filter[single]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4186,7 +4196,7 @@
             "test": "test_sqs_event_filter[valid-json-filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4196,7 +4206,7 @@
             "test": "test_sqs_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4206,7 +4216,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[10000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4216,7 +4226,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[1000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4226,7 +4236,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[100]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4236,7 +4246,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[15]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4246,7 +4256,7 @@
             "test": "test_sqs_event_source_mapping_batching_reserved_concurrency",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4256,7 +4266,7 @@
             "test": "test_sqs_event_source_mapping_update",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4266,7 +4276,7 @@
             "test": "test_sqs_invalid_event_filter[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4276,7 +4286,7 @@
             "test": "test_sqs_invalid_event_filter[invalid_filter2]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4286,7 +4296,7 @@
             "test": "test_sqs_invalid_event_filter[invalid_filter3]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4296,7 +4306,7 @@
             "test": "test_sqs_invalid_event_filter[simple string]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4306,7 +4316,7 @@
             "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4326,7 +4336,7 @@
             "test": "test_redrive_policy_with_failing_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4336,7 +4346,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10522,11 +10532,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaDestinations::test_generic_destination_routing[sqs-sqs]",
+            "test": "test_generic_destination_routing[sqs-sqs]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10556,7 +10576,7 @@
             "test": "test_sqs_event_filter[and]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10566,7 +10586,7 @@
             "test": "test_sqs_event_filter[exists]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10576,7 +10596,7 @@
             "test": "test_sqs_event_filter[numeric-bigger]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10586,7 +10606,7 @@
             "test": "test_sqs_event_filter[numeric-range]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10596,7 +10616,7 @@
             "test": "test_sqs_event_filter[numeric-smaller]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10606,7 +10626,7 @@
             "test": "test_sqs_event_filter[or]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10616,7 +10636,7 @@
             "test": "test_sqs_event_filter[prefix]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10626,7 +10646,7 @@
             "test": "test_sqs_event_filter[single]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10636,7 +10656,7 @@
             "test": "test_sqs_event_filter[valid-json-filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10646,7 +10666,7 @@
             "test": "test_sqs_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10656,7 +10676,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[10000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10666,7 +10686,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[10000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10676,7 +10696,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[1000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10686,7 +10706,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[1000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10696,7 +10716,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[100]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10706,7 +10726,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[100]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10716,7 +10736,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[15]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10726,7 +10746,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[15]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10736,7 +10756,7 @@
             "test": "test_sqs_event_source_mapping_batching_reserved_concurrency",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10746,7 +10766,7 @@
             "test": "test_sqs_event_source_mapping_batching_reserved_concurrency",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10756,7 +10776,7 @@
             "test": "test_sqs_event_source_mapping_update",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10766,7 +10786,7 @@
             "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -10796,7 +10816,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -11240,11 +11260,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaDestinations::test_generic_destination_routing[sqs-sqs]",
+            "test": "test_generic_destination_routing[sqs-sqs]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -12134,7 +12164,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12144,7 +12174,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12154,7 +12184,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12164,7 +12194,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12174,7 +12204,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12184,7 +12214,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12194,7 +12224,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12204,7 +12234,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12214,7 +12244,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12224,7 +12254,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12234,7 +12264,7 @@
             "test": "test_event_source_mapping_default_batch_size",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12244,7 +12274,7 @@
             "test": "test_sqs_event_filter[and]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12254,7 +12284,7 @@
             "test": "test_sqs_event_filter[exists]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12264,7 +12294,7 @@
             "test": "test_sqs_event_filter[numeric-bigger]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12274,7 +12304,7 @@
             "test": "test_sqs_event_filter[numeric-range]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12284,7 +12314,7 @@
             "test": "test_sqs_event_filter[numeric-smaller]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12294,7 +12324,7 @@
             "test": "test_sqs_event_filter[or]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12304,7 +12334,7 @@
             "test": "test_sqs_event_filter[prefix]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12314,7 +12344,7 @@
             "test": "test_sqs_event_filter[single]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12324,7 +12354,7 @@
             "test": "test_sqs_event_filter[valid-json-filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12334,7 +12364,7 @@
             "test": "test_sqs_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12344,7 +12374,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[10000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12354,7 +12384,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[1000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12364,7 +12394,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[100]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12374,7 +12404,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[15]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12384,7 +12414,7 @@
             "test": "test_sqs_event_source_mapping_batching_reserved_concurrency",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12394,7 +12424,7 @@
             "test": "test_sqs_event_source_mapping_update",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12404,7 +12434,7 @@
             "test": "test_sqs_invalid_event_filter[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12414,7 +12444,7 @@
             "test": "test_sqs_invalid_event_filter[invalid_filter2]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12424,7 +12454,7 @@
             "test": "test_sqs_invalid_event_filter[invalid_filter3]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12434,7 +12464,7 @@
             "test": "test_sqs_invalid_event_filter[simple string]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12444,7 +12474,7 @@
             "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12464,7 +12494,7 @@
             "test": "test_redrive_policy_with_failing_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12474,7 +12504,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18748,11 +18778,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaDestinations::test_generic_destination_routing[sqs-sqs]",
+            "test": "test_generic_destination_routing[sqs-sqs]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -18762,7 +18802,7 @@
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19692,7 +19732,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19702,7 +19742,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19712,7 +19752,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19722,7 +19762,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19732,7 +19772,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19742,7 +19782,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19752,7 +19792,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19762,7 +19802,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19772,7 +19812,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19782,7 +19822,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19792,7 +19832,7 @@
             "test": "test_event_source_mapping_default_batch_size",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19802,7 +19842,7 @@
             "test": "test_sqs_event_filter[and]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19812,7 +19852,7 @@
             "test": "test_sqs_event_filter[and]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19822,7 +19862,7 @@
             "test": "test_sqs_event_filter[exists]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19832,7 +19872,7 @@
             "test": "test_sqs_event_filter[exists]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19842,7 +19882,7 @@
             "test": "test_sqs_event_filter[numeric-bigger]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19852,7 +19892,7 @@
             "test": "test_sqs_event_filter[numeric-bigger]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19862,7 +19902,7 @@
             "test": "test_sqs_event_filter[numeric-range]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19872,7 +19912,7 @@
             "test": "test_sqs_event_filter[numeric-range]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19882,7 +19922,7 @@
             "test": "test_sqs_event_filter[numeric-smaller]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19892,7 +19932,7 @@
             "test": "test_sqs_event_filter[numeric-smaller]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19902,7 +19942,7 @@
             "test": "test_sqs_event_filter[or]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19912,7 +19952,7 @@
             "test": "test_sqs_event_filter[or]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19922,7 +19962,7 @@
             "test": "test_sqs_event_filter[prefix]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19932,7 +19972,7 @@
             "test": "test_sqs_event_filter[prefix]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19942,7 +19982,7 @@
             "test": "test_sqs_event_filter[single]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19952,7 +19992,7 @@
             "test": "test_sqs_event_filter[single]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19962,7 +20002,7 @@
             "test": "test_sqs_event_filter[valid-json-filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19972,7 +20012,7 @@
             "test": "test_sqs_event_filter[valid-json-filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19982,7 +20022,7 @@
             "test": "test_sqs_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -19992,7 +20032,7 @@
             "test": "test_sqs_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20002,7 +20042,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[10000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20012,7 +20052,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[10000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20022,7 +20062,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[1000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20032,7 +20072,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[1000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20042,7 +20082,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[100]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20052,7 +20092,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[100]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20062,7 +20102,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[15]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20072,7 +20112,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[15]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20082,7 +20122,7 @@
             "test": "test_sqs_event_source_mapping_batching_reserved_concurrency",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20092,7 +20132,7 @@
             "test": "test_sqs_event_source_mapping_batching_reserved_concurrency",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20102,7 +20142,7 @@
             "test": "test_sqs_event_source_mapping_update",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20112,7 +20152,7 @@
             "test": "test_sqs_event_source_mapping_update",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20122,7 +20162,7 @@
             "test": "test_sqs_invalid_event_filter[None]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20132,7 +20172,7 @@
             "test": "test_sqs_invalid_event_filter[invalid_filter2]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20142,7 +20182,7 @@
             "test": "test_sqs_invalid_event_filter[invalid_filter3]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20152,7 +20192,7 @@
             "test": "test_sqs_invalid_event_filter[simple string]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20162,7 +20202,7 @@
             "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20172,7 +20212,7 @@
             "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20222,7 +20262,7 @@
             "test": "test_redrive_policy_with_failing_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20232,7 +20272,7 @@
             "test": "test_redrive_policy_with_failing_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20242,7 +20282,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20252,7 +20292,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -22950,11 +22990,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaDestinations::test_generic_destination_routing[sqs-sqs]",
+            "test": "test_generic_destination_routing[sqs-sqs]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -23124,7 +23174,7 @@
             "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -23144,7 +23194,7 @@
             "test": "test_redrive_policy_with_failing_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -23154,7 +23204,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -23628,6 +23678,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda",
             "test": "test_events_sqs_sns_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaDestinations::test_generic_destination_routing[sqs-sqs]",
+            "test": "test_generic_destination_routing[sqs-sqs]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -24180,7 +24240,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27242,11 +27302,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaDestinations::test_generic_destination_routing[sqs-sqs]",
+            "test": "test_generic_destination_routing[sqs-sqs]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27276,7 +27346,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27286,7 +27356,7 @@
             "test": "test_event_source_mapping_default_batch_size",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27296,7 +27366,7 @@
             "test": "test_sqs_event_filter[and]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27306,7 +27376,7 @@
             "test": "test_sqs_event_filter[exists]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27316,7 +27386,7 @@
             "test": "test_sqs_event_filter[numeric-bigger]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27326,7 +27396,7 @@
             "test": "test_sqs_event_filter[numeric-range]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27336,7 +27406,7 @@
             "test": "test_sqs_event_filter[numeric-smaller]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27346,7 +27416,7 @@
             "test": "test_sqs_event_filter[or]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27356,7 +27426,7 @@
             "test": "test_sqs_event_filter[prefix]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27366,7 +27436,7 @@
             "test": "test_sqs_event_filter[single]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27376,7 +27446,7 @@
             "test": "test_sqs_event_filter[valid-json-filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27386,7 +27456,7 @@
             "test": "test_sqs_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27396,7 +27466,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[10000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27406,7 +27476,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[1000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27416,7 +27486,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[100]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27426,7 +27496,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[15]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27436,7 +27506,7 @@
             "test": "test_sqs_event_source_mapping_batching_reserved_concurrency",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27446,7 +27516,7 @@
             "test": "test_sqs_event_source_mapping_update",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27456,7 +27526,7 @@
             "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27486,7 +27556,7 @@
             "test": "test_redrive_policy_with_failing_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27496,7 +27566,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -27569,6 +27639,16 @@
             "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_dynamodb_stream_handler_deployed",
+            "test": "test_dynamodb_stream_handler_deployed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -27741,6 +27821,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestLambdaEventSourceMappings::test_sqs_event_source_mapping",
+            "test": "test_sqs_event_source_mapping",
+            "response": "400",
+            "error": "QueueDoesNotExist",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -28152,7 +28242,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[10000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -28162,7 +28252,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[1000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -28172,7 +28262,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[100]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -28182,7 +28272,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[15]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -28192,7 +28282,7 @@
             "test": "test_sqs_event_source_mapping_batching_reserved_concurrency",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -28676,7 +28766,7 @@
             "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -28696,7 +28786,7 @@
             "test": "test_redrive_policy_with_failing_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -28706,7 +28796,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29806,7 +29896,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29816,7 +29906,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29826,7 +29916,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29836,7 +29926,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29846,7 +29936,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29856,7 +29946,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29866,7 +29956,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29876,7 +29966,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29886,7 +29976,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29896,7 +29986,7 @@
             "test": "test_sqs_event_filter[and]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29906,7 +29996,7 @@
             "test": "test_sqs_event_filter[exists]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29916,7 +30006,7 @@
             "test": "test_sqs_event_filter[numeric-bigger]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29926,7 +30016,7 @@
             "test": "test_sqs_event_filter[numeric-range]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29936,7 +30026,7 @@
             "test": "test_sqs_event_filter[numeric-smaller]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29946,7 +30036,7 @@
             "test": "test_sqs_event_filter[or]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29956,7 +30046,7 @@
             "test": "test_sqs_event_filter[prefix]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29966,7 +30056,7 @@
             "test": "test_sqs_event_filter[single]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29976,7 +30066,7 @@
             "test": "test_sqs_event_filter[valid-json-filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29986,7 +30076,7 @@
             "test": "test_sqs_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29996,7 +30086,7 @@
             "test": "test_sqs_event_source_mapping_update",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -30006,7 +30096,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -30840,16 +30930,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/callback/test_callback.py::TestCallback::test_sqs_wait_for_task_token",
-            "test": "test_sqs_wait_for_task_token",
-            "response": "400",
-            "error": "QueueDoesNotExist",
-            "snapshot_skipped": "['$..SdkHttpMetadata', '$..SdkResponseMetadata']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ],
         "ls_pro": [
@@ -31682,7 +31762,7 @@
             "test": "test_redrive_policy_with_failing_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -31692,7 +31772,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -33986,7 +34066,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -34644,16 +34724,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/chaos/test_network_effects.py::TestNetworkEffectsApi::test_bad_config",
-            "test": "test_bad_config",
-            "response": "400",
-            "error": "QueueDoesNotExist",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/replicator/core/test_replicator_api.py::TestReplicatorApi::test_trigger_replication_lifecycle",
             "test": "test_trigger_replication_lifecycle",
             "response": "400",
@@ -34718,11 +34788,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaDestinations::test_generic_destination_routing[sqs-sqs]",
+            "test": "test_generic_destination_routing[sqs-sqs]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StateTransitionReason', '$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Attributes.SqsManagedSseEnabled', '$..PolicyNames', '$..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35292,7 +35372,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35302,7 +35382,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35312,7 +35392,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35322,7 +35402,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35332,7 +35412,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35342,7 +35422,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35352,7 +35432,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35362,7 +35442,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35372,7 +35452,7 @@
             "test": "test_sqs_event_filter[and]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35382,7 +35462,7 @@
             "test": "test_sqs_event_filter[exists]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35392,7 +35472,7 @@
             "test": "test_sqs_event_filter[numeric-bigger]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35402,7 +35482,7 @@
             "test": "test_sqs_event_filter[numeric-range]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35412,7 +35492,7 @@
             "test": "test_sqs_event_filter[numeric-smaller]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35422,7 +35502,7 @@
             "test": "test_sqs_event_filter[or]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35432,7 +35512,7 @@
             "test": "test_sqs_event_filter[prefix]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35442,7 +35522,7 @@
             "test": "test_sqs_event_filter[single]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35452,7 +35532,7 @@
             "test": "test_sqs_event_filter[valid-json-filter]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35462,7 +35542,7 @@
             "test": "test_sqs_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35472,7 +35552,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[10000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35482,7 +35562,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[1000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35492,7 +35572,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[100]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35502,7 +35582,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[15]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35512,7 +35592,7 @@
             "test": "test_sqs_event_source_mapping_batching_reserved_concurrency",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35522,7 +35602,7 @@
             "test": "test_sqs_event_source_mapping_update",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35532,7 +35612,7 @@
             "test": "test_failing_lambda_retries_after_visibility_timeout",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35552,7 +35632,7 @@
             "test": "test_redrive_policy_with_failing_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..StartingPosition', '$..StateTransitionReason']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -35562,7 +35642,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37610,7 +37690,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[10000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37620,7 +37700,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[1000]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37630,7 +37710,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[100]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37640,7 +37720,7 @@
             "test": "test_sqs_event_source_mapping_batch_size[15]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37650,7 +37730,7 @@
             "test": "test_sqs_event_source_mapping_batching_reserved_concurrency",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..ResponseMetadata.HTTPStatusCode', '$..StartingPosition', '$..State', '$..StateTransitionReason', '$..Topics', '$..Records..md5OfMessageAttributes']",
+            "snapshot_skipped": "['$..Records..md5OfMessageAttributes']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -37660,7 +37740,7 @@
             "test": "test_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SequenceNumber', '$..receiptHandle', '$..md5OfBody', '$..MD5OfMessageBody', '$..create_event_source_mapping.ParallelizationFactor', '$..create_event_source_mapping.LastProcessingResult', '$..create_event_source_mapping.Topics', '$..create_event_source_mapping.MaximumRetryAttempts', '$..create_event_source_mapping.MaximumBatchingWindowInSeconds', '$..create_event_source_mapping.StartingPosition', '$..create_event_source_mapping.StateTransitionReason', '$..create_event_source_mapping.State', '$..create_event_source_mapping.ResponseMetadata']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -38808,7 +38888,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"

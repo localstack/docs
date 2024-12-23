@@ -151,7 +151,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
@@ -472,7 +472,7 @@
             "test": "test_cfn_lambda_kinesis_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..Configuration.CodeSize', '$..Tags', '$..StreamDescription.StreamModeDetails', '$..Configuration.Layers', '$..TumblingWindowInSeconds', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Configuration.CodeSize', '$..Tags', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -678,9 +678,29 @@
             "test": "test_cfn_lambda_dynamodb_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_lambda_dynamodb_event_filter",
+            "test": "test_lambda_dynamodb_event_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter",
+            "test": "test_lambda_w_dynamodb_event_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -1288,7 +1308,7 @@
             "test": "test_kinesis_event_filtering_json_pattern",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1298,7 +1318,7 @@
             "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1308,7 +1328,7 @@
             "test": "test_create_kinesis_event_source_mapping_multiple_lambdas_single_kinesis_event_stream",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1318,7 +1338,7 @@
             "test": "test_disable_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1328,7 +1348,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1338,7 +1358,17 @@
             "test": "test_kinesis_empty_provided",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisSource::test_kinesis_event_source_mapping_with_async_invocation",
+            "test": "test_kinesis_event_source_mapping_with_async_invocation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1348,7 +1378,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1358,7 +1388,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1368,7 +1398,7 @@
             "test": "test_kinesis_event_source_trim_horizon",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1378,7 +1408,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1388,7 +1418,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1398,7 +1428,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1408,7 +1438,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1418,7 +1448,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1428,7 +1458,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1438,7 +1468,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1448,7 +1478,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1458,7 +1488,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_dict_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1468,7 +1498,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_list_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1478,7 +1508,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_string_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1488,7 +1518,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1498,7 +1528,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1992,7 +2022,7 @@
             "test": "test_cfn_lambda_kinesis_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..Configuration.CodeSize', '$..Tags', '$..StreamDescription.StreamModeDetails', '$..Configuration.Layers', '$..TumblingWindowInSeconds', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Configuration.CodeSize', '$..Tags', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2134,16 +2164,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_lambda.py::test_lambda_aws_proxy_integration",
-            "test": "test_lambda_aws_proxy_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Via', '$..X-Amz-Cf-Id', '$..X-Amz-Cf-Pop', '$..X-Cache', '$..CloudFront-Forwarded-Proto', '$..CloudFront-Is-Desktop-Viewer', '$..CloudFront-Is-Mobile-Viewer', '$..CloudFront-Is-SmartTV-Viewer', '$..CloudFront-Is-Tablet-Viewer', '$..CloudFront-Viewer-ASN', '$..CloudFront-Viewer-Country']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/test_iam.py::test_server_certificate",
             "test": "test_server_certificate",
             "response": "200",
@@ -2184,11 +2204,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_dynamodb.py::test_global_table",
+            "test": "test_global_table",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Table.DeletionProtectionEnabled', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_dynamodb_source",
             "test": "test_cfn_lambda_dynamodb_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2544,8 +2574,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_filter_type]",
-            "test": "test_dynamodb_event_filter[content_filter_type]",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_multiple_filters]",
+            "test": "test_dynamodb_event_filter[content_multiple_filters]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..LastProcessingResult']",
@@ -2594,6 +2624,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[numeric_filter]",
+            "test": "test_dynamodb_event_filter[numeric_filter]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LastProcessingResult']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[prefix_filter]",
             "test": "test_dynamodb_event_filter[prefix_filter]",
             "response": "200",
@@ -2634,8 +2674,28 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_invalid_event_filter[single-string]",
+            "test": "test_dynamodb_invalid_event_filter[single-string]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LastProcessingResult']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "test": "test_dynamodb_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LastProcessingResult']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
+            "test": "test_dynamodb_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..LastProcessingResult']",
@@ -2684,16 +2744,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_report_batch_item_success_scenarios[empty_batch_item_failure_success]",
-            "test": "test_dynamodb_report_batch_item_success_scenarios[empty_batch_item_failure_success]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_report_batch_item_success_scenarios[empty_dict_success]",
             "test": "test_dynamodb_report_batch_item_success_scenarios[empty_dict_success]",
             "response": "200",
@@ -2714,8 +2764,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_report_batch_item_success_scenarios[null_success]",
-            "test": "test_dynamodb_report_batch_item_success_scenarios[null_success]",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_report_batch_item_success_scenarios[null_batch_item_failure_success]",
+            "test": "test_dynamodb_report_batch_item_success_scenarios[null_batch_item_failure_success]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..LastProcessingResult']",
@@ -2728,7 +2778,7 @@
             "test": "test_kinesis_event_filtering_json_pattern",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2738,7 +2788,7 @@
             "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2748,7 +2798,7 @@
             "test": "test_create_kinesis_event_source_mapping_multiple_lambdas_single_kinesis_event_stream",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2758,7 +2808,7 @@
             "test": "test_disable_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2768,7 +2818,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2778,7 +2828,17 @@
             "test": "test_kinesis_empty_provided",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisSource::test_kinesis_event_source_mapping_with_async_invocation",
+            "test": "test_kinesis_event_source_mapping_with_async_invocation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2788,7 +2848,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2798,7 +2858,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2808,7 +2868,7 @@
             "test": "test_kinesis_event_source_trim_horizon",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2818,7 +2878,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2828,7 +2888,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2838,7 +2898,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2848,7 +2908,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2858,7 +2918,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2868,7 +2928,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2878,7 +2938,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2888,7 +2948,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2898,7 +2958,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_dict_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2908,7 +2968,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_list_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2918,7 +2978,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_string_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2928,7 +2988,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2938,7 +2998,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2964,16 +3024,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_function_name_variations",
-            "test": "test_function_name_variations",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaTags::test_tag_exceptions",
             "test": "test_tag_exceptions",
             "response": "200",
@@ -2994,6 +3044,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/choice_operators/test_is_operators.py::TestIsOperators::test_is_boolean",
+            "test": "test_is_boolean",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_firehose_kinesis_to_s3",
             "test": "test_firehose_kinesis_to_s3",
             "response": "200",
@@ -3004,16 +3064,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_firehose_s3",
-            "test": "test_firehose_s3",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_lambda_streams_batch_and_transactions",
             "test": "test_lambda_streams_batch_and_transactions",
             "response": "200",
@@ -3024,8 +3074,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_lambda_streams_batch_and_transactions",
-            "test": "test_lambda_streams_batch_and_transactions",
+            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_scheduled_lambda",
+            "test": "test_scheduled_lambda",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3243,6 +3293,16 @@
             "snapshot_skipped": "['$..message.awsRequest', '$..message.awsResponse', '$..StateReason']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_input_processing_configuration",
+            "test": "test_input_processing_configuration",
+            "response": "400",
+            "error": "ResourceInUseException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -3468,7 +3528,7 @@
             "test": "test_cfn_lambda_kinesis_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..Configuration.CodeSize', '$..Tags', '$..StreamDescription.StreamModeDetails', '$..Configuration.Layers', '$..TumblingWindowInSeconds', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Configuration.CodeSize', '$..Tags', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3498,7 +3558,7 @@
             "test": "test_kinesis_event_filtering_json_pattern",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3508,7 +3568,7 @@
             "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3518,7 +3578,7 @@
             "test": "test_create_kinesis_event_source_mapping_multiple_lambdas_single_kinesis_event_stream",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3528,7 +3588,7 @@
             "test": "test_disable_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3538,7 +3598,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3548,7 +3608,17 @@
             "test": "test_kinesis_empty_provided",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisSource::test_kinesis_event_source_mapping_with_async_invocation",
+            "test": "test_kinesis_event_source_mapping_with_async_invocation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3558,7 +3628,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3568,7 +3638,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3578,7 +3648,7 @@
             "test": "test_kinesis_event_source_trim_horizon",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3588,7 +3658,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3598,7 +3668,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3608,7 +3678,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3618,7 +3688,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3628,7 +3698,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3638,7 +3708,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3648,7 +3718,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3658,7 +3728,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3668,7 +3738,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_dict_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3678,7 +3748,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_list_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3688,7 +3758,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_string_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3698,7 +3768,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3708,7 +3778,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3808,7 +3878,7 @@
             "test": "test_cfn_lambda_kinesis_source",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..Configuration.CodeSize', '$..Tags', '$..StreamDescription.StreamModeDetails', '$..Configuration.Layers', '$..TumblingWindowInSeconds', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Configuration.CodeSize', '$..Tags', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4570,16 +4640,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_lambda.py::test_lambda_aws_proxy_integration",
-            "test": "test_lambda_aws_proxy_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Via', '$..X-Amz-Cf-Id', '$..X-Amz-Cf-Pop', '$..X-Cache', '$..CloudFront-Forwarded-Proto', '$..CloudFront-Is-Desktop-Viewer', '$..CloudFront-Is-Mobile-Viewer', '$..CloudFront-Is-SmartTV-Viewer', '$..CloudFront-Is-Tablet-Viewer', '$..CloudFront-Viewer-ASN', '$..CloudFront-Viewer-Country']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/test_iam.py::test_managed_policy_with_empty_resource",
             "test": "test_managed_policy_with_empty_resource",
             "response": "200",
@@ -4754,7 +4814,7 @@
             "test": "test_cfn_lambda_dynamodb_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4764,7 +4824,7 @@
             "test": "test_cfn_lambda_kinesis_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..Configuration.CodeSize', '$..Tags', '$..StreamDescription.StreamModeDetails', '$..Configuration.Layers', '$..TumblingWindowInSeconds', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Configuration.CodeSize', '$..Tags', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4774,10 +4834,30 @@
             "test": "test_cfn_lambda_kinesis_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..Configuration.CodeSize', '$..Tags', '$..StreamDescription.StreamModeDetails', '$..Configuration.Layers', '$..TumblingWindowInSeconds', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Configuration.CodeSize', '$..Tags', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_lambda_dynamodb_event_filter",
+            "test": "test_lambda_dynamodb_event_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter",
+            "test": "test_lambda_w_dynamodb_event_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter_update",
@@ -5230,16 +5310,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_multiple_filters]",
-            "test": "test_dynamodb_event_filter[content_multiple_filters]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[content_or_filter]",
             "test": "test_dynamodb_event_filter[content_or_filter]",
             "response": "200",
@@ -5484,7 +5554,7 @@
             "test": "test_kinesis_event_filtering_json_pattern",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5494,7 +5564,7 @@
             "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5504,7 +5574,7 @@
             "test": "test_create_kinesis_event_source_mapping_multiple_lambdas_single_kinesis_event_stream",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5514,7 +5584,7 @@
             "test": "test_disable_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5524,7 +5594,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5534,7 +5604,17 @@
             "test": "test_kinesis_empty_provided",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisSource::test_kinesis_event_source_mapping_with_async_invocation",
+            "test": "test_kinesis_event_source_mapping_with_async_invocation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5544,7 +5624,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5554,7 +5634,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5564,7 +5644,7 @@
             "test": "test_kinesis_event_source_trim_horizon",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5574,7 +5654,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5584,7 +5664,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5594,7 +5674,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5604,7 +5684,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5614,7 +5694,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5624,7 +5704,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5634,7 +5714,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5644,7 +5724,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5654,7 +5734,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_dict_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5664,7 +5744,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_list_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5674,7 +5754,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_string_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5684,7 +5764,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5694,7 +5774,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5702,6 +5782,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_filter_criteria_validation",
             "test": "test_create_event_filter_criteria_validation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_validation",
+            "test": "test_create_event_source_validation",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5770,6 +5860,26 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/choice_operators/test_is_operators.py::TestIsOperators::test_is_boolean",
+            "test": "test_is_boolean",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_lambda_task.py::TestTaskLambda::test_invoke_bytes_payload",
+            "test": "test_invoke_bytes_payload",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/test_error_injection.py::TestErrorInjection::test_kinesis_error_injection",
             "test": "test_kinesis_error_injection",
             "response": "200",
@@ -5778,16 +5888,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_firehose_s3",
-            "test": "test_firehose_s3",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_lambda_streams_batch_and_transactions",
@@ -5850,16 +5950,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_lambda.py::test_lambda_aws_proxy_integration",
-            "test": "test_lambda_aws_proxy_integration",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..Via', '$..X-Amz-Cf-Id', '$..X-Amz-Cf-Pop', '$..X-Cache', '$..CloudFront-Forwarded-Proto', '$..CloudFront-Is-Desktop-Viewer', '$..CloudFront-Is-Mobile-Viewer', '$..CloudFront-Is-SmartTV-Viewer', '$..CloudFront-Is-Tablet-Viewer', '$..CloudFront-Viewer-ASN', '$..CloudFront-Viewer-Country']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/iam/test_iam.py::test_server_certificate",
             "test": "test_server_certificate",
             "response": "400",
@@ -5914,9 +6004,19 @@
             "test": "test_cfn_lambda_dynamodb_source",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter_update",
+            "test": "test_lambda_w_dynamodb_event_filter_update",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -5930,13 +6030,13 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_stepfunctions.py::test_statemachine_definitionsubstitution",
-            "test": "test_statemachine_definitionsubstitution",
+            "node_id": "LocalStack Community: tests/aws/services/cloudwatch/test_cloudwatch_metrics.py::TestCloudWatchLambdaMetrics::test_lambda_invoke_successful",
+            "test": "test_lambda_invoke_successful",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -6035,6 +6135,16 @@
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "['$..SizeBytes', '$..ProvisionedThroughput.NumberOfDecreasesToday', '$..StreamDescription.CreationRequestDateTime']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/dynamodbstreams/test_dynamodb_streams.py::TestDynamoDBStreams::test_non_existent_stream",
+            "test": "test_non_existent_stream",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -6360,13 +6470,23 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_integration.py::TestIntegration::test_firehose_kinesis_to_s3",
-            "test": "test_firehose_kinesis_to_s3",
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/choice_operators/test_is_operators.py::TestIsOperators::test_is_boolean",
+            "test": "test_is_boolean",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/stepfunctions/v2/services/test_lambda_task.py::TestTaskLambda::test_invoke_bytes_payload",
+            "test": "test_invoke_bytes_payload",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -6629,7 +6749,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestLambdaEventSourceMappings::test_kinesis_event_source_mapping",
@@ -6639,7 +6759,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_kinesis_put_record",
@@ -6720,16 +6840,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_sqs_fifo_dlq_partial_batch_failures",
-            "test": "test_sqs_fifo_dlq_partial_batch_failures",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..message.awsRequest', '$..message.awsResponse']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_kinesis.py::TestPipesKinesis::test_kinesis_dlq_behavior",
@@ -6942,7 +7052,7 @@
             "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6952,7 +7062,7 @@
             "test": "test_create_kinesis_event_source_mapping_multiple_lambdas_single_kinesis_event_stream",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6962,7 +7072,17 @@
             "test": "test_kinesis_empty_provided",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisSource::test_kinesis_event_source_mapping_with_async_invocation",
+            "test": "test_kinesis_event_source_mapping_with_async_invocation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6972,7 +7092,7 @@
             "test": "test_kinesis_event_source_trim_horizon",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6982,7 +7102,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6992,7 +7112,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7002,7 +7122,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7012,7 +7132,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7022,7 +7142,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7032,7 +7152,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7042,7 +7162,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7052,7 +7172,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_dict_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7062,7 +7182,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_list_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7072,7 +7192,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_string_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7082,7 +7202,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7092,7 +7212,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7158,9 +7278,29 @@
             "test": "test_cfn_lambda_dynamodb_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_lambda_dynamodb_event_filter",
+            "test": "test_lambda_dynamodb_event_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter",
+            "test": "test_lambda_w_dynamodb_event_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -7538,16 +7678,6 @@
             "test": "test_deletion_event_source_mapping_with_dynamodb",
             "response": "400",
             "error": "ResourceInUseException",
-            "snapshot_skipped": "['$..LastProcessingResult']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_deletion_event_source_mapping_with_dynamodb",
-            "test": "test_deletion_event_source_mapping_with_dynamodb",
-            "response": "400",
-            "error": "ResourceNotFoundException",
             "snapshot_skipped": "['$..LastProcessingResult']",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -8016,6 +8146,26 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/serverlesspresso/test_serverlesspresso.py::TestServerlesspressoScenario::test_concurrent_order_limit",
+            "test": "test_concurrent_order_limit",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/serverlesspresso/test_serverlesspresso.py::TestServerlesspressoScenario::test_mocking_of_validator_service",
+            "test": "test_mocking_of_validator_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/scenario/serverlesspresso/test_serverlesspresso.py::TestServerlesspressoScenario::test_open_store",
             "test": "test_open_store",
             "response": "200",
@@ -8124,7 +8274,7 @@
             "test": "test_cfn_lambda_kinesis_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..Configuration.CodeSize', '$..Tags', '$..StreamDescription.StreamModeDetails', '$..Configuration.Layers', '$..TumblingWindowInSeconds', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Configuration.CodeSize', '$..Tags', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8134,7 +8284,7 @@
             "test": "test_kinesis_event_filtering_json_pattern",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8144,7 +8294,7 @@
             "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8154,7 +8304,7 @@
             "test": "test_create_kinesis_event_source_mapping_multiple_lambdas_single_kinesis_event_stream",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8164,7 +8314,7 @@
             "test": "test_disable_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8174,7 +8324,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8184,7 +8334,17 @@
             "test": "test_kinesis_empty_provided",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisSource::test_kinesis_event_source_mapping_with_async_invocation",
+            "test": "test_kinesis_event_source_mapping_with_async_invocation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8194,7 +8354,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8204,7 +8364,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8214,7 +8374,7 @@
             "test": "test_kinesis_event_source_trim_horizon",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8224,7 +8384,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8234,7 +8394,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8244,7 +8404,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8254,7 +8414,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8264,7 +8424,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8274,7 +8434,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8284,7 +8444,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8294,7 +8454,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8304,7 +8464,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_dict_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8314,7 +8474,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_list_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8324,7 +8484,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_string_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8334,7 +8494,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8344,7 +8504,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8362,6 +8522,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_event_rules_deployed",
             "test": "test_event_rules_deployed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_kinesis_stream_handler_deployed",
+            "test": "test_kinesis_stream_handler_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8446,16 +8616,6 @@
             "test": "test_kinesis_event_source_mapping",
             "response": "400",
             "error": "AccessDeniedException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestLambdaEventSourceMappings::test_kinesis_event_source_mapping",
-            "test": "test_kinesis_event_source_mapping",
-            "response": "400",
-            "error": "ResourceInUseException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
@@ -8714,26 +8874,6 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/kinesis/test_kinesis.py::TestKinesis::test_subscribe_to_shard_cbor_at_timestamp",
-            "test": "test_subscribe_to_shard_cbor_at_timestamp",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/kinesis/test_kinesis.py::TestKinesis::test_subscribe_to_shard_with_at_timestamp",
-            "test": "test_subscribe_to_shard_with_at_timestamp",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..Records..EncryptionType']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ],
         "ls_pro": [
@@ -8978,7 +9118,7 @@
             "test": "test_cfn_lambda_kinesis_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..Configuration.CodeSize', '$..Tags', '$..StreamDescription.StreamModeDetails', '$..Configuration.Layers', '$..TumblingWindowInSeconds', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Configuration.CodeSize', '$..Tags', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8988,7 +9128,7 @@
             "test": "test_kinesis_event_filtering_json_pattern",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8998,7 +9138,7 @@
             "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9008,7 +9148,7 @@
             "test": "test_create_kinesis_event_source_mapping_multiple_lambdas_single_kinesis_event_stream",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9018,7 +9158,7 @@
             "test": "test_disable_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9028,7 +9168,7 @@
             "test": "test_duplicate_event_source_mappings",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9038,7 +9178,17 @@
             "test": "test_kinesis_empty_provided",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisSource::test_kinesis_event_source_mapping_with_async_invocation",
+            "test": "test_kinesis_event_source_mapping_with_async_invocation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9048,7 +9198,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9058,7 +9208,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9068,7 +9218,7 @@
             "test": "test_kinesis_event_source_trim_horizon",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9078,7 +9228,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9088,7 +9238,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9098,7 +9248,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9108,7 +9258,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9118,7 +9268,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9128,7 +9278,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9138,7 +9288,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9148,7 +9298,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9158,7 +9308,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_dict_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9168,7 +9318,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_list_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9178,7 +9328,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_string_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9188,7 +9338,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9198,7 +9348,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9788,9 +9938,29 @@
             "test": "test_cfn_lambda_dynamodb_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_lambda_dynamodb_event_filter",
+            "test": "test_lambda_dynamodb_event_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter",
+            "test": "test_lambda_w_dynamodb_event_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -10842,7 +11012,7 @@
             "test": "test_cfn_lambda_kinesis_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..Configuration.CodeSize', '$..Tags', '$..StreamDescription.StreamModeDetails', '$..Configuration.Layers', '$..TumblingWindowInSeconds', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Configuration.CodeSize', '$..Tags', '$..Configuration.LastUpdateStatus', '$..Configuration.State', '$..Configuration.StateReason', '$..Configuration.StateReasonCode']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10892,7 +11062,7 @@
             "test": "test_kinesis_event_filtering_json_pattern",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LastProcessingResult']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10902,7 +11072,7 @@
             "test": "test_kinesis_empty_provided",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10912,7 +11082,7 @@
             "test": "test_kinesis_event_source_mapping_with_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10922,7 +11092,7 @@
             "test": "test_kinesis_event_source_mapping_with_sns_on_failure_destination_config",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10932,7 +11102,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[empty_string_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10942,7 +11112,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10952,7 +11122,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[invalid_key_foo_null_value_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10962,7 +11132,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[item_identifier_not_present_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10972,7 +11142,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[null_item_identifier_failure]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10982,7 +11152,7 @@
             "test": "test_kinesis_report_batch_item_failure_scenarios[unhandled_exception_in_function]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10992,7 +11162,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11002,7 +11172,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_dict_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11012,7 +11182,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_list_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11022,7 +11192,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[empty_string_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11032,7 +11202,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_batch_item_failure_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11042,7 +11212,7 @@
             "test": "test_kinesis_report_batch_item_success_scenarios[null_success]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11306,9 +11476,29 @@
             "test": "test_cfn_lambda_dynamodb_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..Configuration.Layers', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..MaximumRecordAgeInSeconds', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Tags', '$..Configuration.CodeSize', '$..PolicyNames', '$..policies..PolicyName', '$..Role.Description', '$..Role.MaxSessionDuration', '$..StackResources..LogicalResourceId', '$..StackResources..PhysicalResourceId', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas', '$..StreamDescription.CreationRequestDateTime']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_lambda_dynamodb_event_filter",
+            "test": "test_lambda_dynamodb_event_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter",
+            "test": "test_lambda_w_dynamodb_event_filter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -11716,7 +11906,7 @@
             "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11726,7 +11916,7 @@
             "test": "test_create_kinesis_event_source_mapping_multiple_lambdas_single_kinesis_event_stream",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11736,7 +11926,17 @@
             "test": "test_disable_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/event_source_mapping/test_lambda_integration_kinesis.py::TestKinesisSource::test_kinesis_event_source_mapping_with_async_invocation",
+            "test": "test_kinesis_event_source_mapping_with_async_invocation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11746,7 +11946,7 @@
             "test": "test_kinesis_event_source_trim_horizon",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11756,7 +11956,7 @@
             "test": "test_kinesis_report_batch_item_failures",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..LastProcessingResult', '$..EventSourceMappingArn', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Messages..Body.KinesisBatchInfo.shardId', '$..Message.KinesisBatchInfo.shardId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12294,6 +12494,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/serverlesspresso/test_serverlesspresso.py::TestServerlesspressoScenario::test_concurrent_order_limit",
+            "test": "test_concurrent_order_limit",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/scenario/serverlesspresso/test_serverlesspresso.py::TestServerlesspressoScenario::test_open_store",
             "test": "test_open_store",
             "response": "200",
@@ -12316,16 +12526,6 @@
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/serverlesspresso/test_serverlesspresso.py::TestServerlesspressoScenario::test_populate_data",
             "test": "test_populate_data",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/serverlesspresso/test_serverlesspresso.py::TestServerlesspressoScenario::test_websocket",
-            "test": "test_websocket",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",

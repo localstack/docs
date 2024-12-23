@@ -90,11 +90,11 @@
       "CreateModel": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -429,8 +429,8 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -561,8 +561,8 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -693,8 +693,8 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -936,23 +936,13 @@
       "CorsConfiguration, Description, Name, ProtocolType, Tags, Version": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
             "test": "test_import_and_invoke_http_api",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "internal"
           }
         ]
@@ -1644,8 +1634,38 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite",
-            "test": "test_http_proxy_with_path_param_overwrite",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_overwrite_on_root_target",
+            "test": "test_http_proxy_with_path_overwrite_on_root_target",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[//anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[//anything]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[/anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[/anything]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[anything]",
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
@@ -2070,6 +2090,16 @@
       "Name, ProtocolType, Target": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_proxy.py::TestHttpApiAwsProxyIntegration::test_aws_proxy_localstack_endpoint_types",
+            "test": "test_aws_proxy_localstack_endpoint_types",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_proxy.py::TestHttpApiAwsProxyIntegration::test_aws_proxy_return_gzip_response",
             "test": "test_aws_proxy_return_gzip_response",
             "response": "201",
@@ -2355,6 +2385,20 @@
           }
         ]
       },
+      "ApiId, AuthorizerPayloadFormatVersion, AuthorizerResultTtlInSeconds, AuthorizerType, AuthorizerUri, EnableSimpleResponses, IdentitySource, Name": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "ApiId, AuthorizerPayloadFormatVersion, AuthorizerType, AuthorizerUri, EnableSimpleResponses, IdentitySource, Name": {
         "ls_pro": [
           {
@@ -2460,30 +2504,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          }
-        ]
-      },
-      "ApiId, AuthorizerResultTtlInSeconds, AuthorizerType, AuthorizerUri, EnableSimpleResponses, IdentitySource, Name": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
-            "test": "test_import_and_invoke_http_api",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       },
@@ -3222,16 +3242,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
-            "test": "test_import_and_invoke_http_api",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_lambda_events_with_authorizer[1.0]",
             "test": "test_lambda_events_with_authorizer[1.0]",
             "response": "201",
@@ -3260,16 +3270,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_multiple_routes",
@@ -3652,6 +3652,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_crud.py::TestApigatewayV2HttpIntegrationCrud::test_http_integration_invalid_use_cases",
             "test": "test_http_integration_invalid_use_cases",
             "response": "400",
@@ -3675,16 +3685,6 @@
       },
       "ApiId, IntegrationMethod, IntegrationType, IntegrationUri, PayloadFormatVersion, RequestParameters": {
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
-            "test": "test_import_and_invoke_http_api",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_authorizers.py::TestIAMAuthorization::test_iam_authorizer_success",
             "test": "test_iam_authorizer_success",
@@ -3716,8 +3716,38 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite",
-            "test": "test_http_proxy_with_path_param_overwrite",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_overwrite_on_root_target",
+            "test": "test_http_proxy_with_path_overwrite_on_root_target",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[//anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[//anything]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[/anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[/anything]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[anything]",
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
@@ -3821,6 +3851,16 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4286,22 +4326,26 @@
         ]
       }
     },
-    "CreateModel": {
-      "ApiId, Name, Schema": {
+    "CreateRoute": {
+      "ApiId, AuthorizationScopes, AuthorizationType, AuthorizerId, OperationName, RequestParameters, RouteKey, Target": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
             "test": "test_import_and_invoke_http_api",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
+          }
+        ]
+      },
+      "ApiId, AuthorizationScopes, AuthorizationType, AuthorizerId, RequestParameters, RouteKey, Target": {
+        "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
@@ -4310,9 +4354,7 @@
             "origin": "internal"
           }
         ]
-      }
-    },
-    "CreateRoute": {
+      },
       "ApiId, AuthorizationScopes, AuthorizationType, AuthorizerId, RouteKey": {
         "ls_pro": [
           {
@@ -4375,6 +4417,44 @@
           }
         ]
       },
+      "ApiId, AuthorizationScopes, OperationName, RequestParameters, RouteKey, Target": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
+      "ApiId, AuthorizationScopes, RequestParameters, RouteKey, Target": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_sam_with_lambda_integration_events",
+            "test": "test_sam_with_lambda_integration_events",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..Tags', '$.get-routes.Items..AuthorizationScopes', '$.get-routes.Items..RequestParameters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "ApiId, AuthorizationScopes, RouteKey": {
         "ls_pro": [
           {
@@ -4389,26 +4469,16 @@
           }
         ]
       },
-      "ApiId, AuthorizationType, AuthorizerId, OperationName, RouteKey, Target": {
+      "ApiId, AuthorizationType, AuthorizerId, OperationName, RequestParameters, RouteKey, Target": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
             "test": "test_import_and_invoke_http_api",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "internal"
           }
         ]
@@ -4618,16 +4688,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
-            "test": "test_servicediscovery_ecs_integration",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_ws_connection_with_invalid_auth",
@@ -5092,8 +5152,38 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite",
-            "test": "test_http_proxy_with_path_param_overwrite",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_overwrite_on_root_target",
+            "test": "test_http_proxy_with_path_overwrite_on_root_target",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[//anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[//anything]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[/anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[/anything]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[anything]",
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
@@ -5227,26 +5317,16 @@
           }
         ]
       },
-      "ApiId, OperationName, RouteKey, Target": {
+      "ApiId, OperationName, RequestParameters, RouteKey, Target": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
             "test": "test_import_and_invoke_http_api",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "internal"
           }
         ]
@@ -5406,26 +5486,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
-            "test": "test_servicediscovery_ecs_integration",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_sam_with_lambda_integration_events",
-            "test": "test_sam_with_lambda_integration_events",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$..Tags', '$.get-routes.Items..AuthorizationScopes', '$.get-routes.Items..RequestParameters']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       }
@@ -5641,16 +5701,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
-            "test": "test_import_and_invoke_http_api",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -5974,8 +6024,38 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite",
-            "test": "test_http_proxy_with_path_param_overwrite",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_overwrite_on_root_target",
+            "test": "test_http_proxy_with_path_overwrite_on_root_target",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[//anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[//anything]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[/anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[/anything]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[anything]",
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
@@ -6079,6 +6159,16 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6512,16 +6602,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
-            "test": "test_import_and_invoke_http_api",
-            "response": "204",
-            "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_lambda_events_with_authorizer[1.0]",
             "test": "test_lambda_events_with_authorizer[1.0]",
             "response": "204",
@@ -6554,16 +6634,6 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_v2_status_code_mappings",
             "test": "test_v2_status_code_mappings",
-            "response": "204",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
             "response": "204",
             "error": "",
             "snapshot_skipped": "",
@@ -6919,6 +6989,16 @@
             "snapshot_skipped": "['$..headers.Server']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_proxy.py::TestHttpApiAwsProxyIntegration::test_aws_proxy_localstack_endpoint_types",
+            "test": "test_aws_proxy_localstack_endpoint_types",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -7462,6 +7542,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_overwrite_on_root_target",
+            "test": "test_http_proxy_with_path_overwrite_on_root_target",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param",
             "test": "test_http_proxy_with_path_param",
             "response": "204",
@@ -7482,8 +7572,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite",
-            "test": "test_http_proxy_with_path_param_overwrite",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[//anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[//anything]",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[/anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[/anything]",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_proxy.py::TestHttpApiHttpProxyIntegration::test_http_proxy_with_path_param_overwrite[anything]",
+            "test": "test_http_proxy_with_path_param_overwrite[anything]",
             "response": "204",
             "error": "",
             "snapshot_skipped": "['$..headers.Content-Length', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Localstack-Edge']",
@@ -7587,6 +7697,16 @@
             "response": "204",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -8294,16 +8414,6 @@
       "ApiId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_cors.py::TestApigatewayV2CorsCrud::test_apigwv2_cors_crud_lifecycle",
             "test": "test_apigwv2_cors_crud_lifecycle",
             "response": "200",
@@ -8332,6 +8442,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_sam_api_tagging",
@@ -8484,8 +8604,8 @@
       "ApiId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_authorizers",
+            "test": "test_create_authorizers",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8494,13 +8614,13 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_authorizers",
-            "test": "test_create_authorizers",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -8792,26 +8912,6 @@
       "ApiId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
-            "test": "test_import_and_invoke_http_api",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_crud.py::TestApigatewayV2QuickCreate::test_apigatewayv2_quick_create_default[AWS_PROXY]",
             "test": "test_apigatewayv2_quick_create_default[AWS_PROXY]",
             "response": "200",
@@ -8827,6 +8927,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ApiKeySelectionExpression', '$..CreatedDate', '$..DisableExecuteApiEndpoint', '$..RouteSelectionExpression', '$.get-api.Tags', '$.get-routes.Items..ApiGatewayManaged', '$.get-routes.Items..ApiKeyRequired', '$.get-routes.Items..AuthorizationType', '$.get-routes.Items..Target', '$.get-integrations.Items..ApiGatewayManaged', '$.get-integrations.Items..ConnectionType', '$.get-integrations.Items..IntegrationMethod', '$.get-integrations.Items..PayloadFormatVersion', '$.get-integrations.Items..TimeoutInMillis']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -8858,13 +8968,13 @@
       "ApiId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -8946,26 +9056,6 @@
       "ApiId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
-            "test": "test_import_and_invoke_http_api",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_crud.py::TestApigatewayV2QuickCreate::test_apigatewayv2_quick_create_default[AWS_PROXY]",
             "test": "test_apigatewayv2_quick_create_default[AWS_PROXY]",
             "response": "200",
@@ -8981,6 +9071,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ApiKeySelectionExpression', '$..CreatedDate', '$..DisableExecuteApiEndpoint', '$..RouteSelectionExpression', '$.get-api.Tags', '$.get-routes.Items..ApiGatewayManaged', '$.get-routes.Items..ApiKeyRequired', '$.get-routes.Items..AuthorizationType', '$.get-routes.Items..Target', '$.get-integrations.Items..ApiGatewayManaged', '$.get-integrations.Items..ConnectionType', '$.get-integrations.Items..IntegrationMethod', '$.get-integrations.Items..PayloadFormatVersion', '$.get-integrations.Items..TimeoutInMillis']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -9157,28 +9257,14 @@
       }
     },
     "ImportApi": {
-      "Basepath, Body": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
       "Basepath, Body, FailOnWarnings": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
             "test": "test_import_and_invoke_http_api",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -9221,16 +9307,16 @@
       }
     },
     "ReimportApi": {
-      "ApiId, Body": {
+      "ApiId, Basepath, Body, FailOnWarnings": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
+            "test": "test_import_and_invoke_http_api",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -9728,11 +9814,11 @@
       "ApiId, RouteId, Target": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_import_and_invoke_http_api",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_and_invoke_http_api",
             "test": "test_import_and_invoke_http_api",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..Connection', '$..Content-Type', '$..X-Amzn-Trace-Id', '$..X-Localstack-Edge', '$..X-Localstack-Tgt-Api']",
+            "snapshot_skipped": "['$.import-api.ImportInfo', '$.re-import.ImportInfo', '$.import-api.ResponseMetadata.HTTPStatusCode', '$.re-import.ResponseMetadata.HTTPStatusCode', '$.http-proxy-request-header-parameters.Content-Type', '$.get-routes-2..RouteId', '$.get-routes-2.Items[2].Target', '$.get-routes-2.Items[1].AuthorizerId', '$.http-integrations-2.Items[2].IntegrationId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
