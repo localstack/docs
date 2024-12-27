@@ -169,16 +169,7 @@ $ awslocal kinesis put-record \
 
 You can fetch the CloudWatch logs for your Lambda function reading records from the stream, using AWS CLI or LocalStack Resource Browser.
 
-## Implementations
-
-There are two implementations of Kinesis Data Streams available in LocalStack.
-
-### Kinesis Mock
-
-This is the default provider for Kinesis Data Streams on LocalStack.
-It is uses [Kinesis Mock](https://github.com/etspaceman/kinesis-mock) under the hood.
-
-This provider has the following configuration options:
+## Configuration
 
 | Variable | Description |
 | -------- | ----------- |
@@ -186,11 +177,6 @@ This provider has the following configuration options:
 | `KINESIS_SHARD_LIMIT` | Integer value (default: `100`) or `Infinity` (to disable). Use this variable to assess whether your application conforms to the assigned shard limit. Disabling this behavior requires explicitly setting `KINESIS_SHARD_LIMIT=Infinity`. |
 | `KINESIS_LATENCY` | Integer value in milliseconds (default: `500`) or `0` (to disable). Particularly useful for testing latency-sensitive applications. Since local Kinesis service lacks latency simulation, you can introduce artificial latency into your AWS calls using this variable. To disable this behavior, set `KINESIS_LATENCY=0`. |
 | `KINESIS_INITIALIZE_STREAMS` | **Deprecated.** Comma-delimited string with stream names, corresponding shard counts, and an optional region for initialization during startup. If no region is provided, the default region is used. For example, `KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1`. In multi-account setups, the specified streams will be created for all accounts. |
-
-### Native
-
-This provider is implemented purely in Python.
-It can be enabled by setting the configuration option `PROVIDER_OVERRIDE_KINESIS=native`
 
 ## Resource Browser
 
@@ -218,12 +204,5 @@ The following code snippets and sample applications provide practical examples o
 
 ## Limitations
 
-### Kinesis Mock
-
-- In multi-account setups, each AWS account launches a separate instance of Kinesis Mock, which is very resource intensive when a large number of AWS accounts are used.
-  An [open Kinesis Mock issue](https://github.com/etspaceman/kinesis-mock/issues/377) is being used to keep track of this feature.
-
-### Native
-
-- TODO
-
+In multi-account setups, each AWS account launches a separate instance of Kinesis Mock, which is very resource intensive when a large number of AWS accounts are used.
+An [open Kinesis Mock issue](https://github.com/etspaceman/kinesis-mock/issues/377) is being used to keep track of this feature.
