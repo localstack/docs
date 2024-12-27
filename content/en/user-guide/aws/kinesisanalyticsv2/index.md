@@ -155,7 +155,7 @@ $ awslocal s3api list-objects --bucket sink-bucket
 
 ## CloudWatch Logging
 
-LocalStack supports CloudWatch Logs integration to help monitor the Flink cluster for application events or configuration problems.
+LocalStack MSAF supports CloudWatch Logs integration to help monitor the Flink cluster for application events or configuration problems.
 The logging option can be added at the time of creating the Flink application using the [CreateApplication](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_CreateApplication.html) operation.
 Logging options can also be managed at a later point using the [AddApplicationCloudWatchLoggingOption](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_AddApplicationCloudWatchLoggingOption.html) and [DeleteApplicationCloudWatchLoggingOption](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_DeleteApplicationCloudWatchLoggingOption.html) operations.
 
@@ -201,6 +201,31 @@ To retrieve all events:
 $ awslocal logs get-log-events --log-group-name msaf-log-group --log-stream-name msaf-log-stream
 {{< /command >}}
 
+## Resource Tagging
+
+You can manage resource tags using [TagResource](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_TagResource.html), [UntagResource](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_UntagResource.html) and [ListTagsForResource](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_ListTagsForResource.html).
+Tags can also be specified when creating the Flink application using the [CreateApplication](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_CreateApplication.html) operation.
+
+{{< command >}}
+$ awslocal kinesisanalyticsv2 tag-resource \
+    --resource-arn arn:aws:kinesisanalytics:us-east-1:000000000000:application/msaf-app \
+    --tags Key=country,Value=SE
+
+$ awslocal kinesisanalyticsv2 list-tags-for-resource \
+    --resource-arn arn:aws:kinesisanalytics:us-east-1:000000000000:application/msaf-app
+{
+    "Tags": [
+        {
+            "Key": "country",
+            "Value": "SE"
+        }
+    ]
+}
+
+$ awslocal kinesisanalyticsv2 untag-resource \
+    --resource-arn arn:aws:kinesisanalytics:us-east-1:000000000000:application/msaf-app \
+    --tag-keys country
+{{< /command >}}
 
 ## Supported Flink Versions
 
@@ -209,7 +234,7 @@ $ awslocal logs get-log-events --log-group-name msaf-log-group --log-stream-name
 | 1.20.0 | yes | yes |
 | 1.19.1 | yes | yes |
 | 1.18.1 | yes | yes |
-| 1.15.2 | yes | yes |
+| 1.15.2 | yes | no |
 | 1.13.1 | yes | no |
 
 ## Limitations
