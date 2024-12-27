@@ -153,6 +153,55 @@ You can verify this with:
 $ awslocal s3api list-objects --bucket sink-bucket
 {{< /command >}}
 
+## CloudWatch Logging
+
+LocalStack supports CloudWatch Logs integration to help monitor the Flink cluster for application events or configuration problems.
+The logging option can be added at the time of creating the Flink application using the [CreateApplication](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_CreateApplication.html) operation.
+Logging options can also be managed at a later point using the [AddApplicationCloudWatchLoggingOption](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_AddApplicationCloudWatchLoggingOption.html) and [DeleteApplicationCloudWatchLoggingOption](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_DeleteApplicationCloudWatchLoggingOption.html) operations.
+
+There are following prerequisites for CloudWatch Logs integration:
+- You must create the application's log group and log stream. Flink will not create it for you.
+- You must add the permissions your application needs to write to the log stream to the service execution role.
+  Generally the following IAM actions are sufficient: `logs:DescribeLogGroups`, `logs:DescribeLogStreams` and `logs:PutLogEvents`
+
+To add a logging option:
+
+{{< command >}}
+$ awslocal kinesisanalyticsv2 add-application-cloud-watch-logging-option \
+    --application-name msaf-app \
+    --cloud-watch-logging-option '{"LogStreamARN": "arn:aws:logs:us-east-1:000000000000:log-group:msaf-log-group:log-stream:msaf-log-stream"}'
+{
+    "ApplicationARN": "arn:aws:kinesisanalytics:us-east-1:000000000000:application/msaf-app",
+    "ApplicationVersionId": 2,
+    "CloudWatchLoggingOptionDescriptions": [
+        {
+            "CloudWatchLoggingOptionId": "1.1",
+            "LogStreamARN": "arn:aws:logs:us-east-1:000000000000:log-group:msaf-log-group:log-stream:msaf-log-stream"
+        }
+    ]
+}
+{{< /command >}}
+
+Configured logging options can be retrieved using [DescribeApplication](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_DescribeApplication.html):
+
+{{< command >}}
+$ awslocal kinesisanalyticsv2 describe-application --application-name msaf-app | jq .ApplicationDetail.CloudWatchLoggingOptionDescriptions
+[
+  {
+    "CloudWatchLoggingOptionId": "1.1",
+    "LogStreamARN": "arn:aws:logs:us-east-1:000000000000:log-group:msaf-log-group:log-stream:msaf-log-stream"
+  }
+]
+{{< /command >}}
+
+Log events can be retrieved from CloudWatch Logs using the appropriate operation.
+To retrieve all events:
+
+{{< command >}}
+$ awslocal logs get-log-events --log-group-name msaf-log-group --log-stream-name msaf-log-stream
+{{< /command >}}
+
+
 ## Supported Flink Versions
 
 | Flink version | Supported by LocalStack | Supported by Apache |
@@ -171,4 +220,5 @@ $ awslocal s3api list-objects --bucket sink-bucket
   They can not be overridden.
 - In-place [version upgrades](https://docs.aws.amazon.com/managed-flink/latest/java/how-in-place-version-upgrades.html) and [roll-backs](https://docs.aws.amazon.com/managed-flink/latest/java/how-system-rollbacks.html) are not supported
 - [Snapshot/savepoint management](https://docs.aws.amazon.com/managed-flink/latest/java/how-snapshots.html) is not implemented
-- CloudWatch and CloudTrail integration is not implemented
+- CloudTrail integration and CloudWatch metrics is not implemented.
+  The application logging level defaults to `INFO` and can not be overridden.
