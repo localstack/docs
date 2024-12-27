@@ -202,6 +202,10 @@ To retrieve all events:
 $ awslocal logs get-log-events --log-group-name msaf-log-group --log-stream-name msaf-log-stream
 {{< /command >}}
 
+{{< callout >}}
+Logs events are reported to CloudWatch every 10 seconds.
+{{< /callout >}}
+
 ## Resource Tagging
 
 You can manage [resource tags](https://docs.aws.amazon.com/managed-flink/latest/java/how-tagging.html) using [TagResource](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_TagResource.html), [UntagResource](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_UntagResource.html) and [ListTagsForResource](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_ListTagsForResource.html).
