@@ -160,7 +160,8 @@ The logging option can be added at the time of creating the Flink application us
 Logging options can also be managed at a later point using the [AddApplicationCloudWatchLoggingOption](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_AddApplicationCloudWatchLoggingOption.html) and [DeleteApplicationCloudWatchLoggingOption](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_DeleteApplicationCloudWatchLoggingOption.html) operations.
 
 There are following prerequisites for CloudWatch Logs integration:
-- You must create the application's log group and log stream. Flink will not create it for you.
+- You must create the application's log group and log stream.
+  Flink will not create it for you.
 - You must add the permissions your application needs to write to the log stream to the service execution role.
   Generally the following IAM actions are sufficient: `logs:DescribeLogGroups`, `logs:DescribeLogStreams` and `logs:PutLogEvents`
 
