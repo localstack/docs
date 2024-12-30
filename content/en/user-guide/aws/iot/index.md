@@ -190,7 +190,7 @@ The following actions are supported:
 - [Kinesis](https://docs.aws.amazon.com/iot/latest/developerguide/kinesis-rule-action.html)
 - [Firehose](https://docs.aws.amazon.com/iot/latest/developerguide/kinesis-firehose-rule-action.html)
 - [DynamoDBv2](https://docs.aws.amazon.com/iot/latest/developerguide/dynamodb-v2-rule-action.html)
-- [HTTP](https://docs.aws.amazon.com/iot/latest/developerguide/https-rule-action.html) (URL confirmation is not implemented)
+- [HTTP](https://docs.aws.amazon.com/iot/latest/developerguide/https-rule-action.html) (URL confirmation and substitution templating is not implemented)
 
 ## Current Limitations
 
