@@ -153,6 +153,85 @@ You can verify this with:
 $ awslocal s3api list-objects --bucket sink-bucket
 {{< /command >}}
 
+## CloudWatch Logging
+
+LocalStack MSAF supports [CloudWatch Logs integration](https://docs.aws.amazon.com/managed-flink/latest/java/cloudwatch-logs.html) to help monitor the Flink cluster for application events or configuration problems.
+The logging option can be added at the time of creating the Flink application using the [CreateApplication](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_CreateApplication.html) operation.
+Logging options can also be managed at a later point using the [AddApplicationCloudWatchLoggingOption](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_AddApplicationCloudWatchLoggingOption.html) and [DeleteApplicationCloudWatchLoggingOption](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_DeleteApplicationCloudWatchLoggingOption.html) operations.
+
+There are following prerequisites for CloudWatch Logs integration:
+- You must create the application's log group and log stream.
+  Flink will not create it for you.
+- You must add the permissions your application needs to write to the log stream to the service execution role.
+  Generally the following IAM actions are sufficient: `logs:DescribeLogGroups`, `logs:DescribeLogStreams` and `logs:PutLogEvents`
+
+To add a logging option:
+
+{{< command >}}
+$ awslocal kinesisanalyticsv2 add-application-cloud-watch-logging-option \
+    --application-name msaf-app \
+    --cloud-watch-logging-option '{"LogStreamARN": "arn:aws:logs:us-east-1:000000000000:log-group:msaf-log-group:log-stream:msaf-log-stream"}'
+{
+    "ApplicationARN": "arn:aws:kinesisanalytics:us-east-1:000000000000:application/msaf-app",
+    "ApplicationVersionId": 2,
+    "CloudWatchLoggingOptionDescriptions": [
+        {
+            "CloudWatchLoggingOptionId": "1.1",
+            "LogStreamARN": "arn:aws:logs:us-east-1:000000000000:log-group:msaf-log-group:log-stream:msaf-log-stream"
+        }
+    ]
+}
+{{< /command >}}
+
+Configured logging options can be retrieved using [DescribeApplication](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_DescribeApplication.html):
+
+{{< command >}}
+$ awslocal kinesisanalyticsv2 describe-application --application-name msaf-app | jq .ApplicationDetail.CloudWatchLoggingOptionDescriptions
+[
+  {
+    "CloudWatchLoggingOptionId": "1.1",
+    "LogStreamARN": "arn:aws:logs:us-east-1:000000000000:log-group:msaf-log-group:log-stream:msaf-log-stream"
+  }
+]
+{{< /command >}}
+
+Log events can be retrieved from CloudWatch Logs using the appropriate operation.
+To retrieve all events:
+
+{{< command >}}
+$ awslocal logs get-log-events --log-group-name msaf-log-group --log-stream-name msaf-log-stream
+{{< /command >}}
+
+{{< callout >}}
+Logs events are reported to CloudWatch every 10 seconds.
+{{< /callout >}}
+
+## Resource Tagging
+
+You can manage [resource tags](https://docs.aws.amazon.com/managed-flink/latest/java/how-tagging.html) using [TagResource](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_TagResource.html), [UntagResource](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_UntagResource.html) and [ListTagsForResource](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_ListTagsForResource.html).
+Tags can also be specified when creating the Flink application using the [CreateApplication](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_CreateApplication.html) operation.
+
+{{< command >}}
+$ awslocal kinesisanalyticsv2 tag-resource \
+    --resource-arn arn:aws:kinesisanalytics:us-east-1:000000000000:application/msaf-app \
+    --tags Key=country,Value=SE
+
+$ awslocal kinesisanalyticsv2 list-tags-for-resource \
+    --resource-arn arn:aws:kinesisanalytics:us-east-1:000000000000:application/msaf-app
+{
+    "Tags": [
+        {
+            "Key": "country",
+            "Value": "SE"
+        }
+    ]
+}
+
+$ awslocal kinesisanalyticsv2 untag-resource \
+    --resource-arn arn:aws:kinesisanalytics:us-east-1:000000000000:application/msaf-app \
+    --tag-keys country
+{{< /command >}}
+
 ## Supported Flink Versions
 
 | Flink version | Supported by LocalStack | Supported by Apache |
@@ -160,7 +239,7 @@ $ awslocal s3api list-objects --bucket sink-bucket
 | 1.20.0 | yes | yes |
 | 1.19.1 | yes | yes |
 | 1.18.1 | yes | yes |
-| 1.15.2 | yes | yes |
+| 1.15.2 | yes | no |
 | 1.13.1 | yes | no |
 
 ## Limitations
@@ -169,7 +248,7 @@ $ awslocal s3api list-objects --bucket sink-bucket
 - Only S3 zipfile code is supported
 - Values of 20,000 ms for `execution.checkpointing.interval` and 5,000 ms for `execution.checkpointing.min-pause` are used for checkpointing.
   They can not be overridden.
-- [Tagging](https://docs.aws.amazon.com/managed-flink/latest/java/how-tagging.html) is not supported
 - In-place [version upgrades](https://docs.aws.amazon.com/managed-flink/latest/java/how-in-place-version-upgrades.html) and [roll-backs](https://docs.aws.amazon.com/managed-flink/latest/java/how-system-rollbacks.html) are not supported
 - [Snapshot/savepoint management](https://docs.aws.amazon.com/managed-flink/latest/java/how-snapshots.html) is not implemented
-- CloudWatch and CloudTrail integration is not implemented
+- CloudTrail integration and CloudWatch metrics is not implemented.
+  The application logging level defaults to `INFO` and can not be overridden.
