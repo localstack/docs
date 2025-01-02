@@ -493,6 +493,7 @@ These configurations have already been removed and **won't have any effect** on 
 ## Profiles
 
 LocalStack supports configuration profiles which are stored in the `~/.localstack` config directory.
+If the directory does not exist, create it manually.
 A configuration profile is a set of environment variables stored in an `.env` file in the LocalStack config directory.
 
 Here is an example of what configuration profiles might look like:
