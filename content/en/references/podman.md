@@ -34,7 +34,7 @@ It creates the following links:
 
 This package is available for some distros:
 - https://archlinux.org/packages/community/x86_64/podman-docker/
-- https://packages.ubuntu.com/impish/podman-docker
+- https://packages.ubuntu.com/oracular/podman-docker
 - https://packages.debian.org/sid/podman-docker
 
 ### Rootfull Podman with podman-docker
