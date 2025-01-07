@@ -8,12 +8,12 @@ type: tutorials
 teaser: "Discover how to streamline your development and testing setup using Terraform configuration files as initialization hooks. Learn to configure AWS resources directly, by using the same IaC configuration as you would use for production."
 services:
 - s3
-- lambda
-- api-gw
+- lmb
+- agw
 - ddb
 - cwl
 platform:
-- java
+- Java
 deployment:
 - aws-java-sdk
 - terraform
