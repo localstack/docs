@@ -1,6 +1,5 @@
 ---
 title: "LocalStack 101"
-draft: true
 ---
 
 <!DOCTYPE html>

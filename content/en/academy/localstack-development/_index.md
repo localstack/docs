@@ -1,6 +1,5 @@
 ---
 title: "Development & Deployment with LocalStack"
-draft: true
 ---
 
 <!DOCTYPE html>
