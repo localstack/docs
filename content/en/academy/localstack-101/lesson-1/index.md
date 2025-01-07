@@ -1,14 +1,15 @@
 ---
 title: "Course Overview"
-linkTitle: "Course Overview"
 weight: 1
-description: >
-  In this first video, we will explore the diverse sections covered in this e-course, providing 
-  an overview of the exciting topics to be discussed. Discover the course's main themes and gain insight
-  into specific sections through a concise overview, allowing you to easily navigate to your preferred content.
-length: 01:47
-leadimage: overview.png
-videoUrl: https://www.youtube.com/embed/VLL-BI1AWcc
-type: lessons
-URL: "/academy/localstack-101/course-overview/"
 ---
+
+<!DOCTYPE html>
+<html>
+    <head>
+     <meta charset="UTF-8" />
+     <meta http-equiv="refresh" content="0; URL=https://youtu.be/VLL-BI1AWcc" />
+   </head>
+   <body>
+     <p>If you are not redirected within 3 seconds, click <a href="https://youtu.be/VLL-BI1AWcc">here</a>.</p>
+   </body>
+</html>
