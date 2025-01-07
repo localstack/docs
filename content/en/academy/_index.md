@@ -10,6 +10,8 @@ description: >
 cascade:
   type: docs
 slug: academy
+toc_hide: true
 dev_hub: true
-type: academy
 ---
+
+Lorem

@@ -1,11 +1,15 @@
 ---
 title: "LocalStack 101"
-linkTitle: "LocalStack 101"
-weight: 6
-description: >
-  This LocalStack course will walk you through everything you need to know to get started using LocalStack
-  and on your way to becoming a more efficient and productive Cloud developer. Have fun exploring!
-type: academy
-thumbnail: localstack101.png
-layout: single
+draft: true
 ---
+
+<!DOCTYPE html>
+<html>
+    <head>
+     <meta charset="UTF-8" />
+     <meta http-equiv="refresh" content="0; URL=https://youtube.com/playlist?list=PLTew28KOwGxPqbkFiW518eeIfiV495bm0&si=SYvDQ9eJm_zZv03t" />
+   </head>
+   <body>
+     <p>If you are not redirected within 3 seconds, click <a href="https://youtube.com/playlist?list=PLTew28KOwGxPqbkFiW518eeIfiV495bm0&si=SYvDQ9eJm_zZv03t">here</a>.</p>
+   </body>
+</html>
