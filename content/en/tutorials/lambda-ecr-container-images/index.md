@@ -10,7 +10,7 @@ services:
 - ecr
 - lmb
 platform:
-- python
+- Python
 deployment:
 - awscli
 tags:

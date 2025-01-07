@@ -10,7 +10,7 @@ services:
 - lmb
 - s3
 platform:
-- python
+- Python
 deployment:
 - awscli
 tags:

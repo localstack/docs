@@ -14,7 +14,7 @@ services:
 platform:
 - Java
 deployment:
-- Terraform
+- terraform
 tags:
 - Cloud Pods
 - Terraform
