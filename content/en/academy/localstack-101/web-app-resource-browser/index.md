@@ -1,6 +1,8 @@
 ---
 title: "Web App and Resource Browser"
 weight: 5
+toc_hide: true
+hide_summary: true
 ---
 
 <!DOCTYPE html>

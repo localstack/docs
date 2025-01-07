@@ -1,5 +1,7 @@
 ---
 title: "Development & Deployment with LocalStack"
+toc_hide: true
+hide_summary: true
 ---
 
 <!DOCTYPE html>

@@ -1,6 +1,8 @@
 ---
 title: "Full Project Demo"
 weight: 6
+toc_hide: true
+hide_summary: true
 ---
 
 <!DOCTYPE html>

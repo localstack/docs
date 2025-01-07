@@ -1,6 +1,8 @@
 ---
 title: "Getting started"
 weight: 4
+toc_hide: true
+hide_summary: true
 ---
 
 <!DOCTYPE html>

@@ -1,5 +1,7 @@
 ---
 title: "LocalStack 101"
+toc_hide: true
+hide_summary: true
 ---
 
 <!DOCTYPE html>

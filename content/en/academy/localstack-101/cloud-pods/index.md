@@ -1,6 +1,8 @@
 ---
 title: "Cloud Pods and Collaborative Work"
 weight: 7
+toc_hide: true
+hide_summary: true
 ---
 
 <!DOCTYPE html>

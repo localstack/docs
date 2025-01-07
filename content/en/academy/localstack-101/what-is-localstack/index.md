@@ -1,6 +1,8 @@
 ---
 title: "What is LocalStack"
 weight: 2
+toc_hide: true
+hide_summary: true
 ---
 
 <!DOCTYPE html>
