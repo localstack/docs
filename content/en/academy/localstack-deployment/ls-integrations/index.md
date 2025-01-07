@@ -1,6 +1,8 @@
 ---
 title: "LocalStack Integrations - Infrastructure-as-Code and CI tools "
 weight: 3
+toc_hide: true
+hide_summary: true
 ---
 
 <!DOCTYPE html>

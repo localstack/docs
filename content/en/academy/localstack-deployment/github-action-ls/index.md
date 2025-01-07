@@ -1,6 +1,8 @@
 ---
 title: "Setup GitHub Action workflow that starts up LocalStack and deploys the infrastructure"
 weight: 7
+toc_hide: true
+hide_summary: true
 ---
 
 <!DOCTYPE html>

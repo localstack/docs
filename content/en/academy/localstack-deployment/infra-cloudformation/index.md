@@ -1,6 +1,8 @@
 ---
 title: "Creating infra with CloudFormation locally"
 weight: 5
+toc_hide: true
+hide_summary: true
 ---
 
 <!DOCTYPE html>
