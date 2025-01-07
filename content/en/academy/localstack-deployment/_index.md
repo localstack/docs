@@ -2,6 +2,8 @@
 title: "Development & Deployment with LocalStack"
 toc_hide: true
 hide_summary: true
+aliases:
+- /academy/localstack-development/
 ---
 
 <!DOCTYPE html>
