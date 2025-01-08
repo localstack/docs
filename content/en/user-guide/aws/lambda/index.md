@@ -204,7 +204,7 @@ Feature availability and coverage is categorized with the following system:
 | ParallelizationFactor          | Parallel batch processing by shard.             | ➖        | ➖    | 🟠       | 🟠        | ➖          | ➖            |
 | DestinationConfig.OnFailure    | SQS Failure Destination.                        | ➖        | ➖    | 🟢       | 🟢        | 🟠          | 🟠            |
 |                                | SNS Failure Destination.                        | ➖        | ➖    | 🟢       | 🟢        | 🟠          | 🟠            |
-|                                | S3 Failure Destination.                         | ➖        | ➖    | 🟠       | 🟠        | 🟠          | 🟠            |
+|                                | S3 Failure Destination.                         | ➖        | ➖    | 🟢       | 🟢        | 🟠          | 🟠            |
 | DestinationConfig.OnSuccess    | Success Destinations.                           | ➖        | ➖    | ➖       | ➖        | ➖          | ➖            |
 | MetricsConfig                  | CloudWatch metrics.                             | 🟠        | 🟠    | 🟠       | 🟠        | 🟠          | 🟠            |
 | ProvisionedPollerConfig        | Control throughput via min-max limits.          | ➖        | ➖    | ➖       | ➖        | 🟠          | 🟠            |
