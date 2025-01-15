@@ -112,7 +112,14 @@ Another Lambda function lists and provides pre-signed URLs for browser display.
 The application also handles Lambda failures through SNS and SES email notifications.
 
 The sample application uses AWS CLI and our `awslocal` wrapper to deploy the application to LocalStack.
-You can build and deploy the sample application on LocalStack by running the following command:
+Before going further, you need to build your Lambda functions.
+You can use the following script that will cover all three of them:
+
+{{< command >}}
+$ deployment/build-lambdas.sh
+{{< / command >}}
+
+You can now deploy the sample application on LocalStack by running the following command:
 
 {{< command >}}
 $ deployment/awslocal/deploy.sh
@@ -136,13 +143,13 @@ $ awslocal s3 mb s3://localstack-thumbnails-app-resized
 
 {{< command >}}
 $ awslocal ssm put-parameter \
-    --name /localstack-thumbnail-app/buckets/images \
-    --type "String" \
-    --value "localstack-thumbnails-app-images"
+ --name /localstack-thumbnail-app/buckets/images \
+ --type "String" \
+ --value "localstack-thumbnails-app-images"
 $ awslocal ssm put-parameter \
-    --name /localstack-thumbnail-app/buckets/resized \
-    --type "String" \
-    --value "localstack-thumbnails-app-resized"
+ --name /localstack-thumbnail-app/buckets/resized \
+ --type "String" \
+ --value "localstack-thumbnails-app-resized"
 {{< / command >}}
 
 #### Create SNS DLQ Topic for failed lambda invocations
@@ -156,9 +163,9 @@ You can use the following command to subscribe an email address to the SNS topic
 
 {{< command >}}
 $ awslocal sns subscribe \
-    --topic-arn arn:aws:sns:us-east-1:000000000000:failed-resize-topic \
-    --protocol email \
-    --notification-endpoint my-email@example.com
+ --topic-arn arn:aws:sns:us-east-1:000000000000:failed-resize-topic \
+ --protocol email \
+ --notification-endpoint my-email@example.com
 {{< / command >}}
 
 #### Create the Presign Lambda
@@ -166,17 +173,17 @@ $ awslocal sns subscribe \
 {{< command >}}
 $ (cd lambdas/presign; rm -f lambda.zip; zip lambda.zip handler.py)
 $ awslocal lambda create-function \
-    --function-name presign \
-    --runtime python3.9 \
-    --timeout 10 \
-    --zip-file fileb://lambdas/presign/lambda.zip \
-    --handler handler.handler \
-    --role arn:aws:iam::000000000000:role/lambda-role \
-    --environment Variables="{STAGE=local}"
+ --function-name presign \
+ --runtime python3.9 \
+ --timeout 10 \
+ --zip-file fileb://lambdas/presign/lambda.zip \
+ --handler handler.handler \
+ --role arn:aws:iam::000000000000:role/lambda-role \
+ --environment Variables="{STAGE=local}"
 $ awslocal lambda wait function-active-v2 --function-name presign
 $ awslocal lambda create-function-url-config \
-    --function-name presign \
-    --auth-type NONE
+ --function-name presign \
+ --auth-type NONE
 {{< / command >}}
 
 #### Create the Image List Lambda
@@ -184,17 +191,17 @@ $ awslocal lambda create-function-url-config \
 {{< command >}}
 $ (cd lambdas/list; rm -f lambda.zip; zip lambda.zip handler.py)
 $ awslocal lambda create-function \
-    --function-name list \
-    --handler handler.handler \
-    --zip-file fileb://lambdas/list/lambda.zip \
-    --runtime python3.9 \
-    --timeout 10 \
-    --role arn:aws:iam::000000000000:role/lambda-role \
-    --environment Variables="{STAGE=local}"
+ --function-name list \
+ --handler handler.handler \
+ --zip-file fileb://lambdas/list/lambda.zip \
+ --runtime python3.9 \
+ --timeout 10 \
+ --role arn:aws:iam::000000000000:role/lambda-role \
+ --environment Variables="{STAGE=local}"
 $ awslocal lambda wait function-active-v2 --function-name list
 $ awslocal lambda create-function-url-config \
-    --function-name list \
-    --auth-type NONE
+ --function-name list \
+ --auth-type NONE
 {{< / command >}}
 
 #### Build the Image Resizer Lambda
@@ -203,7 +210,7 @@ $ awslocal lambda create-function-url-config \
 {{< tab header="macOS" lang="shell" >}}
 cd lambdas/resize
 rm -rf libs lambda.zip
-docker run --platform linux/x86_64 -v "$PWD":/var/task "public.ecr.aws/sam/build-python3.9" /bin/sh -c "pip install -r requirements.txt -t libs; exit"
+docker run --platform linux/x86*64 -v "$PWD":/var/task "public.ecr.aws/sam/build-python3.9" /bin/sh -c "pip install -r requirements.txt -t libs; exit"
 cd libs && zip -r ../lambda.zip . && cd ..
 zip lambda.zip handler.py
 rm -rf libs
@@ -226,7 +233,7 @@ mkdir package
 pip install -r requirements.txt -t package
 zip lambda.zip handler.py
 cd package
-zip -r ../lambda.zip*;
+zip -r ../lambda.zip\_;
 cd ../..
 {{< /tab >}}
 {{< /tabpane >}}
@@ -235,27 +242,27 @@ cd ../..
 
 {{< command >}}
 $ awslocal lambda create-function \
-    --function-name resize \
-    --runtime python3.9 \
-    --timeout 10 \
-    --zip-file fileb://lambdas/resize/lambda.zip \
-    --handler handler.handler \
-    --dead-letter-config TargetArn=arn:aws:sns:us-east-1:000000000000:failed-resize-topic \
-    --role arn:aws:iam::000000000000:role/lambda-role \
-    --environment Variables="{STAGE=local}"
+ --function-name resize \
+ --runtime python3.9 \
+ --timeout 10 \
+ --zip-file fileb://lambdas/resize/lambda.zip \
+ --handler handler.handler \
+ --dead-letter-config TargetArn=arn:aws:sns:us-east-1:000000000000:failed-resize-topic \
+ --role arn:aws:iam::000000000000:role/lambda-role \
+ --environment Variables="{STAGE=local}"
 $ awslocal lambda wait function-active-v2 --function-name resize
 $ awslocal lambda put-function-event-invoke-config \
-    --function-name resize \
-    --maximum-event-age-in-seconds 3600 \
-    --maximum-retry-attempts 0
+ --function-name resize \
+ --maximum-event-age-in-seconds 3600 \
+ --maximum-retry-attempts 0
 {{< / command >}}
 
 #### Connect S3 bucket to Resizer Lambda
 
 {{< command >}}
 $ awslocal s3api put-bucket-notification-configuration \
-    --bucket localstack-thumbnails-app-images \
-    --notification-configuration "{\"LambdaFunctionConfigurations\": [{\"LambdaFunctionArn\": \"$(awslocal lambda get-function --function-name resize --output json | jq -r .Configuration.FunctionArn)\", \"Events\": [\"s3:ObjectCreated:*\"]}]}"
+ --bucket localstack-thumbnails-app-images \
+ --notification-configuration "{\"LambdaFunctionConfigurations\": [{\"LambdaFunctionArn\": \"$(awslocal lambda get-function --function-name resize --output json | jq -r .Configuration.FunctionArn)\", \"Events\": [\"s3:ObjectCreated:*\"]}]}"
 {{< / command >}}
 
 #### Create the S3 static website
