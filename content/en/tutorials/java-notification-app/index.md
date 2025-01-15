@@ -217,7 +217,7 @@ public class AwsConfiguration {
 }
 ```
 
-In the above code, we have used the `@Autowired` annotation to autowrire the dependencies that are required for the application (`SqsClient` `SesClient`, and `notificationQueueUrl` in this case).
+In the above code, we have used the `@Autowired` annotation to autowire the dependencies that are required for the application (`SqsClient` `SesClient`, and `notificationQueueUrl` in this case).
 Now that we have got the URL of the queue created in the previous step, we can move on to the next step.
 
 {{< callout "note" >}}
