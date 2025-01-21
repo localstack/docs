@@ -257,6 +257,12 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | - | - | - |
 | `REDIS_CONTAINER_MODE` | `1`\|`0` (default) | Start MemoryDB cluster nodes in separate containers instead of in the LocalStack container |
 
+# MSAF
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `PROVIDER_OVERRIDE_KINESISANALYTICSV2` | `legacy` | Use the older mock Kinesis Analytics provider. |
+
 ### MWAA
 
 | Variable | Example Values | Description |
