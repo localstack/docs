@@ -12,6 +12,11 @@ description: Use LocalStack in CodeBuild
 CodeBuild allows you to define your build project, set the source code location, and handles the building and testing, while supporting various programming languages, build tools, and runtime environments.
 LocalStack supports CodeBuild out of the box and can be easily integrated into your pipeline to run your tests against a cloud emulator.
 
+{{< alert title="Requirement" >}}
+LocalStack depends on the Docker socket to emulate your infrastructure.
+To enable it, update your project by ticking **Environment > Additional Configuration > Privileged > Enable this flag if you want to build Docker Images or want your builds to get elevated privileges**.
+{{< / alert >}}
+
 ## Snippets
 
 CodeBuild has the capability to use LocalStack's GitHub Action.
