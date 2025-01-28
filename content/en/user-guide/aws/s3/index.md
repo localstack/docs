@@ -281,6 +281,11 @@ docker run \
 The S3 Docker image has similar parity with the S3 APIs supported by LocalStack Docker image.
 You can use similar [configuration options](https://docs.localstack.cloud/references/configuration/#s3) to alter the behaviour of the S3 Docker image, such as `DEBUG` or `S3_SKIP_SIGNATURE_VALIDATION`.
 
+{{< callout >}}
+The S3 Docker image does not support persistence, and all data is lost when the container is stopped.
+To use persistence or save the container state as a Cloud Pod, you need to use the [`localstack/localstack-pro`](https://hub.docker.com/r/localstack/localstack-pro) image.
+{{< /callout >}}
+
 ## SSE-C Encryption
 
 SSE-C (Server-Side Encryption with Customer-Provided Keys) is an Amazon S3 encryption method where customers provide their own encryption keys for securing objects.
