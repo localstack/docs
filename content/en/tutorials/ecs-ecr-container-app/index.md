@@ -65,19 +65,18 @@ Next, we will create an ECR repository to push our Docker image.
 We will use the `awslocal` CLI to create the repository.
 
 {{< command >}}
-$ awslocal ecr create-repository --repository-name <REPOSITORY_NAME>
+$ awslocal ecr create-repository --repository-name sample-ecr-repo
 {{< / command >}}
 
-Replace `<REPOSITORY_NAME>` with your desired repository name.
 The output of this command will contain the `repositoryUri` value that we'll need in the next step:
 
 ```json
 {
     "repository": {
-        "repositoryArn": "arn:aws:ecr:us-east-1:000000000000:repository/<REPOSITORY_NAME>",
+        "repositoryArn": "arn:aws:ecr:us-east-1:000000000000:repository/sample-ecr-repo",
         "registryId": "000000000000",
-        "repositoryName": "<REPOSITORY_NAME>",
-        "repositoryUri": "localhost.localstack.cloud:4510/<REPOSITORY_NAME>",
+        "repositoryName": "sample-ecr-repo",
+        "repositoryUri": "localhost.localstack.cloud:4510/sample-ecr-repo",
         "createdAt": "<TIMESTAMP>",
         "imageTagMutability": "MUTABLE",
         "imageScanningConfiguration": {
@@ -111,7 +110,7 @@ We can now create an ECS cluster and deploy our NGINX web server.
 LocalStack enables the deployment of ECS task definitions, services, and tasks, allowing us to deploy our ECR containers via the ECS Fargate launch type, which uses the local Docker engine to deploy containers locally.
 To create the necessary ECS infrastructure on our local machine before deploying our NGINX web server, we will use a CloudFormation template.
 
-You can create a new file named `ecs.infra.yml` inside a new `templates` directory, using a [publicly available CloudFormation template as a starting point](https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/services/ECS/FargateLaunchType/clusters/public-vpc.yml).
+You can create a new file named `ecs.infra.yml` inside a new `templates` directory, using a [publicly available CloudFormation template as a starting point](https://github.com/aws-cloudformation/aws-cloudformation-templates/blob/main/ECS/FargateLaunchType/services/public-service.yaml).
 To begin, we'll add the `Mappings` section and configure the subnet mask values, which define the range of internal IP addresses that can be assigned.
 
 ```yaml
@@ -373,14 +372,13 @@ Outputs:
 To deploy the CloudFormation template we created earlier, use the following command:
 
 {{< command >}}
-$ awslocal cloudformation create-stack --stack-name <STACK_NAME> --template-body file://templates/ecs.infra.yml
+$ awslocal cloudformation create-stack --stack-name infra --template-body file://templates/ecs.infra.yml
 {{< /command >}}
 
-Make sure to replace `<STACK_NAME>` with a name of your choice.
 Wait until the stack status changes to `CREATE_COMPLETE` by running the following command:
 
 {{< command >}}
-$ awslocal cloudformation wait stack-create-complete --stack-name <STACK_NAME>
+$ awslocal cloudformation wait stack-create-complete --stack-name infra
 {{< /command >}}
 
 You can also check your deployed stack on the LocalStack Web Application by navigating to the [CloudFormation resource browser](https://app.localstack.cloud/resources/cloudformation/stacks).
@@ -549,14 +547,14 @@ Resources:
 Next, let's deploy the CloudFormation template by running the following command:
 
 {{< command >}}
-$ awslocal cloudformation create-stack --stack-name <STACK_NAME> --template-body file://templates/ecs.sample.yml --parameters ParameterKey=ImageUrl,ParameterValue=<REPOSITORY_URI>
+$ awslocal cloudformation create-stack --stack-name ecs --template-body file://templates/ecs.sample.yml --parameters ParameterKey=ImageUrl,ParameterValue=<REPOSITORY_URI>
 {{< /command >}}
 
-Replace `<STACK_NAME>` with a name of your choice and `<REPOSITORY_URI>` with the URI of the Docker image that you want to deploy.
+Replace `<REPOSITORY_URI>` with the URI of the Docker image that you want to deploy.
 Wait for the stack to be created by running the following command:
 
 {{< command >}}
-$ awslocal cloudformation wait stack-create-complete --stack-name <STACK_NAME>
+$ awslocal cloudformation wait stack-create-complete --stack-name ecs
 {{< /command >}}
 
 Now that the ECS service has been deployed successfully, let's access the application endpoint.
