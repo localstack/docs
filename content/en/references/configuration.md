@@ -377,7 +377,6 @@ To learn more about these configuration options, see [Cloud Pods]({{< ref "user-
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `EVENT_RULE_ENGINE` | `python` (default) \| `java` (deprecated) | Engine for [event pattern matching](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html) used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping. Our [new](https://github.com/localstack/localstack/pull/11960) `python` implementation introduced with [4.0.3](https://github.com/localstack/localstack/releases/tag/v4.0.3) makes the `java` engine (previously in preview) using AWS [event-ruler](https://github.com/aws/event-ruler) obsolete. |
 | `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud |
 | `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud |
 | `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins |
@@ -432,6 +431,7 @@ These configurations have already been removed and **won't have any effect** on 
 
 | Variable | Removed in | Example Values | Description |
 | - | - | - | - |
+| `EVENT_RULE_ENGINE` | 4.1.0 | `python` (default) \| `java` (deprecated) | Engine for [event pattern matching](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html) used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping. Our [new](https://github.com/localstack/localstack/pull/11960) `python` implementation introduced with [4.0.3](https://github.com/localstack/localstack/releases/tag/v4.0.3) makes the `java` engine (previously in preview) using AWS [event-ruler](https://github.com/aws/event-ruler) obsolete. |
 | `LAMBDA_EVENT_SOURCE_MAPPING` | 4.0.0 | `v2` (default since [3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/#new-default-lambda-event-source-mapping-implementation)) \| `v1` | Feature flag to switch Lambda Event Source Mapping (ESM) implementations. |
 | `PROVIDER_OVERRIDE_STEPFUNCTIONS` | 4.0.0 | `v2` (default) \| `legacy` | The new LocalStack-native StepFunctions provider (v2) is active by default since LocalStack 3.0. |
 | `STEPFUNCTIONS_LAMBDA_ENDPOINT` | 4.0.0 | `default` | This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
