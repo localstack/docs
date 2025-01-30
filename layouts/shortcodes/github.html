@@ -2,11 +2,7 @@
 {{ if (.Get "ref") }}
 {{ $ref = printf "?ref=%s" (.Get "ref") }}
 {{ end }}
-{{ $url := "https://api.github.com/repos/" }}
-{{ $opts := dict
-  (.Get "repo")  "/contents/"  (.Get "file") $ref
-}}
-{{ $json := resources.GetRemote $url $opts  }}
+{{ $json := resources.GetRemote "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  (.Get "file") $ref  }}
 {{ $data := $json | transform.Unmarshal }}
 {{ $con := base64Decode $data.content }}
 {{ $content := "" }}
