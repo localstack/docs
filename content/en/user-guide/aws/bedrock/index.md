@@ -142,13 +142,16 @@ $ DEFAULT_BEDROCK_MODEL=mistral localstack start
 
 ## Troubleshooting
 
-Users of Docker Desktop on macOS might run into the issue of Bedrock becoming unresponsive after some usage.
+Users of Docker Desktop on macOS or Windows might run into the issue of Bedrock becoming unresponsive after some usage.
 A common reason for that is insufficient storage or memory space in the Docker Desktop VM.
 To resolve this issue you can increase those amounts directly in Docker Desktop or clean up unused artifacts with the Docker CLI like this
 
 {{< command >}}
 $ docker system prune
 {{< / command >}}
+
+You could also try to use a model with lower requirements.
+To achieve that you can search for models in the [Ollama Models library](https://ollama.com/search) with a low parameter count or smaller size.
 
 ## Limitations
 
