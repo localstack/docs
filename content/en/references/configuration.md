@@ -95,7 +95,7 @@ This section covers configuration options that are specific to certain AWS servi
 | Variable | Example Values | Description |
 | - | - | - |
 | `BEDROCK_PREWARM` | `0` (default) \| `1` | Pre-warm the Bedrock engine directly on LocalStack startup instead of on demand. |
-| `DEFAULT_BEDROCK_MODEL` | `smollm2` (default) | The model to use to handle text model invocations in Bedrock. Any text-based model available for Ollama is usable. |
+| `DEFAULT_BEDROCK_MODEL` | `smollm2:360m` (default) | The model to use to handle text model invocations in Bedrock. Any text-based model available for Ollama is usable. |
 
 ### BigData (EMR, Athena, Glue)
 
@@ -256,6 +256,12 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | Variable | Example Values | Description |
 | - | - | - |
 | `REDIS_CONTAINER_MODE` | `1`\|`0` (default) | Start MemoryDB cluster nodes in separate containers instead of in the LocalStack container |
+
+# MSAF
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `PROVIDER_OVERRIDE_KINESISANALYTICSV2` | `legacy` | Use the older mock Kinesis Analytics provider. |
 
 ### MWAA
 
