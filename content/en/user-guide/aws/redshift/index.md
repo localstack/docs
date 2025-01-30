@@ -149,13 +149,13 @@ $ awslocal glue get-table \
 The LocalStack Web Application provides a Resource Browser for managing RedShift clusters.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **RedShift** under the **Analytics** section.
 
-<!-- <img src="redshift-resource-browser.png" alt="RedShift Resource Browser" title="RedShift Resource Browser" width="900" />
+<img src="redshift-resource-browser.png" alt="RedShift Resource Browser" title="RedShift Resource Browser" width="900" />
 <br>
-<br> -->
+<br>
 
 The Resource Browser allows you to perform the following actions:
 
 * **Create Cluster**: Create a new RedShift cluster by specifying the cluster identifier, database name, master username, master password, and node type.
 * **View Cluster**: View the details of a RedShift cluster, including the cluster identifier, database name, master username, master password, node type, and endpoint.
 * **Edit Cluster**: Edit an existing RedShift cluster by clicking the cluster name and clicking the **EDIT CLUSTER** button.
-* **Remove Cluster**: Remove an existing RedShift cluster by clicking the cluster name and clicking the **ACTIONS** followed by **Remove Selected** button.
+* **Remove Cluster**: Remove an existing Redshift cluster by selecting it from the table and clicking the **ACTIONS** followed by **Remove Selected** button.
