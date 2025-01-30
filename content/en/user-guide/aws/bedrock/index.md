@@ -127,6 +127,19 @@ $ awslocal bedrock create-model-invocation-job \
 
 The results will be at the S3 URL `s3://out-bucket/12345678/batch_input.jsonl.out`
 
+## Available models
+
+LocalStack's Bedrock emulation supports models from the [Ollama Models library](https://ollama.com/search).
+
+To use a model, retrieve its ID from Ollama and set `DEFAULT_BEDROCK_MODEL` to that ID.
+LocalStack will pull the model from Ollama and use it for emulation.
+
+For example, to use the Mistral model, set the environment variable while starting LocalStack:
+
+{{< command >}}
+$ DEFAULT_BEDROCK_MODEL=mistral localstack start
+{{< / command >}}
+
 ## Troubleshooting
 
 Users of Docker Desktop on macOS might run into the issue of Bedrock becoming unresponsive after some usage.
