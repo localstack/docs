@@ -3,7 +3,6 @@
 {{ $ref = printf "?ref=%s" (.Get "ref") }}
 {{ end }}
 {{ $json := resources.GetRemote "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  (.Get "file") $ref  }}
-{{ $json := resources.GetRemote $url $opts  }}
 {{ $data := $json | transform.Unmarshal }}
 {{ $con := base64Decode $data.content }}
 {{ $content := "" }}
