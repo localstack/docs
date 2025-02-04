@@ -183,6 +183,10 @@ $ awslocal kinesisanalyticsv2 add-application-cloud-watch-logging-option \
 }
 {{< /command >}}
 
+{{< callout >}}
+Enabling CloudWatch Logs integration has a significant performance hit.
+{{< /callout >}}
+
 Configured logging options can be retrieved using [DescribeApplication](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_DescribeApplication.html):
 
 {{< command >}}
@@ -205,6 +209,10 @@ $ awslocal logs get-log-events --log-group-name msaf-log-group --log-stream-name
 {{< callout >}}
 Logs events are reported to CloudWatch every 10 seconds.
 {{< /callout >}}
+
+LocalStack reports both Flink application and Flink framework logs to CloudWatch.
+However, certain extended information such as stack traces may be missing.
+You may obtain this information by execing into the Flink Docker container created by LocalStack and inspecting `/opt/flink/log`.
 
 ## Resource Tagging
 
