@@ -95,7 +95,8 @@ This section covers configuration options that are specific to certain AWS servi
 | Variable | Example Values | Description |
 | - | - | - |
 | `BEDROCK_PREWARM` | `0` (default) \| `1` | Pre-warm the Bedrock engine directly on LocalStack startup instead of on demand. |
-| `DEFAULT_BEDROCK_MODEL` | `smollm2:360m` (default) | The model to use to handle text model invocations in Bedrock. Any text-based model available for Ollama is usable. |
+| `DEFAULT_BEDROCK_MODEL` | `smollm2:360m` (default) | The model that is used initially to handle text model invocations in Bedrock. Any text-based model available for Ollama is usable. |
+| `BEDROCK_PULL_MODELS` | `deepseek-r1,mistral` \' '' (default)  | A list of models that should get pulled into the model cache on startup. `DEFAULT_BEDROCK_MODEL` is automatically in there |
 
 ### BigData (EMR, Athena, Glue)
 
