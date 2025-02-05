@@ -96,7 +96,7 @@ The following output would be retrieved:
 
 ### OTP verification
 
-The operations [`SentOTPMessage`](https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-otp.html#SendOTPMessage) and [`VerifyOTPMessage`](https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-verify-otp.html#VerifyOTPMessage) are used for one-time password (OTP) verification.
+The operations [`SendOTPMessage`](https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-otp.html#SendOTPMessage) and [`VerifyOTPMessage`](https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-verify-otp.html#VerifyOTPMessage) are used for one-time password (OTP) verification.
 
 On production AWS, `SendOTPMessage` sends an SMS text message with the OTP code.
 The OTP can then be verified against the reference ID using `VerifyOTPMessage`
