@@ -29,6 +29,10 @@ The startup of the Bedrock engine can take some time.
 Per default, we only start it once you send a request to one of the `bedrock-runtime` APIs.
 However, if you want to start the engine when localstack starts to avoid long wait times on your first request you can set the flag `BEDROCK_PREWARM`.
 
+On startup, the `DEFAULT_BEDROCK_MODEL` is pulled from the Ollama library and loaded into memory.
+However, you can define an additional list of models in `BEDROCK_PULL_MODELS` to pull additional models when the Bedrock engine starts up.
+This way you avoid long wait times when switching between models on demand with requests.
+
 ### List available foundation models
 
 You can view all available foundation models using the [`ListFoundationModels`](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_ListFoundationModels.html) API.
@@ -138,6 +142,20 @@ For example, to use the Mistral model, set the environment variable while starti
 
 {{< command >}}
 $ DEFAULT_BEDROCK_MODEL=mistral localstack start
+{{< / command >}}
+
+You can also define models directly in the request, by setting the `model-id` parameter to `ollama.<ollama-model-id>`.
+For example, if you want to access `deepseek-r1`, you can do it like this:
+
+{{< command >}}
+$ awslocal bedrock-runtime converse \
+    --model-id "ollama.deepseek-r1" \
+    --messages '[{
+        "role": "user",
+        "content": [{
+            "text": "Say Hello!"
+        }]
+    }]'
 {{< / command >}}
 
 ## Troubleshooting
