@@ -172,6 +172,8 @@ Run the following command to test the Python Web Server:
 
 {{< command >}}
 $ curl 172.17.0.4:8000
+# Or, you can run:
+$ curl 127.0.0.1:29043
 {{< /command >}}
 
 You should see the following output:
