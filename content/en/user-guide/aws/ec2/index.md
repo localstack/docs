@@ -171,7 +171,9 @@ You can now use the IP address to test the Python Web Server.
 Run the following command to test the Python Web Server:
 
 {{< command >}}
-$ curl 127.0.0.1:8000
+$ curl 172.17.0.4:8000
+# or
+$ curl 127.0.0.1:29043
 {{< /command >}}
 
 You should see the following output:
