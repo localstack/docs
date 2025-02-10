@@ -21,21 +21,18 @@ To run LocalStack using Rancher Desktop, simply aliasing Docker commands to Ranc
 1. LocalStack depends on `docker-py`, which needs to connect to `/var/run/docker.sock`.
 2. Lambda services in LocalStack require the Docker socket at `/var/run/docker.sock` to be mounted into the container.
 
-To address these issues, you can use the following options:
+Depending on your operating system, you may need to make additional configurations to ensure LocalStack runs smoothly with Rancher Desktop.
 
-- [Switching Emulation and Volume Sharing](#switching-emulation-and-volume-sharing) (**only for macOS**)
-  - [Switching Emulation from QEMU to VZ (Apple Virtualization Framework)](#switching-emulation-from-qemu-to-vz-apple-virtualization-framework)
-  - [Changing Volume from Reverse-SSHFS to VirtioFS](#changing-volume-from-reverse-sshfs-to-virtiofs)
-- [Rancher Desktop with Dockerd](#rancher-desktop-with-dockerd)
-- [Rancher Desktop with containerd](#rancher-desktop-with-containerd)
-- [Rancher Desktop with Windows](#rancher-desktop-with-windows)
+- [Linux/macOS](#linuxmacos)
+- [Windows](#windows)
 
 These setups enable LocalStack to run smoothly with Rancher Desktop across various operating systems, ensuring compatibility with Docker-based workflows.
-macOS users, particularly those with Apple Silicon, should switch to the VZ virtualization engine and use VirtioFS for optimal performance and to avoid permission issues.
 
-### Switching Emulation and Volume Sharing
+### Linux/macOS
 
+{{<alert type="info">}}
 If you're using Rancher Desktop on macOS, particularly on Apple Silicon (M1, M2, etc.), it's crucial to adjust both the emulation engine and the volume-sharing method.
+It is recommended to switch to the VZ virtualization engine and use VirtioFS for optimal performance and to avoid permission issues.
 Without these adjustments, you may encounter permission issues with volume mounts in LocalStack.
 
 #### Switching Emulation from QEMU to VZ (Apple Virtualization Framework)
@@ -63,8 +60,9 @@ To switch the volume sharing method from reverse-SSHFS to VirtioFS:
 2. Proceed to the **Virtual Machine** section, where you'll find the volume mount options.
 3. Select the **File Sharing** setting and change it from `reverse-sshfs` to `VirtioFS`.
 4. Restart Rancher Desktop to implement the changes.
+{{</alert>}}
 
-### Rancher Desktop with Dockerd
+#### Rancher Desktop with Dockerd
 
 The simplest way to run LocalStack using Rancher Desktop involves making sure that Rancher Desktop's `dockerd` is active and properly configured.
 
@@ -81,7 +79,7 @@ Start LocalStack using this command:
 $ DEBUG=1 localstack start --network rancher
 {{< /command >}}
 
-### Rancher Desktop with containerd
+#### Rancher Desktop with containerd
 
 If you are using the `containerd` runtime in Rancher Desktop, you'll need to make some additional configurations.
 Ensure that the `docker` command is available through Rancher Desktop's setup, or alternatively, use the `nerdctl` command line interface.
@@ -92,7 +90,7 @@ To start LocalStack with the `containerd` environment, use the following command
 $ DEBUG=1 DOCKER_CMD=nerdctl localstack start --network rancher
 {{< /command >}}
 
-### Rancher Desktop with Windows
+### Windows
 
 You can run Rancher Desktop on Windows using WSL2 (Windows Subsystem for Linux) with a Docker Compose setup for LocalStack.
 
