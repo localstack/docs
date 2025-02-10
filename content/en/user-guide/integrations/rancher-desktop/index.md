@@ -24,6 +24,8 @@ To run LocalStack using Rancher Desktop, simply aliasing Docker commands to Ranc
 Depending on your operating system, you may need to make additional configurations to ensure LocalStack runs smoothly with Rancher Desktop.
 
 - [Linux/macOS](#linuxmacos)
+  - [Rancher Desktop with dockerd](#rancher-desktop-with-dockerd)
+  - [Rancher Desktop with containerd](#rancher-desktop-with-containerd)
 - [Windows](#windows)
 
 These setups enable LocalStack to run smoothly with Rancher Desktop across various operating systems, ensuring compatibility with Docker-based workflows.
@@ -31,6 +33,8 @@ These setups enable LocalStack to run smoothly with Rancher Desktop across vario
 ### Linux/macOS
 
 {{<alert type="info">}}
+### Recommended Settings for Rancher Desktop on macOS
+
 If you're using Rancher Desktop on macOS, particularly on Apple Silicon (M1, M2, etc.), it's crucial to adjust both the emulation engine and the volume-sharing method.
 It is recommended to switch to the VZ virtualization engine and use VirtioFS for optimal performance and to avoid permission issues.
 Without these adjustments, you may encounter permission issues with volume mounts in LocalStack.
@@ -62,14 +66,21 @@ To switch the volume sharing method from reverse-SSHFS to VirtioFS:
 4. Restart Rancher Desktop to implement the changes.
 {{</alert>}}
 
-#### Rancher Desktop with Dockerd
+#### Rancher Desktop with dockerd
 
 The simplest way to run LocalStack using Rancher Desktop involves making sure that Rancher Desktop's `dockerd` is active and properly configured.
+Rancher Desktop typically places its Docker socket file somewhere under your user directory, such as `~/.rancher-desktop`.
+LocalStack, however, expects the Docker socket to be at `/var/run/docker.sock`.
+In this scenario, you need to create a symlink from the Rancher Desktop socket to the expected location.
 
 Start Rancher Desktop and verify it is set to use the Docker runtime.
 Link the Docker socket with the following command:
 
 {{< command >}}
+# 1. Make sure there is no existing socket at /var/run/docker.sock
+sudo rm -f /var/run/docker.sock
+
+# 2. Adjust the path if your Rancher Desktop socket is in a different location
 $ sudo ln -s /var/run/rancher-desktop-lima/docker.sock /var/run/docker.sock
 {{< /command >}}
 
@@ -82,7 +93,7 @@ $ DEBUG=1 localstack start --network rancher
 #### Rancher Desktop with containerd
 
 If you are using the `containerd` runtime in Rancher Desktop, you'll need to make some additional configurations.
-Ensure that the `docker` command is available through Rancher Desktop's setup, or alternatively, use the `nerdctl` command line interface.
+Ensure that the `docker` command is available through Rancher Desktop's setup, or alternatively, use the [`nerdctl` command line interface](https://github.com/containerd/nerdctl).
 
 To start LocalStack with the `containerd` environment, use the following command:
 
