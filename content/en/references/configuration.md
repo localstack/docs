@@ -195,6 +195,10 @@ The OpenSearch configuration variables are used to manage both OpenSearch and El
 See [here](#opensearch).
 {{< /callout >}}
 
+| Variable | Example Values | Description |
+| - | - | - |
+| `IGNORE_ES_DOWNLOAD_ERRORS` | `0`\|`1` | Whether to ignore errors (e.g., network/SSL) when downloading ElasticSearch plugins |
+
 ### EventBridge
 
 | Variable | Example Values | Description |
@@ -289,6 +293,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `OPENSEARCH_MULTI_CLUSTER` | `1`\| `0` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
 | `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [Opensearch Endpoints]({{< ref "opensearch#endpoints" >}})). |
 | `SKIP_INFRA_DOWNLOADS` | `1` \| `0` (default) | **Deprecated since 1.3.0** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
+| `IGNORE_OS_DOWNLOAD_ERRORS` | `0`\|`1` | Whether to ignore errors (e.g., network/SSL) when downloading OpenSearch plugins |
 
 ### RDS
 
@@ -387,7 +392,6 @@ To learn more about these configuration options, see [Cloud Pods]({{< ref "user-
 | - | - | - |
 | `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud |
 | `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud |
-| `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins |
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary. |
 | `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events |
 | `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself |
