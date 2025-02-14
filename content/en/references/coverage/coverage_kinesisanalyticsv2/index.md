@@ -1,5 +1,5 @@
 ---
-title: "Amazon Managed Service for Apache Flink"
+title: "Managed Service for Apache Flink"
 linkTitle: "kinesisanalyticsv2"
 description: >
   Implementation details for MSF (formerly kinesisanalyticsv2)
