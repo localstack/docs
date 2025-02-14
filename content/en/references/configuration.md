@@ -188,11 +188,10 @@ This section covers configuration options that are specific to certain AWS servi
 | `PROVIDER_OVERRIDE_ELASTICACHE` | `legacy` | Use the legacy ElastiCache provider. |
 | `REDIS_CONTAINER_MODE` | `1`\|`0` (default) | Start ElastiCache cache nodes in separate containers instead of in the LocalStack container |
 
-### Elasticsearch
+### ElasticSearch
 
 {{< callout >}}
-The OpenSearch configuration variables are used to manage both OpenSearch and ElasticSearch clusters.
-See [here](#opensearch).
+Also see [OpenSearch configuration variables]({{< ref "configuration#opensearch" >}}) which are used to manage both OpenSearch and ElasticSearch clusters.
 {{< /callout >}}
 
 | Variable | Example Values | Description |
