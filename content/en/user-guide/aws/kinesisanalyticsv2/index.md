@@ -13,12 +13,12 @@ This service was formerly known as 'Kinesis Data Analytics for Apache Flink'.
 ## Introduction
 
 [Apache Flink](https://flink.apache.org/) is a framework for building applications that process and analyze streaming data.
-[Managed Service for Apache Flink (MSAF)](https://docs.aws.amazon.com/managed-flink/latest/java/what-is.html) is an AWS service that provides the underlying infrastructure and a hosted Apache Flink cluster that can run Apache Flink applications.
+[Managed Service for Apache Flink (MSF)](https://docs.aws.amazon.com/managed-flink/latest/java/what-is.html) is an AWS service that provides the underlying infrastructure and a hosted Apache Flink cluster that can run Apache Flink applications.
 
 LocalStack lets you to run Flink applications locally and implements several [AWS-compatible API operations](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/).
 
 {{< callout "note" >}}
-The emulated MSAF provider was introduced and made the default in LocalStack v4.1.
+The emulated MSF provider was introduced and made the default in LocalStack v4.1.
 
 If you wish to use the older mock provider, you can set `PROVIDER_OVERRIDE_KINESISANALYTICSV2=legacy`.
 {{< /callout >}}
@@ -50,7 +50,7 @@ The Flink application jar file will be placed in the `./target/flink-kds-s3.jar`
 
 ### Upload Application Code
 
-MSAF requires that all application code resides in S3.
+MSF requires that all application code resides in S3.
 
 Create an S3 bucket and upload the compiled Flink application jar.
 
@@ -71,10 +71,10 @@ $ awslocal s3api create-bucket --bucket sink-bucket
 
 ### Permissions
 
-MSAF requires a service execution role which allows it to connect to other services.
+MSF requires a service execution role which allows it to connect to other services.
 Without the proper permissions policy and role, this example application will not be able to connect to S3 sink bucket to output the result.
 
-Create an IAM role for the running MSAF application to assume.
+Create an IAM role for the running MSF application to assume.
 
 ```json
 # role.json
@@ -114,7 +114,7 @@ Next create add a permissions policy to this role that permits read and write ac
 $ awslocal iam put-role-policy --role-name msaf-role --policy-name msaf-policy --policy-document file://policy.json
 {{< /command >}}
 
-Now, when the running MSAF application assumes this role, it will have the necessary permissions to write to the S3 sink.
+Now, when the running MSF application assumes this role, it will have the necessary permissions to write to the S3 sink.
 
 ### Deploy Application
 
@@ -155,7 +155,7 @@ $ awslocal s3api list-objects --bucket sink-bucket
 
 ## CloudWatch Logging
 
-LocalStack MSAF supports [CloudWatch Logs integration](https://docs.aws.amazon.com/managed-flink/latest/java/cloudwatch-logs.html) to help monitor the Flink cluster for application events or configuration problems.
+LocalStack MSF supports [CloudWatch Logs integration](https://docs.aws.amazon.com/managed-flink/latest/java/cloudwatch-logs.html) to help monitor the Flink cluster for application events or configuration problems.
 The logging option can be added at the time of creating the Flink application using the [CreateApplication](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_CreateApplication.html) operation.
 Logging options can also be managed at a later point using the [AddApplicationCloudWatchLoggingOption](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_AddApplicationCloudWatchLoggingOption.html) and [DeleteApplicationCloudWatchLoggingOption](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_DeleteApplicationCloudWatchLoggingOption.html) operations.
 
