@@ -45,7 +45,7 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
+        "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -149,22 +149,18 @@
   ],
   "details": {
     "CreateDeliveryStream": {
-      "DeliveryStreamName, DeliveryStreamType, ElasticsearchDestinationConfiguration, KinesisStreamSourceConfiguration": {
+      "DeliveryStreamName, DeliveryStreamType, ExtendedS3DestinationConfiguration": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_elasticsearch_s3_backup",
-            "test": "test_kinesis_firehose_elasticsearch_s3_backup",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetFirehose::test_put_events_with_target_firehose",
+            "test": "test_put_events_with_target_firehose",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
-          }
-        ]
-      },
-      "DeliveryStreamName, DeliveryStreamType, ExtendedS3DestinationConfiguration": {
-        "ls_community": [
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_s3_as_destination_with_file_extension",
             "test": "test_kinesis_firehose_s3_as_destination_with_file_extension",
@@ -257,7 +253,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -269,6 +265,42 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_events_firehose",
+            "test": "test_events_firehose",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_firehose",
+            "test": "test_sns_firehose",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
+      "DeliveryStreamName, ExtendedS3DestinationConfiguration": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_firehose_put_record",
+            "test": "test_topic_rule_triggers_firehose_put_record",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -313,16 +345,6 @@
       },
       "DeliveryStreamName, S3DestinationConfiguration": {
         "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events_integrations.py::test_put_events_with_target_firehose",
-            "test": "test_put_events_with_target_firehose",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
           {
             "node_id": "LocalStack Community: tests/aws/services/logs/test_logs.py::TestCloudWatchLogs::test_put_subscription_filter_firehose",
             "test": "test_put_subscription_filter_firehose",
@@ -383,18 +405,18 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events_integrations.py::test_put_events_with_target_firehose",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetFirehose::test_put_events_with_target_firehose",
             "test": "test_put_events_with_target_firehose",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -486,16 +508,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_elasticsearch_s3_backup",
-            "test": "test_kinesis_firehose_elasticsearch_s3_backup",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -516,6 +528,36 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_events_firehose",
+            "test": "test_events_firehose",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_firehose",
+            "test": "test_sns_firehose",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_firehose_put_record",
+            "test": "test_topic_rule_triggers_firehose_put_record",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           }
@@ -551,7 +593,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -561,18 +603,18 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_elasticsearch_s3_backup",
-            "test": "test_kinesis_firehose_elasticsearch_s3_backup",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetFirehose::test_put_events_with_target_firehose",
+            "test": "test_put_events_with_target_firehose",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -701,7 +743,7 @@
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -728,6 +770,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_events_firehose",
+            "test": "test_events_firehose",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_firehose",
+            "test": "test_sns_firehose",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_firehose_put_record",
+            "test": "test_topic_rule_triggers_firehose_put_record",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/scenario/kinesis_firehose_redshift/test_kinesis_firehose_redshift.py::TestKinesisFirehoseScenario::test_kinesis_firehose_redshift",
             "test": "test_kinesis_firehose_redshift",
             "response": "400",
@@ -749,7 +821,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -816,24 +888,14 @@
       "DeliveryStreamName, Record": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/events/test_events_integrations.py::test_put_events_with_target_firehose",
+            "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetFirehose::test_put_events_with_target_firehose",
             "test": "test_put_events_with_target_firehose",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_elasticsearch_s3_backup",
-            "test": "test_kinesis_firehose_elasticsearch_s3_backup",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_s3_as_destination_with_file_extension",
@@ -904,6 +966,58 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_events_firehose",
+            "test": "test_events_firehose",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_firehose",
+            "test": "test_sns_firehose",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iot/test_iot.py::TestTopicRules::test_topic_rule_triggers_firehose_put_record",
+            "test": "test_topic_rule_triggers_firehose_put_record",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_events_firehose",
+            "test": "test_events_firehose",
+            "response": "400",
+            "error": "AccessDeniedException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_firehose",
+            "test": "test_sns_firehose",
+            "response": "400",
+            "error": "AccessDeniedException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       }

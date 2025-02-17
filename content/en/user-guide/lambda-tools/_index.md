@@ -9,7 +9,9 @@ aliases:
   - /user-guide/tools/lambda-tools/
 ---
 
-Lambda Tools by LocalStack offers a suite of utilities to streamline the development of Lambda functions on your local machine. LocalStack's Lambda emulation enables you to develop, deploy, and test your functions in a local environment, removing the need for deployment on AWS, while integrating with other AWS services. These tools aim to enhance the developer experience by providing quicker feedback cycles.
+Lambda Tools by LocalStack offers a suite of utilities to streamline the development of Lambda functions on your local machine.
+LocalStack's Lambda emulation enables you to develop, deploy, and test your functions in a local environment, removing the need for deployment on AWS, while integrating with other AWS services.
+These tools aim to enhance the developer experience by providing quicker feedback cycles.
 
 With Lambda Tools, you can:
 

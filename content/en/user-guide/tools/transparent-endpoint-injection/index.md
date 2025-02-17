@@ -7,11 +7,24 @@ description: >
 tags: ["Pro image"]
 ---
 
+## Introduction
+
 LocalStack provides Transparent Endpoint Injection,
 which enables seamless connectivity to LocalStack without modifying your application code targeting AWS.
 The [DNS Server]({{< ref "dns-server" >}}) resolves AWS domains such as `*.amazonaws.com` including subdomains to the LocalStack container.
 Therefore, your application seamlessly accesses the LocalStack APIs instead of the real AWS APIs.
 For local testing, you might need to disable SSL validation as explained under [Self-signed certificates](#self-signed-certificates).
+
+{{< callout >}}
+This feature is enabled when the LocalStack DNS server is used.
+If you wish to use Transparent Endpoint Injection, do not set `DNS_ADDRESS=0` when configuring LocalStack.
+{{< /callout >}}
+
+{{< callout "warning" >}}
+Transparent endpoint injection is required when using some tooling, for example AWS CDK custom resources.
+These resources invoke lambda functions, which execute code written by the CDK authors.
+They cannot be configured to make requests against LocalStack, so Transparent Endpoint Injection is used to redirect requests made against AWS to target LocalStack.
+{{< /callout >}}
 
 ## Motivation
 
@@ -22,7 +35,7 @@ For example, the AWS SDK client for Python called boto3 needs to be configured u
 client = boto3.client("lambda", endpoint_url=os.environ['AWS_ENDPOINT_URL'])
 ```
 
-For [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html#ss-endpoints-sdk-compat) 
+For [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html#ss-endpoints-sdk-compat)
 (including boto3 since [1.28.0](https://github.com/boto/boto3/blob/develop/CHANGELOG.rst#L892)),
 this configuration happens automatically without any custom code changes.
 
@@ -35,7 +48,7 @@ This section explains the most important configuration options summarized under 
 
 ### Disable transparent endpoint injection
 
-If you do not to use Transparent Endpoint Injection in LocalStack Pro, opt out using:
+If you do not wish to use Transparent Endpoint Injection in LocalStack Pro, opt out using:
 
 ```bash
 DISABLE_TRANSPARENT_ENDPOINT_INJECTION=1
@@ -51,7 +64,6 @@ Refer to the [DNS server configuration]({{< ref "dns-server#configuration" >}}) 
 {{< callout "warning" >}}
 Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack.
 {{< /callout >}}
-
 
 ## Self-signed certificates
 
@@ -85,9 +97,16 @@ For Node.js, you can set this environment variable in your application, to allow
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 ```
 
-If you are using the Java AWS SDK v2 in Lambda, you can opt in to automatically disable SSL validation using the configuration `LAMBDA_DISABLE_JAVA_SDK_V2_CERTIFICATE_VALIDATION=1`.
+If you are using the Java AWS SDK v2 in Lambda, LocalStack will per default use bytecode instrumentation to disable certificate validation, so the endpoint injection can work.
+You can opt out of this behavior by setting `LAMBDA_DISABLE_JAVA_SDK_V2_CERTIFICATE_VALIDATION=0`.
+Opting out will lead to certificate errors when using the AWS SDK without manually overriding the endpoint url to point to LocalStack.
 
 {{< callout "warning" >}}
 Disabling SSL validation may have undesired side effects and security implications.
 Make sure to use this only for local testing, and never in production.
 {{< /callout >}}
+
+## Current Limitations
+
+- The mechanism to disable certificate validation for these requests is not currently functional with Go Lambdas.
+  To work around this issue, you'll need to manually set your endpoint when creating your AWS SDK client, as detailed in our documentation on the [Go AWS SDK](https://docs.localstack.cloud/user-guide/integrations/sdks/go/).

@@ -54,7 +54,7 @@
       "CreateServer": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -66,6 +66,18 @@
       "CreateUser": {
         "implemented": true,
         "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "CreateWebApp": {
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -162,7 +174,7 @@
       "DeleteServer": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -174,7 +186,7 @@
       "DeleteSshPublicKey": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -186,6 +198,30 @@
       "DeleteUser": {
         "implemented": true,
         "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DeleteWebApp": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DeleteWebAppCustomization": {
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -306,7 +342,7 @@
       "DescribeServer": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -318,6 +354,30 @@
       "DescribeUser": {
         "implemented": true,
         "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DescribeWebApp": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DescribeWebAppCustomization": {
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -366,7 +426,7 @@
       "ImportSshPublicKey": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -424,6 +484,18 @@
     },
     {
       "ListExecutions": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListFileTransferResults": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -498,6 +570,18 @@
       "ListUsers": {
         "implemented": true,
         "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListWebApps": {
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -714,6 +798,30 @@
       "UpdateUser": {
         "implemented": true,
         "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "UpdateWebApp": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "UpdateWebAppCustomization": {
+        "implemented": false,
+        "availability": "",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -723,5 +831,176 @@
       }
     }
   ],
-  "details": {}
+  "details": {
+    "CreateServer": {
+      "EndpointType, IdentityProviderType, Protocols, Tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreateUser": {
+      "HomeDirectory, HomeDirectoryType, Role, ServerId, UserName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteServer": {
+      "ServerId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteSshPublicKey": {
+      "ServerId, SshPublicKeyId, UserName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteUser": {
+      "ServerId, UserName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeServer": {
+      "ServerId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeUser": {
+      "ServerId, UserName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ImportSshPublicKey": {
+      "ServerId, SshPublicKeyBody, UserName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListUsers": {
+      "ServerId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdateUser": {
+      "HomeDirectory, HomeDirectoryType, ServerId, UserName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/transfer/test_transfer.py::TestAWSTransfer::test_basic_transfer_api",
+            "test": "test_basic_transfer_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    }
+  }
 }

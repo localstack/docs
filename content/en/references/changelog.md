@@ -33,7 +33,12 @@ which can be released as patch version because we are committed to make LocalSta
 
 | Version  | Release Date       | Release Notes                                                                                      |
 |----------|--------------------|----------------------------------------------------------------------------------------------------|
-| `v3.5.0` | June 13, 2024       | [v3.5.0](https://discuss.localstack.cloud/t/localstack-release-v3-5-0/947)                         |
+| `v4.1.0` | January 30, 2025   | [v4.1.0](https://blog.localstack.cloud/localstack-release-v-4-1-0/)                                |
+| `v4.0.0` | November 21, 2024  | [v4.0.0](https://blog.localstack.cloud/announcing-localstack-40-general-availability/)             |
+| `v3.8.0` | October 3, 2024    | [v3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/)                                |
+| `v3.7.0` | August 29, 2024    | [v3.7.0](https://blog.localstack.cloud/2024-08-29-localstack-release-v-3-7-0/)                     |
+| `v3.6.0` | July 25, 2024      | [v3.6.0](https://discuss.localstack.cloud/t/localstack-release-v3-6-0/997)                         |
+| `v3.5.0` | June 13, 2024      | [v3.5.0](https://discuss.localstack.cloud/t/localstack-release-v3-5-0/947)                         |
 | `v3.4.0` | April 25, 2024     | [v3.4.0](https://discuss.localstack.cloud/t/localstack-release-v3-4-0/871)                         |
 | `v3.3.0` | March 28, 2024     | [v3.3.0](https://discuss.localstack.cloud/t/localstack-release-v3-3-0/828)                         |
 | `v3.2.0` | February 29, 2024  | [v3.2.0](https://discuss.localstack.cloud/t/localstack-release-v3-2-0/782/)                        |

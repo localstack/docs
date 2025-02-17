@@ -438,7 +438,7 @@
       "GetHealthCheckStatus": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -700,10 +700,10 @@
     },
     {
       "ListTagsForResources": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -798,11 +798,11 @@
       "UpdateHealthCheck": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -896,6 +896,16 @@
         ],
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/ec2_acm_pca/test_ec2_acm_pca.py::TestEC2ACMPCA::test_curl_from_client",
+            "test": "test_curl_from_client",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_record_set_with_alias_record",
             "test": "test_record_set_with_alias_record",
             "response": "200",
@@ -906,13 +916,93 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_lifecycle_with_dns_resolution",
+            "test": "test_alias_lifecycle_with_dns_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_target_resolution",
+            "test": "test_alias_target_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
+            "test": "test_dns_failover_based_on_health_check",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CallerReference', '$..HealthCheckConfig.EnableSNI', '$..HealthCheckConfig.FullyQualifiedDomainName', '$..HealthCheckConfig.IPAddress', '$..HealthCheckConfig.Port', '$..HealthCheckConfig.Type', '$..ttl']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_resolution[False]",
+            "test": "test_dns_resolution[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_resolution[True]",
+            "test": "test_dns_resolution[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle_with_dns_resolution",
+            "test": "test_resource_record_lifecycle_with_dns_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -939,6 +1029,28 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
+            "test": "test_dns_failover_based_on_health_check",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..CallerReference', '$..HealthCheckConfig.EnableSNI', '$..HealthCheckConfig.FullyQualifiedDomainName', '$..HealthCheckConfig.IPAddress', '$..HealthCheckConfig.Port', '$..HealthCheckConfig.Type', '$..ttl']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_health_checks",
+            "test": "test_health_checks",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -984,7 +1096,17 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/scenario/ec2_acm_pca/test_ec2_acm_pca.py::TestEC2ACMPCA::test_curl_from_client",
+            "test": "test_curl_from_client",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "201",
             "error": "",
@@ -999,6 +1121,56 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..MaxItems']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_private",
+            "test": "test_dns_namespace_private",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_private_hosted_zone",
+            "test": "test_dns_namespace_private_hosted_zone",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..OperationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[private-invalid name]",
+            "test": "test_dns_namespace_with_and_without_dot[private-invalid name]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[private-test-<rnd>.com]",
+            "test": "test_dns_namespace_with_and_without_dot[private-test-<rnd>.com]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[private-test-domain-<rnd>]",
+            "test": "test_dns_namespace_with_and_without_dot[private-test-domain-<rnd>]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1120,13 +1292,103 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_lifecycle_with_dns_resolution",
+            "test": "test_alias_lifecycle_with_dns_resolution",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_target_resolution",
+            "test": "test_alias_target_resolution",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
+            "test": "test_dns_failover_based_on_health_check",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..CallerReference', '$..HealthCheckConfig.EnableSNI', '$..HealthCheckConfig.FullyQualifiedDomainName', '$..HealthCheckConfig.IPAddress', '$..HealthCheckConfig.Port', '$..HealthCheckConfig.Type', '$..ttl']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_resolution[False]",
+            "test": "test_dns_resolution[False]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_resolution[True]",
+            "test": "test_dns_resolution[True]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle_with_dns_resolution",
+            "test": "test_resource_record_lifecycle_with_dns_resolution",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_network_configuration.py::test_route53",
+            "test": "test_route53",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -1193,6 +1455,28 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
+            "test": "test_dns_failover_based_on_health_check",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CallerReference', '$..HealthCheckConfig.EnableSNI', '$..HealthCheckConfig.FullyQualifiedDomainName', '$..HealthCheckConfig.IPAddress', '$..HealthCheckConfig.Port', '$..HealthCheckConfig.Type', '$..ttl']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_health_checks",
+            "test": "test_health_checks",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -1264,7 +1548,17 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/scenario/ec2_acm_pca/test_ec2_acm_pca.py::TestEC2ACMPCA::test_curl_from_client",
+            "test": "test_curl_from_client",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
@@ -1334,14 +1628,194 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_lifecycle_with_dns_resolution",
+            "test": "test_alias_lifecycle_with_dns_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_target_resolution",
+            "test": "test_alias_target_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
+            "test": "test_dns_failover_based_on_health_check",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CallerReference', '$..HealthCheckConfig.EnableSNI', '$..HealthCheckConfig.FullyQualifiedDomainName', '$..HealthCheckConfig.IPAddress', '$..HealthCheckConfig.Port', '$..HealthCheckConfig.Type', '$..ttl']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_resolution[False]",
+            "test": "test_dns_resolution[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_resolution[True]",
+            "test": "test_dns_resolution[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle_with_dns_resolution",
+            "test": "test_resource_record_lifecycle_with_dns_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_private",
+            "test": "test_dns_namespace_private",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_private_hosted_zone",
+            "test": "test_dns_namespace_private_hosted_zone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..OperationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[private-test-<rnd>.com]",
+            "test": "test_dns_namespace_with_and_without_dot[private-test-<rnd>.com]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[private-test-domain-<rnd>]",
+            "test": "test_dns_namespace_with_and_without_dot[private-test-domain-<rnd>]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_network_configuration.py::test_route53",
+            "test": "test_route53",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_create_service_exceptions",
+            "test": "test_create_service_exceptions",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Service.CreateDate', '$..Service.DnsConfig', '$..Service.Type', '$..CreatorRequestId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_public",
+            "test": "test_dns_namespace_public",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_with_and_without_dot[public-test-<rnd>.com]",
+            "test": "test_dns_namespace_with_and_without_dot[public-test-<rnd>.com]",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_register_instance",
+            "test": "test_register_instance",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Service.CreateDate', '$..Service.Type', '$..Instances..HealthStatus', '$..Instances..NamespaceName', '$..Instances..ServiceName', '$..InstancesRevision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_register_instance_exceptions",
+            "test": "test_register_instance_exceptions",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..InstancesRevision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
@@ -1406,13 +1880,53 @@
       "Id": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_lifecycle_with_dns_resolution",
+            "test": "test_alias_lifecycle_with_dns_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle_with_dns_resolution",
+            "test": "test_resource_record_lifecycle_with_dns_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -1439,6 +1953,44 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
+            "test": "test_dns_failover_based_on_health_check",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CallerReference', '$..HealthCheckConfig.EnableSNI', '$..HealthCheckConfig.FullyQualifiedDomainName', '$..HealthCheckConfig.IPAddress', '$..HealthCheckConfig.Port', '$..HealthCheckConfig.Type', '$..ttl']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_health_checks",
+            "test": "test_health_checks",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
+    "GetHealthCheckStatus": {
+      "HealthCheckId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_health_checks",
+            "test": "test_health_checks",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -1507,6 +2059,46 @@
             "snapshot_skipped": "['$..MaxItems']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_lifecycle_with_dns_resolution",
+            "test": "test_alias_lifecycle_with_dns_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
+            "test": "test_dns_failover_based_on_health_check",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CallerReference', '$..HealthCheckConfig.EnableSNI', '$..HealthCheckConfig.FullyQualifiedDomainName', '$..HealthCheckConfig.IPAddress', '$..HealthCheckConfig.Port', '$..HealthCheckConfig.Type', '$..ttl']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle_with_dns_resolution",
+            "test": "test_resource_record_lifecycle_with_dns_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -1624,247 +2216,7 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.example.com-1.0]",
-            "test": "test_custom_domains[--<random>.example.com-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.example.com-2.0]",
-            "test": "test_custom_domains[--<random>.example.com-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.localhost-1.0]",
-            "test": "test_custom_domains[--<random>.localhost-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.localhost-2.0]",
-            "test": "test_custom_domains[--<random>.localhost-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.localhost.localstack.cloud-1.0]",
-            "test": "test_custom_domains[--<random>.localhost.localstack.cloud-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[--<random>.localhost.localstack.cloud-2.0]",
-            "test": "test_custom_domains[--<random>.localhost.localstack.cloud-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.example.com-1.0]",
-            "test": "test_custom_domains[-base1-<random>.example.com-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.example.com-2.0]",
-            "test": "test_custom_domains[-base1-<random>.example.com-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.localhost-1.0]",
-            "test": "test_custom_domains[-base1-<random>.localhost-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.localhost-2.0]",
-            "test": "test_custom_domains[-base1-<random>.localhost-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.localhost.localstack.cloud-1.0]",
-            "test": "test_custom_domains[-base1-<random>.localhost.localstack.cloud-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[-base1-<random>.localhost.localstack.cloud-2.0]",
-            "test": "test_custom_domains[-base1-<random>.localhost.localstack.cloud-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.example.com-1.0]",
-            "test": "test_custom_domains[stage1--<random>.example.com-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.example.com-2.0]",
-            "test": "test_custom_domains[stage1--<random>.example.com-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.localhost-1.0]",
-            "test": "test_custom_domains[stage1--<random>.localhost-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.localhost-2.0]",
-            "test": "test_custom_domains[stage1--<random>.localhost-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.localhost.localstack.cloud-1.0]",
-            "test": "test_custom_domains[stage1--<random>.localhost.localstack.cloud-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1--<random>.localhost.localstack.cloud-2.0]",
-            "test": "test_custom_domains[stage1--<random>.localhost.localstack.cloud-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.example.com-1.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.example.com-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.example.com-2.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.example.com-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.localhost-1.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.localhost-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.localhost-2.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.localhost-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.localhost.localstack.cloud-1.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.localhost.localstack.cloud-1.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_custom_domains[stage1-base1-<random>.localhost.localstack.cloud-2.0]",
-            "test": "test_custom_domains[stage1-base1-<random>.localhost.localstack.cloud-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_custom_domain_dns_resolution",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_custom_domain_dns_resolution",
             "test": "test_custom_domain_dns_resolution",
             "response": "200",
             "error": "",
@@ -1874,17 +2226,17 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_delete_domain_name_deletes_mapping",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_delete_domain_name_deletes_mapping",
             "test": "test_delete_domain_name_deletes_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ResponseMetadata.HTTPStatusCode']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_rest_apis.py::TestRestAPIs::test_invoke_custom_domain",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_invoke_custom_domain",
             "test": "test_invoke_custom_domain",
             "response": "200",
             "error": "",
@@ -1894,11 +2246,91 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_invoke_custom_domain_cors_handler[False]",
+            "test": "test_invoke_custom_domain_cors_handler[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_invoke_custom_domain_cors_handler[True]",
+            "test": "test_invoke_custom_domain_cors_handler[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_update_base_path_mappings_apigw_v1",
+            "test": "test_update_base_path_mappings_apigw_v1",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_create_domain_names",
             "test": "test_create_domain_names",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..DomainNameConfigurations..ApiGatewayDomainName', '$..DomainNameConfigurations..CertificateArn', '$..DomainNameConfigurations..HostedZoneId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_custom_domain.py::TestApigatewayV2CustomDomain::test_custom_domains",
+            "test": "test_custom_domains",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..body', '$..headers', '$..multiValueHeaders.Connection', '$..multiValueHeaders.X-Amzn-Trace-Id', '$..multiValueHeaders.X-Forwarded-Port', '$..multiValueHeaders.X-Forwarded-Proto', '$..multiValueHeaders.x-localstack-edge', '$..multiValueQueryStringParameters', '$..pathParameters', '$..queryStringParameters', '$..rawPath', '$..requestContext.authorizer', '$..requestContext.eventType', '$..requestContext.extendedRequestId', '$..requestContext.identity', '$..requestContext.messageId', '$..requestContext.path', '$..requestContext.requestId', '$..requestContext.resourceId', '$..requestContext.resourcePath', '$..requestContext.routeKey', '$..requestContext.version', '$..stageVariables', '$..ApiMappingKey', '$..HostedZoneId', '$.invocation-v2-base-path-dev.requestContext.http.path']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_custom_domain.py::TestApigatewayV2CustomDomain::test_custom_domains_outside_of_cert[<random>.example.com]",
+            "test": "test_custom_domains_outside_of_cert[<random>.example.com]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_custom_domain.py::TestApigatewayV2CustomDomain::test_custom_domains_outside_of_cert[<random>.localhost]",
+            "test": "test_custom_domains_outside_of_cert[<random>.localhost]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_custom_domain.py::TestApigatewayV2CustomDomainCrud::test_api_mappings_crud",
+            "test": "test_api_mappings_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_custom_domain.py::TestApigatewayV2CustomDomainCrud::test_custom_domains_crud",
+            "test": "test_custom_domains_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1969,6 +2401,18 @@
             "snapshot_tested": true,
             "origin": "external"
           }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_private_hosted_zone",
+            "test": "test_dns_namespace_private_hosted_zone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..OperationId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
         ]
       }
     },
@@ -2024,13 +2468,93 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_lifecycle_with_dns_resolution",
+            "test": "test_alias_lifecycle_with_dns_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_target_resolution",
+            "test": "test_alias_target_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
+            "test": "test_dns_failover_based_on_health_check",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CallerReference', '$..HealthCheckConfig.EnableSNI', '$..HealthCheckConfig.FullyQualifiedDomainName', '$..HealthCheckConfig.IPAddress', '$..HealthCheckConfig.Port', '$..HealthCheckConfig.Type', '$..ttl']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_resolution[False]",
+            "test": "test_dns_resolution[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_resolution[True]",
+            "test": "test_dns_resolution[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle_with_dns_resolution",
+            "test": "test_resource_record_lifecycle_with_dns_resolution",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -2047,6 +2571,32 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdateHealthCheck": {
+      "FullyQualifiedDomainName, HealthCheckId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
+            "test": "test_dns_failover_based_on_health_check",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CallerReference', '$..HealthCheckConfig.EnableSNI', '$..HealthCheckConfig.FullyQualifiedDomainName', '$..HealthCheckConfig.IPAddress', '$..HealthCheckConfig.Port', '$..HealthCheckConfig.Type', '$..ttl']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_health_checks",
+            "test": "test_health_checks",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]

@@ -2,7 +2,6 @@
 
 Repository for [docs.localstack.cloud](https://docs.localstack.cloud).
 
-
 ## Getting Started
 
 ### Basics
@@ -11,7 +10,6 @@ LocalStack Docs is using the following technology stack:
 - [Hugo](https://gohugo.io) to generate the static site.
 - [Docsy](https://docsy.dev) as a theme for Hugo.
 - [GitHub Pages](https://pages.github.com/) to automatically deploy every commit on the `main` branch of this repository on [docs.localstack.cloud](https://docs.localstack.cloud).
-
 
 ### Clone the repo
 
@@ -30,14 +28,13 @@ or:
     cd docs
     git submodule update --init --recursive
 
-
 ### Install Hugo
 
 LocalStack Docs is based on the [Hugo static site generator](https://gohugo.io).
 
-In order to contribute to LocalStack Docs, you need to [install Hugo](https://gohugo.io/getting-started/installing) in order to verify your changes. Make sure to install the _extended_ version of Hugo.
-You also need to make sure that `go` is installed in order to run hugo scripts. 
-
+In order to contribute to LocalStack Docs, you need to [install Hugo](https://gohugo.io/getting-started/installing) in order to verify your changes.
+Make sure to install the _extended_ version of Hugo.
+You also need to make sure that `go` is installed in order to run hugo scripts.
 
 ### Run locally
 
@@ -51,7 +48,6 @@ or run in developer mode with automatic reload:
 
 Once the server is started, the locally served Docs are available at http://localhost:1313.
 
-
 ### Writing content
 
 The whole site is generated with Hugo, a powerful static-site generator.
@@ -61,12 +57,24 @@ You can find an extensive documentation on how to use Hugo [in their docs](https
 Make sure to follow the best practices below when contributing content.
 
 #### Updating developer hub applications
+
 While contributing to the developer hub applications page i.e. editing `data/developerhub/applications.json` file, make sure to run the `create-applications.js` script in the `scripts` folder to create new application pages.
 
 Example usage in the project root:
 
     node scripts/create-applications.js
 
+### Running pre-commit checks
+
+You can run pre-commit checks to ensure that your changes are compliant with the repository's standards.
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+pre-commit will run automatically before each commit.
+If you want to run it manually, use `pre-commit run`.
 
 ## Best Practices
 
@@ -84,18 +92,19 @@ Please follow these best practices when writing documentation in this repository
   Use `bash` only for Bash scripts, and use `text` for shell outputs or command examples.
   The full list of the supported languages [here](https://gohugo.io/content-management/syntax-highlighting/).
   If needed, you can also [highlight a specific line](https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences) in the snippet.
-- **Images:** If you want to use images in your post, create a new [leaf bundle directory](https://github.com/gohugoio/hugo/issues/1240) and put the image and the post (named `index.md`) in there (you can find examples in the docs already, f.e. the cognito service docs).
+- **Images:** If you want to use images in your post, create a new [leaf bundle directory](https://github.com/gohugoio/hugo/issues/1240) and put the image and the post (named `index.md`) in there (you can find examples in the docs already, f.e.
+  the cognito service docs).
   Then you can use the usual markdown syntax with a relative path (f.e.: `![Alternative_Text](file_next_to_post.png)`).
   If you want to resize the image, use the `figure` or `img` shortcode, for example: `{{< img src="cockpit-init-check.png" class="img-fluid shadow rounded" width="150px" >}}`
 - **Callouts:** Use these to make content stand out.
   The `callout` shortcode supports `note` (default), `tip` and `warning` levels.
   Use it like so:
-  ```
+
+  ```markdown
   {{< callout "warning" >}}
   This will make your computer halt and catch fire!
   {{< /callout >}}
   ```
-
 
 ## Troubleshooting
 
@@ -104,12 +113,14 @@ This section covers common issues when working with LocalStack Docs:
 ### Missing shortcodes
 
 Example error:
-```
+
+```bash
 Start building sites …
 hugo v0.88.1-5BC54738+extended linux/amd64 BuildDate=2021-09-04T09:39:19Z VendorInfo=gohugoio
 Error: Error building site: "/home/localstack/Repos/docs-test/content/en/get-started/_index.md:57:1": failed to extract shortcode: template for shortcode "alert" not found
 Built in 45 ms
 ```
 
-1. Make sure to correctly clone and initialize the git submodules of this repo. For details see the section "[Clone the repo](#clone-the-repo)" above.
+1. Make sure to correctly clone and initialize the git submodules of this repo.
+  For details see the section "[Clone the repo](#clone-the-repo)" above.
 2. Delete the Hugo Module cache using `hugo mod clean` or `make clean`.

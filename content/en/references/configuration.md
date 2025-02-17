@@ -20,7 +20,8 @@ For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1
 
 You can also use [Profiles](#profiles).
 
-Configurations marked as **Deprecated** will be removed in the next major version. You can find previously removed configuration variables under [Legacy](#legacy).
+Configurations marked as **Deprecated** will be removed in the next major version.
+You can find previously removed configuration variables under [Legacy](#legacy).
 
 ## Core
 
@@ -42,8 +43,6 @@ Options that affect the core LocalStack system.
 | `SERVICES`| `s3,sqs` | A comma-delimited string of services. Check the [internal health endpoint]({{< ref "internal-endpoints/#localstack-endpoints" >}}) `/_localstack/health` for valid service names. If `SERVICES` is set LocalStack will only load the listed services. All other services will be disabled and cannot be used. |
 | `ALLOW_NONSTANDARD_REGIONS` | `0` (default) | Allows the use of non-standard AWS regions. By default, LocalStack only accepts [standard AWS regions](https://docs.aws.amazon.com/general/latest/gr/rande.html). |
 | `PARITY_AWS_ACCESS_KEY_ID` | `0` (default) | Enables the use production-like access key IDs. By default, LocalStack issues keys with `LSIA...` and `LKIA...` prefix, and will reject keys that start with `ASIA...` or `AKIA...`. |
-
-[1]: http://docs.aws.amazon.com/cli/latest/reference/#available-services
 
 ## CLI
 
@@ -72,17 +71,32 @@ Options to configure how LocalStack interacts with Docker.
 
 This section covers configuration options that are specific to certain AWS services.
 
+### API Gateway
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `PROVIDER_OVERRIDE_APIGATEWAY` | `legacy`\|`next_gen` (default)| The [new API Gateway implementation]({{< ref "user-guide/aws/apigateway#new-api-gateway-implementation" >}}) is active by default since LocalStack 4.0. |
+
 ### AppSync
 
 | Variable | Example Values | Description |
 | - | - | - |
 | `GRAPHQL_ENDPOINT_STRATEGY` | `legacy`\|`domain`\|`path` |  Governs how AppSync endpoints are created to access a GraphQL API (see [AppSync Endpoints]({{< ref "/tags/appsync#endpoints" >}})) |
+| `APPSYNC_JS_LIBS_VERSION` | `latest`(default) \|`refresh`\|`<commit or tag>` | Control the version of the `@aws-appsync/utils` package to use. `latest` means fetch the latest but only if not present. `refresh` means always fetch the latest version. `<commit or tag>` means use a specific git reference. |
 
 ### Batch
 
 | Variable | Example Values | Description |
 | - | - | - |
 | `BATCH_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the batch container. Same restrictions as `LAMBDA_DOCKER_FLAGS`. |
+
+### Bedrock
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `BEDROCK_PREWARM` | `0` (default) \| `1` | Pre-warm the Bedrock engine directly on LocalStack startup instead of on demand. |
+| `DEFAULT_BEDROCK_MODEL` | `smollm2:360m` (default) | The model that is used initially to handle text model invocations in Bedrock. Any text-based model available for Ollama is usable. |
+| `BEDROCK_PULL_MODELS` | `deepseek-r1,mistral` \' '' (default)  | A list of models that should get pulled into the model cache on startup. `DEFAULT_BEDROCK_MODEL` is automatically in there |
 
 ### BigData (EMR, Athena, Glue)
 
@@ -92,9 +106,9 @@ This section covers configuration options that are specific to certain AWS servi
 | `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
 
 ### CloudFormation
+
 | Variable | Example Values | Description |
 | - | - | - |
-| `CFN_LEGACY_TEMPLATE_DEPLOYER` | `0` (default) \|`1` | Switch back to the old deployment engine. Note that this is only available temporarily to allow for a smoother roll-out of the new deployment order. 
 | `CFN_PER_RESOURCE_TIMEOUT` | `300` (default) | Set the timeout to deploy each individual CloudFormation resource.
 | `CFN_VERBOSE_ERRORS` | `0` (default) \|`1` | Show exceptions for CloudFormation deploy errors.
 | `CFN_STRING_REPLACEMENT_DENY_LIST` | `""` (default) \|`https://api-1.execute-api.us-east-2.amazonaws.com/test-resource,https://api-2.execute-api.us-east-2.amazonaws.com/test-resource` | Comma-separated list of AWS URLs that should not be modified to point to Localstack. For example, when deploying a CloudFormation template we might want to leave certain resources pointing to actual AWS URLs, or even leave environment variables with URLs like that untouched.
@@ -103,7 +117,14 @@ This section covers configuration options that are specific to certain AWS servi
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `PROVIDER_OVERRIDE_CLOUDWATCH` | `v2` | Use the new CloudWatch provider. |
+| `PROVIDER_OVERRIDE_CLOUDWATCH` | `v1` | Use the old CloudWatch provider. |
+
+### DMS
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `DMS_SERVERLESS_DEPROVISIONING_DELAY` | `60` (default), any positive integer | Delay the deprovisioning of serverless by defined seconds. Once deprovisioned the statistics will be reset. |
+| `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME` | `0` (default), any positive integer | Simulates a waiting time (in seconds) between status changes when the serverless replication starts. The waiting time will be applied for each status change (there are 6 status changes before the task is running). |
 
 ### DocumentDB
 
@@ -124,7 +145,7 @@ This section covers configuration options that are specific to certain AWS servi
 | `DYNAMODB_CORS` | `*` | Enable CORS support for specific allow-list list the domains separated by `,` use `*` for public access (default is `*`) |
 | `DYNAMODB_REMOVE_EXPIRED_ITEMS` | `0`\|`1` | Enables [Time to Live (TTL)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html) feature |
 
-### ECR 
+### ECR
 
 | Variable | Example Values | Description |
 | - | - | - |
@@ -144,11 +165,13 @@ This section covers configuration options that are specific to certain AWS servi
 | Variable | Example Values | Description |
 | - | - | - |
 | `EC2_DOCKER_FLAGS` | `--privileged` | Additional flags passed to Docker when launching containerized instances. Same restrictions as `LAMBDA_DOCKER_FLAGS`. |
+| `EC2_DOCKER_INIT` | `0`\|`1` (default) | Start container instances with docker-init system, learn more [here](https://docs.docker.com/reference/cli/docker/container/run/#init). Disable this if you want to use a custom init system. |
 | `EC2_DOWNLOAD_DEFAULT_IMAGES` | `0`\|`1` (default) | At startup, LocalStack Pro downloads latest Ubuntu images from Docker Hub for use as AMIs. This can be disabled for security reasons. |
 | `EC2_EBS_MAX_VOLUME_SIZE` | `1000` (default) | Maximum size (in MiBs) of user-specified EBS block devices mounted into EC2 container instances. |
+| `EC2_HYPERVISOR_URI` | `qemu:///system` (default) | [Libvirt connection URI](https://libvirt.org/uri.html#remote-uris) that indicates the hypervisor host. Only QEMU drivers are supported at this time. |
 | `EC2_MOUNT_BLOCK_DEVICES` | `1`\|`0` (default) | Whether to create and mount user-specified EBS block devices into EC2 container instances. |
 | `EC2_REMOVE_CONTAINERS` | `0`\|`1` (default) | Controls whether created Docker containers are removed at instance termination or LocalStack shuts down. Disable this if there is a need to examine the container filesystem for debugging. |
-| `EC2_VM_MANAGER` | `docker`(default)\|`libvirt`|`mock` | Emulation method to use in LocalStack Pro. This option is not available in LocalStack community. |
+| `EC2_VM_MANAGER` | `docker`(default)\|`libvirt`\|`mock` | Emulation method to use in LocalStack Pro. This option is not available in LocalStack community. |
 
 ### EKS
 
@@ -156,6 +179,7 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `EKS_LOADBALANCER_PORT` | `8081` (default) | Local port on which the Kubernetes load balancer is exposed on the host. |
 | `EKS_K3S_IMAGE_TAG` | `v1.22.6-k3s1` (default) | Custom tag of the `k8s/rancher` image used to spin up Kubernetes clusters locally. |
+| `EKS_K8S_PROVIDER` | `k3s` (default)\|`local` | The k8s provider which should be used to start the k8s cluster backing EKS. For more information on the providers, please see [Elastic Kubernetes Service (EKS)]({{< ref "user-guide/aws/eks" >}}) |
 
 ### ElastiCache
 
@@ -164,25 +188,28 @@ This section covers configuration options that are specific to certain AWS servi
 | `PROVIDER_OVERRIDE_ELASTICACHE` | `legacy` | Use the legacy ElastiCache provider. |
 | `REDIS_CONTAINER_MODE` | `1`\|`0` (default) | Start ElastiCache cache nodes in separate containers instead of in the LocalStack container |
 
-
-### Elasticsearch
+### ElasticSearch
 
 {{< callout >}}
-The OpenSearch configuration variables are used to manage both OpenSearch and ElasticSearch clusters.
-See [here](#opensearch).
+Also see [OpenSearch configuration variables]({{< ref "configuration#opensearch" >}}) which are used to manage both OpenSearch and ElasticSearch clusters.
 {{< /callout >}}
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `IGNORE_ES_DOWNLOAD_ERRORS` | `0`\|`1` | Whether to ignore errors (e.g., network/SSL) when downloading ElasticSearch plugins |
 
 ### EventBridge
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `PROVIDER_OVERRIDE_EVENTS` | `v2` | Use the new EventBridge provider. |
+| `PROVIDER_OVERRIDE_EVENTS` | `legacy`\|`v2` (default) | The [new EventBridge provider](https://discuss.localstack.cloud/t/introducing-eventbridge-v2-in-localstack/946) is active by default since LocalStack 4.0. |
 
 ### IAM
+
 | Variable | Example Values | Description |
 | - | - | - |
-| `ENFORCE_IAM` | `0` (default)\|`1` | Enable IAM policy evaluation and enforcement. If this is disabled (the default), IAM policies will have no effect to your requests. |
-| `IAM_SOFT_MODE` | `0` (default)\|`1` | Enable IAM soft mode. This leads to policy evaluation without actually denying access. Needs `ENFORCE_IAM` enabled as well. For more information, see [Identity and Access Management]({{< ref "user-guide/aws/iam" >}}).|
+| `ENFORCE_IAM` (pro) | `0` (default)\|`1` | Enable IAM policy evaluation and enforcement. If this is disabled (the default), IAM policies will have no effect to your requests. |
+| `IAM_SOFT_MODE` (pro) | `0` (default)\|`1` | Enable IAM soft mode. This leads to policy evaluation without actually denying access. Needs `ENFORCE_IAM` enabled as well. For more information, see [Identity and Access Management]({{< ref "user-guide/aws/iam" >}}).|
 
 ### Kinesis
 
@@ -205,25 +232,28 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Magic S3 bucket name for [Hot Reloading]({{< ref "user-guide/lambda-tools/hot-reloading" >}}). The S3Key points to the source code on the local file system. |
 | `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`.|
 | `LAMBDA_DISABLE_AWS_ENDPOINT_URL` | `0` (default) \| `1` | Whether to disable injecting the environment variable `AWS_ENDPOINT_URL`, which automatically configures [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html). |
+| `LAMBDA_DISABLE_JAVA_SDK_V2_CERTIFICATE_VALIDATION` | `1` (default) | Whether to disable the certificate name validation for [AWS Java SDK v2](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html) calls when using [transparent endpoint injection]({{< ref "user-guide/tools/transparent-endpoint-injection" >}}).|
 | `LAMBDA_DOCKER_DNS` | `""` (default) | Optional custom DNS server for the container running your Lambda function. Overwrites the default LocalStack [DNS Server]({{< ref "dns-server" >}}). Hence, resolving `localhost.localstack.cloud` requires additional configuration. |
-| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables (also with `--env-file`, but the file has to be mounted into the LocalStack container), ports, volume mounts, extra hosts, networks, DNS servers, labels, ulimits, user, platform, and privileged mode. |
+| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables (also with `--env-file`, but the file has to be mounted into the LocalStack container), ports, volume mounts, extra hosts, networks, DNS servers, labels, ulimits, user, platform, and privileged mode. The `--env-file` argument for Docker `run` and Docker Compose have different feature sets. To provide both, we support the `--env-file` for environment files with the docker run syntax, while `--compose-env-file` supports the full docker compose features, like placeholders with `${}`, replacing quotes, etc. |
 | `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to. Limitation: `host` mode currently not supported. |
 | `LAMBDA_DOWNLOAD_AWS_LAYERS` | `1` (default, pro) | Whether to download public Lambda layers from AWS through a LocalStack proxy when creating or updating functions. |
 | `LAMBDA_IGNORE_ARCHITECTURE` | `0` (default) | Whether to ignore the AWS architectures (x86_64 or arm64) configured for the lambda function. Set to `1` to run cross-platform compatible lambda functions natively (i.e., Docker selects architecture). |
-| `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default, pro) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
+| `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default, enterprise) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
+| `LAMBDA_K8S_INIT_IMAGE` | | Specify the image for downloading the init binary from LocalStack. The image must include the `curl` and `chmod` commands. This is only relevant for container-based Lambdas on Kubernetes |
 | `LAMBDA_KEEPALIVE_MS` | `600000` (default 10min) | Time in milliseconds until lambda shuts down the execution environment after the last invocation has been processed. Set to `0` to immediately shut down the execution environment after an invocation. |
 | `LAMBDA_LIMITS_CONCURRENT_EXECUTIONS` | `1000` (default) | The maximum number of events that functions can process simultaneously in the current Region. See [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/lambda-service.html) |
 | `LAMBDA_LIMITS_CODE_SIZE_ZIPPED` | `52428800` (default) | The maximum zip file size in bytes for the [CreateFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) operation. Raising this limit enables the creation of larger Lambda functions without the need to upload the code to an S3 deployment bucket. |
 | `LAMBDA_LIMITS_CREATE_FUNCTION_REQUEST_SIZE` | `70167211` (default) | The maximum HTTP request size in bytes for the [CreateFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) operation. Raising this limit enables larger HTTP requests including zipped file size. |
+| `LAMBDA_LIMITS_MAX_FUNCTION_ENVVAR_SIZE_BYTES` | `4096` (default) | The maximum size of the environment variables that you can use to configure your function. |
+| `LAMBDA_PREBUILD_IMAGES` | `0` (default) |  Prebuild images before execution which increases the cold start time but reduces the time until the Lambda function is `ACTIVE`. (preview) |
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove any Lambda Docker containers. |
 | `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `20` (default) | How many seconds Lambda will wait for the runtime environment to start up. Increase this timeout if I/O is slow or your Lambda deployments are large or contain many files. |
 | `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed. |
-| | `kubernetes` (pro) | Execute lambdas in a Kubernetes cluster. |
+| | `kubernetes` (enterprise) | Execute lambdas in a Kubernetes cluster. |
 | `LAMBDA_RUNTIME_IMAGE_MAPPING` | [base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html) (default) | Customize the Docker image of Lambda runtimes, either by:<br> a) pattern with `<runtime>` placeholder, e.g. `custom-repo/lambda-<runtime>:2022` <br> b) json dict mapping the `<runtime>` to an image, e.g. `{"python3.9": "custom-repo/lambda-py:thon3.9"}` |
+| `LAMBDA_RUNTIME_VALIDATION` | `0` (default) | Set to `1` to enforce strict [AWS parity](https://blog.localstack.cloud/2022-08-04-parity-explained/) by raising an exception when using a deprecated [Lambda runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) for the API operation [CreateFunction](https://docs.aws.amazon.com/lambda/latest/api/API_CreateFunction.html). Deprecated Lambda runtimes (e.g., `nodejs14.x`) can be used with disabled validation (current default). |
 | `LAMBDA_SYNCHRONOUS_CREATE` | `0` (default) | Set to `1` to create lambda functions synchronously (not recommended). |
 | `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console. This does not affect the logs processing in CloudWatch. |
-| `LAMBDA_LIMITS_MAX_FUNCTION_ENVVAR_SIZE_BYTES` | `4096` (default) | The maximum size of the environment variables that you can use to configure your function. |
-| `LAMBDA_K8S_INIT_IMAGE` | | Specify the image for downloading the init binary from LocalStack. The image must include the `curl` and `chmod` commands. This is only relevant for container-based Lambdas on Kubernetes |
 
 ### MemoryDB
 
@@ -231,11 +261,19 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | - | - | - |
 | `REDIS_CONTAINER_MODE` | `1`\|`0` (default) | Start MemoryDB cluster nodes in separate containers instead of in the LocalStack container |
 
+### MSF
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `PROVIDER_OVERRIDE_KINESISANALYTICSV2` | `legacy` | Use the older mock Kinesis Analytics provider. |
+
 ### MWAA
 
 | Variable | Example Values | Description |
 | - | - | - |
 | `MWAA_PIP_TRUSTED_HOSTS` | `pypi.org,files.pythonhosted.org` | Comma-separated list of hosts for which SSL verification is not performed when installing Python dependencies for MWAA environment. |
+| `MWAA_S3_POLL_INTERVAL` | `30` (default) | Interval in seconds with which MWAA polls S3 bucket to check for new or updated assets. |
+| `MWAA_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the Airflow container. Same restrictions as `LAMBDA_DOCKER_FLAGS`. |
 
 ### Neptune
 
@@ -254,6 +292,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `OPENSEARCH_MULTI_CLUSTER` | `1`\| `0` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
 | `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [Opensearch Endpoints]({{< ref "opensearch#endpoints" >}})). |
 | `SKIP_INFRA_DOWNLOADS` | `1` \| `0` (default) | **Deprecated since 1.3.0** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
+| `IGNORE_OS_DOWNLOAD_ERRORS` | `0`\|`1` | Whether to ignore errors (e.g., network/SSL) when downloading OpenSearch plugins |
 
 ### RDS
 
@@ -264,22 +303,20 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `RDS_MYSQL_DOCKER`               | `1` (default) \| `0` | Whether to disable MySQL engines (and use MariaDB instead). MySQL engine for cluster/instances will start in a new docker container. If you have troubles running MySQL in docker, you can disable the feature. |
 | `MYSQL_IMAGE`                    | `mysql:8.0`       | Defines a specific MySQL image that should be used when spinning up the MySQL engine. Only available if `RDS_MYSQL_DOCKER` is enabled. |
 | `MSSQL_IMAGE`                    | `mcr.microsoft.com/mssql/server:2022-latest` | Defines a specific image that should be used when spinning up a SQL server engine. |
+| `MSSQL_ACCEPT_EULA`              | `Y`     | Set to `Y` if you accept the [EULA from MSSQL](https://hub.docker.com/_/microsoft-mssql-server). |
 
 ### S3
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `S3_DIR` || **Deprecated since 3.0.0** This is only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 | `S3_SKIP_SIGNATURE_VALIDATION`| `0` \| `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. Note that validation can only pass if the `AWS_SECRET_ACCESS_KEY` is set to `test` or if using credentials returned from `STS.AssumeRole`  |
 | `S3_SKIP_KMS_KEY_VALIDATION` | `0` \| `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
-| `PROVIDER_OVERRIDE_S3` | `legacy_v2` \| `v3` (default) | The new LocalStack-native S3 provider (v3) is active by default since LocalStack 3.0. |
 
-### StepFunctions
+### SNS
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `PROVIDER_OVERRIDE_STEPFUNCTIONS` | `legacy` \| `v2` (default) | The new LocalStack-native StepFunctions provider (v2) is active by default since LocalStack 3.0. |
-| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | **Deprecated since 3.0.0** This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. <br> **Removed in new provider.** |
+| `SNS_SES_SENDER_ADDRESS` | `no-reply@sns.localstack.cloud` \| `admin@localstack.com` (default) | The email address used to send SNS `email` and `email-json` notifications. |
 
 ### SQS
 
@@ -309,7 +346,6 @@ Please be aware that the following options may have severe security implications
 | `EXTRA_CORS_EXPOSE_HEADERS` | | Comma-separated list of header names to be be added to Access-Control-Expose-Headers CORS header. |
 | `ENABLE_CONFIG_UPDATES` | `0` (default) | Whether to enable dynamic configuration updates at runtime. |
 
-
 ## Emails
 
 Please check with your SMTP email service provider for the following settings.
@@ -330,24 +366,37 @@ To learn more about these configuration options, see [Persistence]({{< ref "user
 | `SNAPSHOT_SAVE_STRATEGY` | `ON_SHUTDOWN`\|`ON_REQUEST`\|`SCHEDULED`\|`MANUAL` | Strategy that governs when LocalStack should make state snapshots |
 | `SNAPSHOT_LOAD_STRATEGY` | `ON_STARTUP`\|`ON_REQUEST`\|`MANUAL` | Strategy that governs when LocalStack restores state snapshots |
 | `SNAPSHOT_FLUSH_INTERVAL` | 15 (default) | The interval (in seconds) between persistence snapshots. It only applies to a `SCHEDULED` save strategy (see [Persistence Mechanism]({{< ref "user-guide/state-management/persistence" >}}))|
+
+## Cloud Pods
+
+To learn more about these configuration options, see [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}}).
+
+| Variable | Valid options | Description |
+| - | - | - |
 | `AUTO_LOAD_POD` |  | Comma-separated list of Cloud Pods to be automatically loaded at startup time. This feature is disabled when snapshot persistence is set via the `PERSISTENCE` variable. |
 | `POD_LOAD_CLI_TIMEOUT` | 60 (default) | Timeout in seconds to wait before returning from load operations on the Cloud Pods CLI |
+| `POD_ENCRYPTION` | `0` (default) \| `1` | Whether to encrypt the Cloud Pods artifacts at rest. |
+| `ENABLE_POD_RESOURCES=1` | `0` (default) \| `1`  | Whether to save a detailed Stack Overview including available resources for the Cloud Pod |
+
+## Extensions
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `EXTENSION_AUTO_INSTALL` | | Install a list of extensions automatically at startup. Comma-separated list of extensions directives which will be installed automatically at startup (see [managing extensions]({{< ref "user-guide/extensions/managing-extensions/#automating-extensions-installation" >}}))|
+| `EXTENSION_DEV_MODE` | `0` (default) \| `1` | Enables development mode for extensions. Refer to the [Extensions Development Guide]({{< ref "user-guide/extensions/developing-extensions" >}}) for more information. |
 
 ## Miscellaneous
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `EVENT_RULE_ENGINE` | `python` (default) \| `java` (preview) | Engine for [event pattern matching](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html) used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping. Set it `java` to use the AWS [event-ruler](https://github.com/aws/event-ruler) offering better parity. |
 | `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud |
 | `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud |
-| `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins |
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary. |
 | `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events |
 | `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself |
 | `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself |
 | `REQUESTS_CA_BUNDLE` | `/var/lib/localstack/lib/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack |
 | `DOCKER_HOST` | `unix:///var/run/docker.sock` (default) | Daemon socket to connect Docker. Used by the LocalStack dependency [Docker](https://docs.docker.com/engine/reference/commandline/cli/#environment-variables). |
-
 
 ## Debugging
 
@@ -356,7 +405,6 @@ To learn more about these configuration options, see [Persistence]({{< ref "user
 | `DEVELOP` | | Starts a debugpy server before starting LocalStack services
 | `DEVELOP_PORT` | | Port number for debugpy server
 | `WAIT_FOR_DEBUGGER` | | Forces LocalStack to wait for a debugger to start the services
-
 
 ## DNS
 
@@ -385,7 +433,6 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 | `LOCALSTACK_API_KEY` |                | **Deprecated since 3.0.0** [API key]({{< ref "api-key" >}}) to activate LocalStack Pro.<br/> **Use the `LOCALSTACK_AUTH_TOKEN` instead (except for [CI environments]({{< ref "user-guide/ci/" >}})).** |
 | `LOG_LICENSE_ISSUES` | `0` \| `1`&nbsp;(default)    | Whether to log issues with the license activation to the console. |
 
-
 ## Legacy
 
 These configurations have already been removed and **won't have any effect** on newer versions of LocalStack.
@@ -395,16 +442,21 @@ These configurations have already been removed and **won't have any effect** on 
 
 | Variable | Removed in | Example Values | Description |
 | - | - | - | - |
+| `EVENT_RULE_ENGINE` | 4.1.0 | `python` (default) \| `java` (deprecated) | Engine for [event pattern matching](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html) used in EventBridge, EventBridge Pipes, and Lambda Event Source Mapping. Our [new](https://github.com/localstack/localstack/pull/11960) `python` implementation introduced with [4.0.3](https://github.com/localstack/localstack/releases/tag/v4.0.3) makes the `java` engine (previously in preview) using AWS [event-ruler](https://github.com/aws/event-ruler) obsolete. |
+| `LAMBDA_EVENT_SOURCE_MAPPING` | 4.0.0 | `v2` (default since [3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/#new-default-lambda-event-source-mapping-implementation)) \| `v1` | Feature flag to switch Lambda Event Source Mapping (ESM) implementations. |
+| `PROVIDER_OVERRIDE_STEPFUNCTIONS` | 4.0.0 | `v2` (default) \| `legacy` | The new LocalStack-native StepFunctions provider (v2) is active by default since LocalStack 3.0. |
+| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | 4.0.0 | `default` | This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
+| `S3_DIR` | 4.0.0 | `/path/to/root` | This was only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 | `<SERVICE>_BACKEND` | 3.0.0 | `http://localhost:7577` |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
 | `<SERVICE>_PORT_EXTERNAL` | 3.0.0 | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
 | `ACTIVATE_NEW_POD_CLIENT` | 3.0.0 | `0`\|`1` (default) |  Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
-| `BIGDATA_MONO_CONTAINER` | 3.0.0 |`0`\|`1` (default) | Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
+| `BIGDATA_MONO_CONTAINER` | 3.0.0 |`0`\|`1` (default) | Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. |
 | `DEFAULT_REGION` | 3.0.0 | `us-east-1` (default) | AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
 | `EDGE_BIND_HOST` | 3.0.0 | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
 | `EDGE_FORWARD_URL` | 3.0.0 | `http://10.0.10.5678` | Optional target URL to forward all edge requests to (e.g., for distributed deployments) |
 | `EDGE_PORT` | 3.0.0 | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
 | `EDGE_PORT_HTTP` | 3.0.0 | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
-| `ES_CUSTOM_BACKEND` | 3.0.0 | `http://elasticsearch:9200` |  Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "es#custom-elasticsearch-backends" >}})). |
+| `ES_CUSTOM_BACKEND` | 3.0.0 | `http://elasticsearch:9200` |  Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then LocalStack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "es#custom-elasticsearch-backends" >}})). |
 | `ES_ENDPOINT_STRATEGY` | 3.0.0 | `path`\|`domain`\|`port` (formerly `off`) |  Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "es#endpoints" >}})) |
 | `ES_MULTI_CLUSTER` | 3.0.0 | `0`\|`1` |  Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
 | `HOSTNAME_EXTERNAL` | 3.0.0 | `localhost` (default) |  Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client. Use `LOCALSTACK_HOST` instead.  |
@@ -452,6 +504,7 @@ These configurations have already been removed and **won't have any effect** on 
 ## Profiles
 
 LocalStack supports configuration profiles which are stored in the `~/.localstack` config directory.
+If the directory does not exist, create it manually.
 A configuration profile is a set of environment variables stored in an `.env` file in the LocalStack config directory.
 
 Here is an example of what configuration profiles might look like:
@@ -492,5 +545,6 @@ $ python -m localstack.cli.main --profile=dev config show
 {{< callout >}}
 The `CONFIG_PROFILE` is a CLI feature and cannot be used with a Docker/Docker Compose setup.
 You can look at [alternative means of setting environment variables](https://docs.docker.com/compose/environment-variables/set-environment-variables/) for your Docker Compose setups.
+
 For Docker setups, we recommend passing the environment variables directly to the `docker run` command.
 {{< /callout >}}

@@ -7,13 +7,14 @@ tags:
 - networking
 ---
 
-Suppose you're attempting to access LocalStack, but you're relying on transparent endpoint injection to redirect AWS (`*.amazonaws.com`) requests. In such cases, there are different approaches you can take depending on your setup.
+Suppose you're attempting to access LocalStack, but you're relying on transparent endpoint injection to redirect AWS (`*.amazonaws.com`) requests.
+In such cases, there are different approaches you can take depending on your setup.
 
 ## From your host
 
 {{< figure src="../images/2.svg" width="400" >}}
 
-If you're using LocalStack with an [auth token]({{<ref "getting-started/auth-token">}}), then you can utilize the [DNS server]({{<ref "dns-server">}}) to perform requests to LocalStack as if it were AWS.
+If you're using LocalStack with an [Auth Token]({{<ref "getting-started/auth-token">}}), then you can utilize the [DNS server]({{<ref "dns-server">}}) to perform requests to LocalStack as if it were AWS.
 You need to make two changes:
 
 * Publish port 53 from the LocalStack docker container to your host.

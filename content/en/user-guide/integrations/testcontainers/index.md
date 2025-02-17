@@ -141,7 +141,8 @@ const s3 = S3Client(awsConfig);
 
 ## Special Setup for using RDS
 
-Some services like RDS require additional setup so that the correct port is exposed and accessible for the tests. The reserved ports on LocalStack are between `4510-4559`, depending on your use case you might need to expose several ports using `witExposedPorts`.
+Some services like RDS require additional setup so that the correct port is exposed and accessible for the tests.
+The reserved ports on LocalStack are between `4510-4559`, depending on your use case you might need to expose several ports using `witExposedPorts`.
 
 Check the [pro-sample on how to use RDS with Testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample).
 
@@ -154,8 +155,8 @@ The Testcontainer can be created like this:
 */
 @Rule
 public LocalStackContainer localstack = new LocalStackContainer(DockerImageName("localstack/localstack:2.0.0"))
-                                                    .withExposedPorts(4510, 4511, 4512, 4513, 4514) // TODO the port can have any value between 4510-4559, but LS starts from 4510
-                                                    .withEnv("LOCALSTACK_API_KEY", api_key); // TODO add your API key here
+                                                    .withExposedPorts(4510, 4511, 4512, 4513, 4514) // the port can have any value between 4510-4559, but LS starts from 4510
+                                                    .withEnv("LOCALSTACK_AUTH_TOKEN", auth_token); // add your Auth Token here
 
 ```
 

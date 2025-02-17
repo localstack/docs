@@ -12,7 +12,8 @@ This guide shows how to start and use LocalStack in your Travis CI jobs.
 When you want to integrate LocalStack into your job configuration, you just have to execute the following steps:
 - Install the LocalStack CLI (and maybe also `awslocal`).
 - Make sure your LocalStack docker image is up-to-date by pulling the latest version.
-- Use the LocalStack CLI to start LocalStack. Make sure to use the `-d` flag to start the LocalStack docker container in detached mode.
+- Use the LocalStack CLI to start LocalStack.
+  Make sure to use the `-d` flag to start the LocalStack docker container in detached mode.
 - Wait for the container to report that it is up and running.
 
 The following example Travis CI job config (`.travis.yaml`) executes these steps, creates a new S3 bucket, and prints a nice message in the end:
@@ -45,15 +46,14 @@ script:
   - echo "Execute your tests here :)"
 ```
 
-## Configuring a CI key
+## Configuring a CI Auth Token
 
-You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the project's environment variables. The LocalStack CLI will automatically pick it up and activate the Pro features.
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your [CI Auth Token](https://app.localstack.cloud/workspace/auth-tokens) to the project's environment variables as `LOCALSTACK_AUTH_TOKEN`.
+The LocalStack CLI will automatically detect it and activate the Pro features.
 
-Just go to the project settings in Travis CI (`More options` → `Settings`), scroll down to the `Environment Variables` section, and add your CI key:
+To configure this in Travis CI, go to the project settings (`More options` → `Settings`), scroll down to the `Environment Variables` section, and add your CI Auth Token as `LOCALSTACK_AUTH_TOKEN`.
 
-![Adding the LocalStack CI key in Travis CI](travis-ci-env-config.png)
-
-Here is an example:
+Here is an example workflow:
 
 ```yaml
 before_install:

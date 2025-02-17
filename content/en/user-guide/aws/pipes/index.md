@@ -3,35 +3,38 @@ title: "EventBridge Pipes"
 linkTitle: "EventBridge Pipes"
 description: Get started with EventBridge Pipes on LocalStack
 tags: ["Pro image"]
+persistence: supported with limitations
+
 ---
 
 ## Introduction
 
-EventBridge Pipes allows users to create point-to-point integrations between event producers and consumers with transform, filter and enrichment steps. Pipes are particularly useful for scenarios involving real-time data processing, application integration, and automated workflows, while simplifying the process of routing events between AWS services. Pipes offer a point-to-point connection from one source to one target (one-to-one). In contrast, EventBridge Event Bus offers a one-to-many integration where an event router delivers one event to zero or more destinations.
+EventBridge Pipes allows users to create point-to-point integrations between event producers and consumers with transform, filter and enrichment steps.
+Pipes are particularly useful for scenarios involving real-time data processing, application integration, and automated workflows, while simplifying the process of routing events between AWS services.
+Pipes offer a point-to-point connection from one source to one target (one-to-one).
+In contrast, EventBridge Event Bus offers a one-to-many integration where an event router delivers one event to zero or more destinations.
 
-LocalStack allows you to use the Pipes APIs in your local environment to create Pipes with SQS queues and Kinesis streams as source and target. You can also filter events using EventBridge event patterns and enrich events using Lambda.
+LocalStack allows you to use the Pipes APIs in your local environment to create Pipes with SQS queues and Kinesis streams as source and target.
+You can also filter events using EventBridge event patterns and enrich events using Lambda.
 
-The supported APIs are available on our [API coverage page]({{< ref "coverage_pipes" >}}), which provides information on the extent of Pipe's integration with LocalStack. 
+The supported APIs are available on our [API coverage page]({{< ref "coverage_pipes" >}}), which provides information on the extent of Pipe's integration with LocalStack.
 
 {{< callout >}}
 The implementation of EventBridge Pipes is currently in **preview** stage and under active development.
 If you would like support for more APIs or report bugs, please make an issue on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
 {{< /callout >}}
 
-{{< callout "tip" >}}
-LocalStack now supports a new event rule engine for [EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html).
-You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (preview) to use the AWS [event-ruler](https://github.com/aws/event-ruler), which offers better parity.
-{{< /callout >}}
-
 ## Getting started
 
 This guide is designed for users new to EventBridge Pipes and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create a Pipe with SQS queues as source and target, and send events to the source queue which will be routed to the target queue. 
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create a Pipe with SQS queues as source and target, and send events to the source queue which will be routed to the target queue.
 
 ### Create an SQS queue
 
-Create two SQS queues that will be used as source and target for the Pipe. Run the following command to create a queue using the [`CreateQueue`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html) API:
+Create two SQS queues that will be used as source and target for the Pipe.
+Run the following command to create a queue using the [`CreateQueue`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html) API:
 
 {{< command >}}
 $ awslocal sqs create-queue --queue-name source-queue
@@ -47,7 +50,8 @@ $ TARGET_QUEUE_ARN=$(awslocal sqs get-queue-attributes --queue-url http://sqs.us
 
 ### Create a Pipe
 
-You can now create a Pipe, using the [`CreatePipe`](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreatePipe.html) API. Run the following command, by specifying the source and target queue ARNs we created earlier:
+You can now create a Pipe, using the [`CreatePipe`](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreatePipe.html) API.
+Run the following command, by specifying the source and target queue ARNs we created earlier:
 
 {{< command >}}
 $ awslocal pipes create-pipe --name sample-pipe \
@@ -104,7 +108,8 @@ The following output would be retrieved:
 
 ### Send events to the source queue
 
-You can now send events to the source queue, which will be routed to the target queue. Run the following command to send an event to the source queue:
+You can now send events to the source queue, which will be routed to the target queue.
+Run the following command to send an event to the source queue:
 
 {{< command >}}
 $ awslocal sqs send-message \
@@ -120,6 +125,21 @@ You can fetch the message from the target queue using the [`ReceiveMessage`](htt
 $ awslocal sqs receive-message \
     --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/target-queue
 {{< /command >}}
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing EventBridge Pipes.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **EventBridge Pipes** under the **App Integration** section.
+
+<img src="pipes-resource-browser.png" alt="EventBridge Pipes Resource Browser" title="EventBridge Pipes Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser for EventBridge Pipes in LocalStack allows you to perform the following actions:
+
+1. **Create a Pipe**: Click on the **Create Pipe** button to set up a new pipe with a source and target service, filter criteria, and more.
+2. **View Pipe Details**: Click on the pipe name to view detailed information, including source, target, batch size, state, and more.
+3. **Delete a Pipe**: Select a pipe and click on the **Actions** dropdown menu, followed by **Remove Selected**, to delete the pipe.
 
 ## Supported sources
 
@@ -167,11 +187,12 @@ Firehose delivery stream,
 Inspector assessment template,
 Redshift cluster data API queries,
 SageMaker Pipeline,
-or Step Functions state machine: Express workflows (SYNC or ASYNC).
+Step Functions state machine: Express workflows (SYNC or ASYNC),
+or Timestream for LiveAnalytics table.
 
 ## Supported log destinations
 
-LocalStack supports the following [log destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html) for detailed Pipes logging: 
+LocalStack supports the following [log destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-logs.html) for detailed Pipes logging:
 
 * CloudWatch Logs
 

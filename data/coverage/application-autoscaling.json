@@ -34,7 +34,7 @@
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": true,
-        "snapshot_tested": false,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -42,11 +42,11 @@
       "DescribeScalableTargets": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -66,7 +66,7 @@
       "DescribeScalingPolicies": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": false,
@@ -81,6 +81,18 @@
         "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "GetPredictiveScalingForecast": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -130,7 +142,7 @@
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": true,
-        "snapshot_tested": false,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -164,7 +176,7 @@
       "PolicyName, ResourceId, ScalableDimension, ServiceNamespace": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
@@ -172,6 +184,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/applicationautoscaling/test_application_autoscaling.py::TestAppAutoscaling::test_put_scaling_policy",
+            "test": "test_put_scaling_policy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_patterns.py::TestEcsFargateApplicationLoadBalanced::test_service_deployment",
@@ -200,7 +222,7 @@
       "ResourceId, ScalableDimension, ServiceNamespace": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
@@ -208,6 +230,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/applicationautoscaling/test_application_autoscaling.py::TestAppAutoscaling::test_ecs_register_scalable_target",
+            "test": "test_ecs_register_scalable_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ScalableTargetARN', '$..ScalableTargets..RoleARN', '$..ScalableTargets..SuspendedState']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_patterns.py::TestEcsFargateApplicationLoadBalanced::test_service_deployment",
@@ -232,7 +264,53 @@
         ]
       }
     },
+    "DescribeScalableTargets": {
+      "ResourceIds, ServiceNamespace": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/applicationautoscaling/test_application_autoscaling.py::TestAppAutoscaling::test_ecs_register_scalable_target",
+            "test": "test_ecs_register_scalable_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ScalableTargetARN', '$..ScalableTargets..RoleARN', '$..ScalableTargets..SuspendedState']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeScalingPolicies": {
+      "ServiceNamespace": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/applicationautoscaling/test_application_autoscaling.py::TestAppAutoscaling::test_put_scaling_policy",
+            "test": "test_put_scaling_policy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "PutScalingPolicy": {
+      "PolicyName, PolicyType, ResourceId, ScalableDimension, ServiceNamespace": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/applicationautoscaling/test_application_autoscaling.py::TestAppAutoscaling::test_put_scaling_policy",
+            "test": "test_put_scaling_policy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
       "PolicyName, PolicyType, ResourceId, ScalableDimension, ServiceNamespace, StepScalingPolicyConfiguration": {
         "ls_pro": [
           {
@@ -260,7 +338,7 @@
       "PolicyName, PolicyType, ResourceId, ScalableDimension, ServiceNamespace, TargetTrackingScalingPolicyConfiguration": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
@@ -296,7 +374,7 @@
       "MaxCapacity, MinCapacity, ResourceId, RoleARN, ScalableDimension, ServiceNamespace": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
@@ -324,6 +402,20 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
+          }
+        ]
+      },
+      "MaxCapacity, MinCapacity, ResourceId, ScalableDimension, ServiceNamespace": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/applicationautoscaling/test_application_autoscaling.py::TestAppAutoscaling::test_ecs_register_scalable_target",
+            "test": "test_ecs_register_scalable_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ScalableTargetARN', '$..ScalableTargets..RoleARN', '$..ScalableTargets..SuspendedState']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }

@@ -8,7 +8,8 @@ description: >
 
 ## Introduction
 
-[BitBucket Pipeline](https://bitbucket.org/product/features/pipelines) is a CI/CD tool that allows you to build, test, and deploy your code directly from BitBucket. This guide will show you how to use LocalStack in BitBucket Pipelines.
+[BitBucket Pipeline](https://bitbucket.org/product/features/pipelines) is a CI/CD tool that allows you to build, test, and deploy your code directly from BitBucket.
+This guide will show you how to use LocalStack in BitBucket Pipelines.
 
 ## Setting up the BitBucket Pipeline
 
@@ -52,17 +53,19 @@ pipelines:
           - awslocal s3 ls
 ```
 
-## Configuring a CI key
+## Configuring a CI Auth Token
 
-You can enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the project's environment variables. The LocalStack container will automatically pick it up and activate the Pro features.
+You can enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI Auth Token to the project's environment variables.
+The LocalStack container will automatically pick it up and activate the Pro features.
 
-To add a CI key to your BitBucket Pipeline:
+Go to the [CI Auth Token page](https://app.localstack.cloud/workspace/auth-tokens) and copy your CI Auth Token.
+To add a CI Auth Token to your BitBucket Pipeline:
 
 - Select a workspace from the BitBucket dashboard.
 - Select the **Settings** on the top navigation bar.
 - Select **Workspace settings** from the **Settings dropdown** menu.
-- On left-hand menu, navigate to **Pipelines** and click on **Workspace variables**.
-- Add a new variable with the name `LOCALSTACK_API_KEY` and the value of your CI key.
+- On the left-hand menu, navigate to **Pipelines** and click on **Workspace variables**.
+- Add a new variable with the name `LOCALSTACK_AUTH_TOKEN` and the value of your CI Auth Token.
 
 Navigate to your BitBucket Pipeline and add the following lines to the `bitbucket-pipelines.yaml` file:
 
@@ -80,8 +83,10 @@ pipelines:
           - docker run -d --rm -p 4566:4566 -p 4510-4559:4510-4559 -e LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?} -e DEBUG=1 -e LS_LOG=trace -e DOCKER_SOCK=tcp://${BITBUCKET_DOCKER_HOST_INTERNAL}:2375 -e DOCKER_HOST=tcp://${BITBUCKET_DOCKER_HOST_INTERNAL}:2375 --name localstack-main localstack/localstack-pro
           ...
 ```
+
 ## Current Limitations
 
 ### Mounting Volumes
 
-BitBucket Pipelines does not support mounting volumes, so you cannot mount a volume to the LocalStack container. This limitation prevents you from mounting the Docker Socket to the LocalStack container, which is required to create compute resources, such as Lambda functions or ECS tasks.
+BitBucket Pipelines does not support mounting volumes, so you cannot mount a volume to the LocalStack container.
+This limitation prevents you from mounting the Docker Socket to the LocalStack container, which is required to create compute resources, such as Lambda functions or ECS tasks.

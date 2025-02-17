@@ -1,26 +1,30 @@
 ---
-title: "Kinesis"
-linkTitle: "Kinesis"
-description: Get started with Kinesis on LocalStack
+title: "Kinesis Data Streams"
+linkTitle: "Kinesis Data Streams"
+description: Get started with Kinesis Data Streams on LocalStack
 persistence: supported
 
 ---
 
 ## Introduction
 
-Kinesis is a platform provided by Amazon Web Services (AWS) that enables your application to ingest, buffer, and process data in real-time. Kinesis is suitable for applications that require processing and deriving insights from data streams such as logs, metrics, user interactions, and IoT sensor readings. Kinesis offers three main services: Kinesis Data Streams, Kinesis Data Firehose, and Kinesis Data Analytics. In this page, we take a look at Kinesis Data Streams which allows you to capture and store real-time data streams.
+Kinesis Data Streams is an AWS service for ingesting, buffering, and processing data in high throughput data streams.
+It is used for applications that require real-time processing and deriving insights from data streams such as logs, metrics, user interactions, and sensor readings.
 
-LocalStack allows you to use the Kinesis APIs in your local environment from setting up data streams and configuring data processing to building real-time analytics applications. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kinesis/), which provides information on the extent of Kinesis's integration with LocalStack.
+LocalStack allows you to use the Kinesis Data Streams APIs in your local environment from setting up data streams and configuring data processing to building real-time applications.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kinesis/).
 
 ## Getting started
 
-This guide is designed for users new to Kinesis and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+This guide is designed for users new to Kinesis Data Streams and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create a Lambda function to consume events from a Kinesis stream with the AWS CLI.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create a Lambda function to consume events from a Kinesis stream with the AWS CLI.
 
 ### Create a Lambda function
 
-You need to create a Lambda function that receives a Kinesis event input and processes the messages that it contains. Create a file named `index.mjs` with the following content:
+You need to create a Lambda function that receives a Kinesis event input and processes the messages that it contains.
+Create a file named `index.mjs` with the following content:
 
 ```javascript
 console.log('Loading function');
@@ -33,7 +37,8 @@ export const handler = (event, context) => {
 };
 ```
 
-You can create a Lambda function using the [`CreateFunction`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) API. Run the following command to create a Lambda function named `ProcessKinesisRecords`:
+You can create a Lambda function using the [`CreateFunction`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) API.
+Run the following command to create a Lambda function named `ProcessKinesisRecords`:
 
 {{< command >}}
 $ zip function.zip index.mjs
@@ -85,7 +90,9 @@ Create a file named `input.txt` with the following JSON content:
 }
 ```
 
-The JSON contains a sample Kinesis event. You can use the [`Invoke`](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html) API to invoke the Lambda function with the Kinesis event as input. Execute the following command:
+The JSON contains a sample Kinesis event.
+You can use the [`Invoke`](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html) API to invoke the Lambda function with the Kinesis event as input.
+Execute the following command:
 
 {{< command >}}
 $ awslocal lambda invoke \
@@ -95,7 +102,8 @@ $ awslocal lambda invoke \
 
 ### Create a Kinesis Stream
 
-You can create a Kinesis Stream using the [`CreateStream`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_CreateStream.html) API. Run the following command to create a Kinesis Stream named `lambda-stream`:
+You can create a Kinesis Stream using the [`CreateStream`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_CreateStream.html) API.
+Run the following command to create a Kinesis Stream named `lambda-stream`:
 
 {{< command >}}
 $ awslocal kinesis create-stream \
@@ -103,7 +111,8 @@ $ awslocal kinesis create-stream \
   --shard-count 1
 {{< / command >}}
 
-You can retrieve the Stream ARN using the [`DescribeStream`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DescribeStream.html) API. Execute the following command:
+You can retrieve the Stream ARN using the [`DescribeStream`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DescribeStream.html) API.
+Execute the following command:
 
 {{< command >}}
 $ awslocal kinesis describe-stream \
@@ -135,7 +144,8 @@ You can save the `StreamARN` value for later use.
 
 ### Add an Event Source in Lambda
 
-You can add an Event Source to your Lambda function using the [`CreateEventSourceMapping`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html) API. Run the following command to add the Kinesis Stream as an Event Source to your Lambda function:
+You can add an Event Source to your Lambda function using the [`CreateEventSourceMapping`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html) API.
+Run the following command to add the Kinesis Stream as an Event Source to your Lambda function:
 
 {{< command >}}
 $ awslocal lambda create-event-source-mapping \
@@ -147,7 +157,8 @@ $ awslocal lambda create-event-source-mapping \
 
 ### Test the Event Source mapping
 
-You can test the event source mapping by adding a record to the Kinesis Stream using the [`PutRecord`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html) API. Run the following command to add a record to the Kinesis Stream:
+You can test the event source mapping by adding a record to the Kinesis Stream using the [`PutRecord`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html) API.
+Run the following command to add a record to the Kinesis Stream:
 
 {{< command >}}
 $ awslocal kinesis put-record \
@@ -169,7 +180,8 @@ You can fetch the CloudWatch logs for your Lambda function reading records from 
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing Kinesis Streams & Kafka Clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Kinesis** under the **Analytics** section.
+The LocalStack Web Application provides a Resource Browser for managing Kinesis Streams & Kafka Clusters.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Kinesis** under the **Analytics** section.
 
 <img src="kinesis-resource-browser.png" alt="Kinesis Resource Browser" title="Kinesis Resource Browser" width="900" />
 <br>
@@ -190,6 +202,7 @@ The following code snippets and sample applications provide practical examples o
 - [Search application with Lambda, Kinesis, Firehose, ElasticSearch, S3](https://github.com/localstack/sample-fuzzy-movie-search-lambda-kinesis-elasticsearch)
 - [Streaming Data Pipeline with Kinesis, Tinybird, CloudWatch, Lambda](https://github.com/localstack/serverless-streaming-data-pipeline)
 
-## Current Limitations
+## Limitations
 
-In multi-account setups, each AWS account launches a separate instance of Kinesis Mock, which is very resource intensive when a large number of AWS accounts are used. An [open Kinesis Mock issue](https://github.com/etspaceman/kinesis-mock/issues/377) is being used to keep track of this feature.
+In multi-account setups, each AWS account launches a separate instance of Kinesis Mock, which is very resource intensive when a large number of AWS accounts are used.
+An [open Kinesis Mock issue](https://github.com/etspaceman/kinesis-mock/issues/377) is being used to keep track of this feature.

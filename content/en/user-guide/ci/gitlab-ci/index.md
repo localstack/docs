@@ -10,6 +10,7 @@ This page contains easily customisable snippets to show you how to manage LocalS
 ## Snippets
 
 ### Start up Localstack
+
 {{< callout "tip" >}}
 While working with a Docker-in-Docker (`dind`) setup, the Docker runner requires `privileged` mode.
 You must always use `privileged = true` in your GitLab CI's `config.toml` file while setting up LocalStack in GitLab CI runners.
@@ -24,6 +25,7 @@ HOSTNAME_EXTERNAL: localhost.localstack.cloud.
 </details>
 
 #### Service
+
 ```yaml
 ...
 variables:
@@ -41,6 +43,7 @@ services:
 ```
 
 #### Container
+
 ```yaml
 image: docker:latest
 
@@ -72,29 +75,32 @@ job:
     - DOCKER_HOST="tcp://${dind_ip}:2375" localstack start -d
 ```
 
-### Configure a CI key
-You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the repository's environment variables.
-Go to your project's **Settings > CI/CD**  and expand the  **Variables**  section.
-Select the **Add Variable** button and fill in the necessary details.
-After you create a variable, you can use it in the `.gitlab-ci.yml` file.
+### Configure a CI Auth Token
 
-However Variables set in the GitLab UI are not passed down to service containers.
-We need to assign them to variables in the UI, and then re-assign them in our `.gitlab-ci.yml`
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your [CI Auth Token](https://app.localstack.cloud/workspace/auth-tokens) to the repository's environment variables as `LOCALSTACK_AUTH_TOKEN`.
+Go to your project's **Settings > CI/CD** and expand the **Variables** section.
+Select the **Add Variable** button and fill in the necessary details with `LOCALSTACK_AUTH_TOKEN` as the key and your CI Auth Token as the value.
+After you create the variable, you can use it in the `.gitlab-ci.yml` file.
+
+However, variables set in the GitLab UI are not automatically passed down to service containers.
+You need to assign them as variables in the UI, and then re-assign them in your `.gitlab-ci.yml`.
 
 ```yaml
 ...
 variables:
-  LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
+  LOCALSTACK_AUTH_TOKEN: $LOCALSTACK_AUTH_TOKEN
 ...
 services:
   - name: localstack/localstack-pro:latest
     alias: localstack
 ...
 ```
+
 You can check the logs of the LocalStack container to see if the activation was successful.
-If the CI key activation fails, LocalStack container will exit with an error code.
+If the CI Auth Token activation fails, LocalStack container will exit with an error code.
 
 ### Dump Localstack logs
+
 ```yaml
 ...
 job:
@@ -104,6 +110,7 @@ job:
   - localstack logs | tee localstack.log
 ... 
 ```
+
 In case of the service setup `LOCALSTACK_HOST` will be `localstack:4566`.
 
 ### Store Localstack state
@@ -111,6 +118,7 @@ In case of the service setup `LOCALSTACK_HOST` will be `localstack:4566`.
 You can preserve your AWS infrastructure with Localstack in various ways.
 
 #### Artifact
+
 ```yaml
 ...
 job:
@@ -125,9 +133,11 @@ job:
       - $CI_PROJECT_DIR/ls-state-pod.zip
 ...
 ```
+
 More info about Localstack's state export and import [here](/user-guide/state-management/export-import-state/).
 
 #### Cache
+
 ```yaml
 ...
 job:
@@ -146,9 +156,11 @@ job:
       - $CI_PROJECT_DIR/ls-state-pod.zip
 ...
 ```
+
 Additional information about state export and import [here](/user-guide/state-management/export-import-state/).
 
 #### Cloud Pod
+
 ```yaml
 ...
 job:
@@ -159,6 +171,7 @@ job:
     - localstack pod save <POD_NAME>
 ...
 ```
+
 Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
 
 #### Ephemeral Instance (Preview)
@@ -166,7 +179,7 @@ Find more information about cloud pods [here](/user-guide/state-management/cloud
 ```yaml
 ...
 variables:
-  LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
+  LOCALSTACK_AUTH_TOKEN: $LOCALSTACK_AUTH_TOKEN
 ...
 setup-job:
   stage: build
@@ -207,3 +220,7 @@ Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
 - to be able to separate steps into their own jobs one must preserve Localstack's state, since Gitlab is not preserving job related containers/services during the pipelines
 - to start up Localstack in Gitlab CI Docker tools are necessary
 - when Localstack run as a container, it's not accessible during the `after_script` phase
+
+## Examples
+
+- [End-to-End Testing in Gitlab CI with Testcontainers and LocalStack: Understanding Runners and Docker in Docker]({{< ref "tutorials/gitlab_ci_testcontainers/" >}}) - A readily configured demo project, that will walk you through the process of setting up end-to-end testing for a backend application using Testcontainers and LocalStack within GitLab CI.

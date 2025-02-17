@@ -2,8 +2,9 @@
 {{ if (.Get "ref") }}
 {{ $ref = printf "?ref=%s" (.Get "ref") }}
 {{ end }}
-{{ $dataJ := getJSON "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  (.Get "file") $ref  }}
-{{ $con := base64Decode $dataJ.content }}
+{{ $json := resources.GetRemote "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  (.Get "file") $ref  }}
+{{ $data := $json | transform.Unmarshal }}
+{{ $con := base64Decode $data.content }}
 {{ $content := "" }}
 {{ $lines := split $con "\n" }}
 {{ $startIndex := (sub ((.Get "start") | default 1 | int) 1)}}

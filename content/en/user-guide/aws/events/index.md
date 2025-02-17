@@ -2,23 +2,31 @@
 title: "EventBridge"
 linkTitle: "EventBridge"
 description: Get started with EventBridge on LocalStack
+persistence: supported with limitations
+
 ---
 
 ## Introduction
 
-EventBridge provides a centralized mechanism to discover and communicate events across various AWS services and applications. EventBridge allows you to register, track, and resolve events, which indicates a change in the environment and then applies a rule to route the event to a target. EventBridge rules are tied to an Event Bus to manage event-driven workflows. You can use either identity-based or resource-based policies to control access to EventBridge resources, where the former can be attached to IAM users, groups, and roles, and the latter can be attached to specific AWS resources.
+EventBridge provides a centralized mechanism to discover and communicate events across various AWS services and applications.
+EventBridge allows you to register, track, and resolve events, which indicates a change in the environment and then applies a rule to route the event to a target.
+EventBridge rules are tied to an Event Bus to manage event-driven workflows.
+You can use either identity-based or resource-based policies to control access to EventBridge resources, where the former can be attached to IAM users, groups, and roles, and the latter can be attached to specific AWS resources.
 
-LocalStack allows you to use the EventBridge APIs in your local environment to create rules that route events to a target. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_events/), which provides information on the extent of EventBridge's integration with LocalStack. For information on EventBridge Pipes, please refer to the [EventBridge Pipes]({{< ref "user-guide/aws/pipes" >}}) section.
+LocalStack allows you to use the EventBridge APIs in your local environment to create rules that route events to a target.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_events/), which provides information on the extent of EventBridge's integration with LocalStack.
+For information on EventBridge Pipes, please refer to the [EventBridge Pipes]({{< ref "user-guide/aws/pipes" >}}) section.
 
 {{< callout >}}
-We have introduced an all-new LocalStack-native EventBridge provider available behind a feature flag. You can activate it by configuring `PROVIDER_OVERRIDE_EVENTS=v2` in your LocalStack configuration. Learn more about the new provider in the [EventBridge v2 Discuss post](https://discuss.localstack.cloud/t/introducing-eventbridge-v2-in-localstack/946).
+The native EventBridge provider, introduced in [LocalStack 3.5.0](https://discuss.localstack.cloud/t/localstack-release-v3-5-0/947), is now the default in 4.0. The legacy provider can still be enabled using the `PROVIDER_OVERRIDE_EVENTS=v1` configuration, but it is deprecated and will be removed in the next major release. We strongly recommend migrating to the new provider.
 {{< /callout >}}
 
 ## Getting Started
 
 This guide is designed for users new to EventBridge and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate creating an EventBridge rule to run a Lambda function on a schedule.
+Start your LocalStack container using your preferred method.
+We will demonstrate creating an EventBridge rule to run a Lambda function on a schedule.
 
 ### Create a Lambda Function
 
@@ -59,7 +67,8 @@ $ awslocal events put-rule \
     --schedule-expression 'rate(2 minutes)'
 {{< /command >}}
 
-In the above command, we have specified a schedule expression of `rate(2 minutes)`, which will run the rule every two minutes. It means that the Lambda function will be invoked every two minutes.
+In the above command, we have specified a schedule expression of `rate(2 minutes)`, which will run the rule every two minutes.
+It means that the Lambda function will be invoked every two minutes.
 
 Next, grant the EventBridge service principal (`events.amazonaws.com`) permission to run the rule, using the [`AddPermission`](https://docs.aws.amazon.com/cli/latest/reference/events/add-permission.html) API:
 
@@ -95,7 +104,8 @@ $ awslocal events put-targets \
 
 ### Verify the Lambda invocation
 
-You can verify the Lambda invocation by checking the CloudWatch logs. However, wait at least 2 minutes after running the last command before checking the logs.
+You can verify the Lambda invocation by checking the CloudWatch logs.
+However, wait at least 2 minutes after running the last command before checking the logs.
 
 Run the following command to list the CloudWatch log groups:
 
@@ -123,11 +133,6 @@ $ localstack logs
 
 ## Supported target types
 
-{{< callout >}}
-LocalStack now supports a new event rule engine for [EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html).
-You can [configure]({{< ref "configuration" >}}) `EVENT_RULE_ENGINE=java` (preview) to use the AWS [event-ruler](https://github.com/aws/event-ruler), which offers better parity.
-{{< /callout >}}
-
 At this time LocalStack supports the following [target types](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html#eb-console-targets) for EventBridge rules:
 
 - Lambda function
@@ -139,15 +144,17 @@ At this time LocalStack supports the following [target types](https://docs.aws.a
 - API destination
 - Kinesis
 - CloudWatch log group
-
+- API Gateway
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing EventBridge Buses. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **EventBridge** under the **App Integration** section.
+The LocalStack Web Application provides a Resource Browser for managing EventBridge Buses.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **EventBridge** under the **App Integration** section.
 
 The Resource Browser allows you to perform the following actions:
 
 - **View the Event Buses**: You can view the list of EventBridge Buses running locally, alongside their Amazon Resource Names (ARNs) and Policies.
 - **Create Event Rule**: You can create a new Event Rule by specifying **Name**, **Description**, **Event Pattern**, **Schedule Expressions**, **State**, **Role ARN**, and **Tags**.
-- **Trigger Event**: You can trigger an Event by specifying the **Entries** and **Endpoint Id**. While creating an Entry, you must specify **Source**, **Event Bus Name**, **Detail**, **Resources**, **Detail Type**, and **Trace Header**.
+- **Trigger Event**: You can trigger an Event by specifying the **Entries** and **Endpoint Id**.
+  While creating an Entry, you must specify **Source**, **Event Bus Name**, **Detail**, **Resources**, **Detail Type**, and **Trace Header**.
 - **Remove Selected**: You can remove the selected EventBridge Bus.

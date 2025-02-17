@@ -66,11 +66,11 @@
       "CreateFirewallRule": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -78,11 +78,11 @@
       "CreateFirewallRuleGroup": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -150,11 +150,11 @@
       "DeleteFirewallRule": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -162,11 +162,11 @@
       "DeleteFirewallRuleGroup": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -522,11 +522,11 @@
       "ListFirewallRules": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -837,11 +837,67 @@
       }
     },
     "CreateFirewallDomainList": {
+      "CreatorRequestId, Name": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules",
+            "test": "test_list_firewall_rules",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "CreatorRequestId, Name, Tags": {
         "ls_community": [
           {
             "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_domain_lists",
             "test": "test_list_firewall_domain_lists",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreateFirewallRule": {
+      "Action, CreatorRequestId, FirewallDomainListId, FirewallRuleGroupId, Name, Priority": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules",
+            "test": "test_list_firewall_rules",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreateFirewallRuleGroup": {
+      "CreatorRequestId, Name": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules",
+            "test": "test_list_firewall_rules",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules_for_empty_rule_group",
+            "test": "test_list_firewall_rules_for_empty_rule_group",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ResolverEndpointType']",
@@ -1040,6 +1096,58 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_domain_lists",
             "test": "test_list_firewall_domain_lists",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules",
+            "test": "test_list_firewall_rules",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteFirewallRule": {
+      "FirewallDomainListId, FirewallRuleGroupId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules",
+            "test": "test_list_firewall_rules",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteFirewallRuleGroup": {
+      "FirewallRuleGroupId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules",
+            "test": "test_list_firewall_rules",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules_for_empty_rule_group",
+            "test": "test_list_firewall_rules_for_empty_rule_group",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ResolverEndpointType']",
@@ -1382,6 +1490,84 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_domain_lists",
             "test": "test_list_firewall_domain_lists",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListFirewallRules": {
+      "Action, FirewallRuleGroupId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules",
+            "test": "test_list_firewall_rules",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "Action, FirewallRuleGroupId, Priority": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules",
+            "test": "test_list_firewall_rules",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "FirewallRuleGroupId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules",
+            "test": "test_list_firewall_rules",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules_for_empty_rule_group",
+            "test": "test_list_firewall_rules_for_empty_rule_group",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules_for_missing_rule_group",
+            "test": "test_list_firewall_rules_for_missing_rule_group",
+            "response": "400",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..ResolverEndpointType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "FirewallRuleGroupId, Priority": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/route53resolver/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_rules",
+            "test": "test_list_firewall_rules",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ResolverEndpointType']",

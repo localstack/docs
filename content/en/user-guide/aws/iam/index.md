@@ -8,17 +8,23 @@ persistence: supported
 
 ## Introduction
 
-Identity and Access Management (IAM) is a web service provided by Amazon Web Services (AWS) that enables users to control access to AWS resources securely. IAM allows organizations to create and manage AWS users, groups, and roles, defining granular permissions to access specific AWS services and resources. By centralizing access control, administrators can enforce the principle of least privilege, ensuring users have only the necessary permissions for their tasks.
+Identity and Access Management (IAM) is a web service provided by Amazon Web Services (AWS) that enables users to control access to AWS resources securely.
+IAM allows organizations to create and manage AWS users, groups, and roles, defining granular permissions to access specific AWS services and resources.
+By centralizing access control, administrators can enforce the principle of least privilege, ensuring users have only the necessary permissions for their tasks.
 
-LocalStack allows you to use the IAM APIs in your local environment to create and manage users, groups, and roles, granting permissions that adhere to the principle of least privilege. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iam/), which provides information on the extent of IAM's integration with LocalStack.
+LocalStack allows you to use the IAM APIs in your local environment to create and manage users, groups, and roles, granting permissions that adhere to the principle of least privilege.
+The supported APIs are available on our [API coverage page]({{< ref "references/coverage/coverage_iam" >}}), which provides information on the extent of IAM's integration with LocalStack.
+The policy coverage is documented in the [IAM coverage documentation]({{< ref "iam-coverage" >}}).
 
 ## Getting started
 
 This guide is designed for users new to IAM and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how you can create a new user named `test`, create an access key pair for the user, and assert that the user is recognized after the access keys are configured in the environment.
+Start your LocalStack container using your preferred method.
+We will demonstrate how you can create a new user named `test`, create an access key pair for the user, and assert that the user is recognized after the access keys are configured in the environment.
 
-By default, in the absence of custom credentials configuration, all requests to LocalStack run under the administrative root user. Run the following command to use the [`GetCallerIdentity`](https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html) API to confirm that the request is running under the root user:
+By default, in the absence of custom credentials configuration, all requests to LocalStack run under the administrative root user.
+Run the following command to use the [`GetCallerIdentity`](https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html) API to confirm that the request is running under the root user:
 
 {{< command >}}
 $ awslocal sts get-caller-identity
@@ -34,13 +40,15 @@ You can see an output similar to the following:
 }
 ```
 
-You can now create a new user named `test` using the [`CreateUser`](https://docs.aws.amazon.com/cli/latest/reference/iam/create-user.html) API. Run the following command:
+You can now create a new user named `test` using the [`CreateUser`](https://docs.aws.amazon.com/cli/latest/reference/iam/create-user.html) API.
+Run the following command:
 
 {{< command >}}
 $ awslocal iam create-user --user-name test
 {{< / command >}}
 
-You can now create an access key pair for the user using the [`CreateAccessKey`](https://docs.aws.amazon.com/cli/latest/reference/iam/create-access-key.html) API. Run the following command:
+You can now create an access key pair for the user using the [`CreateAccessKey`](https://docs.aws.amazon.com/cli/latest/reference/iam/create-access-key.html) API.
+Run the following command:
 
 {{< command >}}
 $ awslocal iam create-access-key --user-name test
@@ -61,7 +69,8 @@ You can see an output similar to the following:
 ...
 ```
 
-You can save the `AccessKeyId` and `SecretAccessKey` values, and export them in the environment to run commands under the `test` user. Run the following command:
+You can save the `AccessKeyId` and `SecretAccessKey` values, and export them in the environment to run commands under the `test` user.
+Run the following command:
 
 {{< command >}}
 $ export AWS_ACCESS_KEY_ID=LKIAQAAAAAAAGFWKCM5F AWS_SECRET_ACCESS_KEY=DUulXk2N2yD6rgoBBR9A/5iXa6dBcLyDknr925Q5
@@ -77,7 +86,8 @@ You can see that the request is now running under the `test` user.
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing IAM users, groups, and roles. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **IAM** under the **Security Identity Compliance** section.
+The LocalStack Web Application provides a Resource Browser for managing IAM users, groups, and roles.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **IAM** under the **Security Identity Compliance** section.
 
 <img src="iam-resource-browser.png" alt="IAM Resource Browser" title="IAM Resource Browser" width="900" />
 
@@ -88,25 +98,16 @@ The Resource Browser allows you to perform the following actions:
 - **Edit User, Group, Role, and Policy Details**: Click on any listed resources to edit its details by clicking on the desired User, Group, Role, or Policy.
 - **Delete User, Group, Role, and Policy**: Select any listed resources to delete them by clicking the **Actions** button and selecting **Remove Selected**.
 
-## Supported APIs
+## Special Tools
 
-IAM security enforcement is comprehensively available for all AWS APIs in LocalStack and has undergone thorough testing across multiple services. The services that have been rigorously tested include:
+LocalStack provides various tools to help you generate, test, and enforce IAM policies more efficiently.
 
-- ACM
-- API Gateway
-- CloudFormation
-- CloudWatch (metrics/events/logs)
-- DynamoDB
-- DynamoDB Streams
-- Elasticsearch Service
-- EventBus, Kinesis
-- KMS
-- Lambda
-- Redshift
-- S3
-- SecretsManager
-- SNS
-- SQS
+- **IAM Policy Stream**: IAM Policy Stream provides a real-time view of API calls and the corresponding IAM policies they generate, simplifying permission management and ensuring correct permissions are assigned.
+  Learn more in the [IAM Policy Stream documentation]({{< ref "user-guide/security-testing/iam-policy-stream" >}}).
+- **IAM Policy Enforcement**: This configuration enforces IAM policies when interacting with local cloud APIs, simulating a real AWS environment.
+  For additional information, refer to the [IAM Policy Enforcement documentation]({{< ref "iam-enforcement" >}}).
+- **Explainable IAM**: Explainable IAM logs outputs related to failed policy evaluations directly to LocalStack logs, aiding in the identification of necessary policies for successful requests.
+  More details are available in the [Explainable IAM documentation]({{< ref "explainable-iam" >}}).
 
 ## Examples
 

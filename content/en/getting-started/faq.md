@@ -11,6 +11,27 @@ hide_readingtime: true
 
 ## LocalStack Core FAQs
 
+### How do I resolve SSL issues due to revoked local certificate for `localhost.localstack.cloud`?
+To resolve the issue follow the steps:
+1. **Update to the latest LocalStack version:** To resolve the SSL issues due to revoked certificate, we strongly recommend updating to the latest LocalStack version (v3.7.0 and above)for the most reliable and seamless experience.
+2. **Clear the cached certificate:** It’s important to clear the cached certificate if you continue to experience the issue when updating to the latest LS version.
+  This can be done by deleting the cached certificate file.
+  For example, on Linux systems, you can locate and remove the file at  `~/.cache/localstack/volume/cache/server.test.pem`.
+  The exact path may differ depending on your operating system and how you’ve started LocalStack.
+  Please refer to our [documentation](https://docs.localstack.cloud/references/filesystem/#localstack-volume) for specific instructions.
+
+**Workarounds for older (<v3.7.0) LocalStack versions:**
+
+1. **Disable Certificate Download**: To prevent downloading a revoked certificate, set the environment variable  `SKIP_SSL_CERT_DOWNLOAD=1`.
+  This will cause LocalStack to use a self-signed SSL certificate.
+  Additionally, it’s important to clear the cached certificate from your host machine as mentioned above.
+2. **Use HTTP Instead of HTTPS**: Where possible, use  `http://`  instead of  `https://`  to avoid issues related to the revoked certificates.
+  This workaround works with most browsers.
+  However, Safari requires additional steps:
+    2.1.  **Safari Users**: To make this work, you’ll need to first navigate to the page in a new tab and accept the security warning.
+  To do this, make sure that LocalStack is started with  `SKIP_SSL_CERT_DOWNLOAD=1`  and that you have cleared the cached certificate as mentioned above.
+  Once you’ve accepted the warning, you should be able to proceed.
+
 ### How to update my LocalStack CLI?
 
 If the LocalStack CLI version is heavily outdated, it might lead to issues with container startup and debug commands.
@@ -29,9 +50,9 @@ $ localstack update localstack-cli
 ### Is using `localhost.localstack.cloud:4566` to set as the endpoint for AWS services recommended?
 
 `localhost.localstack.cloud` is the recommended endpoint - especially for S3, in order to enable host-based bucket endpoints.
-* When using this domain within LocalStack compute environments like Lambda, ECS or EC2, this domain name resolves to the LocalStack container via our DNS server available in version 2.3.
-* By configuring your environment, your applications can also use `localhost.localstack.cloud` to resolve to the LocalStack container via our DNS server.
-* In addition, we also publish an SSL certificate that is automatically used inside LocalStack, in order to enable HTTPS endpoints with valid certificates.
+- When using this domain within LocalStack compute environments like Lambda, ECS or EC2, this domain name resolves to the LocalStack container via our DNS server available in version 2.3.
+- By configuring your environment, your applications can also use `localhost.localstack.cloud` to resolve to the LocalStack container via our DNS server.
+- In addition, we also publish an SSL certificate that is automatically used inside LocalStack, in order to enable HTTPS endpoints with valid certificates.
 
 Across our docs, we use `localhost:4566` instead of `localhost.localstack.cloud`, to provide a fallback option to users.
 The primary reason being that some users are behind a corporate firewall or an internet service provider that does not allow resolving `localhost.localstack.cloud` properly.
@@ -240,6 +261,10 @@ For more details visit [Docker WSL documentation](https://docs.docker.com/deskto
 
 ## LocalStack Platform FAQs
 
+### Where can I check the status of LocalStack's services?
+
+LocalStack will provide the current status of it's services and any relevant details regarding any outages or incidents at [status.localstack.cloud](https://status.localstack.cloud).
+
 ### Where are my Cloud Pods stored?
 
 LocalStack provides a secure storage mechanism to store Cloud Pods on the Web Application.
@@ -255,20 +280,20 @@ $ curl localhost:4566/_localstack/health | jq
 {{< / command >}}
 
 If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "xray" >}}) -- is running, LocalStack Pro or Enterprise has started successfully.
-If your auth token is invalid, you will see an error message like this in the logs of LocalStack:
+If your Auth Token is invalid, you will see an error message like this in the logs of LocalStack:
 
 ```bash
 license activation failed! Reason: ...
 ```
 
-If this error occurs, something is wrong with your auth token or license.
-Make sure your auth token is set correctly (check for typos!) and your license is valid.
-If the auth token still does not work, please [contact us](https://localstack.cloud/contact/).
+If this error occurs, something is wrong with your Auth Token or license.
+Make sure your Auth Token is set correctly (check for typos!) and your license is valid.
+If the Auth Token still does not work, please [contact us](https://localstack.cloud/contact/).
 
 ### How are CI credits in LocalStack calculated?
 
-A CI key allows you to use LocalStack in your CI environment.
-Every activation of a CI key consumes one build credit.
+A CI Auth Token allows you to use LocalStack in your CI environment.
+Every activation with a CI Auth Token consumes one CI credit.
 This means that with every build triggered through the LocalStack container you will consume one credit.
 To understand the CI pricing across our product tiers, follow up with our [LocalStack in CI]({{<ref "user-guide/ci">}}) documentation.
 
@@ -304,7 +329,7 @@ $ dig api.localstack.cloud
 If the result has some other status than `status: NOERROR,` your machine cannot resolve this domain.
 
 Some corporate DNS servers might filter requests to certain domains.
-Contact your network administrator to safelist` localstack.cloud` domains.
+Contact your network administrator to safelist `localstack.cloud` domains.
 
 ### How does LocalStack Pro handle security patches and bug fixes?
 
@@ -326,4 +351,6 @@ For more details, please take a look at our [Enterprise offering](https://locals
 
 ### How does the LocalStack Web Application communicate with the LocalStack container?
 
-The LocalStack Web Application connects to your LocalStack container running on your local machine and retrieves the information directly via the `localhost` without using the internet. Features such as Resource Browsers, IAM Policy Stream, Chaos Engineering dashboard, and others communicate directly with the LocalStack container using your browser. None of the information is sent to the internet, or stored on any external servers maintained by LocalStack.
+The LocalStack Web Application connects to your LocalStack container running on your local machine and retrieves the information directly via the `localhost` without using the internet.
+Features such as Resource Browsers, IAM Policy Stream, Chaos Engineering dashboard, and others communicate directly with the LocalStack container using your browser.
+None of the information is sent to the internet, or stored on any external servers maintained by LocalStack.

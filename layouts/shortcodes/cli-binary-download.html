@@ -1,5 +1,5 @@
 {{- $latest_version := .Site.Params.localstack.latest_version -}}
 {{- range (index .Site.Params.localstack.cli_links (.Get "os") ) }}
 {{- $processed_url := replace .url "<latest-version>" $latest_version -}}
-<a href="{{ $processed_url }}"><button class="btn" style="background-color: buttonface;"><i class="fa fa-download"></i> {{ .name }}</button></a> 
+<a href="{{ $processed_url }}"><button class="btn" style="background-color: buttonface;"><i class="fa fa-download"></i>{{ .name }}</button></a>&nbsp;
 {{- end -}}

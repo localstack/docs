@@ -135,6 +135,18 @@
       }
     },
     {
+      "DeleteSharedTrustStoreAssociation": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "DeleteTargetGroup": {
         "implemented": true,
         "availability": "pro",
@@ -179,6 +191,30 @@
         "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DescribeCapacityReservation": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DescribeListenerAttributes": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -234,11 +270,11 @@
       "DescribeRules": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -339,6 +375,18 @@
       }
     },
     {
+      "GetResourcePolicy": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "GetTrustStoreCaCertificatesBundle": {
         "implemented": false,
         "availability": "",
@@ -363,12 +411,36 @@
       }
     },
     {
+      "ModifyCapacityReservation": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "ModifyListener": {
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ModifyListenerAttributes": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -390,11 +462,11 @@
       "ModifyRule": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -498,11 +570,11 @@
       "SetRulePriorities": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -640,11 +712,61 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[443-gateway_listen_override1-4566]",
+            "test": "test_create_listener[443-gateway_listen_override1-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[5555-None-4566]",
+            "test": "test_create_listener[5555-None-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[5555-gateway_listen_override0-5555]",
+            "test": "test_create_listener[5555-gateway_listen_override0-5555]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[host]",
+            "test": "test_internal_path_based_routing[host]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[path]",
+            "test": "test_internal_path_based_routing[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -660,18 +782,238 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_loadbalancer_rule",
-            "test": "test_create_loadbalancer_rule",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions0]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Rules..Actions..TargetGroupArn', '$..Rules..Conditions..Values', '$..LoadBalancers..AvailabilityZones..LoadBalancerAddresses', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_listener_attributes",
+            "test": "test_describe_listener_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_non_existent_listener",
+            "test": "test_describe_non_existent_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions0-modify_conditions0]",
+            "test": "test_modify_rule[create_conditions0-modify_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions1-modify_conditions1]",
+            "test": "test_modify_rule[create_conditions1-modify_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions2-modify_conditions2]",
+            "test": "test_modify_rule[create_conditions2-modify_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions3-modify_conditions3]",
+            "test": "test_modify_rule[create_conditions3-modify_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_set_rule_priorities",
+            "test": "test_set_rule_priorities",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[False]",
+            "test": "test_host_header_rule[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[True]",
+            "test": "test_host_header_rule[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_header_rule",
+            "test": "test_http_header_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_request_method_rule",
+            "test": "test_http_request_method_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_path_pattern_rule",
+            "test": "test_path_pattern_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_query_string_rule",
+            "test": "test_query_string_rule",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -688,6 +1030,26 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_source_ip_rule",
+            "test": "test_source_ip_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_use_priority_for_listener_matching",
+            "test": "test_use_priority_for_listener_matching",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -696,11 +1058,161 @@
       "IpAddressType, Name, Scheme, SecurityGroups, Subnets, Type": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_loadbalancer_rule",
-            "test": "test_create_loadbalancer_rule",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions0]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Rules..Actions..TargetGroupArn', '$..Rules..Conditions..Values', '$..LoadBalancers..AvailabilityZones..LoadBalancerAddresses', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_listener_attributes",
+            "test": "test_describe_listener_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_non_existent_listener",
+            "test": "test_describe_non_existent_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions0-modify_conditions0]",
+            "test": "test_modify_rule[create_conditions0-modify_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions1-modify_conditions1]",
+            "test": "test_modify_rule[create_conditions1-modify_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions2-modify_conditions2]",
+            "test": "test_modify_rule[create_conditions2-modify_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions3-modify_conditions3]",
+            "test": "test_modify_rule[create_conditions3-modify_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_set_rule_priorities",
+            "test": "test_set_rule_priorities",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -742,6 +1254,26 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[host]",
+            "test": "test_internal_path_based_routing[host]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[path]",
+            "test": "test_internal_path_based_routing[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -762,7 +1294,7 @@
             "test": "test_create_load_balancer",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme']",
+            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers[0].EnablePrefixForIpv6SourceNat']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -870,11 +1402,41 @@
       "Name, SecurityGroups, Subnets": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[443-gateway_listen_override1-4566]",
+            "test": "test_create_listener[443-gateway_listen_override1-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[5555-None-4566]",
+            "test": "test_create_listener[5555-None-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[5555-gateway_listen_override0-5555]",
+            "test": "test_create_listener[5555-gateway_listen_override0-5555]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -894,7 +1456,7 @@
             "test": "test_create_load_balancer",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme']",
+            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers[0].EnablePrefixForIpv6SourceNat']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -904,14 +1466,84 @@
             "test": "test_describe_load_balancers",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers..State.Code']",
+            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers[0].EnablePrefixForIpv6SourceNat', '$..LoadBalancers..State.Code']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[False]",
+            "test": "test_host_header_rule[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[True]",
+            "test": "test_host_header_rule[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_header_rule",
+            "test": "test_http_header_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_request_method_rule",
+            "test": "test_http_request_method_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_path_pattern_rule",
+            "test": "test_path_pattern_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_query_string_rule",
+            "test": "test_query_string_rule",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -928,6 +1560,26 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_source_ip_rule",
+            "test": "test_source_ip_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_use_priority_for_listener_matching",
+            "test": "test_use_priority_for_listener_matching",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -938,7 +1590,7 @@
             "test": "test_create_load_balancer",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme']",
+            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers[0].EnablePrefixForIpv6SourceNat']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -972,7 +1624,7 @@
             "test": "test_create_load_balancer",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme']",
+            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers[0].EnablePrefixForIpv6SourceNat']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1014,21 +1666,231 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
-            "test": "test_load_balancing",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[host]",
+            "test": "test_internal_path_based_routing[host]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_loadbalancer_rule",
-            "test": "test_create_loadbalancer_rule",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[path]",
+            "test": "test_internal_path_based_routing[path]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Rules..Actions..TargetGroupArn', '$..Rules..Conditions..Values', '$..LoadBalancers..AvailabilityZones..LoadBalancerAddresses', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
+            "test": "test_load_balancing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions0-modify_conditions0]",
+            "test": "test_modify_rule[create_conditions0-modify_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions1-modify_conditions1]",
+            "test": "test_modify_rule[create_conditions1-modify_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions2-modify_conditions2]",
+            "test": "test_modify_rule[create_conditions2-modify_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions3-modify_conditions3]",
+            "test": "test_modify_rule[create_conditions3-modify_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_set_rule_priorities",
+            "test": "test_set_rule_priorities",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[False]",
+            "test": "test_host_header_rule[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[True]",
+            "test": "test_host_header_rule[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_header_rule",
+            "test": "test_http_header_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_request_method_rule",
+            "test": "test_http_request_method_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_path_pattern_rule",
+            "test": "test_path_pattern_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_query_string_rule",
+            "test": "test_query_string_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1036,6 +1898,26 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
             "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_source_ip_rule",
+            "test": "test_source_ip_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_use_priority_for_listener_matching",
+            "test": "test_use_priority_for_listener_matching",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1050,11 +1932,141 @@
       "HealthCheckEnabled, HealthCheckIntervalSeconds, HealthCheckPath, HealthCheckPort, HealthCheckProtocol, HealthCheckTimeoutSeconds, HealthyThresholdCount, Matcher, Name, Port, Protocol, ProtocolVersion, TargetType, UnhealthyThresholdCount, VpcId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_loadbalancer_rule",
-            "test": "test_create_loadbalancer_rule",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions0]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Rules..Actions..TargetGroupArn', '$..Rules..Conditions..Values', '$..LoadBalancers..AvailabilityZones..LoadBalancerAddresses', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions0-modify_conditions0]",
+            "test": "test_modify_rule[create_conditions0-modify_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions1-modify_conditions1]",
+            "test": "test_modify_rule[create_conditions1-modify_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions2-modify_conditions2]",
+            "test": "test_modify_rule[create_conditions2-modify_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions3-modify_conditions3]",
+            "test": "test_modify_rule[create_conditions3-modify_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_set_rule_priorities",
+            "test": "test_set_rule_priorities",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1068,7 +2080,7 @@
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1078,18 +2090,48 @@
       "HealthCheckEnabled, Name, TargetType": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
-            "test": "test_load_balancing",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[host]",
+            "test": "test_internal_path_based_routing[host]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[path]",
+            "test": "test_internal_path_based_routing[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
+            "test": "test_load_balancing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1338,7 +2380,7 @@
             "test": "test_load_balancing",
             "response": "400",
             "error": "CommonServiceException",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1900,7 +2942,7 @@
             "test": "test_load_balancing",
             "response": "400",
             "error": "CommonServiceException",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1928,7 +2970,7 @@
             "test": "test_load_balancing",
             "response": "400",
             "error": "CommonServiceException",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1996,7 +3038,7 @@
             "test": "test_load_balancing",
             "response": "400",
             "error": "CommonServiceException",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2098,11 +3140,61 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[443-gateway_listen_override1-4566]",
+            "test": "test_create_listener[443-gateway_listen_override1-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[5555-None-4566]",
+            "test": "test_create_listener[5555-None-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[5555-gateway_listen_override0-5555]",
+            "test": "test_create_listener[5555-gateway_listen_override0-5555]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[host]",
+            "test": "test_internal_path_based_routing[host]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[path]",
+            "test": "test_internal_path_based_routing[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2118,18 +3210,238 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_loadbalancer_rule",
-            "test": "test_create_loadbalancer_rule",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions0]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Rules..Actions..TargetGroupArn', '$..Rules..Conditions..Values', '$..LoadBalancers..AvailabilityZones..LoadBalancerAddresses', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_listener_attributes",
+            "test": "test_describe_listener_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_non_existent_listener",
+            "test": "test_describe_non_existent_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions0-modify_conditions0]",
+            "test": "test_modify_rule[create_conditions0-modify_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions1-modify_conditions1]",
+            "test": "test_modify_rule[create_conditions1-modify_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions2-modify_conditions2]",
+            "test": "test_modify_rule[create_conditions2-modify_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions3-modify_conditions3]",
+            "test": "test_modify_rule[create_conditions3-modify_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_set_rule_priorities",
+            "test": "test_set_rule_priorities",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[False]",
+            "test": "test_host_header_rule[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[True]",
+            "test": "test_host_header_rule[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_header_rule",
+            "test": "test_http_header_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_request_method_rule",
+            "test": "test_http_request_method_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_path_pattern_rule",
+            "test": "test_path_pattern_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_query_string_rule",
+            "test": "test_query_string_rule",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2140,6 +3452,26 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
             "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_source_ip_rule",
+            "test": "test_source_ip_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_use_priority_for_listener_matching",
+            "test": "test_use_priority_for_listener_matching",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2294,11 +3626,61 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[443-gateway_listen_override1-4566]",
+            "test": "test_create_listener[443-gateway_listen_override1-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[5555-None-4566]",
+            "test": "test_create_listener[5555-None-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[5555-gateway_listen_override0-5555]",
+            "test": "test_create_listener[5555-gateway_listen_override0-5555]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[host]",
+            "test": "test_internal_path_based_routing[host]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[path]",
+            "test": "test_internal_path_based_routing[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
             "test": "test_load_balancing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2314,21 +3696,111 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_load_balancer",
-            "test": "test_create_load_balancer",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions0]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme']",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_loadbalancer_rule",
-            "test": "test_create_loadbalancer_rule",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions1]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Rules..Actions..TargetGroupArn', '$..Rules..Conditions..Values', '$..LoadBalancers..AvailabilityZones..LoadBalancerAddresses', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_load_balancer",
+            "test": "test_create_load_balancer",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers[0].EnablePrefixForIpv6SourceNat']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_listener_attributes",
+            "test": "test_describe_listener_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2338,14 +3810,144 @@
             "test": "test_describe_load_balancers",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers..State.Code']",
+            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers[0].EnablePrefixForIpv6SourceNat', '$..LoadBalancers..State.Code']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_non_existent_listener",
+            "test": "test_describe_non_existent_listener",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions0-modify_conditions0]",
+            "test": "test_modify_rule[create_conditions0-modify_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions1-modify_conditions1]",
+            "test": "test_modify_rule[create_conditions1-modify_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions2-modify_conditions2]",
+            "test": "test_modify_rule[create_conditions2-modify_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions3-modify_conditions3]",
+            "test": "test_modify_rule[create_conditions3-modify_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_set_rule_priorities",
+            "test": "test_set_rule_priorities",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[False]",
+            "test": "test_host_header_rule[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[True]",
+            "test": "test_host_header_rule[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_header_rule",
+            "test": "test_http_header_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_request_method_rule",
+            "test": "test_http_request_method_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_path_pattern_rule",
+            "test": "test_path_pattern_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_query_string_rule",
+            "test": "test_query_string_rule",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2356,6 +3958,26 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
             "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_source_ip_rule",
+            "test": "test_source_ip_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_use_priority_for_listener_matching",
+            "test": "test_use_priority_for_listener_matching",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2400,21 +4022,231 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
-            "test": "test_load_balancing",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[host]",
+            "test": "test_internal_path_based_routing[host]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_loadbalancer_rule",
-            "test": "test_create_loadbalancer_rule",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[path]",
+            "test": "test_internal_path_based_routing[path]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Rules..Actions..TargetGroupArn', '$..Rules..Conditions..Values', '$..LoadBalancers..AvailabilityZones..LoadBalancerAddresses', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
+            "test": "test_load_balancing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions0-modify_conditions0]",
+            "test": "test_modify_rule[create_conditions0-modify_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions1-modify_conditions1]",
+            "test": "test_modify_rule[create_conditions1-modify_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions2-modify_conditions2]",
+            "test": "test_modify_rule[create_conditions2-modify_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions3-modify_conditions3]",
+            "test": "test_modify_rule[create_conditions3-modify_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_set_rule_priorities",
+            "test": "test_set_rule_priorities",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[False]",
+            "test": "test_host_header_rule[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_host_header_rule[True]",
+            "test": "test_host_header_rule[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Conditions..HostHeaderConfig.Values', '$..Conditions..Values']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_header_rule",
+            "test": "test_http_header_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_http_request_method_rule",
+            "test": "test_http_request_method_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_path_pattern_rule",
+            "test": "test_path_pattern_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_query_string_rule",
+            "test": "test_query_string_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2422,6 +4254,26 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_rule_conditions_integration",
             "test": "test_rule_conditions_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_source_ip_rule",
+            "test": "test_source_ip_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRuleConditions::test_use_priority_for_listener_matching",
+            "test": "test_use_priority_for_listener_matching",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2526,11 +4378,141 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_loadbalancer_rule",
-            "test": "test_create_loadbalancer_rule",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions0]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Rules..Actions..TargetGroupArn', '$..Rules..Conditions..Values', '$..LoadBalancers..AvailabilityZones..LoadBalancerAddresses', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions0-modify_conditions0]",
+            "test": "test_modify_rule[create_conditions0-modify_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions1-modify_conditions1]",
+            "test": "test_modify_rule[create_conditions1-modify_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions2-modify_conditions2]",
+            "test": "test_modify_rule[create_conditions2-modify_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions3-modify_conditions3]",
+            "test": "test_modify_rule[create_conditions3-modify_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_set_rule_priorities",
+            "test": "test_set_rule_priorities",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3056,18 +5038,48 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
-            "test": "test_load_balancing",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[host]",
+            "test": "test_internal_path_based_routing[host]",
             "response": "400",
             "error": "CommonServiceException",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[path]",
+            "test": "test_internal_path_based_routing[path]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
+            "test": "test_load_balancing",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "",
@@ -3164,6 +5176,32 @@
         ]
       }
     },
+    "DescribeListenerAttributes": {
+      "ListenerArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_listener_attributes",
+            "test": "test_describe_listener_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_non_existent_listener",
+            "test": "test_describe_non_existent_listener",
+            "response": "400",
+            "error": "ListenerNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "DescribeListeners": {
       "LoadBalancerArn": {
         "ls_pro": [
@@ -3175,6 +5213,36 @@
             "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..LoadBalancerAddresses', '$..DNSName', '$..SecurityGroupsOutput', '$..AlpnPolicy', '$..DefaultActions..ForwardConfig', '$..Port', '$..SslPolicy', '$..LoadBalancerArns', '$..Error.Code', '$..Error.Message']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[443-gateway_listen_override1-4566]",
+            "test": "test_create_listener[443-gateway_listen_override1-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[5555-None-4566]",
+            "test": "test_create_listener[5555-None-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[5555-gateway_listen_override0-5555]",
+            "test": "test_create_listener[5555-gateway_listen_override0-5555]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -3330,11 +5398,21 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_listener_attributes",
+            "test": "test_describe_listener_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_describe_load_balancers",
             "test": "test_describe_load_balancers",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers..State.Code']",
+            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers[0].EnablePrefixForIpv6SourceNat', '$..LoadBalancers..State.Code']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3382,7 +5460,7 @@
             "test": "test_describe_load_balancers",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers..State.Code']",
+            "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..LoadBalancers[0].EnablePrefixForIpv6SourceNat', '$..LoadBalancers..State.Code']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3393,6 +5471,142 @@
             "response": "400",
             "error": "LoadBalancerNotFoundException",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeRules": {
+      "RuleArns": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions4]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions5]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions6]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions7]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "test": "test_create_describe_loadbalancer_rule[rule_conditions8]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions0-modify_conditions0]",
+            "test": "test_modify_rule[create_conditions0-modify_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions1-modify_conditions1]",
+            "test": "test_modify_rule[create_conditions1-modify_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions2-modify_conditions2]",
+            "test": "test_modify_rule[create_conditions2-modify_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions3-modify_conditions3]",
+            "test": "test_modify_rule[create_conditions3-modify_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3510,8 +5724,18 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3661,6 +5885,52 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..Attributes', \"$.._AttributesDict.'access_logs.s3.enabled'\", \"$.._AttributesDict.'idle_timeout.timeout_seconds'\", \"$.._AttributesDict.'routing.http.x_amzn_tls_version_and_cipher_suite.enabled'\", \"$.._AttributesDict.'routing.http.xff_client_port.enabled'\", \"$.._AttributesDict.'routing.http.xff_header_processing.mode'\", \"$.._AttributesDict.'waf.fail_open.enabled'\"]",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ModifyRule": {
+      "Conditions, RuleArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions0-modify_conditions0]",
+            "test": "test_modify_rule[create_conditions0-modify_conditions0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions1-modify_conditions1]",
+            "test": "test_modify_rule[create_conditions1-modify_conditions1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions2-modify_conditions2]",
+            "test": "test_modify_rule[create_conditions2-modify_conditions2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_modify_rule[create_conditions3-modify_conditions3]",
+            "test": "test_modify_rule[create_conditions3-modify_conditions3]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4168,18 +6438,48 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
-            "test": "test_load_balancing",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[host]",
+            "test": "test_internal_path_based_routing[host]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration",
-            "test": "test_route53_elb_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_internal_path_based_routing[path]",
+            "test": "test_internal_path_based_routing[path]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..content.headers.x-amzn-trace-id', '$..content.headers.x-amzn-trace-id', '$..content.headers.x-forwarded-for', '$..content.headers.x-forwarded-port', '$..content.headers.x-forwarded-proto', '$..sourceIp', '$..content.isBase64Encoded', '$..content.queryStringParameters', '$..headers.Connection', '$..headers.Content-Type', '$..headers.x-amzn-tls-cipher-suite', '$..headers.x-amzn-tls-version', '$..headers.Server', '$..headers.x-amzn-RequestId', '$..headers.x-amzn-requestid', '$..headers.X-Amzn-Trace-Id', '$..headers.x-amzn-trace-id']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_load_balancing",
+            "test": "test_load_balancing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.host', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-4566]",
+            "test": "test_route53_elb_integration[port-4566]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestRoute53Integrations::test_route53_elb_integration[port-80]",
+            "test": "test_route53_elb_integration[port-80]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4209,6 +6509,22 @@
             "response": "400",
             "error": "CommonServiceException",
             "snapshot_skipped": "['$..LoadBalancers[0].AvailabilityZones', '$..LoadBalancers[0].IpAddressType', '$..LoadBalancers[0].Scheme', '$..Error.Type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "SetRulePriorities": {
+      "RulePriorities": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_set_rule_priorities",
+            "test": "test_set_rule_priorities",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..LoadBalancers..AvailabilityZones', '$..LoadBalancers..IpAddressType', '$..Listeners..AlpnPolicy', '$..Listeners..DefaultActions..FixedResponseConfig.MessageBody', '$..Listeners..Port', '$..Listeners..SslPolicy', '$..TargetGroups..IpAddressType', '$..TargetGroups..ProtocolVersion']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"

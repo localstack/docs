@@ -17,17 +17,17 @@ LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS
 
 |          |                                                         |
 |----------|------------------------------------------------------------------------------------------------------------------------|
-| ⭐⭐⭐⭐⭐ | Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests         | 
-| ⭐⭐⭐⭐   | Feature partially supported by LocalStack maintainers         |               
-| ⭐⭐⭐    | Feature supports basic functionalities (e.g., CRUD operations)          |                
-| ⭐⭐      | Feature should be considered unstable          |                 
-| ⭐       | Feature is experimental and regressions should be expected         | 
-| **-**    | Feature is not yet implemented        | 
-
+| ⭐⭐⭐⭐⭐ | Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests         |
+| ⭐⭐⭐⭐   | Feature partially supported by LocalStack maintainers         |
+| ⭐⭐⭐    | Feature supports basic functionalities (e.g., CRUD operations)          |
+| ⭐⭐      | Feature should be considered unstable          |
+| ⭐       | Feature is experimental and regressions should be expected         |
+| **-**    | Feature is not yet implemented        |
 
 ## Emulation Levels
 
-* CRUD: The service accepts requests and returns proper (potentially static) responses. No additional business logic besides storing entities.
+* CRUD: The service accepts requests and returns proper (potentially static) responses.
+  No additional business logic besides storing entities.
 * Emulated: The service imitates the functionality, including synchronous and asynchronous business logic operating on service entities.
 
 ## AWS Feature Coverage
@@ -55,11 +55,11 @@ In the coverage table below, the features are marked with their respective avail
 | **API Gateway**                                                    | [Details 🔍]({{< ref "references/coverage/coverage_apigateway" >}}) |                 |       |
 | API Keys                                                           | ⭐⭐⭐              | CRUD                |       |
 | Authorizers (Pro)                                                  | ⭐⭐⭐⭐            | Emulated                |       |
-| Base Path Mappings                                                 | ⭐⭐⭐⭐            | Emulated                |       |
+| Base Path Mappings                                                 | ⭐⭐⭐⭐            | Emulated                |   (Pro) Invoking custom domains and base path mappings    |
 | Deployments                                                        | ⭐⭐⭐⭐            | CRUD                |       |
 | Documentation Parts                                                | ⭐⭐⭐              | CRUD                |       |
 | Documentation Versions                                             | ⭐⭐⭐              | CRUD                |       |
-| Domain Names                                                       | ⭐⭐⭐              | CRUD                |       |
+| Domain Names                                                       | ⭐⭐⭐              | CRUD                |  (Pro) Invoking custom domains   |
 | Gateway / Integration / Method Responses                           | ⭐⭐⭐⭐            | Emulated                |       |
 | Integrations                                                       | ⭐⭐⭐⭐            | Emulated                |       |
 | Methods                                                            | ⭐⭐⭐⭐            | Emulated                |       |

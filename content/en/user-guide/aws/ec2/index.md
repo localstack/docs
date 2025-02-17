@@ -23,7 +23,9 @@ LocalStack Pro running on a Linux host is required as network access to containe
 
 Start your LocalStack container using your preferred method.
 
-### Create a key pair
+### Create or import a key pair
+
+Key pairs are SSH public key/private key combinations that are used to log in to created instances.
 
 To create a key pair, you can use the [`CreateKeyPair`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html) API.
 Run the following command to create the key pair and pipe the output to a file named `key.pem`:
@@ -35,15 +37,53 @@ $ awslocal ec2 create-key-pair \
     --output text | tee key.pem
 {{< /command >}}
 
-You can assign necessary permissions to the key pair file using the following command:
+You may need to assign necessary permissions to the key files for security reasons.
+This can be done using the following commands:
+
+{{< tabpane text=true >}}
+
+{{< tab header="**Linux**" >}}
 
 {{< command >}}
 $ chmod 400 key.pem
 {{< /command >}}
 
-Alternatively, we can import an existing key pair, for example if you have an SSH public key in your home directory under `~/.ssh/id_rsa.pub`:
+{{< /tab >}}
+
+{{< tab header="**Windows (Powershell)**" >}}
+
+{{< command >}}
+$acl = Get-Acl -Path "key.pem"
+$fileSystemAccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("$env:username", "Read", "Allow")
+$acl.SetAccessRule($fileSystemAccessRule)
+$acl.SetAccessRuleProtection($true, $false)
+Set-Acl -Path "key.pem" -AclObject $acl
+{{< /command >}}
+
+{{< /tab >}}
+
+{{< tab header="**Windows (Command Prompt)**" >}}
+
+{{< command >}}
+icacls.exe key.pem /reset
+icacls.exe key.pem /grant:r "$($env:username):(r)"
+icacls.exe key.pem /inheritance:r
+{{< /command >}}
+
+{{< /tab >}}
+
+{{< /tabpane >}}
+
+If you already have an SSH public key that you wish to use, such as the one located in your home directory at `~/.ssh/id_rsa.pub`, you can import it instead.
+
 {{< command >}}
 $ awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub
+{{< /command >}}
+
+If you only have the SSH private key, a public key can be generated using the following command, and then imported:
+
+{{< command >}}
+$ ssh-keygen -y -f id_rsa > id_rsa.pub
 {{< /command >}}
 
 ### Add rules to your security group
@@ -103,7 +143,7 @@ Run the following command to run an EC2 instance by adding the appropriate Secur
 
 {{< command >}}
 $ awslocal ec2 run-instances \
-    --image-id ami-ff0fea8310f3 \
+    --image-id ami-df5de72bdb3b \
     --count 1 \
     --instance-type t3.nano \
     --key-name my-key \
@@ -132,6 +172,8 @@ Run the following command to test the Python Web Server:
 
 {{< command >}}
 $ curl 172.17.0.4:8000
+# Or, you can run
+$ curl 127.0.0.1:29043
 {{< /command >}}
 
 You should see the following output:
@@ -146,7 +188,7 @@ You should see the following output:
 ```
 
 {{< callout "note" >}}
-Similar to the setup in production AWS, the user data content is stored at `/var/lib/cloud/instances/<instance_id>/user-data.txt` within the instance.
+Similar to the setup in production AWS, the user data content is stored at `/var/lib/cloud/instances/<instance_id>/` within the instance.
 Any execution of this data is recorded in the `/var/log/cloud-init-output.log` file.
 {{< /callout >}}
 
@@ -172,7 +214,6 @@ $ ssh -p 12862 -i key.pem root@127.0.0.1
 If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here]({{< relref "ec2#create-a-key-pair" >}}).
 {{< /callout >}}
 
-
 ## VM Managers
 
 LocalStack EC2 supports multiple methods to simulate the EC2 service.
@@ -181,7 +222,6 @@ For advanced setups, LocalStack Pro comes with emulation capability for certain 
 
 The underlying method for this can be controlled using the [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) configuration option.
 You may choose between plain mocked resources, containerized or virtualized.
-
 
 ## Mock VM Manager
 
@@ -192,7 +232,6 @@ This is the default VM manager in LocalStack Community edition.
 To use this VM manager in LocalStack Pro, set [`EC2_VM_MANAGER`]({{< ref "configuration#ec2" >}}) to `mock`.
 
 This serves as the fallback manager if an operation is not implemented in other VM managers.
-
 
 ## Docker VM Manager
 
@@ -224,7 +263,6 @@ $ docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001
 The above example will make LocalStack treat the `ubuntu:focal` Docker image as an AMI with name `ubuntu-focal-ami` and ID `ami-000001`.
 
 At startup, LocalStack downloads the following AMIs that can be used to launch Dockerized instances.
-- Ubuntu 20.04 `ami-ff0fea8310f3` (deprecated and marked for removal in the next major release)
 - Ubuntu 22.04 `ami-df5de72bdb3b`
 - Amazon Linux 2023 `ami-024f768332f0`
 
@@ -262,13 +300,13 @@ LocalStack EC2 supports execution of user data scripts when the instance starts.
 A shell script can be passed to the `UserData` argument of `RunInstances`.
 Alternatively, the user data may also be added using the `ModifyInstanceAttribute` operation.
 
-The user data is placed at `/var/lib/cloud/instances/<InstanceId>/user-data.txt` in the container.
+The user data is placed at `/var/lib/cloud/instances/<InstanceId>/` in the container.
 The execution log is generated at `/var/log/cloud-init-output.log` in the container.
 
 ### Networking
 
 {{< callout "note" >}}
-Network access to EC2 instance is not possible on macOS. 
+Network access from host to EC2 instance containers is not possible on macOS.
 This is because Docker Desktop on macOS does not expose the bridge network to the host system.
 See [Docker Desktop Known Limitations](https://docs.docker.com/desktop/networking/#known-limitations).
 {{< /callout >}}
@@ -308,7 +346,6 @@ The port mapping details are provided in the logs during the instance initializa
 2022-12-20T19:43:44.544  INFO  Instance i-1d6327abf04e31be6 port mappings (container -> host): {'8080/tcp': 51747, '22/tcp': 55705}
 ```
 
-
 ### Elastic Block Store
 
 A common use case is to attach an EBS block device to an EC2 instance, which can then be used to create a custom filesystem for additional storage.
@@ -323,6 +360,7 @@ First, we create a user data script `init.sh` which creates an ext3 file system 
 {{< command >}}
 $ cat > init.sh <<EOF
 #!/bin/bash
+
 set -eo
 mkdir -p /ebs-mounted
 mkfs -t ext3 /ebs-dev/sda1
@@ -349,7 +387,6 @@ CONTAINER ID   IMAGE                  PORTS           NAMES
 $ docker exec 5c60cf72d84a ls /ebs-mounted
 my-test-file
 {{< /command >}}
-
 
 ### Instance Metadata Service
 
@@ -378,13 +415,11 @@ If you would like support for more metadata categories, please make a feature re
 IMDS IPv6 endpoint is currently not supported.
 {{< /callout >}}
 
-
 ### Configuration
 
 You can use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) LocalStack configuration variable to pass supplementary flags to Docker during the initiation of containerized instances.
 This allows for fine-tuned behaviours, for example, running containers in privileged mode using `--privileged` or specifying an alternate CPU platform with `--platform`.
 Keep in mind that this will apply to all instances that are launched in the LocalStack session.
-
 
 ### Operations
 
@@ -400,8 +435,6 @@ Any operation not listed below will use the mock VM manager.
 | `StopInstances`       | Pauses the Docker containers that back instances |
 | `StartInstances`      | Resumes the Docker containers that back instances |
 | `TerminateInstances`  | Stops the Docker containers that back instances |
-
-
 
 ## Libvirt VM Manager
 
@@ -434,22 +467,29 @@ You may also need to enable virtualization support at hardware level.
 This is often labelled as 'Virtualization Technology', 'VT-d' or 'VT-x' in UEFI/BIOS setups.
 {{< /callout >}}
 
-LocalStack requires the Libvirt socket on the host to be mounted inside the container.
+If the Docker host and Libvirt host is the same, the Libvirt socket on the host must be mounted inside the LocalStack container.
 This can be done by including the volume mounts when the LocalStack container is started.
-If you are using the [Docker Compose template]({{< ref "installation#starting-localstack-with-docker-compose" >}}), include the following line in `services.localstack.volumes` list:
+If you are using the [Docker Compose template]({{< ref "getting-started/installation#docker-compose" >}}), include the following line in `services.localstack.volumes` list:
 
 ```text
 "/var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock"
 ```
 
-If you are using [Docker CLI]({{< ref "installation#starting-localstack-with-docker" >}}), include the following parameter in `docker run`:
+If you are using [Docker CLI]({{< ref "getting-started/installation#docker" >}}), include the following parameter in `docker run`:
 
 ```text
 -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock
 ```
 
+If you are using a remote Libvirt hypervisor, you can set the [`EC2_HYPERVISOR_URI`]({{< ref "configuration#ec2" >}}) config option with a connection URI.
+
+{{< callout "tip" >}}
+If you encounter an error like `failed to connect to the hypervisor: Permission denied`, you may need to perform additional setup on the hypervisor host.
+Please refer to [Libvirt Wiki](https://wiki.libvirt.org/Failed_to_connect_to_the_hypervisor.html#permission-denied) for more details.
+{{< /callout >}}
+
 The Libvirt VM manager currently does not have full support for persistence.
-Underlying virtual machines and volumes are not persisted, instead only their mock respresentations are.
+Underlying virtual machines and volumes are not persisted, only their mock respresentations are.
 
 ### AMIs
 
@@ -498,25 +538,27 @@ You may need run the following command to make sure the image is registered with
 
 {{< command >}}
 $ virsh pool-refresh default
+<disable-copy>
 Pool default refreshed
-
+</disable-copy>
 $ virsh vol-list --pool default
+<disable-copy>
  Name                                    Path
 --------------------------------------------------------------------------------------------------------
  ami-1234abcd                            /var/lib/libvirt/images/ami-1234abcd
+</disable-copy>
 {{< /command >}}
 
-Only the images that follow the above naming scheme will be recognised by LocalStack as AMIs suitable for launching virtualised instances.
+Only the images that follow the above naming scheme will be recognised by LocalStack as AMIs suitable for launching virtualized instances.
 These AMIs will also have the resource tag `ec2_vm_manager:libvirt`.
 
 {{< command >}}
-awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=libvirt
+$ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=libvirt
 {{< /command >}}
-
 
 ### Instances
 
-Virtualised instances can be launched with `RunInstances` operation and specifying a compatible AMI.
+Virtualized instances can be launched with `RunInstances` operation and specifying a compatible AMI.
 LocalStack will create and start a Libvirt domain to represent the instance.
 
 When instances are launched, LocalStack uses the [NoCloud](https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html) datasource to customize the virtual machine.
@@ -530,7 +572,8 @@ The Libvirt domains and volumes are left defined and can be used for debugging, 
 Use [Virtual Machine Manager](https://virt-manager.org/) or [virsh](https://www.libvirt.org/manpages/virsh.html) to manage the virtual machines outside of LocalStack.
 {{< /callout >}}
 
-The Libvirt VM manager currently does not support instance user data.
+The Libvirt VM manager supports basic shell scripts for user data.
+This can be passed to the `UserData` parameter of the `RunInstances` operation.
 
 To connect to the graphical display of the instance, first obtain the VNC address using:
 
@@ -545,12 +588,33 @@ You can then use a compatible VNC client (e.g. [TigerVNC](https://tigervnc.org/)
 <img src="tiger-vnc.png" alt="Tiger VNC" title="Tiger VNC"/>
 </p>
 
-
 ### Networking
 
-Currently all instances are behind a NAT network.
-Instances can access the internet but are inaccessible from the host machine.
+All instances are assigned interfaces on the default Libvirt network.
+This makes it possible to have host/instance as well as instance/instance network communication.
 
+It is possible to allow network access to the LocalStack container from within the virtualized instance.
+This is done by configuring the Docker daemon to use the KVM network.
+Use the following configuration at `/etc/docker/daemon.json` on the host machine:
+
+```json
+{
+  "bridge": "virbr0",
+  "iptables": false
+}
+```
+
+Then restart the Docker daemon:
+
+{{< command >}}
+$ sudo systemctl restart docker
+{{< /command >}}
+
+You can now start the LocalStack container, obtain its IP address and use it from the virtualized instance.
+
+{{< command >}}
+$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' localstack_main
+{{< /command >}}
 
 ### Elastic Block Stores
 
@@ -559,12 +623,9 @@ LocalStack does not resize the instance root volume, instead it inherits the pro
 
 Currently it is not possible to attach additional EBS volumes to instances.
 
-
-
 ### Instance Metadata Service
 
 The Libvirt VM manager does not support the Instance Metadata Service endpoints.
-
 
 ### Operations
 
@@ -580,7 +641,6 @@ Any operation not listed below will use the mock VM manager.
 | `RebootInstances`     | Restarts a Libvirt domain |
 | `TerminateInstances`  | Stops and undefines a Libvirt domain |
 | `CreateVolume`        | Creates a sparse Libvirt volume |
-
 
 ## Resource Browser
 

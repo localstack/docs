@@ -113,7 +113,8 @@ $ awslocal sqs purge-queue --queue-url http://sqs.us-east-1.localhost.localstack
 LocalStack's SQS implementation supports both regular [dead-letter queues (DLQ)](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html) and [DLQ redrive](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html) via move message tasks.
 Here's an end-to-end example of how to use message move tasks to test DLQ redrive.
 
-First, create three queues. One will serve as original input queue, one as DLQ, and the third as target for DLQ redrive.
+First, create three queues.
+One will serve as original input queue, one as DLQ, and the third as target for DLQ redrive.
 {{< command >}}
 $ awslocal sqs create-queue --queue-name input-queue
 $ awslocal sqs create-queue --queue-name dead-letter-queue
@@ -128,7 +129,6 @@ $ awslocal sqs create-queue --queue-name recovery-queue
     "QueueUrl": "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/recovery-queue"
 }
 {{< /command >}}
-
 
 Configure `dead-letter-queue` to be a DLQ for `input-queue`:
 {{< command >}}
@@ -151,7 +151,8 @@ $ awslocal sqs receive-message --visibility-timeout 0 --queue-url http://sqs.us-
 {{< /command >}}
 
 In the localstack logs you should see something like the following line, indicating the message was moved to the DLQ:
-```
+
+```bash
 2024-01-24T13:51:16.824 DEBUG --- [   asgi_gw_1] l.services.sqs.models      : message SqsMessage(id=5be95a04-93f0-4b9d-8bd5-6695f34758cf,group=None) has been received 2 times, marking it for DLQ
 ```
 
@@ -194,7 +195,6 @@ $ awslocal sqs receive-message --queue-url http://sqs.us-east-1.localhost.locals
 }
 {{< /command >}}
 
-
 ## SQS Query API
 
 The [SQS Query API](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html), provides SQS Queue URLs as endpoints, enabling direct HTTP requests to the queues.
@@ -202,7 +202,7 @@ LocalStack extends support for the Query API.
 
 With LocalStack, you can conveniently test SQS Query API calls without the need to sign or include `AUTHPARAMS` in your HTTP requests.
 
-For instance, you can use a basic `cURL` command to send a `SendMessage` command along with a MessageBody attribute:
+For instance, you can use a basic [curl](https://curl.se/) command to send a `SendMessage` command along with a MessageBody attribute:
 
 {{< command >}}
 $ curl "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/localstack-queue?Action=SendMessage&MessageBody=hello%2Fworld"
@@ -213,21 +213,21 @@ You will see the following output:
 ```xml
 <?xml version='1.0' encoding='utf-8'?>
 <SendMessageResponse
-	xmlns="http://queue.amazonaws.com/doc/2012-11-05/">
-	<SendMessageResult>
-		<MD5OfMessageBody>c6be4e95a26409675447367b3e79f663</MD5OfMessageBody>
-		<MessageId>466144ab-1d03-4ec5-8d70-97535b2957fb</MessageId>
-	</SendMessageResult>
-	<ResponseMetadata>
-		<RequestId>JU40AF5GORK0WSR75MOY3VNQ1KZ3TAI7S5KAJYGK9C5P4W4XKMGF</RequestId>
-	</ResponseMetadata>
+ xmlns="http://queue.amazonaws.com/doc/2012-11-05/">
+ <SendMessageResult>
+  <MD5OfMessageBody>c6be4e95a26409675447367b3e79f663</MD5OfMessageBody>
+  <MessageId>466144ab-1d03-4ec5-8d70-97535b2957fb</MessageId>
+ </SendMessageResult>
+ <ResponseMetadata>
+  <RequestId>JU40AF5GORK0WSR75MOY3VNQ1KZ3TAI7S5KAJYGK9C5P4W4XKMGF</RequestId>
+ </ResponseMetadata>
 </SendMessageResponse>
 ```
 
 Adding the `Accept: application/json` header will make the server return JSON:
 
 To receive JSON responses from the server, include the `Accept: application/json` header in your request.
-Here's an example using the `cURL` command:
+Here's an example using the [curl](https://curl.se/) command:
 
 {{< command >}}
 $ curl -H "Accept: application/json" "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/localstack-queue?Action=SendMessage&MessageBody=hello%2Fworld"
@@ -237,15 +237,15 @@ The response will be in JSON format:
 
 ```json
 {
-	"SendMessageResponse": {
-		"SendMessageResult": {
-			"MD5OfMessageBody": "c6be4e95a26409675447367b3e79f663",
-			"MessageId": "748297f2-4abd-4ec2-afc0-4d1a497fe604"
-		},
-		"ResponseMetadata": {
-			"RequestId": "XEA5L5AX16RTPET25U3TIRIASN6KNIT820WIT3EY7RCH7164W68T"
-		}
-	}
+ "SendMessageResponse": {
+  "SendMessageResult": {
+   "MD5OfMessageBody": "c6be4e95a26409675447367b3e79f663",
+   "MessageId": "748297f2-4abd-4ec2-afc0-4d1a497fe604"
+  },
+  "ResponseMetadata": {
+   "RequestId": "XEA5L5AX16RTPET25U3TIRIASN6KNIT820WIT3EY7RCH7164W68T"
+  }
+ }
 }
 ```
 
@@ -309,9 +309,12 @@ If you wish to disable all CloudWatch metrics for SQS, including the `Approximat
 
 ## Accessing queues from Lambdas or other containers
 
-Using the SQS Query API, Queue URLs act as accessible endpoints via HTTP. Several SDKs, such as the Java SDK, leverage the SQS Query API for SQS interaction.
+Using the SQS Query API, Queue URLs act as accessible endpoints via HTTP.
+Several SDKs, such as the Java SDK, leverage the SQS Query API for SQS interaction.
 
-By default, Queue URLs are configured to point to `http://localhost:4566`. This configuration can pose problems when Lambdas or other containers attempt to make direct calls to these queue URLs. These issues arise due to the fact that a Lambda function operates within a separate Docker container, and LocalStack is not accessible at the `localhost` address within that container.
+By default, Queue URLs are configured to point to `http://localhost:4566`.
+This configuration can pose problems when Lambdas or other containers attempt to make direct calls to these queue URLs.
+These issues arise due to the fact that a Lambda function operates within a separate Docker container, and LocalStack is not accessible at the `localhost` address within that container.
 
 For instance, users of the Java SDK often encounter the following error when trying to access an SQS queue from their Lambda functions:
 
@@ -325,15 +328,18 @@ To address this issue, you can consider the steps documented below.
 
 ### Lambda
 
-When utilizing the SQS Query API in Lambdas, we suggest configuring `SQS_ENDPOINT_STRATEGY=domain`. This configuration results in queue URLs using `*.queue.localhost.localstack.cloud` as their domain names. Our Lambda implementation automatically resolves these URLs to the LocalStack container, ensuring smooth interaction between your code and the SQS service.
+When utilizing the SQS Query API in Lambdas, we suggest configuring `SQS_ENDPOINT_STRATEGY=domain`.
+This configuration results in queue URLs using `*.queue.localhost.localstack.cloud` as their domain names.
+Our Lambda implementation automatically resolves these URLs to the LocalStack container, ensuring smooth interaction between your code and the SQS service.
 
 ### Other containers
 
-When your code run within different containers like ECS tasks or your custom ones, it's advisable to establish your Docker network setup. You can follow these steps:
+When your code run within different containers like ECS tasks or your custom ones, it's advisable to establish your Docker network setup.
+You can follow these steps:
 
-1.  Override the `LOCALSTACK_HOST` variable as outlined in our [network troubleshooting guide]({{< ref "endpoint-url" >}}).
-2.  Ensure that your containers can resolve `LOCALSTACK_HOST` to the LocalStack container within the Docker network.
-3.  We recommend employing `SQS_ENDPOINT_STRATEGY=path`, which generates queue URLs in the format `http://<LOCALSTACK_HOST>/queue/...`.
+1. Override the `LOCALSTACK_HOST` variable as outlined in our [network troubleshooting guide]({{< ref "endpoint-url" >}}).
+2. Ensure that your containers can resolve `LOCALSTACK_HOST` to the LocalStack container within the Docker network.
+3. We recommend employing `SQS_ENDPOINT_STRATEGY=path`, which generates queue URLs in the format `http://<LOCALSTACK_HOST>/queue/...`.
 
 ## Developer endpoints
 
@@ -352,12 +358,12 @@ The endpoint ignores any additional parameters from the `ReceiveMessage` operati
 
 You can call the `/_aws/sqs/messages` endpoint in two different ways:
 
-1.  Using the query argument `QueueUrl`, like this:
+1. Using the query argument `QueueUrl`, like this:
     {{< command >}}
     $ http://localhost.localstack.cloud:4566/_aws/sqs/messages?QueueUrl=http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue
-    {{< / command >}} 
-    
-2.  Utilizing the path-based endpoint, as shown in this example:
+    {{< / command >}}
+
+2. Utilizing the path-based endpoint, as shown in this example:
     {{< command >}}
     $ http://localhost.localstack.cloud:4566/_aws/sqs/messages/us-east-1/000000000000/my-queue
     {{< / command >}}
@@ -367,7 +373,7 @@ You can call the `/_aws/sqs/messages` endpoint in two different ways:
 You can directly call the endpoint to obtain the raw AWS XML response.
 
 {{< tabpane >}}
-{{< tab header="cURL" lang="bash" >}}
+{{< tab header="curl" lang="bash" >}}
 curl "http://localhost.localstack.cloud:4566/_aws/sqs/messages?QueueUrl=http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue"
 {{< /tab >}}
 {{< tab header="Python Requests" lang="python" >}}
@@ -443,7 +449,7 @@ An example response is shown below:
 You can include the `Accept: application/json` header in your request if you prefer a JSON response.
 
 {{< tabpane >}}
-{{< tab header="cURL" lang="bash" >}}
+{{< tab header="curl" lang="bash" >}}
 curl -H "Accept: application/json" \
     "http://localhost.localstack.cloud:4566/_aws/sqs/messages?QueueUrl=http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue"
 {{< /tab >}}
@@ -577,7 +583,7 @@ An example response is shown below:
 The developer endpoint also supports showing invisible and delayed messages via the query arguments `ShowInvisible` and `ShowDelayed`.
 
 {{< tabpane >}}
-{{< tab header="cURL" lang="bash" >}}
+{{< tab header="curl" lang="bash" >}}
 curl -H "Accept: application/json" \
     "http://localhost.localstack.cloud:4566/_aws/sqs/messages?ShowInvisible=true&ShowDelayed=true&QueueUrl=http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue
 {{< /tab >}}
@@ -641,4 +647,4 @@ The following code snippets and sample applications provide practical examples o
 
 ## Current Limitations
 
-* Updating a queue's `MessageRetentionPeriod` currently has no effect on existing messages
+- Updating a queue's `MessageRetentionPeriod` currently has no effect on existing messages

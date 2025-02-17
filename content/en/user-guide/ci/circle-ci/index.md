@@ -12,12 +12,12 @@ description: >
 [CircleCI](https://circleci.com) is a continuous integration and continuous delivery (CI/CD) platform which uses a configuration file (usually named `.circleci/config.yml`) to define the build, test, and deployment workflows.
 LocalStack supports CircleCI out of the box and can be easily integrated into your pipeline to run your tests against a local cloud emulator.
 
-
 ## Snippets
 
 ### Start up LocalStack
 
 #### Default
+
 ```yaml
 version: '2.1'
 orbs:
@@ -36,6 +36,7 @@ workflows:
 ```
 
 #### Async
+
 ```yaml
 version: '2.1'
 orbs:
@@ -54,11 +55,13 @@ workflows:
 ```
 
 ### Configuration
+
 To configure LocalStack use the `environment` key on the job level or a shell command, where the latter takes higher precedence.
 
 Read more about the [configuration options](/references/configuration/) of LocalStack.
 
 #### Job level
+
 ```yaml
 ...
 jobs:
@@ -72,6 +75,7 @@ jobs:
 ```
 
 #### Shell command
+
 ```yaml
 ...
 jobs:
@@ -84,25 +88,24 @@ jobs:
 ...
 ```
 
-### Configuring a CI key
+### Configuring a CI Auth Token
 
-To enable LocalStack Pro+, you need to add your LocalStack CI key to the project's environment variables.
-The LocalStack container will automatically pick it up and activate the licensed features. 
+To enable LocalStack Pro+, you need to add your LocalStack CI Auth Token to the project's environment variables.
+The LocalStack container will automatically pick it up and activate the licensed features.
 
-Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key.
-To add the CI key to your CircleCI project, follow these steps:
+Go to the [CI Auth Token page](https://app.localstack.cloud/workspace/auth-tokens) and copy your CI Auth Token.
+To add the CI Auth Token to your CircleCI project, follow these steps:
 
 - Click on **Project Settings**.
 - Select **Environment Variables** from the left side menu.
 - Click **Add Environment Variable**.
-- Name your environment variable `LOCALSTACK_API_KEY`.
-- Paste your CI key into the input field.
-
-<img src="circleci-env-config.png" width="800px" alt="Adding the LocalStack CI key in CircleCI" />
+- Name your environment variable `LOCALSTACK_AUTH_TOKEN`.
+- Paste your CI Auth Token into the input field.
 
 After the above steps, just start up LocalStack using our official orb as usual.
 
 ### Dump LocalStack logs
+
 ```yaml
 ...
 jobs:
@@ -122,16 +125,18 @@ jobs:
 ### Store LocalStack state
 
 You can preserve your AWS infrastructure with LocalStack in various ways.
-To be able to use any of the below samples, you must [set a valid CI key](#configuring-a-ci-key).
+To be able to use any of the below samples, you must [set a valid CI Auth Token](#configuring-a-ci-auth-token).
 
 _Note: For best result we recommend to use a combination of the below techniques and you should familiarise yourself with CircleCI's data persistance approach, see their [official documentation](https://circleci.com/docs/persist-data/)._
 
 #### Cloud Pods
+
 Cloud Pods providing an easy solution to persist LocalStack's state, even between workflows or projects.
 
 Find more information about [Cloud Pods](/user-guide/state-management/cloud-pods/).
 
 ##### Multiple projects
+
 Update or create the Cloud Pod in it's own project (ie in a separate Infrastructure as Code repo), this would create a base Cloud Pod, which you can use in the future without any configuration or deployment.
 
 _Note: If there is a previously created Cloud Pod which doesn't need updating this step can be skipped._
@@ -187,6 +192,7 @@ workflows:
 ```
 
 ##### Same project
+
 To use a dynamically updated Cloud Pod in multiple workflows but in the same project, you must eliminate the race conditions between the update workflow and the others.
 
 Before you are able to use any stored artifacts in your pipeline, you must provide either a valid [project API token](https://circleci.com/docs/managing-api-tokens/#creating-a-project-api-token) or a [personal API token](https://circleci.com/docs/managing-api-tokens/#creating-a-personal-api-token) to CircleCI.
@@ -266,9 +272,11 @@ workflows:
 ```
 
 #### Ephemeral Instance (Preview)
+
 Find out more about [Ephemeral Instances](/user-guide/cloud-sandbox/).
 
-##### Same job 
+##### Same job
+
 ```yaml
 orbs:
   localstack: localstack/platform@2.2
@@ -295,6 +303,7 @@ workflows:
 ```
 
 ##### Multiple jobs
+
 ```yaml
 ...
 jobs:
@@ -340,6 +349,7 @@ workflows:
 ```
 
 #### Workspace
+
 This strategy persist LocalStack's state between jobs for the current workflow.
 
 ```yaml
@@ -379,9 +389,11 @@ jobs:
       - localstack-save-state
       - localstack-load-state
 ```
+
 More information about Localstack's [state import/export](/user-guide/state-management/export-import-state).
 
 #### Cache
+
 To preserve state between workflow runs, you can take leverage of CircleCI's caching too.
 This strategy will persist LocalStack's state for every workflow re-runs, but not for different workflows.
 
@@ -431,4 +443,5 @@ workflows:
       - localstack-do-work
       ...
 ```
+
 More information about [state management](/user-guide/state-management/export-import-state).
