@@ -44,7 +44,7 @@ An internal SES LocalStack testing endpoint (`/_localstack/aws/ses`) is configur
 - [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)
 - [LocalStack Web Application account](https://app.localstack.cloud/sign-up) & [Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
 - [Docker](https://docs.docker.com/get-docker/)
-- [Python 3.9+](https://www.python.org/downloads/) & `pip`
+- [Python 3.11+](https://www.python.org/downloads/) & `pip`
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) & [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
 - `jq`, `zip` & `curl`
 
@@ -95,11 +95,11 @@ pip install -r requirements-dev.txt
 {{< /tabpane >}}
 
 {{< callout "tip" >}}
-If you are encountering issues with the installation of the packages, such as Pillow, ensure you use the same version as the Python Lambdas (3.9) for Pillow to work.
-If you're using <a href="https://github.com/pyenv/pyenv">pyenv</a>, install and activate Python 3.9 with the following commands:
+If you are encountering issues with the installation of the packages, such as Pillow, ensure you use the same version as the Python Lambdas (3.11.6) for Pillow to work. 
+If you're using <a href="https://github.com/pyenv/pyenv">pyenv</a>, install and activate Python 3.11 with the following commands:
 {{< command >}}
-$ pyenv install 3.9.0
-$ pyenv global 3.9.0
+$ pyenv install 3.11
+$ pyenv global 3.11
 {{< / command >}}
 {{< /callout >}}
 
@@ -173,17 +173,17 @@ $ awslocal sns subscribe \
 {{< command >}}
 $ (cd lambdas/presign; rm -f lambda.zip; zip lambda.zip handler.py)
 $ awslocal lambda create-function \
- --function-name presign \
- --runtime python3.9 \
- --timeout 10 \
- --zip-file fileb://lambdas/presign/lambda.zip \
- --handler handler.handler \
- --role arn:aws:iam::000000000000:role/lambda-role \
- --environment Variables="{STAGE=local}"
+    --function-name presign \
+    --runtime python3.11 \
+    --timeout 10 \
+    --zip-file fileb://lambdas/presign/lambda.zip \
+    --handler handler.handler \
+    --role arn:aws:iam::000000000000:role/lambda-role \
+    --environment Variables="{STAGE=local}"
 $ awslocal lambda wait function-active-v2 --function-name presign
 $ awslocal lambda create-function-url-config \
- --function-name presign \
- --auth-type NONE
+    --function-name presign \
+    --auth-type NONE
 {{< / command >}}
 
 #### Create the Image List Lambda
@@ -191,17 +191,17 @@ $ awslocal lambda create-function-url-config \
 {{< command >}}
 $ (cd lambdas/list; rm -f lambda.zip; zip lambda.zip handler.py)
 $ awslocal lambda create-function \
- --function-name list \
- --handler handler.handler \
- --zip-file fileb://lambdas/list/lambda.zip \
- --runtime python3.9 \
- --timeout 10 \
- --role arn:aws:iam::000000000000:role/lambda-role \
- --environment Variables="{STAGE=local}"
+    --function-name list \
+    --handler handler.handler \
+    --zip-file fileb://lambdas/list/lambda.zip \
+    --runtime python3.11 \
+    --timeout 10 \
+    --role arn:aws:iam::000000000000:role/lambda-role \
+    --environment Variables="{STAGE=local}"
 $ awslocal lambda wait function-active-v2 --function-name list
 $ awslocal lambda create-function-url-config \
- --function-name list \
- --auth-type NONE
+    --function-name list \
+    --auth-type NONE
 {{< / command >}}
 
 #### Build the Image Resizer Lambda
@@ -210,7 +210,7 @@ $ awslocal lambda create-function-url-config \
 {{< tab header="macOS" lang="shell" >}}
 cd lambdas/resize
 rm -rf libs lambda.zip
-docker run --platform linux/x86*64 -v "$PWD":/var/task "public.ecr.aws/sam/build-python3.9" /bin/sh -c "pip install -r requirements.txt -t libs; exit"
+docker run --platform linux/x86_64 -v "$PWD":/var/task "public.ecr.aws/sam/build-python3.11" /bin/sh -c "pip install -r requirements.txt -t libs; exit"
 cd libs && zip -r ../lambda.zip . && cd ..
 zip lambda.zip handler.py
 rm -rf libs
@@ -220,7 +220,7 @@ cd ../..
 cd lambdas/resize
 rm -rf package lambda.zip
 mkdir package
-pip install -r requirements.txt -t package --platform manylinux_2_28_x86_64 --python-version 3.9 --no-deps
+pip install -r requirements.txt -t package --platform manylinux_2_28_x86_64 --python-version 3.11 --no-deps
 zip lambda.zip handler.py
 cd package
 zip -r ../lambda.zip *;
@@ -242,19 +242,19 @@ cd ../..
 
 {{< command >}}
 $ awslocal lambda create-function \
- --function-name resize \
- --runtime python3.9 \
- --timeout 10 \
- --zip-file fileb://lambdas/resize/lambda.zip \
- --handler handler.handler \
- --dead-letter-config TargetArn=arn:aws:sns:us-east-1:000000000000:failed-resize-topic \
- --role arn:aws:iam::000000000000:role/lambda-role \
- --environment Variables="{STAGE=local}"
+    --function-name resize \
+    --runtime python3.11 \
+    --timeout 10 \
+    --zip-file fileb://lambdas/resize/lambda.zip \
+    --handler handler.handler \
+    --dead-letter-config TargetArn=arn:aws:sns:us-east-1:000000000000:failed-resize-topic \
+    --role arn:aws:iam::000000000000:role/lambda-role \
+    --environment Variables="{STAGE=local}"
 $ awslocal lambda wait function-active-v2 --function-name resize
 $ awslocal lambda put-function-event-invoke-config \
- --function-name resize \
- --maximum-event-age-in-seconds 3600 \
- --maximum-retry-attempts 0
+    --function-name resize \
+    --maximum-event-age-in-seconds 3600 \
+    --maximum-retry-attempts 0
 {{< / command >}}
 
 #### Connect S3 bucket to Resizer Lambda
