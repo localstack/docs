@@ -17,25 +17,25 @@ LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS
 
 |          |                                                         |
 |----------|------------------------------------------------------------------------------------------------------------------------|
-| ⭐⭐⭐⭐⭐ | Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests         | 
-| ⭐⭐⭐⭐   | Feature partially supported by LocalStack maintainers         |               
-| ⭐⭐⭐    | Feature supports basic functionalities (e.g., CRUD operations)          |                
-| ⭐⭐      | Feature should be considered unstable          |                 
-| ⭐       | Feature is experimental and regressions should be expected         | 
-| **-**    | Feature is not yet implemented        | 
-
+| ⭐⭐⭐⭐⭐ | Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests         |
+| ⭐⭐⭐⭐   | Feature partially supported by LocalStack maintainers         |
+| ⭐⭐⭐    | Feature supports basic functionalities (e.g., CRUD operations)          |
+| ⭐⭐      | Feature should be considered unstable          |
+| ⭐       | Feature is experimental and regressions should be expected         |
+| **-**    | Feature is not yet implemented        |
 
 ## Emulation Levels
 
-* CRUD: The service accepts requests and returns proper (potentially static) responses. No additional business logic besides storing entities.
+* CRUD: The service accepts requests and returns proper (potentially static) responses.
+  No additional business logic besides storing entities.
 * Emulated: The service imitates the functionality, including synchronous and asynchronous business logic operating on service entities.
 
 ## AWS Feature Coverage
 
 In the coverage table below, the features are marked with their respective availability across different LocalStack versions:
 
-* Community version (default, if not marked)
-* Pro version (marked with **Pro**)
+* Community image (default, if not marked)
+* Pro image (marked with **Pro**)
 
 | Service / Feature                                                  | Coverage Level    | Emulation Level | Notes |
 |--------------------------------------------------------------------|-------------------|-----------------|-------|
@@ -55,11 +55,11 @@ In the coverage table below, the features are marked with their respective avail
 | **API Gateway**                                                    | [Details 🔍]({{< ref "references/coverage/coverage_apigateway" >}}) |                 |       |
 | API Keys                                                           | ⭐⭐⭐              | CRUD                |       |
 | Authorizers (Pro)                                                  | ⭐⭐⭐⭐            | Emulated                |       |
-| Base Path Mappings                                                 | ⭐⭐⭐⭐            | Emulated                |       |
+| Base Path Mappings                                                 | ⭐⭐⭐⭐            | Emulated                |   (Pro) Invoking custom domains and base path mappings    |
 | Deployments                                                        | ⭐⭐⭐⭐            | CRUD                |       |
 | Documentation Parts                                                | ⭐⭐⭐              | CRUD                |       |
 | Documentation Versions                                             | ⭐⭐⭐              | CRUD                |       |
-| Domain Names                                                       | ⭐⭐⭐              | CRUD                |       |
+| Domain Names                                                       | ⭐⭐⭐              | CRUD                |  (Pro) Invoking custom domains   |
 | Gateway / Integration / Method Responses                           | ⭐⭐⭐⭐            | Emulated                |       |
 | Integrations                                                       | ⭐⭐⭐⭐            | Emulated                |       |
 | Methods                                                            | ⭐⭐⭐⭐            | Emulated                |       |
@@ -248,7 +248,7 @@ In the coverage table below, the features are marked with their respective avail
 | Records                                                            | ⭐⭐⭐⭐       | Emulated        |       |
 | Shard Iterators                                                    | ⭐⭐⭐⭐       | Emulated        |       |
 | Streams                                                            | ⭐⭐⭐⭐       | Emulated        |       |
-| [**Elastic Compute Cloud (EC2)**]({{< ref "elastic-compute-cloud" >}})                      | [Details 🔍]({{< ref "references/coverage/coverage_ec2" >}})  |                 |       |
+| [**Elastic Compute Cloud (EC2)**]({{< ref "ec2" >}})                      | [Details 🔍]({{< ref "references/coverage/coverage_ec2" >}})  |                 |       |
 | Classic Links                                                      | \-             |                 |       |
 | Customer Gateways                                                  | ⭐             | CRUD            |       |
 | DHCP Options                                                       | ⭐⭐           | CRUD            |       |
@@ -279,7 +279,7 @@ In the coverage table below, the features are marked with their respective avail
 | VPC Peering Connections                                            | ⭐⭐⭐         | CRUD            |       |
 | VPCs                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | VPN Gateways / Connections                                         | ⭐⭐⭐         | CRUD            |       |
-| [**Elastic Container Registry (ECR)** (Pro)]({{< ref "elastic-container-registry" >}})          | [Details 🔍]({{< ref "references/coverage/coverage_ecr" >}}) |                 |       |
+| [**Elastic Container Registry (ECR)** (Pro)]({{< ref "ecr" >}})          | [Details 🔍]({{< ref "references/coverage/coverage_ecr" >}}) |                 |       |
 | Images                                                             | ⭐⭐⭐         |    Emulated     |       |
 | Image Scans                                                        | \-             |                 |       |
 | Lifecycle Policies                                                 | ⭐⭐⭐⭐       |      CRUD       |       |
@@ -289,7 +289,7 @@ In the coverage table below, the features are marked with their respective avail
 | Repositories                                                       | ⭐⭐⭐⭐       |    Emulated     |       |
 | Repository Policies                                                | ⭐⭐⭐⭐       |      CRUD       |       |
 | Tags                                                               | ⭐⭐⭐⭐       |      CRUD       |       |
-| [**Elastic Container Service (ECS)** (Pro)]({{< ref "elastic-container-service" >}})           | [Details 🔍]({{< ref "references/coverage/coverage_ecs" >}}) |                 |       |
+| [**Elastic Container Service (ECS)** (Pro)]({{< ref "ecs" >}})           | [Details 🔍]({{< ref "references/coverage/coverage_ecs" >}}) |                 |       |
 | Account Settings                                                   | \-             |                 |       |
 | Attributes                                                         | ⭐⭐⭐⭐       |      CRUD       |       |
 | Capacity Providers                                                 | \-             |                 |       |
@@ -303,7 +303,7 @@ In the coverage table below, the features are marked with their respective avail
 | **Elastic File System (EFS)** (Pro)                                                      | [Details 🔍]({{< ref "references/coverage/coverage_efs" >}}) |                 |       |
 | File System                                                        | ⭐⭐⭐⭐       | Emulated        |        |
 | Backup Policy                                                      | \-             |                 |       |
-| [**Elastic Kubernetes Service (EKS)** (Pro)]({{< ref "elastic-kubernetes-service" >}})          | [Details 🔍]({{< ref "references/coverage/coverage_eks" >}}) |                 |       |
+| [**Elastic Kubernetes Service (EKS)** (Pro)]({{< ref "eks" >}})          | [Details 🔍]({{< ref "references/coverage/coverage_eks" >}}) |                 |       |
 | AddOns                                                             | \-             |                 |       |
 | Clusters                                                           | ⭐⭐⭐         | Emulated        |       |
 | Fargate Profiles                                                   | ⭐⭐           | CRUD            |       |
@@ -331,13 +331,13 @@ In the coverage table below, the features are marked with their respective avail
 | Rules                                                              | ⭐⭐⭐         | CRUD            |       |
 | Target groups                                                      | ⭐⭐⭐         | CRUD            |       |
 | Listener certificates                                              | ⭐⭐⭐         | CRUD            |       |
-| [**Elastic Load Balancing v2 (ELBv2)**]({{< ref "elastic-load-balancing" >}}) (Pro) | [Details 🔍]({{< ref "references/coverage/coverage_elbv2" >}}) |                 |       |
+| [**Elastic Load Balancing v2 (ELBv2)**]({{< ref "elb" >}}) (Pro) | [Details 🔍]({{< ref "references/coverage/coverage_elbv2" >}}) |                 |       |
 | Listeners                                                          | ⭐⭐⭐         | CRUD            |       |
 | Load balancers                                                     | ⭐⭐⭐         | CRUD            |       |
 | Rules                                                              | ⭐⭐⭐         | CRUD            |       |
 | Target groups                                                      | ⭐⭐⭐         | CRUD            |       |
 | Listener certificates                                              | ⭐⭐⭐         | CRUD            |       |
-| [**Elastic Map Reduce (EMR)**]({{< ref "elastic-mapreduce" >}}) (Pro)                   | [Details 🔍]({{< ref "references/coverage/coverage_emr" >}}) |                 |       |
+| [**Elastic Map Reduce (EMR)**]({{< ref "emr" >}}) (Pro)                   | [Details 🔍]({{< ref "references/coverage/coverage_emr" >}}) |                 |       |
 | Clusters                                                           | ⭐⭐⭐⭐       | Emulated        |       |
 | Instance Fleets                                                    | ⭐⭐⭐         | CRUD            |       |
 | Job Flow Steps                                                     | ⭐⭐⭐         | Emulated        |       |
@@ -347,7 +347,7 @@ In the coverage table below, the features are marked with their respective avail
 | Security Configurations                                            | \-             |                 |       |
 | Studios                                                            | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD             |       |
-| [**Elasticsearch Service (ES)**]({{< ref "elasticsearch" >}})      | [Details 🔍]({{< ref "references/coverage/coverage_es" >}}) |                 |       |
+| [**Elasticsearch Service (ES)**]({{< ref "es" >}})      | [Details 🔍]({{< ref "references/coverage/coverage_es" >}}) |                 |       |
 | Cross-Cluster Search Connections                                   | \-             |                 |       |
 | Elasticsearch Domains                                              | ⭐⭐⭐⭐       | Emulated        |       |
 | Packages                                                           | \-             |                 |       |
@@ -363,6 +363,7 @@ In the coverage table below, the features are marked with their respective avail
 | Replays                                                            | \-             |                 |       |
 | Rules                                                              | ⭐⭐⭐⭐       | Emulated                |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
+| **EventBridge Pipes (Pipes)**                                      | [Details 🔍]({{< ref "references/coverage/coverage_pipes" >}}) |                 |       |
 | **Firehose**                                                       | [Details 🔍]({{< ref "references/coverage/coverage_firehose" >}}) |                 |       |
 | Delivery Streams                                                   | ⭐⭐⭐⭐       | Emulated        |       |
 | Destinations                                                       | ⭐⭐⭐⭐       | Emulated        |       |
@@ -431,7 +432,7 @@ In the coverage table below, the features are marked with their respective avail
 | Thing Types                                                        | ⭐⭐⭐         | CRUD            |       |
 | Things                                                             | ⭐⭐⭐         | CRUD            |       |
 | Topic Rules                                                        | ⭐⭐⭐         | CRUD            |       |
-| [**Managed Streaming for Kafka (MSK)**]({{< ref "managed-streaming-for-kafka" >}}) (Pro) | [Details 🔍]({{< ref "references/coverage/coverage_kafka" >}}) |                 |       |
+| [**Managed Streaming for Kafka (MSK)**]({{< ref "msk" >}}) (Pro) | [Details 🔍]({{< ref "references/coverage/coverage_kafka" >}}) |                 |       |
 | Brokers                                                            | ⭐⭐           | Emulated        |       |
 | Cluster Operations                                                 | ⭐⭐           | Emulated        |       |
 | Clusters                                                           | ⭐⭐⭐⭐       | Emulated        | Single node clusters |
@@ -692,7 +693,7 @@ In the coverage table below, the features are marked with their respective avail
 | Query API                                                          | ⭐⭐⭐⭐       | Emulated        |       |
 | Standard Queues                                                    | ⭐⭐⭐⭐       | Emulated        |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| [**Systems Manager (SSM)**]({{< ref "systems-manager" >}})                           | [Details 🔍]({{< ref "references/coverage/coverage_ssm" >}}) |                 |       |
+| [**Systems Manager (SSM)**]({{< ref "ssm" >}})                           | [Details 🔍]({{< ref "references/coverage/coverage_ssm" >}}) |                 |       |
 | Associations                                                       | ⭐⭐⭐         | CRUD                |       |
 | Calendar States                                                    | ⭐⭐           | CRUD                |       |
 | Commands / Command Invocations                                     | ⭐⭐⭐         | CRUD                |       |

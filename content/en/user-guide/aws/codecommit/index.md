@@ -1,10 +1,10 @@
 ---
 title: "CodeCommit"
 linkTitle: "CodeCommit"
-description: >
-  Get started with CodeCommit on LocalStack
-aliases:
-  - /aws/codecommit/
+description: Get started with CodeCommit on LocalStack
+tags: ["Pro image"]
+persistence: supported
+
 ---
 
 ## Introduction
@@ -14,7 +14,7 @@ With CodeCommit, you can host private Git repositories with integrations to othe
 You can also use standard Git commands or CodeCommit APIs (using AWS CLI or SDKs) to manage your repositories.
 CodeCommit also uses identity-based policies, which can be attached to IAM users, groups, and roles, ensuring secure and granular access control.
 
-LocalStack supports CodeCommit via the Pro/Team offering, allowing you to use the CodeCommit APIs in your local environment to create new repositories, push your commits, and manage the repositories.
+LocalStack allows you to use the CodeCommit APIs in your local environment to create new repositories, push your commits, and manage the repositories.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_codecommit/), which provides information on the extent of CodeCommit's integration with LocalStack.
 
 ## Getting started
@@ -92,6 +92,19 @@ If successful, this command returns output similar to the following:
 To git://localhost:4510/localstack-repo
  * [new branch]      main -> main
 ```
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing CodeCommit repositories.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **CodeCommit** under the **Developer Tools** section.
+
+<img src="codecommit-resource-browser.png" alt="CodeCommit Resource Browser" title="CodeCommit Resource Browser" width="900" />
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Repository**: Create a new CodeCommit repository by specifying the repository name and description, along with optional tags and KMS key ID.
+- **View Repository**: View the details of a CodeCommit repository, including the repository name, description, ARN, and clone URLs.
+- **Delete Repository**: Delete a CodeCommit repository by selecting the repository from the list and clicking the **Actions** dropdown menu followed by **Delete**.
 
 ## Examples
 

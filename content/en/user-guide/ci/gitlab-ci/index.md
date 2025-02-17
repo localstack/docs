@@ -1,47 +1,66 @@
 ---
 title: "GitLab CI"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
-weight: 7
+weight: 6
 description: >
   Use LocalStack in [GitLab CI](https://docs.gitlab.com/ee/ci/)
-aliases:
-  - /ci/gitlab-ci/
 ---
 
-This guide shows you how to start LocalStack in a GitLab CI pipeline.
+This page contains easily customisable snippets to show you how to manage LocalStack in a GitLab CI pipeline.
 
-## Setting up your GitLab CI job
+## Snippets
 
-To start LocalStack, we recommend starting it using Services. Services can be configured using the `services` keyword and run LocalStack with network access to help you connect with LocalStack using the `aws` command-line interface. Every time a GitLab CI job is triggered, it checks which ports are exposed from the LocalStack container by default and starts a special container that waits for these ports to be accessible.
+### Start up Localstack
 
-We recommend taking the following steps:
+{{< callout "tip" >}}
+While working with a Docker-in-Docker (`dind`) setup, the Docker runner requires `privileged` mode.
+You must always use `privileged = true` in your GitLab CI's `config.toml` file while setting up LocalStack in GitLab CI runners.
+For more information, see [GitLab CI Docker-in-Docker](https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-executor) documentation.
+{{< /callout >}}
 
-- Use a GitLab CI image for the keyword image that best fits your use-case (`docker:20.10.16` or any other version).
-- Add GitLab CI variables using the keyword variables to include `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`.
-- Create a service using the keyword `services` and reference `docker:20.10.16-dind` to pull the latest Docker image and assign an alias for the container (`docker` in our case). Use the `command` option to disable TLS with `--tls=false`.
-- Install LocalStack and/or AWS-related dependencies to define the commands that should be run before all builds.
-- In the `script` section, append `localhost.localstack.cloud` to `/etc/hosts` using the IP address of the `docker` service.
-- In the `script` section, pull the `localstack/localstack` Docker image, start LocalStack in detached mode, and run your LocalStack-related tests.
+<details>
+<summary>For LocalStack versions before 3.0.0</summary>
+Under test>variables, add:<br>
+LOCALSTACK_HOSTNAME: localhost.localstack.cloud<br>
+HOSTNAME_EXTERNAL: localhost.localstack.cloud.
+</details>
 
-The following example Gitlab CI job config (`.gitlab-ci.yml`) executes these steps, creates a new S3 bucket, copies some content to the bucket, and checks the content of the bucket:
+#### Service
 
-```yml
-image: docker:20.10.16
+```yaml
+...
+variables:
+  DOCKER_SOCK: tcp://docker:2375
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+...
+services:
+  - name: localstack/localstack:latest
+    alias: localstack
+  - name: docker:dind
+    alias: docker
+    command: ["--tls=false"]
+...
+```
+
+#### Container
+
+```yaml
+image: docker:latest
 
 stages:
-  - test
+  - job
 
-test:
-  stage: test
+job:
+  stage: job
   variables:
-    AWS_ACCESS_KEY_ID: test
-    AWS_SECRET_ACCESS_KEY: test
-    AWS_DEFAULT_REGION: us-east-1
+    ...
     DOCKER_HOST: tcp://docker:2375
     DOCKER_TLS_CERTDIR: ""
+    AWS_ENDPOINT_URL: "http://localhost.localstack.cloud:4566"
+    ...
 
   services:
-    - name: docker:20.10.16-dind
+    - name: docker:dind
       alias: docker
       command: ["--tls=false"]
 
@@ -54,44 +73,154 @@ test:
     - dind_ip="$(getent hosts docker | cut -d' ' -f1)"
     - echo "${dind_ip} localhost.localstack.cloud " >> /etc/hosts
     - DOCKER_HOST="tcp://${dind_ip}:2375" localstack start -d
-    - aws --endpoint http://localhost.localstack.cloud:4566 s3 mb s3://test
-    - echo "hello world" > /tmp/hello-world
-    - aws --endpoint http://localhost.localstack.cloud:4566 s3 cp /tmp/hello-world s3://test/hello-world
-    - aws --endpoint http://localhost.localstack.cloud:4566 s3 ls s3://test/
 ```
 
-<details>
-<summary>For LocalStack versions before 3.0.0</summary>
-Under test>variables, add:<br>
-LOCALSTACK_HOSTNAME: localhost.localstack.cloud<br>
-HOSTNAME_EXTERNAL: localhost.localstack.cloud.
-</details>
+### Configure a CI Auth Token
 
-{{< alert title="Note">}}
-While working with a Docker-in-Docker (`dind`) setup, the Docker runner requires `privileged` mode. You must always use `privileged = true` in your GitLab CI's `config.toml` file while setting up LocalStack in GitLab CI runners. For more information, see [GitLab CI Docker-in-Docker](https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-executor) documentation.
-{{< /alert >}}
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your [CI Auth Token](https://app.localstack.cloud/workspace/auth-tokens) to the repository's environment variables as `LOCALSTACK_AUTH_TOKEN`.
+Go to your project's **Settings > CI/CD** and expand the **Variables** section.
+Select the **Add Variable** button and fill in the necessary details with `LOCALSTACK_AUTH_TOKEN` as the key and your CI Auth Token as the value.
+After you create the variable, you can use it in the `.gitlab-ci.yml` file.
 
-## Configuring a CI key
-
-You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the repository's environment variables. Go to your project's **Settings > CI/CD**  and expand the  **Variables**  section. Select the **Add Variable** button and fill in the necessary details. After you create a variable, you can use it in the `.gitlab-ci.yml` file.
-
-However Variables set in the GitLab UI are not passed down to service containers. We need to assign them to variables in the UI, and then re-assign them in our `.gitlab-ci.yml`:
+However, variables set in the GitLab UI are not automatically passed down to service containers.
+You need to assign them as variables in the UI, and then re-assign them in your `.gitlab-ci.yml`.
 
 ```yaml
 ...
-test:
-  stage: test
-  variables:
-    AWS_ACCESS_KEY_ID: test
-    AWS_SECRET_ACCESS_KEY: test
-    AWS_DEFAULT_REGION: us-east-1
-    LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
-  ...
-  script:
-    - docker pull localstack/localstack-pro:latest
-    ...
-    - DOCKER_HOST="tcp://${dind_ip}:2375" localstack start -d
+variables:
+  LOCALSTACK_AUTH_TOKEN: $LOCALSTACK_AUTH_TOKEN
+...
+services:
+  - name: localstack/localstack-pro:latest
+    alias: localstack
 ...
 ```
 
-You can check the logs of the LocalStack container to see if the activation was successful. If the CI key activation fails, LocalStack container will exit with an error code.
+You can check the logs of the LocalStack container to see if the activation was successful.
+If the CI Auth Token activation fails, LocalStack container will exit with an error code.
+
+### Dump Localstack logs
+
+```yaml
+...
+job:
+  variables:
+    LOCALSTACK_HOST: <LS_HOST>:<LS_PORT>
+  script:
+  - localstack logs | tee localstack.log
+... 
+```
+
+In case of the service setup `LOCALSTACK_HOST` will be `localstack:4566`.
+
+### Store Localstack state
+
+You can preserve your AWS infrastructure with Localstack in various ways.
+
+#### Artifact
+
+```yaml
+...
+job:
+  before_script:
+    - (test -f ./ls-state-pod.zip && localstack state import ./ls-state-pod.zip) || true
+  script:
+  ...
+    - localstack state export ./ls-state-pod.zip
+  ...
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/ls-state-pod.zip
+...
+```
+
+More info about Localstack's state export and import [here](/user-guide/state-management/export-import-state/).
+
+#### Cache
+
+```yaml
+...
+job:
+  before_script:
+    - (test -f ./ls-state-pod.zip && localstack state import ./ls-state-pod.zip) || true
+  script:
+  ...
+    - localstack state export ./ls-state-pod.zip
+  ...
+  cache:
+    key:
+      untracked: true
+      files:
+        - $CI_PROJECT_DIR/ls-state-pod.zip
+    paths:
+      - $CI_PROJECT_DIR/ls-state-pod.zip
+...
+```
+
+Additional information about state export and import [here](/user-guide/state-management/export-import-state/).
+
+#### Cloud Pod
+
+```yaml
+...
+job:
+  before_script:
+    - localstack pod load <POD_NAME> || true
+  script:
+  ...
+    - localstack pod save <POD_NAME>
+...
+```
+
+Find more information about cloud pods [here](/user-guide/state-management/cloud-pods/).
+
+#### Ephemeral Instance (Preview)
+
+```yaml
+...
+variables:
+  LOCALSTACK_AUTH_TOKEN: $LOCALSTACK_AUTH_TOKEN
+...
+setup-job:
+  stage: build
+  before_script:
+    - |
+      response=$(curl -X POST -d '{"auto_load_pod": "false"}' \
+        -H 'ls-api-key: $LOCALSTACK_API_KEY' \
+        -H 'authorization: token $LOCALSTACK_API_KEY' \
+        -H 'content-type: application/json' \
+        https://api.localstack.cloud/v1/previews/my-gitlab-state)
+      
+      if [ "$endpointUrl" = "null" ] || [ "$endpointUrl" = "" ]; then
+        echo "Unable to create preview environment. API response: $response"
+        exit 1
+      fi
+      echo "Created preview environment with endpoint URL: $endpointUrl"
+
+      echo "export AWS_ENDPOINT_URL=$endpointUrl"
+      echo "$AWS_ENDPOINT_URL" >> ls-endpoint.env
+  ...
+  artifacts:
+    reports:
+      dotenv: ls-endpoint.env
+
+test-job:
+  stage: test
+  script:
+    - echo "$AWS_ENDPOINT_URL"  # Output is the address of the ephemeral instance
+...
+```
+
+Find out more about ephemeral instances [here](/user-guide/cloud-sandbox/).
+
+## Current Limitations
+
+- Localstack must be able to reach a docker socket to provision containers for certain services, ie Lambda, EKS, ECS...etc
+- the runner must be able to resolve the Localstack domain (by default _localhost.localstack.cloud_), see the sample pipelines for a possible solution
+- to be able to separate steps into their own jobs one must preserve Localstack's state, since Gitlab is not preserving job related containers/services during the pipelines
+- to start up Localstack in Gitlab CI Docker tools are necessary
+- when Localstack run as a container, it's not accessible during the `after_script` phase
+
+## Examples
+
+- [End-to-End Testing in Gitlab CI with Testcontainers and LocalStack: Understanding Runners and Docker in Docker]({{< ref "tutorials/gitlab_ci_testcontainers/" >}}) - A readily configured demo project, that will walk you through the process of setting up end-to-end testing for a backend application using Testcontainers and LocalStack within GitLab CI.

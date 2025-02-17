@@ -3,6 +3,7 @@ title: "Serverless Application Repository"
 linkTitle: "Serverless Application Repository"
 description: >
   Get started with Serverless Application Repository on LocalStack
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -11,7 +12,7 @@ description: >
 Using Serverless Application Repository, developers can build & publish applications and components once and share them across the community and organizations, making them accessible to others.
 Serverless Application Repository provides a user-friendly interface to search, filter, and browse through a diverse catalog of serverless applications.
 
-LocalStack supports Serverless Application Repository via the Pro/Team offering, allowing you to use the Serverless Application Repository APIs in your local environment to create, update, delete, and list serverless applications and components.
+LocalStack allows you to use the Serverless Application Repository APIs in your local environment to create, update, delete, and list serverless applications and components.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_serverlessrepo/), which provides information on the extent of Serverless Application Repository's integration with LocalStack.
 
 ## Getting started
@@ -29,7 +30,7 @@ To create a sample SAM application using the `samlocal` CLI, execute the followi
 $ samlocal init --runtime python3.9
 {{< /command >}}
 
-This command downloads a sample SAM application template and generates a `template.yml` file in the current directory. 
+This command downloads a sample SAM application template and generates a `template.yml` file in the current directory.
 The template includes a Lambda function and an API Gateway endpoint that supports a `GET` operation.
 
 ### Package the SAM application
@@ -102,7 +103,7 @@ Replace `<application-id>` with the Application ID of your SAM application that 
 
 You can also create a CloudFormation changeset using the [`CreateCloudFormationChangeSet`](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-how-to-publish.html) API, and then execute the changeset to deploy the SAM application using the [`ExecuteChangeSet`](https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html) API.
 
-## Limitations
+## Current Limitations
 
 - Keep in mind, since the application is only registered in your individual localstack instance, you won't be able to share them with other developers.
 - Currently LocalStack only supports one AWS-hosted application (`"arn:aws:serverlessrepo:us-east-1:297356227824:applications/SecretsManagerRDSPostgreSQLRotationMultiUser`).

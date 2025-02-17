@@ -4,13 +4,13 @@
   "operations": [
     {
       "BatchExecuteStatement": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -76,6 +76,72 @@
     }
   ],
   "details": {
+    "BatchExecuteStatement": {
+      "database, parameterSets, resourceArn, secretArn, sql": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_inserts[mysql-v1]",
+            "test": "test_batch_execute_statement_inserts[mysql-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..updateResults..generatedFields', '$..numberOfRecordsUpdated', '$..columnMetadata..precision', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_inserts[postgres-v1]",
+            "test": "test_batch_execute_statement_inserts[postgres-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..updateResults..generatedFields', '$..numberOfRecordsUpdated', '$..columnMetadata..precision', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_inserts[postgres-v2]",
+            "test": "test_batch_execute_statement_inserts[postgres-v2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..updateResults..generatedFields', '$..numberOfRecordsUpdated', '$..columnMetadata..precision', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_validate_atomicity[postgres-v1]",
+            "test": "test_batch_execute_validate_atomicity[postgres-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision', '$..missing-in-second-insert.*', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_validate_atomicity[postgres-v2]",
+            "test": "test_batch_execute_validate_atomicity[postgres-v2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision', '$..missing-in-second-insert.*', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_validate_atomicity[mysql-v1]",
+            "test": "test_batch_execute_validate_atomicity[mysql-v1]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "['$..columnMetadata..precision', '$..missing-in-second-insert.*', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "BeginTransaction": {
       "database, resourceArn, secretArn": {
         "ls_pro": [
@@ -160,11 +226,171 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_drop[mysql-v1]",
+            "test": "test_batch_execute_statement_drop[mysql-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..delete-all.numberOfRecordsUpdated']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_drop[postgres-v1]",
+            "test": "test_batch_execute_statement_drop[postgres-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..delete-all.numberOfRecordsUpdated']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_drop[postgres-v2]",
+            "test": "test_batch_execute_statement_drop[postgres-v2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..delete-all.numberOfRecordsUpdated']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_inserts[mysql-v1]",
+            "test": "test_batch_execute_statement_inserts[mysql-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..updateResults..generatedFields', '$..numberOfRecordsUpdated', '$..columnMetadata..precision', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_inserts[postgres-v1]",
+            "test": "test_batch_execute_statement_inserts[postgres-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..updateResults..generatedFields', '$..numberOfRecordsUpdated', '$..columnMetadata..precision', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_inserts[postgres-v2]",
+            "test": "test_batch_execute_statement_inserts[postgres-v2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..updateResults..generatedFields', '$..numberOfRecordsUpdated', '$..columnMetadata..precision', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_setup[mysql-v1]",
+            "test": "test_batch_execute_statement_setup[mysql-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_setup[postgres-v1]",
+            "test": "test_batch_execute_statement_setup[postgres-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_statement_setup[postgres-v2]",
+            "test": "test_batch_execute_statement_setup[postgres-v2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_validate_atomicity[mysql-v1]",
+            "test": "test_batch_execute_validate_atomicity[mysql-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision', '$..missing-in-second-insert.*', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_validate_atomicity[postgres-v1]",
+            "test": "test_batch_execute_validate_atomicity[postgres-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision', '$..missing-in-second-insert.*', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_batch_execute_validate_atomicity[postgres-v2]",
+            "test": "test_batch_execute_validate_atomicity[postgres-v2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision', '$..missing-in-second-insert.*', '$..columnMetadata..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_column_metadata_for_mysql[mysql-v1]",
+            "test": "test_column_metadata_for_mysql[mysql-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision', '$..columnMetadata..type', '$..records..booleanValue', '$..records..longValue', '$..numberOfRecordsUpdated']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_column_metadata_for_postgres[postgres-v1]",
+            "test": "test_column_metadata_for_postgres[postgres-v1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..nullable', '$..columnMetadata..precision', '$..columnMetadata..tableName', '$..numberOfRecordsUpdated']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMultiEngine::test_column_metadata_for_postgres[postgres-v2]",
+            "test": "test_column_metadata_for_postgres[postgres-v2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..nullable', '$..columnMetadata..precision', '$..columnMetadata..tableName', '$..numberOfRecordsUpdated']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
       "database, includeResultMetadata, resourceArn, secretArn, sql": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMysql::test_bool_and_int_values_handled_properly",
+            "test": "test_bool_and_int_values_handled_properly",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMysql::test_data_api[False]",
             "test": "test_data_api[False]",
@@ -191,6 +417,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..columnMetadata[8].precision', '$..records[0].[14].stringValue', '$..records[0].[15].stringValue']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraPostgresCfn::test_advisory_lock",
+            "test": "test_advisory_lock",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraPostgresCfn::test_select_bytea_data_type",
+            "test": "test_select_bytea_data_type",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..numberOfRecordsUpdated']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -270,6 +516,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_rds_data_source_rds_utils",
             "test": "test_rds_data_source_rds_utils",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_data.py::TestAuroraMysql::test_bool_and_int_values_handled_properly",
+            "test": "test_bool_and_int_values_handled_properly",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",

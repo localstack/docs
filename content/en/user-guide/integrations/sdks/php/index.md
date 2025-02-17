@@ -1,7 +1,6 @@
 ---
 title: "PHP"
 categories: []
-tags: ["sdk"]
 description: >
   How to use the PHP AWS SDK with LocalStack.
 aliases:
@@ -32,7 +31,6 @@ $s3 = new Aws\S3\S3Client([
 ```
 
 A full example can be found [in our samples repository](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/php).
-
 
 ## Resources
 

@@ -1,8 +1,9 @@
 ---
 title: "Config"
 linkTitle: "Config"
-description: >
-  Get started with Config on LocalStack
+description: Get started with Config on LocalStack
+persistence: supported
+
 ---
 
 ## Introduction
@@ -11,7 +12,7 @@ AWS Config is a service provided by Amazon Web Services (AWS) that enables you t
 Config provides a comprehensive view of the resource configuration across your AWS environment, helping you ensure compliance with security policies, track changes, and troubleshoot operational issues.
 Config continuously records configuration changes and allows you to retain a historical record of these changes.
 
-LocalStack supports Config via the Community offering, allowing you to use the Config APIs in your local environment to assesses resource configurations and notifies you of any non-compliant items to mitigate potential security risks.
+LocalStack allows you to use the Config APIs in your local environment to assesses resource configurations and notifies you of any non-compliant items to mitigate potential security risks.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_config/), which provides information on the extent of Config's integration with LocalStack.
 
 ## Getting started
@@ -97,7 +98,7 @@ $ awslocal configservice describe-delivery-channels
 $ awslocal configservice describe-configuration-recorder-status
 {{< /command >}}
 
-## Limitations
+## Current Limitations
 
 AWS Config is currently mocked in LocalStack.
 You can create, read, update, and delete AWS Config resources (like delivery channels or configuration recorders),

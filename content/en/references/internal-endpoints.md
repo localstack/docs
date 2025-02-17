@@ -8,42 +8,32 @@ description: >
   Overview of LocalStack and AWS specific internal endpoints for local development and testing
 ---
 
-LocalStack provides several internal endpoints for various local AWS services and LocalStack-specific features. These endpoints are not part of the official AWS API and are available in the `/_localstack` and `/_aws` paths. You can use [`cURL`](https://curl.se/) or your favourite HTTP REST client to access endpoints.
+LocalStack provides several internal endpoints for various local AWS services and LocalStack-specific features.
+These endpoints are not part of the official AWS API and are available in the `/_localstack` and `/_aws` paths.
+You can use [curl](https://curl.se/) or your favourite HTTP REST client to access endpoints.
 
-## LocalStack endpoints
+You can start your LocalStack instance and go to [http://localhost.localstack.cloud:4566/_localstack/swagger](http://localhost.localstack.cloud:4566/_localstack/swagger)
+to browse the Swagger UI, visualize and interact with all the API's resources implemented in LocalStack.
 
-The API path for the LocalStack internal resources is `/_localstack`. The following endpoints are available:
+### LocalStack endpoints
 
-| Endpoint | Description |
-| ---------------------------------| --------------------------------------------------------------------------- |
-| `/_localstack/health`| To check the available and running AWS services in LocalStack. You can use the endpoint to restart the LocalStack services.  |
-| `/_localstack/plugins` | Shows the [Plux plugins ](https://docs.localstack.cloud/contributing/concepts/#plugins) information in LocalStack. |
-| `/_localstack/init`| Shows the initialization status after setting up [Init hooks](https://docs.localstack.cloud/references/init-hooks/). |
-| `/_localstack/cloudformation/deploy` | Enables you to deploy CloudFormation templates locally through a web interface. |
-| `/_localstack/diagnose`| Reports extensive and sensitive data from LocalStack instance, enabled via the `DEBUG=1` configuration variable. |
-| `/_localstack/config`                | Enables dynamic configuration updates at runtime, enabled via the `ENABLE_CONFIG_UPDATES` configuration variable.  |
-| `/_localstack/state/<service>/save`  | Get a snapshot of the given AWS service using the Persistence mechanism. |
-| `/_localstack/state/<service>/load`  | Load the most recent snapshot of the given service using the Persistence mechanism. |
-| `/_localstack/state/reset`           | Reset the state of the services using the Persistence mechanism. |
-| `/_localstack/state/<service>/reset` | Reset the state of the given service using the Persistence mechanism. |
+The API path for the LocalStack internal resources is `/_localstack`.
+Several endpoints are available under this path.
+For instance, `/_localstack/health` checks the available and running AWS services in LocalStack while
+`/_localstack/diagnose` (enable with the `DEBUG=1` configuration variable), reports extensive and sensitive data from
+the LocalStack instance.
 
-{{< alert title="Note" >}}
-You can use the `/_localstack/health` endpoint to restart or kill the services. You can use `cURL` or your HTTP REST client to access the endpoint:
+{{< callout "tip" >}}
+You can use the `/_localstack/health` endpoint to restart or kill the services.
+You can use [curl](https://curl.se/) or your HTTP REST client to access the endpoint:
 {{< command >}}
 $ curl -v --request POST --header "Content-Type: application/json"  --data '{"action":"restart"}' http://localhost:4566/_localstack/health
 $ curl -v --request POST --header "Content-Type: application/json"  --data '{"action":"kill"}' http://localhost:4566/_localstack/health
 {{< /command >}}
-{{< /alert >}}
+{{< /callout >}}
 
-## AWS endpoints
+### AWS endpoints
 
-The API path for the AWS internal resources is `/_aws`. The following endpoints are available:
-
-| Endpoint                               | Description                                               |
-|----------------------------------------|-----------------------------------------------------------|
-| `/_aws/sqs/messages`                   | Access all messages within a SQS queue                    |
-| `/_aws/sns/platform-endpoint-messages` | Access and delete all the published SNS platform messages |
-| `/_aws/ses`                            | Access and delete all the sent SES emails                 |
-| `/_aws/cloudwatch/metrics/raw`         | Access all the raw CloudWatch metrics                     |
-| `_aws/cognito-idp`                     | Access the local Cognito login form                       |
-| `/_aws/dynamodb/expired`               | Trigger the DynamoDB TTL worker at convenience                      |
+The API path for the AWS internal resources is `/_aws`.
+These endpoints offer LocalStack-specific features in addition to the ones offered by the AWS services.
+For instance, `/aws/sqs/messages` conveniently access all messages withing a SQS queue, without deleting them.

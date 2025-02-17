@@ -41,7 +41,7 @@ const genFrontMatter = (answers) => {
         // Link the examples from Developer Hub & Pro/Terraform/Pulumi samples
         // Provide a short description of each example
 
-        ## Limitations
+        ## Current Limitations
 
         // If there are any specific limitation or difference in behavior against AWS
         // Add sub-headings for each limitation and provide a short description

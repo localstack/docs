@@ -1,5 +1,5 @@
 ---
-title: "acm-pca"
+title: "AWS Private Certificate Authority (CA)"
 linkTitle: "acm-pca"
 description: >
   Implementation details for API acm-pca

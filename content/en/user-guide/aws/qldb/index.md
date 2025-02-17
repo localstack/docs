@@ -1,31 +1,23 @@
 ---
 title: "Quantum Ledger Database (QLDB)"
 linkTitle: "Quantum Ledger Database (QLDB)"
-categories: ["LocalStack Pro"]
-description: >
-    Get started with Quantum Ledger Database (QLDB) on LocalStack
-aliases:
-
-- /aws/qldb/
-
+tags: ["Pro image"]
+description: Get started with Quantum Ledger Database (QLDB) on LocalStack
 ---
 
 ## Introduction
 
-Quantum Ledger Database (QLDB) is supported by LocalStack only in the Pro version.
-
 Amazon Quantum Ledger Database is a fully managed ledger database service offered by Amazon Web
-Services. It is designed to provide transparent, immutable, and cryptographically verifiable
+Services.
+It is designed to provide transparent, immutable, and cryptographically verifiable
 transaction
-log functionality to applications. QLDB is particularly useful for applications that need a secure
+log functionality to applications.
+QLDB is particularly useful for applications that need a secure
 and scalable
 way to maintain a complete and verifiable history of data changes over time.
 
-To learn more about QLDB please refer to
-the [official documentation](https://docs.aws.amazon.com/qldb/).
-To find out what operations are supported by the QLDB service on LocalStack, please check
-the [QLDB service coverage page]({{< ref "/references/coverage/coverage_qldb/index.md" >}} "QLDB
-service coverage page").
+LocalStack allows you to use the QLDB APIs in your local environment to create and manage ledgers.
+The supported APIs are available on the [API coverage page]({{< ref "/references/coverage/coverage_qldb/index.md" >}} "QLDB service coverage page"), which provides information on the extent of QLDB's integration with LocalStack.
 
 ## Getting started
 
@@ -41,7 +33,8 @@ QLDB supports PartiQL, a SQL-compatible query language, which allows you to quer
 data stored in QLDB.
 You can write PartiQL statements to perform complex queries, aggregations, and transformations on
 your data.
-Amazon QLDB provides a command line shell for interaction with the transactional data API. With the
+Amazon QLDB provides a command line shell for interaction with the transactional data API.
+With the
 QLDB shell,
 you can run PartiQL statements on ledger data.
 
@@ -71,7 +64,7 @@ $ awslocal qldb create-ledger --name vehicle-registration --permissions-mode ALL
 }
 ```
 
-{{< alert title="Note" >}}
+{{< callout >}}
 
 - Permissions mode – the following options are available in AWS:
 
@@ -82,7 +75,8 @@ the ledger.
 
 **Standard** (Recommended) - A permissions mode that enables access control with finer granularity
 for ledgers,
-tables, and PartiQL commands. It is recommended using this permissions mode to maximize the security
+tables, and PartiQL commands.
+It is recommended using this permissions mode to maximize the security
 of your
 ledger data.
 By default, this mode denies all requests to run any PartiQL commands on any tables in this ledger.
@@ -90,7 +84,7 @@ To allow PartiQL
 commands, you must create IAM permissions policies for specific table resources and PartiQL actions,
 in addition to
 the `SendCommand` API permission for the ledger.
-{{< /alert >}}
+{{< /callout >}}
 
 The following command can be used directly to write PartiQL statements against a QLDB ledger:
 
@@ -102,8 +96,8 @@ The user can continue from here to create tables, populate and interrogate them.
 
 ### Creating tables and sample data
 
-PartiQL is a query language designed for processing structured data, allowing you to perform 
-various data manipulation tasks using familiar SQL-like syntax. 
+PartiQL is a query language designed for processing structured data, allowing you to perform
+various data manipulation tasks using familiar SQL-like syntax.
 
 {{< command >}}
 qldb> CREATE TABLE VehicleRegistration
@@ -129,7 +123,8 @@ qldb> CREATE TABLE VehicleRegistration
 1 document in bag (read-ios: 0, server-time: 0ms, total-time: 31ms)
 ```
 
-The `VehicleRegistration` table was created. Now it's time to add some items:
+The `VehicleRegistration` table was created.
+Now it's time to add some items:
 
 {{< command >}}
 qldb> INSERT INTO VehicleRegistration VALUE
@@ -197,12 +192,14 @@ person ID.
 qldb> UPDATE VehicleRegistration AS r SET r.Owners.PrimaryOwner.PersonId = '112233445566NO' WHERE r.VIN = 'KM8SRDHF6EU074761'
 {{< / command >}}
 The command will return the updated document ID.
+
 ```bash
 {
   documentId: "3TYR9BamzyqHWBjYOfHegE"
 }
 1 document in bag (read-ios: 0, server-time: 0ms, total-time: 62ms)
 ```
+
 The next step is to check on the updates made to the `PersonId` field of the `PrimaryOwner`:
 {{< command >}}
 qldb> SELECT r.Owners FROM VehicleRegistration AS r WHERE r.VIN = 'KM8SRDHF6EU074761'
@@ -237,6 +234,7 @@ First the unique `id` of the document must be found.
 {{< command >}}
 qldb> SELECT r_id FROM VehicleRegistration AS r BY r_id WHERE r.VIN = 'KM8SRDHF6EU074761'
 {{< / command >}}
+
 ```bash
 {
 r_id: "3TYR9BamzyqHWBjYOfHegE"
@@ -291,7 +289,8 @@ qldb> SELECT h.data.VIN, h.data.City, h.data.Owners FROM history(VehicleRegistra
 
 ### Cleaning up resources
 
-Unused ledgers can be deleted. You'll notice that directly running the following command will lead
+Unused ledgers can be deleted.
+You'll notice that directly running the following command will lead
 to an error message.
 
 {{< command >}}
@@ -321,11 +320,28 @@ $ awslocal qldb update-ledger --name vehicle-registration --no-deletion-protecti
 
 Now the `delete-ledger` command can be repeated without errors.
 
-### Examples
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing QLDB ledgers.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **QLDB** under the **Database** section.
+
+<img src="qldb-resource-browser.png" alt="QLDB Resource Browser" title="QLDB Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Ledger**: Create a new QLDB ledger by clicking on the **Create Ledger** button and providing the ledger name and permissions mode.
+- **View Ledger**: View the details of a specific ledger by clicking on the ledger name.
+- **Edit Ledger**: Edit the details of a specific ledger by clicking on the ledger name and then clicking on the **Edit Ledger** button.
+- **Delete Ledger**: Delete a specific ledger by selecting the ledger name and clicking on the **Actions** dropdown menu, then selecting **Remove Selected**.
+
+## Examples
 
 Interacting with Amazon QLDB (Quantum Ledger Database) is typically done using language-specific
 software
-development kits (SDKs) provided by AWS. These SDKs make it easier for developers to interact with
+development kits (SDKs) provided by AWS.
+These SDKs make it easier for developers to interact with
 QLDB and
 perform operations such as managing ledgers, executing PartiQL queries, and processing the results.
 When interacting with QLDB, it's common to use a combination of SDKs and PartiQL queries to achieve

@@ -1,5 +1,5 @@
 ---
-title: "Kinesis Data Analytics API v2"
+title: "MSF (Managed Service for Apache Flink)"
 linkTitle: "kinesisanalyticsv2"
 description: >
   Implementation details for API kinesisanalyticsv2

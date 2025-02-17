@@ -24,12 +24,12 @@ They all can be summarised as:
 
 1. get your proxy's custom certificate into the system certificate store, and
 2. configure [`requests`](https://pypi.python.org/pypi/requests) to use the custom certificate,
-3. configure [`curl`](https://curl.se/) to use the custom certificate, and 
+3. configure [`curl`](https://curl.se/) to use the custom certificate, and
 4. configure [`node.js`](https://nodejs.org/) to use the custom certificate.
 
 ## Creating a custom docker image
 
-If you run LocalStack in a docker container (which includes using [the CLI]({{< ref "/getting-started#localstack-cli" >}}), [docker]({{< ref "/getting-started/#docker" >}}), [docker-compose]({{< ref "/getting-started/#docker-compose" >}}), [cockpit]({{< ref "/getting-started/#localstack-cockpit" >}}) or [helm]({{< ref "/getting-started/#helm" >}})), to include a custom TLS root certificate a new docker image should be created.
+If you run LocalStack in a docker container (which includes using [the CLI]({{< ref "/getting-started#localstack-cli" >}}), [docker]({{< ref "/getting-started/#docker" >}}), [docker-compose]({{< ref "/getting-started/#docker-compose" >}}), or [helm]({{< ref "/getting-started/#helm" >}})), to include a custom TLS root certificate a new docker image should be created.
 
 Create a `Dockerfile` containing the following commands:
 
@@ -51,16 +51,17 @@ and build the image:
 $ docker build -t <image name> .
 {{< / command >}}
 
-{{< alert title="Note">}}
+{{< callout "tip" >}}
 Certificate files must end in `.crt` to be included in the system certificate store.
-If your certificate file ends with `.pem`, you can rename it to end in `.crt`. 
-{{< / alert>}}
+If your certificate file ends with `.pem`, you can rename it to end in `.crt`.
+{{< /callout >}}
 
 ### Starting LocalStack with the custom image
 
-LocalStack now needs to be configured to use this custom image. The workflow is different depending on how you start localstack.
+LocalStack now needs to be configured to use this custom image.
+The workflow is different depending on how you start localstack.
 
-{{< tabpane >}}
+{{< tabpane lang="bash">}}
 {{< tab header="CLI" lang="bash" >}}
 IMAGE_NAME=<image name> localstack start
 {{< /tab >}}
@@ -77,7 +78,8 @@ services:
 
 ## Custom TLS certificates with init hooks
 
-It is recommended to create a `boot` init hook. Create a directory on your local system that includes
+It is recommended to create a `boot` init hook.
+Create a directory on your local system that includes
 
 * the certificate you wish to copy, and
 * the following shell script:
@@ -103,11 +105,14 @@ and follow the instructions fn the [init hooks documentation]({{< ref "init-hook
 
 ### Linux
 
-On linux the custom certificate should be added to your `ca-certificates` bundle. For example on Debian based systems (as root):
+On linux the custom certificate should be added to your `ca-certificates` bundle.
+For example on Debian based systems (as root):
 
 {{< command >}}
 # cp <your custom certificate.crt> /usr/local/share/ca-certificates
+
 # update-ca-certificates
+
 {{< / command >}}
 
 Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`, and `NODE_EXTRA_CA_CERTS``:
@@ -121,7 +126,8 @@ $ NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt \
 
 ### macOS
 
-On macOS the custom certificate should be added to your keychain. See [this Apple support article](https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac) for more information.
+On macOS the custom certificate should be added to your keychain.
+See [this Apple support article](https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac) for more information.
 
 Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`, and `NODE_EXTRA_CA_CERTS``:
 
@@ -134,4 +140,5 @@ $ NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt \
 
 ### Windows
 
-Currently host mode does not work with Windows. If you are using WSL2 you should follow the [Linux]({{< ref "#linux" >}}) steps above.
+Currently host mode does not work with Windows.
+If you are using WSL2 you should follow the [Linux]({{< ref "#linux" >}}) steps above.

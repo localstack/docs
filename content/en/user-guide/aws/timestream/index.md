@@ -1,19 +1,22 @@
 ---
 title: "Timestream"
 linkTitle: "Timestream"
-description: >
-  Get started with Amazon Timestream on LocalStack
+description: Get started with Timestream on LocalStack
+tags: ["Pro image"]
+persistence: supported
+
 ---
 
 ## Introduction
 
 LocalStack contains basic support for Timestream time series databases, including these operations:
+
 * Creating databases
 * Creating tables
 * Writing records to tables
 * Querying timeseries data from tables
 
-LocalStack supports Timestream via the Pro/Team offering, allowing you to use the Timestream APIs in your local environment. The supported APIs are available on our API Coverage Page ([Timestream-Query](https://docs.localstack.cloud/references/coverage/coverage_timestream-query/)/[Timestream-Write](https://docs.localstack.cloud/references/coverage/coverage_timestream-write/)), which provides information on the extent of Timestream integration with LocalStack.
+The supported APIs are available on our API Coverage Page ([Timestream-Query](https://docs.localstack.cloud/references/coverage/coverage_timestream-query/)/[Timestream-Write](https://docs.localstack.cloud/references/coverage/coverage_timestream-write/)), which provides information on the extent of Timestream integration with LocalStack.
 
 ## Getting Started
 
@@ -49,7 +52,24 @@ $ awslocal timestream-query query --query-string "SELECT CREATE_TIME_SERIES(time
 ...
 {{</ command >}}
 
-## Limitations
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing Timestream databases.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Timestream** under the **Database** section.
+
+<img src="timestream-resource-browser.png" alt="Timestream Resource Browser" title="Timestream Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+* **Create Database**: Create a new Timestream database by clicking on the **Create Database** button and providing a name for the database among other optional details.
+* **Create Table**: Create a new Timestream table by clicking on the **Create Table** button in the database view and providing a name for the table among other optional details.
+* **Run Query**: Run a Timestream query by clicking on the **Run Query** button in the table view and providing a query string.
+* **View Database/Table Details**: Click on a database or table to view its details, including the schema, retention policy, and other metadata.
+* **Delete Database/Table**: Delete the Timestream database/table by selecting it and clicking on the **Actions** button followed by **Remove Selected** button.
+
+## Current Limitations
 
 LocalStack's Timestream implementation is under active development and only supports a limited set of operations, please refer to the API Coverage pages for an up-to-date list of implemented and tested functions within [Timestream-Query](https://docs.localstack.cloud/references/coverage/coverage_timestream-query/) and [Timestream-Write](https://docs.localstack.cloud/references/coverage/coverage_timestream-write/).
 

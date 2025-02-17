@@ -1,7 +1,6 @@
 ---
 title: "Java"
 categories: []
-tags: ["sdk"]
 description: >
     How to use the AWS Java SDK with LocalStack.
 aliases:
@@ -10,10 +9,13 @@ aliases:
 
 ## Overview
 
-The AWS SDK for Java provides a Java API for AWS services. Using the SDK, your Java application can interact
-with LocalStack services the same way it does with Amazon services. Support for new services is regularly added to
-the SDK. For a list of the supported services and their API versions that are 
-included with each release of the SDK, view the [release notes](https://github.com/aws/aws-sdk-java#release-notes) 
+The AWS SDK for Java provides a Java API for AWS services.
+Using the SDK, your Java application can interact
+with LocalStack services the same way it does with Amazon services.
+Support for new services is regularly added to
+the SDK.
+For a list of the supported services and their API versions that are
+included with each release of the SDK, view the [release notes](https://github.com/aws/aws-sdk-java#release-notes)
 for the version that you’re working with.
 
 The Java SDK currently supports two major versions:
@@ -23,28 +25,27 @@ The Java SDK currently supports two major versions:
 
 ## Examples
 
-Full examples for both SDK versions can be found in the 
-[example repository](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/java). This includes proper
+Full examples for both SDK versions can be found in the
+[example repository](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/java).
+This includes proper
 exception handling and all the necessary Maven dependencies.
 The scripts to create the AWS services on LocalStack can be found under the `src/main/resources` folder
-of each module in the repository. 
+of each module in the repository.
 
 ### S3 Service
 
 Below you'll find an example of how to create an S3 client with the endpoint configured for LocalStack.
-The client can be used to upload a file to an existing bucket and then retrieve it. 
-
+The client can be used to upload a file to an existing bucket and then retrieve it.
 
 #### Configuring the S3 Client
 
-{{< tabpane >}}
+{{< tabpane lang="java" >}}
 {{< tab header="v1" lang="java" >}}
 
     // Credentials that can be replaced with real AWS values. (To be handled properly and not hardcoded.)
     // These can be skipped altogether for LocalStack, but we generally want to avoid discrepancies with production code.
 final String ACCESS_KEY = "test";
 final String SECRET_KEY = "test";
-
 
     // S3 Client with configured credentials, endpoint directing to LocalStack and desired region.
 AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
@@ -78,7 +79,7 @@ S3Client s3Client = S3Client.builder()
 
 #### Interacting with S3
 
-{{< tabpane >}}
+{{< tabpane lang="java" >}}
 {{< tab header="v1" lang="java" >}}
 
     // Existing bucket name.
@@ -139,22 +140,26 @@ ResponseInputStream<GetObjectResponse> response = s3Client.getObject(getObjectRe
 
 ### DynamoDB Service
 
-Another interesting case is interacting with the DynamoDB service. Here we can see code snippets of
-a DynamoDB client inserting an entity of type `Person` into a table with the same name. Once the object is in
+Another interesting case is interacting with the DynamoDB service.
+Here we can see code snippets of
+a DynamoDB client inserting an entity of type `Person` into a table with the same name.
+Once the object is in
 the database, we would like to retrieve it as well.
-Just like the example before, the scripts to create the AWS services on LocalStack can be found under 
+Just like the example before, the scripts to create the AWS services on LocalStack can be found under
 the `src/main/resources` folder of each module in the repository.
 
-Pay particular attention to the handling of the data model in the v2 example. As part of improvements, some
-boilerplate code can be abstracted with the help of specific annotations, which help label the Java bean, the 
-partition key and even specify converters for certain data types. 
+Pay particular attention to the handling of the data model in the v2 example.
+As part of improvements, some
+boilerplate code can be abstracted with the help of specific annotations, which help label the Java bean, the
+partition key and even specify converters for certain data types.
 Unfortunately, the enhanced mapping in v2 does not support Date type, but a handwritten converter is enough to
-cater to the application's needs. The full list of supported converters can be found 
+cater to the application's needs.
+The full list of supported converters can be found
 [here](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/internal/converter/attribute/package-summary.html).
 
 #### Configuring the DynamoDB Client
 
-{{< tabpane >}}
+{{< tabpane lang="java" >}}
 {{< tab header="v1" lang="java">}}
 
     // Credentials that can be replaced with real AWS values. (To be handled properly and not hardcoded.)
@@ -165,7 +170,7 @@ final String SECRET_KEY = "test";
     // Building a basic credentials object.
 BasicAWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
 
-    // Creating the DynamoDB client using the credentials, specific region and an enpoint configured for LocalStack.
+    // Creating the DynamoDB client using the credentials, specific region and an endpoint configured for LocalStack.
 private static AmazonDynamoDB dynamoDBClient = AmazonDynamoDBClientBuilder.standard()
     .withCredentials(new AWSStaticCredentialsProvider(credentials))
     .withEndpointConfiguration(
@@ -180,7 +185,6 @@ private static AmazonDynamoDB dynamoDBClient = AmazonDynamoDBClientBuilder.stand
     // These can be skipped altogether for LocalStack, but we generally want to avoid discrepancies with production code.
 final String ACCESS_KEY = "test";
 final String SECRET_KEY = "test";
-
 
     // Creating the AWS Credentials provider, using the above access and secret keys.
 AwsCredentialsProvider credentials = StaticCredentialsProvider.create(
@@ -205,10 +209,9 @@ DynamoDbEnhancedClient enhancedClient = DynamoDbEnhancedClient.builder()
 {{< /tab >}}
 {{< /tabpane >}}
 
-
 #### Interacting with DynamoDB
 
-{{< tabpane >}}
+{{< tabpane lang="java" >}}
 
 {{< tab header="v1" lang="java">}}
 
@@ -283,4 +286,3 @@ Person person = table.getItem(Key.builder().partitionValue(personId).build());
 * [Official repository of the AWS SDK for Java (v1)](https://github.com/aws/aws-sdk-java)
 * [Official repository of the AWS SDK for Java (v2)](https://github.com/aws/aws-sdk-java-v2)
 * [localstack-aws-sdk-examples for Java](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/java)
-

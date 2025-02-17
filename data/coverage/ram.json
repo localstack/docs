@@ -4,25 +4,25 @@
   "operations": [
     {
       "AcceptResourceShareInvitation": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
     {
       "AssociateResourceShare": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -112,13 +112,13 @@
     },
     {
       "DisassociateResourceShare": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -136,10 +136,10 @@
     },
     {
       "EnableSharingWithAwsOrganization": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -184,13 +184,13 @@
     },
     {
       "GetResourceShareInvitations": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -340,13 +340,13 @@
     },
     {
       "RejectResourceShareInvitation": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -376,25 +376,25 @@
     },
     {
       "TagResource": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
     {
       "UntagResource": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -412,12 +412,12 @@
     }
   ],
   "details": {
-    "CreatePermission": {
-      "name, policyTemplate, resourceType": {
+    "AcceptResourceShareInvitation": {
+      "resourceShareInvitationArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_permission",
-            "test": "test_create_permission",
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_resource_share_invitations",
+            "test": "test_resource_share_invitations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -425,6 +425,48 @@
             "snapshot_tested": true,
             "origin": "external"
           },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_resource_share_invitations",
+            "test": "test_resource_share_invitations",
+            "response": "400",
+            "error": "ResourceShareInvitationAlreadyAcceptedException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "AssociateResourceShare": {
+      "principals, resourceArns, resourceShareArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_resource_share",
+            "test": "test_create_resource_share",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_subnet_sharing",
+            "test": "test_subnet_sharing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreatePermission": {
+      "name, policyTemplate, resourceType": {
+        "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_resource_share",
             "test": "test_create_resource_share",
@@ -458,28 +500,32 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_permission",
             "test": "test_create_permission",
-            "response": "400",
-            "error": "InvalidPolicyException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_permission",
-            "test": "test_create_permission",
-            "response": "400",
-            "error": "InvalidPolicyException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_permission",
-            "test": "test_create_permission",
             "response": "409",
             "error": "PermissionAlreadyExistsException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "name, policyTemplate, resourceType, tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_permission",
+            "test": "test_create_permission",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_tags",
+            "test": "test_tags",
+            "response": "200",
+            "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -494,6 +540,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_resource_share",
             "test": "test_create_resource_share",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_tags",
+            "test": "test_tags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -540,6 +596,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_resource_share_invitations",
+            "test": "test_resource_share_invitations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_resource_share",
             "test": "test_create_resource_share",
             "response": "400",
@@ -547,6 +613,20 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "name, principals, resourceArns": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_subnet_sharing",
+            "test": "test_subnet_sharing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -588,6 +668,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_tags",
+            "test": "test_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -604,6 +694,62 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_resource_share_invitations",
+            "test": "test_resource_share_invitations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_subnet_sharing",
+            "test": "test_subnet_sharing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_tags",
+            "test": "test_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DisassociateResourceShare": {
+      "principals, resourceArns, resourceShareArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_resource_share",
+            "test": "test_create_resource_share",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_subnet_sharing",
+            "test": "test_subnet_sharing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       }
@@ -614,6 +760,36 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_permission",
             "test": "test_create_permission",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetResourceShareInvitations": {
+      "resourceShareArns": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_resource_share_invitations",
+            "test": "test_resource_share_invitations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "resourceShareInvitationArns": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_resource_share_invitations",
+            "test": "test_resource_share_invitations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -643,6 +819,16 @@
     "ListPermissions": {
       "permissionType": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_aws_managed_permissions",
+            "test": "test_aws_managed_permissions",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_create_permission",
             "test": "test_create_permission",
@@ -688,6 +874,120 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_list_resource_types",
             "test": "test_list_resource_types",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "RejectResourceShareInvitation": {
+      "resourceShareInvitationArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_resource_share_invitations",
+            "test": "test_resource_share_invitations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_resource_share_invitations",
+            "test": "test_resource_share_invitations",
+            "response": "400",
+            "error": "ResourceShareInvitationAlreadyRejectedException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "TagResource": {
+      "resourceArn, resourceShareArn, tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_tags",
+            "test": "test_tags",
+            "response": "400",
+            "error": "InvalidParameterException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "resourceArn, tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_tags",
+            "test": "test_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "resourceShareArn, tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_tags",
+            "test": "test_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UntagResource": {
+      "resourceArn, resourceShareArn, tagKeys": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_tags",
+            "test": "test_tags",
+            "response": "400",
+            "error": "InvalidParameterException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "resourceArn, tagKeys": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_tags",
+            "test": "test_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "resourceShareArn, tagKeys": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ram/test_ram.py::TestResourceAccessManager::test_tags",
+            "test": "test_tags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",

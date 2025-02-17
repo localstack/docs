@@ -2,13 +2,16 @@
 title: "Athena"
 linkTitle: "Athena"
 description: Get started with Athena on LocalStack
+tags: ["Pro image"]
 ---
+
+## Introduction
 
 Athena is an interactive query service provided by Amazon Web Services (AWS) that enables you to analyze data stored in S3 using standard SQL queries.
 Athena allows users to create ad-hoc queries to perform data analysis, filter, aggregate, and join datasets stored in S3.
 It supports various file formats, such as JSON, Parquet, and CSV, making it compatible with a wide range of data sources.
 
-LocalStack supports Athena via the Pro/Team offering, allowing you to configure the Athena APIs with a Hive metastore that can connect to the S3 API and query your data directly in your local environment.
+LocalStack allows you to configure the Athena APIs with a Hive metastore that can connect to the S3 API and query your data directly in your local environment.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_athena/), which provides information on the extent of Athena's integration with LocalStack.
 
 ## Getting started
@@ -18,12 +21,12 @@ This guide is designed for users new to Athena and assumes basic knowledge of th
 Start your LocalStack container using your preferred method.
 We will demonstrate how to create an Athena table and run a query against it in addition to reading the results with the AWS CLI.
 
-{{< alert title="Note" >}}
+{{< callout >}}
 To utilize the Athena API, LocalStack will download additional dependencies.
 This involves getting a Docker image of around 1.5GB, containing Presto, Hive, and other tools.
 These components are retrieved automatically when you initiate the service.
 To ensure a smooth initial setup, ensure you're connected to a stable internet connection while fetching these components for the first time.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Create an S3 bucket
 
@@ -88,7 +91,7 @@ Run the following command:
 
 {{< command >}}
 $ awslocal athena start-query-execution \
-    --query-string "select * from tbl01;" --result-configuration "OutputLocation=s3://athena-bucket/output/"     
+    --query-string "select * from tbl01;" --result-configuration "OutputLocation=s3://athena-bucket/output/"
 {{< / command >}}
 
 You can retrieve the execution details similarly using the [`GetQueryExecution`](https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html) API using the `QueryExecutionId` returned by the previous step.
@@ -144,7 +147,8 @@ $ awslocal athena get-query-results --query-execution-id $queryId
 {{< / command >}}
 
 The query should yield a result similar to the output below:
-```
+
+```bash
 ...
     "Rows": [
         {
@@ -171,9 +175,9 @@ The query should yield a result similar to the output below:
 ...
 ```
 
-{{< alert title="Note" >}}
+{{< callout >}}
 The `SELECT` statement above currently requires us to prefix the database/table name with `deltalake.` - this will be further improved in a future iteration, for better parity with AWS.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Iceberg Tables
 
@@ -187,7 +191,7 @@ LOCATION 's3://mybucket/prefix/' TBLPROPERTIES ( 'table_type' = 'ICEBERG' )
 
 Once the table has been created and data inserted into it, you can see the Iceberg metadata and data files being created in S3:
 
-```
+```bash
 s3://mybucket/_tmp.prefix/
 s3://mybucket/prefix/data/00000-0-user1_20230212221600_cd8f8cbd-4dcc-4c3f-96a2-f08d4104d6fb-job_local1695603329_0001-00001.parquet
 s3://mybucket/prefix/data/00000-0-user1_20230212221606_eef1fd88-8ff1-467a-a15b-7a24be7bc52b-job_local1976884152_0002-00001.parquet
@@ -200,6 +204,42 @@ s3://mybucket/prefix/metadata/snap-8425363304532374388-1-70de28f7-6507-44ae-b505
 s3://mybucket/prefix/metadata/snap-9068645333036463050-1-2f8d3628-bb13-4081-b5a9-30f2e81b7226.avro
 s3://mybucket/prefix/temp/
 ```
+
+## Client configuration
+
+You can configure the Athena service in LocalStack with various clients, such as [PyAthena](https://github.com/laughingman7743/PyAthena/), [awswrangler](https://github.com/aws/aws-sdk-pandas), among others!
+Here are small snippets to get you started:
+
+{{< tabpane lang="python" >}}
+{{< tab header="PyAthena" lang="python" >}}
+from pyathena import connect
+
+conn = connect(
+    s3_staging_dir="s3://s3-results-bucket/output/",
+    region_name="us-east-1",
+    endpoint_url="http://localhost:4566",
+)
+cursor = conn.cursor()
+
+cursor.execute("SELECT 1,2,3 AS test")
+print(cursor.fetchall())
+{{< /tab >}}
+{{< tab header="awswrangler" lang="python" >}}
+import awswrangler as wr
+import pandas as pd
+
+ENDPOINT = "http://localhost:4566"
+DATABASE = "testdb"
+S3_BUCKET = "s3://s3-results-bucket/output/"
+
+wr.config.athena_endpoint_url = ENDPOINT
+wr.config.glue_endpoint_url = ENDPOINT
+wr.config.s3_endpoint_url = ENDPOINT
+wr.catalog.create_database(DATABASE)
+df = wr.athena.read_sql_query("SELECT 1 AS col1, 2 AS col2, 3 AS col3", database=DATABASE)
+print(df)
+{{< /tab >}}
+{{< /tabpane >}}
 
 ## Resource Browser
 

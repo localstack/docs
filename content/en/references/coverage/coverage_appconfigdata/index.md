@@ -1,5 +1,5 @@
 ---
-title: "appconfigdata"
+title: "AppConfig Data"
 linkTitle: "appconfigdata"
 description: >
   Implementation details for API appconfigdata

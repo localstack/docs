@@ -20,17 +20,12 @@ enableGitInfo = true
 [taxonomies]
 tag = "tags"
 category = "categories"
+persistence = "persistence"
 
 [params.taxonomy]
-# set taxonomyCloud = [] to hide taxonomy clouds
-taxonomyCloud = [] 
-
-# If used, must have same length as taxonomyCloud
-taxonomyCloudTitle = ["Tag Cloud", "Categories"] 
-
-# set taxonomyPageHeader = [] to hide taxonomies on the page headers
-taxonomyPageHeader = [] 
-
+taxonomyCloud = [] # set taxonomyCloud = [] to hide taxonomy clouds
+taxonomyCloudTitle = [] # if used, must have same length as taxonomyCloud
+taxonomyPageHeader = ["tags", "categories", "persistence"] # set taxonomyPageHeader = [] to hide taxonomies on the page headers
 
 # Highlighting config
 pygmentsCodeFences = true
@@ -61,10 +56,11 @@ id = "UA-101988473-1"
 [languages]
 [languages.en]
 title = "Docs"
-description = "LocalStack Documentation"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
+[languages.en.params]
+description = "LocalStack Documentation"
 
 [markup]
   [markup.goldmark]
@@ -125,14 +121,19 @@ github_branch= "main"
 # Google Custom Search Engine ID. Remove or comment out to disable search.
 # gcs_engine_id = "d72aa9b2712488cc3"
 
-# Enable Algolia DocSearch
-algolia_docsearch = true
-
 # Enable Lunr.js offline search
 offlineSearch = false
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = false
+
+disable_click2copy_chroma = true
+
+# Enable Algolia DocSearch
+[params.search.algolia]
+appId = "XBW1JU7CW5"
+apiKey = "6b0341e2f50196d328d088dbb5cd6166"
+indexName = "localstack"
 
 # User interface configuration
 [params.ui]
@@ -179,11 +180,6 @@ enable = true
 	icon = "fab fa-twitter"
 	desc = "Follow us on Twitter to get the latest news!"
 [[params.links.user]]
-	name = "Discussion"
-	url = "https://discuss.localstack.cloud/"
-	icon = "fa fa-comments"
-	desc = "Community discussions on GitHub"
-[[params.links.user]]
 	name = "Stack Overflow"
 	url = "https://stackoverflow.com/questions/tagged/localstack"
 	icon = "fab fa-stack-overflow"
@@ -202,14 +198,14 @@ enable = true
 	desc = "LocalStack issue tracker"
 [[params.links.developer]]
 	name = "Slack"
-	url = "https://localstack-community.slack.com/"
+	url = "https://localstack.cloud/slack"
 	icon = "fab fa-slack"
 	desc = "Chat with other project developers"
 
 
 [params.localstack]
 # LocalStack specific configuration values
-latest_version = "3.1.0"
+latest_version = "4.1.1"
 
 [params.localstack.cli_links]
 # Configure the different download links for the cli-binary-download shortcode
@@ -235,7 +231,7 @@ latest_version = "3.1.0"
 [module]
   [module.hugoVersion]
     extended = true
-    min = "0.75.0"
+    min = "0.125.4"
   [[module.imports]]
     path = "github.com/google/docsy"
     disable = false

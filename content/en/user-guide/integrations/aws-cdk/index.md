@@ -27,9 +27,9 @@ cdklocal --version
 # e.g. 1.65.5
 ```
 
-{{< alert title="Note">}}
+{{< callout >}}
 Using `cdklocal` locally (e.g. within the `node_modules` of your repo instead of globally installed) does not work at the moment for some setups, so make sure you install both `aws-cdk` and `aws-cdk-local` with the `-G` flag.
-{{< /alert >}}
+{{< /callout >}}
 
 ### Usage
 
@@ -45,7 +45,6 @@ The following environment variables can be configured:
 
 * `AWS_ENDPOINT_URL`: The endpoint URL (i.e., protocol, host, and port) to connect to LocalStack (default: `http://localhost:4566`)
 * `LAMBDA_MOUNT_CODE`: Whether to use local Lambda code mounting (via setting `hot-reload` S3 bucket name)
-
 
 ### Example
 
@@ -83,7 +82,13 @@ $ awslocal sns list-topics
 }
 {{< /command >}}
 
-## Limitations
+## Current Limitations
+
+### Updating CDK stacks
+
+Updating CDK stacks may result in deployment failures and inconsistent state within LocalStack.
+It is advisable to prioritize re-creating (deleting and re-deploying) over updating stacks.
+Our focus for this year will be on resolving issues related to the `UPDATE` support, and continuous improvements can be anticipated in this area throughout 2024.
 
 ### Stacks with validated certificates
 
@@ -93,15 +98,15 @@ When this lambda is executed locally from the `/tmp` folder, the package can not
 
 ## Other resources
 
-- [Hot-reloading Lambda functions with CDK]({{< ref "user-guide/lambda-tools/hot-reloading#aws-cloud-development-kit-cdk-configuration" >}})
+* [Hot-reloading Lambda functions with CDK]({{< ref "user-guide/lambda-tools/hot-reloading#aws-cloud-development-kit-cdk-configuration" >}})
 
 ## External resources
 
-- [aws-cdk-local](https://github.com/localstack/aws-cdk-local)
-- [AWS CDK API reference](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-construct-library.html)
-- [AWS CDK Developer Guide](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
+* [aws-cdk-local](https://github.com/localstack/aws-cdk-local)
+* [AWS CDK API reference](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-construct-library.html)
+* [AWS CDK Developer Guide](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
 
 ## Community resources
 
-- https://blog.dennisokeeffe.com/blog/2021-08-07-using-the-aws-cdk-with-localstack-and-aws-cdk-local
-- https://www.youtube.com/watch?v=3_sqr0G9zb0
+* https://blog.dennisokeeffe.com/blog/2021-08-07-using-the-aws-cdk-with-localstack-and-aws-cdk-local
+* https://www.youtube.com/watch?v=3_sqr0G9zb0

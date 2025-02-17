@@ -21,8 +21,8 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -40,6 +40,18 @@
     },
     {
       "AuthorizeVpcEndpointAccess": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "CancelDomainConfigChange": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -69,8 +81,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -117,8 +129,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -213,8 +225,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -222,7 +234,7 @@
       "DescribeElasticsearchDomainConfig": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -235,9 +247,9 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
+        "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -342,7 +354,7 @@
       "GetCompatibleElasticsearchVersions": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": false,
@@ -390,7 +402,7 @@
       "ListDomainNames": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -426,7 +438,7 @@
       "ListElasticsearchVersions": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -453,8 +465,8 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -558,7 +570,7 @@
       "UpdateElasticsearchDomainConfig": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -612,49 +624,25 @@
             "test": "test_cfn_handle_elasticsearch_domain",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..DomainStatus.AdvancedSecurityOptions.AnonymousAuthEnabled', '$..DomainStatus.AutoTuneOptions.State', '$..DomainStatus.ChangeProgressDetails', '$..DomainStatus.DomainProcessingStatus', '$..DomainStatus.EBSOptions.VolumeSize', '$..DomainStatus.ElasticsearchClusterConfig.DedicatedMasterCount', '$..DomainStatus.ElasticsearchClusterConfig.InstanceCount', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessConfig', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessEnabled', '$..DomainStatus.Endpoint', '$..DomainStatus.ModifyingProperties', '$..DomainStatus.Processing', '$..DomainStatus.ServiceSoftwareOptions.CurrentVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           }
         ]
       }
     },
     "CreateElasticsearchDomain": {
-      "DomainName": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_elasticsearch_s3_backup",
-            "test": "test_kinesis_firehose_elasticsearch_s3_backup",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_create_existing_domain_causes_exception",
-            "test": "test_create_existing_domain_causes_exception",
-            "response": "409",
-            "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
-      "DomainName, ElasticsearchClusterConfig": {
+      "DomainName, EBSOptions, ElasticsearchClusterConfig, ElasticsearchVersion": {
         "ls_community": [
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_elasticsearch.py::test_cfn_handle_elasticsearch_domain",
             "test": "test_cfn_handle_elasticsearch_domain",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..DomainStatus.AdvancedSecurityOptions.AnonymousAuthEnabled', '$..DomainStatus.AutoTuneOptions.State', '$..DomainStatus.ChangeProgressDetails', '$..DomainStatus.DomainProcessingStatus', '$..DomainStatus.EBSOptions.VolumeSize', '$..DomainStatus.ElasticsearchClusterConfig.DedicatedMasterCount', '$..DomainStatus.ElasticsearchClusterConfig.InstanceCount', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessConfig', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessEnabled', '$..DomainStatus.Endpoint', '$..DomainStatus.ModifyingProperties', '$..DomainStatus.Processing', '$..DomainStatus.ServiceSoftwareOptions.CurrentVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           }
         ]
@@ -664,33 +652,13 @@
       "DomainName": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_elasticsearch_s3_backup",
-            "test": "test_kinesis_firehose_elasticsearch_s3_backup",
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_elasticsearch.py::test_cfn_handle_elasticsearch_domain",
+            "test": "test_cfn_handle_elasticsearch_domain",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_unsupported.py::test_unsupported",
-            "test": "test_unsupported",
-            "response": "409",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_unsupported.py::test_unsupported",
-            "test": "test_unsupported",
-            "response": "500",
-            "error": "InternalError",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..DomainStatus.AdvancedSecurityOptions.AnonymousAuthEnabled', '$..DomainStatus.AutoTuneOptions.State', '$..DomainStatus.ChangeProgressDetails', '$..DomainStatus.DomainProcessingStatus', '$..DomainStatus.EBSOptions.VolumeSize', '$..DomainStatus.ElasticsearchClusterConfig.DedicatedMasterCount', '$..DomainStatus.ElasticsearchClusterConfig.InstanceCount', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessConfig', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessEnabled', '$..DomainStatus.Endpoint', '$..DomainStatus.ModifyingProperties', '$..DomainStatus.Processing', '$..DomainStatus.ServiceSoftwareOptions.CurrentVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           }
         ]
@@ -704,9 +672,9 @@
             "test": "test_cfn_handle_elasticsearch_domain",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..DomainStatus.AdvancedSecurityOptions.AnonymousAuthEnabled', '$..DomainStatus.AutoTuneOptions.State', '$..DomainStatus.ChangeProgressDetails', '$..DomainStatus.DomainProcessingStatus', '$..DomainStatus.EBSOptions.VolumeSize', '$..DomainStatus.ElasticsearchClusterConfig.DedicatedMasterCount', '$..DomainStatus.ElasticsearchClusterConfig.InstanceCount', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessConfig', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessEnabled', '$..DomainStatus.Endpoint', '$..DomainStatus.ModifyingProperties', '$..DomainStatus.Processing', '$..DomainStatus.ServiceSoftwareOptions.CurrentVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -714,55 +682,9 @@
             "test": "test_cfn_handle_elasticsearch_domain",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_domain_version",
-            "test": "test_domain_version",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_path_endpoint_strategy",
-            "test": "test_path_endpoint_strategy",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_elasticsearch_s3_backup",
-            "test": "test_kinesis_firehose_elasticsearch_s3_backup",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "DescribeElasticsearchDomainConfig": {
-      "DomainName": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_update_domain_config",
-            "test": "test_update_domain_config",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..DomainStatus.AdvancedSecurityOptions.AnonymousAuthEnabled', '$..DomainStatus.AutoTuneOptions.State', '$..DomainStatus.ChangeProgressDetails', '$..DomainStatus.DomainProcessingStatus', '$..DomainStatus.EBSOptions.VolumeSize', '$..DomainStatus.ElasticsearchClusterConfig.DedicatedMasterCount', '$..DomainStatus.ElasticsearchClusterConfig.InstanceCount', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessConfig', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessEnabled', '$..DomainStatus.Endpoint', '$..DomainStatus.ModifyingProperties', '$..DomainStatus.Processing', '$..DomainStatus.ServiceSoftwareOptions.CurrentVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -770,18 +692,6 @@
     },
     "DescribeElasticsearchDomains": {
       "DomainNames": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_describe_domains",
-            "test": "test_describe_domains",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_elasticsearch",
@@ -789,7 +699,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -799,7 +709,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -809,7 +719,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -819,7 +729,7 @@
             "response": "400",
             "error": "AccessDeniedException",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -829,69 +739,7 @@
             "response": "400",
             "error": "AccessDeniedException",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "GetCompatibleElasticsearchVersions": {
-      "- (without any parameters)": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_get_compatible_versions",
-            "test": "test_get_compatible_versions",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
-      "DomainName": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_get_compatible_version_for_domain",
-            "test": "test_get_compatible_version_for_domain",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "ListDomainNames": {
-      "EngineType": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_create_domain",
-            "test": "test_create_domain",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "ListElasticsearchVersions": {
-      "- (without any parameters)": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_list_versions",
-            "test": "test_list_versions",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           }
@@ -906,25 +754,9 @@
             "test": "test_cfn_handle_elasticsearch_domain",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "UpdateElasticsearchDomainConfig": {
-      "DomainName, ElasticsearchClusterConfig": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/es/test_es.py::TestElasticsearchProvider::test_update_domain_config",
-            "test": "test_update_domain_config",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..DomainStatus.AdvancedSecurityOptions.AnonymousAuthEnabled', '$..DomainStatus.AutoTuneOptions.State', '$..DomainStatus.ChangeProgressDetails', '$..DomainStatus.DomainProcessingStatus', '$..DomainStatus.EBSOptions.VolumeSize', '$..DomainStatus.ElasticsearchClusterConfig.DedicatedMasterCount', '$..DomainStatus.ElasticsearchClusterConfig.InstanceCount', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessConfig', '$..DomainStatus.ElasticsearchClusterConfig.ZoneAwarenessEnabled', '$..DomainStatus.Endpoint', '$..DomainStatus.ModifyingProperties', '$..DomainStatus.Processing', '$..DomainStatus.ServiceSoftwareOptions.CurrentVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]

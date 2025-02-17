@@ -10,7 +10,7 @@ aliases:
 
 ## Introduction
 
-AWS IoT provides cloud services to manage IoT fleet and integrate them with other AWS services 
+AWS IoT provides cloud services to manage IoT fleet and integrate them with other AWS services
 
 LocalStack Pro supports IoT Core, IoT Data, IoT Analytics and related APIs as well as an in-built MQTT broker.
 Common operations for creating and updating things, groups, policies, certificates and other entities are implemented with full CloudFormation support.
@@ -32,11 +32,11 @@ $ awslocal iot describe-endpoint
 }
 {{< / command >}}
 
-{{< alert title="Hint" color="success" >}}
+{{< callout "tip" >}}
 LocalStack lazy-loads services by default.
 The MQTT broker may not be automatically available on a fresh launch of LocalStack.
 You should make a `DescribeEndpoint` call to ensure the broker is running and identify the port.
-{{< /alert >}}
+{{< /callout >}}
 
 This endpoint can then be used with any MQTT client to publish and subscribe to topics.
 In this example, we will use the [Hive MQTT CLI](https://hivemq.github.io/mqtt-cli/docs/installation/).
@@ -67,13 +67,13 @@ This message will be pushed to all subscribers of this topic, including the one 
 LocalStack IoT maintains its own root certificate authority which is regenerated at every run.
 The root CA certificate can be retrieved from <http://localhost.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem>.
 
-{{< alert title="Note">}}
+{{< callout >}}
 AWS provides its root CA certificate at <https://www.amazontrust.com/repository/AmazonRootCA1.pem>.
 For more information, see [this](https://docs.aws.amazon.com/iot/latest/developerguide/server-authentication.html#server-authentication-certs).
-{{< /alert >}}
+{{< /callout >}}
 
 When connecting to the endpoints, you will need to provide this root CA certificate for authentication.
-This is illustrated below with Python [AWS IoT SDK](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdks.html), 
+This is illustrated below with Python [AWS IoT SDK](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdks.html),
 
 ```py
 import awscrt
@@ -89,8 +89,9 @@ event_loop_group = io.EventLoopGroup(1)
 host_resolver = io.DefaultHostResolver(event_loop_group)
 client_bootstrap = io.ClientBootstrap(event_loop_group, host_resolver)
 
-credentials_provider = awscrt.auth.AwsCredentialsProvider.new_default_chain(
-    client_bootstrap=client_bootstrap
+credentials_provider = awscrt.auth.AwsCredentialsProvider.new_static(
+    access_key_id='...',
+    secret_access_key='...',
 )
 
 client_id = 'example-client'
@@ -126,10 +127,10 @@ The certificate is signed by the LocalStack root CA.
 result = iot_client.create_keys_and_certificate(setAsActive=True)
 
 # Path to file with saved content `result["certificatePem"]`
-cert_file = '...'  
+cert_file = '...'
 
 # Path to file with saved content `result["keyPair"]["PrivateKey"]`
-priv_key_file = '...'  
+priv_key_file = '...'
 
 tls_ctx_options = awscrt.io.TlsContextOptions.create_client_with_mtls_from_path(
     cert_file, priv_key_file
@@ -150,7 +151,6 @@ mqtt = mqtt_connection_builder._builder(
 mqtt.connect().result()
 mqtt.subscribe(...)
 ```
-
 
 ## Lifecycle Events
 
@@ -180,8 +180,21 @@ You can then subscribe or use topic rules on the follow topics:
 
 ## Topic Rules
 
-It is also possible to use advanced features like SQL queries for IoT topic rules.
+It is possible to use actions with SQL queries for IoT Topic Rules.
 
 For example, you can use the [`CreateTopicRule`](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html) operation to define a topic rule with a SQL query `SELECT * FROM 'my/topic' where attr=123` which will execute a trigger whenever a message with attribute `attr=123` is received on the MQTT topic `my/topic`.
 
-Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.
+The following actions are supported:
+- [Lambda](https://docs.aws.amazon.com/iot/latest/developerguide/lambda-rule-action.html)
+- [SQS](https://docs.aws.amazon.com/iot/latest/developerguide/sqs-rule-action.html)
+- [Kinesis](https://docs.aws.amazon.com/iot/latest/developerguide/kinesis-rule-action.html)
+- [Firehose](https://docs.aws.amazon.com/iot/latest/developerguide/kinesis-firehose-rule-action.html)
+- [DynamoDBv2](https://docs.aws.amazon.com/iot/latest/developerguide/dynamodb-v2-rule-action.html)
+- [HTTP](https://docs.aws.amazon.com/iot/latest/developerguide/https-rule-action.html) (URL confirmation and substitution templating is not implemented)
+
+## Current Limitations
+
+LocalStack MQTT broker does not support multi-account/multi-region namespacing.
+Internally, the MQTT messages are not routed to the appropriate account ID/region even though the endpoint URL may suggest otherwise.
+All messages will be routed to the `000000000000` account and the `us-east-1` region.
+This prevents features such as topic rules from working properly when not using the this account ID or region.

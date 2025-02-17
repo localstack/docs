@@ -1,7 +1,6 @@
 ---
 title: "Remote Debugging"
 weight: 2
-categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Attach a debugger to your Lambda functions from within your IDE
 aliases:
@@ -21,18 +20,24 @@ More examples and tooling support for local Lambda debugging (including support 
 * [Debugging Python lambdas](#debugging-python-lambdas)
 * [Debugging JVM lambdas](#debugging-jvm-lambdas)
 * [Debugging Node.js lambdas](#debugging-nodejs-lambdas)
-* [Useful Links](#useful-links)
+* [Lambda Debug Mode (preview)](#lambda-debug-mode-preview)
+* [Resources](#resources)
+
+{{< callout tip >}}
+Due to the ports published by the Lambda container for the debugger, it is currently only possible to debug one Lambda function at a time.
+For advanced debugging scenarios, such as those requiring multiple ports, refer to [Lambda Debug Mode (preview)]({{< relref "debugging#lambda-debug-mode-preview" >}}) section.
+{{< /callout >}}
 
 ## Debugging Python lambdas
 
-Lambda functions debugging used to be a difficult task. LocalStack changes that
+Lambda functions debugging used to be a difficult task.
+LocalStack changes that
 with the same local code mounting functionality that also helps you
 to [iterate quickly over your function code]({{< ref "user-guide/lambda-tools" >}}).
 
 For a simple working example of this feature, you can refer to
 [our samples](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
 There, the necessary code fragments for enabling debugging are already present.
-
 
 ### Debugging a Python Lambda in Visual Studio Code
 
@@ -47,7 +52,8 @@ $ LAMBDA_DOCKER_FLAGS='-p 19891:19891' localstack start
 #### Preparing your code
 
 For providing the debug server, we use [`debugpy`](https://github.com/microsoft/debugpy)
-inside the Lambda function code. In general, all you need is the following code
+inside the Lambda function code.
+In general, all you need is the following code
 fragment placed inside your handler code:
 
 ```python
@@ -106,28 +112,30 @@ For attaching the debug server from Visual Studio Code, you need to add a run co
 }
 ```
 
-In the next step we create our function. In order to debug the function in Visual Studio Code, run the preconfigured remote debugger, which will wait about 15 seconds as defined above, and then invoke the function.
+In the next step we create our function.
+In order to debug the function in Visual Studio Code, run the preconfigured remote debugger, which will wait about 15 seconds as defined above, and then invoke the function.
 Make sure to set a breakpoint in the Lambda handler code first, which can then later be inspected.
 
 The screenshot below shows the triggered breakpoint with our `'Hello from LocalStack!'` in the variable inspection view:
 
 ![Visual Studio Code debugging](vscode-debugging-py-1.png)
 
-#### Limitations
+#### Current Limitations
 
-Due to the ports published by the lambda container for the debugger, you can currently only debug one Lambda at a time. Due to the port publishing, multiple concurrently running lambda environments are not supported.
+Due to the ports published by the lambda container for the debugger, you can currently only debug one Lambda at a time.
+Due to the port publishing, multiple concurrently running lambda environments are not supported.
 
 ### Debugging a Python Lambda in PyCharm Professional
 
-Please be aware that [remote debugging in PyCharm](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html) is only available in the Professional version. 
+Please be aware that [remote debugging in PyCharm](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html) is only available in the Professional version.
 
 You do not need to change the `LAMBDA_DOCKER_FLAGS` when debugging with PyCharm Professional.
 
 #### Configuring PyCharm for remote Python debugging
 
-You can [follow the steps in the offical docs](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config), which will come down to:
+You can [follow the steps in the official docs](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config), which will come down to:
 
-* Create a debug configuration with the IDE host name `localhost` and the debug port `19891`. 
+* Create a debug configuration with the IDE host name `localhost` and the debug port `19891`.
 * Add path mapping with your project files on the host and map it to the remote directory `/var/task`.
 * Copy the `pip install` command, and make sure to install the correct `pydevd-pycharm` version for your PyCharm IDE.
 
@@ -135,7 +143,8 @@ You can [follow the steps in the offical docs](https://www.jetbrains.com/help/py
 
 #### Preparing your code
 
-PyCharm provides its own debugging package, called `pydevd-pycharm`. Essentially, you will add the following code to your lambda:
+PyCharm provides its own debugging package, called `pydevd-pycharm`.
+Essentially, you will add the following code to your lambda:
 
 ```python
 import pydevd_pycharm
@@ -143,7 +152,7 @@ pydevd_pycharm.settrace('host.docker.internal', port=19891, stdoutToServer=True,
                             stderrToServer=True)
 ```
 
-The `host.docker.internal` is a [special DNS name by Docker](https://docs.docker.com/desktop/networking/#use-cases-and-workarounds-for-all-platforms) and will make sure that the lambda running in the docker can connect to PyCharm running on your Localhost. 
+The `host.docker.internal` is a [special DNS name by Docker](https://docs.docker.com/desktop/networking/#use-cases-and-workarounds-for-all-platforms) and will make sure that the lambda running in the docker can connect to PyCharm running on your Localhost.
 
 You can use the `wait_for_debug_client` and add it to your lambda (please adapt the path to your `venv` directory if necessary):
 
@@ -161,14 +170,16 @@ def wait_for_debug_client():
                             stderrToServer=True)
 ```
 
-In the next step we create our function. In order to debug the function in PyCharm set a breakpoint in your function, run the Remote Debug configuration and then invoke the function.
+In the next step we create our function.
+In order to debug the function in PyCharm set a breakpoint in your function, run the Remote Debug configuration and then invoke the function.
 
 ![PyCharm Professional debugging](pycharm_lambda_debugging.png)
 
 ### Creating the Lambda function
 
 To create the Lambda function, you just need to take care of two things:
-1. Deploy the function via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket name.
+1. Deploy the function via an S3 Bucket.
+  You need to use the magic variable `hot-reload` as the bucket name.
 2. Set the S3 key to the path of the directory your lambda function resides in.
    The handler is then referenced by the filename of your lambda code and the function in that code that should be invoked.
 
@@ -185,7 +196,7 @@ $ awslocal lambda create-function --function-name my-cool-local-function \
 
 We can quickly verify that it works by invoking it with a simple payload:
 
-{{< tabpane text=true persistLang=false >}}
+{{< tabpane text=true persist=false >}}
 {{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
 $ awslocal lambda invoke --function-name my-cool-local-function \
@@ -265,8 +276,8 @@ Compared to the previous setup the "Wait Remote Debugger Server" run configurati
 
 For the Lambda function you will have to adjust the environment variable to `"_JAVA_OPTIONS": "-Xshare:off -agentlib:jdwp=transport=dt_socket,server=n,address=172.17.0.1:5050,suspend=y,onuncaught=n"`.
 Notice the `address=172.17.0.1:5050`.
-Here we tell the Lambda function to connect to port 5050 on 172.17.0.1. When using Docker desktop you might have to set this to `address=host.docker.internal:5050` instead.
-
+Here we tell the Lambda function to connect to port 5050 on 172.17.0.1.
+When using Docker desktop you might have to set this to `address=host.docker.internal:5050` instead.
 
 ### Configuring Visual Studio Code for remote JVM debugging
 
@@ -330,7 +341,6 @@ services:
       - LAMBDA_DOCKER_FLAGS=-e NODE_OPTIONS=--inspect-brk=0.0.0.0:9229 -p 9229:9229
 ```
 
-
 ### Configuring Visual Studio Code for remote Node.js debugging
 
 Add a new task by creating/modifying the `.vscode/tasks.json` file:
@@ -370,6 +380,7 @@ then add the following configuration:
 ```
 
 A simple example of a Node.js lambda, `myindex.js` could look like this:
+
 ```js
 exports.handler = async (event) => {
     console.log(event);
@@ -395,7 +406,7 @@ Now to debug your lambda function, click on the `Debug` icon with
 `Attach to Remote Node.js` configuration selected, and then invoke your
 lambda function:
 
-{{< tabpane text=true persistLang=false >}}
+{{< tabpane text=true persist=false >}}
 {{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
 $ awslocal lambda invoke --function-name func1 \
@@ -413,8 +424,138 @@ $ awslocal lambda invoke --function-name func1 \
 {{% /tab %}}
 {{< /tabpane >}}
 
+## Lambda Debug Mode (Preview)
+
+Lambda Debug Mode is a preview feature in LocalStack designed to enhance your Lambda debugging workflows.
+This feature provides an optimized environment for debugging Lambda functions, ensuring that you have the
+necessary tools and flexibility to troubleshoot effectively.
+
+### Key Features
+* **Automatic Timeout Management**: Integrates with API Gateway to prevent Lambda function timeouts,
+giving developers ample time to connect remote debuggers and inspect the function's behavior.
+* **Multi-Function Debugging**: Supports debugging multiple Lambda functions concurrently.
+
+### Enabling Lambda Debug Mode
+
+To enable Lambda Debug Mode, set the `LAMBDA_DEBUG_MODE` environment variable as shown below:
+
+{{< command >}}
+LAMBDA_DEBUG_MODE=1 \
+LAMBDA_DOCKER_FLAGS='-p 19891:19891' \
+localstack start
+{{< /command >}}
+
+When enabled, Lambda Debug Mode automatically adjusts timeouts to accommodate debugging needs:
+* **Lambda Container Startup Timeout**: Provides additional time for debugger connection during container creation.
+* **Lambda Execution Timeout**: Extends the execution window, allowing for in-depth remote debugging.
+* **API Gateway-Lambda Integration Timeout**: Increases timeout settings to avoid premature terminations.
+
+### Advanced Configuration
+
+For further customization, you can use a configuration file.
+Specify the path to this file with the `LAMBDA_DEBUG_MODE_CONFIG_PATH` environment variable, ensuring the
+file is mounted into the LocalStack container.
+Manually setting `LAMBDA_DOCKER_FLAGS` is unnecessary when using this configuration.
+
+Here is an example of mounting a `debug_config.yaml` in your LocalStack container to start your Debug Mode:
+
+{{< tabpane >}}
+{{< tab header="LocalStack CLI" lang="shell" >}}
+LOCALSTACK_LAMBDA_DEBUG_MODE=1 \
+LOCALSTACK_LAMBDA_DEBUG_MODE_CONFIG_PATH=/tmp/debug_config.yaml \
+localstack start --volume /path/to/debug-config.yaml:/tmp/lambda_debug_mode_config.yaml
+{{< /tab >}}
+{{< tab header="Docker Compose" lang="yaml" >}}
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack-pro  # required for Pro
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+      - "127.0.0.1:443:443"              # LocalStack HTTPS Gateway (Pro)
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=${DEBUG:-0}
+      - LAMBDA_DEBUG_MODE=1
+      - LAMBDA_DEBUG_MODE_CONFIG_PATH=/tmp/debug_config.yaml
+    volumes:
+      - "./debug_config.yaml:/tmp/debug_config.yaml"
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+{{< /tab >}}
+{{< /tabpane >}}
+
+Any change to the configuration file on your local filesystem would be automatically picked by the LocalStack container.
+After debugging a Lambda function, its associated container will automatically stop.
+
+The configuration file should contain a `functions` block where you can define debug settings
+for each specific Lambda function ARN.
+
+#### Example: Basic Debugging Configuration
+This example configures Lambda Debug Mode to use port 19891 for the remote debugger.
+
+```yaml
+functions:
+  arn:aws:lambda:eu-central-1:000000000000:function:func-one:
+    debug-port: 19891
+```
+
+#### Example: Disabling Automatic Timeout Handling
+In this example, the automatic timeout handling feature is disabled for the specified Lambda function,
+enforcing the predefined timeouts instead.
+
+```yaml
+functions:
+  arn:aws:lambda:eu-central-1:000000000000:function:func-one:
+    debug-port: 19891
+    enforce-timeouts: true
+```
+
+### Handling Unqualified ARNs
+
+Specifying an unqualified Lambda ARN in the configuration is equivalent to specifying the ARN
+with the `$LATEST` version qualifier.
+
+```yaml
+functions:
+  arn:aws:lambda:eu-central-1:000000000000:function:func-one:$LATEST:
+    debug-port: 19891
+```
+
+### Debugging Multiple Functions
+
+To debug multiple Lambda functions simultaneously, assign a different debug port to each function.
+Note that this configuration affects the container's internal debugger port as well, so the debugger
+port must be set accordingly.
+
+```yaml
+functions:
+  arn:aws:lambda:eu-central-1:000000000000:function:func-one:
+    debug-port: 19891
+  arn:aws:lambda:eu-central-1:000000000000:function:func-two:
+    debug-port: 19892
+```
+
+### Debugging Different Versions
+
+You can also debug different versions of the same Lambda function by assigning unique ports to each version.
+
+```yaml
+functions:
+  arn:aws:lambda:eu-central-1:000000000000:function:func-one:1:
+    debug-port: 19891
+  arn:aws:lambda:eu-central-1:000000000000:function:func-two:2:
+    debug-port: 19892
+```
 
 ## Resources
 
 * [Lambda Code Mounting and Debugging (Python)](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging)
 * [Spring Cloud Function on LocalStack (Kotlin JVM)](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice)
+* [Enable Lambda Debug Mode to Automatically Raise Execution Timeouts (Java)](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-debug-mode/java/base-enable-lambda-debug-mode)
+* [Enable Lambda Debug Mode to Automatically Raise Execution Timeouts (Python)](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-debug-mode/python/base-multiple-lambda-debug-mode)
+* [Enable Lambda Debug Mode to Automatically Raise Execution Timeouts for multiple Lambdas (Python)](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-debug-mode/python/base-multiple-lambda-debug-mode)
+* [Enable Lambda Debug Mode to Automatically Handle Concurrent Function Invocations (Python)](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-debug-mode/python/base-concurrent-lambda-debug-mode)

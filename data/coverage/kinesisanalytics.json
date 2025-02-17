@@ -112,13 +112,13 @@
     },
     {
       "DeleteApplicationOutput": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -184,8 +184,8 @@
     },
     {
       "StartApplication": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -235,8 +235,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -272,16 +272,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_application_output",
-            "test": "test_application_output",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ]
       }
@@ -289,16 +279,6 @@
     "CreateApplication": {
       "ApplicationCode, ApplicationDescription, ApplicationName, Inputs, Outputs": {
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_application_output",
-            "test": "test_application_output",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_input_processing_configuration",
             "test": "test_input_processing_configuration",
@@ -360,16 +340,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_application_output",
-            "test": "test_application_output",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_input_processing_configuration",
             "test": "test_input_processing_configuration",
             "response": "200",
@@ -398,46 +368,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_kinesisanalyticsv2.py::TestKinesisAnalyticsV2Provider::test_application_output",
-            "test": "test_application_output",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_kinesisanalyticsv2.py::TestKinesisAnalyticsV2Provider::test_input_processing_configuration",
-            "test": "test_input_processing_configuration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_kinesisanalyticsv2.py::TestKinesisAnalyticsV2Provider::test_list_and_update_applications",
-            "test": "test_list_and_update_applications",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_kinesisanalyticsv2.py::TestKinesisAnalyticsV2Provider::test_tag_list_tag_untag_resource",
-            "test": "test_tag_list_tag_untag_resource",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -454,15 +384,21 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
+          }
+        ]
+      }
+    },
+    "DeleteApplicationOutput": {
+      "ApplicationName, CurrentApplicationVersionId, OutputId": {
+        "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_kinesisanalyticsv2.py::TestKinesisAnalyticsV2Provider::test_input_processing_configuration",
-            "test": "test_input_processing_configuration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_kinesisanalytics.py::test_application_with_output_and_reference",
+            "test": "test_application_with_output_and_reference",
+            "response": "501",
+            "error": "InternalFailure",
+            "snapshot_skipped": "['$..ApplicationDetail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           }
         ]
@@ -489,16 +425,6 @@
             "snapshot_skipped": "['$..ApplicationDetail']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalytics/test_kinesisanalytics.py::TestKinesisAnalyticsProvider::test_application_output",
-            "test": "test_application_output",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -546,16 +472,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_kinesisanalyticsv2.py::TestKinesisAnalyticsV2Provider::test_list_and_update_applications",
-            "test": "test_list_and_update_applications",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -572,16 +488,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_kinesisanalyticsv2.py::TestKinesisAnalyticsV2Provider::test_tag_list_tag_untag_resource",
-            "test": "test_tag_list_tag_untag_resource",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -598,16 +504,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_kinesisanalyticsv2.py::TestKinesisAnalyticsV2Provider::test_tag_list_tag_untag_resource",
-            "test": "test_tag_list_tag_untag_resource",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -624,16 +520,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/kinesisanalyticsv2/test_kinesisanalyticsv2.py::TestKinesisAnalyticsV2Provider::test_tag_list_tag_untag_resource",
-            "test": "test_tag_list_tag_untag_resource",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }

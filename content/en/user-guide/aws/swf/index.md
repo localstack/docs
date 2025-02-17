@@ -7,19 +7,24 @@ description: >
 
 ## Introduction
 
-SWF (Simple Workflow Service) is a fully managed service offered by Amazon Web Services (AWS) that enables you to build and manage applications with distributed components and complex workflows. SWF allows you to define workflows in a way that's separate from the actual application code, making it easier to modify and adapt workflows without changing the application logic. SWF also provides a programming framework to design, coordinate, and execute workflows that involve multiple tasks, steps, and decision points.
+Simple Workflow Service (SWF) is a fully managed service offered by Amazon Web Services (AWS) that enables you to build and manage applications with distributed components and complex workflows.
+SWF allows you to define workflows in a way that's separate from the actual application code, making it easier to modify and adapt workflows without changing the application logic.
+SWF also provides a programming framework to design, coordinate, and execute workflows that involve multiple tasks, steps, and decision points.
 
-LocalStack supports Simple Workflow Service via the Community offering, allowing you to use the SWF APIs in your local environment to monitor and manage workflow design, task coordination, activity implementation, and error handling. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_swf/), which provides information on the extent of SWF's integration with LocalStack.
+LocalStack allows you to use the SWF APIs in your local environment to monitor and manage workflow design, task coordination, activity implementation, and error handling.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_swf/), which provides information on the extent of SWF's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to Simple Workflow Service and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to register an SWF domain and workflow using the AWS CLI.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to register an SWF domain and workflow using the AWS CLI.
 
 ### Registering a domain
 
-You can register an SWF domain using the [`RegisterDomain`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RegisterDomain.html) API. Execute the following command to register a domain named `test-domain`:
+You can register an SWF domain using the [`RegisterDomain`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RegisterDomain.html) API.
+Execute the following command to register a domain named `test-domain`:
 
 {{< command >}}
 $ awslocal swf register-domain \
@@ -27,7 +32,8 @@ $ awslocal swf register-domain \
     --workflow-execution-retention-period-in-days 1
 {{< /command >}}
 
-You can use the [`DescribeDomain`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DescribeDomain.html) API to verify that the domain was registered successfully. Run the following command to describe the `test-domain` domain:
+You can use the [`DescribeDomain`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DescribeDomain.html) API to verify that the domain was registered successfully.
+Run the following command to describe the `test-domain` domain:
 
 {{< command >}}
 $ awslocal swf describe-domain \
@@ -51,17 +57,19 @@ The following output would be retrieved:
 
 ### List the domains
 
-You can list all registered domains using the [`ListDomains`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_ListDomains.html) API. Run the following command to list all registered domains:
+You can list all registered domains using the [`ListDomains`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_ListDomains.html) API.
+Run the following command to list all registered domains:
 
 {{< command >}}
 $ awslocal swf list-domains --registration-status REGISTERED
 {{< /command >}}
 
-To deprecate a domain, use the [`DeprecateDomain`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DeprecateDomain.html) API. Run the following command to deprecate the `test-domain` domain:
+To deprecate a domain, use the [`DeprecateDomain`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DeprecateDomain.html) API.
+Run the following command to deprecate the `test-domain` domain:
 
 {{< command >}}
 $ awslocal swf deprecate-domain \
-    --name test-domain 
+    --name test-domain
 {{< /command >}}
 
 You can now list the deprecated domains using the `--registration-status DEPRECATED` flag:
@@ -72,7 +80,8 @@ $ awslocal swf list-domains --registration-status DEPRECATED
 
 ### Registering a workflow
 
-You can register a workflow using the [`RegisterWorkflowType`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RegisterWorkflowType.html) API. Execute the following command to register a workflow named `test-workflow`:
+You can register a workflow using the [`RegisterWorkflowType`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RegisterWorkflowType.html) API.
+Execute the following command to register a workflow named `test-workflow`:
 
 {{< command >}}
 $ awslocal swf register-workflow-type \
@@ -85,7 +94,8 @@ $ awslocal swf register-workflow-type \
     --workflow-version "1.0"
 {{< /command >}}
 
-You can use the [`DescribeWorkflowType`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DescribeWorkflowType.html) API to verify that the workflow was registered successfully. Run the following command to describe the `test-workflow` workflow:
+You can use the [`DescribeWorkflowType`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DescribeWorkflowType.html) API to verify that the workflow was registered successfully.
+Run the following command to describe the `test-workflow` workflow:
 
 {{< command >}}
 $ awslocal swf describe-workflow-type \
@@ -118,7 +128,8 @@ The following output would be retrieved:
 
 ### Registering an activity
 
-You can register an activity using the [`RegisterActivityType`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RegisterActivityType.html) API. Execute the following command to register an activity named `test-activity`:
+You can register an activity using the [`RegisterActivityType`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RegisterActivityType.html) API.
+Execute the following command to register an activity named `test-activity`:
 
 {{< command >}}
 $ awslocal swf register-activity-type \
@@ -132,7 +143,8 @@ $ awslocal swf register-activity-type \
     --activity-version "1.0"
 {{< /command >}}
 
-You can use the [`DescribeActivityType`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DescribeActivityType.html) API to verify that the activity was registered successfully. Run the following command to describe the `test-activity` activity:
+You can use the [`DescribeActivityType`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DescribeActivityType.html) API to verify that the activity was registered successfully.
+Run the following command to describe the `test-activity` activity:
 
 {{< command >}}
 $ awslocal swf describe-activity-type \
@@ -166,7 +178,8 @@ The following output would be retrieved:
 
 ### Starting a workflow execution
 
-You can start a workflow execution using the [`StartWorkflowExecution`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_StartWorkflowExecution.html) API. Execute the following command to start a workflow execution for the `test-workflow` workflow:
+You can start a workflow execution using the [`StartWorkflowExecution`](https://docs.aws.amazon.com/amazonswf/latest/apireference/API_StartWorkflowExecution.html) API.
+Execute the following command to start a workflow execution for the `test-workflow` workflow:
 
 {{< command >}}
 $ awslocal swf start-workflow-execution \

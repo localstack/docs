@@ -6,11 +6,14 @@ description: Running LocalStack on Kubernetes
 
 ## Introduction
 
-[Kubernetes](https://kubernetes.io) is an open-source container orchestration platform that simplifies the deployment, scaling, and management of containerized applications. LocalStack can be deployed on Kubernetes using the [LocalStack Helm chart](http://helm.localstack.cloud).
+[Kubernetes](https://kubernetes.io) is an open-source container orchestration platform that simplifies the deployment, scaling, and management of containerized applications.
+LocalStack can be deployed on Kubernetes using the [LocalStack Helm chart](https://github.com/localstack/helm-charts).
 
-{{< alert title="Warning" color="warning" >}}
-Creating shared/hosted LocalStack instances may have some licensing implications. For example, a valid license might be necessary for each user who interacts with the instance. If you have any questions or uncertainties regarding the licensing implications, we encourage you to [contact us](https://localstack.cloud/contact) for further details.
-{{< /alert >}}
+{{< callout "warning" >}}
+Creating shared/hosted LocalStack instances may have some licensing implications.
+For example, a valid license might be necessary for each user who interacts with the instance.
+If you have any questions or uncertainties regarding the licensing implications, we encourage you to [contact us](https://localstack.cloud/contact) for further details.
+{{< /callout >}}
 
 ## Getting started
 
@@ -27,7 +30,8 @@ For setting up Kubernetes refer to the Kubernetes  [getting started guide](https
 
 ### Install Helm
 
-Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources.
+Helm is a tool for managing Kubernetes charts.
+Charts are packages of pre-configured Kubernetes resources.
 
 To install Helm, refer to the  [Helm install guide](https://github.com/helm/helm#install) and ensure that the `helm` binary is in the `PATH` of your shell.
 
@@ -47,9 +51,9 @@ Please refer to the [Quick Start guide](https://helm.sh/docs/intro/quickstart/) 
 
 Some useful Helm client commands are:
 
--   View available charts: `helm search repo`
--   Install a chart: `helm install <name> localstack/<chart>`
--   Upgrade your application: `helm upgrade`
+- View available charts: `helm search repo`
+- Install a chart: `helm install <name> localstack/<chart>`
+- Upgrade your application: `helm upgrade`
 
 ## LocalStack on Kubernetes (`l8k`)
 
@@ -59,13 +63,13 @@ The [`localstack-on-k8s`](https://github.com/localstack/localstack-on-k8s) sampl
 
 This sample requires the following tools installed on your machine:
 
-* Python 3.7+
-* [`awslocal`](https://github.com/localstack/awscli-local)
-* [Docker](https://www.docker.com)
-* [Git](https://git-scm.com)
-* [Helm](https://helm.sh)
-* [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl)
-* [Serverless](https://www.npmjs.com/package/serverless)
+- Python 3.7+
+- [`awslocal`](https://github.com/localstack/awscli-local)
+- [Docker](https://www.docker.com)
+- [Git](https://git-scm.com)
+- [Helm](https://helm.sh)
+- [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl)
+- [Serverless](https://www.npmjs.com/package/serverless)
 
 ### Clone the sample repository
 
@@ -124,7 +128,8 @@ NAME                                    DESIRED   CURRENT   READY   AGE
 replicaset.apps/localstack-6fd5b98f59   1         1         1       5m
 {{< /command >}}
 
-The LocalStack instance should be available via the local ingress port `8081`. We can verify that the resources were successfully created by running a few `awslocal` commands against the local endpoint:
+The LocalStack instance should be available via the local ingress port `8081`.
+We can verify that the resources were successfully created by running a few `awslocal` commands against the local endpoint:
 
 {{< command >}}
 $ awslocal sqs --endpoint-url=http://localhost:8081 list-queues
@@ -142,36 +147,5 @@ $ awslocal apigateway --endpoint-url=http://localhost:8081 get-rest-apis
 ...
 {{< /command >}}
 
-We can then use a browser to open the [Web UI](http://localhost:8081/archive-bucket/index.html), which should have been deployed to an S3 bucket inside LocalStack. The Web UI can be used to interact with the sample application, send new requests to the backend, inspect the state of existing requests, etc.
-
-## Lambda on Kubernetes
-
-LocalStack on Kubernetes can be used in conjunction with the [LocalStack Community image](https://hub.docker.com/r/localstack/localstack). However, specific features such as execution of Lambda functions as Kubernetes pods are only available in the [LocalStack Pro image](https://hub.docker.com/r/localstack/localstack-pro). To configure LocalStack Lambdas to use Kubernetes Pods, you need to configure values in the [LocalStack Helm Chart](https://github.com/localstack/helm-charts/blob/ce47b1590605901650ab788556bc871efbd78b8d/charts/localstack/values.yaml#L178-L208).
-
-### Scaling Lambda Execution
-
-The Kubernetes Lambda Executor in LocalStack handles Lambda execution scaling by spawning new environments (running in pods) when no existing environment is available due to concurrent invocations. An environment shuts down if it remains inactive for 10 minutes, a duration customizable through the `LAMBDA_KEEPALIVE_MS` variable. All environments terminate when LocalStack stops running.
-
-### Lambda Scheduling Strategy
-
-For multiple Lambda functions, the executor schedules according to Kubernetes cluster defaults without specifying node affinity. Users can assign labels to lambda pods using the `LAMBDA_K8S_LABELS` variable (e.g., `LAMBDA_K8S_LABELS=key=value,key2=value2`). The [Helm Charts](https://github.com/localstack/helm-charts), facilitates such advanced configurations, ensuring flexibility in node affinity decisions.
-
-### Lambda Limitations and Configuration
-
-LocalStack enforces timeout configurations similar to AWS, using the `Timeout` function parameter. There are no intrinsic limits on the number of Lambdas, with configurable limits on concurrent executions set at 1000 by default (`LAMBDA_LIMITS_CONCURRENT_EXECUTIONS`).
-
-### Custom DNS for Lambda on Kubernetes
-
-You can setup custom DNS configuration for Lambda on Kubernetes through the `LAMBDA_DOCKER_DNS` configuration variable.
-
-### Customizing Lambda Runtime Behavior
-
-Users can customize Lambda runtime behavior by building custom images based on provided ones, pushing them to their registry, and specifying these images using the `LAMBDA_RUNTIME_IMAGE_MAPPING` configuration variable, as detailed in the [documentation](https://docs.localstack.cloud/references/configuration/#lambda).
-
-### Warm Start and Persistence
-
-Lambda on Kubernetes supports Warm Start and Persistence. Persistence has to be configured for the LocalStack pod. The `/var/lib/localstack` directory has to be persisted over LocalStack runs, in a volume for example.
-
-### Debugging Lambda on Kubernetes
-
-Debugging is currently not supported. Lambda hot-reloading will not function, as the bind mounting into pods cannot be done at runtime.
+We can then use a browser to open the [Web UI](http://localhost:8081/archive-bucket/index.html), which should have been deployed to an S3 bucket inside LocalStack.
+The Web UI can be used to interact with the sample application, send new requests to the backend, inspect the state of existing requests, etc.

@@ -426,11 +426,11 @@
       "DescribeCacheSecurityGroups": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -438,11 +438,11 @@
       "DescribeCacheSubnetGroups": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -908,6 +908,16 @@
       "AutoMinorVersionUpgrade, CacheClusterId, CacheNodeType, CacheSubnetGroupName, Engine, NumCacheNodes, SecurityGroupIds": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
             "test": "test_cluster_with_replication",
             "response": "200",
@@ -944,21 +954,21 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          }
-        ]
-      },
-      "CacheClusterId, CacheNodeType, Engine": {
-        "ls_pro": [
+          },
           {
-            "node_id": "LocalStack Pro: tests/aws/test_network_configuration.py::test_elasticache",
-            "test": "test_elasticache",
+            "node_id": "LocalStack Pro: tests/aws/services/elasticache/test_elasticache_redis.py::TestCacheCluster::test_redis_connection",
+            "test": "test_redis_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
-          },
+            "origin": "internal"
+          }
+        ]
+      },
+      "CacheClusterId, CacheNodeType, Engine": {
+        "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/test_network_configuration.py::test_elasticache",
             "test": "test_elasticache",
@@ -1012,11 +1022,35 @@
             "origin": "external"
           }
         ]
+      },
+      "CacheClusterId, ReplicationGroupId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elasticache/test_elasticache.py::TestElastiCache::test_create_cache_cluster_in_non_existent_replication_group",
+            "test": "test_create_cache_cluster_in_non_existent_replication_group",
+            "response": "404",
+            "error": "ReplicationGroupNotFoundFault",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
       }
     },
     "CreateCacheParameterGroup": {
       "CacheParameterGroupFamily, CacheParameterGroupName, Description, Tags": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
             "test": "test_cluster_with_replication",
@@ -1033,6 +1067,16 @@
     "CreateCacheSecurityGroup": {
       "CacheSecurityGroupName, Description, Tags": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
             "test": "test_cluster_with_replication",
@@ -1058,11 +1102,31 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elasticache/test_elasticache_redis.py::TestCacheCluster::test_redis_connection",
+            "test": "test_redis_connection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       },
       "CacheSubnetGroupDescription, CacheSubnetGroupName, SubnetIds, Tags": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
             "test": "test_cluster_with_replication",
@@ -1194,6 +1258,16 @@
       "CacheClusterId": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cache_cluster[redis]",
             "test": "test_cache_cluster[redis]",
             "response": "200",
@@ -1244,16 +1318,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/test_network_configuration.py::test_elasticache",
-            "test": "test_elasticache",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/elasticache/test_elasticache.py::TestElastiCache::test_cache_cluster_default_crud",
             "test": "test_cache_cluster_default_crud",
             "response": "404",
@@ -1269,6 +1333,16 @@
     "DeleteCacheParameterGroup": {
       "CacheParameterGroupName": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
             "test": "test_cluster_with_replication",
@@ -1286,6 +1360,16 @@
       "CacheSecurityGroupName": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
             "test": "test_cluster_with_replication",
             "response": "200",
@@ -1301,6 +1385,16 @@
     "DeleteCacheSubnetGroup": {
       "CacheSubnetGroupName": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cache_cluster[redis]",
             "test": "test_cache_cluster[redis]",
@@ -1398,6 +1492,26 @@
       "CacheClusterId": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cache_cluster[redis]",
             "test": "test_cache_cluster[redis]",
             "response": "200",
@@ -1436,12 +1550,32 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elasticache/test_elasticache_redis.py::TestCacheCluster::test_redis_connection",
+            "test": "test_redis_connection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       },
       "CacheClusterId, ShowCacheNodeInfo": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cache_cluster[redis]",
             "test": "test_cache_cluster[redis]",
             "response": "200",
@@ -1470,29 +1604,15 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          }
-        ]
-      },
-      "MaxRecords, ShowCacheNodeInfo": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cache_cluster[redis]",
-            "test": "test_cache_cluster[redis]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..PhysicalResourceId', '$..CacheClusters']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
-            "test": "test_cluster_with_replication",
+            "node_id": "LocalStack Pro: tests/aws/services/elasticache/test_elasticache_redis.py::TestCacheCluster::test_redis_connection",
+            "test": "test_redis_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "internal"
           }
         ]
@@ -1510,77 +1630,11 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
-            "test": "test_cluster_with_replication",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          }
-        ]
-      }
-    },
-    "DescribeCacheSecurityGroups": {
-      "- (without any parameters)": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
-            "test": "test_cluster_with_replication",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          }
-        ]
-      }
-    },
-    "DescribeCacheSubnetGroups": {
-      "- (without any parameters)": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cache_cluster[redis]",
-            "test": "test_cache_cluster[redis]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..PhysicalResourceId', '$..CacheClusters']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
-            "test": "test_cluster_with_replication",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       }
     },
     "DescribeReplicationGroups": {
-      "- (without any parameters)": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
-            "test": "test_cluster_with_replication",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          }
-        ]
-      },
       "ReplicationGroupId": {
         "ls_pro": [
           {
@@ -1609,6 +1663,16 @@
     "ModifyCacheParameterGroup": {
       "CacheParameterGroupName, ParameterNameValues": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::TestElasticacheResources::test_resource_deployment",
+            "test": "test_resource_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_elasticache.py::test_cluster_with_replication",
             "test": "test_cluster_with_replication",

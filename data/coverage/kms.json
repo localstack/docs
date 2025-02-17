@@ -123,6 +123,18 @@
       }
     },
     {
+      "DeriveSharedSecret": {
+        "implemented": true,
+        "availability": "community",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "DescribeCustomKeyStores": {
         "implemented": false,
         "availability": "",
@@ -271,7 +283,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
@@ -387,6 +399,18 @@
       }
     },
     {
+      "ListKeyRotations": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "ListKeys": {
         "implemented": true,
         "availability": "community",
@@ -451,8 +475,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -479,6 +503,18 @@
         "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "RotateKeyOnDemand": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -595,7 +631,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
@@ -629,7 +665,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -639,7 +675,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -649,7 +685,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -715,6 +751,16 @@
           }
         ],
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_cognito_custom_email_signup",
+            "test": "test_cognito_custom_email_signup",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..request.type', '$..request.userAttributes.email_verified', '$..version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_alias",
             "test": "test_create_key_alias",
@@ -841,7 +887,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -871,9 +917,57 @@
             "response": "400",
             "error": "AccessDeniedException",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/chaos/test_faults.py::TestFaults::test_fault_all_services_in_region",
+            "test": "test_fault_all_services_in_region",
+            "response": "503",
+            "error": "ServiceUnavailable",
+            "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/chaos/test_faults.py::TestFaults::test_fault_specific_services_in_regions",
+            "test": "test_fault_specific_services_in_regions",
+            "response": "503",
+            "error": "ServiceUnavailable",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
+      "BypassPolicyLockoutSafetyCheck, Description, KeySpec, KeyUsage, MultiRegion, Origin, Tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_read_key",
+            "test": "test_read_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "CustomerMasterKeySpec, Description, KeySpec, KeyUsage, MultiRegion, Origin, Policy, Tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/kms/test_kms_replication.py::TestKmsSecretReplication::test_successful_replication",
+            "test": "test_successful_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       },
@@ -893,6 +987,16 @@
       },
       "Description": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_dynamodb.py::test_table_with_ttl_and_sse",
+            "test": "test_table_with_ttl_and_sse",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/dynamodb/test_dynamodb.py::TestDynamoDB::test_dynamodb_create_table_with_partial_sse_specification",
             "test": "test_dynamodb_create_table_with_partial_sse_specification",
@@ -956,6 +1060,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_list_delete_alias",
             "test": "test_create_list_delete_alias",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_derive_shared_secret",
+            "test": "test_derive_shared_secret",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1228,7 +1342,7 @@
             "test": "test_copy_object_kms",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1313,20 +1427,52 @@
             "snapshot_tested": true,
             "origin": "internal"
           }
-        ]
-      },
-      "Description, KeySpec": {
-        "ls_community": [
+        ],
+        "ls_pro": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_hmac_create_key_invalid_operations",
-            "test": "test_hmac_create_key_invalid_operations",
-            "response": "400",
-            "error": "ValidationException",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_list_keys",
+            "test": "test_list_keys",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..NextToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_read_key",
+            "test": "test_read_key",
+            "response": "200",
+            "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/kms/test_kms_replication.py::TestKmsSecretReplication::test_successful_replication",
+            "test": "test_successful_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/secretsmanager/test_secrets_replication.py::TestSecretsReplication::test_secrets_replication_kms",
+            "test": "test_secrets_replication_kms",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "Description, KeySpec": {
+        "ls_community": [
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_hmac_create_key_invalid_operations",
             "test": "test_hmac_create_key_invalid_operations",
@@ -1344,6 +1490,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_cant_use_disabled_or_deleted_keys",
             "test": "test_cant_use_disabled_or_deleted_keys",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_derive_shared_secret",
+            "test": "test_derive_shared_secret",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1642,6 +1798,66 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMSMultiAccounts::test_cross_accounts_access",
             "test": "test_cross_accounts_access",
             "response": "200",
@@ -1649,6 +1865,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_derive_shared_secret",
+            "test": "test_derive_shared_secret",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1686,6 +1912,30 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_asymmetric",
+            "test": "test_import_key_asymmetric",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "Description, KeySpec, KeyUsage, Tags": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_custom_key_material_hmac",
+            "test": "test_create_key_custom_key_material_hmac",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -1696,6 +1946,120 @@
             "test": "test_create_key",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_existing_key_and_untag",
+            "test": "test_tag_existing_key_and_untag",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_existing_key_with_invalid_tag_key",
+            "test": "test_tag_existing_key_with_invalid_tag_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_key_with_duplicate_tag_keys_raises_error",
+            "test": "test_tag_key_with_duplicate_tag_keys_raises_error",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "Description, KeyUsage, Tags": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_with_tag_and_untag",
+            "test": "test_create_key_with_tag_and_untag",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_untag_key_partially",
+            "test": "test_untag_key_partially",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_update_and_add_tags_on_tagged_key",
+            "test": "test_update_and_add_tags_on_tagged_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_with_invalid_tag_key[lowercase_prefix]",
+            "test": "test_create_key_with_invalid_tag_key[lowercase_prefix]",
+            "response": "400",
+            "error": "TagException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_with_invalid_tag_key[too_long_key]",
+            "test": "test_create_key_with_invalid_tag_key[too_long_key]",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_with_invalid_tag_key[uppercase_prefix]",
+            "test": "test_create_key_with_invalid_tag_key[uppercase_prefix]",
+            "response": "400",
+            "error": "TagException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_with_too_many_tags_raises_error",
+            "test": "test_create_key_with_too_many_tags_raises_error",
+            "response": "400",
+            "error": "TagException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_key_with_long_tag_value_raises_error",
+            "test": "test_key_with_long_tag_value_raises_error",
+            "response": "400",
+            "error": "ValidationException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -1730,7 +2094,7 @@
             "test": "test_replicate_key",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..KeyMetadata.Enabled', '$..KeyMetadata.KeyState', '$..KeyMetadata.MultiRegionConfiguration', '$..ReplicaKeyMetadata.Enabled', '$..ReplicaKeyMetadata.KeyState', '$..ReplicaKeyMetadata.MultiRegionConfiguration', '$..ReplicaPolicy']",
+            "snapshot_skipped": "['$..KeyMetadata.Enabled', '$..KeyMetadata.KeyState', '$..ReplicaKeyMetadata.Enabled', '$..ReplicaKeyMetadata.KeyState', '$..ReplicaPolicy']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1740,8 +2104,8 @@
       "Description, Origin": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key",
-            "test": "test_import_key",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_symmetric",
+            "test": "test_import_key_symmetric",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1772,6 +2136,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/secretsmanager/test_secretsmanager.py::TestSecretsManagerMultiAccounts::test_cross_account_access_non_default_key",
+            "test": "test_cross_account_access_non_default_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -1800,8 +2174,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_untag_list_tags",
-            "test": "test_tag_untag_list_tags",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_custom_key_material_symmetric_decrypt",
+            "test": "test_create_key_custom_key_material_symmetric_decrypt",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1833,6 +2207,20 @@
           }
         ]
       },
+      "KeySpec, Policy": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_cognito_custom_email_signup",
+            "test": "test_cognito_custom_email_signup",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..request.type', '$..request.userAttributes.email_verified', '$..version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "Policy": {
         "ls_community": [
           {
@@ -1841,7 +2229,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -1851,7 +2239,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -1861,7 +2249,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -1871,7 +2259,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -1881,7 +2269,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           }
@@ -1906,6 +2294,16 @@
       "CiphertextBlob, EncryptionAlgorithm, KeyId": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_custom_key_material_symmetric_decrypt",
+            "test": "test_create_key_custom_key_material_symmetric_decrypt",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_encrypt_decrypt[RSA_2048-RSAES_OAEP_SHA_256]",
             "test": "test_encrypt_decrypt[RSA_2048-RSAES_OAEP_SHA_256]",
             "response": "200",
@@ -1918,6 +2316,66 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_encrypt_decrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
             "test": "test_encrypt_decrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_256]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1940,6 +2398,16 @@
       "CiphertextBlob, EncryptionContext, KeyId": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_cognito_custom_email_signup",
+            "test": "test_cognito_custom_email_signup",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..request.type', '$..request.userAttributes.email_verified', '$..version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_crypto.py::test_encrypt_via_aws_encryption_sdk",
             "test": "test_encrypt_via_aws_encryption_sdk",
             "response": "200",
@@ -1954,8 +2422,8 @@
       "CiphertextBlob, KeyId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key",
-            "test": "test_import_key",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_symmetric",
+            "test": "test_import_key_symmetric",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2055,7 +2523,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2065,7 +2533,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2075,7 +2543,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2139,6 +2607,18 @@
             "snapshot_tested": true,
             "origin": "external"
           }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_cognito_custom_email_signup",
+            "test": "test_cognito_custom_email_signup",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..request.type', '$..request.userAttributes.email_verified', '$..version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
         ]
       }
     },
@@ -2146,10 +2626,56 @@
       "KeyId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key",
-            "test": "test_import_key",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_asymmetric",
+            "test": "test_import_key_asymmetric",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_symmetric",
+            "test": "test_import_key_symmetric",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeriveSharedSecret": {
+      "KeyAgreementAlgorithm, KeyId, PublicKey": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_derive_shared_secret",
+            "test": "test_derive_shared_secret",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_derive_shared_secret",
+            "test": "test_derive_shared_secret",
+            "response": "400",
+            "error": "InvalidKeyUsageException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_derive_shared_secret",
+            "test": "test_derive_shared_secret",
+            "response": "400",
+            "error": "ValidationException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -2167,7 +2693,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -2177,13 +2703,23 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/dynamodb/test_dynamodb.py::TestDynamoDB::test_dynamodb_create_table_with_partial_sse_specification",
             "test": "test_dynamodb_create_table_with_partial_sse_specification",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/dynamodb/test_dynamodb.py::TestDynamoDB::test_dynamodb_update_table_without_sse_specification_change",
+            "test": "test_dynamodb_update_table_without_sse_specification_change",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2252,8 +2788,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key",
-            "test": "test_import_key",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_asymmetric",
+            "test": "test_import_key_asymmetric",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_symmetric",
+            "test": "test_import_key_symmetric",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2266,7 +2812,7 @@
             "test": "test_replicate_key",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..KeyMetadata.Enabled', '$..KeyMetadata.KeyState', '$..KeyMetadata.MultiRegionConfiguration', '$..ReplicaKeyMetadata.Enabled', '$..ReplicaKeyMetadata.KeyState', '$..ReplicaKeyMetadata.MultiRegionConfiguration', '$..ReplicaPolicy']",
+            "snapshot_skipped": "['$..KeyMetadata.Enabled', '$..KeyMetadata.KeyState', '$..ReplicaKeyMetadata.Enabled', '$..ReplicaKeyMetadata.KeyState', '$..ReplicaPolicy']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2342,48 +2888,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_get_key_does_not_exist",
-            "test": "test_get_key_does_not_exist",
-            "response": "400",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_get_key_in_different_region",
             "test": "test_get_key_in_different_region",
-            "response": "400",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_get_key_in_different_region",
-            "test": "test_get_key_in_different_region",
-            "response": "400",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_get_key_invalid_uuid",
-            "test": "test_get_key_invalid_uuid",
-            "response": "400",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_get_key_invalid_uuid",
-            "test": "test_get_key_invalid_uuid",
             "response": "400",
             "error": "NotFoundException",
             "snapshot_skipped": "",
@@ -2406,7 +2912,7 @@
             "test": "test_replicate_key",
             "response": "400",
             "error": "NotFoundException",
-            "snapshot_skipped": "['$..KeyMetadata.Enabled', '$..KeyMetadata.KeyState', '$..KeyMetadata.MultiRegionConfiguration', '$..ReplicaKeyMetadata.Enabled', '$..ReplicaKeyMetadata.KeyState', '$..ReplicaKeyMetadata.MultiRegionConfiguration', '$..ReplicaPolicy']",
+            "snapshot_skipped": "['$..KeyMetadata.Enabled', '$..KeyMetadata.KeyState', '$..ReplicaKeyMetadata.Enabled', '$..ReplicaKeyMetadata.KeyState', '$..ReplicaPolicy']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2420,29 +2926,19 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key",
-            "test": "test_s3_sse_validate_kms_key",
-            "response": "400",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key",
-            "test": "test_s3_sse_validate_kms_key",
-            "response": "400",
-            "error": "NotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ],
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_read_key",
+            "test": "test_read_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_kms_key",
             "test": "test_kms_key",
@@ -2462,6 +2958,36 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/kms/test_kms_replication.py::TestKmsSecretReplication::test_successful_replication",
+            "test": "test_successful_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/kms/test_kms_replication.py::TestKmsSecretReplication::test_successful_replication",
+            "test": "test_successful_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_read_key_not_found",
+            "test": "test_read_key_not_found",
+            "response": "400",
+            "error": "NotFoundException",
+            "snapshot_skipped": "['$..Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_kms_key",
@@ -2485,7 +3011,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2531,7 +3057,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2541,7 +3067,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2551,7 +3077,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2571,7 +3097,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2581,7 +3107,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2595,6 +3121,18 @@
             "snapshot_tested": true,
             "origin": "external"
           }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_cognito_custom_email_signup",
+            "test": "test_cognito_custom_email_signup",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..request.type', '$..request.userAttributes.email_verified', '$..version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
         ]
       }
     },
@@ -2607,7 +3145,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2617,7 +3155,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2627,7 +3165,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2647,7 +3185,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -2669,6 +3207,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_cognito_custom_email_signup",
+            "test": "test_cognito_custom_email_signup",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..request.type', '$..request.userAttributes.email_verified', '$..version']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2832,16 +3380,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_kms_cross_account_encrypt",
-            "test": "test_kms_cross_account_encrypt",
-            "response": "400",
-            "error": "AccessDeniedException",
-            "snapshot_skipped": "['$..Error.Message']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           }
         ]
       },
@@ -2868,8 +3406,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key",
-            "test": "test_import_key",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_symmetric",
+            "test": "test_import_key_symmetric",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2898,8 +3436,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key",
-            "test": "test_import_key",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_symmetric",
+            "test": "test_import_key_symmetric",
             "response": "400",
             "error": "KMSInvalidStateException",
             "snapshot_skipped": "",
@@ -2937,6 +3475,16 @@
       },
       "EncryptionContext, KeyId, NumberOfBytes": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_cognito_custom_email_signup",
+            "test": "test_cognito_custom_email_signup",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..request.type', '$..request.userAttributes.email_verified', '$..version']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/integration/test_crypto.py::test_encrypt_via_aws_encryption_sdk",
             "test": "test_encrypt_via_aws_encryption_sdk",
@@ -3135,6 +3683,16 @@
     "GenerateMac": {
       "KeyId, MacAlgorithm, Message": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_custom_key_material_hmac",
+            "test": "test_create_key_custom_key_material_hmac",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_generate_and_verify_mac[HMAC_224-HMAC_SHA_224]",
             "test": "test_generate_and_verify_mac[HMAC_224-HMAC_SHA_224]",
@@ -3394,6 +3952,16 @@
         ],
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_read_key",
+            "test": "test_read_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_kms_cross_account_encrypt",
             "test": "test_kms_cross_account_encrypt",
             "response": "200",
@@ -3416,6 +3984,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_kms_key",
             "test": "test_kms_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/kms/test_kms_replication.py::TestKmsSecretReplication::test_successful_replication",
+            "test": "test_successful_replication",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3449,6 +4027,28 @@
             "snapshot_tested": false,
             "origin": "external"
           }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_read_key",
+            "test": "test_read_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/kms/test_kms_replication.py::TestKmsSecretReplication::test_successful_replication",
+            "test": "test_successful_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
         ]
       }
     },
@@ -3466,8 +4066,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key",
-            "test": "test_import_key",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_asymmetric",
+            "test": "test_import_key_asymmetric",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_symmetric",
+            "test": "test_import_key_symmetric",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3492,8 +4102,88 @@
       "KeyId": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_derive_shared_secret",
+            "test": "test_derive_shared_secret",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_get_public_key",
             "test": "test_get_public_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_asymmetric",
+            "test": "test_import_key_asymmetric",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_256]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3518,8 +4208,18 @@
       "EncryptedKeyMaterial, ExpirationModel, ImportToken, KeyId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key",
-            "test": "test_import_key",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_asymmetric",
+            "test": "test_import_key_asymmetric",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_symmetric",
+            "test": "test_import_key_symmetric",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3532,8 +4232,8 @@
       "EncryptedKeyMaterial, ImportToken, KeyId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key",
-            "test": "test_import_key",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_symmetric",
+            "test": "test_import_key_symmetric",
             "response": "400",
             "error": "ValidationException",
             "snapshot_skipped": "",
@@ -3570,26 +4270,6 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_operation",
-            "test": "test_api_injection_parametrized_operation",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_service",
-            "test": "test_api_injection_parametrized_service",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_alias",
             "test": "test_create_key_alias",
             "response": "200",
@@ -3597,16 +4277,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_service",
-            "test": "test_api_injection_parametrized_service",
-            "response": "400",
-            "error": "InternalError",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -3784,124 +4454,28 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
-            "test": "test_api_failure_with_latency",
+            "node_id": "LocalStack Pro: tests/integration/chaos/test_faults.py::TestFaults::test_fault_all_services_in_region",
+            "test": "test_fault_all_services_in_region",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
+          }
+        ]
+      },
+      "Limit": {
+        "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_fault_action",
-            "test": "test_api_injection_fault_action",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_list_keys",
+            "test": "test_list_keys",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_exception",
-            "test": "test_api_injection_parametrized_exception",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_operation",
-            "test": "test_api_injection_parametrized_operation",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_region",
-            "test": "test_api_injection_parametrized_region",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_service",
-            "test": "test_api_injection_parametrized_service",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_exception",
-            "test": "test_api_injection_parametrized_exception",
-            "response": "400",
-            "error": "SomeVerySpecificException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_operation",
-            "test": "test_api_injection_parametrized_operation",
-            "response": "400",
-            "error": "InternalError",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_region",
-            "test": "test_api_injection_parametrized_region",
-            "response": "400",
-            "error": "InternalError",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_service",
-            "test": "test_api_injection_parametrized_service",
-            "response": "400",
-            "error": "InternalError",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
-            "test": "test_api_failure_with_latency",
-            "response": "500",
-            "error": "InternalError",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_fault_action",
-            "test": "test_api_injection_fault_action",
-            "response": "500",
-            "error": "InternalError",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
+            "snapshot_skipped": "['$..NextToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
@@ -3910,14 +4484,66 @@
       "KeyId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_untag_list_tags",
-            "test": "test_tag_untag_list_tags",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_with_tag_and_untag",
+            "test": "test_create_key_with_tag_and_untag",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_existing_key_and_untag",
+            "test": "test_tag_existing_key_and_untag",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_untag_key_partially",
+            "test": "test_untag_key_partially",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_update_and_add_tags_on_tagged_key",
+            "test": "test_update_and_add_tags_on_tagged_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_read_key",
+            "test": "test_read_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/kms/test_kms_replication.py::TestKmsSecretReplication::test_successful_replication",
+            "test": "test_successful_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
@@ -3984,7 +4610,7 @@
             "test": "test_replicate_key",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..KeyMetadata.Enabled', '$..KeyMetadata.KeyState', '$..KeyMetadata.MultiRegionConfiguration', '$..ReplicaKeyMetadata.Enabled', '$..ReplicaKeyMetadata.KeyState', '$..ReplicaKeyMetadata.MultiRegionConfiguration', '$..ReplicaPolicy']",
+            "snapshot_skipped": "['$..KeyMetadata.Enabled', '$..KeyMetadata.KeyState', '$..ReplicaKeyMetadata.Enabled', '$..ReplicaKeyMetadata.KeyState', '$..ReplicaPolicy']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4077,7 +4703,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -4087,7 +4713,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -4097,7 +4723,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -4117,7 +4743,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -4127,7 +4753,7 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -4179,6 +4805,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestTriggers::test_cognito_custom_email_signup",
+            "test": "test_cognito_custom_email_signup",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..request.type', '$..request.userAttributes.email_verified', '$..version']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4268,6 +4904,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_custom_key_material_hmac",
+            "test": "test_create_key_custom_key_material_hmac",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_custom_key_material_symmetric_decrypt",
+            "test": "test_create_key_custom_key_material_symmetric_decrypt",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_with_tag_and_untag",
+            "test": "test_create_key_with_tag_and_untag",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_list_delete_alias",
             "test": "test_create_list_delete_alias",
             "response": "200",
@@ -4280,6 +4946,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_multi_region_key",
             "test": "test_create_multi_region_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_derive_shared_secret",
+            "test": "test_derive_shared_secret",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4508,8 +5184,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key",
-            "test": "test_import_key",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_asymmetric",
+            "test": "test_import_key_asymmetric",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_symmetric",
+            "test": "test_import_key_symmetric",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4642,7 +5328,7 @@
             "test": "test_replicate_key",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..KeyMetadata.Enabled', '$..KeyMetadata.KeyState', '$..KeyMetadata.MultiRegionConfiguration', '$..ReplicaKeyMetadata.Enabled', '$..ReplicaKeyMetadata.KeyState', '$..ReplicaKeyMetadata.MultiRegionConfiguration', '$..ReplicaPolicy']",
+            "snapshot_skipped": "['$..KeyMetadata.Enabled', '$..KeyMetadata.KeyState', '$..ReplicaKeyMetadata.Enabled', '$..ReplicaKeyMetadata.KeyState', '$..ReplicaPolicy']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4768,8 +5454,98 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_untag_list_tags",
-            "test": "test_tag_untag_list_tags",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_2048-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_3072-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_1]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_256]",
+            "test": "test_symmetric_encrypt_offline_decrypt_online[RSA_4096-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_existing_key_and_untag",
+            "test": "test_tag_existing_key_and_untag",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_existing_key_with_invalid_tag_key",
+            "test": "test_tag_existing_key_with_invalid_tag_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_key_with_duplicate_tag_keys_raises_error",
+            "test": "test_tag_key_with_duplicate_tag_keys_raises_error",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_untag_key_partially",
+            "test": "test_untag_key_partially",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4780,6 +5556,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_update_alias",
             "test": "test_update_alias",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_update_and_add_tags_on_tagged_key",
+            "test": "test_update_and_add_tags_on_tagged_key",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4892,7 +5678,7 @@
             "test": "test_copy_object_kms",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ServerSideEncryption']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4958,6 +5744,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/secretsmanager/test_secretsmanager.py::TestSecretsManagerMultiAccounts::test_cross_account_access_non_default_key",
+            "test": "test_cross_account_access_non_default_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_cant_delete_deleted_key",
             "test": "test_cant_delete_deleted_key",
             "response": "400",
@@ -4990,6 +5786,26 @@
         ],
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_list_keys",
+            "test": "test_list_keys",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..NextToken']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_kms/test_cloudcontrol_kms_key.py::test_read_key",
+            "test": "test_read_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_kms_cross_account_encrypt",
             "test": "test_kms_cross_account_encrypt",
             "response": "200",
@@ -5008,6 +5824,26 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/kms/test_kms_replication.py::TestKmsSecretReplication::test_successful_replication",
+            "test": "test_successful_replication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/secretsmanager/test_secrets_replication.py::TestSecretsReplication::test_secrets_replication_kms",
+            "test": "test_secrets_replication_kms",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -5015,6 +5851,16 @@
     "Sign": {
       "KeyId, Message, MessageType, SigningAlgorithm": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_asymmetric",
+            "test": "test_import_key_asymmetric",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_sign_verify[ECC_NIST_P256-ECDSA_SHA_256]",
             "test": "test_sign_verify[ECC_NIST_P256-ECDSA_SHA_256]",
@@ -5212,10 +6058,40 @@
       "KeyId, Tags": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_untag_list_tags",
-            "test": "test_tag_untag_list_tags",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_existing_key_and_untag",
+            "test": "test_tag_existing_key_and_untag",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_update_and_add_tags_on_tagged_key",
+            "test": "test_update_and_add_tags_on_tagged_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_existing_key_with_invalid_tag_key",
+            "test": "test_tag_existing_key_with_invalid_tag_key",
+            "response": "400",
+            "error": "TagException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_key_with_duplicate_tag_keys_raises_error",
+            "test": "test_tag_key_with_duplicate_tag_keys_raises_error",
+            "response": "400",
+            "error": "TagException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -5228,8 +6104,28 @@
       "KeyId, TagKeys": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_untag_list_tags",
-            "test": "test_tag_untag_list_tags",
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_with_tag_and_untag",
+            "test": "test_create_key_with_tag_and_untag",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_tag_existing_key_and_untag",
+            "test": "test_tag_existing_key_and_untag",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_untag_key_partially",
+            "test": "test_untag_key_partially",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5275,6 +6171,16 @@
     "Verify": {
       "KeyId, Message, MessageType, Signature, SigningAlgorithm": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_import_key_asymmetric",
+            "test": "test_import_key_asymmetric",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_sign_verify[ECC_NIST_P256-ECDSA_SHA_256]",
             "test": "test_sign_verify[ECC_NIST_P256-ECDSA_SHA_256]",
@@ -5545,6 +6451,16 @@
     "VerifyMac": {
       "KeyId, Mac, MacAlgorithm, Message": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_create_key_custom_key_material_hmac",
+            "test": "test_create_key_custom_key_material_hmac",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_generate_and_verify_mac[HMAC_224-HMAC_SHA_224]",
             "test": "test_generate_and_verify_mac[HMAC_224-HMAC_SHA_224]",

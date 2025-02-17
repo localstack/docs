@@ -2,21 +2,28 @@
 title: "AppConfig"
 linkTitle: "AppConfig"
 description: Get started with AppConfig on LocalStack
+tags: ["Pro image"]
 ---
 
-AppConfig is a service provided by Amazon Web Services (AWS) that simplifies the process of managing and deploying application configurations. AppConfig offers centralized management of configuration data and the ability to create, manage, and deploy configuration changes separately. It allows you to avoid deploying the service repeatedly for smaller changes, enables controlled deployments to applications and includes built-in validation checks & monitoring.
+AppConfig is a service provided by Amazon Web Services (AWS) that simplifies the process of managing and deploying application configurations.
+AppConfig offers centralized management of configuration data and the ability to create, manage, and deploy configuration changes separately.
+It allows you to avoid deploying the service repeatedly for smaller changes, enables controlled deployments to applications and includes built-in validation checks & monitoring.
 
-LocalStack supports AppConfig via the Pro/Team offering, allowing you to use the AppConfig APIs in your local environment to define configurations for different environments and deploy them to your applications as needed. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_appconfig/), which provides information on the extent of AppConfig's integration with LocalStack.
+LocalStack allows you to use the AppConfig APIs in your local environment to define configurations for different environments and deploy them to your applications as needed.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_appconfig/), which provides information on the extent of AppConfig's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to AppConfig and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create an AppConfig application, environment, configuration profiles & feature flags, and deploy the configuration with the AWS CLI.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create an AppConfig application, environment, configuration profiles & feature flags, and deploy the configuration with the AWS CLI.
 
 ### Create an AppConfig application and environment
 
-You can create an AppConfig application using the [`CreateApplication`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_CreateApplication.html) API. The application is a folder/directory that contains the configuration data for your specific application. The following command creates an application named `my-app`:
+You can create an AppConfig application using the [`CreateApplication`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_CreateApplication.html) API.
+The application is a folder/directory that contains the configuration data for your specific application.
+The following command creates an application named `my-app`:
 
 {{< command >}}
 $ awslocal appconfig create-application \
@@ -34,7 +41,9 @@ The following output would be retrieved:
 }
 ```
 
-You can now create an AppConfig environment for your application using the [`CreateEnvironment`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_CreateEnvironment.html) API. An environment consists of the deployment group of your AppConfig applications. The following command creates an environment named `my-app-env`:
+You can now create an AppConfig environment for your application using the [`CreateEnvironment`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_CreateEnvironment.html) API.
+An environment consists of the deployment group of your AppConfig applications.
+The following command creates an environment named `my-app-env`:
 
 {{< command >}}
 $ awslocal appconfig create-environment \
@@ -43,7 +52,8 @@ $ awslocal appconfig create-environment \
     --description "My application environment"
 {{< /command >}}
 
-Replace the `application-id` with the ID of the application you created in the previous step. The following output would be retrieved:
+Replace the `application-id` with the ID of the application you created in the previous step.
+The following output would be retrieved:
 
 ```bash
 {
@@ -57,7 +67,9 @@ Replace the `application-id` with the ID of the application you created in the p
 
 ### Create configuration profiles and feature flags
 
-You can create an AppConfig configuration profile using the [`CreateConfigurationProfile`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_CreateConfigurationProfile.html) API. A configuration profile contains for the configurations of your AppConfig applications. The following command creates a configuration profile named `my-app-config`:
+You can create an AppConfig configuration profile using the [`CreateConfigurationProfile`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_CreateConfigurationProfile.html) API.
+A configuration profile contains for the configurations of your AppConfig applications.
+The following command creates a configuration profile named `my-app-config`:
 
 {{< command >}}
 $ awslocal appconfig create-configuration-profile \
@@ -79,7 +91,8 @@ The following output would be retrieved:
 }
 ```
 
-You can now create a JSON file to add your feature flag configuration data. Create a file named `feature-flag-config.json` with the following content:
+You can now create a JSON file to add your feature flag configuration data.
+Create a file named `feature-flag-config.json` with the following content:
 
 ```json
 {
@@ -92,7 +105,8 @@ You can now create a JSON file to add your feature flag configuration data. Crea
 }
 ```
 
-You can now use the [`CreateHostedConfigurationVersion`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_CreateHostedConfigurationVersion.html) API to save your feature flag configuration data to AppConfig. The following command creates a hosted configuration version for the configuration profile you created in the previous step:
+You can now use the [`CreateHostedConfigurationVersion`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_CreateHostedConfigurationVersion.html) API to save your feature flag configuration data to AppConfig.
+The following command creates a hosted configuration version for the configuration profile you created in the previous step:
 
 {{< command >}}
 $ awslocal appconfig create-hosted-configuration-version \
@@ -116,7 +130,9 @@ The following output would be retrieved:
 
 ### Create an AppConfig deployment
 
-You can now create an AppConfig deployment strategy using the [`CreateDeploymentStrategy`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_CreateDeploymentStrategy.html) API. A deployment strategy defines important criteria for rolling out your configuration to the target environment. The following command creates a deployment strategy named `my-app-deployment-strategy`:
+You can now create an AppConfig deployment strategy using the [`CreateDeploymentStrategy`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_CreateDeploymentStrategy.html) API.
+A deployment strategy defines important criteria for rolling out your configuration to the target environment.
+The following command creates a deployment strategy named `my-app-deployment-strategy`:
 
 {{< command >}}
 $ awslocal appconfig create-deployment-strategy \
@@ -138,7 +154,8 @@ The following output would be retrieved:
 }
 ```
 
-You can now use the [`StartDeployment`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_StartDeployment.html) API to deploy the configuration. The following command deploys the configuration to the environment you created in the previous step:
+You can now use the [`StartDeployment`](https://docs.aws.amazon.com/appconfig/latest/APIReference/API_StartDeployment.html) API to deploy the configuration.
+The following command deploys the configuration to the environment you created in the previous step:
 
 {{< command >}}
 $ awslocal appconfig start-deployment \
@@ -179,3 +196,18 @@ The following output would be retrieved:
     "AppliedExtensions": []
 }
 ```
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing AppConfig applications.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **AppConfig** under the **Developer Tools** section.
+
+<img src="appconfig-resource-browser.png" alt="AppConfig Resource Browser" title="AppConfig Resource Browser" width="900" />
+<br><br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create new AppConfig applications**: Create new AppConfig applications by clicking **Create Application** and filling in the required details.
+- **View AppConfig applications**: View the list of AppConfig applications created in LocalStack by clicking on the application ID.
+- **Edit AppConfig applications**: Edit the configuration of an existing AppConfig application by clicking on the application ID and then clicking **Edit Application**.
+- **Delete AppConfig applications**: Delete an existing AppConfig application by selecting the application, followed by clicking **Actions** and then **Remove Selected**.

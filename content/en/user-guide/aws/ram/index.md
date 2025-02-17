@@ -34,8 +34,11 @@ $ awslocal ram create-resource-share \
     --resource-arn arn:aws:appsync:eu-central-1:000000000000:apis/wcgmjril5wuyvhmpildatuaat3
 {{< /command >}}
 
-## Limitations
+## Current Limitations
 
-RAM on LocalStack currently functions as a CRUD interface only.
-Resource shares do not lead to IAM policies being created or attached to resources. 
-This means that the specified principals do not end up being granted access to the specified resources.
+LocalStack RAM supports emulated sharing for EC2 Subnets only.
+Only specified account principals are granted access to the shared subnets, and associated VPC and route tables.
+Furthermore, only the sharing aspect is implemented at this time.
+No IAM policies are created or attached, and no permission enforcement takes place.
+
+For all other resource types, the functionality is limited to mocking.

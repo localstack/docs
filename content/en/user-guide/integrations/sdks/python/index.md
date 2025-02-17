@@ -1,7 +1,6 @@
 ---
 title: "Python Boto3"
 linkTitle: "Python: Boto3"
-tags: ["sdk"]
 description: >
   How to use the Boto3 Python AWS SDK with LocalStack.
 aliases:
@@ -10,7 +9,8 @@ aliases:
 
 [Boto3](https://github.com/boto/boto3) is the Amazon Web Services (AWS) Software Development Kit (SDK) for Python, which allows Python developers to write software that makes use of AWS services.
 
-You can easily create a `boto3` client that interacts with your LocalStack instance. The example below creates a `boto3` client that lists all available Lambda functions:
+You can easily create a `boto3` client that interacts with your LocalStack instance.
+The example below creates a `boto3` client that lists all available Lambda functions:
 
 ```python3
 import boto3
@@ -28,9 +28,9 @@ if __name__ == "__main__":
     main()
 ```
 
-{{< alert title="Note">}}
+{{< callout >}}
 If you're connecting from within a Python **Lambda function** handler in LocalStack, you can create a default client without configuring the `endpoint_url` - LocalStack will automatically forward the invocations to the local API endpoints (available in Pro, see [here]({{< ref "user-guide/tools/transparent-endpoint-injection" >}}) for more details).
-{{< /alert >}}
+{{< /callout >}}
 
 ```python3
 client = boto3.client("lambda")
@@ -38,11 +38,13 @@ client = boto3.client("lambda")
 ```
 
 Alternatively, if you prefer to (or need to) set the endpoints directly, you can use the environment variable `AWS_ENDPOINT_URL`,  which is available when executing user code (e.g., Lambda functions) in LocalStack:
+
 ```python3
 import os
 client = boto3.client("lambda", endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
 ...
 ```
 
-### Further Material:
+### Further Material
+
 * [localstack-python-client](https://github.com/localstack/localstack-python-client): small Python library with additional utils for interacting with LocalStack

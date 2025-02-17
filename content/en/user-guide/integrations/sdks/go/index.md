@@ -1,7 +1,6 @@
 ---
 title: "Go"
 categories: []
-tags: ["sdk"]
 description: >
   How to use the Go AWS SDK with LocalStack.
 aliases:
@@ -23,7 +22,7 @@ The Go SDK has two major versions, each with their own way of specifying the Loc
 Here is an example of how to create an S3 Client from a Session with the endpoint set to LocalStack.
 Full examples for both SDK versions can be found [in our samples repository](https://github.com/localstack/localstack-aws-sdk-examples/tree/main/go).
 
-{{< tabpane >}}
+{{< tabpane lang="golang" >}}
 {{< tab header="aws-go-sdk" lang="golang" >}}
 package main
 
@@ -65,22 +64,8 @@ func main() {
   awsEndpoint := "http://localhost:4566"
   awsRegion := "us-east-1"
   
-  customResolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
-    if awsEndpoint != "" {
-      return aws.Endpoint{
-        PartitionID:   "aws",
-        URL:           awsEndpoint,
-        SigningRegion: awsRegion,
-      }, nil
-    }
-
-    // returning EndpointNotFoundError will allow the service to fallback to its default resolution
-    return aws.Endpoint{}, &aws.EndpointNotFoundError{}
-  })
-  
   awsCfg, err := config.LoadDefaultConfig(context.TODO(),
     config.WithRegion(awsRegion),
-    config.WithEndpointResolverWithOptions(customResolver),
   )
   if err != nil {
     log.Fatalf("Cannot load the AWS configs: %s", err)
@@ -89,12 +74,11 @@ func main() {
   // Create the resource client
   client := s3.NewFromConfig(awsCfg, func(o *s3.Options) {
     o.UsePathStyle = true
+    o.BaseEndpoint = aws.String(awsEndpoint)
   })
   // ...
 }{{< /tab >}}
 {{< /tabpane >}}
-
-
 
 ## Resources
 

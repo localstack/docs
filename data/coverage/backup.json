@@ -21,8 +21,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -129,8 +129,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -429,8 +429,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -496,6 +496,18 @@
     },
     {
       "GetLegalHold": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "GetRecoveryPointIndexDetails": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -633,8 +645,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -688,6 +700,18 @@
     },
     {
       "ListFrameworks": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListIndexedRecoveryPoints": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -856,13 +880,13 @@
     },
     {
       "ListTags": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1035,6 +1059,18 @@
       }
     },
     {
+      "UpdateRecoveryPointIndexSettings": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "UpdateRecoveryPointLifecycle": {
         "implemented": false,
         "availability": "",
@@ -1104,9 +1140,9 @@
             "test": "test_backup_plan",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..BackupPlanArn', '$..BackupPlan.Rules..RuleId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1162,6 +1198,16 @@
       "BackupVaultName": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/backup/test_backup.py::TestBackup::test_backup_plan",
+            "test": "test_backup_plan",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..BackupPlanArn', '$..BackupPlan.Rules..RuleId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/backup/test_backup.py::TestBackup::test_scheduled_backup_and_restore",
             "test": "test_scheduled_backup_and_restore",
             "response": "200",
@@ -1206,9 +1252,9 @@
             "test": "test_backup_plan",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..BackupPlanArn', '$..BackupPlan.Rules..RuleId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1243,6 +1289,16 @@
     "DeleteBackupVault": {
       "BackupVaultName": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/backup/test_backup.py::TestBackup::test_backup_plan",
+            "test": "test_backup_plan",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..BackupPlanArn', '$..BackupPlan.Rules..RuleId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/backup/test_backup.py::TestBackup::test_backup_vaults",
             "test": "test_backup_vaults",
@@ -1336,9 +1392,9 @@
             "test": "test_backup_plan",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..BackupPlanArn', '$..BackupPlan.Rules..RuleId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1356,9 +1412,9 @@
             "test": "test_backup_plan",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..BackupPlanArn', '$..BackupPlan.Rules..RuleId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -1414,9 +1470,9 @@
             "test": "test_backup_plan",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..BackupPlanArn', '$..BackupPlan.Rules..RuleId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -1482,6 +1538,22 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListTags": {
+      "ResourceArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_backup_vault",
+            "test": "test_backup_vault",
+            "response": "501",
+            "error": "InternalFailure",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }

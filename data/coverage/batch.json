@@ -21,8 +21,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -33,8 +33,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -57,8 +57,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -69,8 +69,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -93,8 +93,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -102,11 +102,11 @@
       "DescribeComputeEnvironments": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -117,8 +117,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -126,11 +126,11 @@
       "DescribeJobQueues": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -141,8 +141,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -159,11 +159,23 @@
       }
     },
     {
+      "GetJobQueueSnapshot": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "ListJobs": {
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -201,8 +213,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -213,8 +225,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -293,6 +305,60 @@
   ],
   "details": {
     "CreateComputeEnvironment": {
+      "computeEnvironmentName, computeResources, serviceRole, state, type": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_deployed_compute_environment",
+            "test": "test_deployed_compute_environment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..computeResources', '$..containerOrchestrationType', '$..serviceRole', '$..statusReason', '$..tags', '$..uuid', '$..ecsClusterArn']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_failure",
+            "test": "test_batch_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_invalid",
+            "test": "test_batch_invalid",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_request_response",
+            "test": "test_batch_request_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_sync",
+            "test": "test_batch_sync",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "computeEnvironmentName, computeResources, serviceRole, type": {
         "ls_pro": [
           {
@@ -348,6 +414,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/batch/test_batch.py::TestBatch::test_transparent_endpoint_injection",
+            "test": "test_transparent_endpoint_injection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       }
@@ -384,6 +460,66 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/batch/test_batch.py::TestBatch::test_transparent_endpoint_injection",
+            "test": "test_transparent_endpoint_injection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_deployed_compute_environment",
+            "test": "test_deployed_compute_environment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..computeResources', '$..containerOrchestrationType', '$..serviceRole', '$..statusReason', '$..tags', '$..uuid', '$..ecsClusterArn']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_failure",
+            "test": "test_batch_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_invalid",
+            "test": "test_batch_invalid",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_request_response",
+            "test": "test_batch_request_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_sync",
+            "test": "test_batch_sync",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
@@ -402,6 +538,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_submit_job",
+            "test": "test_submit_job",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_batch_create_compute_environment",
             "test": "test_batch_create_compute_environment",
             "response": "200",
@@ -410,6 +556,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_failure",
+            "test": "test_batch_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
@@ -446,6 +602,36 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/batch/test_batch.py::TestBatch::test_transparent_endpoint_injection",
+            "test": "test_transparent_endpoint_injection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_submit_job",
+            "test": "test_submit_job",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_failure",
+            "test": "test_batch_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
@@ -502,6 +688,112 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/batch/test_batch.py::TestBatch::test_transparent_endpoint_injection",
+            "test": "test_transparent_endpoint_injection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_submit_job",
+            "test": "test_submit_job",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_failure",
+            "test": "test_batch_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
+    "DescribeComputeEnvironments": {
+      "computeEnvironments": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_deployed_compute_environment",
+            "test": "test_deployed_compute_environment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..computeResources', '$..containerOrchestrationType', '$..serviceRole', '$..statusReason', '$..tags', '$..uuid', '$..ecsClusterArn']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_deployed_compute_environment",
+            "test": "test_deployed_compute_environment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..computeResources', '$..containerOrchestrationType', '$..serviceRole', '$..statusReason', '$..tags', '$..uuid', '$..ecsClusterArn']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_submit_job",
+            "test": "test_submit_job",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_failure",
+            "test": "test_batch_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_invalid",
+            "test": "test_batch_invalid",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_request_response",
+            "test": "test_batch_request_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_sync",
+            "test": "test_batch_sync",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
@@ -518,6 +810,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_deployed_job_definition",
+            "test": "test_deployed_job_definition",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..containerOrchestrationType', '$..containerProperties.fargatePlatformConfiguration.platformVersion', '$..containerProperties.runtimePlatform.cpuArchitecture', '$..containerProperties.runtimePlatform.operatingSystemFamily', '$..propagateTags', '$..retryStrategy']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -531,6 +833,22 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeJobQueues": {
+      "jobQueues": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_deployed_job_queue",
+            "test": "test_deployed_job_queue",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..jobStateTimeLimitActions', '$..statusReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -568,11 +886,105 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/batch/test_batch.py::TestBatch::test_transparent_endpoint_injection",
+            "test": "test_transparent_endpoint_injection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_submit_job",
+            "test": "test_submit_job",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_failure",
+            "test": "test_batch_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_sync",
+            "test": "test_batch_sync",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
     },
     "RegisterJobDefinition": {
+      "containerProperties, jobDefinitionName, platformCapabilities, retryStrategy, timeout, type": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_deployed_compute_environment",
+            "test": "test_deployed_compute_environment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..computeResources', '$..containerOrchestrationType', '$..serviceRole', '$..statusReason', '$..tags', '$..uuid', '$..ecsClusterArn']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_failure",
+            "test": "test_batch_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_invalid",
+            "test": "test_batch_invalid",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_request_response",
+            "test": "test_batch_request_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_sync",
+            "test": "test_batch_sync",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "containerProperties, jobDefinitionName, type": {
         "ls_pro": [
           {
@@ -624,6 +1036,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/batch/test_batch.py::TestBatch::test_transparent_endpoint_injection",
+            "test": "test_transparent_endpoint_injection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       }
@@ -650,6 +1072,36 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_failure",
+            "test": "test_batch_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_sync",
+            "test": "test_batch_sync",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_invalid",
+            "test": "test_batch_invalid",
+            "response": "400",
+            "error": "ClientException",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       },
@@ -664,6 +1116,36 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/batch/test_batch.py::TestBatch::test_transparent_endpoint_injection",
+            "test": "test_transparent_endpoint_injection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_batch.py::TestBatch::test_submit_job",
+            "test": "test_submit_job",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_request_response",
+            "test": "test_batch_request_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration', '$..SdkHttpMetadata', '$..SdkResponseMetadata']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
