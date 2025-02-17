@@ -114,11 +114,11 @@
       "CreateApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -138,11 +138,11 @@
       "CreateDeploymentConfig": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -162,11 +162,11 @@
       "DeleteApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -174,11 +174,11 @@
       "DeleteDeploymentConfig": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -234,11 +234,11 @@
       "GetApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -270,11 +270,11 @@
       "GetDeploymentConfig": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -342,11 +342,11 @@
       "ListApplications": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -354,11 +354,11 @@
       "ListDeploymentConfigs": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -438,11 +438,11 @@
       "ListTagsForResource": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -522,11 +522,11 @@
       "TagResource": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -534,11 +534,11 @@
       "UntagResource": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -546,11 +546,11 @@
       "UpdateApplication": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -567,5 +567,306 @@
       }
     }
   ],
-  "details": {}
+  "details": {
+    "CreateApplication": {
+      "applicationName, computePlatform": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
+            "test": "test_applications_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
+            "test": "test_applications_crud",
+            "response": "400",
+            "error": "ApplicationAlreadyExistsException",
+            "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "applicationName, computePlatform, tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_resource_tags",
+            "test": "test_resource_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreateDeploymentConfig": {
+      "computePlatform, deploymentConfigName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_configs_crud",
+            "test": "test_deployment_configs_crud",
+            "response": "400",
+            "error": "InvalidMinimumHealthyHostValueException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_configs_crud",
+            "test": "test_deployment_configs_crud",
+            "response": "400",
+            "error": "InvalidTrafficRoutingConfigurationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "computePlatform, deploymentConfigName, minimumHealthyHosts": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_configs_crud",
+            "test": "test_deployment_configs_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_configs_crud",
+            "test": "test_deployment_configs_crud",
+            "response": "400",
+            "error": "DeploymentConfigAlreadyExistsException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteApplication": {
+      "applicationName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
+            "test": "test_applications_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_resource_tags",
+            "test": "test_resource_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteDeploymentConfig": {
+      "deploymentConfigName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_configs_crud",
+            "test": "test_deployment_configs_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetApplication": {
+      "applicationName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
+            "test": "test_applications_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
+            "test": "test_applications_crud",
+            "response": "400",
+            "error": "ApplicationDoesNotExistException",
+            "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetDeploymentConfig": {
+      "deploymentConfigName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_configs_crud",
+            "test": "test_deployment_configs_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_configs_crud",
+            "test": "test_deployment_configs_crud",
+            "response": "400",
+            "error": "DeploymentConfigDoesNotExistException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListApplications": {
+      "- (without any parameters)": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
+            "test": "test_applications_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListDeploymentConfigs": {
+      "- (without any parameters)": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_configs_crud",
+            "test": "test_deployment_configs_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListTagsForResource": {
+      "ResourceArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_resource_tags",
+            "test": "test_resource_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "TagResource": {
+      "ResourceArn, Tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_resource_tags",
+            "test": "test_resource_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UntagResource": {
+      "ResourceArn, TagKeys": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_resource_tags",
+            "test": "test_resource_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdateApplication": {
+      "applicationName, newApplicationName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
+            "test": "test_applications_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
+            "test": "test_applications_crud",
+            "response": "400",
+            "error": "ApplicationAlreadyExistsException",
+            "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
+            "test": "test_applications_crud",
+            "response": "400",
+            "error": "ApplicationDoesNotExistException",
+            "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    }
+  }
 }
