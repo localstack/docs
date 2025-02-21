@@ -95,7 +95,7 @@ pip install -r requirements-dev.txt
 {{< /tabpane >}}
 
 {{< callout "tip" >}}
-If you are encountering issues with the installation of the packages, such as Pillow, ensure you use the same version as the Python Lambdas (3.11.6) for Pillow to work. 
+If you are encountering issues with the installation of the packages, such as Pillow, ensure you use the same version as the Python Lambdas (3.11.6) for Pillow to work.
 If you're using <a href="https://github.com/pyenv/pyenv">pyenv</a>, install and activate Python 3.11 with the following commands:
 {{< command >}}
 $ pyenv install 3.11
