@@ -113,20 +113,21 @@ Received: 6 events
 
 DMS is in a preview state on LocalStack and only supports some selected use cases:
 
-| Source                | Target      | Migration Types |
-| -                     | -           | -               |
-| MariaDB (external)    | Kinesis     | full-load, cdc  |
-| MySQL (external)      | Kinesis     | full-load, cdc  |
-| RDS MariaDB           | Kinesis     | full-load, cdc  |
-| RDS MySQL             | Kinesis     | full-load, cdc  |
-| S3                    | Kinesis     | full-load, cdc  |
-| Aurora PostgreSQL     | Kinesis     | full-load, cdc  |
-| RDS PostgreSQL        | Kinesis     | full-load, cdc  |
-| PostgreSQL (external) | Kinesis     | full-load, cdc  |
+| Source                | Target      | Migration Types | Serverless Support   |
+| -                     | -           | -               | -                    |
+| MariaDB (external)    | Kinesis     | full-load, cdc  | N/A                  |
+| MySQL (external)      | Kinesis     | full-load, cdc  | N/A                  |
+| RDS MariaDB           | Kinesis     | full-load, cdc  | Yes                  |
+| RDS MySQL             | Kinesis     | full-load, cdc  | Yes                  |
+| S3                    | Kinesis     | full-load, cdc  | Not supported by AWS |
+| Aurora PostgreSQL     | Kinesis     | full-load, cdc  | No                   |
+| RDS PostgreSQL        | Kinesis     | full-load, cdc  | No                   |
+| PostgreSQL (external) | Kinesis     | full-load, cdc  | No                   |
 
 ## Serverless
 
-[DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) can be used for the MariaDB and MySQL sources and kinesis target in LocalStack.
+[DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) can be used for the above mentioned supported use cases, and that are also [supported by AWS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.Components.html#CHAP_Serverless.SupportedVersions).
+
 
 In order to simulate the different states that the replication config goes through when provisioning, you can set the env `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME`, which will cause the state-change to wait the configured seconds.
 
