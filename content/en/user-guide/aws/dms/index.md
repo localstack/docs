@@ -120,10 +120,11 @@ DMS is in a preview state on LocalStack and only supports some selected use case
 | RDS MariaDB        | Kinesis     | full-load, cdc  |
 | RDS MySQL          | Kinesis     | full-load, cdc  |
 | S3                 | Kinesis     | full-load, cdc  |
+| Aurora PostgreSQL  | Kinesis     | full-load, cdc  |
 
 ## Serverless
 
-[DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) can be used for the sources and targets that LocalStack already supports, and that are also [supported by AWS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.Components.html#CHAP_Serverless.SupportedVersions).
+[DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) can be used for the MariaDB and MySQL sources and kinesis target in LocalStack.
 
 In order to simulate the different states that the replication config goes through when provisioning, you can set the env `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME`, which will cause the state-change to wait the configured seconds.
 
@@ -183,6 +184,8 @@ log_bin=mysqld-bin
 ```
 
 For S3 as a source, only the first 1000 files of a table in a bucket are considered for migration.
+
+For Aurora PostgreSQL as a source, currently `BeforeImageSettings` is not supported.
 
 ### Enum Values for CDC data events
 
