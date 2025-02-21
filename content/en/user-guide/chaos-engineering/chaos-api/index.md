@@ -105,7 +105,7 @@ $ curl --location --request POST 'http://localhost.localstack.cloud:4566/_locals
         "region": "ap-south-1"
     },
     {
-        "service": "lambda",
+        "service": "lambda"
     }
 ]'
 {{< /command >}}
