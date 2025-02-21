@@ -113,15 +113,16 @@ Received: 6 events
 
 DMS is in a preview state on LocalStack and only supports some selected use cases:
 
-| Source             | Target      | Migration Types |
-| -                  | -           | -               |
-| MariaDB (external) | Kinesis     | full-load, cdc  |
-| MySQL (external)   | Kinesis     | full-load, cdc  |
-| RDS MariaDB        | Kinesis     | full-load, cdc  |
-| RDS MySQL          | Kinesis     | full-load, cdc  |
-| S3                 | Kinesis     | full-load, cdc  |
-| Aurora PostgreSQL  | Kinesis     | full-load, cdc  |
-| RDS PostgreSQL     | Kinesis     | full-load, cdc  |
+| Source                | Target      | Migration Types |
+| -                     | -           | -               |
+| MariaDB (external)    | Kinesis     | full-load, cdc  |
+| MySQL (external)      | Kinesis     | full-load, cdc  |
+| RDS MariaDB           | Kinesis     | full-load, cdc  |
+| RDS MySQL             | Kinesis     | full-load, cdc  |
+| S3                    | Kinesis     | full-load, cdc  |
+| Aurora PostgreSQL     | Kinesis     | full-load, cdc  |
+| RDS PostgreSQL        | Kinesis     | full-load, cdc  |
+| PostgreSQL (external) | Kinesis     | full-load, cdc  |
 
 ## Serverless
 
@@ -186,7 +187,7 @@ log_bin=mysqld-bin
 
 For S3 as a source, only the first 1000 files of a table in a bucket are considered for migration.
 
-For PostgreSQL as a source, currently `BeforeImageSettings` is not supported.
+For PostgreSQL as a source, the `ReplicationTaskSettings.BeforeImageSettings` parameter is not supported.
 
 ### Enum Values for CDC data events
 
