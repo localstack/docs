@@ -257,7 +257,7 @@ $ LOCALSTACK_AUTH_TOKEN=<ls-auth-token> \
   }
 }
 </disable-copy>
-{{< command >}}
+{{< /command >}}
 
 The state is `SUCCEEDED`, indicating the replication job completed successfully.
 The SSM parameter is now accessible.
