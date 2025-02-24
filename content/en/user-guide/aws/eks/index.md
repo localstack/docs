@@ -29,8 +29,6 @@ The default approach for creating Kubernetes clusters using the local EKS API is
 LocalStack seamlessly manages the download and installation process, making it hassle-free for users.
 In most cases, the installation is automatic, eliminating the need for any manual customizations.
 
-A new cluster can be created using the following command:
-
 You can create a new cluster using the [`CreateCluster`](https://docs.aws.amazon.com/eks/latest/APIReference/API_CreateCluster.html) API.
 Run the following command:
 
@@ -550,6 +548,25 @@ spec:
         name: example-volume
   restartPolicy: Always
 ```
+
+## Supported Versions
+
+LocalStack uses [k3s](https://github.com/k3s-io/k3s) under the hood for creating EKS clusters.
+Below is the list of supported Kubernetes versions and their corresponding k3s versions.
+The default version is `1.31`.
+
+| Kubernetes Version | k3s Version       | EKS Platform Version |
+|-------------------|-------------------|---------------------|
+| 1.32              | v1.32.1-k3s1     | eks.3              |
+| 1.31              | v1.31.5-k3s1     | eks.19             |
+| 1.30              | v1.30.9-k3s1     | eks.27             |
+| 1.29              | v1.29.13-k3s1    | eks.30             |
+| 1.28              | v1.28.15-k3s1    | eks.36             |
+| 1.27              | v1.27.16-k3s1    | eks.40             |
+| 1.26              | v1.26.15-k3s1    | eks.42             |
+| 1.25              | v1.25.16-k3s4    | eks.42             |
+
+Users can specify the desired version when creating an EKS cluster in LocalStack using the `EKS_K3S_IMAGE_TAG` configuration variable when starting LocalStack.
 
 ## Resource Browser
 
