@@ -150,11 +150,11 @@
       "CreateDeploymentGroup": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -186,11 +186,11 @@
       "DeleteDeploymentGroup": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -282,11 +282,11 @@
       "GetDeploymentGroup": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -366,11 +366,11 @@
       "ListDeploymentGroups": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -558,11 +558,11 @@
       "UpdateDeploymentGroup": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     }
@@ -577,6 +577,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -658,6 +668,42 @@
         ]
       }
     },
+    "CreateDeploymentGroup": {
+      "applicationName, deploymentGroupName, serviceRoleArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "400",
+            "error": "ApplicationDoesNotExistException",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "400",
+            "error": "DeploymentGroupAlreadyExistsException",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "DeleteApplication": {
       "applicationName": {
         "ls_pro": [
@@ -667,6 +713,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -693,6 +749,22 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteDeploymentGroup": {
+      "applicationName, deploymentGroupName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -752,6 +824,42 @@
         ]
       }
     },
+    "GetDeploymentGroup": {
+      "applicationName, deploymentGroupName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "400",
+            "error": "ApplicationDoesNotExistException",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "400",
+            "error": "DeploymentGroupDoesNotExistException",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "ListApplications": {
       "- (without any parameters)": {
         "ls_pro": [
@@ -777,6 +885,22 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListDeploymentGroups": {
+      "applicationName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -861,6 +985,56 @@
             "response": "400",
             "error": "ApplicationDoesNotExistException",
             "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdateDeploymentGroup": {
+      "applicationName, currentDeploymentGroupName, newDeploymentGroupName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "400",
+            "error": "ApplicationDoesNotExistException",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "400",
+            "error": "DeploymentGroupDoesNotExistException",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "applicationName, currentDeploymentGroupName, terminationHookEnabled": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
+            "test": "test_deployment_groups_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
