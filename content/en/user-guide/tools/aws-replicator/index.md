@@ -26,7 +26,6 @@ The Replicator is in limited preview and is available from LocalStack CLI versio
 If you encounter issues, update your [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#updating).
 {{< /callout >}}
 
-
 ### Retrieve credentials to access AWS
 
 The AWS Replicator needs read access to your AWS account and can perform a limited set of read-only operations on supported resources.
@@ -81,7 +80,6 @@ localstack replicator start \
  [--target-account-id <account-id>] \
  [--target-region-name <region-name>]
 {{< /command >}}
-
 
 {{< callout "note" >}}
 Resources that supports replicating with arn can be replicated by providing `--resource-arn` instead of `--resource-type` and `--identifier`.
