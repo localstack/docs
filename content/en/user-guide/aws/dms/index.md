@@ -126,7 +126,7 @@ DMS is in a preview state on LocalStack and only supports some selected use case
 
 ## Serverless
 
-[DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) can be used in Localstack for the above mentioned supported use cases that are also [supported by AWS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.Components.html#CHAP_Serverless.SupportedVersions).
+[DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) can be used in Localstack for the above mentioned supported use cases that are [officially supported by AWS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.Components.html#CHAP_Serverless.SupportedVersions).
 
 In order to simulate the different states that the replication config goes through when provisioning, you can set the env `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME`, which will cause the state-change to wait the configured seconds.
 
