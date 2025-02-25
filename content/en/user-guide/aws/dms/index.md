@@ -113,17 +113,20 @@ Received: 6 events
 
 DMS is in a preview state on LocalStack and only supports some selected use cases:
 
-| Source             | Target      | Migration Types |
-| -                  | -           | -               |
-| MariaDB (external) | Kinesis     | full-load, cdc  |
-| MySQL (external)   | Kinesis     | full-load, cdc  |
-| RDS MariaDB        | Kinesis     | full-load, cdc  |
-| RDS MySQL          | Kinesis     | full-load, cdc  |
-| S3                 | Kinesis     | full-load, cdc  |
+| Source                | Target      | Migration Types | Serverless Support   |
+| -                     | -           | -               | -                    |
+| MariaDB (external)    | Kinesis     | full-load, cdc  | Yes                  |
+| MySQL (external)      | Kinesis     | full-load, cdc  | Yes                  |
+| RDS MariaDB           | Kinesis     | full-load, cdc  | Yes                  |
+| RDS MySQL             | Kinesis     | full-load, cdc  | Yes                  |
+| S3                    | Kinesis     | full-load, cdc  | Not supported by AWS |
+| Aurora PostgreSQL     | Kinesis     | full-load, cdc  | No                   |
+| RDS PostgreSQL        | Kinesis     | full-load, cdc  | No                   |
+| PostgreSQL (external) | Kinesis     | full-load, cdc  | No                   |
 
 ## Serverless
 
-[DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) can be used for the sources and targets that LocalStack already supports, and that are also [supported by AWS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.Components.html#CHAP_Serverless.SupportedVersions).
+[DMS Serverless](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.html) can be used in Localstack for the above mentioned supported use cases that are [officially supported by AWS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.Components.html#CHAP_Serverless.SupportedVersions).
 
 In order to simulate the different states that the replication config goes through when provisioning, you can set the env `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME`, which will cause the state-change to wait the configured seconds.
 
@@ -183,6 +186,8 @@ log_bin=mysqld-bin
 ```
 
 For S3 as a source, only the first 1000 files of a table in a bucket are considered for migration.
+
+For PostgreSQL as a source, the `ReplicationTaskSettings.BeforeImageSettings` parameter is not supported.
 
 ### Enum Values for CDC data events
 
