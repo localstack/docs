@@ -1,8 +1,8 @@
 ---
 title: "AWS Replicator"
 weight: 13
-description: "AWS Replicator makes it easier to use LocalStack in shared AWS environments by copying resources into LocalStack using their ARNs."
-tags: ["Pro image"]
+description: "AWS Replicator makes it easier to use LocalStack in shared AWS environments by copying resources into LocalStack."
+tags: ["Teams plan"]
 ---
 
 ## Introduction
@@ -12,18 +12,29 @@ It helps when deploying applications that rely on existing resources like SSM pa
 
 This removes the need to change existing stacks or create custom infrastructure, making LocalStack setup easier.
 
+{{< callout "note">}}
+The AWS Replicator is in a preview state, supporting only [selected resources](#supported-resources).
+It is only available as part of the **LocalStack Teams** plan and higher.
+{{< /callout >}}
+
 ## Getting started
 
-To get started, set `LOCALSTACK_ENABLE_REPLICATOR=1` configuration variable when starting LocalStack.
 A valid `LOCALSTACK_AUTH_TOKEN` must be configured to start the LocalStack Pro image.
+
+{{< callout "note" >}}
+The Replicator is in limited preview and is available from LocalStack CLI version 4.2.0.
+If you encounter issues, update your [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#updating).
+{{< /callout >}}
+
 
 ### Retrieve credentials to access AWS
 
 The AWS Replicator needs read access to your AWS account and can perform a limited set of read-only operations on supported resources.
 
 Replication is triggered using the LocalStack CLI, which must run in a shell configured to access AWS.
+If you have the aws-cli v2 installed, the cli will read credentials from your configured `AWS_PROFILE`.
 
-The following environment variables must be set:
+Otherwise, the following environment variables must be set:
 
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
@@ -34,7 +45,7 @@ The following environment variables must be set:
 Use `aws configure export-credentials --format env` to print the required environment variables in a format that can be evaluated.
 
 {{< command >}}
-$ eval $(AWS_PROFILE=<aws-profile> aws configure export-credentials \
+<disable-copy>$ </disable-copy>eval $(AWS_PROFILE=<aws-profile> aws configure export-credentials \
  --format env)
 {{< /command >}}
 {{< /callout >}}
@@ -52,14 +63,6 @@ Both methods have two steps:
 The Replicator CLI is part of the LocalStack CLI.
 Follow the [installation instructions](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) to set it up.
 
-{{< callout "note" >}}
-
-The Replicator is in limited preview and must be enabled with `LOCALSTACK_ENABLE_REPLICATOR=1` when using the CLI.
-
-It is available from LocalStack CLI version 4.2.0.
-If you encounter issues, update your [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#updating).
-{{< /callout >}}
-
 To start a replication job, get the ARN of the resource to replicate.
 Then, trigger the job using the command:
 
@@ -73,23 +76,33 @@ export AWS_DEFAULT_REGION=...
 # export AWS_SECRET_ACCESS_KEY=
 </disable-copy>
 localstack replicator start \
-  --replication-type SINGLE_RESOURCE \
- --resource-arn <resource-arn> \
+ --resource-type <resource-type> \
+ --identifier <identifier> \
  [--target-account-id <account-id>] \
  [--target-region-name <region-name>]
 {{< /command >}}
 
+
+{{< callout "note" >}}
+Resources that supports replicating with arn can be replicated by providing `--resource-arn` instead of `--resource-type` and `--identifier`.
+
+{{< command >}}
+<disable-copy>$ </disable-copy>localstack replicator start --resource-arn <resource-arn>
+{{< /command >}}
+{{< /callout >}}
+
 This triggers the replication job.
 The output will look similar to:
 
-```bash
+```json
 {
   "job_id": "50005865-1589-4f6d-a720-c86f5a5dd021",
   "state": "TESTING_CONNECTION",
   "error_message": null,
   "type": "SINGLE_RESOURCE",
   "replication_config": {
-    "resource_arn": "arn:aws:ssm:<region>:<account-id>:parameter/myparam"
+    "resource_type": "AWS::SSM::PARAMETER",
+    "identifier": "myParameter"
   }
 }
 ```
@@ -109,7 +122,8 @@ To trigger replication via the HTTP API, send a `POST` request to `http://localh
 {
   "replication_type": "SINGLE_RESOURCE",
   "replication_job_config": {
-    "resource_arn": "<arn>"
+    "resource_type": "<resource-type>",
+    "identifier": "<identifier>"
   },
   "source_aws_config": {
     "aws_access_key_id": "...",
@@ -140,14 +154,15 @@ $ localstack replicator status <job-id>
 
 This command returns the job status in JSON format, for example:
 
-```bash
+```json
 {
   "job_id": "50005865-1589-4f6d-a720-c86f5a5dd021",
   "state": "SUCCEEDED",
   "error_message": null,
   "type": "SINGLE_RESOURCE",
   "replication_config": {
-    "resource_arn": "arn:aws:ssm:<region>:<account-id>:parameter/myparam"
+    "resource_type": "AWS::SSM::PARAMETER",
+    "identifier": "myParameter"
   }
 }
 ```
@@ -224,8 +239,8 @@ $ LOCALSTACK_AUTH_TOKEN=<ls-auth-token> \
   AWS_PROFILE=ls-sandbox \
   LOCALSTACK_ENABLE_REPLICATOR=1 \
   localstack replicator start  \
-    --replication-type SINGLE_RESOURCE \
- --resource-arn arn:aws:ssm:eu-central-1:<account-id>:parameter/myparam
+    --resource-type AWS::SSM::Parameter \
+    --identifier myparam
 <disable-copy>
 Configured credentials from the AWS CLI
 {
@@ -234,7 +249,8 @@ Configured credentials from the AWS CLI
   "error_message": null,
   "type": "SINGLE_RESOURCE",
   "replication_config": {
-    "resource_arn": "arn:aws:ssm:eu-central-1:<account-id>:parameter/myparam"
+    "resource_type": "AWS::SSM::PARAMETER",
+    "identifier": "myparam"
   }
 }
 </disable-copy>
@@ -293,4 +309,4 @@ Use the `--target-account-id` flag to specify a different account.
 To ensure support for all resources, use the latest LocalStack Docker image.
 {{< /callout >}}
 
-// WIP
+{{< localstack_replicator_table >}}
