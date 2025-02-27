@@ -238,7 +238,7 @@ $ LOCALSTACK_AUTH_TOKEN=<ls-auth-token> \
   LOCALSTACK_ENABLE_REPLICATOR=1 \
   localstack replicator start  \
     --resource-type AWS::SSM::Parameter \
-    --identifier myparam
+ --resource-identifier <identifier> \
 <disable-copy>
 Configured credentials from the AWS CLI
 {
