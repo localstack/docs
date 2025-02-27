@@ -32,7 +32,10 @@ If you encounter issues, update your [LocalStack CLI](https://docs.localstack.cl
 
 ### Retrieve credentials to access AWS
 
-The AWS Replicator needs read access to your AWS account and can perform a limited set of read-only operations on supported resources.
+The AWS Replicator needs read access to your AWS account and performs a limited set of read-only operations on supported resources.
+These operations can be limited by creating a minimal IAM role with just the policy actions required for replication, and providing credentials to assume this role.
+
+See the [supported resources section](#supported-resources) for details of what policy actions are required for each resource.
 
 Replication is triggered using the LocalStack CLI, which must run in a shell configured to access AWS.
 If you have the aws-cli v2 installed, the cli will read credentials from your configured `AWS_PROFILE`.
