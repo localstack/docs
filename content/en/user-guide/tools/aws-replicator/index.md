@@ -235,7 +235,6 @@ This example uses an SSO profile named `ls-sandbox` for AWS configuration.
 {{< command >}}
 $ LOCALSTACK_AUTH_TOKEN=<ls-auth-token> \
   AWS_PROFILE=ls-sandbox \
-  LOCALSTACK_ENABLE_REPLICATOR=1 \
   localstack replicator start  \
     --resource-type AWS::SSM::Parameter \
  --resource-identifier <identifier> \
