@@ -181,7 +181,7 @@ If the replication state is `SUCCEEDED` but the resource is missing, check in ac
 This quickstart example creates an SSM parameter in AWS and replicates it to LocalStack.
 
 To start, create the parameter in AWS.
-This example uses an SSO profile named `ls-sandbox` for AWS configuration.
+This example uses an SSO profile named `ls-sandbox` for AWS configuration, and replicates resources from the `eu-central-1` region.
 
 {{< command >}}
 $ AWS_PROFILE=ls-sandbox aws ssm put-parameter\
