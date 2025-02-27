@@ -76,7 +76,7 @@ export AWS_DEFAULT_REGION=...
 </disable-copy>
 localstack replicator start \
  --resource-type <resource-type> \
- --identifier <identifier> \
+ --resource-identifier <identifier> \
  [--target-account-id <account-id>] \
  [--target-region-name <region-name>]
 {{< /command >}}
