@@ -7,10 +7,14 @@ tags: ["Teams plan"]
 
 ## Introduction
 
-LocalStack AWS Replicator copies AWS resources into a running LocalStack instance.
-It helps when deploying applications that rely on existing resources like SSM parameters or VPCs, ensuring they are available before deploying the main stack.
+Infrastructure deployed on AWS often requires access to shared resources defined externally.
+For example a VPC defined by another team to contain the application infrastructure.
+This makes it harder to deploy applications into LocalStack as these resource dependencies must be deployed first.
+These dependencies may not live in IaC where deployment is easy, or accessing the IaC may not be easy.
+Some resources may be referred to by ARN, for example Secrets Manager secrets, but these ARNs are partly random meaning that simply creating a new resource in LocalStack will generate a resource with a different ARN.
 
-This removes the need to change existing stacks or create custom infrastructure, making LocalStack setup easier.
+LocalStack AWS Replicator creates identical copies of AWS resources in a running LocalStack instance.
+This means that external resources can easily be replicated before deploying the main application, and removes the need to change existing stacks or create custom infrastructure, making LocalStack setup easier.
 
 {{< callout "note">}}
 The AWS Replicator is in a preview state, supporting only [selected resources](#supported-resources).
