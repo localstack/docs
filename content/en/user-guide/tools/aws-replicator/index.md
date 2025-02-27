@@ -257,7 +257,6 @@ You can check the replication job status using the `job_id`:
 
 {{< command >}}
 $ LOCALSTACK_AUTH_TOKEN=<ls-auth-token> \
-  LOCALSTACK_ENABLE_REPLICATOR=1 \
   localstack replicator status 9acdc850-f71b-4474-b138-1668eb8b8396
 <disable-copy>
 {
