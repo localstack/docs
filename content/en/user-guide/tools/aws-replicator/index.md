@@ -144,7 +144,6 @@ When creating a replication job, the response includes a `job_id`.
 Use this ID to check the job status:
 
 {{< command >}}
-$ export LOCALSTACK_ENABLE_REPLICATOR=1
 $ export LOCALSTACK_AUTH_TOKEN=<auth token>
 
 $ localstack replicator status <job-id>
