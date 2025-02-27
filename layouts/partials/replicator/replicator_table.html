@@ -1,0 +1,21 @@
+<div class="coverage-report">
+    <table>
+        <thead>
+            <tr>
+                <th class="coverage-report-header-1">Resource Type</th>
+                <th class="coverage-report-header-2">Service</th>
+                <th class="coverage-report-header-1">Identifer</th>
+                <th class="coverage-report-header-2">Required Actions</th>
+                <th class="coverage-report-header-1">Arn Support</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ $data := .Site.Data.replicator.coverage }}
+
+            {{ range $data }}
+                {{ partial "replicator/replicator_table_row" . }}
+            {{ end -}}
+        </tbody>
+    </table>
+    <br/>
+</div>
