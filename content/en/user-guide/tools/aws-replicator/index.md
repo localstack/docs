@@ -66,7 +66,6 @@ To start a replication job, get the ARN of the resource to replicate.
 Then, trigger the job using the command:
 
 {{< command >}}
-export LOCALSTACK_ENABLE_REPLICATOR=1
 export LOCALSTACK_AUTH_TOKEN=<auth token>
 export AWS_DEFAULT_REGION=...
 <disable-copy>
