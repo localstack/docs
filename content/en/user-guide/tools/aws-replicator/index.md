@@ -82,7 +82,7 @@ localstack replicator start \
 {{< /command >}}
 
 {{< callout "note" >}}
-Resources that supports replicating with arn can be replicated by providing `--resource-arn` instead of `--resource-type` and `--identifier`.
+Resources that supports replicating with arn can be replicated by providing `--resource-arn` instead of `--resource-type` and `--resource-identifier`.
 
 {{< command >}}
 <disable-copy>$ </disable-copy>localstack replicator start --resource-arn <resource-arn>
