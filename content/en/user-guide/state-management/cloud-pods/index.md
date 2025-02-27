@@ -398,10 +398,6 @@ Commands:
 The S3 remote enables you to store Cloud Pod assets in an existing S3 bucket within an actual AWS account.
 The initial step is to export the necessary AWS credentials within the terminal session.
 
-{{< callout >}}
-The Cloud Pods S3 remote is currently _only_ available when [installing the `localstack` CLI via `pip`](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), and not for the binary CLI distribution.
-{{< /callout >}}
-
 ```bash
 export AWS_ACCESS_KEY_ID=...
 export AWS_SECRET_ACCESS_KEY=...
@@ -481,6 +477,46 @@ Likewise, you can execute the reverse operation to load a Cloud Pod from `oras-r
 {{< command >}}
 $ localstack pod load my-pod oras-remote
 {{< / command >}}
+
+### Auto Load with remotes
+
+LocalStack also supports the auto load of a Cloud Pod from registered remotes.
+The configuration is similar to what we just described.
+In particular you could simply add the remote name to the text files inside the `init-pods.d`, as follows:
+
+```text
+foo-pod,bar-remote
+```
+
+With such a configuration, the `foo-pod` Cloud Pod will be loaded from the `bar-remote` remote.
+To properly configure the remote, you need to provide the needed environment variables when starting the LocalStack container.
+For instance, a S3 remote needs a `AWS_ACCESS_KEY` and a `AWS_SECRET_ACCESS_KEY`, as follows:
+
+```yaml
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "localstack-main"
+    image: localstack/localstack-pro
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+      - DEBUG=1
+      - AWS_ACCESS_KEY_ID:...
+      - AWS_SECRET_ACCESS_KEY:...
+    volumes:
+      - "./volume:/var/lib/localstack"
+      - "./init-pods.d:/etc/localstack/init-pods.d"
+```
+
+{{< callout >}}
+The Auto Load from remote feature does not automatically configure the remote.
+This needs to be done with the `localstack pod remote add ...` command.
+This commands creates a configuration file for the remote in the [LocalStack volume directory](https://docs.localstack.cloud/references/filesystem/#localstack-volume).
+{{< /callout >}}
 
 ## End-to-End Encryption (Enterprise)
 
