@@ -142,11 +142,10 @@ if __name__ == '__main__':
 
 ## IAM Enforcement for Gremlin Queries
 
-Amazon Neptune resources that have IAM DB authentication enabled require all requests to be signed using AWS Signature Version 4.
-You can find more information about this feature and how to authenticate by visiting [AWS documentation](https://docs.aws.amazon.com/neptune/latest/userguide/iam-auth-connecting.html).
+Amazon Neptune resources with IAM DB authentication enabled require all requests to use AWS Signature Version 4.  
 
-When starting LocalStack with [IAM enforcement enabled](https://docs.localstack.cloud/user-guide/security-testing/), the Neptune database will verify the authenticated user permission to access the data.
-We support the following actions on Gremlin queries for databases engine version `1.3.2.0` and higher.
+When LocalStack starts with [IAM enforcement enabled](https://docs.localstack.cloud/user-guide/security-testing/), the Neptune database checks user permissions before granting access.
+ The following Gremlin query actions are available for database engine versions `1.3.2.0` and higher:
 
 ```json
 {
@@ -158,38 +157,40 @@ We support the following actions on Gremlin queries for databases engine version
 }
 ```
 
-To create a Neptune cluster with IAM DB authentication enabled you must first start LocalStack with `LOCALSTACK_ENFORCE_IAM=1`.
+Start LocalStack with `LOCALSTACK_ENFORCE_IAM=1` to create a Neptune cluster with IAM DB authentication enabled.
 
 {{< command >}}
-<disable-copy>$ </disable-copy>LOCALSTACK_ENFORCE_IAM=1 localstack start
+$ LOCALSTACK_ENFORCE_IAM=1 localstack start
 {{< /command >}}
 
 You can then create a cluster.
 
 {{< command >}}
-<disable-copy>$ </disable-copy>aws --profile localstack neptune create-db-cluster \
+$ awslocal neptune create-db-cluster \
     --engine neptune \
     --db-cluster-identifier myneptune-db \
     --enable-iam-database-authentication
 {{< /command >}}
 
-Once the cluster is deployed, unsigned queries will be rejected by the gremlin server.
+After the cluster is deployed, the Gremlin server will reject unsigned queries.
 
 {{< command >}}
-<disable-copy>$ </disable-copy>curl "https://localhost.localstack.cloud:4510/gremlin?gremlin=g.V()" -v
+$ curl "https://localhost.localstack.cloud:4510/gremlin?gremlin=g.V()" -v
 <disable-copy>...
 - Request completely sent off
 < HTTP/1.1 403 Forbidden
 - no chunk, no close, no size.
   Assume close to signal end
-...</disable-copy>
+...
+</disable-copy>
 {{< /command >}}
 
-An easy way to make your first signed query is using the python package [awscurl](https://pypi.org/project/awscurl/).
+Use the Python package [awscurl](https://pypi.org/project/awscurl/) to make your first signed query.
 
 {{< command >}}
-<disable-copy>$ </disable-copy>awscurl "https://localhost.localstack.cloud:4510/gremlin?gremlin=g.V().count()" -H "Accept: application/json" | jq .
-<disable-copy>{
+$ awscurl "https://localhost.localstack.cloud:4510/gremlin?gremlin=g.V().count()" -H "Accept: application/json" | jq .
+<disable-copy>
+{
   "requestId": "729c3e7b-50b3-4df7-b0b6-d1123c4e81df",
   "status": {
     "message": "",
@@ -214,17 +215,16 @@ An easy way to make your first signed query is using the python package [awscurl
       "@value": []
     }
   }
-}</disable-copy>
+}
+</disable-copy>
 {{< /command >}}
 
 {{< callout "note" >}}
-If you currently have a version of the gremlin server installed in your Localstack environment, it will be required to delete it and restart LocalStack.
-[Find you LocalStack volume location](http://127.0.0.1:1313/references/filesystem/#localstack-volume)
-
-```bash
-rm -rf <LocalStack Volume>/lib/tinkerpop
-```
-
+If Gremlin Server is installed in your LocalStack environment, you must delete it and restart LocalStack.
+You can find your LocalStack volume location on the [LocalStack filesystem documentation](https://docs.localstack.cloud/references/filesystem/#localstack-volume).
+{{< command >}}
+$ rm -rf <LocalStack Volume>/lib/tinkerpop
+{{< /command >}}
 {{< /callout >}}
 
 ## Resource Browser
