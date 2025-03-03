@@ -54,98 +54,137 @@ Some useful Helm client commands are:
 - View available charts: `helm search repo`
 - Install a chart: `helm install <name> localstack/<chart>`
 - Upgrade your application: `helm upgrade`
+- Uninstall or delete a release: `helm uninstall <name>`
 
-## LocalStack on Kubernetes (`l8k`)
+## LocalStack Pro
 
-The [`localstack-on-k8s`](https://github.com/localstack/localstack-on-k8s) sample repository illustrates running LocalStack on Kubernetes (k8s).
+You can use this chart with LocalStack Pro by:
 
-### Prerequisites
+1. Changing the image to `localstack/localstack-pro`.
+2. Providing your Auth Token as an environment variable.
 
-This sample requires the following tools installed on your machine:
+You can set these values in a YAML file (in this example `pro-values.yaml`):
 
-- Python 3.7+
-- [`awslocal`](https://github.com/localstack/awscli-local)
-- [Docker](https://www.docker.com)
-- [Git](https://git-scm.com)
-- [Helm](https://helm.sh)
-- [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl)
-- [Serverless](https://www.npmjs.com/package/serverless)
+```yaml
+image:
+  repository: localstack/localstack-pro
 
-### Clone the sample repository
+extraEnvVars:
+  - name: LOCALSTACK_AUTH_TOKEN
+    value: "<your auth token>"
+```
 
-Clone the repository:
+If you have the LocalStack Auth Token in a secret, you can also reference it directly with `extraEnvVars`:
 
-{{< command >}}
-$ git@github.com:localstack/localstack-on-k8s.git
-{{< /command >}}
+```yaml
+extraEnvVars:
+- name: LOCALSTACK_AUTH_TOKEN
+  valueFrom:
+    secretKeyRef:
+      name: <name of the secret>
+      key: <name of the key in the secret containing the API key>
+```
 
-To install the Python dependencies in a virtualenv:
-
-{{< command >}}
-$ make install
-{{< /command >}}
-
-To create an embedded Kubernetes (k3d) cluster in Docker and install LocalStack in it (via Helm):
-
-{{< command >}}
-$ make init
-{{< /command >}}
-
-After initialization, your `kubectl` command-line should be automatically configured to point to the local cluster context:
+And you can use these values when installing the chart in your cluster:
 
 {{< command >}}
-$ kubectl config current-context
-<disable-copy>
-k3d-ls-cluster
-</disable-copy>
+$ helm repo add localstack-charts https://localstack.github.io/helm-charts
+$ helm install my-release localstack-charts/localstack -f pro-values.yaml
 {{< /command >}}
 
-### Deploy the sample application
+## Parameters
 
-Once LocalStack is installed in the Kubernetes cluster, we can deploy the sample app on the LocalStack instance:
+The following table lists the configurable parameters of the Localstack chart and their default values.
 
-{{< command >}}
-$ make deploy
-{{< /command >}}
+### Common parameters
 
-### Test the sample application
+| Parameter                                            | Description                                                                                                                                                                                                                           | Default                                                 |
+|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `nameOverride`                                       | String to partially override common.names.fullname                                                                                                                                                                                    | `nil`                                                   |
+| `fullnameOverride`                                   | String to fully override common.names.fullname                                                                                                                                                                                        | `nil`                                                   |
+| `extraDeploy`                                        | Extra objects to deploy (value evaluated as a template)                                                                                                                                                                               | `[]`                                                    |
 
-Once the sample app is deployed, the Kubernetes environment should contain the following resources:
+### Localstack common parameters
 
-{{< command >}}
-$ kubectl get all
-NAME                              READY   STATUS    RESTARTS   AGE
-pod/localstack-6fd5b98f59-zcx2t   1/1     Running   0          5m
+| Parameter                                            | Description                                                                                                                                                                                                                           | Default                                                 |
+|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `image.repository`                                   | Localstack image name                                                                                                                                                                                                                 | `localstack/localstack`                                 |
+| `image.tag`                                          | Localstack image tag                                                                                                                                                                                                                  | `latest`                                                |
+| `image.pullPolicy`                                   | Localstack image pull policy                                                                                                                                                                                                          | `IfNotPresent`                                          |
+| `image.pullSecrets`                                  | Specify docker-registry secret names as an array                                                                                                                                                                                      | `[]`                                                    |
+| `podLabels`                                          | Additional pod labels for Localstack secondary pods                                                                                                                                                                                   | `{}`                                                    |
+| `podAnnotations`                                     | Additional pod annotations for Localstack secondary pods                                                                                                                                                                              | `{}`                                                    |
+| `podSecurityContext`                                 | Enable security context for Localstack pods                                                                                                                                                                                           | `{}`                                                    |
+| `extraDeploy`                                        | Extra objects to deploy (value evaluated as a template)                                                                                                                                                                               | `{}`                                                    |
+| `extraAnnotations`                                   | Add additional annotations to every resource (value evaluated as a template)                                                                                                                                                          | `{}`                                                    |
+| `extraLabels`                                        | Add additional labels to every resource (value evaluated as a template)                                                                                                                                                               | `{}`                                                    |
+| `securityContext`                                    | Localstack container securityContext                                                                                                                                                                                                  | `{}`                                                    |
 
-NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                         AGE
-service/kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP                         5m
-service/localstack   NodePort    10.43.100.167   <none>        4566:31566/TCP,4571:31571/TCP   5m
+### Localstack parameters
 
-NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/localstack   1/1     1            1           5m
+| Parameter                                            | Description                                                                                                                                                                                                                           | Default                                                 |
+|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `debug`                                              | Specify if debug logs should be enabled                                                                                                                                                                                               | `false`                                                 |
+| `kinesisErrorProbability`                            | Specify to randomly inject ProvisionedThroughputExceededException errors into Kinesis API responses                                                                                                                                   | `nil` (Localstack Default)                              |
+| `startServices`                                      | Comma-separated list of AWS CLI service names which should be loaded right when starting LocalStack. If not set, each service is loaded and started on the first request for that service.                                            | `nil` (Localstack Default)                              |
+| `lambdaExecutor`                                     | Specify Method to use for executing Lambda functions (partially supported)                                                                                                                                                            | `docker`                                                |
+| `extraEnvVars`                                       | Extra environment variables to be set on Localstack primary containers                                                                                                                                                                | `nil` (Localstack Default)                              |
+| `enableStartupScripts`                               | Mount `/etc/localstack/init/ready.d` to run startup scripts with `{{ template "localstack.fullname" . }}-init-scripts-config` configMap                                                                                               | `false`                                                 |
+| `startupScriptContent`                               | Startup script content when `enableStartupScripts` is `true`. Note: You will need to add a shebang as your first line such as `!#/bin/sh` in order to ensure the startup script is not malformed.                                     | `nil` (Localstack Default)                              |
 
-NAME                                    DESIRED   CURRENT   READY   AGE
-replicaset.apps/localstack-6fd5b98f59   1         1         1       5m
-{{< /command >}}
+### Deployment parameters
 
-The LocalStack instance should be available via the local ingress port `8081`.
-We can verify that the resources were successfully created by running a few `awslocal` commands against the local endpoint:
+| Parameter                                            | Description                                                                                                                                                                                                                           | Default                                                 |
+|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `replicaCount`                                       | Number of Localstack pods                                                                                                                                                                                                             | `1`                                                     |
+| `updateStrategy.type`                                | Update strategy type                                                                                                                                                                                                                  | `RollingUpdate`                                         |
+| `nodeSelector`                                       | Node labels for pod assignment                                                                                                                                                                                                        | `{}`                                                    |
+| `tolerations`                                        | Tolerations for pod assignment                                                                                                                                                                                                        | `[]`                                                    |
+| `affinity`                                           | Affinity for pod assignment                                                                                                                                                                                                           | `{}`                                                    |
+| `resources.limits`                                   | The resources limits for Localstack containers                                                                                                                                                                                        | `{}`                                                    |
+| `resources.requests`                                 | The requested resources for Localstack containers                                                                                                                                                                                     | `{}`                                                    |
+| `livenessProbe`                                      | Liveness probe configuration for Localstack containers                                                                                                                                                                                | Same with [Kubernetes defaults][k8s-probe]              |
+| `readinessProbe`                                     | Readiness probe configuration for Localstack containers                                                                                                                                                                               | Same with [Kubernetes defaults][k8s-probe]              |
+| `mountDind.enabled`                                  | Specify the mount of Docker daemon into Pod to enable some AWS services that got runtime dependencies such as Lambdas on GoLang                                                                                                       | `false`                                                 |
+| `mountDind.forceTLS`                                 | Specify TLS enforcement on Docker daemon communications                                                                                                                                                                               | `true`                                                  |
+| `mountDind.image`                                    | Specify DinD image tag                                                                                                                                                                                                                | `docker:20.10-dind`                                     |
+| `volumes`                                            | Extra volumes to mount                                                                                                                                                                                                                | `[]`                                                    |
+| `volumeMounts`                                       | Extra volumes to mount                                                                                                                                                                                                                | `[]`                                                    |
 
-{{< command >}}
-$ awslocal sqs --endpoint-url=http://localhost:8081 list-queues
-{
-    "QueueUrls": [
-        "http://localhost:8081/000000000000/requestQueue"
-    ]
-}
-$ awslocal apigateway --endpoint-url=http://localhost:8081 get-rest-apis
-{
-    "items": [
-        {
-            "id": "ses2pi5oap",
-            "name": "local-localstack-demo",
-...
-{{< /command >}}
+[k8s-probe]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes
 
-We can then use a browser to open the [Web UI](http://localhost:8081/archive-bucket/index.html), which should have been deployed to an S3 bucket inside LocalStack.
-The Web UI can be used to interact with the sample application, send new requests to the backend, inspect the state of existing requests, etc.
+### RBAC parameters
+
+| Parameter                                            | Description                                                                                                                                                                                                                           | Default                                                 |
+|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `serviceAccount.create`                              | Enable the creation of a ServiceAccount for Localstack pods                                                                                                                                                                           | `true`                                                  |
+| `serviceAccount.name`                                | Name of the created ServiceAccount                                                                                                                                                                                                    | Generated using the `common.names.fullname` template    |
+| `serviceAccount.annotations`                         | Annotations for Localstack Service Account                                                                                                                                                                                            | `{}`                                                    |
+
+### Exposure parameters
+
+| Parameter                                            | Description                                                                                                                                                                                                                           | Default                                                 |
+|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `service.type`                                       | Kubernetes Service type                                                                                                                                                                                                               | `NodePort`                                              |
+| `service.edgeService.targetPort`                     | Port number for Localstack edge service                                                                                                                                                                                               | `4566`                                                  |
+| `service.externalServicePorts.start`                 | Start of the external service port range (included). service                                                                                                                                                                          | `4510`                                                  |
+| `service.externalServicePorts.end`                   | End of the external service port range (excluded). service                                                                                                                                                                            | `4560`                                                  |
+| `service.loadBalancerIP`                             | loadBalancerIP if Localstack service type is `LoadBalancer`                                                                                                                                                                           | `nil`                                                   |
+| `service.dnsService`                                 | Expose the Service and Deployment's DNS port for TCP and UDP DNS traffic                                                                                                                                                              | `""`                                                    |
+| `service.clusterIP`                                  | Set a static clusterIP for the service. Useful for DNS delegation to the Localstack Service                                                                                                                                           | `""`                                                    |
+| `ingress.enabled`                                    | Enable the use of the ingress controller to access Localstack service                                                                                                                                                                 | `false`                                                 |
+| `ingress.annotations`                                | Annotations for the Localstack Ingress                                                                                                                                                                                                | `{}`                                                    |
+| `ingress.hosts[0].host`                              | Hostname to your Localstack Ingress                                                                                                                                                                                                   | `nil`                                                   |
+| `ingress.hosts[0].paths`                             | Path within the url structure                                                                                                                                                                                                         | `[]`                                                    |
+| `ingress.tls`                                        | Existing TLS certificates for ingress                                                                                                                                                                                                 | `[]`                                                    |
+
+### Persistence Parameters
+
+| Name                                                 | Description                                                                                                                                                                                                                           | Value                                                   |
+|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| `persistence.enabled`                                | Enable persistence using Persistent Volume Claims                                                                                                                                                                                     | `false`                                                 |
+| `persistence.storageClass`                           | Persistent Volume storage class                                                                                                                                                                                                       | `""`                                                    |
+| `persistence.accessModes`                            | Persistent Volume access modes                                                                                                                                                                                                        | `[]`                                                    |
+| `persistence.size`                                   | Persistent Volume size                                                                                                                                                                                                                | `8Gi`                                                   |
+| `persistence.dataSource`                             | Custom PVC data source                                                                                                                                                                                                                | `{}`                                                    |
+| `persistence.existingClaim`                          | The name of an existing PVC to use for persistence                                                                                                                                                                                    | `""`                                                    |
