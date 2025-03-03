@@ -1,15 +1,26 @@
-{{ $ref := "" }}
-{{ if (.Get "ref") }}
-{{ $ref = printf "?ref=%s" (.Get "ref") }}
+{{ $repo := .Get "repo" }}
+{{ $file := .Get "file" }}
+{{ $ref := .Get "ref" }}
+{{ $start := .Get "start" | default 1 | int }}
+{{ $end := .Get "end" | default 999999 | int }}
+{{ $lang := .Get "lang" }}
+{{ $options := .Get "options" }}
+
+{{ $url := printf "https://api.github.com/repos/%s/contents/%s" $repo $file }}
+{{ if $ref }}
+  {{ $url = printf "%s?ref=%s" $url $ref }}
 {{ end }}
-{{ $json := resources.GetRemote "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  (.Get "file") $ref  }}
-{{ $data := $json | transform.Unmarshal }}
-{{ $con := base64Decode $data.content }}
-{{ $content := "" }}
-{{ $lines := split $con "\n" }}
-{{ $startIndex := (sub ((.Get "start") | default 1 | int) 1)}}
-{{ $endIndex := (.Get "end" | default "999999" | int )}}
-{{ range $line := (last (sub $endIndex $startIndex) (first $endIndex $lines)) }}
-  {{ $content = printf "%s\n%s" $content $line }}
+
+{{ $headers := dict "Accept" "application/vnd.github.v3.raw" }}
+{{ $resp := resources.GetRemote $url (dict "headers" $headers) }}
+
+{{ if not $resp }}
+  {{ errorf "Failed to fetch content from GitHub: %s" $url }}
 {{ end }}
-{{ highlight $content (.Get "lang") (.Get "options") }}
+
+{{ $lines := split $resp.Content "\n" }}
+{{ $startIndex := sub $start 1 }}
+{{ $linesToShow := last (sub $end $startIndex) (first $end $lines) }}
+
+{{ $content := delimit $linesToShow "\n" }}
+{{ highlight $content $lang $options }}
