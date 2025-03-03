@@ -94,4 +94,4 @@ $ helm install my-release localstack-charts/localstack -f pro-values.yaml
 
 ## Parameters
 
-{{< github repo="localstack/helm-charts" file="charts/localstack/README.md#parameters" lang="markdown" >}}
+{{< github-markdown repo="localstack/helm-charts" file="charts/localstack/README.md#parameters" lang="markdown" >}}

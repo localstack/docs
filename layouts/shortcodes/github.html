@@ -1,18 +1,12 @@
 {{ $repo := .Get "repo" }}
 {{ $file := .Get "file" }}
 {{ $ref := .Get "ref" }}
-{{ $lang := .Get "lang" | default "" }}
-{{ $options := .Get "options" | default "" }}
+{{ $start := .Get "start" | default 1 | int }}
+{{ $end := .Get "end" | default 999999 | int }}
+{{ $lang := .Get "lang" }}
+{{ $options := .Get "options" }}
 
-{{ $fileUrl := $file }}
-{{ $section := "" }}
-{{ if findRE "#" $file 1 }}
-  {{ $fileParts := split $file "#" }}
-  {{ $fileUrl = index $fileParts 0 }}
-  {{ $section = index $fileParts 1 }}
-{{ end }}
-
-{{ $url := printf "https://api.github.com/repos/%s/contents/%s" $repo $fileUrl }}
+{{ $url := printf "https://api.github.com/repos/%s/contents/%s" $repo $file }}
 {{ if $ref }}
   {{ $url = printf "%s?ref=%s" $url $ref }}
 {{ end }}
@@ -24,47 +18,9 @@
   {{ errorf "Failed to fetch content from GitHub: %s" $url }}
 {{ end }}
 
-{{ $content := $resp.Content }}
+{{ $lines := split $resp.Content "\n" }}
+{{ $startIndex := sub $start 1 }}
+{{ $linesToShow := last (sub $end $startIndex) (first $end $lines) }}
 
-{{ if and (eq $lang "markdown") $section }}
-  {{ $lines := split $content "\n" }}
-  {{ $sectionContent := slice }}
-  {{ $inSection := false }}
-  {{ $sectionLevel := 0 }}
-  
-  {{ range $lines }}
-    {{ $line := . }}
-    {{ if not $inSection }}
-      {{ $headingMatch := findRE (printf "^(#+)\\s+.*%s.*$" $section) $line 1 }}
-      {{ if $headingMatch }}
-        {{ $heading := index $headingMatch 0 }}
-        {{ $levelMatch := findRE "^(#+)" $heading 1 }}
-        {{ $sectionLevel = len (index $levelMatch 0) }}
-        {{ $inSection = true }}
-        {{ $sectionContent = $sectionContent | append $line }}
-      {{ end }}
-    {{ else }}
-      {{ $nextHeadingMatch := findRE "^(#+)\\s+" $line 1 }}
-      {{ if $nextHeadingMatch }}
-        {{ $nextLevel := len (index $nextHeadingMatch 0) }}
-        {{ if le $nextLevel $sectionLevel }}
-          {{ $inSection = false }}
-        {{ else }}
-          {{ $sectionContent = $sectionContent | append $line }}
-        {{ end }}
-      {{ else }}
-        {{ $sectionContent = $sectionContent | append $line }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
-  
-  {{ if len $sectionContent }}
-    {{ $content = delimit $sectionContent "\n" }}
-  {{ end }}
-{{ end }}
-
-{{ if eq $lang "markdown" }}
-  {{ $content | markdownify }}
-{{ else }}
-  {{ highlight $content $lang $options }}
-{{ end }}
+{{ $content := delimit $linesToShow "\n" }}
+{{ highlight $content $lang $options }}
