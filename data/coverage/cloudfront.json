@@ -141,8 +141,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -415,8 +415,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -693,7 +693,7 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
+        "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -1089,7 +1089,7 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
+        "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -1498,6 +1498,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_cloudfront.py::test_create_distribution_with_acm",
+            "test": "test_create_distribution_with_acm",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_cloudfront.py::test_create_stack_cloudfront",
             "test": "test_create_stack_cloudfront",
             "response": "201",
@@ -1658,8 +1668,8 @@
             "test": "test_create_invalidation",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -1681,6 +1691,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_delete_distribution_enabled",
+            "test": "test_delete_distribution_enabled",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1776,6 +1796,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_update_distribution_without_if_match",
             "test": "test_update_distribution_without_if_match",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_with_none_lambda_function_associations",
+            "test": "test_lambda_at_edge_with_none_lambda_function_associations",
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
@@ -1914,6 +1944,136 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_lambda_function_associations_exceeds_limit",
+            "test": "test_lambda_at_edge_lambda_function_associations_exceeds_limit",
+            "response": "400",
+            "error": "InvalidLambdaFunctionAssociation",
+            "snapshot_skipped": "['$..Error.Message', '$..Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_lambda_function_associations_inconsistent_quantity_vs_items[less_quantity_than_items]",
+            "test": "test_lambda_at_edge_lambda_function_associations_inconsistent_quantity_vs_items[less_quantity_than_items]",
+            "response": "400",
+            "error": "InconsistentQuantities",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_lambda_function_associations_inconsistent_quantity_vs_items[more_quantity_than_items]",
+            "test": "test_lambda_at_edge_lambda_function_associations_inconsistent_quantity_vs_items[more_quantity_than_items]",
+            "response": "400",
+            "error": "InconsistentQuantities",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_lambda_function_associations_inconsistent_quantity_vs_items[no_items]",
+            "test": "test_lambda_at_edge_lambda_function_associations_inconsistent_quantity_vs_items[no_items]",
+            "response": "400",
+            "error": "InconsistentQuantities",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_lambda_function_associations_inconsistent_quantity_vs_items[none_quantity_with_items]",
+            "test": "test_lambda_at_edge_lambda_function_associations_inconsistent_quantity_vs_items[none_quantity_with_items]",
+            "response": "400",
+            "error": "MalformedXML",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_lambda_function_associations_inconsistent_quantity_vs_items[zero_quantity_with_items]",
+            "test": "test_lambda_at_edge_lambda_function_associations_inconsistent_quantity_vs_items[zero_quantity_with_items]",
+            "response": "400",
+            "error": "InconsistentQuantities",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_with_empty_lambda_function_associations_dict",
+            "test": "test_lambda_at_edge_with_empty_lambda_function_associations_dict",
+            "response": "400",
+            "error": "MalformedXML",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_with_inexistent_lambda_function_version",
+            "test": "test_lambda_at_edge_with_inexistent_lambda_function_version",
+            "response": "400",
+            "error": "InvalidLambdaFunctionAssociation",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_with_invalid_event_type",
+            "test": "test_lambda_at_edge_with_invalid_event_type",
+            "response": "400",
+            "error": "MalformedXML",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_with_lambda_latest_version",
+            "test": "test_lambda_at_edge_with_lambda_latest_version",
+            "response": "400",
+            "error": "InvalidLambdaFunctionAssociation",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_with_lambda_with_alias",
+            "test": "test_lambda_at_edge_with_lambda_with_alias",
+            "response": "400",
+            "error": "InvalidLambdaFunctionAssociation",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_with_unpublished_lambda_function",
+            "test": "test_lambda_at_edge_with_unpublished_lambda_function",
+            "response": "400",
+            "error": "InvalidLambdaFunctionAssociation",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_with_unsupported_lambda_region",
+            "test": "test_lambda_at_edge_with_unsupported_lambda_region",
+            "response": "400",
+            "error": "InvalidLambdaFunctionAssociation",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_cloudflare_cname_reuse",
             "test": "test_cloudflare_cname_reuse",
             "response": "409",
@@ -1950,6 +2110,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_cloudfront.py::test_create_distribution_with_acm",
+            "test": "test_create_distribution_with_acm",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_cloudfront.py::test_create_stack_cloudfront",
             "test": "test_create_stack_cloudfront",
             "response": "201",
@@ -1957,16 +2127,6 @@
             "snapshot_skipped": "['$..StackResources..PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_create_from_cloudformation",
-            "test": "test_create_from_cloudformation",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -2046,8 +2206,8 @@
             "test": "test_create_invalidation",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -2062,13 +2222,13 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_create_invalidation",
-            "test": "test_create_invalidation",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_create_invalidation_for_non_existent_distribution",
+            "test": "test_create_invalidation_for_non_existent_distribution",
             "response": "404",
             "error": "NoSuchDistribution",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -2222,6 +2382,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_cloudfront.py::test_create_distribution_with_acm",
+            "test": "test_create_distribution_with_acm",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_cloudfront.py::test_create_stack_cloudfront",
             "test": "test_create_stack_cloudfront",
             "response": "204",
@@ -2282,8 +2452,8 @@
             "test": "test_create_invalidation",
             "response": "204",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -2305,6 +2475,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_delete_distribution_enabled",
+            "test": "test_delete_distribution_enabled",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -2518,6 +2698,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_cloudfront.py::test_create_distribution_with_acm",
+            "test": "test_create_distribution_with_acm",
+            "response": "400",
+            "error": "InvalidIfMatchVersion",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_cloudfront.py::test_create_stack_cloudfront",
             "test": "test_create_stack_cloudfront",
             "response": "400",
@@ -2525,16 +2715,6 @@
             "snapshot_skipped": "['$..StackResources..PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_create_from_cloudformation",
-            "test": "test_create_from_cloudformation",
-            "response": "400",
-            "error": "InvalidIfMatchVersion",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -2575,6 +2755,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFrontLambdaAssociationsValidation::test_lambda_at_edge_with_none_lambda_function_associations",
+            "test": "test_lambda_at_edge_with_none_lambda_function_associations",
+            "response": "400",
+            "error": "InvalidIfMatchVersion",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -2722,6 +2912,16 @@
             "test": "test_delete_distribution_does_not_exist",
             "response": "404",
             "error": "NoSuchDistribution",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_delete_distribution_enabled",
+            "test": "test_delete_distribution_enabled",
+            "response": "409",
+            "error": "DistributionNotDisabled",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -2926,6 +3126,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_cloudfront.py::test_create_distribution_with_acm",
+            "test": "test_create_distribution_with_acm",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_cloudflare_alias_with_s3_backend",
             "test": "test_cloudflare_alias_with_s3_backend",
             "response": "200",
@@ -2950,8 +3160,8 @@
             "test": "test_create_invalidation",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -2973,6 +3183,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_delete_distribution_enabled",
+            "test": "test_delete_distribution_enabled",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -3126,8 +3346,8 @@
             "test": "test_create_invalidation",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -3149,6 +3369,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_delete_distribution_enabled",
+            "test": "test_delete_distribution_enabled",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -3298,8 +3528,8 @@
             "test": "test_create_invalidation",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -3480,16 +3710,6 @@
       "Marker, MaxItems": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_create_from_cloudformation",
-            "test": "test_create_from_cloudformation",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_list_distributions",
             "test": "test_list_distributions",
             "response": "200",
@@ -3536,8 +3756,8 @@
             "test": "test_create_invalidation",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           }
@@ -3636,8 +3856,8 @@
             "test": "test_create_invalidation",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -3659,6 +3879,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudfront/test_cloudfront.py::TestCloudFront::test_delete_distribution_enabled",
+            "test": "test_delete_distribution_enabled",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
