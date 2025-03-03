@@ -1,15 +1,70 @@
-{{ $ref := "" }}
-{{ if (.Get "ref") }}
-{{ $ref = printf "?ref=%s" (.Get "ref") }}
+{{ $repo := .Get "repo" }}
+{{ $file := .Get "file" }}
+{{ $ref := .Get "ref" }}
+{{ $lang := .Get "lang" | default "" }}
+{{ $options := .Get "options" | default "" }}
+
+{{ $fileUrl := $file }}
+{{ $section := "" }}
+{{ if findRE "#" $file 1 }}
+  {{ $fileParts := split $file "#" }}
+  {{ $fileUrl = index $fileParts 0 }}
+  {{ $section = index $fileParts 1 }}
 {{ end }}
-{{ $json := resources.GetRemote "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  (.Get "file") $ref  }}
-{{ $data := $json | transform.Unmarshal }}
-{{ $con := base64Decode $data.content }}
-{{ $content := "" }}
-{{ $lines := split $con "\n" }}
-{{ $startIndex := (sub ((.Get "start") | default 1 | int) 1)}}
-{{ $endIndex := (.Get "end" | default "999999" | int )}}
-{{ range $line := (last (sub $endIndex $startIndex) (first $endIndex $lines)) }}
-  {{ $content = printf "%s\n%s" $content $line }}
+
+{{ $url := printf "https://api.github.com/repos/%s/contents/%s" $repo $fileUrl }}
+{{ if $ref }}
+  {{ $url = printf "%s?ref=%s" $url $ref }}
 {{ end }}
-{{ highlight $content (.Get "lang") (.Get "options") }}
+
+{{ $headers := dict "Accept" "application/vnd.github.v3.raw" }}
+{{ $resp := resources.GetRemote $url (dict "headers" $headers) }}
+
+{{ if not $resp }}
+  {{ errorf "Failed to fetch content from GitHub: %s" $url }}
+{{ end }}
+
+{{ $content := $resp.Content }}
+
+{{ if and (eq $lang "markdown") $section }}
+  {{ $lines := split $content "\n" }}
+  {{ $sectionContent := slice }}
+  {{ $inSection := false }}
+  {{ $sectionLevel := 0 }}
+  
+  {{ range $lines }}
+    {{ $line := . }}
+    {{ if not $inSection }}
+      {{ $headingMatch := findRE (printf "^(#+)\\s+.*%s.*$" $section) $line 1 }}
+      {{ if $headingMatch }}
+        {{ $heading := index $headingMatch 0 }}
+        {{ $levelMatch := findRE "^(#+)" $heading 1 }}
+        {{ $sectionLevel = len (index $levelMatch 0) }}
+        {{ $inSection = true }}
+        {{ $sectionContent = $sectionContent | append $line }}
+      {{ end }}
+    {{ else }}
+      {{ $nextHeadingMatch := findRE "^(#+)\\s+" $line 1 }}
+      {{ if $nextHeadingMatch }}
+        {{ $nextLevel := len (index $nextHeadingMatch 0) }}
+        {{ if le $nextLevel $sectionLevel }}
+          {{ $inSection = false }}
+        {{ else }}
+          {{ $sectionContent = $sectionContent | append $line }}
+        {{ end }}
+      {{ else }}
+        {{ $sectionContent = $sectionContent | append $line }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  
+  {{ if len $sectionContent }}
+    {{ $content = delimit $sectionContent "\n" }}
+  {{ end }}
+{{ end }}
+
+{{ if eq $lang "markdown" }}
+  {{ $content | markdownify }}
+{{ else }}
+  {{ highlight $content $lang $options }}
+{{ end }}
