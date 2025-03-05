@@ -333,7 +333,7 @@ services:
 Start the container by running the following command:
 
 {{< command >}}
-$ docker-compose up
+$ docker compose up
 {{< / command >}}
 
 {{< callout "note" >}}
