@@ -199,7 +199,7 @@ services:
     environment:
 # Activate LocalStack Pro: https://docs.localstack.cloud/getting-started/auth-token/
       - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
-      - EXTENSION_AUTO_LOAD=localstack-extension-terraform-init
+      - EXTENSION_AUTO_INSTALL=localstack-extension-terraform-init
     volumes:
 # you could also place your main.tf in `./ready.d` and set "./ready.d:/etc/localstack/init/ready.d"
       - "./main.tf:/etc/localstack/init/ready.d/main.tf"
