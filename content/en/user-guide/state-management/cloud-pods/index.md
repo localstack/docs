@@ -291,8 +291,6 @@ When autoloading multiple Cloud Pods, later pods might overwrite the state of ea
 AUTO_LOAD_POD=foo-pod localstack start
 {{< /tab >}}
 {{< tab header="Docker Compose" lang="yaml" >}}
-version: "3.8"
-
 services:
   localstack:
     container_name: "localstack-main"
@@ -346,8 +344,6 @@ LocalStack, upon mounting `init-pods.d` to the appropriate location, will sequen
 The docker compose file for correctly mounting `init-pods.d` will look like:
 
 ```yaml
-version: "3.8"
-
 services:
   localstack:
     container_name: "localstack-main"
@@ -493,8 +489,6 @@ To properly configure the remote, you need to provide the needed environment var
 For instance, a S3 remote needs a `AWS_ACCESS_KEY` and a `AWS_SECRET_ACCESS_KEY`, as follows:
 
 ```yaml
-version: "3.8"
-
 services:
   localstack:
     container_name: "localstack-main"

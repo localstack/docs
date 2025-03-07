@@ -639,8 +639,6 @@ For bash, please use single quotes `'` instead of double quotes `"` to make sure
 In order to make use of the environment variable placeholders, you can inject them into the LocalStack container, for example using the following `docker-compose.yml` file.
 
 ```yaml
-version: "3.8"
-
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
