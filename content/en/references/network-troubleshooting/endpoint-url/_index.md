@@ -117,8 +117,6 @@ docker inspect localstack-main | \
 docker run --rm -it --dns 172.27.0.2 --network ls <arguments> <image name>
 {{< / tab >}}
 {{< tab header="docker-compose.yml" lang="yaml" >}}
-version: "3.8"
-
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"

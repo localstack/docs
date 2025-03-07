@@ -466,8 +466,6 @@ LOCALSTACK_LAMBDA_DEBUG_MODE_CONFIG_PATH=/tmp/debug_config.yaml \
 localstack start --volume /path/to/debug-config.yaml:/tmp/lambda_debug_mode_config.yaml
 {{< /tab >}}
 {{< tab header="Docker Compose" lang="yaml" >}}
-version: "3.8"
-
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"

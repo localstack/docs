@@ -121,7 +121,6 @@ Modify your Docker Compose configuration to work with Rancher Desktop:
 
 {{< tabpane lang="yml" >}}
 {{< tab header="Community" lang="yml" >}}
-version: "3.8"
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
@@ -138,7 +137,6 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
 {{< /tab >}}
 {{< tab header="Pro" lang="yml" >}}
-version: "3.8"
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"

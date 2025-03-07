@@ -23,4 +23,8 @@
 {{ $linesToShow := last (sub $end $startIndex) (first $end $lines) }}
 
 {{ $content := delimit $linesToShow "\n" }}
+{{ if $lang }}
 {{ highlight $content $lang $options }}
+{{ else }}
+{{ $content | safeHTML }}
+{{ end }}

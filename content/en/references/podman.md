@@ -103,7 +103,6 @@ For the Docker Compose setup, use the following configuration.
 When running in rootless mode, ensure to comment out the HTTPS gateway port, as it is unable to bind to privileged ports below 1024.
 
 ```yaml
-version: "3.8"
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"

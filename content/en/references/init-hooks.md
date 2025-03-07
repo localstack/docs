@@ -136,8 +136,6 @@ Start Localstack:
 
 {{< tabpane >}}
 {{< tab header="docker-compose.yml" lang="yml" >}}
-version: "3.8"
-
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
@@ -188,8 +186,6 @@ Start LocalStack Pro with mounted `main.tf`:
 
 {{< tabpane >}}
 {{< tab header="docker-compose.yml" lang="yml" >}}
-version: "3.8"
-
 services:
   localstack:
     container_name: "localstack-main"

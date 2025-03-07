@@ -322,7 +322,6 @@ Your file paths might differ, so check Docker's documentation on [Environment Va
 Here is a Docker Compose example:
 
 ```yaml
-version: '3.8'
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"

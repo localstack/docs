@@ -256,8 +256,6 @@ The S3 Docker image only supports the S3 APIs and does not include other service
 IMAGE_NAME=localstack/localstack:s3-latest localstack start
 {{< /tab >}}
 {{< tab header="Docker Compose" lang="yml" >}}
-version: "3.8"
-
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"

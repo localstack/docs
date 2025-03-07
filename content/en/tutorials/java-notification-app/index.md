@@ -531,8 +531,6 @@ Now that the initial coding is done, we can give it a try.
 Let's start LocalStack using a custom `docker-compose` setup, which includes MailHog to capture the emails sent by SES:
 
 ```yaml
-version: "3.8"
-
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"

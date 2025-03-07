@@ -109,8 +109,6 @@ In the root folder, you'll find the essential configs in the `docker-compose.yml
 <summary><b>Expand file</b></summary>
 {{< highlight yaml >}}
 
-version: "3.8"
-
 services:
     localstack:
         container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
