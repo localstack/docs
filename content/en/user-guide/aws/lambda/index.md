@@ -441,6 +441,17 @@ Error: Failed to create/update the stack: sam-app, Waiter StackCreateComplete fa
 To fix this issue, add the Docker volume mount `/var/run/docker.sock:/var/run/docker.sock` to your LocalStack startup.
 Refer to our [sample `docker-compose.yml` file](https://github.com/localstack/localstack/blob/master/docker-compose.yml) as an example.
 
+#### Workaround for Podman on MacOS
+
+The Docker socket volume mount solution does not work on MacOS because Podman runs in a virtual machine on MacOS and mounting the Docker/Podman Unix socket into the container running inside the container does not work. A workaround for this issue is to run `socat` on the host MacOS to listen on a TCP port and relay the traffic to the Docker socket. `socat` can be installed via Homebrew.  The `socat` command is:
+```bash
+socat TCP-LISTEN:12375,fork UNIX-CONNECT:/var/run/docker.sock
+```
+Finally, in the `environment` section of the docker-compose.yml file, add:
+```
+- DOCKER_HOST=tcp://host.containers.internal:12375
+```
+
 ### Function in Pending state
 
 If you receive a `ResourceConflictException` when trying to invoke a function, it is currently in a `Pending` state and cannot be executed yet.
