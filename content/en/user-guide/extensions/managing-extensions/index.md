@@ -108,8 +108,6 @@ If you want to use the `file://` directive, the distribution file needs to be mo
 In a docker-compose file, this would look something like:
 
 ```yaml
-version: "3.8"
-
 services:
   localstack:
     container_name: "localstack-main"
@@ -154,8 +152,6 @@ An example project could look something like this:
 * `docker-compose.yaml`
 
     ```yaml
-    version: "3.8"
-
     services:
       localstack:
         ...
