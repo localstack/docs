@@ -305,7 +305,7 @@ Docker Compose v1.9.0 and above is supported.
 Start the container by running the following command:
 
 {{< command >}}
-$ docker-compose up
+$ docker compose up
 {{< / command >}}
 
 {{< callout "note" >}}
