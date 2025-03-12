@@ -24,6 +24,19 @@
         "identifier": "VpcId"
     },
     {
+        "resource_type": "AWS::ECR::Repository",
+        "policy_statements": [
+            "cloudformation:GetResource",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:BatchGetImage",
+            "ecr:DescribeRepositories",
+            "ecr:GetAuthorizationToken",
+            "ecr:GetDownloadUrlForLayer"
+        ],
+        "service": "ecr",
+        "identifier": "RepositoryName:<ImageTag[Optional]>"
+    },
+    {
         "resource_type": "AWS::IAM::Policy",
         "policy_statements": ["iam:GetPolicy"],
         "service": "iam",
