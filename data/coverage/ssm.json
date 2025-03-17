@@ -502,8 +502,8 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -2639,11 +2639,11 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/dms_aurora_postgres_kinesis/test_dms.py::TestDmsScenario::test_cdc_replication_task_data_types",
-            "test": "test_cdc_replication_task_data_types",
+            "node_id": "LocalStack Pro: tests/aws/scenario/dms_aurora_postgres_kinesis/test_dms.py::TestDmsScenario::test_replication_task_without_identifier",
+            "test": "test_replication_task_without_identifier",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType']",
+            "snapshot_skipped": "['$..RecoveryTimeout', '$..DataMaskingErrorPolicy']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3179,6 +3179,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_cdk_hosted_zone_caa_record",
+            "test": "test_cdk_hosted_zone_caa_record",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_failure",
             "test": "test_batch_failure",
             "response": "200",
@@ -3201,6 +3211,26 @@
           {
             "node_id": "LocalStack Pro: tests/integration/replicator/core/test_replicator_cli.py::test_start_single_replication_job[CFN]",
             "test": "test_start_single_replication_job[CFN]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/core/test_usage.py::TestUsage::test_identifier_metric[arn]",
+            "test": "test_identifier_metric[arn]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/core/test_usage.py::TestUsage::test_identifier_metric[identifier]",
+            "test": "test_identifier_metric[identifier]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3239,8 +3269,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn]",
-            "test": "test_successful_replication[arn]",
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn-/test-{short_uid}/2]",
+            "test": "test_successful_replication[arn-/test-{short_uid}/2]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3249,8 +3279,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier]",
-            "test": "test_successful_replication[identifier]",
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn-test-{short_uid}]",
+            "test": "test_successful_replication[arn-test-{short_uid}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier-/test-{short_uid}/2]",
+            "test": "test_successful_replication[identifier-/test-{short_uid}/2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier-test-{short_uid}]",
+            "test": "test_successful_replication[identifier-test-{short_uid}]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3350,6 +3400,60 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
+      "Filters": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ssm/test_ssm.py::TestSSMDockerVMM::test_describe_instance_information_filtered_by_instance_id",
+            "test": "test_describe_instance_information_filtered_by_instance_id",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ssm/test_ssm.py::TestSSMDockerVMM::test_describe_instance_information_with_invalid_filters[invalid_association_status]",
+            "test": "test_describe_instance_information_with_invalid_filters[invalid_association_status]",
+            "response": "400",
+            "error": "InvalidInstanceInformationFilterValue",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ssm/test_ssm.py::TestSSMDockerVMM::test_describe_instance_information_with_invalid_filters[invalid_ping_value]",
+            "test": "test_describe_instance_information_with_invalid_filters[invalid_ping_value]",
+            "response": "400",
+            "error": "InvalidInstanceInformationFilterValue",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ssm/test_ssm.py::TestSSMDockerVMM::test_describe_instance_information_with_invalid_filters[invalid_resource_type]",
+            "test": "test_describe_instance_information_with_invalid_filters[invalid_resource_type]",
+            "response": "400",
+            "error": "InvalidInstanceInformationFilterValue",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ssm/test_ssm.py::TestSSMDockerVMM::test_describe_instance_information_with_invalid_key",
+            "test": "test_describe_instance_information_with_invalid_key",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "['$..Message', '$..message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -4055,6 +4159,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/replicator/core/test_usage.py::TestUsage::test_identifier_metric[arn]",
+            "test": "test_identifier_metric[arn]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/replicator/core/test_visitor.py::test_visit_parameter_type",
             "test": "test_visit_parameter_type",
             "response": "200",
@@ -4065,8 +4179,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn]",
-            "test": "test_successful_replication[arn]",
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn-/test-{short_uid}/2]",
+            "test": "test_successful_replication[arn-/test-{short_uid}/2]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4075,8 +4189,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier]",
-            "test": "test_successful_replication[identifier]",
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn-test-{short_uid}]",
+            "test": "test_successful_replication[arn-test-{short_uid}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier-/test-{short_uid}/2]",
+            "test": "test_successful_replication[identifier-/test-{short_uid}/2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier-test-{short_uid}]",
+            "test": "test_successful_replication[identifier-test-{short_uid}]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4405,13 +4539,13 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_post_infra_setup",
-            "test": "test_post_infra_setup",
+            "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_provider_marked_running",
+            "test": "test_provider_marked_running",
             "response": "400",
             "error": "ParameterNotFound",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -4482,6 +4616,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_cdk_hosted_zone_caa_record",
+            "test": "test_cdk_hosted_zone_caa_record",
+            "response": "400",
+            "error": "ParameterNotFound",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -5221,6 +5365,26 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/replicator/core/test_usage.py::TestUsage::test_identifier_metric[arn]",
+            "test": "test_identifier_metric[arn]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/core/test_usage.py::TestUsage::test_identifier_metric[identifier]",
+            "test": "test_identifier_metric[identifier]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/replicator/core/test_visitor.py::test_visit_all",
             "test": "test_visit_all",
             "response": "200",
@@ -5241,8 +5405,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn]",
-            "test": "test_successful_replication[arn]",
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn-/test-{short_uid}/2]",
+            "test": "test_successful_replication[arn-/test-{short_uid}/2]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5251,8 +5415,28 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier]",
-            "test": "test_successful_replication[identifier]",
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn-test-{short_uid}]",
+            "test": "test_successful_replication[arn-test-{short_uid}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier-/test-{short_uid}/2]",
+            "test": "test_successful_replication[identifier-/test-{short_uid}/2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier-test-{short_uid}]",
+            "test": "test_successful_replication[identifier-test-{short_uid}]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5435,8 +5619,28 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn]",
-            "test": "test_successful_replication[arn]",
+            "node_id": "LocalStack Pro: tests/integration/replicator/core/test_usage.py::TestUsage::test_identifier_metric[arn]",
+            "test": "test_identifier_metric[arn]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/core/test_usage.py::TestUsage::test_identifier_metric[identifier]",
+            "test": "test_identifier_metric[identifier]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn-/test-{short_uid}/2]",
+            "test": "test_successful_replication[arn-/test-{short_uid}/2]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5445,8 +5649,28 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier]",
-            "test": "test_successful_replication[identifier]",
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn-test-{short_uid}]",
+            "test": "test_successful_replication[arn-test-{short_uid}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier-/test-{short_uid}/2]",
+            "test": "test_successful_replication[identifier-/test-{short_uid}/2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier-test-{short_uid}]",
+            "test": "test_successful_replication[identifier-test-{short_uid}]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -6877,13 +7101,13 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_post_infra_setup",
-            "test": "test_post_infra_setup",
+            "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_provider_marked_running",
+            "test": "test_provider_marked_running",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -6957,6 +7181,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_cdk_hosted_zone_caa_record",
+            "test": "test_cdk_hosted_zone_caa_record",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/stepfunctions/test_batch_integration.py::TestBatchIntegration::test_batch_request_response",
             "test": "test_batch_request_response",
             "response": "200",
@@ -6979,6 +7213,26 @@
           {
             "node_id": "LocalStack Pro: tests/integration/replicator/core/test_replicator_cli.py::test_start_single_replication_job[CFN]",
             "test": "test_start_single_replication_job[CFN]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/core/test_usage.py::TestUsage::test_identifier_metric[arn]",
+            "test": "test_identifier_metric[arn]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/core/test_usage.py::TestUsage::test_identifier_metric[identifier]",
+            "test": "test_identifier_metric[identifier]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -7017,8 +7271,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn]",
-            "test": "test_successful_replication[arn]",
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn-/test-{short_uid}/2]",
+            "test": "test_successful_replication[arn-/test-{short_uid}/2]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -7027,8 +7281,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier]",
-            "test": "test_successful_replication[identifier]",
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[arn-test-{short_uid}]",
+            "test": "test_successful_replication[arn-test-{short_uid}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier-/test-{short_uid}/2]",
+            "test": "test_successful_replication[identifier-/test-{short_uid}/2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/ssm/test_ssm_replication.py::TestSsmParameterReplication::test_successful_replication[identifier-test-{short_uid}]",
+            "test": "test_successful_replication[identifier-test-{short_uid}]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
