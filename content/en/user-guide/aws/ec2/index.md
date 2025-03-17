@@ -414,7 +414,7 @@ IMDS IPv6 endpoint is currently not supported.
 
 #### Metadata Categories
 
-Currently a limited set of [metadata categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) are implemented.
+Currently a limited set of [metadata categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-data-categories) are implemented.
 They are:
 
 - `ami-id`
