@@ -423,6 +423,18 @@
       }
     },
     {
+      "ModifyIpPools": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "ModifyListener": {
         "implemented": true,
         "availability": "pro",
@@ -612,6 +624,64 @@
             "test": "test_redirect_listener",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "DefaultActions, LoadBalancerArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-and-protocol-application]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-and-protocol-application]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-and-protocol-network]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-and-protocol-network]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "DefaultActions, LoadBalancerArn, Port": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_gateway_listener_with_port_or_protocol[port-only]",
+            "test": "test_create_gateway_listener_with_port_or_protocol[port-only]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-protocol-application]",
+            "test": "test_create_listener_without_port_or_protocol[missing-protocol-application]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-protocol-network]",
+            "test": "test_create_listener_without_port_or_protocol[missing-protocol-network]",
+            "response": "400",
+            "error": "CommonServiceException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -1046,6 +1116,150 @@
             "test": "test_use_priority_for_listener_matching",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_gateway_listener_with_port_or_protocol[port-and-protocol]",
+            "test": "test_create_gateway_listener_with_port_or_protocol[port-and-protocol]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-GENEVE]",
+            "test": "test_create_listener_invalid_protocols[application-GENEVE]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-INVALID_PROTOCOL]",
+            "test": "test_create_listener_invalid_protocols[application-INVALID_PROTOCOL]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-TCP]",
+            "test": "test_create_listener_invalid_protocols[application-TCP]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-TCP_UDP]",
+            "test": "test_create_listener_invalid_protocols[application-TCP_UDP]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-TLS]",
+            "test": "test_create_listener_invalid_protocols[application-TLS]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-UDP]",
+            "test": "test_create_listener_invalid_protocols[application-UDP]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-GENEVE]",
+            "test": "test_create_listener_invalid_protocols[network-GENEVE]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-HTTPS]",
+            "test": "test_create_listener_invalid_protocols[network-HTTPS]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-HTTP]",
+            "test": "test_create_listener_invalid_protocols[network-HTTP]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-INVALID_PROTOCOL]",
+            "test": "test_create_listener_invalid_protocols[network-INVALID_PROTOCOL]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "DefaultActions, LoadBalancerArn, Protocol": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_gateway_listener_with_port_or_protocol[protocol-only]",
+            "test": "test_create_gateway_listener_with_port_or_protocol[protocol-only]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-application]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-application]",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-network]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-network]",
+            "response": "400",
+            "error": "CommonServiceException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -1586,6 +1800,96 @@
       "Name, SecurityGroups, Subnets, Type": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-GENEVE]",
+            "test": "test_create_listener_invalid_protocols[application-GENEVE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-INVALID_PROTOCOL]",
+            "test": "test_create_listener_invalid_protocols[application-INVALID_PROTOCOL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-TCP]",
+            "test": "test_create_listener_invalid_protocols[application-TCP]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-TCP_UDP]",
+            "test": "test_create_listener_invalid_protocols[application-TCP_UDP]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-TLS]",
+            "test": "test_create_listener_invalid_protocols[application-TLS]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-UDP]",
+            "test": "test_create_listener_invalid_protocols[application-UDP]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-and-protocol-application]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-and-protocol-application]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-application]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-application]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-protocol-application]",
+            "test": "test_create_listener_without_port_or_protocol[missing-protocol-application]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_load_balancer",
             "test": "test_create_load_balancer",
             "response": "200",
@@ -1618,6 +1922,106 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_gateway_listener_with_port_or_protocol[port-and-protocol]",
+            "test": "test_create_gateway_listener_with_port_or_protocol[port-and-protocol]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_gateway_listener_with_port_or_protocol[port-only]",
+            "test": "test_create_gateway_listener_with_port_or_protocol[port-only]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_gateway_listener_with_port_or_protocol[protocol-only]",
+            "test": "test_create_gateway_listener_with_port_or_protocol[protocol-only]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-GENEVE]",
+            "test": "test_create_listener_invalid_protocols[network-GENEVE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-HTTPS]",
+            "test": "test_create_listener_invalid_protocols[network-HTTPS]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-HTTP]",
+            "test": "test_create_listener_invalid_protocols[network-HTTP]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-INVALID_PROTOCOL]",
+            "test": "test_create_listener_invalid_protocols[network-INVALID_PROTOCOL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-and-protocol-network]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-and-protocol-network]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-network]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-network]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-protocol-network]",
+            "test": "test_create_listener_without_port_or_protocol[missing-protocol-network]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestLoadBalancer::test_create_load_balancer",
@@ -3626,6 +4030,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_gateway_listener_with_port_or_protocol[port-and-protocol]",
+            "test": "test_create_gateway_listener_with_port_or_protocol[port-and-protocol]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_gateway_listener_with_port_or_protocol[port-only]",
+            "test": "test_create_gateway_listener_with_port_or_protocol[port-only]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_gateway_listener_with_port_or_protocol[protocol-only]",
+            "test": "test_create_gateway_listener_with_port_or_protocol[protocol-only]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener[443-gateway_listen_override1-4566]",
             "test": "test_create_listener[443-gateway_listen_override1-4566]",
             "response": "200",
@@ -3653,6 +4087,166 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-GENEVE]",
+            "test": "test_create_listener_invalid_protocols[application-GENEVE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-INVALID_PROTOCOL]",
+            "test": "test_create_listener_invalid_protocols[application-INVALID_PROTOCOL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-TCP]",
+            "test": "test_create_listener_invalid_protocols[application-TCP]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-TCP_UDP]",
+            "test": "test_create_listener_invalid_protocols[application-TCP_UDP]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-TLS]",
+            "test": "test_create_listener_invalid_protocols[application-TLS]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[application-UDP]",
+            "test": "test_create_listener_invalid_protocols[application-UDP]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-GENEVE]",
+            "test": "test_create_listener_invalid_protocols[network-GENEVE]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-HTTPS]",
+            "test": "test_create_listener_invalid_protocols[network-HTTPS]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-HTTP]",
+            "test": "test_create_listener_invalid_protocols[network-HTTP]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_invalid_protocols[network-INVALID_PROTOCOL]",
+            "test": "test_create_listener_invalid_protocols[network-INVALID_PROTOCOL]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-and-protocol-application]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-and-protocol-application]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-and-protocol-network]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-and-protocol-network]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-application]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-application]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-port-network]",
+            "test": "test_create_listener_without_port_or_protocol[missing-port-network]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-protocol-application]",
+            "test": "test_create_listener_without_port_or_protocol[missing-protocol-application]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/elb/test_elb.py::TestELB::test_create_listener_without_port_or_protocol[missing-protocol-network]",
+            "test": "test_create_listener_without_port_or_protocol[missing-protocol-network]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
