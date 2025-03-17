@@ -408,12 +408,25 @@ The token can be used in subsequent requests like so:
 $ curl -H "x-aws-ec2-metadata-token: <TOKEN>" -v http://169.254.169.254/latest/meta-data/
 {{< /command >}}
 
-Currently a limited set of [metadata categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) are implemented.
-If you would like support for more metadata categories, please make a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
-
 {{< callout "note" >}}
 IMDS IPv6 endpoint is currently not supported.
 {{< /callout >}}
+
+#### Metadata Categories
+
+Currently a limited set of [metadata categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) are implemented.
+They are:
+
+- `ami-id`
+- `ami-launch-index`
+- `instance-id`
+- `instance-type`
+- `local-hostname`
+- `local-ipv4`
+- `public-hostname`
+- `public-ipv4`
+
+If you would like support for more metadata categories, please make a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
 
 ### Configuration
 
