@@ -148,6 +148,8 @@ The following languages and dialects are supported:
 
 | Language         | Language Code |
 | ---------------- | ------------- |
+| Catalan          | `ca_ES`       |
+| Czech            | `cs_CZ`       |
 | German           | `de-DE`       |
 | English, British | `en-GB`       |
 | English, Indian  | `en-IN`       |
@@ -155,12 +157,19 @@ The following languages and dialects are supported:
 | Spanish          | `es-ES`       |
 | Farsi            | `fa-IR`       |
 | French           | `fr-FR`       |
+| Gujarati         | `gu_IN`       |
 | Hindi            | `hi-IN`       |
 | Italian          | `it-IT`       |
 | Japan            | `ja-JP`       |
+| Kazakh           | `kk-KZ`       |
+| Korean           | `ko-KR`       |
 | Dutch            | `nl-NL`       |
+| Polish           | `pl-PL`       |
 | Portuguese       | `pt-BR`       |
 | Russian          | `ru-RU`       |
+| Telugu           | `te-IN`       |
 | Turkish          | `tr-TR`       |
+| Ukrainian        | `uk-UA`       |
+| Uzbek            | `uz-UZ`       |
 | Vietnamese       | `vi-VN`       |
 | Chinese          | `zh-CN`       |
