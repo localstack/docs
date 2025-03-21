@@ -14,6 +14,8 @@ It is used for applications that require real-time processing and deriving insig
 LocalStack allows you to use the Kinesis Data Streams APIs in your local environment from setting up data streams and configuring data processing to building real-time applications.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kinesis/).
 
+Emulation for Kinesis is powered by [Kinesis Mock](https://github.com/etspaceman/kinesis-mock).
+
 ## Getting started
 
 This guide is designed for users new to Kinesis Data Streams and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.

@@ -10,11 +10,13 @@ aliases:
 
 ## Introduction
 
-AWS IoT provides cloud services to manage IoT fleet and integrate them with other AWS services
+AWS IoT provides cloud services to manage IoT devices and integrate them with other AWS services.
 
-LocalStack Pro supports IoT Core, IoT Data, IoT Analytics and related APIs as well as an in-built MQTT broker.
+LocalStack Pro supports IoT Core, IoT Data, IoT Analytics.
 Common operations for creating and updating things, groups, policies, certificates and other entities are implemented with full CloudFormation support.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iot/).
+
+LocalStack ships a [Message Queuing Telemetry Transport (MQTT)](https://mqtt.org/) broker powered by [Eclipse Mosquitto](https://mosquitto.org/) which supports both pure MQTT and MQTT-over-WSS (WebSockets Secure) protocols.
 
 ## Getting Started
 
@@ -22,20 +24,21 @@ This guide is for users that are new to IoT and assumes a basic knowledge of the
 
 Start LocalStack using your preferred method.
 
-LocalStack ships an Message Queuing Telemetry Transport (MQTT) broker powered by [Mosquitto](https://mosquitto.org/) which supports both pure MQTT and MQTT-over-WSS (WebSockets Secure) protocols.
 To retrieve the MQTT endpoint, use the [`DescribeEndpoint`](https://docs.aws.amazon.com/iot/latest/apireference/API_DescribeEndpoint.html) operation.
 
 {{< command >}}
 $ awslocal iot describe-endpoint
+<disable-copy>
 {
     "endpointAddress": "000000000000.iot.eu-central-1.localhost.localstack.cloud:4510"
 }
+</disable-copy>
 {{< / command >}}
 
 {{< callout "tip" >}}
 LocalStack lazy-loads services by default.
 The MQTT broker may not be automatically available on a fresh launch of LocalStack.
-You should make a `DescribeEndpoint` call to ensure the broker is running and identify the port.
+You can make a `DescribeEndpoint` call to start the broker and identify the port.
 {{< /callout >}}
 
 This endpoint can then be used with any MQTT client to publish and subscribe to topics.
@@ -50,7 +53,7 @@ $ mqtt subscribe \
         --topic climate
 {{< /command >}}
 
-In another terminal, publish a message to this topic.
+In a separate terminal session, publish a message to this topic.
 
 {{< command >}}
 $ mqtt publish \
@@ -60,16 +63,16 @@ $ mqtt publish \
         -m "temperature=30°C;humidity=60%"
 {{< /command >}}
 
-This message will be pushed to all subscribers of this topic, including the one in the first terminal.
+This message will be pushed to all subscribers of this topic, including the one in the first terminal session.
 
 ## Authentication
 
 LocalStack IoT maintains its own root certificate authority which is regenerated at every run.
 The root CA certificate can be retrieved from <http://localhost.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem>.
 
-{{< callout >}}
+{{< callout "tip" >}}
 AWS provides its root CA certificate at <https://www.amazontrust.com/repository/AmazonRootCA1.pem>.
-For more information, see [this](https://docs.aws.amazon.com/iot/latest/developerguide/server-authentication.html#server-authentication-certs).
+[This section](https://docs.aws.amazon.com/iot/latest/developerguide/server-authentication.html#server-authentication-certs) contains information about CA certificates.
 {{< /callout >}}
 
 When connecting to the endpoints, you will need to provide this root CA certificate for authentication.
@@ -191,10 +194,3 @@ The following actions are supported:
 - [Firehose](https://docs.aws.amazon.com/iot/latest/developerguide/kinesis-firehose-rule-action.html)
 - [DynamoDBv2](https://docs.aws.amazon.com/iot/latest/developerguide/dynamodb-v2-rule-action.html)
 - [HTTP](https://docs.aws.amazon.com/iot/latest/developerguide/https-rule-action.html) (URL confirmation and substitution templating is not implemented)
-
-## Current Limitations
-
-LocalStack MQTT broker does not support multi-account/multi-region namespacing.
-Internally, the MQTT messages are not routed to the appropriate account ID/region even though the endpoint URL may suggest otherwise.
-All messages will be routed to the `000000000000` account and the `us-east-1` region.
-This prevents features such as topic rules from working properly when not using the this account ID or region.
