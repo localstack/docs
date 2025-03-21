@@ -105,32 +105,7 @@ $ jq .results.transcripts[0].transcript 7844aaa5.json
 </disable-copy>
 {{< / command >}}
 
-## Resource Browser
-
-The LocalStack Web Application provides a Resource Browser for managing Transcribe Transcription Jobs.
-You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Transcribe Service** under the **Machine Learning** section.
-
-<img src="transcribe-resource-browser.png" alt="Transcribe Resource Browser" title="Transcribe Resource Browser" width="900" />
-<br>
-<br>
-
-The Resource Browser allows you to perform the following actions:
-
-- **Create Transcription Job**: Create a new transcription job by clicking on the **Create Transcription Job** button, and then providing the required details.
-- **View Transcription Job**: View the details of a specific transcription job by clicking on the job in the list.
-- **Delete Transcription Job**: Delete the transcription job by clicking on the **Actions** button followed by **Remove Selected** button.
-
-## Examples
-
-The following code snippets and sample applications provide practical examples of how to use Transcribe in LocalStack for various use cases:
-
-- [Serverless Transcription App using Transcribe, S3, Lambda, SQS, SES](https://github.com/localstack-samples/sample-serverless-transcribe)
-
-## Current Limitations
-
-Currently, our Transcribe emulation offers only supported formats and languages.
-
-### Supported Formats
+## Audio Formats
 
 The following input media formats are supported:
 
@@ -142,7 +117,7 @@ The following input media formats are supported:
 - Matroska Video files (MKV)
 - Waveform Audio File Format (WAV)
 
-### Supported Languages
+## Supported Languages
 
 The following languages and dialects are supported:
 
@@ -173,3 +148,28 @@ The following languages and dialects are supported:
 | Uzbek            | `uz-UZ`       |
 | Vietnamese       | `vi-VN`       |
 | Chinese          | `zh-CN`       |
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing Transcribe Transcription Jobs.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Transcribe Service** under the **Machine Learning** section.
+
+<img src="transcribe-resource-browser.png" alt="Transcribe Resource Browser" title="Transcribe Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Transcription Job**: Create a new transcription job by clicking on the **Create Transcription Job** button, and then providing the required details.
+- **View Transcription Job**: View the details of a specific transcription job by clicking on the job in the list.
+- **Delete Transcription Job**: Delete the transcription job by clicking on the **Actions** button followed by **Remove Selected** button.
+
+## Examples
+
+The following code snippets and sample applications provide practical examples of how to use Transcribe in LocalStack for various use cases:
+
+- [Serverless Transcription App using Transcribe, S3, Lambda, SQS, SES](https://github.com/localstack-samples/sample-serverless-transcribe)
+
+## Limitations
+
+Transcribe does not support speaker diarization and does not produce certain other numerical information, like confidence levels.
