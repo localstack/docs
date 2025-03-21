@@ -21,4 +21,8 @@ install_apps:
 clean_apps:
 	git clean -f content/en/applications
 
+lint:
+	@which markdownlint-cli2 > /dev/null || (echo "Please install markdownlint-cli2: npm install -g markdownlint-cli2" && exit 1)
+	markdownlint-cli2 --fix
+
 .PHONY: serve dev install clean install_apps clean_apps
