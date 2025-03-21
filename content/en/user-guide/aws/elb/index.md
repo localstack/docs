@@ -84,6 +84,8 @@ The following command creates a listener for the load balancer created in the pr
 
 {{< command >}}
 $ listenerArn=$(awslocal elbv2 create-listener \
+        --protocol HTTP \
+        --port 80 \
         --default-actions '{"Type":"forward","TargetGroupArn":"'$targetGroup'","ForwardConfig":{"TargetGroups":[{"TargetGroupArn":"'$targetGroup'","Weight":11}]}}' \
         --load-balancer-arn $loadBalancer | jq -r '.Listeners[]|.ListenerArn')
 {{< /command >}}
