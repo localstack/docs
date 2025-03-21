@@ -105,6 +105,50 @@ $ jq .results.transcripts[0].transcript 7844aaa5.json
 </disable-copy>
 {{< / command >}}
 
+## Audio Formats
+
+The following input media formats are supported:
+
+- Adaptive Multi-Rate (AMR)
+- Free Lossless Audio Codec (FLAC)
+- MPEG-1 Audio Layer-3 (MP3)
+- MPEG-4 Part 14 (MP4)
+- OGG
+- Matroska Video files (MKV)
+- Waveform Audio File Format (WAV)
+
+## Supported Languages
+
+The following languages and dialects are supported:
+
+| Language         | Language Code |
+| ---------------- | ------------- |
+| Catalan          | `ca_ES`       |
+| Czech            | `cs_CZ`       |
+| German           | `de-DE`       |
+| English, British | `en-GB`       |
+| English, Indian  | `en-IN`       |
+| English, US      | `en-US`       |
+| Spanish          | `es-ES`       |
+| Farsi            | `fa-IR`       |
+| French           | `fr-FR`       |
+| Gujarati         | `gu_IN`       |
+| Hindi            | `hi-IN`       |
+| Italian          | `it-IT`       |
+| Japan            | `ja-JP`       |
+| Kazakh           | `kk-KZ`       |
+| Korean           | `ko-KR`       |
+| Dutch            | `nl-NL`       |
+| Polish           | `pl-PL`       |
+| Portuguese       | `pt-BR`       |
+| Russian          | `ru-RU`       |
+| Telugu           | `te-IN`       |
+| Turkish          | `tr-TR`       |
+| Ukrainian        | `uk-UA`       |
+| Uzbek            | `uz-UZ`       |
+| Vietnamese       | `vi-VN`       |
+| Chinese          | `zh-CN`       |
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing Transcribe Transcription Jobs.
@@ -126,41 +170,6 @@ The following code snippets and sample applications provide practical examples o
 
 - [Serverless Transcription App using Transcribe, S3, Lambda, SQS, SES](https://github.com/localstack-samples/sample-serverless-transcribe)
 
-## Current Limitations
+## Limitations
 
-Currently, our Transcribe emulation offers only supported formats and languages.
-
-### Supported Formats
-
-The following input media formats are supported:
-
-- Adaptive Multi-Rate (AMR)
-- Free Lossless Audio Codec (FLAC)
-- MPEG-1 Audio Layer-3 (MP3)
-- MPEG-4 Part 14 (MP4)
-- OGG
-- Matroska Video files (MKV)
-- Waveform Audio File Format (WAV)
-
-### Supported Languages
-
-The following languages and dialects are supported:
-
-| Language         | Language Code |
-| ---------------- | ------------- |
-| German           | `de-DE`       |
-| English, British | `en-GB`       |
-| English, Indian  | `en-IN`       |
-| English, US      | `en-US`       |
-| Spanish          | `es-ES`       |
-| Farsi            | `fa-IR`       |
-| French           | `fr-FR`       |
-| Hindi            | `hi-IN`       |
-| Italian          | `it-IT`       |
-| Japan            | `ja-JP`       |
-| Dutch            | `nl-NL`       |
-| Portuguese       | `pt-BR`       |
-| Russian          | `ru-RU`       |
-| Turkish          | `tr-TR`       |
-| Vietnamese       | `vi-VN`       |
-| Chinese          | `zh-CN`       |
+Transcribe does not support speaker diarization and does not produce certain other numerical information, like confidence levels.
