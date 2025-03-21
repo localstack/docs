@@ -29,7 +29,7 @@ metadata:
   name: env-0
   namespace: default
 spec:
-  image: localstack/localstack-pro:3.5.0
+  image: localstack/localstack-pro:latest
   debug: trace
 
   authToken: "<my-auth-token>" # Set your LocalStack Auth Token here
@@ -103,11 +103,11 @@ _Appears in:_
 | `dnsProvider` _string_ |  |
 | `dnsConfigName` _string_ |  |
 | `dnsConfigNamespace` _string_ |  |
-| `debug` _string_ |  |
+| `debug` _string_ | Select one of the following: trace, trace-internal, debug, info, warn, error, warning. |
 | `autoLoadPods` _string array_ |  |
 | `authToken` _string_ |  |
 | `hooks` _[Hooks](#hooks)_ |  |
-| `image` _string_ | Validate docker inage name (with optional tag and registry address) |
+| `image` _string_ | Validate docker image name (with optional tag and registry address) |
 | `resources` _[ResourceRequirements](https://kubernetes.io/docs/reference/generated/kubernetes-api/v/#resourcerequirements-v1-core)_ |  |
 | `readiness_probe` _[Probe](https://kubernetes.io/docs/reference/generated/kubernetes-api/v/#probe-v1-core)_ |  |
 | `liveness_probe` _[Probe](https://kubernetes.io/docs/reference/generated/kubernetes-api/v/#probe-v1-core)_ |  |
@@ -135,7 +135,7 @@ _Appears in:_
 
 | Field | Description |
 | --- | --- |
-| `image` _string_ | Validate docker inage name (with optional tag and registry address) |
+| `image` _string_ | Validate docker image name (with optional tag and registry address) |
 | `resources` _[ResourceRequirements](https://kubernetes.io/docs/reference/generated/kubernetes-api/v/#resourcerequirements-v1-core)_ |  |
 | `readiness_probe` _[Probe](https://kubernetes.io/docs/reference/generated/kubernetes-api/v/#probe-v1-core)_ |  |
 | `liveness_probe` _[Probe](https://kubernetes.io/docs/reference/generated/kubernetes-api/v/#probe-v1-core)_ |  |
