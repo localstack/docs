@@ -207,4 +207,4 @@ The following code snippets and sample applications provide practical examples o
 ## Limitations
 
 In multi-account setups, each AWS account launches a separate instance of Kinesis Mock, which is very resource intensive when a large number of AWS accounts are used.
-An [open Kinesis Mock issue](https://github.com/etspaceman/kinesis-mock/issues/377) is being used to keep track of this feature.
+[This Kinesis Mock issue](https://github.com/etspaceman/kinesis-mock/issues/377) is being used to keep track of this feature.
