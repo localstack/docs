@@ -103,7 +103,7 @@ _Appears in:_
 | `dnsProvider` _string_ |  |
 | `dnsConfigName` _string_ |  |
 | `dnsConfigNamespace` _string_ |  |
-| `debug` _string_ | Select one of the following: trace, trace-internal, debug, info, warn, error, warning. | 
+| `debug` _string_ | Select one of the following: trace, trace-internal, debug, info, warn, error, warning. |
 | `autoLoadPods` _string array_ |  |
 | `authToken` _string_ |  |
 | `hooks` _[Hooks](#hooks)_ |  |
