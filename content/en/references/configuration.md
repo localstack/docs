@@ -113,6 +113,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `CFN_VERBOSE_ERRORS` | `0` (default) \|`1` | Show exceptions for CloudFormation deploy errors.
 | `CFN_STRING_REPLACEMENT_DENY_LIST` | `""` (default) \|`https://api-1.execute-api.us-east-2.amazonaws.com/test-resource,https://api-2.execute-api.us-east-2.amazonaws.com/test-resource` | Comma-separated list of AWS URLs that should not be modified to point to Localstack. For example, when deploying a CloudFormation template we might want to leave certain resources pointing to actual AWS URLs, or even leave environment variables with URLs like that untouched.
 
+### CloudFront
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `CLOUDFRONT_LAMBDA_EDGE` | `0` (default) \| `1` | Enable Lambda@Edge support for CloudFront distributions. |
+
 ### CloudWatch
 
 | Variable | Example Values | Description |
