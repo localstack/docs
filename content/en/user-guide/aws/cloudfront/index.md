@@ -61,6 +61,9 @@ It's worth noting that similar behavior can be observed in the actual AWS enviro
 {{< callout "note">}}
 We’re introducing an early, incomplete, and experimental feature that emulates AWS CloudFront Lambda@Edge, starting with version 4.3.0.
 
+It enables running Lambda functions at simulated edge locations.
+This allows you to locally test and develop request/response modifications, security enhancements and more.
+
 This feature is still under development, and functionality is limited.
 {{< /callout >}}
 
