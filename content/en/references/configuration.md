@@ -113,6 +113,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `CFN_VERBOSE_ERRORS` | `0` (default) \|`1` | Show exceptions for CloudFormation deploy errors.
 | `CFN_STRING_REPLACEMENT_DENY_LIST` | `""` (default) \|`https://api-1.execute-api.us-east-2.amazonaws.com/test-resource,https://api-2.execute-api.us-east-2.amazonaws.com/test-resource` | Comma-separated list of AWS URLs that should not be modified to point to Localstack. For example, when deploying a CloudFormation template we might want to leave certain resources pointing to actual AWS URLs, or even leave environment variables with URLs like that untouched.
 
+### CloudFront
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `CLOUDFRONT_LAMBDA_EDGE` | `0` (default) \| `1` | Enable Lambda@Edge support for CloudFront distributions. |
+
 ### CloudWatch
 
 | Variable | Example Values | Description |
@@ -177,6 +183,7 @@ This section covers configuration options that are specific to certain AWS servi
 
 | Variable | Example Values | Description |
 | - | - | - |
+| `EKS_K3S_FLAGS` | | Customize the `k3s` cluster created by LocalStack to emulate EKS clusters. |
 | `EKS_LOADBALANCER_PORT` | `8081` (default) | Local port on which the Kubernetes load balancer is exposed on the host. |
 | `EKS_K3S_IMAGE_TAG` | `v1.31.5-k3s1` (default) | Custom tag of the `rancher/k3s` image used to spin up Kubernetes clusters locally. |
 | `EKS_K8S_PROVIDER` | `k3s` (default)\|`local` | The k8s provider which should be used to start the k8s cluster backing EKS. For more information on the providers, please see [Elastic Kubernetes Service (EKS)]({{< ref "user-guide/aws/eks" >}}) |
