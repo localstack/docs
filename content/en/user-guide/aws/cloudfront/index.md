@@ -59,14 +59,14 @@ It's worth noting that similar behavior can be observed in the actual AWS enviro
 ## Lambda@Edge
 
 {{< callout "note">}}
-We’re introducing an early, incomplete, and experimental feature that emulates AWS CloudFront Lambda@Edge.
+We’re introducing an early, incomplete, and experimental feature that emulates AWS CloudFront Lambda@Edge, starting with version 4.3.0.
 
 This feature is still under development, and functionality is limited.
 {{< /callout >}}
 
 You can enable this feature by setting `CLOUDFRONT_LAMBDA_EDGE=1` in your LocalStack configuration.
 
-### Current features include
+### Current features
 - Support for [`CreateDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html) API to set up CloudFront distributions with Lambda@Edge.
 - Support for modifying request and response headers dynamically.
 
