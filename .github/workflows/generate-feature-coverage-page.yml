@@ -1,0 +1,19 @@
+name: Update Feature catalog docs
+on:
+  schedule:
+    - cron: 0 5 * * MON # TO-DO define schedule
+  workflow_dispatch:
+jobs:
+  update-feature-catalog:
+    name: Update Feature catalog docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout community repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'localstack/localstack'
+          ref: 'master'
+          path: 'localstack-community'
+
+      - name: Generate feature catalog file from feature files
+        run: python3 .github/scripts/update_feature_catalog.py
