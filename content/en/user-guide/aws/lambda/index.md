@@ -191,13 +191,13 @@ Feature availability and coverage is categorized with the following system:
 | | <th colspan="2" style="text-align:center;">SQS</th> <th colspan="2" style="text-align:center;">Stream</th> <th colspan="2" style="text-align:center;">Kafka ⭐️</th>
 |--------------------------------|-------------------------------------------------|:--------:|:----:|:---------:|:----------:|:----------:|:------------:|
 | **Parameter**                  | **Description**                                 | **Standard** | **FIFO** | **Kinesis** | **DynamoDB** | **Amazon MSK** | **Self-Managed** |
-| BatchSize                      | Batching events by count.                       | 🟡 [^1]   | 🟢    | 🟢       | 🟢        | 🟢          | 🟢            |
-| *Not Configurable*                             | Batch when ≥ 6 MB limit.                        | 🟠        | 🟠    | 🟠       | 🟠        | 🟢          | 🟢            |
-| MaximumBatchingWindowInSeconds | Batch by Time Window.                           | 🟠        | ➖    | 🟠       | 🟠        | 🟢          | 🟢            |
+| BatchSize                      | Batching events by count.                       | 🟢        | 🟢    | 🟢       | 🟢        | 🟢          | 🟢            |
+| *Not Configurable*             | Batch when ≥ 6 MB limit.                        | 🟠        | 🟠    | 🟠       | 🟠        | 🟢          | 🟢            |
+| MaximumBatchingWindowInSeconds | Batch by Time Window.                           | 🟢        | 🟢    | 🟢       | 🟢        | 🟢          | 🟢            |
 | MaximumRetryAttempts           | Discard after N retries.                        | ➖        | ➖    | 🟢       | 🟢        | ➖          | ➖            |
 | MaximumRecordAgeInSeconds      | Discard records older than time `t`.            | ➖        | ➖    | 🟢       | 🟢        | ➖          | ➖            |
 | Enabled                        | Enabling/Disabling.                             | 🟢        | 🟢    | 🟢       | 🟢        | 🟢          | 🟢            |
-| FilterCriteria                 | Filter pattern evaluating. [^2] [^3]                    | 🟢        | 🟢    | 🟢       | 🟢        | 🟢          | 🟢            |
+| FilterCriteria                 | Filter pattern evaluating. [^1] [^2]            | 🟢        | 🟢    | 🟢       | 🟢        | 🟢          | 🟢            |
 | FunctionResponseTypes          | Enabling ReportBatchItemFailures.               | 🟢        | 🟢    | 🟢       | 🟢        | ➖          | ➖            |
 | BisectBatchOnFunctionError     | Bisect a batch on error and retry.              | ➖        | ➖    | 🟠       | 🟠        | ➖          | ➖            |
 | ScalingConfig                  | The scaling configuration for the event source. | 🟠        | 🟠    | ➖       | ➖        | ➖          | ➖            |
@@ -213,9 +213,8 @@ Feature availability and coverage is categorized with the following system:
 | TumblingWindowInSeconds        | Duration (seconds) of a processing window.      | ➖        | ➖    | 🟠       | 🟠        | ➖          | ➖            |
 | Topics ⭐️                      | Kafka topics to read from.                      | ➖        | ➖    | ➖       | ➖        | 🟢          | 🟢            |
 
-[^1]: SQS event-source mappings are limited to sending batches of up to `10` records at a time when invoking Lambda functions.
-[^2]: Read more at [Control which events Lambda sends to your function](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html)
-[^3]: The available Metadata properties may not have full parity with AWS depending on the event source (read more at [Understanding event filtering basics](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics)).
+[^1]: Read more at [Control which events Lambda sends to your function](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html)
+[^2]: The available Metadata properties may not have full parity with AWS depending on the event source (read more at [Understanding event filtering basics](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics)).
 
 Create a [GitHub issue](https://github.com/localstack/localstack/issues/new/choose) or reach out to [LocalStack support](https://docs.localstack.cloud/getting-started/help-and-support/) if you experience any challenges.
 
