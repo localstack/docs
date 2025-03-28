@@ -37,24 +37,25 @@ These operations can be limited by creating a minimal IAM role with just the pol
 
 See the [supported resources section](#supported-resources) for details of what policy actions are required for each resource.
 
-Replication is triggered using the LocalStack CLI, which must run in a shell configured to access AWS.
+When the replication is triggered using the LocalStack CLI, which must run in a shell configured to access AWS.
+
+**Using the aws-cli v2**
+
 If you have the aws-cli v2 installed, the cli will read credentials from your configured `AWS_PROFILE`.
 
-Otherwise, the following environment variables must be set:
+{{< command >}}
+$ export AWS_PROFILE=my-aws-profile
+$ localstack replicator ...
+{{< /command >}}
+
+**Using the aws-cli v1 or no aws-cli**
+
+If you have the aws-cli v1 installed or no installation of the aws-cli, the following environment variables must be set:
 
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_SESSION_TOKEN` (optional)
 - `AWS_DEFAULT_REGION`
-
-{{< callout "tip" >}}
-Use `aws configure export-credentials --format env` to print the required environment variables in a format that can be evaluated.
-
-{{< command >}}
-<disable-copy>$ </disable-copy>eval $(AWS_PROFILE=<aws-profile> aws configure export-credentials \
- --format env)
-{{< /command >}}
-{{< /callout >}}
 
 ### Trigger a replication job
 
@@ -305,6 +306,10 @@ By default, replication occurs in LocalStack account `000000000000`.
 Use the `--target-account-id` flag to specify a different account.
 
 ## Supported Resources
+
+The project is still in preview state and we welcome feedback and bug reports.
+We have opened a [github issue where you can request and upvote](https://github.com/localstack/localstack/issues/12439) to help us prioritize our efforts and support the resources with the most impact.
+For any other requests or reports, please open a [new github issue](https://github.com/localstack/localstack/issues/new/choose).
 
 {{< callout "tip" >}}
 To ensure support for all resources, use the latest LocalStack Docker image.
