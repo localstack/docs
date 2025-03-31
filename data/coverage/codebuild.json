@@ -54,11 +54,11 @@
       "BatchGetProjects": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -604,6 +604,22 @@
     }
   ],
   "details": {
+    "BatchGetProjects": {
+      "names": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_project_crud_operations",
+            "test": "test_project_crud_operations",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..project.tags', '$..projects..tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "CreateProject": {
       "artifacts, environment, name, serviceRole, source": {
         "ls_pro": [
@@ -612,7 +628,7 @@
             "test": "test_project_crud_operations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..project.tags']",
+            "snapshot_skipped": "['$..project.tags', '$..projects..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -622,7 +638,7 @@
             "test": "test_project_crud_operations",
             "response": "400",
             "error": "ResourceAlreadyExistsException",
-            "snapshot_skipped": "['$..project.tags']",
+            "snapshot_skipped": "['$..project.tags', '$..projects..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -638,7 +654,7 @@
             "test": "test_project_crud_operations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..project.tags']",
+            "snapshot_skipped": "['$..project.tags', '$..projects..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -654,7 +670,7 @@
             "test": "test_project_crud_operations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..project.tags']",
+            "snapshot_skipped": "['$..project.tags', '$..projects..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -670,7 +686,7 @@
             "test": "test_project_crud_operations",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..project.tags']",
+            "snapshot_skipped": "['$..project.tags', '$..projects..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -684,7 +700,7 @@
             "test": "test_project_crud_operations",
             "response": "400",
             "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..project.tags']",
+            "snapshot_skipped": "['$..project.tags', '$..projects..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
