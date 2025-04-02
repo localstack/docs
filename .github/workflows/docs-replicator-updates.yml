@@ -13,7 +13,7 @@ on:
           default: 'main'
 jobs:
   update-replicator-docs:
-    name: Update Replicator Docs
+    name: Update Replicator Coverage Docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout docs
@@ -34,8 +34,9 @@ jobs:
           use-pro: true
         env:
           LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
+          LOCALSTACK_DEBUG: 1
 
-      - name: Create Replicator Docs
+      - name: Create Replicator Coverage
         working-directory: docs
         env:
           LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
@@ -49,7 +50,7 @@ jobs:
           # Check against the PR branch if it exists, otherwise against the main
           # Store the result in resources/diff-check.log and store the diff count in the GitHub Action output "diff-count"
           mkdir -p resources
-          (git diff --name-only origin/replicator-auto-updates data/replicator/coverage.json 2>/dev/null || git diff --name-only origin/${{ github.event.inputs.targetBranch || 'main' }} data/replicator/coverage.json 2>/dev/null) | tee resources/diff-check.log
+          (git diff --name-only origin/replicator-coverage-updates data/replicator/coverage.json 2>/dev/null || git diff --name-only origin/${{ github.event.inputs.targetBranch || 'main' }} data/replicator/coverage.json 2>/dev/null) | tee resources/diff-check.log
           echo "diff-count=$(cat resources/diff-check.log | wc -l)" >> $GITHUB_OUTPUT
 
       - name: Create PR
@@ -59,9 +60,9 @@ jobs:
           path: docs
           title: "Update Replicator Docs"
           body: "Automatic updates of replicator supported resources"
-          branch: "replicator-auto-updates"
+          branch: "replicator-coverage-updates"
           author: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
           committer: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
-          commit-message: "update generated replicator docs"
+          commit-message: "update generated replicator coverage file"
           token: ${{ secrets.PRO_ACCESS_TOKEN }}
           reviewers: cloutierMat
