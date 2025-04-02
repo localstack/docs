@@ -34,14 +34,12 @@ jobs:
           use-pro: true
         env:
           LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
-          LOCALSTACK_DEBUG: 1
 
       - name: Create Replicator Coverage
         working-directory: docs
-        env:
-          LOCALSTACK_DEBUG: 1
-          LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
-        run: localstack replicator resource | jq --indent 4 . > data/replicator/coverage.json
+        run: |
+          localstack auth set-token ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
+          localstack replicator resources | jq --indent 4 . > data/replicator/coverage.json
 
       - name: Check for changes
         id: check-for-changes
