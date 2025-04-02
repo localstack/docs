@@ -39,6 +39,7 @@ jobs:
       - name: Create Replicator Coverage
         working-directory: docs
         env:
+          LOCALSTACK_DEBUG: 1
           LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
         run: localstack replicator resource | jq --indent 4 . > data/replicator/coverage.json
 
