@@ -264,3 +264,4 @@ $ awslocal kinesisanalyticsv2 untag-resource \
 - CloudTrail integration and CloudWatch metrics is not implemented.
   The application logging level defaults to `INFO` and can not be overridden.
 - Parallelism is limited to the default value of 1, with one TaskManager that has one [Task Slot](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#task-slots-and-resources) allocated.
+  [Parallelism configuration](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_FlinkApplicationConfiguration.html#APIReference-Type-FlinkApplicationConfiguration-ParallelismConfiguration) provided on Flink application creation or update is ignored.
