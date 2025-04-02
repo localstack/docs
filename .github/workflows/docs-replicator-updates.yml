@@ -1,10 +1,7 @@
-name: Update Parity Docs
+name: Update Replicator Coverage Docs
 on:
   schedule:
     - cron: 0 5 * * MON
-  push:
-    branches:
-      - automate-replicator-coverage
   workflow_dispatch:
     inputs:
         targetBranch:
@@ -57,11 +54,11 @@ jobs:
         if: ${{ success() && steps.check-for-changes.outputs.diff-count != '0' && steps.check-for-changes.outputs.diff-count != '' }}
         with:
           path: docs
-          title: "Update Replicator Docs"
+          title: "Update Replicator Coverage Docs"
           body: "Automatic updates of replicator supported resources"
           branch: "replicator-coverage-updates"
           author: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
           committer: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
           commit-message: "update generated replicator coverage file"
           token: ${{ secrets.PRO_ACCESS_TOKEN }}
-          reviewers: cloutierMat
+          reviewers: cloutierMat,pinzon
