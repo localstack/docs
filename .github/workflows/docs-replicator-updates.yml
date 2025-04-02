@@ -23,11 +23,9 @@ jobs:
           path: docs
           ref: ${{ github.event.inputs.targetBranch || 'main' }}
 
-      - name: Set up Python 3.11
-        id: setup-python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+      - name: Set up system wide dependencies
+        run: |
+          sudo apt-get install jq
 
       - name: Start LocalStack
         uses: LocalStack/setup-localstack@v0.2.3
@@ -38,6 +36,8 @@ jobs:
 
       - name: Create Replicator Docs
         working-directory: docs
+        env:
+          LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
         run: localstack replicator resource | jq --indent 4 . > data/replicator/coverage.json
 
       - name: Check for changes
@@ -63,4 +63,4 @@ jobs:
           committer: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
           commit-message: "update generated replicator docs"
           token: ${{ secrets.PRO_ACCESS_TOKEN }}
-          reviewers: cloutierMat,pinzon
+          reviewers: cloutierMat
