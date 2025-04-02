@@ -1,0 +1,48 @@
+name: Update feature catalog page
+on:
+  schedule:
+    - cron: 0 10 * * MON
+  workflow_dispatch:
+jobs:
+  generate-feature-catalog-file:
+    name: Generate feature catalog file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout docs repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'localstack/docs'
+          path: 'localstack-docs'
+
+      - name: Download features files from Collect feature files (GitHub)
+        uses: actions/download-artifact@v4
+        with:
+          path: features-files-community
+          name: features-files
+          repository: localstack/localstack
+
+#      - name: Download features files from Collect feature files from PRO (GitHub)
+#        uses: actions/download-artifact@v4
+#        with:
+#          path: features-files-ext
+#          name: features-files-ext
+#          repository: localstack/localstack
+#          github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
+
+      - name: Generate feature catalog page
+        run: python3 scripts/generate_feature_catalog_page.py
+
+  pr-with-updated-feature-catalog:
+    name: Create PR with updated feature catalog file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "Update Feature catalog page"
+          body: "This PR updates Feature catalog page based on feature catalog YAML files"
+          branch: "update-feature-catalog"
+          author: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
+          committer: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
+          commit-message: "Upgrade feature catalog"
+          labels: "documentation"
