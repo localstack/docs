@@ -149,6 +149,6 @@ The following table highlights some differences between LocalStack SSM and AWS S
 The other limitations of LocalStack SSM are:
 
 - Dockerized instances only support `AWS-RunShellScript` commands.
-- [`SendCommand`](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_SendCommand.html) only runs 1 command per invocation and will ignore multiple commands passed as array, starting from 2nd one.
+- [`SendCommand`](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_SendCommand.html) only runs 1 command per invocation and will ignore multiple commands passed as an array, starting from the 2nd one.
 - Commands returning non-zero codes won't capture standard output or error streams, leaving them empty.
 - Shell constructs such as job controls (`&&`, `||`), and redirection (`>`) are not supported.
