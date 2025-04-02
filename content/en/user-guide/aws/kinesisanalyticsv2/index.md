@@ -18,7 +18,7 @@ This service was formerly known as 'Kinesis Data Analytics for Apache Flink'.
 LocalStack lets you to run Flink applications locally and implements several [AWS-compatible API operations](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/).
 
 A separate Apache Flink cluster is started in [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/deployment/overview/#application-mode) for every Managed Flink application created.
-Flink cluster deployment on LocalStack consists of 2 separate containers for [JobManager](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#jobmanager) and [TaskManager](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#taskmanagers).
+Flink cluster deployment on LocalStack consists of two separate containers for [JobManager](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#jobmanager) and [TaskManager](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#taskmanagers).
 
 {{< callout "note" >}}
 The emulated MSF provider was introduced and made the default in LocalStack v4.1.
