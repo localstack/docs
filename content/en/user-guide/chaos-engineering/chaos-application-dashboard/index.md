@@ -18,7 +18,7 @@ The dashboard uses [LocalStack Chaos API]({{< ref "chaos-api" >}}) under the hoo
 You can find this feature in the LocalStack Web Application by navigating to [**app.localstack.cloud/chaos-engineering**](https://app.localstack.cloud/chaos-engineering).
 
 {{< callout "note" >}}
-Chaos Engineering Dashboard is offered is offered as a **preview** feature and is under active development.
+Chaos Engineering Dashboard is offered as a **preview** feature and is under active development.
 {{< /callout >}}
 
 ## Features

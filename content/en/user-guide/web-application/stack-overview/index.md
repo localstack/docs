@@ -17,7 +17,7 @@ Alternatively, go to your LocalStack Instance and click on **Overview** to see a
 <br>
 
 {{< callout "note" >}}
-Stack Overview is offered is offered as a **preview** feature and is under active development.
+Stack Overview is offered as a **preview** feature and is under active development.
 {{< /callout >}}
 
 ## Supported Resources
