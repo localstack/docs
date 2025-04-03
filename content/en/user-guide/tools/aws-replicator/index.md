@@ -38,24 +38,32 @@ These operations can be limited by creating a minimal IAM role with just the pol
 See the [supported resources section](#supported-resources) for details of what policy actions are required for each resource.
 
 When the replication is triggered using the LocalStack CLI, which must run in a shell configured to access AWS.
+Here are some options:
 
-**Using the aws-cli v2**
+{{< tabpane text=true >}}
+{{< tab header="AWS CLI v2" >}}
+{{% markdown %}}
 
-If you have the aws-cli v2 installed, the cli will read credentials from your configured `AWS_PROFILE`.
+If you have the AWS CLI v2 installed, the CLI will read credentials from your configured `AWS_PROFILE`.
 
 {{< command >}}
 $ export AWS_PROFILE=my-aws-profile
 $ localstack replicator ...
 {{< /command >}}
 
-**Using the aws-cli v1 or no aws-cli**
-
-If you have the aws-cli v1 installed or no installation of the aws-cli, the following environment variables must be set:
+{{% /markdown %}}
+{{< /tab >}}
+{{< tab header="AWS CLI v1" >}}
+{{% markdown %}}
+If you have the AWS CLI v1 installed or no installation of the AWS CLI, the following environment variables must be set:
 
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_SESSION_TOKEN` (optional)
 - `AWS_DEFAULT_REGION`
+{{% /markdown %}}
+{{< /tab >}}
+{{< /tabpane >}}
 
 ### Trigger a replication job
 
