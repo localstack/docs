@@ -2,22 +2,67 @@
 title: "Accounts"
 weight: 10
 description: >
-  The LocalStack accounts gives users access to the features in the web app like the resource browser, Stack Insight, Cloud pods, extensions and more.
+  A LocalStack account is required to access features in the Web Application, and to access any of our offerings.
 ---
 
-A LocalStack account is required to access features in the web app, and to access any of our paid offerings.
+## Introduction
+
+A user account on the LocalStack Web Application is required to access the following features:
+
+- Advanced AWS services
+- Resource Browsers
+- Cloud Pods
+- Extensions Library
+- Stack Insights
+- Ephemeral Instances
+- IAM Policy Stream
+- Chaos Engineering
+
+To create an Auth Token for your LocalStack account, you need to sign up for an account on the LocalStack Web Application.
+
+This token is used to authenticate your requests to the LocalStack platform and access the features mentioned above.
 
 ## Creating an Account
 
-Visit [**app.localstack.cloud/sign-up**](https://app.localstack.cloud/sign-up) to create a user account for LocalStack.
-You can sign up with your email address or one of our supported social identity providers (such as GitHub).
+You can either:
 
-The Terms and Conditions can be found at <a href="https://www.localstack.cloud/legal/tos" target="_blank">https://www.localstack.cloud/legal/tos</a> and our privacy policy can be found at <a href="https://www.localstack.cloud/legal/privacy-policy" target="_blank">https://www.localstack.cloud/legal/privacy-policy</a>
+- Sign up with GitHub, or  
+- Enter your email address and follow the prompts.
 
-<img src="signup.PNG" width="550px" alt="A screenshot of the sign up form" title="Sign-up form">
+After submitting your email:
 
-## Updating Account Info and Settings
+1. Select whether you're working on **commercial** or **personal** projects.
+2. Fill in your first and last name.
+3. (**Optional**) Add company, job title, and GitHub username.
+4. Agree to the terms and conditions to continu
+.
 
-To update your account info, password and settings select the corresponding entry from the sidebar under the 'Account' menu entry.
+A verification link will be sent to your email.
+Once verified, you can log in using your email or GitHub account.
 
-<img src="account.png" alt="A screenshot of the 'Account Information' page with the 'Account' section highlighted in the navigation sidebar on the left." title="Account Settings" width="900">
+> Terms: [localstack.cloud/legal/tos](https://www.localstack.cloud/legal/tos)  
+> Privacy Policy: [localstack.cloud/legal/privacy-policy](https://www.localstack.cloud/legal/privacy-policy)
+
+<img src="account-signup-form.png" width="700px" alt="Account sign-up form" title="Sign-up screen">
+
+## Logging In
+
+Once your account is activated, log in at [**app.localstack.cloud**](https://app.localstack.cloud) using your selected sign-in method.
+
+Supported login options:
+- GitHub
+- SSO (if configured)
+- Email-based authentication
+
+## Updating Account Settings
+
+To update your profile or change account settings:
+
+1. Click your name or organization's name in the top-left corner.
+2. Select **Settings** from the dropdown.
+3. Navigate to **Profile** to update your name, company, job title, phone number, or GitHub username.
+
+<img src="account-settings.png" width="700px" alt="Account settings in sidebar" title="Navigating to account settings">
+<br><br>
+
+Changes are saved automatically once submitted.

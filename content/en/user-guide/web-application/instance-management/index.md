@@ -13,9 +13,12 @@ You can access this feature through the [**LocalStack Instances**](https://app.l
 
 Instance Management offers these features:
 
+- **Overview**: Shows the stack details of your LocalStack instances.
 - **Status**: Shows the status of the services running in the LocalStack container.
 - **Resource Browser**: Lets you view and manage your local AWS resources.
 - **State**: Allows you to export and import the state of your LocalStack instances.
+- **IAM Policy Stream**: Provides a stream of IAM policies corresponding to the AWS API calls.
+- **Chaos Engineering**: Allows you to inject failures & simulate outages in your LocalStack instance.
 - **Extensions**: Provides extra integrations to improve your LocalStack experience.
 
 <img src="instance-management.png" alt="LocalStack Web Application's Instance Management page" title="Instance Management" width="800px" />
