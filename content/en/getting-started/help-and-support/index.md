@@ -98,9 +98,6 @@ LocalStack Slack Community includes LocalStack users, contributors, and maintain
 If you need help with the community version of LocalStack, please use the `#help` channel.
 You can sign up for the [LocalStack Slack Community](https://localstack.cloud/slack) by creating an account.
 
-However, the messages on Slack are not accessible after three months, so it is not the best place to ask questions that may be useful to others in the future.
-For that, we recommend using LocalStack Discuss.
-
 #### GitHub Issue
 
 You can use GitHub Issue to:
