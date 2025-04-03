@@ -3,6 +3,7 @@ title: "Application Preview"
 linkTitle: "Application Preview"
 weight: 2
 description: Create an Application Preview to deploy your application changes in an Ephemeral Instance
+tags: ["Pro image"]
 ---
 
 ## Introduction
@@ -13,7 +14,7 @@ It allows temporary deployment of AWS powered applications on a LocalStack Ephem
 This feature is currently only available for GitHub repositories that use GitHub Actions.
 
 {{< callout >}}
-Application Preview is offered as a **preview** feature and under active development.
+Application Preview is offered as a **preview** feature and is under active development.
 {{< /callout >}}
 
 ## Getting started

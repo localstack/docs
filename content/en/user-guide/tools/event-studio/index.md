@@ -21,6 +21,10 @@ With Event Studio, you can:
 - Gain insights into IAM policies and detect missing permissions.
 - Enhance event contexts for advanced flow tracing.
 
+{{< callout >}}
+Event Studio is offered as a **preview** feature and is under active development.
+{{</callout>}}
+
 ## Installation
 
 To install Event Studio, start your LocalStack container with your `LOCALSTACK_AUTH_TOKEN`:
