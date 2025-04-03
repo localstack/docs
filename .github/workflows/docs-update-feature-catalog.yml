@@ -5,18 +5,38 @@ on:
   workflow_dispatch:
 jobs:
   generate-feature-catalog-file:
-    name: Generate feature catalog file
+    name: Generate feature catalog page
     runs-on: ubuntu-latest
     steps:
       - name: Checkout docs repository
         uses: actions/checkout@v4
+
+      - name: Latest run-id from community repository
+        run: |
+          latest_workflow_id=$(curl -s https://api.github.com/repos/localstack/localstack/actions/workflows \
+            | jq '.workflows[] | select(.name=="Artifact with features files").id')
+          latest_run_id=$(curl -s \
+            https://api.github.com/repos/localstack/localstack/actions/workflows/$latest_workflow_id/runs | jq '.workflow_runs[0].id')
+          echo "Latest run-id: ${latest_run_id}"
+          echo "FEATURES_ARTIFACTS_COMMUNITY_RUN_ID=${latest_run_id}" >> $GITHUB_ENV
 
       - name: Download features files from Collect feature files (GitHub)
         uses: actions/download-artifact@v4
         with:
           path: features-files-community
           name: features-files
+          github-token: ${{ secrets.GH_PAT_FEATURE_CATALOG_PAGE }}  # PAT with access to artifacts from GH Actions
           repository: localstack/localstack
+          run-id: ${{ env.FEATURES_ARTIFACTS_COMMUNITY_RUN_ID }}
+
+      - name: Latest run-id from ext repository
+        run: |
+          latest_workflow_id=$(curl -s https://api.github.com/repos/localstack/localstack-ext/actions/workflows \
+            | jq '.workflows[] | select(.name=="Artifact with features files").id')
+          latest_run_id=$(curl -s \
+            https://api.github.com/repos/localstack/localstack-ext/actions/workflows/$latest_workflow_id/runs | jq '.workflow_runs[0].id')
+          echo "Latest run-id: ${latest_run_id}"
+          echo "FEATURES_ARTIFACTS_EXT_RUN_ID=${latest_run_id}" >> $GITHUB_ENV
 
       - name: Download features files from Collect feature files from PRO (GitHub)
         uses: actions/download-artifact@v4
@@ -24,7 +44,8 @@ jobs:
           path: features-files-ext
           name: features-files-ext
           repository: localstack/localstack
-          github-token: ${{ secrets.GH_AC_UPDATE_FEATURE_CATALOG }}
+          github-token: ${{ secrets.GH_PAT_FEATURE_CATALOG_PAGE_PRO }} # PAT with access to artifacts from GH Actions
+          run-id: ${{ env.FEATURES_ARTIFACTS_EXT_RUN_ID }}
 
       - name: Generate feature catalog page
         run: python3 scripts/generate_feature_catalog_page.py
