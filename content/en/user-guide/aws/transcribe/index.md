@@ -16,7 +16,7 @@ The supported APIs are available on our [API Coverage Page](https://docs.localst
 
 LocalStack Transcribe uses an offline speech-to-text library called [Vosk](https://alphacephei.com/vosk/).
 It requires an active internet connection to download the language model.
-Once the language model is downloaed, subsequent transcriptions for the same language can be performed offline.
+Once the language model is downloaded, subsequent transcriptions for the same language can be performed offline.
 Language models typically have a size of around 50 MiB and are saved in the cache directory (see [Filesystem Layout]({{< ref "filesystem" >}})).
 
 ## Getting Started
