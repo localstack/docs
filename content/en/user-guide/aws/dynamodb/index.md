@@ -13,6 +13,8 @@ DynamoDB provides a fast and scalable key-value datastore with support for repli
 LocalStack allows you to use the DynamoDB APIs in your local environment to manage key-value and document data models.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_dynamodb/), which provides information on the extent of DynamoDB's integration with LocalStack.
 
+DynamoDB emulation is powered by [DynamoDB Local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
+
 ## Getting started
 
 This guide is designed for users new to DynamoDB and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.

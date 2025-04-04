@@ -28,7 +28,7 @@ FIS defines the following elements:
 1. Duration of the disruption.
 
 Together this is termed as an Experiment.
-After the designated time, FIS restores systems to their original state and/or ceases introducing faults.
+After the designated time, running experiments restore systems to their original state and cease introducing faults.
 
 {{< callout "note" >}}
 FIS experiment emulation is part of LocalStack Enterprise.
@@ -37,10 +37,9 @@ If you'd like to try it out, please [contact us](https://www.localstack.cloud/de
 
 FIS actions can be categorized into two main types:
 
-1. Single-time events — For example, the `aws:ec2:stop-instances` FIS action, which sends a [`StopInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_StopInstances.html) API to specific EC2 instances.
+1. One-time events: For example, the `aws:ec2:stop-instances` FIS action, which sends a [`StopInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_StopInstances.html) API to specific EC2 instances.
 Some of these events can automatically be undone after a defined time, such as sending a [`StartInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_StartInstances.html) command to the affected instances.
-1. Inducing API errors in response to a specified percentage of API calls.
-For instance, using `aws:fis:inject-api-unavailable-error` to introduce an HTTP 503 error.
+1. Probabilistic API errors: For instance, using `aws:fis:inject-api-unavailable-error` to introduce an HTTP 503 error.
 
 ## Getting started
 
@@ -233,9 +232,7 @@ LocalStack FIS currently supports the following actions:
 - **`aws:rds:reboot-db-instances`**: Runs EC2 RebootInstances on the target EC2 instances.
 - **`aws:ssm:send-command`**: Runs the Systems Manager SendCommand on the target EC2 instances.
 
-{{< callout "note" >}}
 If you would like support for more FIS actions, please make a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
-{{< /callout >}}
 
 ## Current Limitations
 
