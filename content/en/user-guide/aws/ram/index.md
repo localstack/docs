@@ -34,7 +34,7 @@ $ awslocal ram create-resource-share \
     --resource-arn arn:aws:appsync:eu-central-1:000000000000:apis/wcgmjril5wuyvhmpildatuaat3
 {{< /command >}}
 
-## Limitations
+## Current Limitations
 
 LocalStack RAM supports emulated sharing for EC2 Subnets only.
 Only specified account principals are granted access to the shared subnets, and associated VPC and route tables.

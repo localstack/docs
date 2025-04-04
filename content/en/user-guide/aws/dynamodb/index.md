@@ -206,7 +206,7 @@ The following code snippets and sample applications provide practical examples o
 - [Loan Broker application with AWS Step Functions, DynamoDB, Lambda, SQS, and SNS](https://github.com/localstack/loan-broker-stepfunctions-lambda-app)
 - [Messaging Processing application with SQS, DynamoDB, and Fargate](https://github.com/localstack/sqs-fargate-ddb-cdk-go)
 
-## Limitations
+## Current Limitations
 
 ### Global tables
 

@@ -154,6 +154,6 @@ The Resource Browser allows you to perform the following actions:
 - **Edit Environment**: Edit an existing MWAA environment by clicking on the **Edit** button after clicking on the environment name.
 - **Delete Environment**: Select the environment name and click on the **Actions** button followed by **Remove Selected** button.
 
-## Limitations
+## Current Limitations
 
 - LocalStack MWAA does not support [startup scripts](https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html)
