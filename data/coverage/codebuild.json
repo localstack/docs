@@ -30,11 +30,11 @@
       "BatchGetBuilds": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -498,11 +498,11 @@
       "StartBuild": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -604,6 +604,62 @@
     }
   ],
   "details": {
+    "BatchGetBuilds": {
+      "ids": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_codebuild_failure",
+            "test": "test_codebuild_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases', '$..logs', '$..phases', '$..artifacts.md5sum', '$..artifacts.sha256sum']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_codebuild_timeout",
+            "test": "test_codebuild_timeout",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases', '$..logs', '$..phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_getting_started_sample",
+            "test": "test_getting_started_sample",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codepipeline/test_actions.py::TestAction::test_code_build_action",
+            "test": "test_code_build_action",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codepipeline/test_actions.py::TestAction::test_code_build_action",
+            "test": "test_code_build_action",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "BatchGetProjects": {
       "names": {
         "ls_pro": [
@@ -616,6 +672,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codepipeline/test_actions.py::TestAction::test_code_build_action",
+            "test": "test_code_build_action",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       }
@@ -623,6 +689,26 @@
     "CreateProject": {
       "artifacts, environment, name, serviceRole, source": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_codebuild_failure",
+            "test": "test_codebuild_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases', '$..logs', '$..phases', '$..artifacts.md5sum', '$..artifacts.sha256sum']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_getting_started_sample",
+            "test": "test_getting_started_sample",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_project_crud_operations",
             "test": "test_project_crud_operations",
@@ -644,11 +730,65 @@
             "origin": "external"
           }
         ]
+      },
+      "artifacts, environment, name, serviceRole, source, timeoutInMinutes": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_codebuild_timeout",
+            "test": "test_codebuild_timeout",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases', '$..logs', '$..phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codepipeline/test_actions.py::TestAction::test_code_build_action",
+            "test": "test_code_build_action",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
       }
     },
     "DeleteProject": {
       "name": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_codebuild_failure",
+            "test": "test_codebuild_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases', '$..logs', '$..phases', '$..artifacts.md5sum', '$..artifacts.sha256sum']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_codebuild_timeout",
+            "test": "test_codebuild_timeout",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases', '$..logs', '$..phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_getting_started_sample",
+            "test": "test_getting_started_sample",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_project_crud_operations",
             "test": "test_project_crud_operations",
@@ -657,6 +797,16 @@
             "snapshot_skipped": "['$..project.tags', '$..projects..tags']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codepipeline/test_actions.py::TestAction::test_code_build_action",
+            "test": "test_code_build_action",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -674,6 +824,56 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          }
+        ]
+      }
+    },
+    "StartBuild": {
+      "projectName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_codebuild_failure",
+            "test": "test_codebuild_failure",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases', '$..logs', '$..phases', '$..artifacts.md5sum', '$..artifacts.sha256sum']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_codebuild_timeout",
+            "test": "test_codebuild_timeout",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases', '$..logs', '$..phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_getting_started_sample",
+            "test": "test_getting_started_sample",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..build.logs', '$..build.phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "projectName, sourceVersion": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codepipeline/test_actions.py::TestAction::test_code_build_action",
+            "test": "test_code_build_action",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       }
