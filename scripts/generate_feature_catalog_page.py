@@ -4,7 +4,7 @@ from pathlib import Path
 
 import yaml
 
-DEFAULT_STATUS = 'not supported'
+DEFAULT_STATUS = 'unsupported'
 DEFAULT_EMULATION_LEVEL = 'CRUD'
 FEATURES_FILE_NAME='features.yml'
 
@@ -68,10 +68,10 @@ def load_yaml_file(file_path: str):
         with open(file_path, 'r') as file:
             return yaml.safe_load(file)
     except yaml.YAMLError as e:
-        print(f"Error parsing YAML file: {e}")
+        sys.stdout.write(f"::error title=Failed to parse features file::An error occurred while parsing {file_path}: {e}")
         sys.exit(1)
     except FileNotFoundError:
-        print(f"YAML file not found: {file_path}")
+        sys.stdout.write(f"::error title=Missing features file::No features file found at {file_path}")
         sys.exit(1)
 
 def get_service_path_to_abs_community_ext_paths(community_files_path: str, ext_files_path: str) -> dict[str, (str, str)]:

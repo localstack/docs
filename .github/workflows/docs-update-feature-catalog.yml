@@ -1,7 +1,7 @@
 name: Update feature catalog page
 on:
   schedule:
-    - cron: 0 10 * * MON
+    - cron: 0 10 * * Tue
   workflow_dispatch:
 jobs:
   generate-feature-catalog-file:
@@ -14,7 +14,7 @@ jobs:
       - name: Latest run-id from community repository
         run: |
           latest_workflow_id=$(curl -s https://api.github.com/repos/localstack/localstack/actions/workflows \
-            | jq '.workflows[] | select(.name=="Artifact with features files").id')
+            | jq '.workflows[] | select(.name=="AWS / Archive feature files").id')
           latest_run_id=$(curl -s \
             https://api.github.com/repos/localstack/localstack/actions/workflows/$latest_workflow_id/runs | jq '.workflow_runs[0].id')
           echo "Latest run-id: ${latest_run_id}"
@@ -32,7 +32,7 @@ jobs:
       - name: Latest run-id from ext repository
         run: |
           latest_workflow_id=$(curl -s https://api.github.com/repos/localstack/localstack-ext/actions/workflows \
-            | jq '.workflows[] | select(.name=="Artifact with features files").id')
+            | jq '.workflows[] | select(.name=="AWS / Archive feature files").id')
           latest_run_id=$(curl -s \
             https://api.github.com/repos/localstack/localstack-ext/actions/workflows/$latest_workflow_id/runs | jq '.workflow_runs[0].id')
           echo "Latest run-id: ${latest_run_id}"
