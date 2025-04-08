@@ -8,15 +8,15 @@ tags: ["Pro image"]
 
 ## Introduction
 
-Managed Workflows for Apache Airflow (MWAA) is a fully managed service by AWS that simplifies the deployment, management, and scaling of Apache Airflow workflows in the cloud.
+Managed Workflows for Apache Airflow (MWAA) is a fully managed service by AWS that simplifies the deployment, management, and scaling of [Apache Airflow](https://airflow.apache.org/) workflows in the cloud.
 MWAA leverages the familiar Airflow features and integrations while integrating with S3, Glue, Redshift, Lambda, and other AWS services to build data pipelines and orchestrate data processing workflows in the cloud.
 
 LocalStack allows you to use the MWAA APIs in your local environment to allow the setup and operation of data pipelines.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_mwaa/), which provides information on the extent of MWAA's integration with LocalStack.
+The supported APIs are available on the [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_mwaa/).
 
 ## Getting started
 
-This guide is designed for users new to Managed Workflows for Apache Airflow and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+This guide is designed for users new to MWAA and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method.
 We will demonstrate how to create an Airflow environment and access the Airflow UI.
@@ -153,3 +153,7 @@ The Resource Browser allows you to perform the following actions:
 - **View Environment**: View details of an existing MWAA environment by clicking on the environment name.
 - **Edit Environment**: Edit an existing MWAA environment by clicking on the **Edit** button after clicking on the environment name.
 - **Delete Environment**: Select the environment name and click on the **Actions** button followed by **Remove Selected** button.
+
+## Current Limitations
+
+- LocalStack MWAA does not support [startup scripts](https://docs.aws.amazon.com/mwaa/latest/userguide/using-startup-script.html)

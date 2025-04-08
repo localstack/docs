@@ -8,20 +8,16 @@ persistence: supported
 
 ## Introduction
 
-Transcribe is a service provided by Amazon Web Services (AWS) that offers automatic speech recognition (ASR) capabilities.
+Transcribe is a service provided by AWS that offers automatic speech recognition (ASR) capabilities.
 It enables developers to convert spoken language into written text, making it valuable for a wide range of applications, from transcription services to voice analytics.
 
 LocalStack allows you to use the Transcribe APIs for offline speech-to-text jobs in your local environment.
 The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_transcribe/), which provides information on the extent of Transcribe integration with LocalStack.
 
-{{< callout >}}
-LocalStack's Transcribe relies on the offline speech-to-text service called [Vosk](https://alphacephei.com/vosk/).
-Therefore, LocalStack requires an internet connection during the initial creation of a transcription job for a specific language.
-This initial connection is required to download and cache the language model.
-
-Once the language model is cached, subsequent transcriptions for the same language can be performed offline.
-These language models typically have a size of around 50 MiB, and they are saved to the cache directory (for more details, refer to the [Filesystem Layout]({{< ref "filesystem" >}}) section).
-{{< /callout >}}
+LocalStack Transcribe uses an offline speech-to-text library called [Vosk](https://alphacephei.com/vosk/).
+It requires an active internet connection to download the language model.
+Once the language model is downloaded, subsequent transcriptions for the same language can be performed offline.
+Language models typically have a size of around 50 MiB and are saved in the cache directory (see [Filesystem Layout]({{< ref "filesystem" >}})).
 
 ## Getting Started
 
@@ -123,8 +119,8 @@ The following languages and dialects are supported:
 
 | Language         | Language Code |
 | ---------------- | ------------- |
-| Catalan          | `ca_ES`       |
-| Czech            | `cs_CZ`       |
+| Catalan          | `ca-ES`       |
+| Czech            | `cs-CZ`       |
 | German           | `de-DE`       |
 | English, British | `en-GB`       |
 | English, Indian  | `en-IN`       |
@@ -132,7 +128,7 @@ The following languages and dialects are supported:
 | Spanish          | `es-ES`       |
 | Farsi            | `fa-IR`       |
 | French           | `fr-FR`       |
-| Gujarati         | `gu_IN`       |
+| Gujarati         | `gu-IN`       |
 | Hindi            | `hi-IN`       |
 | Italian          | `it-IT`       |
 | Japan            | `ja-JP`       |
