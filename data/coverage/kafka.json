@@ -369,8 +369,8 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -686,7 +686,7 @@
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..BrokerNodeGroupInfo.ZoneIds', '$..ClusterArn', '$..ClusterInfo.BrokerNodeGroupInfo.ZoneIds', '$..ClusterInfo.Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..StorageMode', '$..Tags']",
+            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo', '$..CustomerActionStatus', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags', '$..NetworkInterfaces..Attachment', '$..NetworkInterfaces..Operator', '$..NetworkInterfaces..PrivateIpAddresses..PrivateDnsName', '$..NetworkInterfaces..PrivateDnsName', '$..NetworkInterfaces..Status']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -729,6 +729,116 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_instance[invalid]",
+            "test": "test_create_cluster_invalid_instance[invalid]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_instance[nonexistent]",
+            "test": "test_create_cluster_invalid_instance[nonexistent]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_security_groups[invalid_format]",
+            "test": "test_create_cluster_invalid_security_groups[invalid_format]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_security_groups[nonexistent]",
+            "test": "test_create_cluster_invalid_security_groups[nonexistent]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_subnets[duplicate]",
+            "test": "test_create_cluster_invalid_subnets[duplicate]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_subnets[empty]",
+            "test": "test_create_cluster_invalid_subnets[empty]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_subnets[exceeds_max]",
+            "test": "test_create_cluster_invalid_subnets[exceeds_max]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_subnets[invalid_factor]",
+            "test": "test_create_cluster_invalid_subnets[invalid_factor]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_subnets[invalid_subnets_duplicate_az]",
+            "test": "test_create_cluster_invalid_subnets[invalid_subnets_duplicate_az]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_subnets[nonexistent]",
+            "test": "test_create_cluster_invalid_subnets[nonexistent]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_create_cluster_invalid_subnets[subceeds_min]",
+            "test": "test_create_cluster_invalid_subnets[subceeds_min]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -782,7 +892,7 @@
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..BrokerNodeGroupInfo.ZoneIds', '$..ClusterArn', '$..ClusterInfo.BrokerNodeGroupInfo.ZoneIds', '$..ClusterInfo.Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..StorageMode', '$..Tags']",
+            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo', '$..CustomerActionStatus', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags', '$..NetworkInterfaces..Attachment', '$..NetworkInterfaces..Operator', '$..NetworkInterfaces..PrivateIpAddresses..PrivateDnsName', '$..NetworkInterfaces..PrivateDnsName', '$..NetworkInterfaces..Status']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -884,7 +994,7 @@
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..BrokerNodeGroupInfo.ZoneIds', '$..ClusterArn', '$..ClusterInfo.BrokerNodeGroupInfo.ZoneIds', '$..ClusterInfo.Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..StorageMode', '$..Tags']",
+            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo', '$..CustomerActionStatus', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags', '$..NetworkInterfaces..Attachment', '$..NetworkInterfaces..Operator', '$..NetworkInterfaces..PrivateIpAddresses..PrivateDnsName', '$..NetworkInterfaces..PrivateDnsName', '$..NetworkInterfaces..Status']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -960,7 +1070,7 @@
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..BrokerNodeGroupInfo.ZoneIds', '$..ClusterArn', '$..ClusterInfo.BrokerNodeGroupInfo.ZoneIds', '$..ClusterInfo.Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..StorageMode', '$..Tags']",
+            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo', '$..CustomerActionStatus', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags', '$..NetworkInterfaces..Attachment', '$..NetworkInterfaces..Operator', '$..NetworkInterfaces..PrivateIpAddresses..PrivateDnsName', '$..NetworkInterfaces..PrivateDnsName', '$..NetworkInterfaces..Status']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1104,7 +1214,7 @@
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..BrokerNodeGroupInfo.ZoneIds', '$..ClusterArn', '$..ClusterInfo.BrokerNodeGroupInfo.ZoneIds', '$..ClusterInfo.Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..StorageMode', '$..Tags']",
+            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo', '$..CustomerActionStatus', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags', '$..NetworkInterfaces..Attachment', '$..NetworkInterfaces..Operator', '$..NetworkInterfaces..PrivateIpAddresses..PrivateDnsName', '$..NetworkInterfaces..PrivateDnsName', '$..NetworkInterfaces..Status']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1130,7 +1240,7 @@
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..BrokerNodeGroupInfo.ZoneIds', '$..ClusterArn', '$..ClusterInfo.BrokerNodeGroupInfo.ZoneIds', '$..ClusterInfo.Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..Provisioned.BrokerNodeGroupInfo.ZoneIds', '$..StorageMode', '$..Tags']",
+            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo', '$..CustomerActionStatus', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags', '$..NetworkInterfaces..Attachment', '$..NetworkInterfaces..Operator', '$..NetworkInterfaces..PrivateIpAddresses..PrivateDnsName', '$..NetworkInterfaces..PrivateDnsName', '$..NetworkInterfaces..Status']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1181,6 +1291,20 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
+      "ClusterArn, MaxResults": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/kafka/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
+            "test": "test_cluster_v2_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo', '$..CustomerActionStatus', '$..CurrentVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags', '$..NetworkInterfaces..Attachment', '$..NetworkInterfaces..Operator', '$..NetworkInterfaces..PrivateIpAddresses..PrivateDnsName', '$..NetworkInterfaces..PrivateDnsName', '$..NetworkInterfaces..Status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
