@@ -179,5 +179,5 @@ The following code snippets and sample applications provide practical examples o
 
 ## Current Limitations
 
-- The Application Load Balancer currently supports only the `forward` and `redirect` action types.
+- The Application Load Balancer currently supports only the `forward`, `redirect` and `fixed-response` action types.
 - When opting for Route53 CNAMEs to direct requests towards the ALBs, it's important to remember that explicit configuration of the `Host` header to match the resource record might be necessary while making calls.
