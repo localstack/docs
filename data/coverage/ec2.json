@@ -165,7 +165,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -1533,7 +1533,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -2481,7 +2481,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -4413,7 +4413,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -8013,7 +8013,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -8135,8 +8135,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8160,6 +8160,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8485,7 +8495,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -8563,8 +8573,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8588,6 +8598,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9041,8 +9061,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -9066,6 +9086,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9437,13 +9467,23 @@
       "GroupId, IpPermissions": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -9494,6 +9534,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_listener_services_are_accessible_and_returning_expected_content",
+            "test": "test_listener_services_are_accessible_and_returning_expected_content",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           }
         ]
@@ -9567,8 +9617,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -9582,6 +9632,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -9605,16 +9665,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
-            "test": "test_servicediscovery_ecs_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync_data_source.py::TestAppsyncRDSDataSource::test_rds_data_source",
@@ -9674,16 +9724,6 @@
             "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
-            "test": "test_create_service_run_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -10275,6 +10315,36 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       },
@@ -10539,8 +10609,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -10564,6 +10634,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -11079,8 +11159,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -11104,6 +11184,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -11481,13 +11571,23 @@
       "ClientToken, Description, Groups, PrivateIpAddress, SubnetId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -11875,7 +11975,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -11943,8 +12043,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -11968,6 +12068,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -12361,7 +12471,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -12439,8 +12549,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -12464,6 +12574,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -13033,8 +13153,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13058,6 +13178,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14211,8 +14341,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -14236,6 +14366,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14569,7 +14709,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -14934,6 +15074,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/route53/test_route53_replication.py::TestHostedZoneReplication::test_replication_private_zone",
+            "test": "test_replication_private_zone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -15355,7 +15505,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -15371,7 +15521,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -15983,7 +16133,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -16117,8 +16267,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16142,6 +16292,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -16751,6 +16911,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/route53/test_route53_replication.py::TestHostedZoneReplication::test_replication_private_zone",
+            "test": "test_replication_private_zone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       }
@@ -17063,8 +17233,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17088,6 +17258,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -17283,12 +17463,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -17521,8 +17701,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -17546,6 +17726,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -17721,12 +17911,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -17839,12 +18029,12 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -17965,7 +18155,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -18033,8 +18223,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -18058,6 +18248,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -18373,7 +18573,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -18471,8 +18671,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -18496,6 +18696,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -18691,12 +18901,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -19039,8 +19249,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -19064,6 +19274,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19349,12 +19569,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -19993,7 +20213,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20201,8 +20421,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -20226,6 +20446,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20621,12 +20851,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -20901,6 +21131,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/route53/test_route53_replication.py::TestHostedZoneReplication::test_replication_private_zone",
+            "test": "test_replication_private_zone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_github.py::test_commit_info",
             "test": "test_commit_info",
             "response": "200",
@@ -20931,7 +21171,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -20947,7 +21187,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -21053,7 +21293,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -21411,8 +21651,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -21436,6 +21676,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -21891,12 +22141,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -22181,6 +22431,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/route53/test_route53_replication.py::TestHostedZoneReplication::test_replication_private_zone",
+            "test": "test_replication_private_zone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_github.py::test_commit_info",
             "test": "test_commit_info",
             "response": "200",
@@ -22373,7 +22633,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -22521,8 +22781,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -22546,6 +22806,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -23287,8 +23557,38 @@
       "Filters": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_action_rds_reboot_db_instances",
-            "test": "test_action_rds_reboot_db_instances",
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_get_experiment",
+            "test": "test_get_experiment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_idempotency_of_start_experiment",
+            "test": "test_idempotency_of_start_experiment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_list_experiments",
+            "test": "test_list_experiments",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_stop_experiment",
+            "test": "test_stop_experiment",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -23539,8 +23839,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -23564,6 +23864,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -23979,8 +24289,18 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -24014,6 +24334,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -24219,12 +24559,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -24519,7 +24859,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -24597,8 +24937,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -24622,6 +24962,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -25379,7 +25729,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -25457,8 +25807,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -25482,6 +25832,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -25925,7 +26285,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26043,8 +26403,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -26068,6 +26428,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26379,6 +26749,16 @@
       "Filters": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestHttpApiServiceDiscoveryPrivateIntegration::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ec2.py::test_deploy_duplicate_security_group",
             "test": "test_deploy_duplicate_security_group",
             "response": "200",
@@ -26386,6 +26766,36 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_listener_services_are_accessible_and_returning_expected_content",
+            "test": "test_listener_services_are_accessible_and_returning_expected_content",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           }
         ]
@@ -26537,7 +26947,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -26745,8 +27155,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -26770,6 +27180,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -28181,8 +28601,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -28196,6 +28616,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -29057,16 +29487,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_ecr_eks_integration",
-            "test": "test_ecr_eks_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SClusterRecreation::test_cluster_recreation",
             "test": "test_cluster_recreation",
             "response": "200",
@@ -29863,7 +30283,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29879,7 +30299,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -29985,7 +30405,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -30063,8 +30483,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -30088,6 +30508,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -31675,16 +32105,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_ecr_eks_integration",
-            "test": "test_ecr_eks_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SClusterRecreation::test_cluster_recreation",
             "test": "test_cluster_recreation",
             "response": "200",
@@ -33243,7 +33663,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -33371,8 +33791,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -33396,6 +33816,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -34031,6 +34461,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/replicator/services/route53/test_route53_replication.py::TestHostedZoneReplication::test_replication_private_zone",
+            "test": "test_replication_private_zone",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_ec2/test_cloudcontrol_vpc.py::test_read_vpc_not_found",
             "test": "test_read_vpc_not_found",
             "response": "400",
@@ -34165,8 +34605,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -34190,6 +34630,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -34385,12 +34835,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -34521,7 +34971,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -34609,8 +35059,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -34634,6 +35084,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -34829,12 +35289,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -35075,7 +35535,7 @@
             "test": "test_transit_gateway_attachment",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId']",
+            "snapshot_skipped": "['$..Tags', '$..Options.AssociationDefaultRouteTableId', '$..Options.PropagationDefaultRouteTableId', '$..Options.TransitGatewayCidrBlocks', '$..Options.SecurityGroupReferencingSupport']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35143,8 +35603,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_public_alb",
+            "test": "test_public_alb",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -35168,6 +35628,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_validate_ready",
+            "test": "test_validate_ready",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35551,12 +36021,12 @@
       "AllocationId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
-            "test": "test_create_app_in_k3s_cluster",
+            "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestEKS::test_get_parameters_eks_amis[1.20]",
+            "test": "test_get_parameters_eks_amis[1.20]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -35585,8 +36055,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -35610,6 +36080,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -35871,13 +36351,23 @@
       "GroupId, SecurityGroupRuleIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -35925,6 +36415,16 @@
             "test": "test_deployed_resources",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_samples.py::TestSharedResourcesSample::test_deployed_resources",
+            "test": "test_deployed_resources",
+            "response": "400",
+            "error": "CommonServiceException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -36061,8 +36561,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_infra",
-            "test": "test_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/fargate_prometheus/test_fargate_prometheus.py::TestFargatePrometheus::test_private_http_api_integration",
+            "test": "test_private_http_api_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -36076,6 +36576,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_alb_fargate_integration.py::TestAlbFargateIntegration::test_gzip_encoding",
+            "test": "test_gzip_encoding",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -36188,6 +36698,26 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "internal"
           }
         ]
