@@ -121,3 +121,7 @@ The following output is displayed:
     ]
 }
 ```
+
+## Current Limitations
+
+EventBridge Scheduler offers only mocked functionality in LocalStack, without emulating any actual functionality like schedule execution or target triggering for Lambda functions or SQS queues.
