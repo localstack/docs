@@ -384,8 +384,6 @@ To get started with LocalStack and DevContainers in VS Code, follow these steps:
 {{< /tab >}}
 
 {{< tab header="docker-compose.yml" lang="yaml" >}}
-version: "3.8"
-
 services:
   localstack:
     container_name: "localstack-main"

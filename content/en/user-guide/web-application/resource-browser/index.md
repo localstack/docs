@@ -10,7 +10,7 @@ description: >
 The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building & testing their cloud applications locally.
 It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources in a LocalStack container on your local machine.
 
-<img src="resource-browser.png" alt="LocalStack Web Application's Resource Browsers outlining various local AWS services" title="Resource Browser" width="900" />
+<img src="resource-browser.png" alt="LocalStack Web Application's Resource Browsers outlining various local AWS services" title="Resource Browser" width="700px" />
 
 The Resource Browser provide an experience similar to the AWS Management Console.
 However, the Resource Browser is not a replacement for the AWS Management Console and only replicate some of the features of the AWS Management Console.
@@ -70,6 +70,7 @@ The Resource Browser supports the following AWS services:
 |                              | [Amazon DocumentDB](https://app.localstack.cloud/inst/default/resources/docdb/clusters) |
 |                               | [Amazon Neptune](https://app.localstack.cloud/inst/default/resources/neptune/clusters) |
 |                              | [Amazon Timestream](https://app.localstack.cloud/inst/default/resources/timestream-write) |
+|                              | [Amazon Redshift](https://app.localstack.cloud/inst/default/resources/redshift/clusters) |
 | **Analytics**                | [Amazon Athena](https://app.localstack.cloud/inst/default/resources/athena/databases)                     |
 |                              | [Amazon Kinesis](https://app.localstack.cloud/inst/default/resources/kinesis)                            |
 |                              | [Amazon MSK (Managed Streaming for Kafka)](https://app.localstack.cloud/inst/default/resources/kafka)     |  
@@ -78,6 +79,7 @@ The Resource Browser supports the following AWS services:
 |                              | [Amazon CloudFront](https://app.localstack.cloud/inst/default/resources/cloudfront/distributions)                        |
 |                              | [Amazon OpenSearch Service](https://app.localstack.cloud/inst/default/resources/opensearch/domains) |
 | **Cloud Financial Management** | [AWS Cost Explorer](https://app.localstack.cloud/inst/default/resources/ce/costcategorydefinitions)                              |
+| **Migration & Transfer** | [Database Migration Service](https://app.localstack.cloud/inst/default/resources/dms/endpoints)                              |
 
 ## Troubleshooting
 

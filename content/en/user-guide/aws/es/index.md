@@ -207,8 +207,6 @@ Note that only a single backend can be configured, meaning that you will get a s
 The following shows a sample docker-compose file that contains a single-noded elasticsearch cluster and a basic localstack setp.
 
 ```yaml
-version: "3.9"
-
 services:
   elasticsearch:
     container_name: elasticsearch

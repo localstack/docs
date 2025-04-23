@@ -69,7 +69,7 @@ You can copy the `InstanceId` value and use it in the following commands.
 
 ### Send command using SSM
 
-You can use the [`SendCommand`](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_SendCommand.html) API to send commands to the EC2 instance.
+You can use the [`SendCommand`](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_SendCommand.html) API to send a command to the EC2 instance.
 The following command sends a `cat lsb-release` command in the `/etc` directory to the EC2 instance.
 
 {{< command >}}
@@ -149,5 +149,6 @@ The following table highlights some differences between LocalStack SSM and AWS S
 The other limitations of LocalStack SSM are:
 
 - Dockerized instances only support `AWS-RunShellScript` commands.
+- [`SendCommand`](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_SendCommand.html) only runs 1 command per invocation and will ignore multiple commands passed as an array, starting from the 2nd one.
 - Commands returning non-zero codes won't capture standard output or error streams, leaving them empty.
 - Shell constructs such as job controls (`&&`, `||`), and redirection (`>`) are not supported.

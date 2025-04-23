@@ -47,8 +47,6 @@ $ GATEWAY_LISTEN=0.0.0.0:4666 EXTERNAL_SERVICE_PORTS_START=4610 EXTERNAL_SERVICE
 $ GATEWAY_LISTEN=0.0.0.0:4766 EXTERNAL_SERVICE_PORTS_START=4710 EXTERNAL_SERVICE_PORTS_END=4759 MAIN_CONTAINER_NAME=localstack-main-3 localstack start
 {{< /tab >}}
 {{< tab header="docker-compose" lang="yml" >}}
-version: "3.8"
-
 services:
   localstack-main-1:
     container_name: localstack-main-1
