@@ -11,11 +11,190 @@ tags: ["Pro image"]
 CodePipeline is a continuous integration/continuous delivery (CI/CD) service offered by AWS.
 CodePipeline can be used to create automated pipelines that handle the build, test and deployment of software.
 
-With LocalStack, you can create, manage and execute pipelines.
-CodePipeline on LocalStack support a variety of actions that integrate with S3, CodeBuild and CodeConnections.
+LocalStack comes with a bespoke execution engine that can be used to create, manage and execute pipelines.
+It supports a variety of actions that integrate with S3, CodeBuild, CodeConnections and more.
+The available operations can be found on the [API coverage](https://docs.localstack.cloud/references/coverage/coverage_codepipeline/) page.
 
-## Getting Started
+## Getting started
 
+This guide is for users that are new to IoT and assumes a basic knowledge of the AWS CLI and LocalStack [`awslocal`](https://github.com/localstack/awscli-local) wrapper.
+
+Start LocalStack using your preferred method.
+
+In this guide, we will create a simple pipeline that fetches an object from an S3 bucket and uploads it to a different S3 bucket.
+
+### Create prerequisite buckets
+
+Start by creating the S3 buckets that will serve as the source and target.
+
+{{< command >}}
+$ awslocal s3 mb s3://source-bucket
+$ awslocal s3 mb s3://target-bucket
+{{< / command >}}
+
+It is important to note the CodePipeline requires source S3 buckets to have versioning enabled.
+This can be done using the S3 [PutBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html) operation.
+
+{{< command >}}
+$ awslocal s3api put-bucket-versioning \
+    --bucket source-bucket \
+    --versioning-configuration Status=Enabled
+{{< /command >}}
+
+Now create a placeholder file that will flow through the pipeline and upload it to the source bucket.
+
+{{< command >}}
+$ echo "Hello LocalStack!" > file
+{{< /command >}}
+
+{{< command >}}
+$ awslocal s3 cp file s3://source-bucket
+<disable-copy>
+upload: ./file to s3://source-bucket/file
+</disable-copy>
+{{< /command >}}
+
+Pipelines also require an artifact store, which is also an S3 bucket that is used as intermediate storage.
+
+{{< command >}}
+$ awslocal s3 mb s3://artifact-store-bucket
+{{< / command >}}
+
+### Configure IAM
+
+Depending on the specifics of the declaration, CodePipeline pipelines need access other AWS services.
+In this case we want our pipeline to retrieve and upload files to S3.
+This requires a properly configured IAM role that our pipeline can assume.
+
+Create the role as follows:
+
+```json
+# role.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "codepipeline.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+{{< command >}}
+$ awslocal iam create-role --role-name role --assume-role-policy-document file://role.json
+{{< /command >}}
+
+Now add a permissions policy to this role that permits read and write access to S3.
+
+```json
+# policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:*",
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+The permissions in the above example policy are relatively broad.
+You might want to use a more focused policy for better security.
+
+{{< command >}}
+$ awslocal iam put-role-policy --role-name role --policy-name policy --policy-document file://policy.json
+{{< /command >}}
+
+### Create pipeline
+
+Now we can turn our attention to the pipeline declaration.
+
+```json
+{
+  "name": "pipeline",
+  "executionMode": "SUPERSEDED",
+  "pipelineType": "V1",
+  "roleArn": "<TODO>",
+  "artifactStore": {
+    "type": "S3",
+    "location": "<TODO>"
+  },
+  "version": 1,
+  "stages": [
+    {
+      "name": "stage1",
+      "actions": [
+        {
+          "name": "action1",
+          "actionTypeId": {
+            "category": "Source",
+            "owner": "AWS",
+            "provider": "S3",
+            "version": "1"
+          },
+          "runOrder": 1,
+          "configuration": {
+            "S3Bucket": "<TODO>",
+            "S3ObjectKey": "<TODO>",
+            "PollForSourceChanges": "false"
+          },
+          "outputArtifacts": [
+            {
+              "name": "intermediate-artifact-file"
+            }
+          ],
+          "inputArtifacts": []
+        }
+      ]
+    },
+    {
+      "name": "stage2",
+      "actions": [
+        {
+          "name": "action1",
+          "actionTypeId": {
+            "category": "Deploy",
+            "owner": "AWS",
+            "provider": "S3",
+            "version": "1"
+          },
+          "runOrder": 1,
+          "configuration": {
+            "BucketName": "<TODO>",
+            "Extract": "false",
+            "ObjectKey": "output-artifact-file"
+          },
+          "inputArtifacts": [
+            {
+              "name": "intermediate-artifact-file"
+            }
+          ],
+          "outputArtifacts": []
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Tips
+
+- Use `runOrder`
 
 
 ## Actions
