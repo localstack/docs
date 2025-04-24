@@ -239,14 +239,14 @@ This means that we can retrieve the `output-file` object from the `target-bucket
 {{< command >}}
 $ awslocal s3 cp s3://target-bucket/output-file output-file
 <disable-copy>
-download: s3://target-bucket/output-file to ./output-file       
+download: s3://target-bucket/output-file to ./output-file
 </disable-copy>
 {{< /command >}}
 
 To verify that it is the same file as the original input:
 
 {{< command >}}
-$ cat output-file 
+$ cat output-file
 <disable-copy>
 Hello LocalStack!
 </disable-copy>
@@ -323,7 +323,6 @@ LocalStack does not use the same logic to generate external execution IDs as AWS
 Same is true for status and error messages produced by actions.
 {{< /callout >}}
 
-
 ## Pipelines
 
 The operations [CreatePipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_CreatePipeline.html), [GetPipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetPipeline.html), [UpdatePipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_UpdatePipeline.html), [ListPipelines](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelines.html), [DeletePipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_DeletePipeline.html) are used to manage pipeline declarations.
@@ -382,7 +381,7 @@ If an action does not use a namespace, its output variables are not available to
 
 CodePipeline's variable placeholder syntax is as follows:
 
-```
+```text
 #{namespace.variable}
 ```
 
@@ -417,10 +416,12 @@ The [S3 Source](https://docs.aws.amazon.com/codepipeline/latest/userguide/action
 
 ## Limitations
 
-- Emulation for [V2 pipeline types](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html) is not supported. They will be created as mocks only.
+- Emulation for [V2 pipeline types](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html) is not supported.
+  They will be created as mocks only.
 - [Rollbacks and stage retries](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-stages.html) are not available.
 - [Triggers](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-triggers.html) are not implemented.
   Pipelines are executed only when [CreatePipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_CreatePipeline.html) and [StartPipelineExecution](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StartPipelineExecution.html) are invoked.
-- [Execution mode behaviours](https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts-how-it-works.html#concepts-how-it-works-executions) are not implemented. Therefore parallel pipeline executions will not lead to stage locks and waits.
+- [Execution mode behaviours](https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts-how-it-works.html#concepts-how-it-works-executions) are not implemented.
+  Parallel pipeline executions will not lead to stage locks and waits.
 - [Stage transition controls](https://docs.aws.amazon.com/codepipeline/latest/userguide/transitions.html) are not implemented.
 - [Manual approval action](https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html) and [PutApprovalResult](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PutApprovalResult.html) operation is not available.
