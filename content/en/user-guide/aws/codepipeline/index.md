@@ -367,7 +367,6 @@ $ awslocal codepipeline untag-resource \
     --tag-keys purpose
 {{< /command >}}
 
-
 ## Stages
 
 ## Variables
