@@ -70,16 +70,16 @@ Create the role and make note of the role ARN:
 ```json
 # role.json
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "codepipeline.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "codepipeline.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
 }
 ```
 
@@ -95,23 +95,16 @@ Now add a permissions policy to this role that permits read and write access to 
 ```json
 # policy.json
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:*"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iam:PassRole"
-      ],
-      "Resource": "*"
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```
 
@@ -138,69 +131,69 @@ These correspond to the resources we created earlier.
 ```json {hl_lines=[6,9,26,27,52]}
 # declaration.json
 {
-  "name": "pipeline",
-  "executionMode": "SUPERSEDED",
-  "pipelineType": "V1",
-  "roleArn": "arn:aws:iam::000000000000:role/role",
-  "artifactStore": {
-    "type": "S3",
-    "location": "artifact-store-bucket"
-  },
-  "version": 1,
-  "stages": [
-    {
-      "name": "stage1",
-      "actions": [
-        {
-          "name": "action1",
-          "actionTypeId": {
-            "category": "Source",
-            "owner": "AWS",
-            "provider": "S3",
-            "version": "1"
-          },
-          "runOrder": 1,
-          "configuration": {
-            "S3Bucket": "source-bucket",
-            "S3ObjectKey": "file",
-            "PollForSourceChanges": "false"
-          },
-          "outputArtifacts": [
-            {
-              "name": "intermediate-file"
-            }
-          ],
-          "inputArtifacts": []
-        }
-      ]
+    "name": "pipeline",
+    "executionMode": "SUPERSEDED",
+    "pipelineType": "V1",
+    "roleArn": "arn:aws:iam::000000000000:role/role",
+    "artifactStore": {
+        "type": "S3",
+        "location": "artifact-store-bucket"
     },
-    {
-      "name": "stage2",
-      "actions": [
+    "version": 1,
+    "stages": [
         {
-          "name": "action1",
-          "actionTypeId": {
-            "category": "Deploy",
-            "owner": "AWS",
-            "provider": "S3",
-            "version": "1"
-          },
-          "runOrder": 1,
-          "configuration": {
-            "BucketName": "target-bucket",
-            "Extract": "false",
-            "ObjectKey": "output-file"
-          },
-          "inputArtifacts": [
-            {
-              "name": "intermediate-file"
-            }
-          ],
-          "outputArtifacts": []
+            "name": "stage1",
+            "actions": [
+                {
+                    "name": "action1",
+                    "actionTypeId": {
+                        "category": "Source",
+                        "owner": "AWS",
+                        "provider": "S3",
+                        "version": "1"
+                    },
+                    "runOrder": 1,
+                    "configuration": {
+                        "S3Bucket": "source-bucket",
+                        "S3ObjectKey": "file",
+                        "PollForSourceChanges": "false"
+                    },
+                    "outputArtifacts": [
+                        {
+                            "name": "intermediate-file"
+                        }
+                    ],
+                    "inputArtifacts": []
+                }
+            ]
+        },
+        {
+            "name": "stage2",
+            "actions": [
+                {
+                    "name": "action1",
+                    "actionTypeId": {
+                        "category": "Deploy",
+                        "owner": "AWS",
+                        "provider": "S3",
+                        "version": "1"
+                    },
+                    "runOrder": 1,
+                    "configuration": {
+                        "BucketName": "target-bucket",
+                        "Extract": "false",
+                        "ObjectKey": "output-file"
+                    },
+                    "inputArtifacts": [
+                        {
+                            "name": "intermediate-file"
+                        }
+                    ],
+                    "outputArtifacts": []
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
 ```
 
@@ -214,7 +207,7 @@ $ awslocal codepipeline create-pipeline --pipeline file://./declaration.json
 
 A 'pipeline execution' is an instance of a pipeline in running or finished state.
 
-The CreatePipeline operation we ran earlier started a pipeline execution.
+The [CreatePipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_CreatePipeline.html) operation we ran earlier started a pipeline execution.
 This can be confirmed using:
 
 {{< command >}}
@@ -325,26 +318,35 @@ $ awslocal codepipeline list-action-executions --pipeline-name pipeline
 </disable-copy>
 {{< /command >}}
 
+{{< callout >}}
+LocalStack does not use the same logic to generate external execution IDs as AWS so there may be minor discrepancies.
+Same is true for status and error messages produced by actions.
+{{< /callout >}}
+
+
 ## Pipelines
 
 The operations [CreatePipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_CreatePipeline.html), [GetPipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetPipeline.html), [UpdatePipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_UpdatePipeline.html), [ListPipelines](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelines.html), [DeletePipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_DeletePipeline.html) are used to manage pipeline declarations.
 
-Pipeline executions can be managed with [StartPipelineExecution](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StartPipelineExecution.html), [GetPipelineExecution](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetPipelineExecution.html), [ListPipelineExecutions](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html) and [StopPipelineExecutions](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StopPipelineExecution.html).
-
-Action executions can be inspected using the [ListActionExecutions](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html) operation.
-
 LocalStack supports emulation for V1 pipelines.
 V2 pipelines are only created as mocks.
 
-You can use `runOrder`
+{{< callout "tip" >}}
+Emulation for V2 pipelines is not supported.
+Make sure that the pipeline type is explicitly set in the declaration.
+{{< /callout >}}
+
+Pipeline executions can be managed with [StartPipelineExecution](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StartPipelineExecution.html), [GetPipelineExecution](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetPipelineExecution.html), [ListPipelineExecutions](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html) and [StopPipelineExecutions](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StopPipelineExecution.html).
 
 When stopping pipeline executions with StopPipelineExecution, the stop and abandon method is not supported.
 Setting the `abandon` flag will have no impact.
 This is because LocalStack uses threads as the underlying mechanism to simulate pipelines, and threads can not be cleanly preempted.
 
+Action executions can be inspected using the [ListActionExecutions](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html) operation.
+
 ### Tagging pipelines
 
-LocalStack also supports [resources tagging for pipelines](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-tag.html) using the [TagResource](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_TagResource.html), [UntagResource](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_UntagResource.html) and [ListTagsForResource](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListTagsForResource.html) operations.
+Pipelines resources can be [tagged](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-tag.html) using the [TagResource](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_TagResource.html), [UntagResource](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_UntagResource.html) and [ListTagsForResource](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListTagsForResource.html) operations.
 
 {{< command >}}
 $ awslocal codepipeline tag-resource \
@@ -367,13 +369,32 @@ $ awslocal codepipeline untag-resource \
     --tag-keys purpose
 {{< /command >}}
 
-## Stages
-
 ## Variables
+
+CodePipeline on LocalStack supports [variables](https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-variables.html) which allow dynamic configuration of pipeline actions.
+
+Actions produce output variables which can be referenced in the configuration of subsequent actions.
+Make note that only when the action defines a namespace, its output variables are availabe to downstream actions.
+
+{{< callout "tip" >}}
+If an action does not use a namespace, its output variables are not available to downstream actions.
+{{< /callout >}}
+
+CodePipeline's variable placeholder syntax is as follows:
+
+```
+#{namespace.variable}
+```
+
+As with AWS, LocalStack only makes the `codepipeline.PipelineExecutionId` variable available by default in a pipeline.
 
 ## Actions
 
-CodePipeline on LocalStack supports the following actions:
+You can use [`runOrder`](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-requirements.html#action.runOrder) to control parallel or sequential order of execution of actions.
+
+The supported actions in LocalStack CodePipeline are listed below.
+Using an unsupported action will make the pipeline fail.
+If you would like support for more actions, please [raise a feature request](https://github.com/localstack/localstack/issues/new/choose).
 
 ### CodeBuild Source and Test
 
