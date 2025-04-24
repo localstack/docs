@@ -1,0 +1,64 @@
+name: Update Replicator Coverage Docs
+on:
+  schedule:
+    - cron: 0 5 * * MON
+  workflow_dispatch:
+    inputs:
+        targetBranch:
+          required: false
+          type: string
+          default: 'main'
+jobs:
+  update-replicator-docs:
+    name: Update Replicator Coverage Docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout docs
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: docs
+          ref: ${{ github.event.inputs.targetBranch || 'main' }}
+
+      - name: Set up system wide dependencies
+        run: |
+          sudo apt-get install jq
+
+      - name: Start LocalStack
+        uses: LocalStack/setup-localstack@v0.2.3
+        with:
+          image-tag: 'latest'
+          use-pro: true
+        env:
+          LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
+
+      - name: Create Replicator Coverage
+        working-directory: docs
+        run: |
+          localstack auth set-token ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
+          localstack replicator resources | jq --indent 4 . > data/replicator/coverage.json
+
+      - name: Check for changes
+        id: check-for-changes
+        working-directory: docs
+        run: |
+          # Check if there are changed files and store the result in resources/diff-check.log
+          # Check against the PR branch if it exists, otherwise against the main
+          # Store the result in resources/diff-check.log and store the diff count in the GitHub Action output "diff-count"
+          mkdir -p resources
+          (git diff --name-only origin/replicator-coverage-updates data/replicator/coverage.json 2>/dev/null || git diff --name-only origin/${{ github.event.inputs.targetBranch || 'main' }} data/replicator/coverage.json 2>/dev/null) | tee resources/diff-check.log
+          echo "diff-count=$(cat resources/diff-check.log | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v7
+        if: ${{ success() && steps.check-for-changes.outputs.diff-count != '0' && steps.check-for-changes.outputs.diff-count != '' }}
+        with:
+          path: docs
+          title: "Update Replicator Coverage Docs"
+          body: "Automatic updates of replicator supported resources"
+          branch: "replicator-coverage-updates"
+          author: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
+          committer: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
+          commit-message: "update generated replicator coverage file"
+          token: ${{ secrets.PRO_ACCESS_TOKEN }}
+          reviewers: cloutierMat,pinzon
