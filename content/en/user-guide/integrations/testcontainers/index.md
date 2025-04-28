@@ -81,9 +81,7 @@ type resolverV2 struct {
     // you could inject additional application context here as well
 }
 
-func (*resolverV2) ResolveEndpoint(ctx context.Context, params s3.EndpointParameters) (
-    smithyendpoints.Endpoint, error,
-) {
+func (*resolverV2) ResolveEndpoint(ctx context.Context, params s3.EndpointParameters) (smithyendpoints.Endpoint, error) {
     // delegate back to the default v2 resolver otherwise
     return s3.NewDefaultEndpointResolverV2().ResolveEndpoint(ctx, params)
 }
