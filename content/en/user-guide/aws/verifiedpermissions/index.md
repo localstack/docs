@@ -16,10 +16,10 @@ Verified Permissions provides authorization by verifying whether a principal is 
 LocalStack allows you to use the Verified Permissions APIs in your local environment to test your authorization logic, with integrations with other AWS services like Cognito.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_verifiedpermissions/), which provides information on the extent of Verified Permissions' integration with LocalStack.
 
-{{< alert title="Note">}}
+{{< callout >}}
 Verified Permissions is available as part of the LocalStack Enterprise plan.
 If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /alert >}}
+{{< /callout >}}
 
 ## Getting started
 
@@ -34,7 +34,7 @@ To create a Verified Permissions Policy Store, use the [`CreatePolicyStore`](htt
 Run the following command to create a Policy Store with Schema validation settings set to `OFF`:
 
 {{< command >}}
-awslocal verifiedpermissions create-policy-store \
+$ awslocal verifiedpermissions create-policy-store \
   --validation-settings mode=OFF \
   --description "A local Policy Store"
 {{< /command >}}
@@ -54,7 +54,7 @@ You can list all the Verified Permissions policy stores using the [`ListPolicySt
 Run the following command to list all the Verified Permissions policy stores:
 
 {{< command >}}
-awslocal verifiedpermissions list-policy-stores
+$ awslocal verifiedpermissions list-policy-stores
 {{< /command >}}
 
 ### Create a Policy
@@ -74,7 +74,7 @@ First, create a JSON file containing the following policy named `static_policy.j
 
 You can then run this command to create the policy:
 {{< command >}}
-awslocal verifiedpermissions create-policy \
+$ awslocal verifiedpermissions create-policy \
     --definition file://static_policy.json \
     --policy-store-id q5PCScu9qo4aswMVc0owNN
 {{< /command >}}
@@ -114,7 +114,7 @@ We can now make use of the Policy Store and the Policy to start authorizing requ
 To authorize a request using Verified Permissions, use the [`IsAuthorized`](https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html) API.
 
 {{< command >}}
-awslocal verifiedpermissions is-authorized \
+$ awslocal verifiedpermissions is-authorized \
   --policy-store-id q5PCScu9qo4aswMVc0owNN \
   --principal entityType=User,entityId=alice \
   --action actionType=Action,actionId=view \
@@ -149,7 +149,7 @@ To create a user pool, you can use the [`CreateUserPool`](https://docs.aws.amazo
 The following command creates a user pool named `avp-test`:
 
 {{< command >}}
-awslocal cognito-idp create-user-pool \
+$ awslocal cognito-idp create-user-pool \
   --pool-name avp-test
 {{< /command >}}
 
@@ -188,7 +188,7 @@ You can use the [`CreateUserPoolClient`](https://docs.aws.amazon.com/cognito-use
 Run the following command, replacing the `--user-pool-id` with the one from the previous step:
 
 {{< command >}}
-awslocal cognito-idp create-user-pool-client \
+$ awslocal cognito-idp create-user-pool-client \
   --user-pool-id us-east-1_84e2d3fb5af24aba9827b82a6971b17f \
   --client-name avp-client
 {{< /command >}}
@@ -221,7 +221,7 @@ To use a Verified Permissions policy that validate whether your user is part of 
 
 First, create a group named `AVPGroup`:
 {{< command >}}
-awslocal cognito-idp create-group \
+$ awslocal cognito-idp create-group \
   --user-pool-id us-east-1_84e2d3fb5af24aba9827b82a6971b17f \
   --group AVPGroup
 {{< /command >}}
@@ -235,14 +235,14 @@ We can run the 4 following commands to create the user, add it to the Cognito Gr
 You will need to replace the `--user-pool-id` from the User Pool `id` from the first step, and the `--client-id` with the User Pool Client `id` from the step above.
 
 {{< command >}}
-awslocal cognito-idp admin-create-user \
+$ awslocal cognito-idp admin-create-user \
   --user-pool-id us-east-1_84e2d3fb5af24aba9827b82a6971b17f \
   --username avp-user \
   --user-attributes Name=email,Value="avp@test.com" Name=email_verified,Value=true
 {{< /command >}}
 
 {{< command >}}
-awslocal cognito-idp admin-set-user-password \
+$ awslocal cognito-idp admin-set-user-password \
   --user-pool-id us-east-1_84e2d3fb5af24aba9827b82a6971b17f \
   --username avp-user \
   --password Test123! \
@@ -250,14 +250,14 @@ awslocal cognito-idp admin-set-user-password \
 {{< /command >}}
 
 {{< command >}}
-awslocal cognito-idp admin-add-user-to-group \
+$ awslocal cognito-idp admin-add-user-to-group \
   --user-pool-id us-east-1_84e2d3fb5af24aba9827b82a6971b17f \
   --username avp-user \
   --group-name AVPGroup
 {{< /command >}}
 
 {{< command >}}
-awslocal cognito-idp initiate-auth \
+$ awslocal cognito-idp initiate-auth \
   --auth-flow USER_PASSWORD_AUTH \
   --client-id xhixnryjv7fcc07s95xau9cjze \
   --auth-parameters USERNAME=avp-user,PASSWORD=Test123!
@@ -284,7 +284,7 @@ You will need the `IdToken` for the Verified Permissions authorization request.
 
 We can now create a new Policy Store:
 {{< command >}}
-awslocal verifiedpermissions create-policy-store \
+$ awslocal verifiedpermissions create-policy-store \
   --validation-settings mode=OFF \
   --description "Policy Store with Cognito"
 {{< /command >}}
@@ -321,7 +321,7 @@ Replace the `userPoolArn` with the User Pool `Arn` value from the previous step,
 ```
 
 {{< command >}}
-awslocal verifiedpermissions create-identity-source \
+$ awslocal verifiedpermissions create-identity-source \
   --policy-store-id ESIPIqX1pUHDvwqekZno1G \
   --principal-entity-type "User" \
   --configuration file://identity_source.json
@@ -344,7 +344,7 @@ First, create a JSON file containing the following policy named `policy_cognito.
 
 You can then run this command to create the policy:
 {{< command >}}
-awslocal verifiedpermissions create-policy \
+$ awslocal verifiedpermissions create-policy \
     --definition file://policy_cognito.json \
     --policy-store-id ESIPIqX1pUHDvwqekZno1G
 {{< /command >}}
@@ -386,7 +386,7 @@ To authorize a request with a token using Verified Permissions, use the [`IsAuth
 You can run the following command to verify that you can authorize the request:
 
 {{< command >}}
-awslocal verifiedpermissions is-authorized-with-token \
+$ awslocal verifiedpermissions is-authorized-with-token \
   --policy-store-id ESIPIqX1pUHDvwqekZno1G \
   --action actionType=Action,actionId=create \
   --resource entityType=Album,entityId=vacations \
