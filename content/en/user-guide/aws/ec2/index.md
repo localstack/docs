@@ -502,7 +502,7 @@ Please refer to [Libvirt Wiki](https://wiki.libvirt.org/Failed_to_connect_to_the
 {{< /callout >}}
 
 The Libvirt VM manager currently does not have full support for persistence.
-Underlying virtual machines and volumes are not persisted, only their mock respresentations are.
+Underlying virtual machines and volumes are not persisted, only their mock representations are.
 
 ### AMIs
 

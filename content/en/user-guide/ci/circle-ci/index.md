@@ -127,7 +127,7 @@ jobs:
 You can preserve your AWS infrastructure with LocalStack in various ways.
 To be able to use any of the below samples, you must [set a valid CI Auth Token](#configuring-a-ci-auth-token).
 
-_Note: For best result we recommend to use a combination of the below techniques and you should familiarise yourself with CircleCI's data persistance approach, see their [official documentation](https://circleci.com/docs/persist-data/)._
+_Note: For best result we recommend to use a combination of the below techniques and you should familiarise yourself with CircleCI's data persistence approach, see their [official documentation](https://circleci.com/docs/persist-data/)._
 
 #### Cloud Pods
 

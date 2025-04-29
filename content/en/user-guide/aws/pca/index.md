@@ -111,7 +111,7 @@ $ awslocal acm-pca issue-certificate \
 </disable-copy>
 {{< /command >}}
 
-The CA certificate is now created and its ARN is indicated by the `CertficiateArn` parameter.
+The CA certificate is now created and its ARN is indicated by the `CertificateArn` parameter.
 
 ### Import CA Certificate
 
