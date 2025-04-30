@@ -36,4 +36,4 @@ $ curl -v --request POST --header "Content-Type: application/json"  --data '{"ac
 
 The API path for the AWS internal resources is `/_aws`.
 These endpoints offer LocalStack-specific features in addition to the ones offered by the AWS services.
-For instance, `/aws/sqs/messages` conveniently access all messages withing a SQS queue, without deleting them.
+For instance, `/aws/sqs/messages` conveniently access all messages within a SQS queue, without deleting them.

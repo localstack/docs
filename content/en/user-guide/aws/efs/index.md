@@ -73,7 +73,7 @@ Run the following command to apply a policy to the file system created in the pr
 {{< command >}}
 $ awslocal efs put-file-system-policy \
     --file-system-id <FILE_SYSTEM_ID> \
-    --policy "{\"Version\":\"2012-10-17\",\"Id\":\"ExamplePolicy01\",\"Statement\":[{\"Sid\":\"ExampleSatement01\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Action\":[\"elasticfilesystem:ClientMount\",\"elasticfilesystem:ClientWrite\"],\"Resource\":\"arn:aws:elasticfilesystem:us-east-1:000000000000:file-system/fs-34feac549e66b814\"}]}"
+    --policy "{\"Version\":\"2012-10-17\",\"Id\":\"ExamplePolicy01\",\"Statement\":[{\"Sid\":\"ExampleStatement01\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Action\":[\"elasticfilesystem:ClientMount\",\"elasticfilesystem:ClientWrite\"],\"Resource\":\"arn:aws:elasticfilesystem:us-east-1:000000000000:file-system/fs-34feac549e66b814\"}]}"
 {{< /command >}}
 
 You can list the file system policies using the [`DescribeFileSystemPolicy`](https://docs.aws.amazon.com/efs/latest/ug/API_DescribeFileSystemPolicy.html) API.

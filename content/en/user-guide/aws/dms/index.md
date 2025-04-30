@@ -163,7 +163,7 @@ The Resource Browser supports CRD (Create, Read, Delete) operations on DMS resou
 
 * **Create Endpoint**: To create a new endpoint, click on the **Create Endpoint** button and fill in necessary details such as the Endpoint Identifier, Endpoint Type, and Engine Name.
 * **View Endpoint**: To see the details of an endpoint, click on its ARN.
-  You can further click **Connections** and test a conenction by specifying the Replication Instance ARN.
+  You can further click **Connections** and test a connection by specifying the Replication Instance ARN.
 * **Delete Endpoint**: To remove an endpoint, select it, navigate to **Actions**, and click **Remove Selected**.
 
 ### Replication Tasks
