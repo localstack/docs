@@ -55,7 +55,7 @@ In this example, the state machine LambdaSQSIntegration will be used with the fo
         {
           "ErrorEquals":[ "States.ALL" ],
           "IntervalSeconds":2,
-          "MaxAttempts": 4,
+          "MaxAttempts":4,
           "BackoffRate":2
         }
       ],
