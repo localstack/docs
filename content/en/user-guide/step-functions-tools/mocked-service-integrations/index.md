@@ -266,7 +266,6 @@ services:
 {{< /tab >}}
 {{< /tabpane >}}
 
-
 ### 4. Run Tests Cases with Mocked Integrations
 
 #### 4.1 Create the State Machine
@@ -280,7 +279,6 @@ $ awslocal stepfunctions create-state-machine \
     --name "LambdaSQSIntegration" \
     --role-arn "arn:aws:iam::000000000000:role/service-role/testrole"
 {{< /command >}}
-
 
 #### 4.2 Start the Mock Test
 Once the state machine is created and correctly named, test cases defined in the mock configuration file can be executed using the StartExecution or StartSyncExecution API.
@@ -331,6 +329,7 @@ $ awslocal stepfunctions get-execution-history \
 {{< /command >}}
 
 This returns the full execution history, including entries that indicate how the mocked responses were applied to the Lambda and SQS states.
+
 ```json
 ...
 {
