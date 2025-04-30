@@ -85,7 +85,6 @@ The file must conform to the RawMockConfig schema shown above and is organised i
 - StateMachines - maps each state machine name to the test scenarios that will run against it.
 - MockedResponses - holds the reusable response sets that the test scenarios reference.
 
-
 #### 2.1 StateMachines
 The StateMachines section defines which Step Functions state machines will use mocked service integrations and how their test cases are configured.
 Each entry under StateMachines corresponds to a specific state machine and contains one or more named test cases that specify how the states within that machine should behave during execution.
@@ -139,12 +138,12 @@ Each response set is identified by a unique ResponseID, which is then referenced
 These IDs are used in test cases to associate a state with its corresponding mocked behavior.
 - step-key – Defines which execution attempt the response applies to.
 It can be:
- - A single integer, e.g., "0" – applied on the first attempt.
- - A range of integers, e.g., "1-5" – applied to multiple attempts.
+  - A single integer, e.g., "0" – applied on the first attempt.
+  - A range of integers, e.g., "1-5" – applied to multiple attempts.
 - Steps are evaluated in sequential order, allowing simulation of retries or failures followed by success.
- - Return – Defines a successful response payload to be returned by the state instead of invoking the actual integrated service.
- - Throw – Defines an error response with required fields Error and Cause, simulating a failure.
- - Each response entry must contain exactly one of Return or Throw.
+  - Return – Defines a successful response payload to be returned by the state instead of invoking the actual integrated service.
+  - Throw – Defines an error response with required fields Error and Cause, simulating a failure.
+- Each response entry must contain exactly one of Return or Throw.
  Including both or neither will result in an invalid configuration.
 
 ```json
