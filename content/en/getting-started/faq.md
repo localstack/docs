@@ -259,6 +259,32 @@ volumes:
 
 For more details visit [Docker WSL documentation](https://docs.docker.com/desktop/wsl), [Docker WSL best practices](https://docs.docker.com/desktop/wsl/best-practices) and [Docker Volumes documentation](https://docs.docker.com/storage/volumes/).
 
+### Why is `localhost.localstack.cloud` not resolving on Windows with WSL, and how do I fix it?
+
+We’ve seen multiple reports where requests to `localhost.localstack.cloud` fail specifically when running on **Windows with WSL (Windows Subsystem for Linux)**.
+In this scenario, tools like `curl` and LocalStack Web Application cannot connect to LocalStack container using the domain `localhost.localstack.cloud`.
+
+This is a DNS resolution issue — the system doesn’t know that `localhost.localstack.cloud` should resolve to `127.0.0.1`.
+Follow these steps to fix the issue:
+
+1. **Update WSL DNS mapping:** Edit `/etc/hosts` in your WSL environment to include this line:
+
+    ```text
+    127.0.0.1  localhost localhost.localstack.cloud 
+    ```
+
+    This allows tools like `curl` in WSL to resolve the domain properly.
+
+2. **Update Windows DNS mapping:** Edit `C:\Windows\System32\drivers\etc\hosts` (as Administrator) and add the same line:
+
+    ```text
+    127.0.0.1  localhost localhost.localstack.cloud 
+    ```
+
+       After updating, reboot your system or run `ipconfig /flushdns` to clear the DNS cache.
+
+Once both changes are in place, the domain should resolve correctly for both WSL and Windows apps.
+
 ## LocalStack Platform FAQs
 
 ### Where can I check the status of LocalStack's services?
