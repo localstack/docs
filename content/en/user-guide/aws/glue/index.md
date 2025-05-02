@@ -25,7 +25,7 @@ It adds support for:
 - Improved startup time & offline execution
 
 To use it, set `GLUE_JOB_EXECUTOR=docker` and `GLUE_JOB_EXECUTOR_PROVIDER=v2` in your LocalStack configuration.
-{{< callout >}}
+{{< /callout >}}
 
 ## Getting started
 
