@@ -414,7 +414,6 @@ Your policy can also use those additionals attributes to provide more fine-grain
 
 ## Current limitations
 
-
 - No Schema validation when creating a new schema using `PutSchema`, and no Policy validation using said schema when creating policies and template policies.
 - Only Cognito is supported as an `IdentitySource`, external OIDC providers are not yet implemented.
 - The validation around Identity Sources and JWT is not fully yet implemented: the identity source is not validated to have a valid `jwks.json` endpoint, and the issuer, signature and expiration of the incoming JWT are not validated.
