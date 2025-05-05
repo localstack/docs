@@ -20,7 +20,7 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 We’ve introduced a new native RDS provider in LocalStack and made it the default.
 This replaces Moto-based CRUD operations with a more reliable setup.
 
-RDS state created in version 4.3 or earlier using Cloud Pods or standard persistence may not be compatible with the new provider introduced in version 4.4.
+RDS state created in version 4.3 or earlier using Cloud Pods or standard persistence will not be compatible with the new provider introduced in version 4.4.
 Recreating the RDS state is recommended for compatibility.
 {{< /callout >}}
 
