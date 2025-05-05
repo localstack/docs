@@ -20,11 +20,13 @@ The new executor uses the `aws-glue-libs` Docker image, offering better producti
 It adds support for:
 
 - Running Glue jobs in Docker containers
+- Isolated execution environments for each job
 - Executing multiple jobs in parallel
 - Correct versioning of Spark, Hadoop, Python, Java, and related libraries
 - Improved startup time & offline execution
 
 To use it, set `GLUE_JOB_EXECUTOR=docker` and `GLUE_JOB_EXECUTOR_PROVIDER=v2` in your LocalStack configuration.
+The new executor additionally deprecates older versions of Glue (`0.9`, `1.0`, `2.0`).
 {{< /callout >}}
 
 ## Getting started
