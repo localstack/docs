@@ -16,6 +16,14 @@ RDS handles routine database tasks such as provisioning, patching, backup, recov
 LocalStack allows you to use the RDS APIs in your local environment to create and manage RDS clusters and instances for testing & integration purposes.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_rds/), which provides information on the extent of RDS's integration with LocalStack.
 
+{{< callout >}}
+We’ve introduced a new native RDS provider in LocalStack and made it the default.
+This replaces Moto-based CRUD operations with a more reliable setup.
+
+RDS state created in version 4.3 or earlier using Cloud Pods or standard persistence will not be compatible with the new provider introduced in version 4.4.
+Recreating the RDS state is recommended for compatibility.
+{{< /callout >}}
+
 ## Getting started
 
 This guide is designed for users new to RDS and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
