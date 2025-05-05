@@ -92,7 +92,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -128,7 +128,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -188,7 +188,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -211,8 +211,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -331,8 +331,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -404,7 +404,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -415,8 +415,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -428,7 +428,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -560,7 +560,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -608,7 +608,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -788,7 +788,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -1004,7 +1004,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -1028,7 +1028,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -2950,6 +2950,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codepipeline.py::test_pipeline",
+            "test": "test_pipeline",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..actions..configuration']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_cognito.py::test_cognito_custom_ids",
             "test": "test_cognito_custom_ids",
             "response": "200",
@@ -4820,7 +4830,7 @@
             "test": "test_validate_ready",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded', '$..json.headers.Via', '$..json.headers.X-Forwarded-For', '$..json.headers.X-Forwarded-Port', '$..json.headers.X-Forwarded-Proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4951,6 +4961,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..computeResources', '$..containerOrchestrationType', '$..serviceRole', '$..statusReason', '$..tags', '$..uuid', '$..ecsClusterArn']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codebuild.py::test_codebuild_stack",
+            "test": "test_codebuild_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..artifacts.namespaceType', '$..environment.environmentVariables..type']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5598,16 +5618,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/test_change_sets.py::test_single_resource_static_update",
-            "test": "test_single_resource_static_update",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Capabilities', '$..IncludeNestedStacks', '$..NotificationARNs', '$..Parameters', '$..Changes..ResourceChange.Details', '$..Changes..ResourceChange.Scope', '$..Changes..ResourceChange.PhysicalResourceId', '$..Changes..ResourceChange.Replacement']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_changesets.py::test_create_change_set_invalid_params",
             "test": "test_create_change_set_invalid_params",
             "response": "400",
@@ -5679,20 +5689,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Stacks..ChangeSetId', '$..Capabilities', '$..IncludeNestedStacks', '$..LastUpdatedTime', '$..NotificationARNs', '$..ResourceChange', '$..StackResourceDetail.Metadata']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "ChangeSetName, StackName, TemplateBody": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/test_change_sets.py::test_single_resource_static_update",
-            "test": "test_single_resource_static_update",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Capabilities', '$..IncludeNestedStacks', '$..NotificationARNs', '$..Parameters', '$..Changes..ResourceChange.Details', '$..Changes..ResourceChange.Scope', '$..Changes..ResourceChange.PhysicalResourceId', '$..Changes..ResourceChange.Replacement']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -9278,16 +9274,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/test_change_sets.py::test_single_resource_static_update",
-            "test": "test_single_resource_static_update",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Capabilities', '$..IncludeNestedStacks', '$..NotificationARNs', '$..Parameters', '$..Changes..ResourceChange.Details', '$..Changes..ResourceChange.Scope', '$..Changes..ResourceChange.PhysicalResourceId', '$..Changes..ResourceChange.Replacement']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/dynamodbstreams/test_dynamodb_streams.py::TestDynamoDBStreams::test_table_v2_stream",
             "test": "test_table_v2_stream",
             "response": "200",
@@ -9564,7 +9550,7 @@
             "test": "test_gzip_encoding",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded', '$..json.headers.Via', '$..json.headers.X-Forwarded-For', '$..json.headers.X-Forwarded-Port', '$..json.headers.X-Forwarded-Proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -9880,11 +9866,31 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codebuild.py::test_codebuild_stack",
+            "test": "test_codebuild_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..artifacts.namespaceType', '$..environment.environmentVariables..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codedeploy.py::test_codedeploy_stack",
             "test": "test_codedeploy_stack",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..deploymentConfigInfo.computePlatform', '$..application.linkedToGitHub', '$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codepipeline.py::test_pipeline",
+            "test": "test_pipeline",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..actions..configuration']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -13808,16 +13814,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/test_change_sets.py::test_single_resource_static_update",
-            "test": "test_single_resource_static_update",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Capabilities', '$..IncludeNestedStacks', '$..NotificationARNs', '$..Parameters', '$..Changes..ResourceChange.Details', '$..Changes..ResourceChange.Scope', '$..Changes..ResourceChange.PhysicalResourceId', '$..Changes..ResourceChange.Replacement']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/dynamodbstreams/test_dynamodb_streams.py::TestDynamoDBStreams::test_table_v2_stream",
             "test": "test_table_v2_stream",
             "response": "200",
@@ -13994,7 +13990,7 @@
             "test": "test_validate_ready",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded', '$..json.headers.Via', '$..json.headers.X-Forwarded-For', '$..json.headers.X-Forwarded-Port', '$..json.headers.X-Forwarded-Proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -14310,11 +14306,31 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codebuild.py::test_codebuild_stack",
+            "test": "test_codebuild_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..artifacts.namespaceType', '$..environment.environmentVariables..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codedeploy.py::test_codedeploy_stack",
             "test": "test_codedeploy_stack",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..deploymentConfigInfo.computePlatform', '$..application.linkedToGitHub', '$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codepipeline.py::test_pipeline",
+            "test": "test_pipeline",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..actions..configuration']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -16312,7 +16328,7 @@
             "test": "test_validate_ready",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded', '$..json.headers.Via', '$..json.headers.X-Forwarded-For', '$..json.headers.X-Forwarded-Port', '$..json.headers.X-Forwarded-Proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -20436,16 +20452,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/test_change_sets.py::test_single_resource_static_update",
-            "test": "test_single_resource_static_update",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Capabilities', '$..IncludeNestedStacks', '$..NotificationARNs', '$..Parameters', '$..Changes..ResourceChange.Details', '$..Changes..ResourceChange.Scope', '$..Changes..ResourceChange.PhysicalResourceId', '$..Changes..ResourceChange.Replacement']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/dynamodbstreams/test_dynamodb_streams.py::TestDynamoDBStreams::test_table_v2_stream",
             "test": "test_table_v2_stream",
             "response": "200",
@@ -21822,7 +21828,7 @@
             "test": "test_gzip_encoding",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded', '$..json.headers.Via', '$..json.headers.X-Forwarded-For', '$..json.headers.X-Forwarded-Port', '$..json.headers.X-Forwarded-Proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -21832,7 +21838,7 @@
             "test": "test_querystring_parsing",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded', '$..json.headers.Via', '$..json.headers.X-Forwarded-For', '$..json.headers.X-Forwarded-Port', '$..json.headers.X-Forwarded-Proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -21842,7 +21848,7 @@
             "test": "test_validate_ready",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded', '$..json.headers.Via', '$..json.headers.X-Forwarded-For', '$..json.headers.X-Forwarded-Port', '$..json.headers.X-Forwarded-Proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -22218,11 +22224,31 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codebuild.py::test_codebuild_stack",
+            "test": "test_codebuild_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..artifacts.namespaceType', '$..environment.environmentVariables..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codedeploy.py::test_codedeploy_stack",
             "test": "test_codedeploy_stack",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..deploymentConfigInfo.computePlatform', '$..application.linkedToGitHub', '$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codepipeline.py::test_pipeline",
+            "test": "test_pipeline",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..actions..configuration']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24312,7 +24338,7 @@
             "test": "test_validate_ready",
             "response": "400",
             "error": "ValidationError",
-            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded', '$..json.headers.Via', '$..json.headers.X-Forwarded-For', '$..json.headers.X-Forwarded-Port', '$..json.headers.X-Forwarded-Proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -27534,16 +27560,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/test_change_sets.py::test_single_resource_static_update",
-            "test": "test_single_resource_static_update",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Capabilities', '$..IncludeNestedStacks', '$..NotificationARNs', '$..Parameters', '$..Changes..ResourceChange.Details', '$..Changes..ResourceChange.Scope', '$..Changes..ResourceChange.PhysicalResourceId', '$..Changes..ResourceChange.Replacement']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/dynamodbstreams/test_dynamodb_streams.py::TestDynamoDBStreams::test_table_v2_stream",
             "test": "test_table_v2_stream",
             "response": "200",
@@ -27720,7 +27736,7 @@
             "test": "test_validate_ready",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded']",
+            "snapshot_skipped": "['$..headers.server', '$..json.headers.Connection', '$..json.headers.Forwarded', '$..json.headers.Via', '$..json.headers.X-Forwarded-For', '$..json.headers.X-Forwarded-Port', '$..json.headers.X-Forwarded-Proto']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -28036,11 +28052,31 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codebuild.py::test_codebuild_stack",
+            "test": "test_codebuild_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..artifacts.namespaceType', '$..environment.environmentVariables..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codedeploy.py::test_codedeploy_stack",
             "test": "test_codedeploy_stack",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..deploymentConfigInfo.computePlatform', '$..application.linkedToGitHub', '$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codepipeline.py::test_pipeline",
+            "test": "test_pipeline",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..actions..configuration']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
