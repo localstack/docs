@@ -437,6 +437,10 @@ When utilizing the Community image, any resources within the stack that are not 
 | AWS::SES::ReceiptRuleSet                        |      ✅ |      ✅ |      - |
 | AWS::SES::Template                              |      ✅ |      ✅ |      ✅ |
 | AWS::SecretsManager::SecretTargetAttachment     |      ✅ |      ✅ |      - |
+| AWS::VerifiedPermissions::IdentitySource        |      ✅ |      ✅ |      - |
+| AWS::VerifiedPermissions::Policy                |      ✅ |      ✅ |      - |
+| AWS::VerifiedPermissions::PolicyStore           |      ✅ |      ✅ |      - |
+| AWS::VerifiedPermissions::PolicyTemplate        |      ✅ |      ✅ |      - |
 | AWS::WAFv2::IPSet                               |      ✅ |      ✅ |      - |
 | AWS::WAFv2::LoggingConfiguration                |     ✅ |      ✅ |      - |
 | AWS::WAFv2::WebACL                              |      ✅ |      ✅ |      - |
