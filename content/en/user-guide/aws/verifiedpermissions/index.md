@@ -7,11 +7,9 @@ tags: ["Enterprise plan"]
 
 ## Introduction
 
-Amazon Verified Permissions is a scalable, fine-grained permissions management and authorization service for custom applications.
-Verified Permissions enables you to build secure applications faster by externalizing authorization and centralizing policy management and administration.
-Verified Permissions uses the [Cedar policy language](https://docs.cedarpolicy.com/) to define fine-grained permissions to protect your application's resources.
-
-Verified Permissions provides authorization by verifying whether a principal is allowed to perform an action on a resource in a given context in your application.
+Amazon Verified Permissions is a scalable service for managing fine-grained permissions and authorization in custom applications.  
+It helps secure applications by moving authorization logic outside the app and managing policies in one place, using the [Cedar policy language](https://docs.cedarpolicy.com/) to define access rules.  
+It checks if a principal can take an action on a resource in a specific context in your application.
 
 LocalStack allows you to use the Verified Permissions APIs in your local environment to test your authorization logic, with integrations with other AWS services like Cognito.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_verifiedpermissions/), which provides information on the extent of Verified Permissions' integration with LocalStack.
@@ -61,7 +59,7 @@ $ awslocal verifiedpermissions list-policy-stores
 
 To create a Verified Permissions Policy, use the [`CreatePolicy`](https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreatePolicy.html) API.
 
-First, create a JSON file containing the following policy named `static_policy.json`:
+Create a JSON file named `static_policy.json` with the following content:
 
 ```json
 {
@@ -416,8 +414,7 @@ Your policy can also use those additionals attributes to provide more fine-grain
 
 ## Current limitations
 
-LocalStack currently has a few limitations in its emulation capabilities:
 
 - No Schema validation when creating a new schema using `PutSchema`, and no Policy validation using said schema when creating policies and template policies.
-- Only Cognito is supported as an IdentitySource, external OIDC providers are not yet implemented.
+- Only Cognito is supported as an `IdentitySource`, external OIDC providers are not yet implemented.
 - The validation around Identity Sources and JWT is not fully yet implemented: the identity source is not validated to have a valid `jwks.json` endpoint, and the issuer, signature and expiration of the incoming JWT are not validated.
