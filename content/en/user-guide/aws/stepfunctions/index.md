@@ -137,7 +137,7 @@ LocalStack's Step Functions emulation supports the following AWS services:
 
 Mocked service integrations allow you to test AWS Step Functions without calling LocalStack's emulated AWS services.
 Instead, Task states return predefined outputs from a mock configuration file.
-They key components are:
+The key components are:
 
 - **Mocked service integrations**: Task states that return predefined responses instead of invoking local AWS services.
 - **Mocked responses**: Static payloads associated with mocked Task states.
@@ -148,12 +148,18 @@ During execution, each Task state defined in the mock file returns its correspon
 States not listed continue to invoke their real emulated services, allowing a mix of mocked and live interactions.
 
 You can provide one or more mocked payloads per Task state.
-Supported patterns include `.sync`, `.sync2`, and `.waitForTaskToken`.
+The Supported patterns include `.sync`, `.sync2`, and `.waitForTaskToken`.
 Both success and failure scenarios can be simulated.
+
+### Compatibility with AWS Step Functions Local
+
+LocalStack can also serve as a drop-in replacement for [AWS Step Functions Local testing with mocked service integrations](https://docs.aws.amazon.com/step-functions/latest/dg/sfn-local-test-sm-exec.html).
+It supports test cases with mocked Task states and maintains compatibility with existing Step Functions Local configurations.
+This functionality is extended in LocalStack by providing access to the latest Step Functions features such as [JSONata and Variables](https://blog.localstack.cloud/aws-step-functions-made-easy/), as well as the ability to enable both mocked and emulated service interactions emulated by LocalStack.
 
 {{< callout >}}
 LocalStack does not validate response formats.
-Ensure the payload structure matches what the real service expects.
+Ensure the payload structure in the mocked responses matches what the real service expects.
 {{< /callout >}}
 
 ### Identify a State Machine for Mocked Integrations
@@ -161,44 +167,44 @@ Ensure the payload structure matches what the real service expects.
 Mocked service integrations apply to specific state machine definitions.  
 The first step is to select the state machine where mocked responses will be used.  
 
-In this example, the `LambdaSQSIntegration` state machine will be used with the following definition:
+In this example, the state machine with the name `LambdaSQSIntegration` state machine will be used with the following definition:
 
 ```json
 {
-  "Comment":"This state machine is called: LambdaSQSIntegration",
-  "QueryLanguage":"JSONata",
-  "StartAt":"LambdaState",
-  "States":{
-    "LambdaState":{
-      "Type":"Task",
-      "Resource":"arn:aws:states:::lambda:invoke",
-      "Arguments":{
-        "FunctionName":"GreetingsFunction",
-        "Payload":{
-          "fullname":"{% $states.input.name & ' ' & $states.input.surname %}"
+  "Comment": "This state machine is called: LambdaSQSIntegration",
+  "QueryLanguage": "JSONata",
+  "StartAt": "LambdaState",
+  "States": {
+    "LambdaState": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Arguments": {
+        "FunctionName": "GreetingsFunction",
+        "Payload": {
+          "fullname": "{% $states.input.name & ' ' & $states.input.surname %}"
         }
       },
-      "Retry":[
+      "Retry": [
         {
-          "ErrorEquals":[ "States.ALL" ],
-          "IntervalSeconds":2,
-          "MaxAttempts":4,
-          "BackoffRate":2
+          "ErrorEquals": [ "States.ALL" ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 4,
+          "BackoffRate": 2
         }
       ],
-      "Assign":{
-        "greeting":"{% $states.result.Payload.greeting %}"
+      "Assign": {
+        "greeting": "{% $states.result.Payload.greeting %}"
       },
-      "Next":"SQSState"
+      "Next": "SQSState"
     },
-    "SQSState":{
-      "Type":"Task",
-      "Resource":"arn:aws:states:::sqs:sendMessage",
-      "Arguments":{
-        "QueueUrl":"http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/localstack-queue",
-        "MessageBody":"{% $greeting %}"
+    "SQSState": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sqs:sendMessage",
+      "Arguments": {
+        "QueueUrl": "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/localstack-queue",
+        "MessageBody": "{% $greeting %}"
       },
-      "End":true
+      "End": true
     }
   }
 }
@@ -206,8 +212,7 @@ In this example, the `LambdaSQSIntegration` state machine will be used with the 
 
 ### Define Mock Integrations in a Configuration File
 
-Mock integrations are defined in a JSON file that follows the `RawMockConfig` schema.
-The file contains two top-level sections:
+Mock integrations are defined in a JSON file with two top-level section:
 
 - **StateMachines** – Maps each state machine to its test cases, specifying which states use which mocked responses.
 - **MockedResponses** – Defines reusable mock payloads identified by `ResponseID`, which test cases refer to.
@@ -273,7 +278,7 @@ In the example above:
 - `Throw`: Simulates failure with `Error` and `Cause`.
 
 {{< callout >}}
-Each entry must have **either** `Return` or `Throw`—not both.
+Each entry must have **either** `Return` or `Throw`, but cannot have both.
 {{< /callout >}}
 
 Here is a full example of the `MockedResponses` section:
@@ -383,11 +388,10 @@ localstack start --volume /path/to/MockConfigFile.json:/tmp/MockConfigFile.json
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
-    image: localstack/localstack-pro
+    image: localstack/localstack
     ports:
       - "127.0.0.1:4566:4566"            # LocalStack Gateway
       - "127.0.0.1:4510-4559:4510-4559"  # external services port range
-      - "127.0.0.1:443:443"              # LocalStack HTTPS Gateway (Pro)
     environment:
       # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
       - DEBUG=${DEBUG:-0}
@@ -398,8 +402,6 @@ services:
       - "./MockConfigFile.json:/tmp/MockConfigFile.json"
 {{< /tab >}}
 {{< /tabpane >}}
-
-This tells LocalStack to use the specified file for mocked service integrations during Step Functions execution.
 
 ### Run Test Cases with Mocked Integrations
 
@@ -413,7 +415,7 @@ $ awslocal stepfunctions create-state-machine \
     --role-arn "arn:aws:iam::000000000000:role/service-role/testrole"
 {{< /command >}}
 
-After the state machine is created and named correctly, test cases from the mock configuration file can be run using the [`StartExecution`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) or [StartSyncExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartSyncExecution.html) APIs.
+After the state machine is created and named correctly, test cases from the mock configuration file can be run using the [`StartExecution`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) API.
 
 To execute a test case, append the test case name to the state machine ARN using `#`.
 This tells LocalStack to apply the mocked responses from the configuration file.
@@ -421,7 +423,7 @@ For example, run the `BaseCase` test case:
 
 {{< command >}}
 $ awslocal stepfunctions start-execution \
-    --state-machine arn:aws:states:ca-central-1:000000000000:stateMachine:LambdaSQSIntegration#BaseCase \
+    --state-machine arn:aws:states:us-east-1:000000000000:stateMachine:LambdaSQSIntegration#BaseCase \
     --input '{"name": "John", "surname": "smith"}' \
     --name "MockExecutionBaseCase"
 {{< /command >}}
@@ -433,15 +435,15 @@ You can inspect the execution using the [`DescribeExecution`](https://docs.aws.a
 
 {{< command >}}
 $ awslocal stepfunctions describe-execution \
-    --execution-arn "arn:aws:states:ca-central-1:000000000000:execution:LambdaSQSIntegration:MockExecutionBaseCase"
+    --execution-arn "arn:aws:states:us-east-1:000000000000:execution:LambdaSQSIntegration:MockExecutionBaseCase"
 {{< /command >}}
 
 The sample output shows the execution details, including the state machine ARN, execution ARN, status, start and stop dates, input, and output:
 
 ```json
 {
-    "executionArn": "arn:aws:states:ca-central-1:000000000000:execution:LambdaSQSIntegration:MockExecutionBaseCase",
-    "stateMachineArn": "arn:aws:states:ca-central-1:000000000000:stateMachine:LambdaSQSIntegration",
+    "executionArn": "arn:aws:states:us-east-1:000000000000:execution:LambdaSQSIntegration:MockExecutionBaseCase",
+    "stateMachineArn": "arn:aws:states:us-east-1:000000000000:stateMachine:LambdaSQSIntegration",
     "name": "MockExecutionBaseCase",
     "status": "SUCCEEDED",
     "startDate": "...",
@@ -461,7 +463,7 @@ You can also use the [`GetExecutionHistory`](https://docs.aws.amazon.com/step-fu
 
 {{< command >}}
 $ awslocal stepfunctions get-execution-history \
-    --execution-arn "arn:aws:states:ca-central-1:000000000000:execution:LambdaSQSIntegration:MockExecutionBaseCase"
+    --execution-arn "arn:aws:states:us-east-1:000000000000:execution:LambdaSQSIntegration:MockExecutionBaseCase"
 {{< /command >}}
 
 This will return the full execution history, including entries that indicate how the mocked responses were applied to the Lambda and SQS states.
