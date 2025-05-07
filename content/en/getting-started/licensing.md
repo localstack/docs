@@ -1,9 +1,9 @@
 ---
 title: "LocalStack for AWS: Tiers, Licensing, and Access"
 linkTitle: "Licensing & Tiers"
-weight: 200
+weight: 80
 description: >
-  Service availability and licensing details across LocalStack’s AWS tiers.
+  Service availability and licensing details across LocalStack for AWS tiers.
 ---
 
 This document outlines the features, emulated AWS services, and enhancements included in each LocalStack for AWS tier. It also clarifies how licensing works across workspaces and users.
