@@ -4,12 +4,30 @@ linkTitle: Glue
 description: Get started with Glue on LocalStack
 tags: ["Pro image"]
 ---
+
 ## Introduction
 
 The Glue API in LocalStack Pro allows you to run ETL (Extract-Transform-Load) jobs locally, maintaining table metadata in the local Glue data catalog, and using the Spark ecosystem (PySpark/Scala) to run data processing workflows.
 
 LocalStack allows  you to use the Glue APIs in your local environment.
 The supported APIs are available on our [API coverage page](/references/coverage/coverage_glue/), which provides information on the extent of Glue's integration with LocalStack.
+
+{{< callout >}}
+LocalStack now includes a container-based Glue Job executor, enabling Glue jobs to run within a Docker environment.
+Previously, LocalStack relied on a pre-packaged binary that included Spark and other required components.
+The new executor leverages the `aws-glue-libs` Docker image, provides better production parity, faster startup times, and more reliable execution.
+
+Key enhancements include:
+
+- Running Glue jobs inside Docker containers
+- Providing isolated execution environments per job
+- Executing multiple jobs in parallel
+- Ensuring correct versioning of Spark, Hadoop, Python, Java, and related libraries
+- Improving startup times and offline execution support
+
+To use it, set `GLUE_JOB_EXECUTOR=docker` and `GLUE_JOB_EXECUTOR_PROVIDER=v2` in your LocalStack configuration.
+The new executor additionally deprecates older versions of Glue (`0.9`, `1.0`, `2.0`).
+{{< /callout >}}
 
 ## Getting started
 
