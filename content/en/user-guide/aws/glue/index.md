@@ -23,7 +23,7 @@ Key enhancements include:
 - Providing isolated execution environments per job
 - Executing multiple jobs in parallel
 - Ensuring correct versioning of Spark, Hadoop, Python, Java, and related libraries
-- Improved startup times and offline execution support
+- Improving startup times and offline execution support
 
 To use it, set `GLUE_JOB_EXECUTOR=docker` and `GLUE_JOB_EXECUTOR_PROVIDER=v2` in your LocalStack configuration.
 The new executor additionally deprecates older versions of Glue (`0.9`, `1.0`, `2.0`).
