@@ -148,7 +148,7 @@ During execution, each Task state defined in the mock file returns its correspon
 States not listed continue to invoke their real emulated services, allowing a mix of mocked and live interactions.
 
 You can provide one or more mocked payloads per Task state.
-The Supported patterns include `.sync`, `.sync2`, and `.waitForTaskToken`.
+The supported patterns include `.sync`, `.sync2`, and `.waitForTaskToken`.
 Both success and failure scenarios can be simulated.
 
 ### Compatibility with AWS Step Functions Local
