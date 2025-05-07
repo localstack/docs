@@ -79,8 +79,7 @@ You can enable this feature by setting `CLOUDFRONT_LAMBDA_EDGE=1` in your LocalS
 ### Current limitations
 
 - The [`UpdateDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html), [`DeleteDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteDistribution.html), and [`Persistence Restore`](https://docs.localstack.cloud/user-guide/state-management/persistence/) features are not yet supported for Lambda@Edge.
-- Lack of full support for `viewer-request` and `viewer-response` event types.
-  Please expect inconsistencies and missing functionality.
+- The `origin-request` and `origin-response` event types currently trigger for each request because caching is not implemented in CloudFront.
 
 ## Using custom URLs
 
