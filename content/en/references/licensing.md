@@ -1,28 +1,48 @@
 ---
-title: LocalStack for AWS Licenses"
-linkTitle: "LocalStack for AWS Licenses"
+title: "LocalStack for AWS: Tiers, Licensing, and Access"
+linkTitle: "Licensing & Tiers"
 weight: 200
 description: >
-  Details on the packaging and service support across LocalStack tiers.
+  Service availability and licensing details across LocalStack’s AWS tiers.
 ---
 
-**This document outlines the emulated services and enhancements provided under each LocalStack for AWS tier and their respective licenses.** It is intended to clarify the available features and functionality purchased, and ensure compliance with licensing terms.
+This document outlines the features, emulated AWS services, and enhancements included in each LocalStack for AWS tier. It also clarifies how licensing works across workspaces and users.
 
-As of May 8th, 2025 there are four tiers available for purchase for **LocalStack for AWS**; Free, Base, Ultimate, and Enterprise. Please note, Enterprise licensing is custom serviced to qualified customer needs and only available via sales, therefore it is not further detailed below.
+As of **May 8, 2025**, LocalStack for AWS is offered in four tiers:
 
-[Purchased before May 8th, 2025 - click here to learn more.](#legacy-plans)
+- Free
+- Base
+- Ultimate
+- Enterprise (custom offering available via Sales only)
 
-More information on the intended audience of each tier may be found on our [pricing page](https://www.localstack.cloud/pricing). 
+If you purchased a LocalStack license **before May 8, 2025**, [click here to learn about your available features and legacy entitlements]](#legacy-plans).
 
-In order to access the functionality of an available tier, a license for that tier must be purchased and assigned to a user. This assigns an authentication token to the user that enables access to the emulator and its enhancements. At this time, self-servicing customers may only purchase licenses to one tier per workspace, meaning a single workspace may not have both Base and Ultimate licenses. For more information or questions on flexibility of licensing tied to your unique needs, please contact sales. 
+### Licensing & Access Rules
 
-Each workspace is allotted a monthly amount of CI credits and Ephemeral Instance minutes to use across all licensed users, and a set amount of Cloud Pod storage to be leveraged across the entire workspace for the lifetime of the contract. To provide flexibility, we will be enabling self-servicing purchasing of additional credits, minutes, and storage in the coming weeks. If you have immediate needs to expand usage, please contact sales for assistance. 
+Each **workspace** can only be assigned a single pricing tier. You cannot mix and match (e.g., Base and Ultimate) within the same workspace.
 
-{{< callout "note" >}}
-If you purchased LocalStack before May 8th, 2025 and had an active subscription before then, you may access information on your available features and functionality here.
-{{</ callout >}}
+Licenses must be assigned to individual users. This generates an authentication token that enables access to the emulator and any enhancements included in the tier.
 
-Please note, this table is only representative of whether an emulated AWS service is accessible in a given tier, NOT the level of coverage. To learn more about the coverage of each service, please visit that service’s detailed tech document that is linked in the table below, or reach out to support. 
+Not sure which tier fits your use case? Explore our [pricing page](https://www.localstack.cloud/pricing). 
+
+For unique licensing needs across teams or environments, please contact Sales. 
+
+### Usage Allocation Per Workspace
+
+All paid tiers include a fixed allocation of:
+
+- CI credits (monthly pool)
+- Ephemeral Instance minutes (monthly pool)
+- Cloud Pod storage (per contract, shared across all users)
+
+We will soon support self-service purchasing of additional credits, minutes, and storage. Until then, please reach out to Sales if you need to expand your usage.
+
+### Service Coverage Clarification 
+
+The table below shows which AWS services are available in each pricing tier. It does not indicate the level of API coverage or feature availability. 
+
+To learn more about how a service behaves in LocalStack, refer to that individual service page or contact Support.
+
 
 |  | Free | Base | Ultimate |
 | -------- | ------- | ------- | ------- |
@@ -175,13 +195,36 @@ Please note, this table is only representative of whether an emulated AWS servic
 
 ## Legacy Plans
 
-As of May 8th, 2025, we are no longer offering these following tiers and licenses to new customers. If you are an existing customer on these tiers, your subscription is unaffected by this change. We are not making changes to your subscription nor regressing your LocalStack for AWS experience in any way, and you will continue to benefit from our regular version releases. If you have any concerns or questions, please reach out to support. 
+As of **May 8, 2025**, the following plans are no longer available for new purchases. If you're an existing customer on one of these tiers, your subscription remains active and unchanged.
+You’ll continue receiving all regular version updates and will not experience any downgrade or loss of access. If you have questions or concerns, please contact Support.
 
-You may continue to purchase new licenses tied to your tier throughout the duration of your subscription. Please note, that a lapse in an active subscription may result in our inability to grant you access to these legacy plans again. 
+### Subscription Continuity
 
-Each workspace is allotted a maximum monthly amount of CI credits tied to the number of users on the account. For users on Starter, we provide a base of 100 credits for the first three licenses and an additional 20 credits for each additional license up to 240 total credits. In Teams, we provide a base of 1000 credits for the first three licenses and an additional 200 credits for each additional license up to 2400 total credits. There are unlimited CI credits in Enterprise. Additionally, in Teams and Enterprise, there is a monthly set amount of Ephemeral Instance minutes for the entire workspace as detailed in the table below, along with there is a set amount of Cloud Pod storage for each license. 
+You may continue purchasing new licenses under your current legacy plan for the duration of your active subscription. However, if your subscription lapses, we may not be able to restore access to these legacy plans.
 
-For any questions, please reach out to support. 
+### Legacy Plan Usage Allocations
+
+**Starter:**
+
+- 100 CI credits for the first 3 licenses
+- +20 CI credits per additional license
+- 240 CI credits maximum
+
+**Teams:**
+
+- 1000 CI credits for the first 3 licenses
+- +200 CI credits per additional license
+- 2400 CI credits maximum
+- Includes workspace-wide Ephemeral Instance minutes and Cloud Pod storage
+
+**Enterprise:**
+
+- Unlimited CI credits
+- Includes workspace-wide Ephemeral Instance minutes and Cloud Pod storage
+- Detailed values for CI credits, minutes, and storage are shown in the table below
+
+For any subscription or access-related questions, please reach out to Support.
+
 
 |  | Legacy Plan: Starter | Legacy Plan: Teams | Legacy Plan: Enterprise sold before May 8th, 2025 |
 | -------- | ------- | ------- | ------- |
