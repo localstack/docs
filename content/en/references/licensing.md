@@ -44,7 +44,7 @@ The table below shows which AWS services are available in each pricing tier. It 
 To learn more about how a service behaves in LocalStack, refer to that individual service page or contact Support.
 
 
-|  | Free | Base | Ultimate |
+| AWS Services | Free | Base | Ultimate |
 | -------- | ------- | ------- | ------- |
 | Analytics |  |  |  |
 | [](https://docs.localstack.cloud/user-guide/aws/es/)[Amazon ElasticSearch](https://docs.localstack.cloud/user-guide/aws/es/) | ✅ | ✅ | ✅ |
@@ -226,7 +226,7 @@ You may continue purchasing new licenses under your current legacy plan for the 
 For any subscription or access-related questions, please reach out to Support.
 
 
-|  | Legacy Plan: Starter | Legacy Plan: Teams | Legacy Plan: Enterprise sold before May 8th, 2025 |
+| AWS Services | Legacy Plan: Starter | Legacy Plan: Teams | Legacy Plan: Enterprise sold before May 8th, 2025 |
 | -------- | ------- | ------- | ------- |
 | Analytics |  |  |  |
 | [](https://docs.localstack.cloud/user-guide/aws/es/)[Amazon ElasticSearch](https://docs.localstack.cloud/user-guide/aws/es/) | ✅ | ✅ | ✅ |
