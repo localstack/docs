@@ -111,7 +111,7 @@ If the key activation fails, LocalStack will quit with an error messages that ma
 ===============================================
 API key activation failed! 🔑❌
 
-The API key you provided in the `LOCALSTACK_API_KEY` environment variable '"foo..."(6)' could not beactivated against our licensing server. Server message: Unable to verify API key.
+The API key you provided in the `LOCALSTACK_API_KEY` environment variable '"foo..."(6)' could not be activated against our licensing server. Server message: Unable to verify API key.
 
 Due to this error, Localstack has quit. LocalStack pro features can only be used with a valid license.
 
