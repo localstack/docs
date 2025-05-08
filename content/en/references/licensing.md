@@ -6,7 +6,8 @@ description: >
   Service availability and licensing details across LocalStack for AWS tiers.
 ---
 
-This document outlines the features, emulated AWS services, and enhancements included in each LocalStack for AWS tier. It also clarifies how licensing works across workspaces and users.
+This document outlines the features, emulated AWS services, and enhancements included in each LocalStack for AWS tier.
+It also clarifies how licensing works across workspaces and users.
 
 As of **May 8, 2025**, LocalStack for AWS is offered in four tiers:
 
@@ -19,13 +20,16 @@ If you purchased a LocalStack license **before May 8, 2025**, [click here to lea
 
 ### Licensing & Access Rules
 
-Each **workspace** can only be assigned a single pricing tier. You cannot mix and match (e.g., Base and Ultimate) within the same workspace.
+Each **workspace** can only be assigned a single pricing tier.
+You cannot mix and match (e.g., Base and Ultimate) within the same workspace.
 
-Licenses must be assigned to individual users. This generates an authentication token that enables access to the emulator and any enhancements included in the tier.
+Licenses must be assigned to individual users.
+This generates an authentication token that enables access to the emulator and any enhancements included in the tier.
 
-Not sure which tier fits your use case? Explore our [pricing page](https://www.localstack.cloud/pricing). 
+Not sure which tier fits your use case?
+Explore our [pricing page](https://www.localstack.cloud/pricing).
 
-For unique licensing needs across teams or environments, please contact Sales. 
+For unique licensing needs across teams or environments, please contact Sales.
 
 ### Usage Allocation Per Workspace
 
@@ -35,14 +39,15 @@ All paid tiers include a fixed allocation of:
 - Ephemeral Instance minutes (monthly pool)
 - Cloud Pod storage (per contract, shared across all users)
 
-We will soon support self-service purchasing of additional credits, minutes, and storage. Until then, please reach out to Sales if you need to expand your usage.
+We will soon support self-service purchasing of additional credits, minutes, and storage.
+Until then, please reach out to Sales if you need to expand your usage.
 
-### Service Coverage Clarification 
+### Service Coverage Clarification
 
-The table below shows which AWS services are available in each pricing tier. It does not indicate the level of API coverage or feature availability. 
+The table below shows which AWS services are available in each pricing tier.
+It does not indicate the level of API coverage or feature availability.
 
 To learn more about how a service behaves in LocalStack, refer to that individual service page or contact Support.
-
 
 | AWS Services | Free | Base | Ultimate |
 | -------- | ------- | ------- | ------- |
@@ -182,7 +187,7 @@ To learn more about how a service behaves in LocalStack, refer to that individua
 | Stack Insights | ❌ | ✅ For all supported services | ✅ For all supported services |
 | Local state persistence | ❌ | ✅ | ✅ |
 | Cloud-based state persistence via Cloud pods | ❌ | ✅ 300 MB, lifetime per workspace | ✅ 3 GB, lifetime per workspace |
-| Application previews via Ephemeral Instances | ❌ | ✅ 100 minutes monthly per workspace | ✅ 500 minutes monthly per workspace |
+| Cloud Sandbox previews & ephemeral instances | ❌ | ✅ 100 minutes monthly per workspace | ✅ 500 minutes monthly per workspace |
 | AWS Replicator | ❌ | ❌ | ✅ |
 | IAM Policy Enforcement | ❌ | ✅ | ✅ |
 | IAM Policy Streams | ❌ | ❌ | ✅ |
@@ -195,12 +200,15 @@ To learn more about how a service behaves in LocalStack, refer to that individua
 
 ## Legacy Plans
 
-As of **May 8, 2025**, the following plans are no longer available for new purchases. If you're an existing customer on one of these tiers, your subscription remains active and unchanged.
-You’ll continue receiving all regular version updates and will not experience any downgrade or loss of access. If you have questions or concerns, please contact Support.
+As of **May 8, 2025**, the following plans are no longer available for new purchases.
+If you're an existing customer on one of these tiers, your subscription remains active and unchanged.
+You’ll continue receiving all regular version updates and will not experience any downgrade or loss of access.
+If you have questions or concerns, please contact Support.
 
 ### Subscription Continuity
 
-You may continue purchasing new licenses under your current legacy plan for the duration of your active subscription. However, if your subscription lapses, we may not be able to restore access to these legacy plans.
+You may continue purchasing new licenses under your current legacy plan for the duration of your active subscription.
+However, if your subscription lapses, we may not be able to restore access to these legacy plans.
 
 ### Legacy Plan Usage Allocations
 
@@ -224,7 +232,6 @@ You may continue purchasing new licenses under your current legacy plan for the 
 - Detailed values for CI credits, minutes, and storage are shown in the table below
 
 For any subscription or access-related questions, please reach out to Support.
-
 
 | AWS Services | Legacy Plan: Starter | Legacy Plan: Teams | Legacy Plan: Enterprise sold before May 8th, 2025 |
 | -------- | ------- | ------- | ------- |
@@ -371,6 +378,6 @@ For any subscription or access-related questions, please reach out to Support.
 | Emulator Compliance Pack | ❌ | ❌ | ✅ |
 | User Security Pack | ❌ | ❌ | ✅ |
 | [Chaos Engineering](https://docs.localstack.cloud/user-guide/chaos-engineering/) | ❌ | ❌ | ✅ |
-| [Kubernetes Executor](https://docs.localstack.cloud/user-guide/localstack-enterprise/kubernetes-executor/) | ❌ | ❌ | ✅ |
+| [Kubernetes Pack](https://docs.localstack.cloud/user-guide/localstack-enterprise/kubernetes-executor/) | ❌ | ❌ | ✅ |
 |  |  |  |  |
 | [Support](https://docs.localstack.cloud/getting-started/help-and-support/) | Standard | Priority | Enterprise |
