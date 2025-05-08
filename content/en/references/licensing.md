@@ -16,7 +16,7 @@ As of **May 8, 2025**, LocalStack for AWS is offered in four tiers:
 - Ultimate
 - Enterprise (custom offering available via Sales only)
 
-If you purchased a LocalStack license **before May 8, 2025**, [click here to learn about your available features and legacy entitlements]](#legacy-plans).
+If you purchased a LocalStack license **before May 8, 2025**, [click here to learn about your available features and legacy entitlements](#legacy-plans).
 
 ### Licensing & Access Rules
 
