@@ -337,6 +337,12 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `SQS_DISABLE_CLOUDWATCH_METRICS` | `0` (default) | Disables the CloudWatch Metrics for SQS when set to `1` |
 | `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL` | `60` (default) | Configures the report interval (in seconds) for `Approximate*` metrics that are sent to CloudWatch periodically. Sending will be disabled if `SQS_DISABLE_CLOUDWATCH_METRICS=1` |
 
+### Step Functions
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `SFN_MOCK_CONFIG` | `/tmp/MockConfigFile.json` | Specifies the file path to the mock configuration file that defines mock service integrations for Step Functions. |
+
 ## Security
 
 {{< callout "warning" >}}
