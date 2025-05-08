@@ -371,7 +371,7 @@ For any subscription or access-related questions, please reach out to Support.
 | Stack Insights | ✅ For all supported services | ✅ For all supported services | ✅ For all supported services |
 | Local state persistence | ✅ | ✅ | ✅ |
 | Cloud-based state persistence via Cloud pods | ✅ 500 MB, lifetime per license | ✅ 1 GB, lifetime per license | ✅ 5 GB lifetime, per license |
-| Application previews via Ephemeral Instances | ❌ | ✅ 1000 minutes monthly per workspace | ✅ 3000 minutes monthly per workspace |
+| [Cloud Sandbox](https://docs.localstack.cloud/user-guide/cloud-sandbox/) previews & ephemeral instances | ❌ | ✅ 1000 minutes monthly per workspace | ✅ 3000 minutes monthly per workspace |
 | AWS Replicator | ❌ | ✅ | ✅ |
 | IAM Policy Enforcement | ❌ | ❌ | ✅ |
 | IAM Policy Streams | ❌ | ❌ | ✅ |
