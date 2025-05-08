@@ -135,20 +135,22 @@ LocalStack's Step Functions emulation supports the following AWS services:
 
 ## Mocked Service Integrations
 
-Mocked service integrations allow you to test AWS Step Functions without calling LocalStack's emulated AWS services.
+Mocked service integrations let you test AWS Step Functions without invoking LocalStack’s emulated AWS services.  
 Instead, Task states return predefined outputs from a mock configuration file.
+
 The key components are:
 
-- **Mocked service integrations**: Task states that return predefined responses instead of invoking local AWS services.
-- **Mocked responses**: Static payloads associated with mocked Task states.
-- **Test cases**: State machine executions using mocked responses.
-- **Mock configuration file**: JSON file that defines test cases, mocked states, and their response payloads.
+- **Mocked service integrations**: Task states that return predefined responses instead of calling local AWS services.
+- **Mocked responses**: Static payloads linked to mocked Task states.
+- **Test cases**: Executions of your state machine that use mocked responses.
+- **Mock configuration file**: A JSON file that defines test cases, mocked states, and their response payloads.
 
-During execution, each Task state defined in the mock file returns its corresponding mocked response.
-States not listed continue to invoke their real emulated services, allowing a mix of mocked and live interactions.
+During execution, each Task state listed in the mock file returns its associated mocked response. States not included in the file continue to invoke the corresponding emulated services, allowing a mix of mocked and real interactions.
 
-You can provide one or more mocked payloads per Task state.
-The supported patterns include `.sync`, `.sync2`, and `.waitForTaskToken`.
+You can define one or more mocked payloads per Task state.  
+
+Supported integration patterns include `.sync`, `.sync2`, and `.waitForTaskToken`.  
+
 Both success and failure scenarios can be simulated.
 
 ### Compatibility with AWS Step Functions Local
