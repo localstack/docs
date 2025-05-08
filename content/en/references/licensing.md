@@ -194,7 +194,7 @@ To learn more about how a service behaves in LocalStack, refer to that individua
 | Emulator Compliance Pack | ❌ | ❌ | ❌ |
 | User Security Pack | ❌ | ❌ | ❌ |
 | [Chaos Engineering](https://docs.localstack.cloud/user-guide/chaos-engineering/) | ❌ | ❌ | ✅ Add-on |
-| Kubernetes Pack ([K8s](https://docs.localstack.cloud/user-guide/localstack-enterprise/k8s-operator/) & [Executor](https://docs.localstack.cloud/user-guide/localstack-enterprise/kubernetes-executor/)) | ❌ | ❌ | ✅ Add-on |
+| Kubernetes Pack ([Operator](https://docs.localstack.cloud/user-guide/localstack-enterprise/k8s-operator/) & [Executor](https://docs.localstack.cloud/user-guide/localstack-enterprise/kubernetes-executor/)) | ❌ | ❌ | ✅ Add-on |
 |  |  |  |  |
 | [Support](https://docs.localstack.cloud/getting-started/help-and-support/) | Basic | Standard | Priority |
 
@@ -378,6 +378,6 @@ For any subscription or access-related questions, please reach out to Support.
 | Emulator Compliance Pack | ❌ | ❌ | ✅ |
 | User Security Pack | ❌ | ❌ | ✅ |
 | [Chaos Engineering](https://docs.localstack.cloud/user-guide/chaos-engineering/) | ❌ | ❌ | ✅ |
-| Kubernetes Pack ([K8s](https://docs.localstack.cloud/user-guide/localstack-enterprise/k8s-operator/) & [Executor](https://docs.localstack.cloud/user-guide/localstack-enterprise/kubernetes-executor/)) | ❌ | ❌ | ✅ |
+| Kubernetes Pack ([Operator](https://docs.localstack.cloud/user-guide/localstack-enterprise/k8s-operator/) & [Executor](https://docs.localstack.cloud/user-guide/localstack-enterprise/kubernetes-executor/)) | ❌ | ❌ | ✅ |
 |  |  |  |  |
 | [Support](https://docs.localstack.cloud/getting-started/help-and-support/) | Standard | Priority | Enterprise |
