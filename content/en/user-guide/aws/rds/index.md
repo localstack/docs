@@ -184,7 +184,7 @@ If you select a major version beyond this range, the system will automatically d
 
 It's important to note that the selection of minor versions is not available.
 The latest major version will be installed within the Docker environment.
-If you wish to prevent the installation of customized versions, adjusting the `RDS_PG_CUSTOM_VERSIONS` environment variable to `0` will enforce the use of the default PostgreSQL version 17.
+If you wish to prevent the installation of customized versions, adjusting the `RDS_PG_CUSTOM_VERSIONS` environment variable to `0` will enforce the use of the default PostgreSQL version 15.
 
 {{< callout >}}
 While the [`DescribeDbCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusters.html) and [`DescribeDbInstances`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) APIs will still reflect the initially defined `engine-version`, the actual installed PostgreSQL engine might differ.
