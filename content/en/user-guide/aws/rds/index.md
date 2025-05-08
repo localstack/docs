@@ -179,7 +179,7 @@ For instance, the `storage-encrypted` flag is returned as configured, but active
 ### PostgreSQL Engine
 
 When you establish an RDS DB cluster or instance using the `postgres`/`aurora-postgresql` DB engine along with a specified `EngineVersion`, LocalStack will dynamically install and configure the corresponding PostgreSQL version as required.
-Presently, you have the option to choose major versions ranging from 11 to 17.
+Presently, you have the option to choose major versions ranging from 11 to 16.
 If you select a major version beyond this range, the system will automatically default to version 15.
 
 It's important to note that the selection of minor versions is not available.
