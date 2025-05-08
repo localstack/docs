@@ -145,7 +145,8 @@ The key components are:
 - **Test cases**: Executions of your state machine that use mocked responses.
 - **Mock configuration file**: A JSON file that defines test cases, mocked states, and their response payloads.
 
-During execution, each Task state listed in the mock file returns its associated mocked response. States not included in the file continue to invoke the corresponding emulated services, allowing a mix of mocked and real interactions.
+During execution, each Task state listed in the mock file returns its associated mocked response.
+States not included in the file continue to invoke the corresponding emulated services, allowing a mix of mocked and real interactions.
 
 You can define one or more mocked payloads per Task state.  
 
@@ -166,7 +167,8 @@ Ensure the payload structure in the mocked responses matches what the real servi
 
 ### Identify a State Machine for Mocked Integrations
 
-Mocked service integrations apply to specific state machine definitions. The first step is to select the state machine where mocked responses should be applied.
+Mocked service integrations apply to specific state machine definitions.
+The first step is to select the state machine where mocked responses should be applied.
 
 In this example, we'll use a state machine named `LambdaSQSIntegration`, defined as follows:
 
@@ -220,7 +222,6 @@ This file contains two top-level sections:
 - **StateMachines** – Maps each state machine to its test cases, specifying which states use which mocked responses.
 - **MockedResponses** – Defines reusable mock payloads, each identified by a `ResponseID`, which test cases can reference.
 
-
 #### `StateMachines`
 
 This section specifies the Step Functions state machines to mock, along with their corresponding test cases.  
@@ -245,11 +246,11 @@ In the example above:
 - **`StateMachineName`**: Must exactly match the name used when the state machine was created in LocalStack.
 - **`TestCases`**: Named scenarios that define mocked behavior for specific `Task` states.
 
-Each test case maps `Task` states to mock responses that define their expected behavior. 
+Each test case maps `Task` states to mock responses that define their expected behavior.
 
 At runtime, if a test case is selected, the state uses the mocked response (if defined); otherwise, it falls back to calling the emulated service.
 
-Below is a complete example of the `StateMachines` section: 
+Below is a complete example of the `StateMachines` section:
 
 ```json
 "LambdaSQSIntegration": {
@@ -280,9 +281,10 @@ Each `ResponseID` includes one or more step keys and defines either a `Return` v
 In the example above:
 
 - `ResponseID`: A unique identifier used in test cases to reference a specific mock response.  
-- `step-key`: Indicates the attempt number. For example, `"0"` refers to the first try, while `"1-2"` covers a range of attempts.  
+- `step-key`: Indicates the attempt number.
+  For example, `"0"` refers to the first try, while `"1-2"` covers a range of attempts.  
 - `Return`: Simulates a successful response by returning a predefined payload.  
-- `Throw`: Simulates a failure by returning an `Error` and an optional `Cause`. 
+- `Throw`: Simulates a failure by returning an `Error` and an optional `Cause`.
 
 {{< callout >}}
 Each entry must have **either** `Return` or `Throw`, but cannot have both.
@@ -432,7 +434,6 @@ This tells LocalStack to apply the corresponding mocked responses from the confi
 
 For example, to run the `BaseCase` test case:
 
-
 {{< command >}}
 $ awslocal stepfunctions start-execution \
     --state-machine arn:aws:states:us-east-1:000000000000:stateMachine:LambdaSQSIntegration#BaseCase \
@@ -516,7 +517,7 @@ This will return the full execution history, including entries that indicate how
 
 ## Resource Browser
 
-The LocalStack Web Application includes a **Resource Browser** for managing Step Functions state machines. 
+The LocalStack Web Application includes a **Resource Browser** for managing Step Functions state machines.
 
 To access it, open the LocalStack Web UI in your browser, navigate to the **Resource Browser** section, and click **Step Functions** under **App Integration**.
 
