@@ -166,10 +166,9 @@ Ensure the payload structure in the mocked responses matches what the real servi
 
 ### Identify a State Machine for Mocked Integrations
 
-Mocked service integrations apply to specific state machine definitions.  
-The first step is to select the state machine where mocked responses will be used.  
+Mocked service integrations apply to specific state machine definitions. The first step is to select the state machine where mocked responses should be applied.
 
-In this example, the state machine with the name `LambdaSQSIntegration` state machine will be used with the following definition:
+In this example, we'll use a state machine named `LambdaSQSIntegration`, defined as follows:
 
 ```json
 {
@@ -212,17 +211,21 @@ In this example, the state machine with the name `LambdaSQSIntegration` state ma
 }
 ```
 
-### Define Mock Integrations in a Configuration File
+## Define Mock Integrations in a Configuration File
 
-Mock integrations are defined in a JSON file with two top-level section:
+Mock integrations are defined in a JSON file that follows the `RawMockConfig` schema.  
+
+This file contains two top-level sections:
 
 - **StateMachines** – Maps each state machine to its test cases, specifying which states use which mocked responses.
-- **MockedResponses** – Defines reusable mock payloads identified by `ResponseID`, which test cases refer to.
+- **MockedResponses** – Defines reusable mock payloads, each identified by a `ResponseID`, which test cases can reference.
+
 
 #### `StateMachines`
 
-This section specifies the Step Functions state machines to mock and their test cases.  
-Each test case maps state names to response IDs defined in `MockedResponses`.
+This section specifies the Step Functions state machines to mock, along with their corresponding test cases.  
+
+Each test case maps state names to `ResponseID`s defined in the `MockedResponses` section.
 
 ```json
 "StateMachines": {
@@ -239,13 +242,14 @@ Each test case maps state names to response IDs defined in `MockedResponses`.
 
 In the example above:
 
-- `StateMachineName`: Must match the exact name used during creation in LocalStack.
-- `TestCases`: Named scenarios that define mocked behavior for individual states.
+- **`StateMachineName`**: Must exactly match the name used when the state machine was created in LocalStack.
+- **`TestCases`**: Named scenarios that define mocked behavior for specific `Task` states.
 
-Each test case maps Task states to mock responses that define expected behavior.  
-At runtime, if a test case is selected, the state uses the mock response if defined; otherwise, it calls the emulated service.
+Each test case maps `Task` states to mock responses that define their expected behavior. 
 
-Here is a full example of the `StateMachines` section:
+At runtime, if a test case is selected, the state uses the mocked response (if defined); otherwise, it falls back to calling the emulated service.
+
+Below is a complete example of the `StateMachines` section: 
 
 ```json
 "LambdaSQSIntegration": {
@@ -261,7 +265,8 @@ Here is a full example of the `StateMachines` section:
 #### `MockedResponses`
 
 This section defines mocked responses for Task states.  
-Each `ResponseID` contains one or more step keys and either a `Return` or `Throw`.
+
+Each `ResponseID` includes one or more step keys and defines either a `Return` value or a `Throw` error.
 
 ```json
 "MockedResponses": {
@@ -274,16 +279,16 @@ Each `ResponseID` contains one or more step keys and either a `Return` or `Throw
 
 In the example above:
 
-- `ResponseID`: Unique identifier referenced in test cases.
-- `step-key`: Indicates the attempt (e.g., `"0"` for first try, `"1-2"` for a range).
-- `Return`: Simulates success with a response payload.
-- `Throw`: Simulates failure with `Error` and `Cause`.
+- `ResponseID`: A unique identifier used in test cases to reference a specific mock response.  
+- `step-key`: Indicates the attempt number. For example, `"0"` refers to the first try, while `"1-2"` covers a range of attempts.  
+- `Return`: Simulates a successful response by returning a predefined payload.  
+- `Throw`: Simulates a failure by returning an `Error` and an optional `Cause`. 
 
 {{< callout >}}
 Each entry must have **either** `Return` or `Throw`, but cannot have both.
 {{< /callout >}}
 
-Here is a full example of the `MockedResponses` section:
+Here is a complete example of the `MockedResponses` section:
 
 ```json
 "MockedLambdaStateRetry": {
@@ -378,8 +383,9 @@ The `MockConfigFile.json` below is used to test the `LambdaSQSIntegration` state
 
 ### Provide the Mock Configuration to LocalStack
 
-Set the `SFN_MOCK_CONFIG` configuration variable to the path of the mock configuration file.  
-When running LocalStack in Docker, mount the file and pass the variable as shown below:
+Set the `SFN_MOCK_CONFIG` environment variable to the path of your mock configuration file.
+
+If you're running LocalStack in Docker, mount the file and pass the variable as shown below:
 
 {{< tabpane >}}
 {{< tab header="LocalStack CLI" lang="shell" >}}
@@ -408,6 +414,7 @@ services:
 ### Run Test Cases with Mocked Integrations
 
 Create the state machine to match the name defined in the mock configuration file.  
+
 In this example, create the `LambdaSQSIntegration` state machine using:
 
 {{< command >}}
@@ -417,11 +424,14 @@ $ awslocal stepfunctions create-state-machine \
     --role-arn "arn:aws:iam::000000000000:role/service-role/testrole"
 {{< /command >}}
 
-After the state machine is created and named correctly, test cases from the mock configuration file can be run using the [`StartExecution`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) API.
+After the state machine is created and correctly named, you can run test cases defined in the mock configuration file using the [`StartExecution`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) API.
 
-To execute a test case, append the test case name to the state machine ARN using `#`.
-This tells LocalStack to apply the mocked responses from the configuration file.
-For example, run the `BaseCase` test case:
+To execute a test case, append the test case name to the state machine ARN using `#`.  
+
+This tells LocalStack to apply the corresponding mocked responses from the configuration file.
+
+For example, to run the `BaseCase` test case:
+
 
 {{< command >}}
 $ awslocal stepfunctions start-execution \
@@ -468,7 +478,7 @@ $ awslocal stepfunctions get-execution-history \
     --execution-arn "arn:aws:states:us-east-1:000000000000:execution:LambdaSQSIntegration:MockExecutionBaseCase"
 {{< /command >}}
 
-This will return the full execution history, including entries that indicate how the mocked responses were applied to the Lambda and SQS states.
+This will return the full execution history, including entries that indicate how mocked responses were applied to Lambda and SQS states.
 
 ```json
 ...
@@ -506,8 +516,9 @@ This will return the full execution history, including entries that indicate how
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing Step Functions state machines.
-You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resource Browser** section, and then clicking on **Step Functions** under the **App Integration** section.
+The LocalStack Web Application includes a **Resource Browser** for managing Step Functions state machines. 
+
+To access it, open the LocalStack Web UI in your browser, navigate to the **Resource Browser** section, and click **Step Functions** under **App Integration**.
 
 <img src="stepfunctions-resource-browser.png" alt="Step Functions Resource Browser" title="Step Functions Resource Browser" width="900" />
 <br>
