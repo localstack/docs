@@ -31,14 +31,22 @@ At the moment, we only provide support in `English`, as we are an international 
 
 ## Support Coverage
 
-| Plan                | Tier |
-|---------------------|----------------------------------------------------------|
-| Community Edition    | [Basic Support](#basic-support)                          |
-| Hobby Subscription | [Basic Support](#basic-support)                          |
-| Trial Subscription | [Standard Support](#standard-support)                    |
-| Starter Subscription | [Standard Support](#standard-support)                    |
-| Team Subscription | [Priority Support](#priority-support)                    |
-| Enterprise Subscription | [Enterprise Support](#enterprise-support)                |
+| Plan       | Tier                                                                                                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------ |
+| Free       | [**Basic Support**](https://docs.localstack.cloud/getting-started/help-and-support/#basic-support)           |
+| Trial      | [**Standard Support**](https://docs.localstack.cloud/getting-started/help-and-support/#standard-support)     |
+| Base       | [**Standard Support**](https://docs.localstack.cloud/getting-started/help-and-support/#standard-support)     |
+| Ultimate   | [**Priority Support**](https://docs.localstack.cloud/getting-started/help-and-support/#priority-support)     |
+| Enterprise | [**Enterprise Support**](https://docs.localstack.cloud/getting-started/help-and-support/#enterprise-support) |
+
+## Support Coverage for legacy plans
+
+| Plan       | Tier                                                                                                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------ |
+| Hobby      | [**Basic Support**](https://docs.localstack.cloud/getting-started/help-and-support/#basic-support)           |
+| Starter    | [**Standard Support**](https://docs.localstack.cloud/getting-started/help-and-support/#standard-support)     |
+| Teams      | [**Priority Support**](https://docs.localstack.cloud/getting-started/help-and-support/#priority-support)     |
+| Enterprise | [**Enterprise Support**](https://docs.localstack.cloud/getting-started/help-and-support/#enterprise-support) |
 
 ## Support features
 
@@ -191,11 +199,10 @@ To learn more about the support available to **Enterprise** plan users, refer to
 
 ## Support Business Hours
 
-Our support team operates in the CET timezone, Monday to Friday, from 8 AM to 4 PM, excluding the following holidays:
+Our support team operates in the CET and ET timezone, Monday to Friday, from 6 AM to 9 PM UTC, excluding the following holidays:
 
 - January 1st,
 - May 1st,
-- August 15th,
 - November 1st,
 - December 24th, 25th and 31st
 
