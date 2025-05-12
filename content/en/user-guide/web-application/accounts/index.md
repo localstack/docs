@@ -24,26 +24,13 @@ This token is used to authenticate your requests to the LocalStack platform and 
 
 ## Creating an Account
 
-You can either:
+To create an account for LocalStack for AWS, please visit our [pricing page](https://www.localstack.cloud/pricing) and click on "Get Started for Free". Follow the prompts to fill out your information and remember to verify your email to continue. 
 
-- Sign up with GitHub, or  
-- Enter your email address and follow the prompts.
-
-After submitting your email:
-
-1. Select whether you're working on **commercial** or **personal** projects.
-2. Fill in your first and last name.
-3. (**Optional**) Add company, job title, and GitHub username.
-4. Agree to the terms and conditions to continu
-.
-
-A verification link will be sent to your email.
-Once verified, you can log in using your email or GitHub account.
+All new users are granted a 14-day free Trial of our Ultimate tier with no commitment. At the end of your free trial period, you may select your preferred plan.
 
 > Terms: [localstack.cloud/legal/tos](https://www.localstack.cloud/legal/tos)  
 > Privacy Policy: [localstack.cloud/legal/privacy-policy](https://www.localstack.cloud/legal/privacy-policy)
 
-<img src="account-signup-form.png" width="700px" alt="Account sign-up form" title="Sign-up screen">
 
 ## Logging In
 
