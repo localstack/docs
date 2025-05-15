@@ -141,7 +141,7 @@ def main(
 ):
     impl_details = {}
     # read the implementation-details for pro + community first and generate a dict
-    # with information about all services and operation, and indicator if those are implemented, and avaiable only in pro:
+    # with information about all services and operation, and indicator if those are implemented, and available only in pro:
     # {"service_name":
     #   {
     #       "operation_name": {"implemented": True, "pro": False}
@@ -402,7 +402,7 @@ def aggregate_recorded_raw_data(
                             data = json.loads(metric.get("response_data", "{}"))
                             param_exception = data.get("__type", param_exception)
                         except JSONDecodeError:
-                            # in this case we just keept the original "CommonServiceException" information
+                            # in this case we just keep the original "CommonServiceException" information
                             pass
 
                 # get simple test name (will be shown on coverage page)

@@ -4,13 +4,13 @@
   "operations": [
     {
       "BatchDeleteBuilds": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -35,6 +35,18 @@
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "BatchGetCommandExecutions": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -76,6 +88,18 @@
     },
     {
       "BatchGetReports": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "BatchGetSandboxes": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -351,6 +375,18 @@
       }
     },
     {
+      "ListCommandExecutionsForSandbox": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "ListCuratedEnvironmentImages": {
         "implemented": false,
         "availability": "",
@@ -412,6 +448,30 @@
     },
     {
       "ListReportsForReportGroup": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListSandboxes": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListSandboxesForProject": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -519,6 +579,42 @@
       }
     },
     {
+      "StartCommandExecution": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "StartSandbox": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "StartSandboxConnection": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "StopBuild": {
         "implemented": true,
         "availability": "pro",
@@ -532,6 +628,18 @@
     },
     {
       "StopBuildBatch": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "StopSandbox": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -604,6 +712,32 @@
     }
   ],
   "details": {
+    "BatchDeleteBuilds": {
+      "ids": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_delete_build",
+            "test": "test_delete_build",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_delete_build",
+            "test": "test_delete_build",
+            "response": "400",
+            "error": "InvalidInputException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "BatchGetBuilds": {
       "ids": {
         "ls_pro": [
@@ -628,11 +762,31 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_delete_build",
+            "test": "test_delete_build",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_getting_started_sample",
             "test": "test_getting_started_sample",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..build.logs', '$..build.phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_multiple_builds",
+            "test": "test_multiple_builds",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -662,7 +816,7 @@
             "test": "test_build_and_push_docker_image",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..pipelineExecution.artifactRevisions', '$..pipelineExecution.trigger.triggerDetail', '$..pipelineExecutionSummaries..sourceRevisions', '$..pipelineExecutionSummaries..trigger', '$..actionExecutionDetails..output.executionResult.externalExecutionId', '$..actionExecutionDetails..output.outputVariables.AuthorDisplayName', '$..actionExecutionDetails..output.outputVariables.AuthorEmail', '$..actionExecutionDetails..output.outputVariables.AuthorId', '$..actionExecutionDetails..output.outputVariables.ProviderType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -678,31 +832,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_api_gateway_cognito_pool_authorizer",
-            "test": "test_api_gateway_cognito_pool_authorizer",
+            "node_id": "LocalStack Pro: tests/aws/services/codepipeline/test_codepipeline.py::TestCodePipeline::test_source_to_java_build",
+            "test": "test_source_to_java_build",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_cognito_authorizer_scopes",
-            "test": "test_cognito_authorizer_scopes",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_revoke_token[True]",
-            "test": "test_revoke_token[True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..pipelineExecution.artifactRevisions', '$..pipelineExecution.trigger.triggerDetail', '$..pipelineExecutionSummaries..sourceRevisions', '$..pipelineExecutionSummaries..trigger', '$..actionExecutionDetails..output.executionResult.externalExecutionId', '$..actionExecutionDetails..output.outputVariables.AuthorDisplayName', '$..actionExecutionDetails..output.outputVariables.AuthorEmail', '$..actionExecutionDetails..output.outputVariables.AuthorId', '$..actionExecutionDetails..output.outputVariables.ProviderType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -713,6 +847,26 @@
     "BatchGetProjects": {
       "names": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codebuild.py::test_codebuild_stack",
+            "test": "test_codebuild_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..artifacts.namespaceType', '$..environment.environmentVariables..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codebuild.py::test_codebuild_stack",
+            "test": "test_codebuild_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..artifacts.namespaceType', '$..environment.environmentVariables..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_project_crud_operations",
             "test": "test_project_crud_operations",
@@ -738,7 +892,7 @@
             "test": "test_build_and_push_docker_image",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..pipelineExecution.artifactRevisions', '$..pipelineExecution.trigger.triggerDetail', '$..pipelineExecutionSummaries..sourceRevisions', '$..pipelineExecutionSummaries..trigger', '$..actionExecutionDetails..output.executionResult.externalExecutionId', '$..actionExecutionDetails..output.outputVariables.AuthorDisplayName', '$..actionExecutionDetails..output.outputVariables.AuthorEmail', '$..actionExecutionDetails..output.outputVariables.AuthorId', '$..actionExecutionDetails..output.outputVariables.ProviderType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -758,7 +912,7 @@
             "test": "test_source_to_java_build",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..pipelineExecution.artifactRevisions', '$..pipelineExecution.trigger.triggerDetail', '$..pipelineExecutionSummaries..sourceRevisions', '$..pipelineExecutionSummaries..trigger', '$..actionExecutionDetails..output.executionResult.externalExecutionId', '$..actionExecutionDetails..output.outputVariables.AuthorDisplayName', '$..actionExecutionDetails..output.outputVariables.AuthorEmail', '$..actionExecutionDetails..output.outputVariables.AuthorId', '$..actionExecutionDetails..output.outputVariables.ProviderType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -767,6 +921,20 @@
       }
     },
     "CreateProject": {
+      "artifacts, description, environment, name, serviceRole, source, tags, timeoutInMinutes": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codebuild.py::test_codebuild_stack",
+            "test": "test_codebuild_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..artifacts.namespaceType', '$..environment.environmentVariables..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      },
       "artifacts, environment, name, serviceRole, source": {
         "ls_pro": [
           {
@@ -780,11 +948,31 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_delete_build",
+            "test": "test_delete_build",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_getting_started_sample",
             "test": "test_getting_started_sample",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..build.logs', '$..build.phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_multiple_builds",
+            "test": "test_multiple_builds",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -804,7 +992,7 @@
             "test": "test_build_and_push_docker_image",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..pipelineExecution.artifactRevisions', '$..pipelineExecution.trigger.triggerDetail', '$..pipelineExecutionSummaries..sourceRevisions', '$..pipelineExecutionSummaries..trigger', '$..actionExecutionDetails..output.executionResult.externalExecutionId', '$..actionExecutionDetails..output.outputVariables.AuthorDisplayName', '$..actionExecutionDetails..output.outputVariables.AuthorEmail', '$..actionExecutionDetails..output.outputVariables.AuthorId', '$..actionExecutionDetails..output.outputVariables.ProviderType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -824,7 +1012,7 @@
             "test": "test_source_to_java_build",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..pipelineExecution.artifactRevisions', '$..pipelineExecution.trigger.triggerDetail', '$..pipelineExecutionSummaries..sourceRevisions', '$..pipelineExecutionSummaries..trigger', '$..actionExecutionDetails..output.executionResult.externalExecutionId', '$..actionExecutionDetails..output.outputVariables.AuthorDisplayName', '$..actionExecutionDetails..output.outputVariables.AuthorEmail', '$..actionExecutionDetails..output.outputVariables.AuthorId', '$..actionExecutionDetails..output.outputVariables.ProviderType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -870,6 +1058,16 @@
       "name": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codebuild.py::test_codebuild_stack",
+            "test": "test_codebuild_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..artifacts.namespaceType', '$..environment.environmentVariables..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_codebuild_failure",
             "test": "test_codebuild_failure",
             "response": "200",
@@ -890,11 +1088,31 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_delete_build",
+            "test": "test_delete_build",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_getting_started_sample",
             "test": "test_getting_started_sample",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..build.logs', '$..build.phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_multiple_builds",
+            "test": "test_multiple_builds",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -924,7 +1142,7 @@
             "test": "test_build_and_push_docker_image",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..pipelineExecution.artifactRevisions', '$..pipelineExecution.trigger.triggerDetail', '$..pipelineExecutionSummaries..sourceRevisions', '$..pipelineExecutionSummaries..trigger', '$..actionExecutionDetails..output.executionResult.externalExecutionId', '$..actionExecutionDetails..output.outputVariables.AuthorDisplayName', '$..actionExecutionDetails..output.outputVariables.AuthorEmail', '$..actionExecutionDetails..output.outputVariables.AuthorId', '$..actionExecutionDetails..output.outputVariables.ProviderType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -944,7 +1162,7 @@
             "test": "test_source_to_java_build",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..pipelineExecution.artifactRevisions', '$..pipelineExecution.trigger.triggerDetail', '$..pipelineExecutionSummaries..sourceRevisions', '$..pipelineExecutionSummaries..trigger', '$..actionExecutionDetails..output.executionResult.externalExecutionId', '$..actionExecutionDetails..output.outputVariables.AuthorDisplayName', '$..actionExecutionDetails..output.outputVariables.AuthorEmail', '$..actionExecutionDetails..output.outputVariables.AuthorId', '$..actionExecutionDetails..output.outputVariables.ProviderType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -955,6 +1173,16 @@
     "ListProjects": {
       "- (without any parameters)": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_codebuild.py::test_codebuild_stack",
+            "test": "test_codebuild_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..artifacts.namespaceType', '$..environment.environmentVariables..type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_project_crud_operations",
             "test": "test_project_crud_operations",
@@ -986,7 +1214,7 @@
             "test": "test_build_and_push_docker_image",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..pipelineExecution.artifactRevisions', '$..pipelineExecution.trigger.triggerDetail', '$..pipelineExecutionSummaries..sourceRevisions', '$..pipelineExecutionSummaries..trigger', '$..actionExecutionDetails..output.executionResult.externalExecutionId', '$..actionExecutionDetails..output.outputVariables.AuthorDisplayName', '$..actionExecutionDetails..output.outputVariables.AuthorEmail', '$..actionExecutionDetails..output.outputVariables.AuthorId', '$..actionExecutionDetails..output.outputVariables.ProviderType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1006,7 +1234,7 @@
             "test": "test_source_to_java_build",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..pipelineExecution.artifactRevisions', '$..pipelineExecution.trigger.triggerDetail', '$..pipelineExecutionSummaries..sourceRevisions', '$..pipelineExecutionSummaries..trigger', '$..actionExecutionDetails..output.executionResult.externalExecutionId', '$..actionExecutionDetails..output.outputVariables.AuthorDisplayName', '$..actionExecutionDetails..output.outputVariables.AuthorEmail', '$..actionExecutionDetails..output.outputVariables.AuthorId', '$..actionExecutionDetails..output.outputVariables.ProviderType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1036,11 +1264,31 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_delete_build",
+            "test": "test_delete_build",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_getting_started_sample",
             "test": "test_getting_started_sample",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..build.logs', '$..build.phases']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codebuild/test_codebuild.py::TestCodeBuild::test_multiple_builds",
+            "test": "test_multiple_builds",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"

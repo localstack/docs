@@ -70,14 +70,16 @@ This feature is still under development, and functionality is limited.
 You can enable this feature by setting `CLOUDFRONT_LAMBDA_EDGE=1` in your LocalStack configuration.
 
 ### Current features
+
 - Support for [`CreateDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html) API to set up CloudFront distributions with Lambda@Edge.
 - Support for modifying request and response headers dynamically.
+- Support for [`IncludeBody`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_LambdaFunctionAssociation.html#cloudfront-Type-LambdaFunctionAssociation-IncludeBody) parameter.
+- Support for Node.js & Python 3.x runtime.
 
-### Known limitations
+### Current limitations
+
 - The [`UpdateDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html), [`DeleteDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteDistribution.html), and [`Persistence Restore`](https://docs.localstack.cloud/user-guide/state-management/persistence/) features are not yet supported for Lambda@Edge.
-- Lack of full support for `viewer-request` and `viewer-response` event types.
-  Please expect inconsistencies and missing functionality.
-- [`IncludeBody`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_LambdaFunctionAssociation.html#cloudfront-Type-LambdaFunctionAssociation-IncludeBody) option is currently not supported.
+- The `origin-request` and `origin-response` event types currently trigger for each request because caching is not implemented in CloudFront.
 
 ## Using custom URLs
 

@@ -187,7 +187,7 @@ Run the following command to create the function:
 
 {{< callout "note">}}
 Before creating the lambda function, please double check under which architecture you have built your image.
-If your image is built as arm64, you need to specify the lambda architecture when deploying or set `LAMBDA_IGNORE_ARCHTIECTURE=1` when starting LocalStack.
+If your image is built as arm64, you need to specify the lambda architecture when deploying or set `LAMBDA_IGNORE_ARCHITECTURE=1` when starting LocalStack.
 More information can be found [in our documentation regarding ARM support.]({{< ref "arm64-support" >}})
 {{< /callout >}}
 

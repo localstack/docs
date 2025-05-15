@@ -156,7 +156,7 @@ Resources:
 
   InternetGateway:
     Type: AWS::EC2::InternetGateway
-  GatewayAttachement:
+  GatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
       VpcId: !Ref 'VPC'
@@ -167,7 +167,7 @@ Resources:
       VpcId: !Ref 'VPC'
   PublicRoute:
     Type: AWS::EC2::Route
-    DependsOn: GatewayAttachement
+    DependsOn: GatewayAttachment
     Properties:
       RouteTableId: !Ref 'PublicRouteTable'
       DestinationCidrBlock: '0.0.0.0/0'
