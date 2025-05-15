@@ -41,11 +41,11 @@ An internal SES LocalStack testing endpoint (`/_localstack/aws/ses`) is configur
 
 ## Prerequisites
 
-- [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)
-- [LocalStack Web Application account](https://app.localstack.cloud/sign-up) & [Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
+- [LocalStack CLI]({{< ref "/getting-started/installation/#localstack-cli" >}})
+- [LocalStack Web Application account](https://app.localstack.cloud/sign-up) & [Auth Token]({{< ref "/getting-started/auth-token/" >}})
 - [Docker](https://docs.docker.com/get-docker/)
 - [Python 3.11+](https://www.python.org/downloads/) & `pip`
-- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) & [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) & [`awslocal` wrapper]({{< ref "/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal" >}})
 - `jq`, `zip` & `curl`
 
 You can start LocalStack using the `localstack` CLI.
@@ -105,7 +105,7 @@ $ pyenv global 3.11
 
 ### Setup the serverless image resizer
 
-This application enables serverless image resizing using [S3](https://docs.localstack.cloud/user-guide/aws/s3/), [SSM](https://docs.localstack.cloud/user-guide/aws/ssm/), [Lambda](https://docs.localstack.cloud/user-guide/aws/lambda/), [SNS](https://docs.localstack.cloud/user-guide/aws/sns/), and [SES](https://docs.localstack.cloud/user-guide/aws/ses/).
+This application enables serverless image resizing using [S3]({{< ref "/user-guide/aws/s3/" >}}), [SSM]({{< ref "/user-guide/aws/ssm" >}}/), [Lambda]({{< ref "/user-guide/aws/lambda" >}}/), [SNS]({{< ref "/user-guide/aws/sns" >}}/), and [SES]({{< ref "/user-guide/aws/ses" >}}/).
 A simple web interface allows users to upload and view resized images.
 A Lambda function generates S3 pre-signed URLs for direct uploads, while S3 bucket notifications trigger image resizing.
 Another Lambda function lists and provides pre-signed URLs for browser display.
@@ -128,7 +128,7 @@ $ deployment/awslocal/deploy.sh
 Alternatively, you can follow these instructions to deploy the sample application manually step-by-step.
 
 {{< callout "tip" >}}
-In absence of the `awslocal` wrapper, you can use the `aws` CLI directly, by configuring an [endpoint URL](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-an-endpoint-url) or a [custom profile](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-a-custom-profile) like `localstack`.
+In absence of the `awslocal` wrapper, you can use the `aws` CLI directly, by configuring an [endpoint URL]({{< ref "/user-guide/integrations/aws-cli/#configuring-an-endpoint-url" >}}) or a [custom profile]({{< ref "/user-guide/integrations/aws-cli/#configuring-a-custom-profile" >}}) like `localstack`.
 You can then swap `awslocal` with `aws --endpoint-url=http://localhost:4566` or `aws --profile=localstack` in the commands below.
 {{< /callout >}}
 

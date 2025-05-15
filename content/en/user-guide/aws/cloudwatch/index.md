@@ -13,10 +13,10 @@ It allows you to collect and track metrics, collect and monitor log files, and s
 CloudWatch provides valuable insights into your AWS resources, applications, and services, enabling you to troubleshoot issues, optimize performance, and make informed decisions.
 
 LocalStack allows you to use CloudWatch APIs on your local machine to create and manage CloudWatch resources, such as custom metrics, alarms, and log groups, for local development and testing purposes.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/), which provides information on the extent of CloudWatch's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_cloudwatch" >}}), which provides information on the extent of CloudWatch's integration with LocalStack.
 
 {{< callout >}}
-We have introduced an all-new LocalStack-native [CloudWatch provider](https://docs.localstack.cloud/user-guide/aws/cloudwatch/) and recently made this one the default.
+We have introduced an all-new LocalStack-native [CloudWatch provider]({{< ref "/user-guide/aws/cloudwatch" >}}) and recently made this one the default.
 
 With the new provider we have migrated from storing data in Python objects within the Moto backend to a more robust system.
 

@@ -34,7 +34,7 @@ In this tutorial, you will learn how to install the AWS Replicator extension and
 
 ## Prerequisites
 
-- [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)  with  [`LOCALSTACK_AUTH_TOKEN`](https://docs.localstack.cloud/getting-started/auth-token/)
+- [LocalStack CLI]({{< ref "installation/#localstack-cli" >}})  with  [`LOCALSTACK_AUTH_TOKEN`]({{< ref "auth-token" >}})
 - [Docker](https://docs.localstack.cloud/getting-started/auth-token/)
 - [AWS CLI](https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html) with  [`awslocal` wrapper](https://github.com/localstack/awscli-local)
 - [LocalStack Web Application account](https://app.localstack.cloud/sign-up)

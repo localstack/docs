@@ -59,7 +59,7 @@ _Appears in:_
 | `shutdownConfigName` _string_ |  |
 | `startConfigName` _string_ |  |
 
-Use as described in the [Initialization Hooks](https://docs.localstack.cloud/references/init-hooks/) reference.
+Use as described in the [Initialization Hooks]({{< ref "/references/init-hooks" >}}) reference.
 
 #### LocalStack
 

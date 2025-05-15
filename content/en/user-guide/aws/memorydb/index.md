@@ -14,7 +14,7 @@ MemoryDB is a fully managed, Redis-compatible, in-memory database tailored for w
 It streamlines the deployment and management of in-memory databases within the AWS cloud environment, acting as a replacement for using a cache in front of a database for improved durability and performance.
 
 LocalStack's Pro offering contains support for the main MemoryDB APIs surrounding cluster creation, allowing developers to utilize the MemoryDB functionalities in their local development environment.
-The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_memorydb/), which provides information on the extent of MemoryDB's integration with LocalStack.
+The supported APIs are available on our [API Coverage Page]({{< ref "coverage_memorydb" >}}), which provides information on the extent of MemoryDB's integration with LocalStack.
 
 ## Getting started
 

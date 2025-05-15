@@ -12,7 +12,7 @@ SWF allows you to define workflows in a way that's separate from the actual appl
 SWF also provides a programming framework to design, coordinate, and execute workflows that involve multiple tasks, steps, and decision points.
 
 LocalStack allows you to use the SWF APIs in your local environment to monitor and manage workflow design, task coordination, activity implementation, and error handling.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_swf/), which provides information on the extent of SWF's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_swf" >}}), which provides information on the extent of SWF's integration with LocalStack.
 
 ## Getting started
 

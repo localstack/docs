@@ -18,7 +18,7 @@ It allows you to apply transformations, filtering, and enrichment to streaming d
 LocalStack allows you to use the Kinesis Data Analytics APIs in your local environment.
 The API coverage is available on:
 
-* [Kinesis Data Analytics](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalytics/)
+* [Kinesis Data Analytics]({{< ref "coverage_kinesisanalytics" >}})
 
 ## Getting started
 

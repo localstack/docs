@@ -18,7 +18,7 @@ To resolve the issue follow the steps:
   This can be done by deleting the cached certificate file.
   For example, on Linux systems, you can locate and remove the file at  `~/.cache/localstack/volume/cache/server.test.pem`.
   The exact path may differ depending on your operating system and how you’ve started LocalStack.
-  Please refer to our [documentation](https://docs.localstack.cloud/references/filesystem/#localstack-volume) for specific instructions.
+  Please refer to our [documentation]({{< ref "filesystem/#localstack-volume" >}}) for specific instructions.
 
 **Workarounds for older (<v3.7.0) LocalStack versions:**
 

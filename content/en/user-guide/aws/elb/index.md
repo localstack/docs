@@ -12,7 +12,7 @@ It also monitors the health of its registered targets and ensures that it routes
 You can check [the official AWS documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html) to understand the basic terms and concepts used in the ELB.
 
 Localstack allows you to use the Elastic Load Balancing APIs in your local environment to create, edit, and view load balancers, target groups, listeners, and rules.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_elbv2/), which provides information on the extent of ELB's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_elbv2" >}}), which provides information on the extent of ELB's integration with LocalStack.
 
 ## Getting started
 
@@ -175,7 +175,7 @@ http(s)://localhost.localstack.cloud:4566/_aws/elb/example-lb/test/path
 
 The following code snippets and sample applications provide practical examples of how to use ELB in LocalStack for various use cases:
 
-- [Setting up Elastic Load Balancing (ELB) Application Load Balancers using LocalStack, deployed via the Serverless framework](https://docs.localstack.cloud/tutorials/elb-load-balancing/)
+- [Setting up Elastic Load Balancing (ELB) Application Load Balancers using LocalStack, deployed via the Serverless framework]({{< ref "/tutorials/elb-load-balancing" >}})
 
 ## Current Limitations
 

@@ -14,7 +14,7 @@ It provides an internal, integrated experience, similar to the AWS Management Co
 
 The Resource Browser provide an experience similar to the AWS Management Console.
 However, the Resource Browser is not a replacement for the AWS Management Console and only replicate some of the features of the AWS Management Console.
-We recommend using our [integrations](https://docs.localstack.cloud/user-guide/integrations/) to create your resources, with the Resource Browser being used for quick viewing and management of your resources.
+We recommend using our [integrations]({{< ref "/user-guide/integrations/" >}}) to create your resources, with the Resource Browser being used for quick viewing and management of your resources.
 
 The LocalStack Web Application connects to your LocalStack container and retrieves the information about your local resources directly via `localhost` without using the internet.
 None of the information is sent to the internet, or stored on any external servers maintained by LocalStack.

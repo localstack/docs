@@ -11,7 +11,7 @@ AppSync is a managed service provided by Amazon Web Services (AWS) that enables 
 AppSync allows you to define your data models and business logic using a declarative approach, and connect to various data sources, including other AWS services, relational databases, and custom data sources.
 
 LocalStack allows you to use the AppSync APIs in your local environment to connect your applications and services to data and events.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_appsync/), which provides information on the extent of AppSync's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_appsync" >}}), which provides information on the extent of AppSync's integration with LocalStack.
 
 ## Getting started
 

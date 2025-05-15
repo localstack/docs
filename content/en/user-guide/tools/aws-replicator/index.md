@@ -27,7 +27,7 @@ A valid `LOCALSTACK_AUTH_TOKEN` must be configured to start the LocalStack Pro i
 
 {{< callout "note" >}}
 The Replicator is in limited preview and is available from LocalStack CLI version 4.2.0.
-If you encounter issues, update your [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#updating).
+If you encounter issues, update your [LocalStack CLI]({{< ref "/getting-started/installation/#updating" >}}).
 {{< /callout >}}
 
 ### Retrieve credentials to access AWS
@@ -76,7 +76,7 @@ Both methods have two steps:
 #### Using the LocalStack CLI
 
 The Replicator CLI is part of the LocalStack CLI.
-Follow the [installation instructions](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) to set it up.
+Follow the [installation instructions]({{< ref "installation/#localstack-cli" >}}) to set it up.
 
 To start a replication job, get the ARN of the resource to replicate.
 Then, trigger the job using the command:
