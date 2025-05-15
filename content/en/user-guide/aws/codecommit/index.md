@@ -15,7 +15,7 @@ You can also use standard Git commands or CodeCommit APIs (using AWS CLI or SDKs
 CodeCommit also uses identity-based policies, which can be attached to IAM users, groups, and roles, ensuring secure and granular access control.
 
 LocalStack allows you to use the CodeCommit APIs in your local environment to create new repositories, push your commits, and manage the repositories.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_codecommit/), which provides information on the extent of CodeCommit's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_codecommit" >}}), which provides information on the extent of CodeCommit's integration with LocalStack.
 
 ## Getting started
 

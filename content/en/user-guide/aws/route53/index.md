@@ -14,7 +14,7 @@ In addition to basic DNS functionality, Route 53 offers advanced features like h
 Route 53 integrates seamlessly with other AWS services, such as route traffic to CloudFront distributions, S3 buckets configured for static website hosting, EC2 instances, and more.
 
 LocalStack allows you to use the Route53 APIs in your local environment to create hosted zones and to manage DNS entries.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53/), which provides information on the extent of Route53's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_route53" >}}), which provides information on the extent of Route53's integration with LocalStack.
 LocalStack Pro image integrates with our DNS server to respond to DNS queries with these domains.
 
 {{< callout "note">}}

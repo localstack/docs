@@ -14,7 +14,7 @@ It allows you to decouple different components of your applications by enabling 
 SQS allows you to reliably send, store, and receive messages with support for standard and FIFO queues.
 
 LocalStack allows you to use the SQS APIs in your local environment to integrate and decouple distributed systems via hosted queues.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sqs/), which provides information on the extent of SQS's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_sqs" >}}), which provides information on the extent of SQS's integration with LocalStack.
 
 ## Getting started
 

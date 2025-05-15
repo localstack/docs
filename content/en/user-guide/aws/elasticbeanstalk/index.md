@@ -13,7 +13,7 @@ Elastic Beanstalk orchestrates various AWS services, including EC2, S3, SNS, and
 Elastic Beanstalk also supports various application environments, such as Java, .NET, Node.js, PHP, Python, Ruby, Go, and Docker.
 
 LocalStack allows you to use the Elastic Beanstalk APIs in your local environment to create and manage applications, environments and versions.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_elasticbeanstalk/), which provides information on the extent of Elastic Beanstalk's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_elasticbeanstalk" >}}), which provides information on the extent of Elastic Beanstalk's integration with LocalStack.
 
 ## Getting started
 

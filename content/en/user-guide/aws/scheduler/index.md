@@ -11,7 +11,7 @@ You can use EventBridge Scheduler to create schedules that run at a specific tim
 You can also use EventBridge Scheduler to create schedules that run within a flexible time window.
 
 LocalStack allows you to use the Scheduler APIs in your local environment to create and run schedules.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_scheduler/), which provides information on the extent of EventBridge Scheduler's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_scheduler" >}}), which provides information on the extent of EventBridge Scheduler's integration with LocalStack.
 
 ## Getting started
 

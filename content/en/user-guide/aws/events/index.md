@@ -14,7 +14,7 @@ EventBridge rules are tied to an Event Bus to manage event-driven workflows.
 You can use either identity-based or resource-based policies to control access to EventBridge resources, where the former can be attached to IAM users, groups, and roles, and the latter can be attached to specific AWS resources.
 
 LocalStack allows you to use the EventBridge APIs in your local environment to create rules that route events to a target.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_events/), which provides information on the extent of EventBridge's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_events" >}}), which provides information on the extent of EventBridge's integration with LocalStack.
 For information on EventBridge Pipes, please refer to the [EventBridge Pipes]({{< ref "user-guide/aws/pipes" >}}) section.
 
 {{< callout >}}

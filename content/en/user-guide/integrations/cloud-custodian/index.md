@@ -28,7 +28,7 @@ To install Cloud Custodian, run the following command:
 $ pip install c7n
 {{< / command >}}
 
-After installing Cloud Custodian, you can configure a [custom LocalStack profile](http://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-a-custom-profile) in your AWS CLI configuration file.
+After installing Cloud Custodian, you can configure a [custom LocalStack profile]({{< ref "/user-guide/integrations/aws-cli/#configuring-a-custom-profile" >}}) in your AWS CLI configuration file.
 
 ### Create an EC2 instance
 
