@@ -24,13 +24,14 @@ This token is used to authenticate your requests to the LocalStack platform and 
 
 ## Creating an Account
 
-To create an account for LocalStack for AWS, please visit our [pricing page](https://www.localstack.cloud/pricing) and click on "Get Started for Free". Follow the prompts to fill out your information and remember to verify your email to continue. 
+To create an account for LocalStack for AWS, please visit our [pricing page](https://www.localstack.cloud/pricing) and click on "Get Started for Free".
+Follow the prompts to fill out your information and remember to verify your email to continue.
 
-All new users are granted a 14-day free Trial of our Ultimate tier with no commitment. At the end of your free trial period, you may select your preferred plan.
+All new users are granted a 14-day free Trial of our Ultimate tier with no commitment.
+At the end of your free trial period, you may select your preferred plan.
 
 > Terms: [localstack.cloud/legal/tos](https://www.localstack.cloud/legal/tos)  
 > Privacy Policy: [localstack.cloud/legal/privacy-policy](https://www.localstack.cloud/legal/privacy-policy)
-
 
 ## Logging In
 
