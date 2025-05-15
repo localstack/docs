@@ -406,6 +406,25 @@ The [CodeConnections Source](https://docs.aws.amazon.com/codepipeline/latest/use
 LocalStack supports integration only with [GitHub](https://github.com/) at this time.
 Please set the environment configuration option `CODEPIPELINE_GH_TOKEN` with the GitHub Personal Access Token to be able to fetch private repositories.
 
+### ECR Source
+
+The [ECR Source](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECR.html) action is used to specify an Elastic Container Registry image as a source artifact.
+
+### ECS CodeDeploy Blue/Green
+
+The [ECS CodeDeply Blue/Green](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECSbluegreen.html) action is used to deploy container application using a blue/green deployment.
+
+LocalStack does not accurately emulate a blue/green deployment due to limitations in ELB and ECS.
+It will only update the running ECS service with a new task definition and wait for the service to be stable.
+
+### ECS Deploy
+
+The [ECS Deploy](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECS.html) action creates a revision of a task definition based on an already deployed ECS service.
+
+### Manual Approval
+
+The Manual Approval action can be included in the pipeline declaration but it will only function as a no-op.
+
 ### S3 Deploy
 
 The [S3 Deploy](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-S3Deploy.html) action is used to upload artifacts to a given S3 bucket as the output of the pipeline.
