@@ -100,13 +100,13 @@
     },
     {
       "ContinueDeployment": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -126,11 +126,11 @@
       "CreateDeployment": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -258,11 +258,11 @@
       "GetDeployment": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -402,11 +402,11 @@
       "ListDeployments": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -508,13 +508,13 @@
     },
     {
       "StopDeployment": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -568,6 +568,36 @@
     }
   ],
   "details": {
+    "ContinueDeployment": {
+      "- (without any parameters)": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "400",
+            "error": "DeploymentIdRequiredException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "deploymentId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_stop_continue_deployment",
+            "test": "test_stop_continue_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "CreateApplication": {
       "applicationName": {
         "ls_pro": [
@@ -596,6 +626,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
             "test": "test_applications_crud",
             "response": "200",
@@ -611,6 +651,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_stop_continue_deployment",
+            "test": "test_stop_continue_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -634,6 +694,80 @@
             "test": "test_resource_tags",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreateDeployment": {
+      "applicationName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "400",
+            "error": "DeploymentGroupNameRequiredException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "applicationName, deploymentGroupName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "400",
+            "error": "RevisionRequiredException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "applicationName, deploymentGroupName, revision": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_stop_continue_deployment",
+            "test": "test_stop_continue_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "400",
+            "error": "ApplicationDoesNotExistException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "400",
+            "error": "DeploymentGroupDoesNotExistException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -691,6 +825,20 @@
           }
         ]
       },
+      "computePlatform, deploymentConfigName, trafficRoutingConfig": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          }
+        ]
+      },
       "deploymentConfigName, minimumHealthyHosts": {
         "ls_pro": [
           {
@@ -717,6 +865,20 @@
       }
     },
     "CreateDeploymentGroup": {
+      "applicationName, blueGreenDeploymentConfiguration, deploymentConfigName, deploymentGroupName, deploymentStyle, ecsServices, loadBalancerInfo, serviceRoleArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          }
+        ]
+      },
       "applicationName, deploymentConfigName, deploymentGroupName, ec2TagFilters, serviceRoleArn": {
         "ls_pro": [
           {
@@ -739,6 +901,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_stop_continue_deployment",
+            "test": "test_stop_continue_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -780,6 +962,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
             "test": "test_applications_crud",
             "response": "200",
@@ -800,8 +992,28 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_resource_tags",
             "test": "test_resource_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_stop_continue_deployment",
+            "test": "test_stop_continue_deployment",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -823,6 +1035,16 @@
             "snapshot_skipped": "['$..deploymentConfigInfo.computePlatform', '$..application.linkedToGitHub', '$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -852,11 +1074,41 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
             "test": "test_deployment_groups_crud",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..deploymentGroupInfo.ec2TagFilters', '$..deploymentGroupInfo.onPremisesInstanceTagFilters']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_stop_continue_deployment",
+            "test": "test_stop_continue_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -898,6 +1150,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
             "test": "test_applications_crud",
             "response": "200",
@@ -928,11 +1190,57 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "400",
+            "error": "ApplicationDoesNotExistException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_applications_crud",
             "test": "test_applications_crud",
             "response": "400",
             "error": "ApplicationDoesNotExistException",
             "snapshot_skipped": "['$..application.linkedToGitHub']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetDeployment": {
+      "deploymentId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "400",
+            "error": "InvalidDeploymentIdException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "400",
+            "error": "DeploymentDoesNotExistException",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -994,6 +1302,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "400",
+            "error": "DeploymentConfigDoesNotExistException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_configs_crud",
             "test": "test_deployment_configs_crud",
             "response": "400",
@@ -1048,6 +1366,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "400",
+            "error": "DeploymentGroupDoesNotExistException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployment_groups_crud",
@@ -1140,6 +1468,22 @@
         ]
       }
     },
+    "ListDeployments": {
+      "- (without any parameters)": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_deployments_crud",
+            "test": "test_deployments_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "ListTagsForResource": {
       "ResourceArn": {
         "ls_pro": [
@@ -1174,6 +1518,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_resource_tags",
             "test": "test_resource_tags",
             "response": "200",
@@ -1192,6 +1546,22 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_put_lifecycle_event_hook",
             "test": "test_put_lifecycle_event_hook",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "StopDeployment": {
+      "deploymentId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/codedeploy/test_codedeploy.py::TestCodeDeploy::test_stop_continue_deployment",
+            "test": "test_stop_continue_deployment",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
