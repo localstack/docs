@@ -31,14 +31,22 @@ At the moment, we only provide support in `English`, as we are an international 
 
 ## Support Coverage
 
-| Plan                | Tier |
-|---------------------|----------------------------------------------------------|
-| Community Edition    | [Basic Support](#basic-support)                          |
-| Hobby Subscription | [Basic Support](#basic-support)                          |
-| Trial Subscription | [Standard Support](#standard-support)                    |
-| Starter Subscription | [Standard Support](#standard-support)                    |
-| Team Subscription | [Priority Support](#priority-support)                    |
-| Enterprise Subscription | [Enterprise Support](#enterprise-support)                |
+| Plan       | Tier                                                                                                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------ |
+| Free       | [**Basic Support**](https://docs.localstack.cloud/getting-started/help-and-support/#basic-support)           |
+| Trial      | [**Standard Support**](https://docs.localstack.cloud/getting-started/help-and-support/#standard-support)     |
+| Base       | [**Standard Support**](https://docs.localstack.cloud/getting-started/help-and-support/#standard-support)     |
+| Ultimate   | [**Priority Support**](https://docs.localstack.cloud/getting-started/help-and-support/#priority-support)     |
+| Enterprise | [**Enterprise Support**](https://docs.localstack.cloud/getting-started/help-and-support/#enterprise-support) |
+
+## Support Coverage for legacy plans
+
+| Plan       | Tier                                                                                                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------ |
+| Hobby      | [**Basic Support**](https://docs.localstack.cloud/getting-started/help-and-support/#basic-support)           |
+| Starter    | [**Standard Support**](https://docs.localstack.cloud/getting-started/help-and-support/#standard-support)     |
+| Teams      | [**Priority Support**](https://docs.localstack.cloud/getting-started/help-and-support/#priority-support)     |
+| Enterprise | [**Enterprise Support**](https://docs.localstack.cloud/getting-started/help-and-support/#enterprise-support) |
 
 ## Support features
 
@@ -97,9 +105,6 @@ Users are encouraged to help others by sharing their knowledge and experiences.
 LocalStack Slack Community includes LocalStack users, contributors, and maintainers.
 If you need help with the community version of LocalStack, please use the `#help` channel.
 You can sign up for the [LocalStack Slack Community](https://localstack.cloud/slack) by creating an account.
-
-However, the messages on Slack are not accessible after three months, so it is not the best place to ask questions that may be useful to others in the future.
-For that, we recommend using LocalStack Discuss.
 
 #### GitHub Issue
 
@@ -194,11 +199,10 @@ To learn more about the support available to **Enterprise** plan users, refer to
 
 ## Support Business Hours
 
-Our support team operates in the CET timezone, Monday to Friday, from 8 AM to 4 PM, excluding the following holidays:
+Our support team operates in the CET and ET timezone, Monday to Friday, from 6 AM to 9 PM UTC, excluding the following holidays:
 
 - January 1st,
 - May 1st,
-- August 15th,
 - November 1st,
 - December 24th, 25th and 31st
 
@@ -220,8 +224,8 @@ To use LocalStack's diagnostics endpoint:
 - Set the environment variable `LS_LOG=trace`
 - Start LocalStack
 - Run the affected task(s)
-- Call the diagnostic endpoint `curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz` (Endpoint URL depends on your configuration)
-- Send the output file to our Slack chat
+- Call the diagnostic endpoint `curl -s localhost:4566/_localstack/diagnose > diagnose.json && zip diagnose.zip diagnose.json && rm diagnose.json` (Endpoint URL depends on your configuration)
+- Once you have the `diagnose.zip` file, please send it to our support team via our email support@localstack.cloud, or via your existing support ticket.
 
 <span style="color: darkred;">**Ensure that you avoid sending the diagnostic output to public channels or forums, as it may contain sensitive information.**</span>
 {{< /callout >}}

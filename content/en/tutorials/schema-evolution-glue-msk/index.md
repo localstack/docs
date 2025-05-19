@@ -541,7 +541,7 @@ $ awslocal kafka describe-cluster --cluster-arn "arn:aws:kafka:us-east-1:0000000
 }
 ```
 
-Once the `State` is `ACTIV`, the cluster is ready to be used.
+Once the `State` is `ACTIVE`, the cluster is ready to be used.
 Now it's time to create our Glue Schema Registry:
 
 ```bash

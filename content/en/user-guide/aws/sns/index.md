@@ -384,7 +384,7 @@ You can access the subscription tokens in JSON format through `GET /_aws/sns/sub
 
 <br>
 
-In this example, we will susbcribe to an external SNS integration not confirming the subscription, retrieve the subscription token and manually confirm it:
+In this example, we will subscribe to an external SNS integration not confirming the subscription, retrieve the subscription token and manually confirm it:
 
 Create an SNS topic, and create a subscription to a external HTTP SNS integration:
 

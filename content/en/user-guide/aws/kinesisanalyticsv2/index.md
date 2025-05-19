@@ -17,6 +17,9 @@ This service was formerly known as 'Kinesis Data Analytics for Apache Flink'.
 
 LocalStack lets you to run Flink applications locally and implements several [AWS-compatible API operations](https://docs.localstack.cloud/references/coverage/coverage_kinesisanalyticsv2/).
 
+A separate Apache Flink cluster is started in [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/deployment/overview/#application-mode) for every Managed Flink application created.
+Flink cluster deployment on LocalStack consists of two separate containers for [JobManager](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#jobmanager) and [TaskManager](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#taskmanagers).
+
 {{< callout "note" >}}
 The emulated MSF provider was introduced and made the default in LocalStack v4.1.
 
@@ -260,3 +263,5 @@ $ awslocal kinesisanalyticsv2 untag-resource \
 - [Snapshot/savepoint management](https://docs.aws.amazon.com/managed-flink/latest/java/how-snapshots.html) is not implemented
 - CloudTrail integration and CloudWatch metrics is not implemented.
   The application logging level defaults to `INFO` and can not be overridden.
+- Parallelism is limited to the default value of 1, with one TaskManager that has one [Task Slot](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#task-slots-and-resources) allocated.
+  [Parallelism configuration](https://docs.aws.amazon.com/managed-flink/latest/apiv2/API_FlinkApplicationConfiguration.html#APIReference-Type-FlinkApplicationConfiguration-ParallelismConfiguration) provided on Flink application creation or update is ignored.

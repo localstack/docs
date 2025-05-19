@@ -113,6 +113,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `CFN_VERBOSE_ERRORS` | `0` (default) \|`1` | Show exceptions for CloudFormation deploy errors.
 | `CFN_STRING_REPLACEMENT_DENY_LIST` | `""` (default) \|`https://api-1.execute-api.us-east-2.amazonaws.com/test-resource,https://api-2.execute-api.us-east-2.amazonaws.com/test-resource` | Comma-separated list of AWS URLs that should not be modified to point to Localstack. For example, when deploying a CloudFormation template we might want to leave certain resources pointing to actual AWS URLs, or even leave environment variables with URLs like that untouched.
 
+### CloudFront
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `CLOUDFRONT_LAMBDA_EDGE` | `0` (default) \| `1` | Enable Lambda@Edge support for CloudFront distributions. |
+
 ### CloudWatch
 
 | Variable | Example Values | Description |
@@ -177,6 +183,7 @@ This section covers configuration options that are specific to certain AWS servi
 
 | Variable | Example Values | Description |
 | - | - | - |
+| `EKS_K3S_FLAGS` | | Customize the `k3s` cluster created by LocalStack to emulate EKS clusters. |
 | `EKS_LOADBALANCER_PORT` | `8081` (default) | Local port on which the Kubernetes load balancer is exposed on the host. |
 | `EKS_K3S_IMAGE_TAG` | `v1.31.5-k3s1` (default) | Custom tag of the `rancher/k3s` image used to spin up Kubernetes clusters locally. |
 | `EKS_K8S_PROVIDER` | `k3s` (default)\|`local` | The k8s provider which should be used to start the k8s cluster backing EKS. For more information on the providers, please see [Elastic Kubernetes Service (EKS)]({{< ref "user-guide/aws/eks" >}}) |
@@ -300,7 +307,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | Variable | Example Values | Description |
 | - | - | - |
 | `RDS_CLUSTER_ENDPOINT_HOST_ONLY` | `1` (default) \| `0` | Whether the cluster endpoint returns the host only (which is AWS parity). If set to `0` it will return `<host>:<port>`. |
-| `RDS_PG_CUSTOM_VERSIONS`         | `0` \| `1` (default) | Whether to install and use custom Postgres versions for RDS (or alternatively, use default version 11). |
+| `RDS_PG_CUSTOM_VERSIONS`         | `0` \| `1` (default) | Whether to install and use custom Postgres versions for RDS (or alternatively, use default version 15). |
 | `RDS_MYSQL_DOCKER`               | `1` (default) \| `0` | Whether to disable MySQL engines (and use MariaDB instead). MySQL engine for cluster/instances will start in a new docker container. If you have troubles running MySQL in docker, you can disable the feature. |
 | `MYSQL_IMAGE`                    | `mysql:8.0`       | Defines a specific MySQL image that should be used when spinning up the MySQL engine. Only available if `RDS_MYSQL_DOCKER` is enabled. |
 | `MSSQL_IMAGE`                    | `mcr.microsoft.com/mssql/server:2022-latest` | Defines a specific image that should be used when spinning up a SQL server engine. |
@@ -329,6 +336,12 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `SQS_ENDPOINT_STRATEGY`| `standard` (default) \| `domain` \| `path` \| `off` | Configures the format of Queue URLs (see [SQS Queue URLs](https://docs.localstack.cloud/user-guide/aws/sqs/#queue-urls) |
 | `SQS_DISABLE_CLOUDWATCH_METRICS` | `0` (default) | Disables the CloudWatch Metrics for SQS when set to `1` |
 | `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL` | `60` (default) | Configures the report interval (in seconds) for `Approximate*` metrics that are sent to CloudWatch periodically. Sending will be disabled if `SQS_DISABLE_CLOUDWATCH_METRICS=1` |
+
+### Step Functions
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `SFN_MOCK_CONFIG` | `/tmp/MockConfigFile.json` | Specifies the file path to the mock configuration file that defines mock service integrations for Step Functions. |
 
 ## Security
 
@@ -447,6 +460,7 @@ These configurations have already been removed and **won't have any effect** on 
 | `LAMBDA_EVENT_SOURCE_MAPPING` | 4.0.0 | `v2` (default since [3.8.0](https://blog.localstack.cloud/localstack-release-v-3-8-0/#new-default-lambda-event-source-mapping-implementation)) \| `v1` | Feature flag to switch Lambda Event Source Mapping (ESM) implementations. |
 | `PROVIDER_OVERRIDE_STEPFUNCTIONS` | 4.0.0 | `v2` (default) \| `legacy` | The new LocalStack-native StepFunctions provider (v2) is active by default since LocalStack 3.0. |
 | `STEPFUNCTIONS_LAMBDA_ENDPOINT` | 4.0.0 | `default` | This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
+| `LOCAL_PORT_STEPFUNCTIONS` | 4.0.0 | `8083` (default) | This is only supported for the legacy provider. It defines the local port to which Step Functions traffic is redirected. By default, LocalStack routes Step Functions traffic to its internal runtime. Use this variable only if you need to redirect traffic to a different local Step Functions runtime. |
 | `S3_DIR` | 4.0.0 | `/path/to/root` | This was only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 | `<SERVICE>_BACKEND` | 3.0.0 | `http://localhost:7577` |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
 | `<SERVICE>_PORT_EXTERNAL` | 3.0.0 | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |

@@ -196,7 +196,7 @@ Any execution of this data is recorded in the `/var/log/cloud-init-output.log` f
 
 You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.
 
-This section assumes that you have created or imported an SSH key pair named `my-key` (see [instructions above]({{< relref "#create-a-key-pair" >}})).
+This section assumes that you have created or imported an SSH key pair named `my-key`.
 When running the EC2 instance, make sure to pass the `--key-name` parameter to the command:
 
 {{< command >}}
@@ -211,7 +211,7 @@ $ ssh -p 12862 -i key.pem root@127.0.0.1
 {{< /command >}}
 
 {{< callout "tip" >}}
-If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here]({{< relref "ec2#create-a-key-pair" >}}).
+If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", make sure that the key file has a restrictive `0400` permission as illustrated above.
 {{< /callout >}}
 
 ## VM Managers
@@ -251,8 +251,8 @@ While the records of resources will be persisted, the instances or AMIs themselv
 
 ### AMIs
 
-LocalStack utilizes a specific naming scheme to recognize and manage associated containers and images.
 Docker base images which are tagged with the scheme `localstack-ec2/<AmiName>:<AmiId>` are recognized as Amazon Machine Images (AMIs).
+These can be used to launch EC2 instances which are in fact Docker containers.
 
 You can mark any Docker base image as AMI using the below command:
 
@@ -267,28 +267,27 @@ At startup, LocalStack downloads the following AMIs that can be used to launch D
 - Amazon Linux 2023 `ami-024f768332f0`
 
 {{< callout "note" >}}
-The auto download of Docker images to be used as AMIs can be disabled using the `EC2_DOWNLOAD_DEFAULT_IMAGES=0` configuration variable.
+The auto download of Docker images for default AMIs can be disabled using the `EC2_DOWNLOAD_DEFAULT_IMAGES=0` configuration variable.
 {{< /callout >}}
 
 All LocalStack-managed Docker AMIs bear the resource tag `ec2_vm_manager:docker`.
-These AMIs can be listed using:
+These can be listed using:
 
 {{< command >}}
 $ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
 {{< /command >}}
 
 {{< callout "note" >}}
-If an AMI does have the `ec2_vm_manager:docker` tag, it means that it is mocked.
+If an AMI does not have the `ec2_vm_manager:docker` tag, it means that it is mocked.
 Attempting to launch Dockerized instances using these AMIs will result in an `InvalidAMIID.NotFound` error.
 See [Mock VM manager](#mock-vm-manager).
 {{< /callout >}}
 
-AWS does not provide an API to download AMIs.
-This prevents the use stock AWS AMIs on LocalStack.
-However, in certain cases it may be possible to tweak your AMI build process to target Docker images.
+AWS does not provide an API to download AMIs which prevents the use of real AWS AMIs on LocalStack.
+However, in certain cases it may be possible to tweak your workflow to make it work with Localstack.
 
-For example, suppose you use [Packer](https://packer.io/) to customise the Amazon Linux AMI on AWS.
-You can instead make Packer use the [Docker builder](https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker) instead of the Amazon builder and add the customisations on top of the Amazon Linux [Docker base image](https://hub.docker.com/_/amazonlinux/).
+For example, you can use [Packer](https://packer.io/) to customise the Amazon Linux AMI on AWS.
+Packer can be made to use the [Docker builder](https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker) instead of the Amazon builder and add the customisations on top of the Amazon Linux [Docker base image](https://hub.docker.com/_/amazonlinux/).
 The final image then can be used by LocalStack EC2 as illustrated above.
 
 ### Instances
@@ -321,7 +320,7 @@ These addresses are also printed in the logs while the instance is being initial
 When instances are launched, LocalStack attempts to start SSH server `/usr/sbin/sshd` in the Docker base image.
 If not found, it installs and starts the [Dropbear](https://github.com/mkj/dropbear) SSH server.
 
-To be able to access the instance at additional ports from the host system, you can modify the default security group and incorporate the needed ingress ports.
+To be able to access the instance at additional ports from the host system, you can modify the default security group and include the required ingress ports.
 
 {{< callout "note" >}}
 Security group ingress rules are applied only during the creation of the Dockerized instance.
@@ -329,18 +328,19 @@ Modifying a security group will not open any ports for a running instance.
 {{< /callout >}}
 
 The system supports up to 32 ingress ports.
-This constraint is in place to prevent the host from exhausting available ports.
+This constraint is in place to prevent exhausting free ports on the host.
 
 {{< command >}}
 $ awslocal ec2 authorize-security-group-ingress \
   --group-id default \
   --protocol tcp \
   --port 8080
-$ awslocal ec2 describe-security-groups \
-  --group-names default
+{{< /command >}}
+{{< command >}}
+$ awslocal ec2 describe-security-groups --group-names default
 {{< /command >}}
 
-The port mapping details are provided in the logs during the instance initialization process.
+The port mapping details are provided in the logs when the instance starts up.
 
 ```bash
 2022-12-20T19:43:44.544  INFO  Instance i-1d6327abf04e31be6 port mappings (container -> host): {'8080/tcp': 51747, '22/tcp': 55705}
@@ -408,12 +408,25 @@ The token can be used in subsequent requests like so:
 $ curl -H "x-aws-ec2-metadata-token: <TOKEN>" -v http://169.254.169.254/latest/meta-data/
 {{< /command >}}
 
-Currently a limited set of [metadata categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) are implemented.
-If you would like support for more metadata categories, please make a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
-
 {{< callout "note" >}}
 IMDS IPv6 endpoint is currently not supported.
 {{< /callout >}}
+
+#### Metadata Categories
+
+Currently a limited set of [metadata categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-data-categories) are implemented.
+They are:
+
+- `ami-id`
+- `ami-launch-index`
+- `instance-id`
+- `instance-type`
+- `local-hostname`
+- `local-ipv4`
+- `public-hostname`
+- `public-ipv4`
+
+If you would like support for more metadata categories, please make a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
 
 ### Configuration
 
@@ -489,14 +502,12 @@ Please refer to [Libvirt Wiki](https://wiki.libvirt.org/Failed_to_connect_to_the
 {{< /callout >}}
 
 The Libvirt VM manager currently does not have full support for persistence.
-Underlying virtual machines and volumes are not persisted, only their mock respresentations are.
+Underlying virtual machines and volumes are not persisted, only their mock representations are.
 
 ### AMIs
 
 All qcow2 images with cloud-init support can be used as AMIs.
-
-LocalStack does not come preloaded with any AMIs.
-You can find the download links for images of popular OSs below:
+You can find the download links for images of popular OSs below.
 
 {{< tabpane text=true >}}
 
@@ -532,6 +543,8 @@ An evaluation version of Windows Server 2012 R2 is provided by [Cloudbase Soluti
 
 {{< /tabpane >}}
 
+LocalStack does not come preloaded with any AMIs.
+
 Compatible qcow2 images must be placed at the default Libvirt storage pool at `/var/lib/libvirt/images` on the host machine.
 Images must be named with the prefix `ami-` followed by at least 8 hexadecimal characters without an extension, e.g. `ami-1234abcd`.
 You may need run the following command to make sure the image is registered with Libvirt:
@@ -541,6 +554,8 @@ $ virsh pool-refresh default
 <disable-copy>
 Pool default refreshed
 </disable-copy>
+{{< /command >}}
+{{< command >}}
 $ virsh vol-list --pool default
 <disable-copy>
  Name                                    Path

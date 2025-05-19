@@ -19,25 +19,52 @@
     },
     {
         "resource_type": "AWS::EC2::VPC",
-        "policy_statements": ["cloudformation:GetResource", "ec2:DescribeVpcs"],
+        "policy_statements": [
+            "cloudformation:GetResource",
+            "ec2:DescribeVpcs"
+        ],
         "service": "ec2",
         "identifier": "VpcId"
     },
     {
+        "resource_type": "AWS::ECR::Repository",
+        "policy_statements": [
+            "cloudformation:GetResource",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:BatchGetImage",
+            "ecr:DescribeRepositories",
+            "ecr:GetAuthorizationToken",
+            "ecr:GetDownloadUrlForLayer",
+            "ecr:GetLifecyclePolicy",
+            "ecr:GetRepositoryPolicy",
+            "ecr:ListTagsForResource"
+        ],
+        "service": "ecr",
+        "identifier": "RepositoryName:<ImageTag[Optional]>"
+    },
+    {
         "resource_type": "AWS::IAM::Policy",
-        "policy_statements": ["iam:GetPolicy"],
+        "policy_statements": [
+            "iam:GetPolicy"
+        ],
         "service": "iam",
         "identifier": "Arn"
     },
     {
         "resource_type": "AWS::IAM::Role",
-        "policy_statements": ["cloudformation:GetResource", "iam:GetRole"],
+        "policy_statements": [
+            "cloudformation:GetResource",
+            "iam:GetRole"
+        ],
         "service": "iam",
         "identifier": "RoleName"
     },
     {
         "resource_type": "AWS::KMS::Key",
-        "policy_statements": ["cloudformation:GetResource", "kms:DescribeKey"],
+        "policy_statements": [
+            "cloudformation:GetResource",
+            "kms:DescribeKey"
+        ],
         "service": "kms",
         "identifier": "KeyId"
     },

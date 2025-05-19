@@ -35,9 +35,15 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Download scripts from meta repository
+        run: |
+          curl -o /tmp/get_latest_github_metrics.sh -L https://raw.githubusercontent.com/localstack/meta/main/scripts/get_latest_github_metrics.sh -H 'Accept: application/vnd.github.v3.raw'
+          curl -o /tmp/get_latest_circleci_metrics.sh -L https://raw.githubusercontent.com/localstack/meta/main/scripts/get_latest_circleci_metrics.sh -H 'Accept: application/vnd.github.v3.raw'
+          chmod +x /tmp/get_latest_github_metrics.sh /tmp/get_latest_circleci_metrics.sh 
+
       - name: Download metrics data from Moto Integration test pipeline (GitHub)
         working-directory: docs
-        run: ./scripts/get_latest_github_metrics.sh ./target main
+        run: /tmp/get_latest_github_metrics.sh ./target main
         env:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
           REPOSITORY_NAME: localstack-moto-test-coverage 
@@ -48,7 +54,7 @@ jobs:
 
       - name: Download metrics data from Terraform Integration test pipeline (GitHub)
         working-directory: docs
-        run: ./scripts/get_latest_github_metrics.sh ./target main
+        run: /tmp/get_latest_github_metrics.sh ./target main
         env:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
           REPOSITORY_NAME: localstack-terraform-test 
@@ -58,7 +64,7 @@ jobs:
 
       - name: Download metrics data from Pro pipeline (GitHub)
         working-directory: docs
-        run: ./scripts/get_latest_github_metrics.sh ./target master
+        run: /tmp/get_latest_github_metrics.sh ./target master
         env:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
           REPOSITORY_NAME: localstack-ext
@@ -68,7 +74,7 @@ jobs:
       
       - name: Download coverage (capture-notimplemented) data from Pro pipeline (GitHub)
         working-directory: docs
-        run: ./scripts/get_latest_github_metrics.sh ./target master
+        run: /tmp/get_latest_github_metrics.sh ./target master
         env:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
           REPOSITORY_NAME: localstack-ext
@@ -80,7 +86,7 @@ jobs:
         working-directory: docs
         env:
           CIRCLE_CI_TOKEN: ${{ secrets.CIRCLE_CI_TOKEN }}
-        run: ./scripts/get_latest_circleci_metrics.sh ./target
+        run: /tmp/get_latest_circleci_metrics.sh ./target
 
 
       - name: Create Parity Coverage Docs

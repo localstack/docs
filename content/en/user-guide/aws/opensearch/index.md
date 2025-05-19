@@ -286,8 +286,6 @@ It's important to bear in mind that only a single backend configuration is possi
 Here is a sample `docker-compose.yaml` file that contains a single-node OpenSearch cluster and a basic LocalStack setup.
 
 ```yaml
-version: "3.9"
-
 services:
   opensearch:
     container_name: opensearch
