@@ -48,7 +48,7 @@ The following output is displayed:
 }
 ```
 
-You can use [DescribeDomain](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribeDomain.html), [ListDomains](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListDomains.html), and [DeleteDomain](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeleteDomain.html) for domain management.
+You can use [DescribeDomain](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribeDomain.html), [UpdateDomain](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdateDomain.html), and [DeleteDomain](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeleteDomain.html) for domain management.
 
 {{< command >}}
 $ awslocal codeartifact describe-domain --domain demo-domain
@@ -69,6 +69,8 @@ The following output is displayed:
 }
 ```
 
+You can list all domains using [ListDomains](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListDomains.html).
+
 {{< command >}}
 $ awslocal codeartifact list-domains
 {{< /command >}}
@@ -85,25 +87,6 @@ The following output is displayed:
             "createdTime": "2025-05-20T11:30:52.073202+02:00"
         }
     ]
-}
-```
-
-{{< command >}}
-$ awslocal codeartifact delete-domain --domain demo-domain
-{{< /command >}}
-
-The following output is displayed:
-```json
-{
-    "domain": {
-        "name": "demo-domain",
-        "owner": "000000000000",
-        "arn": "arn:aws:codeartifact:eu-central-1:000000000000:domain/demo-domain",
-        "status": "Deleted",
-        "createdTime": "2025-05-20T11:30:52.073202+02:00",
-        "repositoryCount": 0,
-        "assetSizeBytes": 0
-    }
 }
 ```
 
@@ -134,7 +117,7 @@ The following output is displayed:
 }
 ```
 
-Use [DescribeRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribeRepository.html) to view a specific repository.
+You can use [DescribeRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribeRepository.html), [UpdateRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdateRepository.html), and [DeleteRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeleteRepository.html) to manage repositories.
 
 {{< command >}}
 $ awslocal codeartifact describe-repository --domain demo-domain --repository demo-repo
@@ -200,33 +183,16 @@ The following output is displayed:
 }
 ```
 
-Update a repository using [UpdateRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdateRepository.html):
+You can use [DescribeRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribeRepository.html), [UpdateRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdateRepository.html), and [DeleteRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeleteRepository.html) to manage repositories.
+
+
+### External connections and upstream repositories
+
+Repositories can be associated with external connections using [AssociateExternalConnection](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssociateExternalConnection.html) and [DisassociateExternalConnection](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DisassociateExternalConnection.html).
 
 {{< command >}}
-$ awslocal codeartifact update-repository --domain demo-domain --repository demo-repo --description "My demo repository"
-{{< /command >}}
-
-The following output is displayed:
-```json
-{
-    "repository": {
-        "name": "demo-repo",
-        "administratorAccount": "000000000000",
-        "domainName": "demo-domain",
-        "domainOwner": "000000000000",
-        "arn": "arn:aws:codeartifact:eu-central-1:000000000000:repository/demo-domain/demo-repo",
-        "description": "My demo repository",
-        "upstreams": [],
-        "externalConnections": [],
-        "createdTime": "2025-05-20T11:34:27.712367+02:00"
-    }
-}
-```
-
-Delete a repository using [DeleteRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeleteRepository.html):
-
-{{< command >}}
-$ awslocal codeartifact delete-repository --domain demo-domain --repository demo-repo
+$ awslocal codeartifact associate-external-connection --domain demo-domain --repository demo-repo \
+    --external-connection "public:npmjs"
 {{< /command >}}
 
 The following output is displayed:
@@ -239,8 +205,52 @@ The following output is displayed:
         "domainOwner": "000000000000",
         "arn": "arn:aws:codeartifact:eu-central-1:000000000000:repository/demo-domain/demo-repo",
         "upstreams": [],
-        "externalConnections": [],
-        "createdTime": "2025-05-20T11:34:27.712367+02:00"
+        "externalConnections": [
+            {
+                "externalConnectionName": "public:npmjs",
+                "packageFormat": "npm",
+                "status": "AVAILABLE"
+            }
+        ],
+        "createdTime": "2025-05-20T14:03:27.539994+02:00"
     }
 }
 ```
+
+Alternatively, repositories can be configured with upstream repositories using the `upstreams` property of [CreateRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_CreateRepository.html) and [UpdateRepository](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdateRepository.html).
+
+{{< command >}}
+$ awslocal codeartifact create-repository --domain demo-domain \
+    --repository demo-repo2 \
+    --upstreams repositoryName=demo-repo
+{{< /command >}}
+
+The following output is displayed:
+```json
+{
+    "repository": {
+        "name": "demo-repo2",
+        "administratorAccount": "000000000000",
+        "domainName": "demo-domain",
+        "domainOwner": "000000000000",
+        "arn": "arn:aws:codeartifact:eu-central-1:000000000000:repository/demo-domain/demo-repo2",
+        "upstreams": [
+            {
+                "repositoryName": "demo-repo"
+            }
+        ],
+        "externalConnections": [],
+        "createdTime": "2025-05-20T14:07:56.741333+02:00"
+    }
+}
+```
+
+Please note, a repository can have one or more upstream repositories, or an external connection.
+
+## Limitations
+
+LocalStack doesn't support the following features yet:
+
+- Domain and repository permission policies
+- Packages and package groups handlers
+- Retrieving repository endpoints
