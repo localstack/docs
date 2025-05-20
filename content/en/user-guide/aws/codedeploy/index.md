@@ -66,11 +66,6 @@ $ awslocal deploy list-applications
 </disable-copy>
 {{< /command >}}
 
-{{< command >}}
-<disable-copy>
-</disable-copy>
-{{< /command >}}
-
 ### Deployment configuration
 
 A deployment configuration consists of rules for deployment along with success and failure criteria.
@@ -87,7 +82,6 @@ $ awslocal deploy create-deployment-config --deployment-config-name hello-conf \
 }
 </disable-copy>
 {{< /command >}}
-
 
 [ListDeploymentConfigs](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_ListDeploymentConfigs.html) can be used to list all available configs:
 
@@ -124,12 +118,134 @@ $ awslocal deploy get-deployment-config --deployment-config-name hello-conf
 
 ### Deployment groups
 
+Deployment groups can be managed with [CreateDeploymentGroup](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeploymentGroup.html), [ListDeploymentGroups](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_ListDeploymentGroups.html), [UpdateDeploymentGroup](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_UpdateDeploymentGroup.html), [GetDeploymentGroup](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_GetDeploymentGroup.html) and [DeleteDeploymentGroup](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_DeleteDeploymentGroup.html).
+
+{{< command >}}
+$ awslocal deploy create-deployment-group \
+    --application-name hello \
+    --service-role-arn arn:aws:iam::000000000000:role/role \
+    --deployment-group-name hello-group
+<disable-copy>
+{
+    "deploymentGroupId": "09506586-9ba9-4005-a1be-840407abb39d"
+}
+</disable-copy>
+{{< /command >}}
+
+{{< command >}}
+$ awslocal deploy list-deployment-groups --application-name hello
+<disable-copy>
+{
+    "deploymentGroups": [
+        "hello-group"
+    ]
+}
+</disable-copy>
+{{< /command >}}
+
+{{< command >}}
+$ awslocal deploy get-deployment-group --application-name hello \
+    --deployment-group-name hello-group
+<disable-copy>
+{
+    "deploymentGroupInfo": {
+        "applicationName": "hello",
+        "deploymentGroupId": "09506586-9ba9-4005-a1be-840407abb39d",
+        "deploymentGroupName": "hello-group",
+        "deploymentConfigName": "CodeDeployDefault.OneAtATime",
+        "autoScalingGroups": [],
+        "serviceRoleArn": "arn:aws:iam::000000000000:role/role",
+        "triggerConfigurations": [],
+        "deploymentStyle": {
+            "deploymentType": "IN_PLACE",
+            "deploymentOption": "WITHOUT_TRAFFIC_CONTROL"
+        },
+        "outdatedInstancesStrategy": "UPDATE",
+        "computePlatform": "Server",
+        "terminationHookEnabled": false
+    }
+}
+</disable-copy>
+{{< /command >}}
+
 ### Deployments
 
-Operations related to deployment management are: CreateDeployment, GetDeployment, ListDeployments
+Operations related to deployment management are: [CreateDeployment](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeployment.html), [GetDeployment](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_GetDeployment.html), [ListDeployments](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_ListDeployments.html).
 
+{{< command >}}
+$ awslocal deploy create-deployment \
+    --application-name hello \
+    --deployment-group-name hello-group \
+    --revision '{"revisionType": "S3", "s3Location": {"bucket": "placeholder", "key": "placeholder", "bundleType": "tar"}}'
+<disable-copy>
+{
+    "deploymentId": "d-TU3TNCSTO"
+}
+</disable-copy>
+{{< /command >}}
 
-Furthermore, ContinueDeployment and StopDeployment can be used to control the deployment flows.
+{{< command >}}
+$ awslocal deploy list-deployments
+<disable-copy>
+{
+    "deployments": [
+        "d-TU3TNCSTO"
+    ]
+}
+</disable-copy>
+{{< /command >}}
 
+{{< command >}}
+$ awslocal deploy get-deployment --deployment-id d-TU3TNCSTO
+<disable-copy>
+{
+    "deploymentInfo": {
+        "applicationName": "hello",
+        "deploymentGroupName": "hello-group",
+        "deploymentConfigName": "CodeDeployDefault.OneAtATime",
+        "deploymentId": "d-TU3TNCSTO",
+        "revision": {
+            "revisionType": "S3",
+            "s3Location": {
+                "bucket": "placeholder",
+                "key": "placeholder",
+                "bundleType": "tar"
+            }
+        },
+        "status": "Created",
+        "createTime": 1747750522.133381,
+        "creator": "user",
+        "ignoreApplicationStopFailures": false,
+        "updateOutdatedInstancesOnly": false,
+        "deploymentStyle": {
+            "deploymentType": "IN_PLACE",
+            "deploymentOption": "WITHOUT_TRAFFIC_CONTROL"
+        },
+        "instanceTerminationWaitTimeStarted": false,
+        "fileExistsBehavior": "DISALLOW",
+        "deploymentStatusMessages": [],
+        "computePlatform": "Server"
+    }
+}
+</disable-copy>
+{{< /command >}}
+
+Furthermore, [ContinueDeployment](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_StopDeployment.html) and [StopDeployment](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_StopDeployment.html) can be used to control the deployment flows.
+
+{{< command >}}
+$ awslocal deploy continue-deployment --deployment-id d-TU3TNCSTO
+{{< /command >}}
+
+{{< command >}}
+$ awslocal deploy stop-deployment --deployment-id d-TU3TNCSTO
+<disable-copy>
+{
+    "status": "Succeeded",
+    "statusMessage": "Mock deployment stopped"
+}
+</disable-copy>
+{{< /command >}}
 
 ## Limitations
+
+All CodeDeploy operations are currently mocked.
