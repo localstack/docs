@@ -34,6 +34,7 @@ $ awslocal codeartifact create-domain --domain demo-domain
 {{< /command >}}
 
 The following output is displayed:
+
 ```json
 {
     "domain": {
@@ -55,6 +56,7 @@ $ awslocal codeartifact describe-domain --domain demo-domain
 {{< /command >}}
 
 The following output is displayed:
+
 ```json
 {
     "domain": {
@@ -76,6 +78,7 @@ $ awslocal codeartifact list-domains
 {{< /command >}}
 
 The following output is displayed:
+
 ```json
 {
     "domains": [
@@ -102,6 +105,7 @@ $ awslocal codeartifact create-repository --domain demo-domain \
 {{< /command >}}
 
 The following output is displayed:
+
 ```json
 {
     "repository": {
@@ -124,6 +128,7 @@ $ awslocal codeartifact describe-repository --domain demo-domain --repository de
 {{< /command >}}
 
 The following output is displayed:
+
 ```json
 {
     "repository": {
@@ -146,6 +151,7 @@ $ awslocal codeartifact list-repositories
 {{< /command >}}
 
 The following output is displayed:
+
 ```json
 {
     "repositories": [
@@ -168,6 +174,7 @@ $ awslocal codeartifact list-repositories-in-domain --domain demo-domain
 {{< /command >}}
 
 The following output is displayed:
+
 ```json
 {
     "repositories": [
@@ -193,6 +200,7 @@ $ awslocal codeartifact associate-external-connection --domain demo-domain --rep
 {{< /command >}}
 
 The following output is displayed:
+
 ```json
 {
     "repository": {
@@ -223,6 +231,7 @@ $ awslocal codeartifact create-repository --domain demo-domain \
 {{< /command >}}
 
 The following output is displayed:
+
 ```json
 {
     "repository": {
