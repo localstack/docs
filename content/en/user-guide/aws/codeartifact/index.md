@@ -191,7 +191,7 @@ The following output is displayed:
 }
 ```
 
-### External connections and upstream repositories
+### External Connections and Upstream Repositories
 
 Repositories can be associated with external connections using [AssociateExternalConnection](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssociateExternalConnection.html) and [DisassociateExternalConnection](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DisassociateExternalConnection.html).
 
@@ -252,9 +252,11 @@ The following output is displayed:
 }
 ```
 
+{{< callout "note">}}
 Please note, a repository can have one or more upstream repositories, or an external connection.
+{{< /callout >}}
 
-## Limitations
+## Current Limitations
 
 LocalStack doesn't support the following features yet:
 
