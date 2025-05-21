@@ -12,7 +12,7 @@ It provides a JSON-based structured language called Amazon States Language (ASL)
 Thus making it easier to build and maintain complex and distributed applications.
 
 LocalStack allows you to use the Step Functions APIs in your local environment to create, execute, update, and delete state machines locally.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_stepfunctions/), which provides information on the extent of Step Function's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_stepfunctions" >}}), which provides information on the extent of Step Function's integration with LocalStack.
 
 ## Getting started
 

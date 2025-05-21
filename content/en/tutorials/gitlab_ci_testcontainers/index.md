@@ -42,7 +42,7 @@ seamlessly with CI/CD pipelines like GitLab CI or GitHub Actions, allowing devel
 
 For this tutorial, you will need:
 
-- [LocalStack Pro](https://docs.localstack.cloud/getting-started/auth-token/) to emulate the AWS services.
+- [LocalStack Pro]({{< ref "/getting-started/auth-token/" >}}) to emulate the AWS services.
   If you don't have a subscription yet, you can just get a trial license for free.
 - [Docker](https://docker.io/)
 - [A GitLab account](https://gitlab.com/)

@@ -11,7 +11,7 @@ Shield provides always-on detection and inline mitigations that minimize applica
 Shield detection and mitigation is designed to protect against threats, including ones that are not known to the service at the time of detection.
 
 LocalStack allows you to use the Shield APIs in your local environment, and provides a simple way to mock and test the Shield service locally.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_shield/), which provides information on the extent of Shield's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_shield" >}}), which provides information on the extent of Shield's integration with LocalStack.
 
 ## Getting Started
 

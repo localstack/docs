@@ -13,7 +13,7 @@ Elastic Compute Cloud (EC2) is a core service within Amazon Web Services (AWS) t
 EC2 enables users to launch and manage virtual machines, referred to as instances.
 
 LocalStack allows you to use the EC2 APIs in your local environment to create and manage EC2 instances and related resources such as VPCs, EBS volumes, etc.
-The list of supported APIs can be found on the [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ec2/).
+The list of supported APIs can be found on the [API coverage page]({{< ref "coverage_ec2" >}}).
 
 ## Getting started
 

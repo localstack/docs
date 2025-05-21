@@ -14,7 +14,7 @@ RDS allows you to deploy and manage various relational database engines like MyS
 RDS handles routine database tasks such as provisioning, patching, backup, recovery, and scaling.
 
 LocalStack allows you to use the RDS APIs in your local environment to create and manage RDS clusters and instances for testing & integration purposes.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_rds/), which provides information on the extent of RDS's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_rds" >}}), which provides information on the extent of RDS's integration with LocalStack.
 
 {{< callout >}}
 We’ve introduced a new native RDS provider in LocalStack and made it the default.

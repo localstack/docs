@@ -449,7 +449,7 @@ $ python3 -m localstack.cli.main
 #### The `localstack` CLI does not start the LocalStack container
 
 If you are using the `localstack` CLI to start LocalStack, but the container is not starting, please check the following:
-- Uncheck the **Use kernel networking for UDP** option in Docker Desktop (**Settings** → **Resources** → **Network**) or follow the steps in our [documentation](https://docs.localstack.cloud/user-guide/tools/dns-server/#system-dns-configuration) to disable it.
+- Uncheck the **Use kernel networking for UDP** option in Docker Desktop (**Settings** → **Resources** → **Network**) or follow the steps in our [documentation]({{< ref "dns-server/#system-dns-configuration" >}}) to disable it.
 - Start LocalStack with a specific DNS address:
 {{< command >}}
 $ DNS_ADDRESS=0 localstack start

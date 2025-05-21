@@ -12,7 +12,7 @@ It helps secure applications by moving authorization logic outside the app and m
 It checks if a principal can take an action on a resource in a specific context in your application.
 
 LocalStack allows you to use the Verified Permissions APIs in your local environment to test your authorization logic, with integrations with other AWS services like Cognito.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_verifiedpermissions/), which provides information on the extent of Verified Permissions' integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_verifiedpermissions" >}}), which provides information on the extent of Verified Permissions' integration with LocalStack.
 
 {{< callout >}}
 Verified Permissions is available as part of the LocalStack Enterprise plan.

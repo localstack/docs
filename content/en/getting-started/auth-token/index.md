@@ -97,7 +97,7 @@ You have the option to run your LocalStack container in the background by append
 The `localstack` CLI automatically detects the Auth Token and appropriately conveys it to the LocalStack container.
 
 {{< callout "note" >}}
-If you are using LocalStack with an Auth Token, it's necessary to download the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image), which includes Pro services and several advanced features.
+If you are using LocalStack with an Auth Token, it's necessary to download the [LocalStack Pro image]({{< ref "/references/docker-images/#localstack-pro-image" >}}), which includes Pro services and several advanced features.
 {{< /callout >}}
 
 ### Docker
@@ -113,7 +113,7 @@ $ docker run \
   localstack/localstack-pro
 {{< / command >}}
 
-For more information about starting LocalStack with Docker, take a look at our [Docker installation](https://docs.localstack.cloud/getting-started/installation/#docker) guide.
+For more information about starting LocalStack with Docker, take a look at our [Docker installation]({{< ref "/getting-started/installation/#docker" >}}) guide.
 
 ### Docker Compose
 
@@ -134,7 +134,7 @@ Developer Auth Tokens cannot be used in CI.
 CI Auth Tokens are available on the [Auth Tokens page](https://app.localstack.cloud/workspace/auth-tokens) and are configured similarly to Developer Auth Tokens.
 
 To set the CI Auth Token, add the Auth Token value in the `LOCALSTACK_AUTH_TOKEN` environment variable of your CI provider, and refer to it when starting LocalStack in your CI workflow.
-You can find detailed examples in our [LocalStack in CI documentation](https://docs.localstack.cloud/user-guide/ci/).
+You can find detailed examples in our [LocalStack in CI documentation]({{< ref "/user-guide/ci/" >}}).
 
 ## Rotating the Auth Token
 
@@ -150,7 +150,7 @@ To rotate your Auth Token, go to the [Auth Token page](https://app.localstack.cl
 ## Licensing configuration & activation checkup
 
 To avoid logging any licensing-related error messages, set `LOG_LICENSE_ISSUES=0` in your environment.
-Refer to our [configuration guide](https://docs.localstack.cloud/references/configuration/#localstack-pro) for more information.
+Refer to our [configuration guide]({{< ref "/references/configuration/#localstack-pro" >}}) for more information.
 
 The simplest method to verify if LocalStack is active is by querying the health endpoint for a list of running services:
 

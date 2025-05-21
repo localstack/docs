@@ -27,7 +27,7 @@ You can save and load the persistent state of Cloud Pods, you can use the [Cloud
 LocalStack provides a remote storage backend that can be used to store the state of your running application and share it with your team members.
 You can interact with the Cloud Pods over the storage backend via the LocalStack Web Application.
 
-Cloud Pods CLI is included in the [LocalStack CLI installation](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), so there's no need for additional installations to begin using it.
+Cloud Pods CLI is included in the [LocalStack CLI installation]({{< ref "/getting-started/installation/#localstack-cli" >}}), so there's no need for additional installations to begin using it.
 If you're a licensed user, we suggest setting the `LOCALSTACK_AUTH_TOKEN` as an environment variable.
 This enables you to access the complete range of LocalStack Cloud Pods features.
 
@@ -279,7 +279,7 @@ In addition to loading Cloud Pods through the Command-Line Interface (CLI) or th
 
 ### Environmental variables
 
-To automatically load a Cloud Pod at startup, utilize the `AUTO_LOAD_POD` [configuration variable](https://docs.localstack.cloud/references/configuration/).
+To automatically load a Cloud Pod at startup, utilize the `AUTO_LOAD_POD` [configuration variable]({{< ref "configuration" >}}).
 
 `AUTO_LOAD_POD` can accept multiple Cloud Pod names separated by commas.
 To autoload multiple Cloud Pods, such as `foo-pod` and `bar-pod`, use: `AUTO_LOAD_POD=foo-pod,bar-pod`.
@@ -438,7 +438,7 @@ $ localstack pod list s3-storage-aws
 
 {{< callout >}}
 Full S3 remotes support is available in the CLI from version 3.2.0.
-If you experience any difficulties, update your [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#updating).
+If you experience any difficulties, update your [LocalStack CLI]({{< ref "/getting-started/installation/#updating" >}}).
 {{< /callout >}}
 
 ### ORAS remote storage
@@ -509,7 +509,7 @@ services:
 {{< callout >}}
 The Auto Load from remote feature does not automatically configure the remote.
 This needs to be done with the `localstack pod remote add ...` command.
-This commands creates a configuration file for the remote in the [LocalStack volume directory](https://docs.localstack.cloud/references/filesystem/#localstack-volume).
+This commands creates a configuration file for the remote in the [LocalStack volume directory]({{< ref "/references/filesystem/#localstack-volume" >}}).
 {{< /callout >}}
 
 ## End-to-End Encryption (Enterprise)
@@ -563,7 +563,7 @@ The process is the following:
 Unless explicitly specified, all Cloud Pods commands default to targeting the LocalStack Platform as the storage remote.
 It's important to note that the CLI must be authenticated correctly with our Platform.
 
-Custom remote configurations are stored within the [LocalStack volume directory](https://docs.localstack.cloud/references/filesystem/#localstack-volume-directory) and are managed by the LocalStack container.
+Custom remote configurations are stored within the [LocalStack volume directory]({{< ref "/references/filesystem/#localstack-volume-directory" >}}) and are managed by the LocalStack container.
 Consequently, when sharing Cloud Pods among your team using a custom remote, each team member must define the identical remote configuration.
 Once added, a remote persists even after LocalStack restarts.
 
