@@ -192,6 +192,95 @@ Then, upload `MessageUtil.zip` to the `codebuild-demo-input` bucket with the fol
 $ awslocal s3 cp MessageUtil.zip s3://codebuild-demo-input
 {{< /command >}}
 
+### Configuring IAM
+
+To properly work, AWS CodeBuild needs access to other AWS services, e.g., to retrieve the source code from a S3 bucket.
+Create a `create-role.json` file with following content:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "codebuild.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+Then, run the following command to create the IAM role:
+{{< command >}}
+$ awslocal iam create-role --role-name CodeBuildServiceRole --assume-role-policy-document file://create-role.json
+{{< /command >}}
+
+From the command's response, keep note of the role ARN:
+it will be needed by CodeBuild later on.
+
+Let us now define the policy for the created role.
+Create a `put-role-policy.json` file with the following content:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CloudWatchLogsPolicy",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "CodeCommitPolicy",
+      "Effect": "Allow",
+      "Action": [
+        "codecommit:GitPull"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "S3GetObjectPolicy",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "S3PutObjectPolicy",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "S3BucketIdentity",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetBucketAcl",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+Finally, assign the policy to the role with the following command:
+
+{{< command >}}
+$ awslocal put-role-policy --role-name CodeBuildServiceRole --policy-name CodeBuildServiceRolePolicy --policy-document file://put-role-policy.json
+{{< /command >}}
+
 ## Limitations
 
 - CodeBuild currently only supports S3 as a code source.
