@@ -443,4 +443,4 @@ The [S3 Source](https://docs.aws.amazon.com/codepipeline/latest/userguide/action
 - [Execution mode behaviours](https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts-how-it-works.html#concepts-how-it-works-executions) are not implemented.
   Parallel pipeline executions will not lead to stage locks and waits.
 - [Stage transition controls](https://docs.aws.amazon.com/codepipeline/latest/userguide/transitions.html) are not implemented.
-- [Manual approval action](https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html) and [PutApprovalResult](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PutApprovalResult.html) operation is not available.
+- [Manual approval action](https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html) and [PutApprovalResult](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PutApprovalResult.html) operations are not available.
