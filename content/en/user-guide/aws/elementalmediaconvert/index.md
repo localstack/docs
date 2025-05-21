@@ -11,7 +11,7 @@ Elemental MediaConvert is a file-based video transcoding service with broadcast-
 It enables you to easily create high-quality video streams for broadcast and multiscreen delivery.
 
 LocalStack allows you to mock the MediaConvert APIs in your local environment.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_mediaconvert/), which provides information on the extent of MediaConvert's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_mediaconvert" >}}), which provides information on the extent of MediaConvert's integration with LocalStack.
 
 {{< callout "note">}}
 Elemental MediaConvert is in a preview state.

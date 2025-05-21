@@ -30,7 +30,7 @@ leadimage: "terraform-init-hooks.png"
 LocalStack is a robust tool that emulates a local AWS cloud stack, allowing engineers to test and develop apps using AWS services directly on their local environments.
 This tool is essential for enhancing developer experience, reducing development costs and increasing efficiency.
 
-In LocalStack, [**initialization hooks**](https://docs.localstack.cloud/references/init-hooks/) are scripts that customize or initialize your LocalStack instance at different stages of its lifecycle.
+In LocalStack, [**initialization hooks**]({{< ref "/references/init-hooks/" >}}) are scripts that customize or initialize your LocalStack instance at different stages of its lifecycle.
 Up until now, the supported hooks could be shell or Python scripts executed at predefined lifecycle phases — BOOT, START, READY, and SHUTDOWN.
 By placing scripts in the respective directories (/etc/localstack/init/{stage}.d), developers can automate tasks like setting up initial states, configuring services, or performing clean-up activities.
 
@@ -45,10 +45,10 @@ This approach simplifies the development and testing cycle, making it more effic
 
 For this tutorial, you will need:
 
-- [LocalStack Pro](https://docs.localstack.cloud/getting-started/auth-token/) to emulate the AWS services and to use LocalStack Extensions.
+- [LocalStack Pro]({{< ref "/getting-started/auth-token/" >}}) to emulate the AWS services and to use LocalStack Extensions.
   If you don't have LocalStack Pro yet, you can sign up on our [webapp](https://app.localstack.cloud) to get a trial license for free.
 - [Docker](https://docker.io/)
-- [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/)
+- [LocalStack CLI]({{< ref "/getting-started/installation/" >}})
 - [AWS CLI](https://aws.amazon.com/cli/)
 - Optional for building the Lambda functions: [Java 17](https://openjdk.org/install/)
 - Optional for building the Lambda functions: [Apache Maven 3.9.8](https://maven.apache.org/install.html)
@@ -136,7 +136,7 @@ services:
 Environment Variables:
 - **LOCALSTACK_AUTH_TOKEN**: Required for using LocalStack Pro.
 - **DEBUG**: Set to 1 to enable verbose logging of the container.
-- **EXTENSION_AUTO_INSTALL**: Automatically installs specified LocalStack [extensions](https://docs.localstack.cloud/user-guide/extensions/), in this case, `localstack-extension-terraform-init` which allows Terraform files to be directly used as init hooks.
+- **EXTENSION_AUTO_INSTALL**: Automatically installs specified LocalStack [extensions]({{< ref "/user-guide/extensions/" >}}), in this case, `localstack-extension-terraform-init` which allows Terraform files to be directly used as init hooks.
 
 Volumes:
 - Docker Socket: Mounts the Docker socket `/var/run/docker.sock` from the host into the container.
