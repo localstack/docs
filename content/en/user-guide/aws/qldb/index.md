@@ -5,6 +5,11 @@ tags: ["Pro image"]
 description: Get started with Quantum Ledger Database (QLDB) on LocalStack
 ---
 
+{{< callout "warning" >}}
+Amazon QLDB will be [retired on 31 July 2025](https://docs.aws.amazon.com/qldb/latest/developerguide/what-is.html).
+It will be removed from LocalStack soon after this date.
+{{< /callout >}}
+
 ## Introduction
 
 Amazon Quantum Ledger Database is a fully managed ledger database service offered by Amazon Web

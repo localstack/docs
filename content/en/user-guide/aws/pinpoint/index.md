@@ -7,6 +7,11 @@ persistence: supported
 
 ---
 
+{{< callout "warning" >}}
+Amazon Pinpoint will be [retired on 30 October 2026](https://docs.aws.amazon.com/pinpoint/latest/userguide/migrate.html).
+It will be removed from LocalStack soon after this date.
+{{< /callout >}}
+
 ## Introduction
 
 Pinpoint is a customer engagement service to facilitate communication across multiple channels, including email, SMS, and push notifications.

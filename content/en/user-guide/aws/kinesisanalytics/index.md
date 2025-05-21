@@ -7,7 +7,8 @@ tags: ["Pro image"]
 ---
 
 {{< callout "warning" >}}
-This service is deprecated and marked for removal.
+Amazon Kinesis Data Analytics for SQL Applications will be [retired on 27 January 2026](https://docs.aws.amazon.com/kinesisanalytics/latest/dev/discontinuation.html).
+It will be removed from LocalStack soon after this date.
 {{< /callout >}}
 
 ## Introduction
