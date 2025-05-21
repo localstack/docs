@@ -160,6 +160,38 @@ artifacts:
     - target/messageUtil-1.0.jar
 ```
 
+### Create input and output buckets
+
+Now we have to create two S3 buckets:
+- one bucket that stores the source we just created, that will be the source of the AWS CodeBuild build;
+- one bucket where the output of the build, i.e., the JAR file, will be stored.
+
+Create the buckets with the following commands:
+
+{{< command >}}
+$ awslocal s3 mb s3://codebuild-demo-input
+<disable-copy>
+make_bucket: codebuild-demo-input
+{{< /command >}}
+
+{{< command >}}
+$ awslocal s3 mb s3://codebuild-demo-output
+<disable-copy>
+make_bucket: codebuild-demo-output
+{{< /command >}}
+
+Finally, zip the content of the source code directory and upload it to the created source bucket.
+With a UNIX system, you can use the `zip` utility:
+{{< command >}}
+$ zip -r MessageUtil.zip <source-directory>
+{{< /command >}}
+
+Then, upload `MessageUtil.zip` to the `codebuild-demo-input` bucket with the following command:
+
+{{< command >}}
+$ awslocal s3 cp MessageUtil.zip s3://codebuild-demo-input
+{{< /command >}}
+
 ## Limitations
 
 - CodeBuild currently only supports S3 as a code source.
