@@ -326,9 +326,8 @@ You have now created a CodeBuild project called `codebuild-demo-project` that us
 
 {{< callout >}}
 LocalStack does not allow to customize the build environment.
-Depending on the host architecture, the build will be executed an Amazon Linux container, 3.0. and 5.0., respectively for Arch and x86.
+Depending on the host architecture, the build will be executed an Amazon Linux container, version `3.0.` and `5.0.`, respectively for Arch and x86.
 {{< /callout >}}
-
 
 ### Run the build
 
