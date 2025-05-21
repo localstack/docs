@@ -13,7 +13,7 @@ CodePipeline can be used to create automated pipelines that handle the build, te
 
 LocalStack comes with a bespoke execution engine that can be used to create, manage and execute pipelines.
 It supports a variety of actions that integrate with S3, CodeBuild, CodeConnections and more.
-The available operations can be found on the [API coverage](https://docs.localstack.cloud/references/coverage/coverage_codepipeline/) page.
+The available operations can be found on the [API coverage]({{< ref "coverage_codepipeline" >}}) page.
 
 ## Getting started
 
