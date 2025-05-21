@@ -281,9 +281,84 @@ Finally, assign the policy to the role with the following command:
 $ awslocal put-role-policy --role-name CodeBuildServiceRole --policy-name CodeBuildServiceRolePolicy --policy-document file://put-role-policy.json
 {{< /command >}}
 
+### Create the build project
+
+We now need to create a build project, containing all the information about how to run a build, where to get the
+source code, and where to place the output.
+
+You can use the CLI to generate the skeleton of the create build request, which you can later adapt.
+Save the output of the following command to a file named `create-project.json`.
+
+{{< command >}}
+$ awslocal codebuild create-project --generate-cli-skeleton
+{{< /command >}}
+
+From the generated file, change the source and the artifact location to match the S3 bucket names you just created.
+Similarly, fill in the ARN of the CodeBuild service role.
+
+```json {hl_lines=[5,9,16]}
+{
+  "name": "codebuild-demo-project",
+  "source": {
+    "type": "S3",
+    "location": "codebuild-demo-input"
+  },
+  "artifacts": {
+    "type": "S3",
+    "location": "codebuild-demo-output"
+  },
+  "environment": {
+    "type": "LINUX_CONTAINER",
+    "image": "aws/codebuild/standard:5.0",
+    "computeType": "BUILD_GENERAL1_SMALL"
+  },
+  "serviceRole": "service-role-arn"
+}
+```
+
+Create now the project with the following command:
+
+{{< command >}}
+$ awslocal codebuild create-project --cli-input-json file://create-project.json
+{{< /command >}}
+
+You have now created a CodeBuild project called `codebuild-demo-project` that uses the S3 buckets you just created as source and artifact.
+
+{{< callout >}}
+LocalStack does not allow to customize the build environment.
+Depending on the host architecture, the build will be executed an Amazon Linux container, 3.0. and 5.0., respectively for Arch and x86.
+{{< /callout >}}
+
+
+### Run the build
+
+In this final step, you can now execute your build with the following command:
+
+{{< command >}}
+$ awslocal codebuild start-build --project-name codebuild-demo-project
+{{< /command >}}
+
+Make note of the `id` information given in output, since it can be used to query the status of the build.
+If you inspect the running containers (e.g., with the `docker ps -a` command), you will notice a container with the `localstack-codebuild` prefix (followed by the ID of the build), which CodeBuild started to execute the build.
+This container will be responsible to start a Docker compose stack that executes the actual build.
+
+As said, you can inspect the status of the build with the following command:
+
+{{< command >}}
+$ awslocal codebuild batch-get-builds --ids <build-id>
+{{< /command >}}
+
+The command returns a list of builds.
+A build has a `buildStatus` attribute that will be set to `SUCCEEDED` if the build correctly terminates.
+
+{{< callout >}}
+Each build goes through different phases, each of them having a start and end time, as well as a status.
+LocalStack does not provided such a granular information.
+Currently, it reports only the final status of the build.
+{{< /callout >}}
+
 ## Limitations
 
-- CodeBuild currently only supports S3 as a code source.
-You can use AWS CodePipeline to integrate CodeBuild with a source code repository provider via CodeStarSourceConnection.
-- We only use one build
-- Talk to the host (pass via the host network)
+- CodeBuild currently only supports S3, NO_SOURCE, and CODEPIPELINE as [project source](https://docs.aws.amazon.com/codebuild/latest/APIReference/API_ProjectSource.html).
+- CodeBuild only uses Amazon Linux as the build environment for a build project.
+- Communication with the LocalStack container within the build environment is possible only via the host network, by using the Gateway IP address (typically 172.17.0.1) or `host.docker.internal` if running on MacOS.
