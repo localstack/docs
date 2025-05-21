@@ -9,7 +9,7 @@ tags: ["Pro image"]
 ## Introduction
 
 AWS CodeBuild is a fully managed continuous integration service that compiles source code, runs tests, and produces software packages that are ready to deploy.
-It's part of the AWS Developer Tools suite and integrates with other AWS services to provide an end-to-end development pipeline.
+It's part of the [AWS Developer Tools suite](https://aws.amazon.com/products/developer-tools/) and integrates with other AWS services to provide an end-to-end development pipeline.
 
 LocalStack supports the emulation of most of the CodeBuild operations.
 The supported operations are listed on the [API coverage page]({{< ref "coverage_codebuild" >}}).
@@ -41,9 +41,9 @@ root-directory-name
 ```
 
 Let us walk through these files.
-`MessageUtil.java` is the file implementing the logic of this small application.
+`MessageUtil.java` contains the entire logic of this small application.
 It does nothing more than print a salutation message.
-Copy the following content into the `src/main/java` directory.
+Create a `MessageUtil.java` file and save it into the `src/main/java` directory.
 
 ```java
 public class MessageUtil {
@@ -160,6 +160,13 @@ artifacts:
     - target/messageUtil-1.0.jar
 ```
 
+In this file we can observe how actually the build will be executed.
+First, we define a runtime version.
+Then, we mostly run a `mvn install` command in the build phase, doing both the compilation and the testing.
+The pre and post build phases do not do much in this example, but can be used for various things, like install some software needed for the build itself.
+
+A full specification of a `buildspec` file can be found in the [docs](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html).
+
 ### Create input and output buckets
 
 Now we have to create two S3 buckets:
@@ -181,7 +188,7 @@ make_bucket: codebuild-demo-output
 {{< /command >}}
 
 Finally, zip the content of the source code directory and upload it to the created source bucket.
-With a UNIX system, you can use the `zip` utility:
+With a UNIX system, you can simply use the `zip` utility:
 {{< command >}}
 $ zip -r MessageUtil.zip <source-directory>
 {{< /command >}}
@@ -212,15 +219,15 @@ Create a `create-role.json` file with following content:
 }
 ```
 
-Then, run the following command to create the IAM role:
+Then, run the following command to create the necessary IAM role:
 {{< command >}}
 $ awslocal iam create-role --role-name CodeBuildServiceRole --assume-role-policy-document file://create-role.json
 {{< /command >}}
 
 From the command's response, keep note of the role ARN:
-it will be needed by CodeBuild later on.
+it will be needed to create the CodeBuild project later on.
 
-Let us now define the policy for the created role.
+Let us now define a policy for the created role.
 Create a `put-role-policy.json` file with the following content:
 
 ```json
@@ -283,10 +290,9 @@ $ awslocal put-role-policy --role-name CodeBuildServiceRole --policy-name CodeBu
 
 ### Create the build project
 
-We now need to create a build project, containing all the information about how to run a build, where to get the
-source code, and where to place the output.
+We now need to create a build project, containing all the information about how to run a build, where to get the source code, and where to place the output.
 
-You can use the CLI to generate the skeleton of the create build request, which you can later adapt.
+You can use the CLI to generate the skeleton of the `CreateBuild` request, which you can later modify.
 Save the output of the following command to a file named `create-project.json`.
 
 {{< command >}}
@@ -355,6 +361,12 @@ Each build goes through different phases, each of them having a start and end ti
 LocalStack does not provided such a granular information.
 Currently, it reports only the final status of the build.
 {{< /callout >}}
+
+Once the build is completed, you can verify that the JAR artifact has been uploaded to the correct S3 bucket with the following command:
+
+{{< command >}}
+$ awslocal s3 ls://codebuild-demo-output
+{{< /command >}}
 
 ## Limitations
 
