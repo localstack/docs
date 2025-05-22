@@ -9,7 +9,7 @@ tags: ["Pro image"]
 ## Introduction
 
 AWS CodeBuild is a fully managed continuous integration service that compiles source code, runs tests, and produces software packages that are ready to deploy.
-It's part of the [AWS Developer Tools suite](https://aws.amazon.com/products/developer-tools/) and integrates with other AWS services to provide an end-to-end development pipeline.
+It is part of the [AWS Developer Tools suite](https://aws.amazon.com/products/developer-tools/) and integrates with other AWS services to provide an end-to-end development pipeline.
 
 LocalStack supports the emulation of most of the CodeBuild operations.
 The supported operations are listed on the [API coverage page]({{< ref "coverage_codebuild" >}}).
