@@ -179,6 +179,7 @@ Create the buckets with the following commands:
 $ awslocal s3 mb s3://codebuild-demo-input
 <disable-copy>
 make_bucket: codebuild-demo-input
+</disable-copy>
 {{< /command >}}
 
 {{< command >}}
