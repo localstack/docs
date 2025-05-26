@@ -3,7 +3,7 @@ title: "Key Management Service (KMS)"
 linkTitle: "Key Management Service (KMS)"
 description: Get started with Key Management Service (KMS) on LocalStack
 persistence: supported
-
+tags: ["Free"]
 ---
 
 ## Introduction

@@ -2,10 +2,8 @@
 title: "CloudWatch"
 linkTitle: "CloudWatch"
 description: Get started with AWS CloudWatch on LocalStack
-aliases:
-- /aws/cloudwatch/
 persistence: supported
-
+tags: ["Free"]
 ---
 
 CloudWatch is a comprehensive monitoring and observability service that Amazon Web Services (AWS) provides.

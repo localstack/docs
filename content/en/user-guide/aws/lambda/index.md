@@ -2,13 +2,8 @@
 title: "Lambda"
 linkTitle: "Lambda"
 description: Get started with Lambda on LocalStack
-aliases:
-- /references/lambda-executors/
-- /references/lambda-provider-v2/
-- /references/lambda-asf-provider/
-- /references/lambda-v2-provider/
+tags: ["Free"]
 persistence: supported with limitations
-
 ---
 
 ## Introduction
