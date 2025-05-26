@@ -11,8 +11,12 @@ persistence: supported
 Simple Email Service (SES) is an emailing service that can be integrated with other cloud-based services.
 It provides API to facilitate email templating, sending bulk emails and more.
 
-SESv1 is available in LocalStack Community image, while SESv2 and SMTP integration is available in LocalStack Pro.
 The supported APIs are available on the API coverage page for [SESv1](https://docs.localstack.cloud/references/coverage/coverage_ses/) and [SESv2](https://docs.localstack.cloud/references/coverage/coverage_sesv2/).
+
+{{< callout "Note" >}}
+Users on Free plan can use SES V1 APIs in LocalStack for basic mocking and testing.
+For advanced features like SMTP integration and other emulation capabilities, please refer to the Ultimate plan.
+{{< /callout >}}
 
 ## Getting Started
 
