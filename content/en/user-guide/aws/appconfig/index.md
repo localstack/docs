@@ -10,7 +10,7 @@ AppConfig offers centralized management of configuration data and the ability to
 It allows you to avoid deploying the service repeatedly for smaller changes, enables controlled deployments to applications and includes built-in validation checks & monitoring.
 
 LocalStack allows you to use the AppConfig APIs in your local environment to define configurations for different environments and deploy them to your applications as needed.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_appconfig/), which provides information on the extent of AppConfig's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_appconfig" >}}), which provides information on the extent of AppConfig's integration with LocalStack.
 
 ## Getting started
 

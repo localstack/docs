@@ -110,4 +110,4 @@ preview-cmd: |
 
 ## Examples
 
-- [Creating ephemeral application previews with LocalStack and GitHub Actions](https://docs.localstack.cloud/tutorials/ephemeral-application-previews/) and the [example repository](https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway)
+- [Creating ephemeral application previews with LocalStack and GitHub Actions]({{< ref "/tutorials/ephemeral-application-previews" >}}) and the [example repository](https://github.com/localstack-samples/sample-notes-app-dynamodb-lambda-apigateway)

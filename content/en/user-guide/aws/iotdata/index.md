@@ -11,7 +11,7 @@ IoT Data provides secure, bi-directional communication between Internet-connecte
 It allows you to connect your devices to the cloud and interact with them using the AWS Management Console, AWS CLI, or AWS SDKs.
 
 LocalStack allows you to use the IoT Data APIs to update, get, and delete the shadow of a thing in your local environment.
-The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_iot-data/), which provides information on the extent of IoT Data integration with LocalStack.
+The supported APIs are available on our [API Coverage Page]({{< ref "coverage_iot-data" >}}), which provides information on the extent of IoT Data integration with LocalStack.
 
 ## Getting started
 

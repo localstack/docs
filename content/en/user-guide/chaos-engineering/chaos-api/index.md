@@ -31,7 +31,7 @@ If you'd like to try it out, please [contact us](https://www.localstack.cloud/de
 
 The prerequisites for this guide are:
 
-- LocalStack Pro with [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) & [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
+- LocalStack Pro with [LocalStack CLI]({{< ref "/getting-started/installation/#localstack-cli" >}}) & [LocalStack Auth Token]({{< ref "/getting-started/auth-token" >}})
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 - [Python](https://www.python.org/downloads/)
 

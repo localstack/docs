@@ -11,7 +11,7 @@ AWS Database Migration Service provides migration solution from databases, data 
 The migration can be homogeneous (source and target have the same type), but often times is heterogeneous as it supports migration from various sources to various targets (self-hosted and AWS services).
 
 LocalStack only supports selected use cases for DMS at the moment.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_dms/), which provides information on the extent of DMS integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_dms" >}}), which provides information on the extent of DMS integration with LocalStack.
 
 {{< callout "note">}}
 DMS is in a preview state, supporting only [selected use cases](#supported-use-cases).

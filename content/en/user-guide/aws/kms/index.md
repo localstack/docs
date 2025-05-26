@@ -14,7 +14,7 @@ KMS allows you to create, delete, list, and update aliases, friendly names for y
 You can check [the official AWS documentation](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html) to understand the basic terms and concepts used in the KMS.
 
 LocalStack allows you to use the KMS APIs in your local environment to create, edit, and view symmetric and asymmetric KMS keys, including HMAC keys.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kms/), which provides information on the extent of KMS's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_kms" >}}), which provides information on the extent of KMS's integration with LocalStack.
 
 ## Getting started
 

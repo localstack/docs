@@ -11,7 +11,7 @@ Auto Scaling helps you maintain application availability and allows you to autom
 You can use Auto Scaling to ensure that you are running your desired number of instances.
 
 LocalStack allows you to use the Auto Scaling APIs locally to create and manage Auto Scaling groups locally.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_autoscaling/), which provides information on the extent of Auto Scaling's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_autoscaling" >}}), which provides information on the extent of Auto Scaling's integration with LocalStack.
 
 ## Getting started
 
@@ -137,5 +137,5 @@ Replace `i-0d678c4ecf6018dde` with the instance ID that you fetched from the out
 
 ## Current Limitations
 
-LocalStack does not support the `docker`/`libvirt` [VM manager for EC2](https://docs.localstack.cloud/user-guide/aws/ec2/#vm-managers).
+LocalStack does not support the `docker`/`libvirt` [VM manager for EC2]({{< ref "/user-guide/aws/ec2/#vm-managers" >}}).
 It only works with the `mock` VM manager.
