@@ -2,9 +2,8 @@
 title: "Cognito"
 linkTitle: "Cognito"
 description: Get started with Cognito on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 persistence: supported
-
 ---
 
 ## Introduction

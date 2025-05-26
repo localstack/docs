@@ -2,7 +2,7 @@
 title: "MQ"
 linkTitle: "MQ"
 description: Get started with MQ on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction

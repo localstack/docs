@@ -1,18 +1,16 @@
 ---
 title: "IoT"
 linkTitle: "IoT"
-categories: ["LocalStack Pro"]
+tags: ["Base"]
 description: >
   Get started with AWS IoT on LocalStack
-aliases:
-  - /aws/iot/
 ---
 
 ## Introduction
 
 AWS IoT provides cloud services to manage IoT devices and integrate them with other AWS services.
 
-LocalStack Pro supports IoT Core, IoT Data, IoT Analytics.
+LocalStack supports IoT Core, IoT Data, IoT Analytics.
 Common operations for creating and updating things, groups, policies, certificates and other entities are implemented with full CloudFormation support.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iot/).
 
