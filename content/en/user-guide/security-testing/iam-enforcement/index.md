@@ -3,7 +3,7 @@ title: "IAM Policy Enforcement"
 linkTitle: "IAM Policy Enforcement"
 weight: 1
 description: Enforce IAM policies in LocalStack to test your policies
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction

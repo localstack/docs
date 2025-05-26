@@ -2,7 +2,7 @@
 title: "AWS Replicator"
 weight: 13
 description: "AWS Replicator makes it easier to use LocalStack in shared AWS environments by copying resources into LocalStack."
-tags: ["Teams plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
