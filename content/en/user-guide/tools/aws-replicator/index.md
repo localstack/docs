@@ -23,7 +23,7 @@ It is only available as part of the **LocalStack Teams** plan and higher.
 
 ## Getting started
 
-A valid `LOCALSTACK_AUTH_TOKEN` must be configured to start the LocalStack Pro image.
+A valid `LOCALSTACK_AUTH_TOKEN` must be configured to start LocalStack.
 
 {{< callout "note" >}}
 The Replicator is in limited preview and is available from LocalStack CLI version 4.2.0.

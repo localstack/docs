@@ -176,7 +176,7 @@ Where necessary, footnotes are used to provide additional context.
 
 {{< callout >}}
 Feature availability and coverage is categorized with the following system:
-- ⭐️ Only Available in LocalStack Pro image
+- ⭐️ Only Available in LocalStack licensed editions
 - 🟢 Fully Implemented
 - 🟡 Partially Implemented
 - 🟠 Not Implemented
@@ -216,7 +216,7 @@ Create a [GitHub issue](https://github.com/localstack/localstack/issues/new/choo
 ## Lambda Layers (Pro)
 
 [Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) let you include additional code and dependencies in your Lambda functions.
-The LocalStack Pro image allows you to deploy Lambda Layers locally to streamline your development and testing process.
+With a valid LocalStack license, you can deploy Lambda Layers locally to streamline your development and testing process.
 The Community image also allows creating, updating, and deleting Lambda Layers, but they are not applied when invoking a Lambda function.
 
 ### Creating and using a Lambda Layer Locally

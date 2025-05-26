@@ -127,7 +127,7 @@ The output should look similar to the following:
 ```
 
 {{< callout "tip" >}}
-You can use [filters](https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html) or [queries](https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html) with the LocalStack Pro image to refine your results.
+You can use [filters](https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html) or [queries](https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html) with a licensed LocalStack edition to refine your results.
 {{< /callout >}}
 
 ## Metric Alarms
