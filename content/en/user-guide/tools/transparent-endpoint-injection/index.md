@@ -4,7 +4,7 @@ linkTitle: "Transparent Endpoint Injection"
 weight: 10
 description: >
   Transparently resolve your AWS calls to LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction
