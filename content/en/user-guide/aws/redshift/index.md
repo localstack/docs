@@ -2,7 +2,6 @@
 title: "Redshift"
 linkTitle: "Redshift"
 description: Get started with Redshift on LocalStack
-tags: ["Pro image"]
 ---
 
 ## Introduction

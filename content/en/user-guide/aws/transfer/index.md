@@ -1,11 +1,9 @@
 ---
 title: "Transfer"
 linkTitle: "Transfer"
-categories: ["LocalStack Pro"]
+tags: ["Ultimate"]
 description: >
   Get started with Amazon Transfer on LocalStack
-aliases:
-  - /aws/transfer/
 ---
 
 ## Introduction

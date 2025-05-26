@@ -1,7 +1,7 @@
 ---
 title: "Quantum Ledger Database (QLDB)"
 linkTitle: "Quantum Ledger Database (QLDB)"
-tags: ["Pro image"]
+tags: ["Ultimate"]
 description: Get started with Quantum Ledger Database (QLDB) on LocalStack
 ---
 

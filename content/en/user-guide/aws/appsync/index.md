@@ -2,7 +2,7 @@
 title: "AppSync"
 linkTitle: "AppSync"
 description: Get started with AppSync on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

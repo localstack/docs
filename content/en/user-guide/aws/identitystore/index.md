@@ -2,7 +2,7 @@
 title: "Identity Store"
 linkTitle: "Identity Store"
 description: Get started with Identity Store on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

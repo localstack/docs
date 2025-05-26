@@ -2,6 +2,7 @@
 title: "Lake Formation"
 linkTitle: "Lake Formation"
 description: Get started with Lake Formation on LocalStack
+tags: ["Ultimate"]
 ---
 
 ## Introduction

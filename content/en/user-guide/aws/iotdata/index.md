@@ -1,7 +1,7 @@
 ---
 title: "IoT Data"
 linkTitle: "IoT Data"
-categories: ["LocalStack Pro"]
+tags: ["Ultimate"]
 description: Get started with IoT Data on LocalStack
 ---
 

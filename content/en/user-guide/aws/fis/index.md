@@ -3,7 +3,7 @@ title: "Fault Injection Service (FIS)"
 linkTitle: "Fault Injection Service (FIS)"
 description: >
   Get started with Fault Injection Service (FIS) on LocalStack
-tags: ["Enterprise plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

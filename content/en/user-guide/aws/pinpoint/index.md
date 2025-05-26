@@ -2,7 +2,7 @@
 title: "Pinpoint"
 linkTitle: "Pinpoint"
 description: Get started with Pinpoint on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 persistence: supported
 
 ---

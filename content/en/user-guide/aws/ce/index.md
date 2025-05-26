@@ -3,7 +3,7 @@ title: "Cost Explorer"
 linkTitle: "Cost Explorer"
 description: >
   Get started with Cost Explorer on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

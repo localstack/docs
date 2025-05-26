@@ -1,7 +1,7 @@
 ---
 title: "IoT Analytics"
 linkTitle: "IoT Analytics"
-categories: ["LocalStack Pro"]
+tags: ["Ultimate"]
 description: Get started with IoT Analytics on LocalStack
 ---
 

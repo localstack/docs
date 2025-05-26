@@ -1,9 +1,8 @@
 ---
 title: "DocumentDB (DocDB)"
 linkTitle: "DocumentDB (DocDB)"
-categories: ["LocalStack Pro"]
-description: >
-    Get started with AWS DocumentDB on LocalStack
+tags: ["Ultimate"]
+description: Get started with AWS DocumentDB on LocalStack
 ---
 
 ## Introduction

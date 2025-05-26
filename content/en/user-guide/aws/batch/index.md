@@ -2,7 +2,7 @@
 title: Batch
 linkTitle: Batch
 description: Get started with Batch on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

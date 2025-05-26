@@ -2,6 +2,7 @@
 title: "Shield"
 linkTitle: "Shield"
 description: Get started with Shield on LocalStack
+tags: ["Ultimate"]
 ---
 
 ## Introduction
