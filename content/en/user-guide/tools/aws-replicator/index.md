@@ -18,7 +18,6 @@ This means that external resources can easily be replicated before deploying the
 
 {{< callout "note">}}
 The AWS Replicator is in a preview state, supporting only [selected resources](#supported-resources).
-It is only available as part of the **LocalStack Teams** plan and higher.
 {{< /callout >}}
 
 ## Getting started
