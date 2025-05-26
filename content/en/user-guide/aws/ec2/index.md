@@ -452,7 +452,7 @@ Any operation not listed below will use the mock VM manager.
 
 {{< callout "note" >}}
 The Libvirt VM manager is under active development.
-It is currently offered as a preview and will be part of the Enterprise Plan upon release.
+It is currently offered as a preview and will be part of the Ultimate plan upon release.
 If a functionality you desire is missing, please create a feature request on the [GitHub issue tracker](https://github.com/localstack/localstack/issues/new/choose).
 {{< /callout >}}
 

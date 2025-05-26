@@ -22,11 +22,6 @@ If required, you can make the failures occur probabilistically.
 
 Furthermore, the Chaos API can also be configured to add a network latency for all calls.
 
-{{< alert title="Note">}}
-Chaos API is available as part of the LocalStack Enterprise plan.
-If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /alert >}}
-
 ## Prerequisites
 
 The prerequisites for this guide are:
