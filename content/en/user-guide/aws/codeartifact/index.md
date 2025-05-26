@@ -5,7 +5,9 @@ description: >
   Get started with CodeArtifact on LocalStack
 tags: ["Pro image"]
 ---
-
+{{< callout >}}
+CodeArtifact is under active development and available in LocalStack as a preview feature.
+{{< /callout >}}
 ## Introduction
 
 CodeArtifact is a fully managed artifact repository service that makes it easy to securely store, publish, and share software packages used in your development process.
