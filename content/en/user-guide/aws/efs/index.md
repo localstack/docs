@@ -1,9 +1,8 @@
 ---
 title: "Elastic File System (EFS)"
 linkTitle: "Elastic File System (EFS)"
-description: >
-  Get started with Elastic File System (EFS) on LocalStack
-tags: ["Pro image"]
+description: Get started with Elastic File System (EFS) on LocalStack
+tags: ["Ultimate"]
 ---
 
 ## Introduction

@@ -2,6 +2,7 @@
 title: "Certificate Manager (ACM)"
 linkTitle: "Certificate Manager (ACM)"
 description: Get started with AWS Certificate Manager (ACM) on LocalStack
+tags: ["Free"]
 ---
 
 ## Introduction

@@ -2,9 +2,8 @@
 title: "Systems Manager (SSM)"
 linkTitle: "Systems Manager (SSM)"
 description: Get started with Systems Manager (SSM) on LocalStack
-tags: ["Pro image"]
+tags: ["Free"]
 persistence: supported
-
 ---
 
 ## Introduction

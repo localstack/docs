@@ -3,7 +3,7 @@ title: "Managed Service for Apache Flink"
 linkTitle: "Managed Service for Apache Flink"
 description: >
   Get started with Managed Service for Apache Flink on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 {{< callout >}}

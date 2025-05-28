@@ -2,7 +2,7 @@
 title: "Chaos API"
 linkTitle: "Chaos API"
 description: Simulate outages and network failures to test the resiliency of your infrastructure
-tags: ["Enterprise plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -21,11 +21,6 @@ You can customise the HTTP error code and message that LocalStack responds with.
 If required, you can make the failures occur probabilistically.
 
 Furthermore, the Chaos API can also be configured to add a network latency for all calls.
-
-{{< alert title="Note">}}
-Chaos API is available as part of the LocalStack Enterprise plan.
-If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /alert >}}
 
 ## Prerequisites
 

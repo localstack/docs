@@ -3,7 +3,7 @@ title: "Simple Storage Service (S3)"
 linkTitle: "Simple Storage Service (S3)"
 description: Get started with Amazon S3 on LocalStack
 persistence: supported
-
+tags: ["Free"]
 ---
 
 ## Introduction

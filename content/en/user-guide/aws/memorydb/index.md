@@ -1,11 +1,8 @@
 ---
 title: "MemoryDB for Redis"
 linkTitle: "MemoryDB for Redis"
-categories: ["LocalStack Pro"]
-description: >
-  Get started with AWS MemoryDB on LocalStack
-aliases:
-  - /aws/memorydb/
+tags: ["Ultimate"]
+description: Get started with MemoryDB on LocalStack
 ---
 
 ## Introduction
@@ -13,7 +10,7 @@ aliases:
 MemoryDB is a fully managed, Redis-compatible, in-memory database tailored for workloads demanding ultra-fast, primary database functionality.
 It streamlines the deployment and management of in-memory databases within the AWS cloud environment, acting as a replacement for using a cache in front of a database for improved durability and performance.
 
-LocalStack's Pro offering contains support for the main MemoryDB APIs surrounding cluster creation, allowing developers to utilize the MemoryDB functionalities in their local development environment.
+LocalStack provides support for the main MemoryDB APIs surrounding cluster creation, allowing developers to utilize the MemoryDB functionalities in their local development environment.
 The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_memorydb/), which provides information on the extent of MemoryDB's integration with LocalStack.
 
 ## Getting started

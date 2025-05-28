@@ -3,7 +3,7 @@ title: "Elastic Beanstalk"
 linkTitle: "Elastic Beanstalk"
 description: >
   Get started with Elastic Beanstalk (EB) on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

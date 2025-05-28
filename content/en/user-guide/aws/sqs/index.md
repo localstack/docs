@@ -4,7 +4,7 @@ description: Get started with Simple Queue Service (SQS) on LocalStack
 aliases:
 - /aws/sqs/
 persistence: supported
-
+tags: ["Free"]
 ---
 
 ## Introduction

@@ -2,7 +2,7 @@
 title: "IoT Wireless"
 linkTitle: "IoT Wireless"
 description: Get started with IoT Wireless on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

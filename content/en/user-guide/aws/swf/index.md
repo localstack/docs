@@ -3,6 +3,7 @@ title: "Simple Workflow Service (SWF)"
 linkTitle: "Simple Workflow Service (SWF)"
 description: >
   Get started with Simple Workflow Service (SWF) on LocalStack
+tags: ["Free"]
 ---
 
 ## Introduction

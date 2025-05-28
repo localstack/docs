@@ -2,7 +2,7 @@
 title: "CodeCommit"
 linkTitle: "CodeCommit"
 description: Get started with CodeCommit on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 persistence: supported
 ---
 

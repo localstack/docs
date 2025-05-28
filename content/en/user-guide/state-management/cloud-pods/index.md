@@ -2,11 +2,7 @@
 title: "Cloud Pods"
 weight: 2
 description: Get started with Cloud Pods to manage the state of your LocalStack instance state
-aliases:
-  - /user-guide/cloud-pods/getting-started/
-  - /user-guide/tools/cloud-pods/auto-load/
-  - /user-guide/tools/cloud-pods/remotes/
-tags: ["Teams plan"]
+tags: ["Base"]
 ---
 
 ## Introduction

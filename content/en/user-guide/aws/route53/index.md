@@ -3,7 +3,7 @@ title: "Route 53"
 linkTitle: "Route 53"
 description: Get started with Route 53 on LocalStack
 persistence: supported
-
+tags: ["Free"]
 ---
 
 ## Introduction
@@ -15,7 +15,7 @@ Route 53 integrates seamlessly with other AWS services, such as route traffic to
 
 LocalStack allows you to use the Route53 APIs in your local environment to create hosted zones and to manage DNS entries.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53/), which provides information on the extent of Route53's integration with LocalStack.
-LocalStack Pro image integrates with our DNS server to respond to DNS queries with these domains.
+LocalStack also integrates with our DNS server to respond to DNS queries with these domains.
 
 {{< callout "note">}}
 LocalStack CLI does not publish port `53` anymore by default.

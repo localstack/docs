@@ -2,7 +2,7 @@
 title: "Auto Scaling"
 linkTitle: "Auto Scaling"
 description: Get started with Auto Scaling" on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction

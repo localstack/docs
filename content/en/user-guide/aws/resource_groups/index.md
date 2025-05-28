@@ -1,8 +1,7 @@
 ---
 title: "Resource Groups"
 linkTitle: "Resource Groups"
-aliases:
-- /user-guide/aws/resourcegroups/
+tags: ["Free"]
 description: >
   Get started with Resource Groups on LocalStack
 ---

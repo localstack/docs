@@ -2,7 +2,7 @@
 title: "Elastic Transcoder"
 linkTitle: "Elastic Transcoder"
 description: Get started with Elastic Transcoder on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction
