@@ -15,8 +15,6 @@ To access this page:
 1. Click on your name in the top-left corner of the dashboard.
 2. Go to **Settings** → **Users & Licenses** under the **Administration** section.
 
-<img src="users-licenses-page.png" width="800px" alt="Users & Licenses management screen" title="Users & Licenses management screen">
-
 ## Managing Users
 
 ### Inviting Users
@@ -35,8 +33,6 @@ The name entered here is only a placeholder until the user completes signup.
 {{< callout >}}
 Only workspace admins can invite users and manage license assignments.
 {{< /callout >}}
-
-<img src="invite-user.png" width="700px" alt="Invite user form" title="Invite user form">
 
 ### Removing Users
 
