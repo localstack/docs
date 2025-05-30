@@ -1,6 +1,6 @@
 ---
-title: "codepipeline"
-linkTitle: "codepipeline"
+title: "CodePipeline"
+linkTitle: "CodePipeline"
 description: >
   Implementation details for API codepipeline
 hide_readingtime: true
