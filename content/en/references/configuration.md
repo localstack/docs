@@ -125,6 +125,12 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `PROVIDER_OVERRIDE_CLOUDWATCH` | `v1` | Use the old CloudWatch provider. |
 
+### CodeBuild
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `CODEBUILD_REMOVE_CONTAINERS` | `0`\|`1` (default) | Remove Docker containers associated with a CodeBuild build tasks after execution. Disabling this and dumping container logs might help with troubleshooting failing builds. |
+
 ### DMS
 
 | Variable | Example Values | Description |
