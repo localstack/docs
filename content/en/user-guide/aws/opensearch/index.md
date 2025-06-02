@@ -3,6 +3,7 @@ title: "OpenSearch Service"
 linkTitle: "OpenSearch Service"
 description: >
   Get started with OpenSearch Service on LocalStack
+tags: ["Free"]
 ---
 
 ## Introduction

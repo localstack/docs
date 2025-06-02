@@ -3,11 +3,12 @@ title: "Kinesis Data Analytics for SQL Applications"
 linkTitle: "Kinesis Data Analytics for SQL Applications"
 description: >
   Get started with Kinesis Data Analytics for SQL Applications on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 {{< callout "warning" >}}
-This service is deprecated and marked for removal.
+Amazon Kinesis Data Analytics for SQL Applications will be [retired on 27 January 2026](https://docs.aws.amazon.com/kinesisanalytics/latest/dev/discontinuation.html).
+It will be removed from LocalStack soon after this date.
 {{< /callout >}}
 
 ## Introduction
@@ -16,9 +17,7 @@ Kinesis Data Analytics for SQL Applications is a service offered by Amazon Web S
 It allows you to apply transformations, filtering, and enrichment to streaming data using standard SQL syntax.
 
 LocalStack allows you to use the Kinesis Data Analytics APIs in your local environment.
-The API coverage is available on:
-
-* [Kinesis Data Analytics]({{< ref "coverage_kinesisanalytics" >}})
+The supported APIs is available on our [API coverage page]({{< ref "coverage_kinesisanalytics" >}}).
 
 ## Getting started
 

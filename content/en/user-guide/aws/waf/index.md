@@ -2,7 +2,7 @@
 title: "Web Application Firewall (WAF)"
 linkTitle: "Web Application Firewall (WAF)"
 description: Get started with Web Application Firewall (WAF) on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

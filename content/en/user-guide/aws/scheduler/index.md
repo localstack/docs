@@ -2,6 +2,7 @@
 title: "EventBridge Scheduler"
 linkTitle: "EventBridge Scheduler"
 description: Get started with EventBridge Scheduler on LocalStack
+tags: ["Free"]
 ---
 
 ## Introduction

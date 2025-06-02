@@ -2,7 +2,7 @@
 title: "Athena"
 linkTitle: "Athena"
 description: Get started with Athena on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

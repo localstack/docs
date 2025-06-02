@@ -2,7 +2,7 @@
 title: "AppConfig"
 linkTitle: "AppConfig"
 description: Get started with AppConfig on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 AppConfig is a service provided by Amazon Web Services (AWS) that simplifies the process of managing and deploying application configurations.

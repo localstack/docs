@@ -1,9 +1,14 @@
 ---
 title: "IoT Analytics"
 linkTitle: "IoT Analytics"
-categories: ["LocalStack Pro"]
+tags: ["Ultimate"]
 description: Get started with IoT Analytics on LocalStack
 ---
+
+{{< callout "warning" >}}
+IoT Analytics will be [retired on 15 December 2025](https://docs.aws.amazon.com/iotanalytics/latest/userguide/iotanalytics-end-of-support.html).
+It will be removed from LocalStack soon after this date.
+{{< /callout >}}
 
 ## Introduction
 

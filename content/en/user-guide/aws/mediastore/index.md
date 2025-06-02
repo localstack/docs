@@ -2,7 +2,7 @@
 title: Elemental MediaStore
 linkTitle: Elemental MediaStore
 description: Get started with Elemental MediaStore on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

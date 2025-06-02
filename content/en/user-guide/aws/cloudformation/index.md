@@ -3,7 +3,7 @@ title: "CloudFormation"
 linkTitle: "CloudFormation"
 description: Get started with Cloudformation on LocalStack
 persistence: supported with limitations
-
+tags: ["Free"]
 ---
 
 ## Introduction

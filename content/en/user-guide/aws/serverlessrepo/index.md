@@ -3,7 +3,7 @@ title: "Serverless Application Repository"
 linkTitle: "Serverless Application Repository"
 description: >
   Get started with Serverless Application Repository on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

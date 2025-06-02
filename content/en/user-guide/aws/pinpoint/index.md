@@ -2,10 +2,15 @@
 title: "Pinpoint"
 linkTitle: "Pinpoint"
 description: Get started with Pinpoint on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 persistence: supported
 
 ---
+
+{{< callout "warning" >}}
+Amazon Pinpoint will be [retired on 30 October 2026](https://docs.aws.amazon.com/pinpoint/latest/userguide/migrate.html).
+It will be removed from LocalStack soon after this date.
+{{< /callout >}}
 
 ## Introduction
 

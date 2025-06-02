@@ -3,7 +3,7 @@ title: "Neptune"
 linkTitle: "Neptune"
 description: >
   Get started with Neptune on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

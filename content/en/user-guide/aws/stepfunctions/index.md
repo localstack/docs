@@ -1,6 +1,7 @@
 ---
 title: "Step Functions"
 linkTitle: "Step Functions"
+tags: ["Free"]
 description: >
     Get started with Step Functions on LocalStack
 ---

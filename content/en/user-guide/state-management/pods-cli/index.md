@@ -5,7 +5,7 @@ description: >
   Reference guide for LocalStack Cloud Pods CLI commands and how to get started on using them!
 aliases:
   - /user-guide/cloud-pods/pods-cli/
-tags: ["Teams plan"]
+tags: ["Base"]
 ---
 
 This reference provides descriptions and example commands for LocalStack Cloud Pods CLI (`pod`) commands.

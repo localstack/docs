@@ -3,7 +3,7 @@ title: "Kinesis Data Streams"
 linkTitle: "Kinesis Data Streams"
 description: Get started with Kinesis Data Streams on LocalStack
 persistence: supported
-
+tags: ["Free"]
 ---
 
 ## Introduction

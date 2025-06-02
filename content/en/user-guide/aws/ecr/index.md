@@ -2,9 +2,8 @@
 title: "Elastic Container Registry (ECR)"
 linkTitle: "Elastic Container Registry (ECR)"
 description: Get started with Elastic Container Registry (ECR) on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 persistence: supported
-
 ---
 
 ## Introduction

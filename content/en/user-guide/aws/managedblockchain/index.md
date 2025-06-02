@@ -3,7 +3,7 @@ title: "Managed Blockchain (AMB)"
 linkTitle: "Managed Blockchain (AMB)"
 description: >
   Get started with Managed Blockchain (AMB) on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 Managed Blockchain (AMB) is a managed service that enables the creation and management of blockchain networks, such as Hyperledger Fabric, Bitcoin, Polygon and Ethereum.

@@ -3,7 +3,7 @@ title: "Service Discovery"
 linkTitle: "Service Discovery"
 description: >
   Get started with Service Discovery on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

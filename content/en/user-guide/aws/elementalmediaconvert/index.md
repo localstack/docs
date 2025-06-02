@@ -2,7 +2,7 @@
 title: "Elemental MediaConvert"
 linkTitle: "Elemental MediaConvert"
 description: Get started with Elemental MediaConvert on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

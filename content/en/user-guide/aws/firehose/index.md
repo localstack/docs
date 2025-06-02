@@ -3,8 +3,7 @@ title: "Data Firehose"
 linkTitle: "Data Firehose"
 description: >
   Get started with Data Firehose on LocalStack
-aliases:
-- /user-guide/aws/kinesis-firehose/
+tags: ["Free"]
 ---
 
 {{< callout >}}

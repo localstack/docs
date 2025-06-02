@@ -2,7 +2,7 @@
 title: "Elastic Load Balancing (ELB)"
 linkTitle: "Elastic Load Balancing (ELB)"
 description: Get started with Elastic Load Balancing (ELB) on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction

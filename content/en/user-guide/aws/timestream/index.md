@@ -2,9 +2,8 @@
 title: "Timestream"
 linkTitle: "Timestream"
 description: Get started with Timestream on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 persistence: supported
-
 ---
 
 ## Introduction

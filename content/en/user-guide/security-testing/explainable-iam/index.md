@@ -3,7 +3,7 @@ title: "Explainable IAM"
 linkTitle: "Explainable IAM"
 weight: 2
 description: Discover IAM Policy Engine logs related to failed policy evaluation
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction

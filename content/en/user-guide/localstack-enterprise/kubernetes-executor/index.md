@@ -3,7 +3,7 @@ title: "Kubernetes Executor"
 weight: 5
 description: >
   Configuring Kubernetes Executor for compute services in LocalStack Enterprise
-tags: ["Enterprise plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

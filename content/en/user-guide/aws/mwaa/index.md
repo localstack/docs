@@ -3,7 +3,7 @@ title: "Managed Workflows for Apache Airflow (MWAA)"
 linkTitle: "Managed Workflows for Apache Airflow (MWAA)"
 description: >
     Get started with Managed Workflows for Apache Airflow (MWAA) on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

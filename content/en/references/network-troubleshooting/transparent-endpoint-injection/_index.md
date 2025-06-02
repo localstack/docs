@@ -1,6 +1,6 @@
 ---
 title: Transparent endpoint injection
-tags: ["Pro image"]
+tags: ["Base"]
 weight: 2
 tags:
 - troubleshooting

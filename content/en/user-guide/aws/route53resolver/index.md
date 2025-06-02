@@ -3,7 +3,7 @@ title: "Route 53 Resolver"
 linkTitle: "Route 53 Resolver"
 description: Get started with Route 53 Resolver on LocalStack
 persistence: supported
-
+tags: ["Free"]
 ---
 
 ## Introduction

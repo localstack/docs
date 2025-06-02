@@ -2,9 +2,8 @@
 title: "Glacier"
 linkTitle: "Glacier"
 description: Get started with S3 Glacier on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 persistence: supported
-
 ---
 
 ## Introduction

@@ -2,10 +2,14 @@
 title: "CodeCommit"
 linkTitle: "CodeCommit"
 description: Get started with CodeCommit on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 persistence: supported
-
 ---
+
+{{< callout "note" >}}
+AWS has discontinued new feature development for CodeCommit effective [25 July 2024](https://aws.amazon.com/blogs/devops/how-to-migrate-your-aws-codecommit-repository-to-another-git-provider/).
+However, LocalStack will continue making parity improvements.
+{{< /callout >}}
 
 ## Introduction
 

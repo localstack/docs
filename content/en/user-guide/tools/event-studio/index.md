@@ -2,7 +2,7 @@
 title: "Event Studio"
 weight: 12
 description: Event Studio allows you to record, trace, debug and replay any events exchanged between AWS services.
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction

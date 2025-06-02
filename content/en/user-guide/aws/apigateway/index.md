@@ -2,9 +2,8 @@
 title: "API Gateway"
 linkTitle: "API Gateway"
 description: Get started with API Gateway on LocalStack
-tags: ["Pro image"]
+tags: ["Free", "Base"]
 persistence: supported
-
 ---
 
 ## Introduction
@@ -13,7 +12,7 @@ API Gateway is a managed service that enables developers to create, deploy, and 
 It allows easy creation of REST, HTTP, and WebSocket APIs to securely access data, business logic, or functionality from backend services like AWS Lambda functions or EC2 instances.
 API Gateway supports standard HTTP methods such as `GET`, `POST`, `PUT`, `PATCH`, and `DELETE` and integrates with various AWS services, including Lambda, Cognito, CloudWatch, and X-Ray.
 
-LocalStack supports API Gateway V1 in the Community image and API Gateway V2 in the Pro image.
+LocalStack supports API Gateway V1 (REST API) in the Free plan, and API Gateway V2 (HTTP, Management and WebSocket API) in the Base plan.
 LocalStack allows you to use the API Gateway APIs to create, deploy, and manage APIs on your local machine to invoke those exposed API endpoints.
 
 The supported APIs are available on the API coverage page for [API Gateway V1]({{< ref "coverage_apigateway" >}}) & [API Gateway V2]({{< ref "coverage_apigatewayv2" >}}), which provides information on the extent of API Gateway's integration with LocalStack.

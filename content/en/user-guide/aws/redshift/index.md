@@ -2,7 +2,7 @@
 title: "Redshift"
 linkTitle: "Redshift"
 description: Get started with Redshift on LocalStack
-tags: ["Pro image"]
+tags: ["Free", "Ultimate"]
 ---
 
 ## Introduction
@@ -15,7 +15,8 @@ LocalStack allows you to use the RedShift APIs in your local environment to anal
 The supported APIs are available on our [API coverage page]({{< ref "coverage_redshift" >}}), which provides information on the extent of RedShift's integration with LocalStack.
 
 {{< callout "Note" >}}
-The Community edition of LocalStack provides RedShift with mocked CRUD operations, while the Pro edition provides emulation capabilities.
+Users on Free plan can use RedShift APIs in LocalStack for basic mocking and testing.
+For advanced features like Redshift Data API and other emulation capabilities, please refer to the Ultimate plan.
 {{< /callout >}}
 
 ## Getting started

@@ -3,7 +3,7 @@ title: "Config"
 linkTitle: "Config"
 description: Get started with Config on LocalStack
 persistence: supported
-
+tags: ["Free"]
 ---
 
 ## Introduction

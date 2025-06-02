@@ -2,7 +2,7 @@
 title: "Private Certificate Authority (ACM PCA)"
 linkTitle: "Private Certificate Authority (ACM PCA)"
 description: Get started with Private Certificate Authority (ACM PCA) on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

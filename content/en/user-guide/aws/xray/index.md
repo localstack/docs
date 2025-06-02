@@ -2,7 +2,7 @@
 title: "X-Ray"
 linkTitle: "X-Ray"
 description: Get started with X-Ray on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction

@@ -2,7 +2,7 @@
 title: "Database Migration Service (DMS)"
 linkTitle: "Database Migration Service (DMS)"
 description: Get started with Database Migration Service (DMS) on LocalStack
-tags: ["Enterprise plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -15,8 +15,7 @@ The supported APIs are available on our [API coverage page]({{< ref "coverage_dm
 
 {{< callout "note">}}
 DMS is in a preview state, supporting only [selected use cases](#supported-use-cases).
-It is only available as part of the **LocalStack Enterprise** plan, and you need to set the env `ENABLE_DMS=1` in order to activate it.
-If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
+You need to set the env `ENABLE_DMS=1` in order to activate it.
 {{< /callout >}}
 
 ## Getting started
