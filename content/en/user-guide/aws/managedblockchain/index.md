@@ -10,7 +10,7 @@ Managed Blockchain (AMB) is a managed service that enables the creation and mana
 Blockchain enables the development of applications in which multiple entities can conduct transactions and exchange data securely and transparently, eliminating the requirement for a central, trusted authority.
 
 LocalStack allows you to use the AMB APIs to develop and deploy decentralized applications in your local environment.
-The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_managedblockchain/), which provides information on the extent of AMB integration with LocalStack.
+The supported APIs are available on our [API Coverage Page]({{< ref "coverage_managedblockchain" >}}), which provides information on the extent of AMB integration with LocalStack.
 
 ## Getting started
 

@@ -13,7 +13,7 @@ It is designed for storing and querying highly connected data for applications t
 Neptune supports popular graph query languages like Gremlin and SPARQL, making it compatible with a wide range of graph applications and tools.
 
 LocalStack allows you to use the Neptune APIs in your local environment  to support both property graph and RDF graph models.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_neptune/), which provides information on the extent of Neptune's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_neptune" >}}), which provides information on the extent of Neptune's integration with LocalStack.
 
  The following versions of Neptune engine are supported by LocalStack:
 
@@ -144,7 +144,7 @@ if __name__ == '__main__':
 
 Amazon Neptune resources with IAM DB authentication enabled require all requests to use AWS Signature Version 4.  
 
-When LocalStack starts with [IAM enforcement enabled](https://docs.localstack.cloud/user-guide/security-testing/), the Neptune database checks user permissions before granting access.
+When LocalStack starts with [IAM enforcement enabled]({{< ref "/user-guide/security-testing" >}}), the Neptune database checks user permissions before granting access.
  The following Gremlin query actions are available for database engine versions `1.3.2.0` and higher:
 
 ```json
@@ -221,7 +221,7 @@ $ awscurl "https://localhost.localstack.cloud:4510/gremlin?gremlin=g.V().count()
 
 {{< callout "note" >}}
 If Gremlin Server is installed in your LocalStack environment, you must delete it and restart LocalStack.
-You can find your LocalStack volume location on the [LocalStack filesystem documentation](https://docs.localstack.cloud/references/filesystem/#localstack-volume).
+You can find your LocalStack volume location on the [LocalStack filesystem documentation]({{< ref "/references/filesystem/#localstack-volume" >}}).
 {{< command >}}
 $ rm -rf <LocalStack Volume>/lib/tinkerpop
 {{< /command >}}

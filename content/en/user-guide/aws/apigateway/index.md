@@ -15,7 +15,7 @@ API Gateway supports standard HTTP methods such as `GET`, `POST`, `PUT`, `PATCH`
 LocalStack supports API Gateway V1 (REST API) in the Free plan, and API Gateway V2 (HTTP, Management and WebSocket API) in the Base plan.
 LocalStack allows you to use the API Gateway APIs to create, deploy, and manage APIs on your local machine to invoke those exposed API endpoints.
 
-The supported APIs are available on the API coverage page for [API Gateway V1](https://docs.localstack.cloud/references/coverage/coverage_apigateway/) & [API Gateway V2](https://docs.localstack.cloud/references/coverage/coverage_apigatewayv2/), which provides information on the extent of API Gateway's integration with LocalStack.
+The supported APIs are available on the API coverage page for [API Gateway V1]({{< ref "coverage_apigateway" >}}) & [API Gateway V2]({{< ref "coverage_apigatewayv2" >}}), which provides information on the extent of API Gateway's integration with LocalStack.
 
 ## Getting started
 

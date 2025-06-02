@@ -13,7 +13,7 @@ MSK offers a centralized platform to facilitate seamless communication between v
 MSK also features automatic scaling and built-in monitoring, allowing users to build robust, high-throughput data pipelines.
 
 LocalStack allows you to use the MSK APIs in your local environment to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kafka/), which provides information on the extent of MSK's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_kafka" >}}), which provides information on the extent of MSK's integration with LocalStack.
 
 ## Getting started
 

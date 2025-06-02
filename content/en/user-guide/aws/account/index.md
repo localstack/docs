@@ -12,7 +12,7 @@ You can use the Account APIs to retrieve information about your account, manage 
 Additionally, you can use the Account APIs to enable or disable a region for your account, and delete alternate contacts in your account.
 
 LocalStack allows you to use the Account API to retrieve information about your account.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_account/), which provides information on the extent of Account's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_account" >}}), which provides information on the extent of Account's integration with LocalStack.
 
 {{< callout >}}
 LocalStack's Account provider is mock-only and does not support any real AWS account.

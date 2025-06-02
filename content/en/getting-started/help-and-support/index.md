@@ -31,22 +31,22 @@ At the moment, we only provide support in `English`, as we are an international 
 
 ## Support Coverage
 
-| Plan       | Tier                                                                                                         |
-| ---------- | ------------------------------------------------------------------------------------------------------------ |
-| Free       | [**Basic Support**](https://docs.localstack.cloud/getting-started/help-and-support/#basic-support)           |
-| Trial      | [**Standard Support**](https://docs.localstack.cloud/getting-started/help-and-support/#standard-support)     |
-| Base       | [**Standard Support**](https://docs.localstack.cloud/getting-started/help-and-support/#standard-support)     |
-| Ultimate   | [**Priority Support**](https://docs.localstack.cloud/getting-started/help-and-support/#priority-support)     |
-| Enterprise | [**Enterprise Support**](https://docs.localstack.cloud/getting-started/help-and-support/#enterprise-support) |
+| Plan       | Tier                                                                                          |
+| ---------- | --------------------------------------------------------------------------------------------- |
+| Free       | [**Basic Support**]({{< ref "/getting-started/help-and-support/#basic-support" >}})           |
+| Trial      | [**Standard Support**]({{< ref "/getting-started/help-and-support/#standard-support" >}})     |
+| Base       | [**Standard Support**]({{< ref "/getting-started/help-and-support/#standard-support" >}})     |
+| Ultimate   | [**Priority Support**]({{< ref "/getting-started/help-and-support/#priority-support" >}})     |
+| Enterprise | [**Enterprise Support**]({{< ref "/getting-started/help-and-support/#enterprise-support" >}}) |
 
 ## Support Coverage for legacy plans
 
-| Plan       | Tier                                                                                                         |
-| ---------- | ------------------------------------------------------------------------------------------------------------ |
-| Hobby      | [**Basic Support**](https://docs.localstack.cloud/getting-started/help-and-support/#basic-support)           |
-| Starter    | [**Standard Support**](https://docs.localstack.cloud/getting-started/help-and-support/#standard-support)     |
-| Teams      | [**Priority Support**](https://docs.localstack.cloud/getting-started/help-and-support/#priority-support)     |
-| Enterprise | [**Enterprise Support**](https://docs.localstack.cloud/getting-started/help-and-support/#enterprise-support) |
+| Plan       | Tier                                                                                          |
+| ---------- | --------------------------------------------------------------------------------------------- |
+| Hobby      | [**Basic Support**]({{< ref "/getting-started/help-and-support/#basic-support" >}})           |
+| Starter    | [**Standard Support**]({{< ref "/getting-started/help-and-support/#standard-support" >}})     |
+| Teams      | [**Priority Support**]({{< ref "/getting-started/help-and-support/#priority-support" >}})     |
+| Enterprise | [**Enterprise Support**]({{< ref "/getting-started/help-and-support/#enterprise-support" >}}) |
 
 ## Support features
 

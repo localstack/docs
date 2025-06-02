@@ -12,7 +12,7 @@ RedShift is fully managed by AWS and serves as a petabyte-scale service which al
 The query results can be saved to an S3 Data Lake while additional analytics can be provided by Athena or SageMaker.
 
 LocalStack allows you to use the RedShift APIs in your local environment to analyze structured and semi-structured data across local data warehouses and data lakes.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_redshift/), which provides information on the extent of RedShift's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_redshift" >}}), which provides information on the extent of RedShift's integration with LocalStack.
 
 {{< callout "Note" >}}
 Users on Free plan can use RedShift APIs in LocalStack for basic mocking and testing.

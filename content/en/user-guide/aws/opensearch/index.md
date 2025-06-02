@@ -12,7 +12,7 @@ OpenSearch Service is an open-source search and analytics engine, offering devel
 OpenSearch Service also offers log analytics, real-time application monitoring, and clickstream analysis.
 
 LocalStack allows you to use the OpenSearch Service APIs in your local environment to create, manage, and operate the OpenSearch clusters.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_opensearch/), which provides information on the extent of OpenSearch's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_opensearch" >}}), which provides information on the extent of OpenSearch's integration with LocalStack.
 
 The following versions of OpenSearch Service are supported by LocalStack:
 

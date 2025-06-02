@@ -13,7 +13,7 @@ Cognito enables developers to add user sign-up, sign-in, and access control func
 Cognito supports various authentication methods, including social identity providers, SAML-based identity providers, and custom authentication flows.
 
 LocalStack allows you to use the Cognito APIs in your local environment to manage authentication and access control for your local application and resources.
-The supported APIs are available on our [Cognito Identity coverage page](https://docs.localstack.cloud/references/coverage/coverage_cognito-identity/) and [Cognito User Pools coverage page](https://docs.localstack.cloud/references/coverage/coverage_cognito-idp/), which provides information on the extent of Cognito's integration with LocalStack.
+The supported APIs are available on our [Cognito Identity coverage page]({{< ref "coverage_cognito-identity" >}}) and [Cognito User Pools coverage page]({{< ref "coverage_cognito-idp" >}}), which provides information on the extent of Cognito's integration with LocalStack.
 
 ## Getting started
 
@@ -338,7 +338,7 @@ The client credentials grant allows for scope-based authorization from a non-int
 Your app can directly request client credentials from the token endpoint to receive an access token.
 
 To request the token from the LocalStack URL, use the following endpoint: `://cognito-idp.localhost.localstack.cloud:4566/_aws/cognito-idp/oauth2/token`.
-For additional information on our endpoints, refer to our [Internal Endpoints](https://docs.localstack.cloud/references/internal-endpoints/) documentation.
+For additional information on our endpoints, refer to our [Internal Endpoints]({{< ref "/references/internal-endpoints" >}}) documentation.
 
 If there are multiple user pools, LocalStack identifies the appropriate one by examining the `clientid` of the request.
 

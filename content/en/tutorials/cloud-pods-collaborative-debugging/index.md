@@ -44,9 +44,9 @@ The full sample application can be found [on GitHub](https://github.com/localsta
 
 ### **Prerequisites**
 
-- [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) (preferably using `pip`)
+- [LocalStack CLI]({{< ref "/getting-started/installation/#localstack-cli" >}}) (preferably using `pip`)
 - [Docker](https://docs.docker.com/engine/install/)
-- [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) or [OpenTofu](https://opentofu.org/docs/intro/install/) and [terraform-local](https://docs.localstack.cloud/user-guide/integrations/terraform/#install-the-tflocal-wrapper-script)
+- [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) or [OpenTofu](https://opentofu.org/docs/intro/install/) and [terraform-local]({{< ref "/user-guide/integrations/terraform/#install-the-tflocal-wrapper-script" >}})
 - Optional for Lambda build & editing: [Maven 3.9.4](https://maven.apache.org/install.html) & [Java 21](https://www.java.com/en/download/help/download_options.html)
 
 - Basic knowledge of AWS services (API Gateway, Lambda, DynamoDB, IAM)
@@ -340,7 +340,7 @@ For organizations with specific data regulations, LocalStack offers multiple rem
 allowing full control with on-premises storage if needed.
 That way, Bob, Alice and Carol could collaborate using either an S3 bucket remote storage or an ORAS (OCI Registry as Storage) remote storage.
 The Cloud Pods command-line interface enables users to manage these remotes with ease, by following the instructions in the
-[documentation](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#remotes).
+[documentation]({{< ref "/user-guide/state-management/cloud-pods/#remotes" >}}).
 
 ## Conclusion
 
@@ -353,5 +353,5 @@ resources in Continuous Integration (CI) for ultra-fast testing pipelines.
 
 ## Additional resources
 
-- [Cloud Pods documentation](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/)
+- [Cloud Pods documentation]({{< ref "/user-guide/state-management/cloud-pods/" >}})
 - [Terraform for AWS](https://developer.hashicorp.com/terraform/tutorials/aws-get-started)

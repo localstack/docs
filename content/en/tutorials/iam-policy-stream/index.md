@@ -33,7 +33,7 @@ You'll generate the policy for the bucket notification configuration and insert 
 
 ## Why use IAM Policy Stream?
 
-LocalStack enables you to create and enforce local IAM roles and policies using the [`ENFORCE_IAM` feature](https://docs.localstack.cloud/user-guide/security-testing/iam-enforcement/).
+LocalStack enables you to create and enforce local IAM roles and policies using the [`ENFORCE_IAM` feature]({{< ref "/user-guide/security-testing/iam-enforcement/" >}}).
 However, users often struggle to figure out the necessary permissions for different actions.
 It's important to find a balance, avoiding giving too many permissions while making sure the right ones are granted.
 
@@ -46,7 +46,7 @@ Additionally, it serves as a useful learning tool, helping users understand the 
 
 ## Prerequisites
 
-- [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)  with  [`LOCALSTACK_AUTH_TOKEN`](https://docs.localstack.cloud/getting-started/auth-token/)
+- [LocalStack CLI]({{< ref "/getting-started/installation/#localstack-cli" >}})  with  [`LOCALSTACK_AUTH_TOKEN`]({{< ref "/getting-started/auth-token/">}})
 - [Docker](https://docs.docker.com/get-docker/)
 - [Terraform](https://developer.hashicorp.com/terraform/install) & [`tflocal` wrapper](https://github.com/localstack/terraform-local)
 - [AWS](https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html)  CLI with  [`awslocal` wrapper](https://github.com/localstack/awscli-local)

@@ -13,7 +13,7 @@ ECR enables you to store, manage, and deploy Docker container images to build, s
 ECR integrates with other AWS services, such as Lambda, ECS, and EKS.
 
 LocalStack allows you to use the ECR APIs in your local environment to build & push Docker images to a local ECR registry.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ecr/), which provides information on the extent of ECR's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_ecr" >}}), which provides information on the extent of ECR's integration with LocalStack.
 
 ## Getting started
 

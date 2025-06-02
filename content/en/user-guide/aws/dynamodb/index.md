@@ -11,7 +11,7 @@ It offers a flexible and highly scalable way to store and retrieve data, making 
 DynamoDB provides a fast and scalable key-value datastore with support for replication, automatic scaling, data encryption at rest, and on-demand backup, among other capabilities.
 
 LocalStack allows you to use the DynamoDB APIs in your local environment to manage key-value and document data models.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_dynamodb/), which provides information on the extent of DynamoDB's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_dynamodb" >}}), which provides information on the extent of DynamoDB's integration with LocalStack.
 
 DynamoDB emulation is powered by [DynamoDB Local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
 

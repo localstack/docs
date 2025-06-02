@@ -12,7 +12,7 @@ CloudTrail is a service provided by Amazon Web Services (AWS) that enables you t
 It records API calls and actions made on your AWS resources, offering an audit trail that helps you understand changes, diagnose issues, and maintain compliance.
 
 LocalStack allows you to use the CloudTrail APIs in your local environment to create and manage Event history and trails.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudtrail/), which provides information on the extent of CloudTrail's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_cloudtrail" >}}), which provides information on the extent of CloudTrail's integration with LocalStack.
 
 ## Getting started
 

@@ -11,7 +11,7 @@ The stream records are written to a DynamoDB stream, which is an ordered flow of
 DynamoDB Streams records data in near-real time, enabling you to develop workflows that process these streams and respond based on their contents.
 
 LocalStack supports DynamoDB Streams, allowing you to create and manage streams in a local environment.
-The supported APIs are available on our [DynamoDB Streams coverage page](https://docs.localstack.cloud/references/coverage/coverage_dynamodbstreams/), which provides information on the extent of DynamoDB Streams integration with LocalStack.
+The supported APIs are available on our [DynamoDB Streams coverage page]({{< ref "coverage_dynamodbstreams" >}}), which provides information on the extent of DynamoDB Streams integration with LocalStack.
 
 ## Getting started
 

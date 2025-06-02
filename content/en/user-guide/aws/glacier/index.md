@@ -16,7 +16,7 @@ Glacier uses Jobs to retrieve the data in an Archive or list the inventory of a 
 
 LocalStack allows you to use the Glacier APIs in your local environment to manage Vaults and Archives.
 You can use the Glacier API to configure and set up vaults where you can store archives and manage them.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_glacier/), which provides information on the extent of Glacier's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_glacier" >}}), which provides information on the extent of Glacier's integration with LocalStack.
 
 ## Getting started
 

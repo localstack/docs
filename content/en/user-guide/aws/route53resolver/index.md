@@ -13,7 +13,7 @@ Route 53 Resolver forwards DNS queries for domain names to the appropriate DNS s
 Route 53 Resolver can be used to resolve domain names between your VPC and your network, and to resolve domain names between your VPCs.
 
 LocalStack allows you to use the Route 53 Resolver endpoints in your local environment.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53resolver/), which provides information on the extent of Route 53 Resolver's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_route53resolver" >}}), which provides information on the extent of Route 53 Resolver's integration with LocalStack.
 
 ## Getting started
 

@@ -16,7 +16,7 @@ Data Firehose is a service provided by AWS that allows you to extract, transform
 With Data Firehose, you can ingest and deliver real-time data from different sources as it automates data delivery, handles buffering and compression, and scales according to the data volume.
 
 LocalStack allows you to use the Data Firehose APIs in your local environment to load and transform real-time data.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_firehose/), which provides information on the extent of Data Firehose's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_firehose" >}}), which provides information on the extent of Data Firehose's integration with LocalStack.
 
 ## Getting started
 

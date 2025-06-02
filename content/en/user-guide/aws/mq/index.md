@@ -12,7 +12,7 @@ It facilitates the exchange of messages between various components of distribute
 AWS MQ supports popular messaging protocols like MQTT, AMQP, and STOMP, making it suitable for a wide range of messaging use cases.
 
 LocalStack allows you to use the MQ APIs to implement pub/sub messaging, request/response patterns, or distributed event-driven architectures in your local environment.
-The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_mq/), which provides information on the extent of MQ integration with LocalStack.
+The supported APIs are available on our [API Coverage Page]({{< ref "coverage_mq" >}}), which provides information on the extent of MQ integration with LocalStack.
 
 ## Getting started
 

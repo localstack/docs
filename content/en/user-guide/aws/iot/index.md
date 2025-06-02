@@ -12,7 +12,7 @@ AWS IoT provides cloud services to manage IoT devices and integrate them with ot
 
 LocalStack supports IoT Core, IoT Data, IoT Analytics.
 Common operations for creating and updating things, groups, policies, certificates and other entities are implemented with full CloudFormation support.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iot/).
+The supported APIs are available on our [API coverage page]({{< ref "coverage_iot" >}}).
 
 LocalStack ships a [Message Queuing Telemetry Transport (MQTT)](https://mqtt.org/) broker powered by [Eclipse Mosquitto](https://mosquitto.org/) which supports both pure MQTT and MQTT-over-WSS (WebSockets Secure) protocols.
 

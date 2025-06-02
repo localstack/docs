@@ -13,7 +13,7 @@ Config provides a comprehensive view of the resource configuration across your A
 Config continuously records configuration changes and allows you to retain a historical record of these changes.
 
 LocalStack allows you to use the Config APIs in your local environment to assesses resource configurations and notifies you of any non-compliant items to mitigate potential security risks.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_config/), which provides information on the extent of Config's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_config" >}}), which provides information on the extent of Config's integration with LocalStack.
 
 ## Getting started
 

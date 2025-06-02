@@ -14,7 +14,7 @@ Backup supports a wide range of AWS resources, including Elastic Block Store (EB
 Backup enables you to set backup retention policies, allowing you to specify how long you want to retain your backup copies.
 
 LocalStack allows you to use the Backup APIs in your local environment to manage backup plans, create scheduled or on-demand backups of certain resource types.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_backup/), which provides information on the extent of Backup's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_backup" >}}), which provides information on the extent of Backup's integration with LocalStack.
 
 ## Getting started
 

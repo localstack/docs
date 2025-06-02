@@ -9,7 +9,7 @@ tags: ["Ultimate"]
 
 Bedrock is a fully managed service provided by Amazon Web Services (AWS) that makes foundation models from various LLM providers accessible via an API.
 LocalStack allows you to use the Bedrock APIs to test and develop AI-powered applications in your local environment.
-The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_bedrock/), which provides information on the extent of Bedrock's integration with LocalStack.
+The supported APIs are available on our [API Coverage Page]({{< ref "coverage_bedrock" >}}), which provides information on the extent of Bedrock's integration with LocalStack.
 
 ## Getting started
 

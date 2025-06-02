@@ -11,7 +11,7 @@ DocumentDB is a fully managed, non-relational database service that supports Mon
 DocumentDB is compatible with MongoDB, meaning you can use the same MongoDB drivers, applications, and tools to run, manage, and scale workloads on DocumentDB without having to worry about managing the underlying infrastructure.
 
 LocalStack allows you to use the DocumentDB APIs to create and manage DocumentDB clusters and instances.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_docdb/), which provides information on the extent of DocumentDB's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_docdb" >}}), which provides information on the extent of DocumentDB's integration with LocalStack.
 
 ## Getting started
 

@@ -24,7 +24,7 @@ In the following, we provide a step-by-step guide for installing Crossplane in a
 * LocalStack running in local Docker
 * A local Kubernetes cluster:
   * We can use the [embedded Kubernetes cluster](https://docs.docker.com/desktop/kubernetes) that ships with modern versions of Docker Desktop (can be easily enabled in the Docker settings)
-  * Alternatively, you can [create a local EKS cluster](https://docs.localstack.cloud/user-guide/aws/elastic-kubernetes-service/#create-an-embedded-kubernetes-cluster) in LocalStack directly, which will spin up a light-weight embedded `k3d` Kubernetes cluster in your Docker environment
+  * Alternatively, you can [create a local EKS cluster]({{< ref "/user-guide/aws/eks/#create-an-embedded-kubernetes-cluster" >}}) in LocalStack directly, which will spin up a light-weight embedded `k3d` Kubernetes cluster in your Docker environment
 * The [`helm`](https://helm.sh) and [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl) command-line clients installed
 
 ## Installing Crossplane in local Kubernetes
@@ -226,9 +226,9 @@ You can refer to the additional reading material to learn and explore more advan
 
 ## Further Reading
 
-* Kubernetes on Docker Desktop: https://docs.docker.com/desktop/kubernetes
-* Kubernetes getting started guide: https://kubernetes.io/docs/setup
-* EKS Kubernetes clusters on LocalStack: https://docs.localstack.cloud/user-guide/aws/elastic-kubernetes-service
-* Crossplane user docs: https://docs.crossplane.io
-* Crossplane AWS provider family: https://marketplace.upbound.io/providers/upbound/provider-family-aws
-* Crossplane AWS provider source code: https://github.com/upbound/provider-aws
+* [Kubernetes on Docker Desktop](https://docs.docker.com/desktop/kubernetes)
+* [Kubernetes getting started guide](https://kubernetes.io/docs/setup)
+* [EKS Kubernetes clusters on LocalStack]({{< ref "/user-guide/aws/eks" >}})
+* [Crossplane user docs](https://docs.crossplane.io)
+* [Crossplane AWS provider family](https://marketplace.upbound.io/providers/upbound/provider-family-aws)
+* [Crossplane AWS provider source code](https://github.com/upbound/provider-aws)
