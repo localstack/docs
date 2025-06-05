@@ -221,7 +221,7 @@ Also see [OpenSearch configuration variables]({{< ref "configuration#opensearch"
 | `KINESIS_ON_DEMAND_STREAM_COUNT_LIMIT` | `10` (default), `Infinity` (to disable) | Integer value , causing the Kinesis API to start throwing exceptions to mimic the default on demand stream count limit. |
 | `KINESIS_LATENCY` | `500` (default), `0` (to disable)| Integer value of milliseconds, causing the Kinesis API to delay returning a response in order to mimic latency from a live AWS call. |
 | `KINESIS_MOCK_PROVIDER_ENGINE` | `node` (default) \| `scala` | String value of `node` (default) or `scala` that determines the underlying build of Kinesis Mock. |
-| `KINESIS_MOCK_MAXIMUM_HEAP_SIZE` | `512m` (default) | JVM memory format string (default: `512m`) that sets the maximum memory size for the Kinesis Mock Scala server, corresponds to the JVM `-Xmx` flag. |
+| `KINESIS_MOCK_MAXIMUM_HEAP_SIZE` | `512m` (default) | JVM memory format string that sets the maximum memory size for the Kinesis Mock Scala server, corresponds to the JVM `-Xmx` flag. |
 | `KINESIS_MOCK_INITIAL_HEAP_SIZE` | `256m` (default) | JVM memory format string that sets the initial memory size for the Kinesis Mock Scala server, corresponds to the JVM `-Xms` flag. |
 
 ### Lambda
