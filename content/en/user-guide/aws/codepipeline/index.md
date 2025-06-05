@@ -395,6 +395,10 @@ The supported actions in LocalStack CodePipeline are listed below.
 Using an unsupported action will make the pipeline fail.
 If you would like support for more actions, please [raise a feature request](https://github.com/localstack/localstack/issues/new/choose).
 
+### CloudFormation Deploy
+
+The [CloudFormation Deploy](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CloudFormation.html) action executes a CloudFormation stack. It supports the following modes: `CREATE_UPDATE`, `CHANGE_SET_REPLACE`, `CHANGE_SET_EXECUTE`
+
 ### CodeBuild Source and Test
 
 The [CodeBuild Source and Test](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CodeBuild.html) action can be used to start a CodeBuild container and run the given buildspec.
@@ -421,6 +425,10 @@ It will only update the running ECS service with a new task definition and wait 
 
 The [ECS Deploy](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-ECS.html) action creates a revision of a task definition based on an already deployed ECS service.
 
+### Lambda Invoke
+
+The [Lambda Invoke](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-Lambda.html) action is used to execute a Lambda function in a pipeline.
+
 ### Manual Approval
 
 The Manual Approval action can be included in the pipeline declaration but it will only function as a no-op.
@@ -438,6 +446,7 @@ The [S3 Source](https://docs.aws.amazon.com/codepipeline/latest/userguide/action
 - Emulation for [V2 pipeline types](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html) is not supported.
   They will be created as mocks only.
 - [Rollbacks and stage retries](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-stages.html) are not available.
+- [Custom actions](https://docs.aws.amazon.com/codepipeline/latest/userguide/actions-create-custom-action.html) and associated operations (AcknowledgeJob, GetJobDetails, PollForJobs, PutJobSuccessResult, PutJobFailureResult) are not supported.
 - [Triggers](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-triggers.html) are not implemented.
   Pipelines are executed only when [CreatePipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_CreatePipeline.html) and [StartPipelineExecution](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StartPipelineExecution.html) are invoked.
 - [Execution mode behaviours](https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts-how-it-works.html#concepts-how-it-works-executions) are not implemented.
