@@ -179,6 +179,8 @@ Additionally, the following parameters can be tuned:
 - Increase `KINESIS_MOCK_INITIAL_HEAP_SIZE` beyond the default `256m` to pre-allocate more JVM heap memory.
 - Reduce `KINESIS_LATENCY` artificial response delays from the default `500` milliseconds (or disable entirely with `0`).
 
+Refer to our [Kinesis configuration documentation](https://docs.localstack.cloud/references/configuration/#kinesis) for more details on these parameters.
+
 {{< note >}}
 `KINESIS_MOCK_MAXIMUM_HEAP_SIZE` and `KINESIS_MOCK_INITIAL_HEAP_SIZE` are only applicable when using the Scala engine.
 Future versions of LocalStack will likely default to using the `scala` engine over the less-performant `node` version currently in use.
