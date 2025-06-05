@@ -125,6 +125,12 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `PROVIDER_OVERRIDE_CLOUDWATCH` | `v1` | Use the old CloudWatch provider. |
 
+### CodePipeline
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `CODEPIPELINE_GH_TOKEN` | | GitHub Personal Access Token to used by CodeConnections Source action to access private repositories on GitHub. |
+
 ### DMS
 
 | Variable | Example Values | Description |
