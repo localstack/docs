@@ -11,8 +11,8 @@ tags: ["Pro image"]
 CodePipeline is a continuous integration/continuous delivery (CI/CD) service offered by AWS.
 CodePipeline can be used to create automated pipelines that handle the build, test and deployment of software.
 
-LocalStack comes with a bespoke execution engine that can be used to create, manage and execute pipelines.
-It supports a variety of actions that integrate with S3, CodeBuild, CodeConnections and more.
+LocalStack comes with a bespoke execution engine that can be used to create, manage, and execute pipelines.
+It supports a variety of actions that integrate with S3, CodeBuild, CodeConnections, and more.
 The available operations can be found on the [API coverage]({{< ref "coverage_codepipeline" >}}) page.
 
 ## Getting started
@@ -32,7 +32,7 @@ $ awslocal s3 mb s3://target-bucket
 {{< / command >}}
 
 It is important to note the CodePipeline requires source S3 buckets to have versioning enabled.
-This can be done using the S3 [PutBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html) operation.
+This can be done using the S3 [`PutBucketVersioning`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html) operation.
 
 {{< command >}}
 $ awslocal s3api put-bucket-versioning \
@@ -205,9 +205,9 @@ $ awslocal codepipeline create-pipeline --pipeline file://./declaration.json
 
 ### Verify pipeline execution
 
-A 'pipeline execution' is an instance of a pipeline in running or finished state.
+A 'pipeline execution' is an instance of a pipeline in a running or finished state.
 
-The [CreatePipeline](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_CreatePipeline.html) operation we ran earlier started a pipeline execution.
+The [`CreatePipeline`](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_CreatePipeline.html) operation we ran earlier started a pipeline execution.
 This can be confirmed using:
 
 {{< command >}}
@@ -254,7 +254,7 @@ Hello LocalStack!
 
 ### Examine action executions
 
-Using the [ListActionExecutions](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html), detailed information about each action execution such as inputs and outputs can be retrieved.
+Using the [`ListActionExecutions`](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html), detailed information about each action execution such as inputs and outputs can be retrieved.
 This is useful when debugging the pipeline.
 
 {{< command >}}
@@ -320,7 +320,7 @@ $ awslocal codepipeline list-action-executions --pipeline-name pipeline
 
 {{< callout >}}
 LocalStack does not use the same logic to generate external execution IDs as AWS so there may be minor discrepancies.
-Same is true for status and error messages produced by actions.
+The same is true for status and error messages produced by actions.
 {{< /callout >}}
 
 ## Pipelines
@@ -335,17 +335,17 @@ Emulation for V2 pipelines is not supported.
 Make sure that the pipeline type is explicitly set in the declaration.
 {{< /callout >}}
 
-Pipeline executions can be managed with [StartPipelineExecution](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StartPipelineExecution.html), [GetPipelineExecution](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetPipelineExecution.html), [ListPipelineExecutions](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html) and [StopPipelineExecutions](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StopPipelineExecution.html).
+Pipeline executions can be managed with [`StartPipelineExecution`](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StartPipelineExecution.html), [`GetPipelineExecution`](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetPipelineExecution.html), [`ListPipelineExecutions`](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html) and [`StopPipelineExecutions`](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StopPipelineExecution.html).
 
-When stopping pipeline executions with StopPipelineExecution, the stop and abandon method is not supported.
+When stopping pipeline executions with `StopPipelineExecution`, the stop and abandon method is not supported.
 Setting the `abandon` flag will have no impact.
-This is because LocalStack uses threads as the underlying mechanism to simulate pipelines, and threads can not be cleanly preempted.
+This is because LocalStack uses threads as the underlying mechanism to simulate pipelines, and threads cannot be cleanly preempted.
 
-Action executions can be inspected using the [ListActionExecutions](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html) operation.
+Action executions can be inspected using the [`ListActionExecutions`](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html) operation.
 
 ### Tagging pipelines
 
-Pipelines resources can be [tagged](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-tag.html) using the [TagResource](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_TagResource.html), [UntagResource](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_UntagResource.html) and [ListTagsForResource](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListTagsForResource.html) operations.
+Pipelines resources can be [tagged](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-tag.html) using the [`TagResource`](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_TagResource.html), [`UntagResource`](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_UntagResource.html) and [`ListTagsForResource`](https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListTagsForResource.html) operations.
 
 {{< command >}}
 $ awslocal codepipeline tag-resource \
