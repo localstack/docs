@@ -171,7 +171,7 @@ C:\Users\myuser\projects\lambda\handler.py
 ```
 
 Use the corresponding WSL-style path:
-```
+```bash
 /mnt/c/Users/myuser/projects/lambda/handler.py
 ```
 
