@@ -324,6 +324,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `MYSQL_IMAGE`                    | `mysql:8.0`       | Defines a specific MySQL image that should be used when spinning up the MySQL engine. Only available if `RDS_MYSQL_DOCKER` is enabled. |
 | `MSSQL_IMAGE`                    | `mcr.microsoft.com/mssql/server:2022-latest` | Defines a specific image that should be used when spinning up a SQL server engine. |
 | `MSSQL_ACCEPT_EULA`              | `Y`     | Set to `Y` if you accept the [EULA from MSSQL](https://hub.docker.com/_/microsoft-mssql-server). |
+| `RDS_PG_MAX_CONNECTIONS` | `0` (default) | Sets the maximum number of connections for Postgres RDS instances. |
 
 ### S3
 
