@@ -66,7 +66,7 @@ public class MessageUtil {
 }
 ```
 
-Every build needs some testing!
+Every build needs to be tested.
 Therefore, create the `TestMessageUtil.java` file in the `src/test/java` directory.
 
 ```java
@@ -160,17 +160,17 @@ artifacts:
     - target/messageUtil-1.0.jar
 ```
 
-In this file we can observe how actually the build will be executed.
+In this file we can observe how the build will be executed.
 First, we define a runtime version.
-Then, we mostly run a `mvn install` command in the build phase, doing both the compilation and the testing.
+Then, we run a `mvn install` command in the build phase which does both the compilation and the testing.
 The pre and post build phases do not do much in this example, but can be used for various things, like install some software needed for the build itself.
 
-A full specification of a `buildspec` file can be found in the [docs](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html).
+A full specification of a `buildspec` file can be found in the [AWS CodeBuild docs](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html).
 
 ### Create input and output buckets
 
 Now we have to create two S3 buckets:
-- one bucket that stores the source we just created, that will be the source of the AWS CodeBuild build;
+- one bucket that stores the source we just created, that will be the source of the AWS CodeBuild build
 - one bucket where the output of the build, i.e., the JAR file, will be stored.
 
 Create the buckets with the following commands:
@@ -323,7 +323,7 @@ Similarly, fill in the ARN of the CodeBuild service role.
 }
 ```
 
-Create now the project with the following command:
+Now create the project with the following command:
 
 {{< command >}}
 $ awslocal codebuild create-project --cli-input-json file://create-project.json
@@ -345,7 +345,7 @@ $ awslocal codebuild start-build --project-name codebuild-demo-project
 {{< /command >}}
 
 Make note of the `id` information given in output, since it can be used to query the status of the build.
-If you inspect the running containers (e.g., with the `docker ps -a` command), you will notice a container with the `localstack-codebuild` prefix (followed by the ID of the build), which CodeBuild started to execute the build.
+If you inspect the running containers (e.g., with the `docker ps -a` command), you will notice a container with the `localstack-codebuild` prefix (followed by the build ID), which CodeBuild started to execute the build.
 This container will be responsible to start a Docker compose stack that executes the actual build.
 
 As said, you can inspect the status of the build with the following command:
@@ -359,7 +359,7 @@ A build has a `buildStatus` attribute that will be set to `SUCCEEDED` if the bui
 
 {{< callout >}}
 Each build goes through different phases, each of them having a start and end time, as well as a status.
-LocalStack does not provided such a granular information.
+LocalStack does not provided such granular information.
 Currently, it reports only the final status of the build.
 {{< /callout >}}
 
