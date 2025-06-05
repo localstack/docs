@@ -181,10 +181,10 @@ Additionally, the following parameters can be tuned:
 
 Refer to our [Kinesis configuration documentation](https://docs.localstack.cloud/references/configuration/#kinesis) for more details on these parameters.
 
-{{< note >}}
+{{< callout "note" >}}
 `KINESIS_MOCK_MAXIMUM_HEAP_SIZE` and `KINESIS_MOCK_INITIAL_HEAP_SIZE` are only applicable when using the Scala engine.
 Future versions of LocalStack will likely default to using the `scala` engine over the less-performant `node` version currently in use.
-{{< / note >}}
+{{< /callout >}}
 
 ## Resource Browser
 
