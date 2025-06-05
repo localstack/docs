@@ -173,10 +173,26 @@ You can fetch the CloudWatch logs for your Lambda function reading records from 
 
 | Variable | Description |
 | -------- | ----------- |
+| `KINESIS_MOCK_PROVIDER_ENGINE` | String value of `node` (default) or `scala` that determines the underlying build of Kinesis Mock. [^scala-future] |
+| `KINESIS_MOCK_MAXIMUM_HEAP_SIZE` | JVM memory format string (default: `512m`) that sets the maximum memory size for the Kinesis Mock Scala server, corresponds to the JVM `-Xmx` flag. [^scala] |
+| `KINESIS_MOCK_INITIAL_HEAP_SIZE` | JVM memory format string (default: `256m`) that sets the initial memory size for the Kinesis Mock Scala server, corresponds to the JVM `-Xms` flag. [^scala] |
 | `KINESIS_ERROR_PROBABILITY` | Decimal value between `0.0` (default) and `1.0`. This environment variable enables you to inject `ProvisionedThroughputException` at random intervals in your application. While this won't provide insight into your application's overall throughput handling, it aids in testing your application's exception-handling capabilities. |
 | `KINESIS_SHARD_LIMIT` | Integer value (default: `100`) or `Infinity` (to disable). Use this variable to assess whether your application conforms to the assigned shard limit. Disabling this behavior requires explicitly setting `KINESIS_SHARD_LIMIT=Infinity`. |
 | `KINESIS_LATENCY` | Integer value in milliseconds (default: `500`) or `0` (to disable). Particularly useful for testing latency-sensitive applications. Since local Kinesis service lacks latency simulation, you can introduce artificial latency into your AWS calls using this variable. To disable this behavior, set `KINESIS_LATENCY=0`. |
 | `KINESIS_INITIALIZE_STREAMS` | **Deprecated.** Comma-delimited string with stream names, corresponding shard counts, and an optional region for initialization during startup. If no region is provided, the default region is used. For example, `KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1`. In multi-account setups, the specified streams will be created for all accounts. |
+
+### Performance Tuning
+
+For high-volume workloads or large payloads, we recommend switching to the Scala engine via the `KINESIS_MOCK_PROVIDER_ENGINE=scala` flag, delivering up to 10x better performance compared to the default Node.js engine.
+
+Additionally, the following parameters can be tuned:
+
+- Increase `KINESIS_MOCK_MAXIMUM_HEAP_SIZE` beyond the default `512m` to reduce JVM memory pressure. [^scala]
+- Increase `KINESIS_MOCK_INITIAL_HEAP_SIZE` beyond the default `256m` to pre-allocate more JVM heap memory. [^scala]
+- Reduce `KINESIS_LATENCY` artificial response delays from the default `500` milliseconds (or disable entirely with `0`).
+
+[^scala]: This feature is only available in the more performant Scala Kinesis Mock build that can be toggled by setting `KINESIS_MOCK_PROVIDER_ENGINE=scala`.
+[^scala-future]: Future versions of LocalStack will likely default to using the `scala` engine over the less-performant `node` version currently in use.
 
 ## Resource Browser
 
