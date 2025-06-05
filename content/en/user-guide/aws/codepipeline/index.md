@@ -397,7 +397,8 @@ If you would like support for more actions, please [raise a feature request](htt
 
 ### CloudFormation Deploy
 
-The [CloudFormation Deploy](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CloudFormation.html) action executes a CloudFormation stack. It supports the following modes: `CREATE_UPDATE`, `CHANGE_SET_REPLACE`, `CHANGE_SET_EXECUTE`
+The [CloudFormation Deploy](https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CloudFormation.html) action executes a CloudFormation stack.
+It supports the following modes: `CREATE_UPDATE`, `CHANGE_SET_REPLACE`, `CHANGE_SET_EXECUTE`
 
 ### CodeBuild Source and Test
 
