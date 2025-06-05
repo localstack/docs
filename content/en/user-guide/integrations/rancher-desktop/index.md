@@ -160,7 +160,7 @@ services:
 Finally, start the services using `docker compose up` or `nerdctl compose up`, depending on your configuration.
 This will launch your LocalStack instance configured to interact with Rancher Desktop.
 
-### 📝 Note on Hot Reloading Lambdas in Windows (WSL2)
+### Hot Reloading Lambdas in Windows (WSL2)
 
 If you're using hot reloading for Lambda functions, make sure your Lambda handler paths are specified using **WSL2-compatible paths**.
 
