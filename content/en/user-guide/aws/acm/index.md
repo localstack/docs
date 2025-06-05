@@ -2,6 +2,7 @@
 title: "Certificate Manager (ACM)"
 linkTitle: "Certificate Manager (ACM)"
 description: Get started with AWS Certificate Manager (ACM) on LocalStack
+tags: ["Free"]
 ---
 
 ## Introduction
@@ -13,7 +14,7 @@ ACM supports securing multiple domain names and subdomains and can create wildca
 You can also use ACM to import certificates from third-party certificate authorities or to generate private certificates for internal use.
 
 LocalStack allows you to use the ACM APIs to create, list, and delete certificates.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_acm/), which provides information on the extent of ACM's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_acm" >}}), which provides information on the extent of ACM's integration with LocalStack.
 
 ## Getting started
 

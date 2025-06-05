@@ -3,7 +3,7 @@ title: "Fault Injection Service (FIS)"
 linkTitle: "Fault Injection Service (FIS)"
 description: >
   Get started with Fault Injection Service (FIS) on LocalStack
-tags: ["Enterprise plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -13,7 +13,7 @@ FIS simulates faults such as resource unavailability and service errors to asses
 The full list of such possible fault injections is available in the [AWS docs](https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html).
 
 LocalStack allows you to use the FIS APIs in your local environment to introduce faults in other services, in order to check how your setup behaves when parts of it stop working locally.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_fis/), which provides information on the extent of FIS API's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_fis" >}}), which provides information on the extent of FIS API's integration with LocalStack.
 
 {{< callout "tip" >}}
 LocalStack also features its own powerful chaos engineering tool, [Chaos API]({{< ref "chaos-api" >}}).

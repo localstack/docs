@@ -2,9 +2,8 @@
 title: "Timestream"
 linkTitle: "Timestream"
 description: Get started with Timestream on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 persistence: supported
-
 ---
 
 ## Introduction
@@ -16,7 +15,7 @@ LocalStack contains basic support for Timestream time series databases, includin
 * Writing records to tables
 * Querying timeseries data from tables
 
-The supported APIs are available on our API Coverage Page ([Timestream-Query](https://docs.localstack.cloud/references/coverage/coverage_timestream-query/)/[Timestream-Write](https://docs.localstack.cloud/references/coverage/coverage_timestream-write/)), which provides information on the extent of Timestream integration with LocalStack.
+The supported APIs are available on our API Coverage Page ([Timestream-Query]({{< ref "coverage_timestream-query" >}})/[Timestream-Write]({{< ref "coverage_timestream-write" >}})), which provides information on the extent of Timestream integration with LocalStack.
 
 ## Getting Started
 
@@ -71,6 +70,6 @@ The Resource Browser allows you to perform the following actions:
 
 ## Current Limitations
 
-LocalStack's Timestream implementation is under active development and only supports a limited set of operations, please refer to the API Coverage pages for an up-to-date list of implemented and tested functions within [Timestream-Query](https://docs.localstack.cloud/references/coverage/coverage_timestream-query/) and [Timestream-Write](https://docs.localstack.cloud/references/coverage/coverage_timestream-write/).
+LocalStack's Timestream implementation is under active development and only supports a limited set of operations, please refer to the API Coverage pages for an up-to-date list of implemented and tested functions within [Timestream-Query]({{< ref "coverage_timestream-query" >}}) and [Timestream-Write]({{< ref "coverage_timestream-write" >}}).
 
 If you have a usecase that uses Timestream but doesn't work with our implementation yet, we encourage you to [get in touch](https://localstack.cloud/contact/), so we can streamline any operations you rely on.

@@ -29,7 +29,7 @@ LocalStack allows you to integrate and test [Chaos API]({{< ref "chaos-api" >}})
 Route53's health checks and traffic redirection enhance architecture resilience and ensure service continuity during regional outages, crucial for uninterrupted user experiences.
 
 {{< callout "note">}}
-Route53 Failover and Chaos API is currently available as part of the LocalStack Enterprise plan.
+Route53 Failover and Chaos API is currently available as part of the Ultimate plan.
 If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
 {{< /callout >}}
 

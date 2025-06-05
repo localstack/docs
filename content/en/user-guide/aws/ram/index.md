@@ -2,14 +2,14 @@
 title: "Resource Access Manager (RAM)"
 linkTitle: "Resource Access Manager (RAM)"
 description: Get started with RAM on LocalStack
+tags: ["Ultimate"]
 ---
 
+## Introduction
+
 Resource Access Manager (RAM) helps resources to be shared across AWS accounts, within or across organizations.
-
 On AWS, RAM is an abstraction on top of AWS Identity and Access Management (IAM) which can manage resource-based policies to supported resource types.
-
-RAM is available in LocalStack Pro.
-The supported API operations can be found on the [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ram/).
+The API operations supported by LocalStack can be found on the [API coverage page]({{< ref "coverage_ram" >}}).
 
 ## Getting started
 

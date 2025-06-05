@@ -2,6 +2,7 @@
 title: "Account Management"
 linkTitle: "Account Management"
 description: Get started with AWS Account Management on LocalStack
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -10,8 +11,8 @@ The Account service provides APIs to manage your AWS account.
 You can use the Account APIs to retrieve information about your account, manage your contact information and alternate contacts.
 Additionally, you can use the Account APIs to enable or disable a region for your account, and delete alternate contacts in your account.
 
-LocalStack supports Account via the Pro offering, allowing you to use the Account API to retrieve information about your account.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_account/), which provides information on the extent of Account's integration with LocalStack.
+LocalStack allows you to use the Account API to retrieve information about your account.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_account" >}}), which provides information on the extent of Account's integration with LocalStack.
 
 {{< callout >}}
 LocalStack's Account provider is mock-only and does not support any real AWS account.

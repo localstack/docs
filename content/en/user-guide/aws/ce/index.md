@@ -3,7 +3,7 @@ title: "Cost Explorer"
 linkTitle: "Cost Explorer"
 description: >
   Get started with Cost Explorer on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -13,7 +13,7 @@ Cost Explorer offers options to filter and group data by dimensions such as serv
 With Cost Explorer, you can forecast costs, track budget progress, and set up alerts to receive notifications when spending exceeds predefined thresholds.
 
 LocalStack allows you to use the Cost Explorer APIs in your local environment to create and manage cost category definition, cost anomaly monitors & subscriptions.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ce/), which provides information on the extent of Cost Explorer's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_ce" >}}), which provides information on the extent of Cost Explorer's integration with LocalStack.
 
 ## Getting started
 

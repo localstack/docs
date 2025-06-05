@@ -2,7 +2,7 @@
 title: "Elastic Transcoder"
 linkTitle: "Elastic Transcoder"
 description: Get started with Elastic Transcoder on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction
@@ -12,7 +12,7 @@ Elastic Transcoder manages the underlying resources, ensuring high availability 
 It also supports a wide range of input and output formats, enabling users to efficiently process and deliver video content at scale.
 
 LocalStack allows you to mock the Elastic Transcoder APIs in your local environment.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_elastictranscoder/), which provides information on the extent of Elastic Transcoder's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_elastictranscoder" >}}), which provides information on the extent of Elastic Transcoder's integration with LocalStack.
 
 ## Getting started
 

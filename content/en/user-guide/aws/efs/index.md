@@ -1,9 +1,8 @@
 ---
 title: "Elastic File System (EFS)"
 linkTitle: "Elastic File System (EFS)"
-description: >
-  Get started with Elastic File System (EFS) on LocalStack
-tags: ["Pro image"]
+description: Get started with Elastic File System (EFS) on LocalStack
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -13,7 +12,7 @@ EFS offers scalable and shared file storage that can be accessed by multiple EC2
 EFS utilizes the Network File System protocol to allow it to be used as a data source for various applications and workloads.
 
 LocalStack allows you to use the EFS APIs in your local environment to create local file systems, lifecycle configurations, and file system policies.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_efs/), which provides information on the extent of EFS's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_efs" >}}), which provides information on the extent of EFS's integration with LocalStack.
 
 ## Getting started
 

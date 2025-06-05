@@ -20,7 +20,7 @@ The Lambda extension is based on [AWS Java SDK 2.x](https://docs.aws.amazon.com/
 
 ### Prerequisites
 
-- [LocalStack](https://docs.localstack.cloud/getting-started/installation) installed and running
+- [LocalStack]({{< ref "/getting-started/installation" >}}) installed and running
 - [JDK 17+](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) with `JAVA_HOME` configured properly
 - [Maven 3.8.1+](https://maven.apache.org/download.cgi)
 - [Docker](https://docs.docker.com/get-docker/)

@@ -3,7 +3,7 @@ title: "CloudFormation"
 linkTitle: "CloudFormation"
 description: Get started with Cloudformation on LocalStack
 persistence: supported with limitations
-
+tags: ["Free"]
 ---
 
 ## Introduction
@@ -14,7 +14,7 @@ With CloudFormation, you can use JSON or YAML templates to define your desired i
 You can specify resources, their configurations, dependencies, and relationships in these templates.
 
 LocalStack supports CloudFormation, allowing you to use the CloudFormation APIs in your local environment to declaratively define your architecture on the AWS, including resources such as S3 Buckets, Lambda Functions, and much more.
-The [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudformation/) and [feature coverage](#feature-coverage) provides information on the extent of CloudFormation's integration with LocalStack.
+The [API coverage page]({{< ref "coverage_cloudformation" >}}) and [feature coverage](#feature-coverage) provides information on the extent of CloudFormation's integration with LocalStack.
 
 ## Getting started
 
@@ -115,7 +115,7 @@ The Resource Browser allows you to perform the following actions:
 The following code snippets and sample applications provide practical examples of how to use CloudFormation in LocalStack for various use cases:
 
 - [Serverless Container-based APIs with Amazon ECS & API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
-- [Deploying containers on ECS clusters using ECR and Fargate](https://docs.localstack.cloud/tutorials/ecs-ecr-container-app/)
+- [Deploying containers on ECS clusters using ECR and Fargate]({{< ref "/tutorials/ecs-ecr-container-app" >}})
 - [Messaging Processing application with SQS, DynamoDB, and Fargate](https://github.com/localstack/sqs-fargate-ddb-cdk-go)
 
 ## Feature coverage

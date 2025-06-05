@@ -31,7 +31,7 @@ We will demonstrate how you can create a local EKS cluster using `eksctl` and fe
 ### Create a cluster
 
 To create a cluster, you can use the `eksctl create cluster` command.
-You can use the `--profile` flag to [specify the LocalStack profile](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-a-custom-profile) to use for the cluster.
+You can use the `--profile` flag to [specify the LocalStack profile]({{< ref "/user-guide/integrations/aws-cli/#configuring-a-custom-profile" >}}) to use for the cluster.
 
 Run the following command to create a cluster:
 

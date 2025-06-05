@@ -3,7 +3,7 @@ title: "Ephemeral Instances"
 linkTitle: "Ephemeral Instances"
 weight: 1
 description: Create an Ephemeral Instance in the cloud using the LocalStack Web Application
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction
@@ -64,7 +64,7 @@ To query the list of S3 buckets in the Ephemeral Instance, run the following com
 $ aws --endpoint-url=<EPHEMERAL_INSTANCE_ENDPOINT_URL> s3 ls
 {{< /command >}}
 
-You can also use integrations, such as [CDK](https://docs.localstack.cloud/user-guide/integrations/aws-cdk/), [SAM CLI](https://docs.localstack.cloud/user-guide/integrations/aws-sam/), and [Terraform](https://docs.localstack.cloud/user-guide/integrations/terraform/), to interact with the Ephemeral Instance.
+You can also use integrations, such as [CDK]({{< ref "/user-guide/integrations/aws-cdk" >}}), [SAM CLI]({{< ref "/user-guide/integrations/aws-sam" >}}), and [Terraform]({{< ref "/user-guide/integrations/terraform/" >}}), to interact with the Ephemeral Instance.
 In these integrations, you can change the `AWS_ENDPOINT_URL` environment variable to the endpoint URL of the Ephemeral Instance.
 
 ### View the Logs of the Ephemeral Instance
@@ -86,7 +86,7 @@ If you have created a Cloud Pod from an older version of LocalStack, you need to
 
 ## Ephemeral Instances CLI
 
-The Ephemeral Instances CLI is included in the [LocalStack CLI installation](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), so no additional installations are needed to start using it.
+The Ephemeral Instances CLI is included in the [LocalStack CLI installation]({{< ref "/getting-started/installation/#localstack-cli" >}}), so no additional installations are needed to start using it.
 If you're a licensed user, setting the `LOCALSTACK_AUTH_TOKEN` as an environment variable is recommended to access all features of the Ephemeral Instances CLI.
 
 Access the Ephemeral Instances CLI by running the `localstack ephemeral` command from your terminal.

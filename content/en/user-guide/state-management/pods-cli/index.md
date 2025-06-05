@@ -5,7 +5,7 @@ description: >
   Reference guide for LocalStack Cloud Pods CLI commands and how to get started on using them!
 aliases:
   - /user-guide/cloud-pods/pods-cli/
-tags: ["Teams plan"]
+tags: ["Base"]
 ---
 
 This reference provides descriptions and example commands for LocalStack Cloud Pods CLI (`pod`) commands.
@@ -260,7 +260,7 @@ The CLI manual for the `version` command is as follows:
 The `remote` command group lets you manage custom Cloud Pod remotes, to enable alternative storage backends in addition to the default LocalStack managed platform.
 It offers 3 commands: `add`, `delete`, and `list`.
 
-For more info about remote usage, check our [documentation](https://docs.localstack.cloud/user-guide/cloud-pods/remotes/).
+For more info about remote usage, check our [documentation]({{< ref "/user-guide/state-management/pods-cli/#remote" >}}).
 
 {{< command >}}
 <disable-copy>

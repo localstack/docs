@@ -2,7 +2,7 @@
 title: "Chaos API"
 linkTitle: "Chaos API"
 description: Simulate outages and network failures to test the resiliency of your infrastructure
-tags: ["Enterprise plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -22,16 +22,11 @@ If required, you can make the failures occur probabilistically.
 
 Furthermore, the Chaos API can also be configured to add a network latency for all calls.
 
-{{< alert title="Note">}}
-Chaos API is available as part of the LocalStack Enterprise plan.
-If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /alert >}}
-
 ## Prerequisites
 
 The prerequisites for this guide are:
 
-- LocalStack Pro with [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) & [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
+- LocalStack Pro with [LocalStack CLI]({{< ref "/getting-started/installation/#localstack-cli" >}}) & [LocalStack Auth Token]({{< ref "/getting-started/auth-token" >}})
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 - [Python](https://www.python.org/downloads/)
 

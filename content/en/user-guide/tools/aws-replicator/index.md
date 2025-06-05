@@ -2,7 +2,7 @@
 title: "AWS Replicator"
 weight: 13
 description: "AWS Replicator makes it easier to use LocalStack in shared AWS environments by copying resources into LocalStack."
-tags: ["Teams plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -18,16 +18,15 @@ This means that external resources can easily be replicated before deploying the
 
 {{< callout "note">}}
 The AWS Replicator is in a preview state, supporting only [selected resources](#supported-resources).
-It is only available as part of the **LocalStack Teams** plan and higher.
 {{< /callout >}}
 
 ## Getting started
 
-A valid `LOCALSTACK_AUTH_TOKEN` must be configured to start the LocalStack Pro image.
+A valid `LOCALSTACK_AUTH_TOKEN` must be configured to start LocalStack.
 
 {{< callout "note" >}}
 The Replicator is in limited preview and is available from LocalStack CLI version 4.2.0.
-If you encounter issues, update your [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#updating).
+If you encounter issues, update your [LocalStack CLI]({{< ref "/getting-started/installation/#updating" >}}).
 {{< /callout >}}
 
 ### Retrieve credentials to access AWS
@@ -76,7 +75,7 @@ Both methods have two steps:
 #### Using the LocalStack CLI
 
 The Replicator CLI is part of the LocalStack CLI.
-Follow the [installation instructions](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) to set it up.
+Follow the [installation instructions]({{< ref "installation/#localstack-cli" >}}) to set it up.
 
 To start a replication job, get the ARN of the resource to replicate.
 Then, trigger the job using the command:

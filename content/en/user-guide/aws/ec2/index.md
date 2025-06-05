@@ -1,10 +1,9 @@
 ---
 title: "Elastic Compute Cloud (EC2)"
 linkTitle: "Elastic Compute Cloud (EC2)"
-tags: ["Pro image"]
+tags: ["Free"]
 description: Get started with Amazon Elastic Compute Cloud (EC2) on LocalStack
 persistence: supported with limitations
-
 ---
 
 ## Introduction
@@ -13,7 +12,7 @@ Elastic Compute Cloud (EC2) is a core service within Amazon Web Services (AWS) t
 EC2 enables users to launch and manage virtual machines, referred to as instances.
 
 LocalStack allows you to use the EC2 APIs in your local environment to create and manage EC2 instances and related resources such as VPCs, EBS volumes, etc.
-The list of supported APIs can be found on the [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ec2/).
+The list of supported APIs can be found on the [API coverage page]({{< ref "coverage_ec2" >}}).
 
 ## Getting started
 
@@ -453,7 +452,7 @@ Any operation not listed below will use the mock VM manager.
 
 {{< callout "note" >}}
 The Libvirt VM manager is under active development.
-It is currently offered as a preview and will be part of the Enterprise Plan upon release.
+It is currently offered as a preview and will be part of the Ultimate plan upon release.
 If a functionality you desire is missing, please create a feature request on the [GitHub issue tracker](https://github.com/localstack/localstack/issues/new/choose).
 {{< /callout >}}
 

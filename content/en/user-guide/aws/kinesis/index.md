@@ -3,7 +3,7 @@ title: "Kinesis Data Streams"
 linkTitle: "Kinesis Data Streams"
 description: Get started with Kinesis Data Streams on LocalStack
 persistence: supported
-
+tags: ["Free"]
 ---
 
 ## Introduction
@@ -12,7 +12,7 @@ Kinesis Data Streams is an AWS service for ingesting, buffering, and processing 
 It is used for applications that require real-time processing and deriving insights from data streams such as logs, metrics, user interactions, and sensor readings.
 
 LocalStack allows you to use the Kinesis Data Streams APIs in your local environment from setting up data streams and configuring data processing to building real-time applications.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kinesis/).
+The supported APIs are available on our [API coverage page]({{< ref "coverage_kinesis" >}}).
 
 Emulation for Kinesis is powered by [Kinesis Mock](https://github.com/etspaceman/kinesis-mock).
 

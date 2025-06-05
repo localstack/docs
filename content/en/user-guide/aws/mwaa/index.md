@@ -3,7 +3,7 @@ title: "Managed Workflows for Apache Airflow (MWAA)"
 linkTitle: "Managed Workflows for Apache Airflow (MWAA)"
 description: >
     Get started with Managed Workflows for Apache Airflow (MWAA) on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -12,7 +12,7 @@ Managed Workflows for Apache Airflow (MWAA) is a fully managed service by AWS th
 MWAA leverages the familiar Airflow features and integrations while integrating with S3, Glue, Redshift, Lambda, and other AWS services to build data pipelines and orchestrate data processing workflows in the cloud.
 
 LocalStack allows you to use the MWAA APIs in your local environment to allow the setup and operation of data pipelines.
-The supported APIs are available on the [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_mwaa/).
+The supported APIs are available on the [API coverage page]({{< ref "coverage_mwaa" >}}).
 
 ## Getting started
 

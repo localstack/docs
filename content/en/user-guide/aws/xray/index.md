@@ -2,7 +2,7 @@
 title: "X-Ray"
 linkTitle: "X-Ray"
 description: Get started with X-Ray on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -20,7 +20,7 @@ The X-Ray API can then be used to retrieve traces originating from different app
 
 LocalStack allows
 you to use the X-Ray APIs to send and retrieve trace segments in your local environment.
-The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_xray/),
+The supported APIs are available on our [API Coverage Page]({{< ref "coverage_xray" >}}),
 which provides information on the extent of X-Ray integration with LocalStack.
 
 ## Getting started

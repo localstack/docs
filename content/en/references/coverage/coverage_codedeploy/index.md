@@ -1,10 +1,9 @@
 ---
-title: "codedeploy"
-linkTitle: "codedeploy"
+title: "CodeDeploy"
+linkTitle: "CodeDeploy"
 description: >
   Implementation details for API codedeploy
 hide_readingtime: true
-draft: true
 ---
 
 ## Coverage Overview

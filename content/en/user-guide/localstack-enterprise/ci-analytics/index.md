@@ -47,11 +47,11 @@ In this example, we will configure CI Analytics with an existing application tha
 
 ### Prerequisites
 
-- A [LocalStack Account](https://app.localstack.cloud/) and a [LocalStack API key](https://docs.localstack.cloud/getting-started/api-key/).
+- A [LocalStack Account](https://app.localstack.cloud/) and a [LocalStack API key]({{< ref "api-key" >}}).
 - A [GitHub Account](https://github.com/).
 
 For practical testing, you can use an existing application that employs LocalStack for cloud infrastructure deployment on GitHub Actions.
-Alternatively, you can start by forking one of the [Developer Hub samples](https://docs.localstack.cloud/applications/).
+Alternatively, you can start by forking one of the [Developer Hub samples]({{< ref "/applications" >}}).
 
 ### Create a CI project
 
@@ -80,7 +80,7 @@ Click **Create** to finalize your CI project.
 ### Configure the CI pipeline
 
 Go to the GitHub Action workflow where you intend to monitor CI analytics for your application stack.
-If you haven't already set up a CI pipeline using LocalStack for infrastructure deployments and tests, follow the instructions in our [GitHub Actions documentation](https://docs.localstack.cloud/user-guide/ci/github-actions/).
+If you haven't already set up a CI pipeline using LocalStack for infrastructure deployments and tests, follow the instructions in our [GitHub Actions documentation]({{< ref "/user-guide/ci/github-actions" >}}).
 
 To link your CI pipeline to the project you created, use the `LS_CI_PROJECT` configuration variable.
 For instance, if your CI project is named `ls-platform-integration-tests`, include the line `LS_CI_PROJECT: ls-platform-integration-tests` in your GitHub Action workflow.
@@ -115,7 +115,7 @@ jobs:
 
 The LocalStack CLI utilizes a LocalStack CI key for authentication with the LocalStack Platform.
 This process enables the storage of logs and request/response traces from your CI run in the LocalStack Web Application.
-For setting up an CI key, refer our [documentation on configuring a CI key](https://docs.localstack.cloud/user-guide/ci/github-actions/#configure-a-ci-key).
+For setting up an CI key, refer our [documentation on configuring a CI key]({{< ref "/user-guide/ci/github-actions/#configure-a-ci-key" >}}).
 
 ### Review the Analytics
 

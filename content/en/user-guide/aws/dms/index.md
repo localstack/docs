@@ -2,7 +2,7 @@
 title: "Database Migration Service (DMS)"
 linkTitle: "Database Migration Service (DMS)"
 description: Get started with Database Migration Service (DMS) on LocalStack
-tags: ["Enterprise plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -11,12 +11,11 @@ AWS Database Migration Service provides migration solution from databases, data 
 The migration can be homogeneous (source and target have the same type), but often times is heterogeneous as it supports migration from various sources to various targets (self-hosted and AWS services).
 
 LocalStack only supports selected use cases for DMS at the moment.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_dms/), which provides information on the extent of DMS integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_dms" >}}), which provides information on the extent of DMS integration with LocalStack.
 
 {{< callout "note">}}
 DMS is in a preview state, supporting only [selected use cases](#supported-use-cases).
-It is only available as part of the **LocalStack Enterprise** plan, and you need to set the env `ENABLE_DMS=1` in order to activate it.
-If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
+You need to set the env `ENABLE_DMS=1` in order to activate it.
 {{< /callout >}}
 
 ## Getting started

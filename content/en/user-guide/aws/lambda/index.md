@@ -2,13 +2,8 @@
 title: "Lambda"
 linkTitle: "Lambda"
 description: Get started with Lambda on LocalStack
-aliases:
-- /references/lambda-executors/
-- /references/lambda-provider-v2/
-- /references/lambda-asf-provider/
-- /references/lambda-v2-provider/
+tags: ["Free"]
 persistence: supported with limitations
-
 ---
 
 ## Introduction
@@ -18,7 +13,7 @@ AWS Lambda automatically scales your code to meet demand and handles server prov
 AWS Lambda allows you to break down your application into smaller, independent functions that integrate seamlessly with AWS services.
 
 LocalStack allows you to use the Lambda APIs to create, deploy, and test your Lambda functions.
-The supported APIs are available on our [Lambda coverage page](https://docs.localstack.cloud/references/coverage/coverage_lambda/), which provides information on the extent of Lambda's integration with LocalStack.
+The supported APIs are available on our [Lambda coverage page]({{< ref "coverage_lambda" >}}), which provides information on the extent of Lambda's integration with LocalStack.
 
 ## Getting started
 
@@ -175,13 +170,13 @@ The following event sources are supported in LocalStack:
 
 The table below shows feature coverage for all supported event sources for the latest version of LocalStack.
 
-Unlike [API operation coverage](https://docs.localstack.cloud/references/coverage/coverage_lambda/), this table illustrates the **functional and behavioural coverage** of LocalStack's Lambda Event Source Mapping implementation.
+Unlike [API operation coverage]({{< ref "coverage_lambda" >}}), this table illustrates the **functional and behavioural coverage** of LocalStack's Lambda Event Source Mapping implementation.
 
 Where necessary, footnotes are used to provide additional context.
 
 {{< callout >}}
 Feature availability and coverage is categorized with the following system:
-- ⭐️ Only Available in LocalStack Pro image
+- ⭐️ Only Available in LocalStack licensed editions
 - 🟢 Fully Implemented
 - 🟡 Partially Implemented
 - 🟠 Not Implemented
@@ -216,12 +211,12 @@ Feature availability and coverage is categorized with the following system:
 [^1]: Read more at [Control which events Lambda sends to your function](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html)
 [^2]: The available Metadata properties may not have full parity with AWS depending on the event source (read more at [Understanding event filtering basics](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics)).
 
-Create a [GitHub issue](https://github.com/localstack/localstack/issues/new/choose) or reach out to [LocalStack support](https://docs.localstack.cloud/getting-started/help-and-support/) if you experience any challenges.
+Create a [GitHub issue](https://github.com/localstack/localstack/issues/new/choose) or reach out to [LocalStack support]({{< ref "/getting-started/help-and-support" >}}) if you experience any challenges.
 
 ## Lambda Layers (Pro)
 
 [Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) let you include additional code and dependencies in your Lambda functions.
-The LocalStack Pro image allows you to deploy Lambda Layers locally to streamline your development and testing process.
+With a valid LocalStack license, you can deploy Lambda Layers locally to streamline your development and testing process.
 The Community image also allows creating, updating, and deleting Lambda Layers, but they are not applied when invoking a Lambda function.
 
 ### Creating and using a Lambda Layer Locally
@@ -324,7 +319,7 @@ LocalStack provides various tools to help you develop, debug, and test your AWS 
 
 ## Resource Browser
 
-The LocalStack Web Application provides a [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/) for managing Lambda resources.
+The LocalStack Web Application provides a [Resource Browser]({{< ref "/user-guide/web-application/resource-browser/" >}}) for managing Lambda resources.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Lambda** under the **Compute** section.
 
 The Resource Browser displays [Functions](https://app.localstack.cloud/resources/lambda/functions) and [Layers](https://app.localstack.cloud/resources/lambda/layers) resources.
@@ -350,7 +345,7 @@ With the new implementation, the following changes have been introduced:
 
 - To run Lambda functions in LocalStack, mount the Docker socket into the LocalStack container.
   Add the following Docker volume mount to your LocalStack startup configuration: `/var/run/docker.sock:/var/run/docker.sock`.
-  You can find an example of this configuration in our official [`docker-compose.yml` file](https://docs.localstack.cloud/getting-started/installation/#starting-localstack-with-docker-compose).
+  You can find an example of this configuration in our official [`docker-compose.yml` file]({{< ref "/getting-started/installation/#starting-localstack-with-docker-compose" >}}).
 - The `v2` provider discontinues Lambda Executor Modes such as `LAMBDA_EXECUTOR=local`.
   Previously, this mode was used as a fallback when the Docker socket was unavailable in the LocalStack container, but many users unintentionally used it instead of the configured `LAMBDA_EXECUTOR=docker`.
   The new provider now behaves similarly to the old `docker-reuse` executor and does not require such configuration.
@@ -374,7 +369,7 @@ With the new implementation, the following changes have been introduced:
   The configuration `LAMBDA_SYNCHRONOUS_CREATE=1` can force synchronous function creation, but it is not recommended.
 - LocalStack's Lambda implementation, allows you to customize the Lambda execution environment using the [Lambda Extensions API](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-extensions-api.html).
   This API allows for advanced monitoring, observability, or developer tooling, providing greater control and flexibility over your Lambda functions.
-  Lambda functions can also be run on hosts with [multi-architecture support](https://docs.localstack.cloud/references/arm64-support/#lambda-multi-architecture-support), allowing you to leverage LocalStack's Lambda API to develop and test Lambda functions with high parity.
+  Lambda functions can also be run on hosts with [multi-architecture support]({{< ref "/references/arm64-support/#lambda-multi-architecture-support" >}}), allowing you to leverage LocalStack's Lambda API to develop and test Lambda functions with high parity.
 
 The following configuration options from the old provider are discontinued in the new provider:
 

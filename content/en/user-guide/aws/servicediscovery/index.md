@@ -3,7 +3,7 @@ title: "Service Discovery"
 linkTitle: "Service Discovery"
 description: >
   Get started with Service Discovery on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -13,7 +13,7 @@ Service Discovery allows for a centralized mechanism for dynamically registering
 Service discovery uses Cloud Map API actions to manage HTTP and DNS namespaces for services, enabling automatic registration and discovery of services running in the cluster.
 
 LocalStack allows you to use the Service Discovery APIs in your local environment to monitor and manage your services across various environments and network topologies.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_servicediscovery/), which provides information on the extent of Service Discovery's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_servicediscovery" >}}), which provides information on the extent of Service Discovery's integration with LocalStack.
 
 ## Getting Started
 
