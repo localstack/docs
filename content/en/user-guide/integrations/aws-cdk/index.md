@@ -96,6 +96,8 @@ By default, stacks with validated certificates may not be deployed using the `lo
 This originates from the way how CDK ensures the certificate is ready - it creates a single-file lambda function with a single dependency on `aws-sdk` which is usually preinstalled and available globally in lambda runtime.
 When this lambda is executed locally from the `/tmp` folder, the package can not be discovered by Node due to the way how Node package resolution works.
 
+## CDK Version Compatibility
+
 `cdklocal` works with all installed versions of the Node.js `aws-cdk` package.
 However, issues exist for `aws-cdk >= 2.177.0`.
 
