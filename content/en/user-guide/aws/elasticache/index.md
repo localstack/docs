@@ -4,6 +4,7 @@ linkTitle: "ElastiCache"
 tags: ["Base"]
 description: Get started with AWS ElastiCache on LocalStack
 persistence: supported
+
 ---
 
 ## Introduction

@@ -4,6 +4,7 @@ linkTitle: "Elastic Kubernetes Service (EKS)"
 description: Get started with Elastic Kubernetes Service (EKS) on LocalStack
 tags: ["Ultimate"]
 persistence: supported with limitations
+
 ---
 
 ## Introduction

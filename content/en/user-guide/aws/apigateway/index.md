@@ -4,6 +4,7 @@ linkTitle: "API Gateway"
 description: Get started with API Gateway on LocalStack
 tags: ["Free", "Base"]
 persistence: supported
+
 ---
 
 ## Introduction

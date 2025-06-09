@@ -4,6 +4,7 @@ linkTitle: "Secrets Manager"
 description: Get started with Secrets Manager on LocalStack
 persistence: supported
 tags: ["Free"]
+
 ---
 
 ## Introduction

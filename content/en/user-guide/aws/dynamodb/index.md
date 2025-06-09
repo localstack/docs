@@ -4,6 +4,7 @@ linkTitle: DynamoDB
 description: Get started with DynamoDB on LocalStack
 persistence: supported
 tags: ["Free"]
+
 ---
 
 DynamoDB is a fully managed NoSQL database service provided by AWS.
