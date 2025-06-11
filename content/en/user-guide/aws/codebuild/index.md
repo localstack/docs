@@ -332,8 +332,8 @@ $ awslocal codebuild create-project --cli-input-json file://create-project.json
 You have now created a CodeBuild project called `codebuild-demo-project` that uses the S3 buckets you just created as source and artifact.
 
 {{< callout >}}
-LocalStack does not allow to customize the build environment.
-Depending on the host architecture, the build will be executed an Amazon Linux container, version `3.0.x` and `5.0.x`, respectively for the ARM and the x86 architecture.
+By default, LocalStack runs the all the builds in an Amazon Linux Container, ignoring the image provided in the `environment` parameter.
+See the [Build Environments](#build-environments) section for more details.
 {{< /callout >}}
 
 ### Run the build
@@ -369,8 +369,29 @@ Once the build is completed, you can verify that the JAR artifact has been uploa
 $ awslocal s3 ls://codebuild-demo-output
 {{< /command >}}
 
+## Build Environments
+
+LocalStack does not offer out-of-the-box all the build environments provided by AWS CodeBuild.
+By default, all the builds are executed in a Amazon Linux 2023 image (`public.ecr.aws/codebuild/amazonlinux-x86_64-standard:5.0` and `public.ecr.aws/codebuild/amazonlinux-aarch64-standard:3.0` for x86 and ARM, respectively).
+You can overcome this limitation by activating the `CODEBUILD_ENABLE_CUSTOM_IMAGES` environment variable.
+
+AWS shares the Dockerfiles of official AWS CodeBuild curated Docker images in a dedicated [GitHub repository](https://github.com/aws/aws-codebuild-docker-images).
+For instance, let us assume you want to run your builds on the Ubuntu 7.0. standard image.
+
+First, you have to build the image as follows:
+{{< command >}}
+$ git clone https://github.com/aws/aws-codebuild-docker-images.git
+$ cd aws-codebuild-docker-images
+$ cd ubuntu/standard/7.0
+$ docker build -t aws/codebuild/standard:7.0 .
+{{< /command >}}
+
+Then, start LocalStack with `CODEBUILD_ENABLE_CUSTOM_IMAGES=1`.
+Finally, you can use the create image name, i.e., `aws/codebuild/standard:7.0` in the environment reference when you create you CodeBuild project.
+
 ## Limitations
 
 - CodeBuild currently only supports S3, NO_SOURCE, and CODEPIPELINE as [project source](https://docs.aws.amazon.com/codebuild/latest/APIReference/API_ProjectSource.html).
-- CodeBuild only uses Amazon Linux as the build environment for a build project.
+- Custom build environments needs to have `bash` installed to properly work in LocalStack.
+- Environment variables in the `buildspec` are currently not supported.
 - Communication with the LocalStack container within the build environment is possible only via the host network, by using the Gateway IP address (typically 172.17.0.1) or `host.docker.internal` if running on MacOS.
