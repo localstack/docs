@@ -332,7 +332,7 @@ $ awslocal codebuild create-project --cli-input-json file://create-project.json
 You have now created a CodeBuild project called `codebuild-demo-project` that uses the S3 buckets you just created as source and artifact.
 
 {{< callout >}}
-By default, LocalStack runs the all the builds in an Amazon Linux Container, ignoring the image provided in the `environment` parameter.
+By default, LocalStack runs the all the builds in a Amazon Linux Container, ignoring the image provided in the `environment` parameter.
 See the [Build Environments](#build-environments) section for more details.
 {{< /callout >}}
 
