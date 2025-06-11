@@ -376,7 +376,7 @@ By default, all the builds are executed in a Amazon Linux 2023 image (`public.ec
 You can overcome this limitation by activating the `CODEBUILD_ENABLE_CUSTOM_IMAGES` environment variable.
 
 AWS shares the Dockerfiles of official AWS CodeBuild curated Docker images in a dedicated [GitHub repository](https://github.com/aws/aws-codebuild-docker-images).
-For instance, let us assume you want to run your builds on the Ubuntu `7.0`. standard image.
+For instance, let us assume you want to run your builds on the Ubuntu `7.0` standard image.
 
 First, you have to build the image as follows:
 {{< command >}}
