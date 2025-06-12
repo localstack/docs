@@ -447,10 +447,10 @@ An error occurred (InvalidAccessKeyId) when calling the CreateBucket operation: 
 
 This means that you are likely using temporary AWS credentials and the the S3 remote configuration is missing the `AWS_SESSION_TOKEN` environment variable.
 To fix the issue, first export `AWS_SESSION_TOKEN` into your environment.
-Then, be sure to add the `access_token` placeholder to the URL of the `pod remote add` command:
+Then, be sure to add the `session_token` placeholder to the URL of the `pod remote add` command:
 
 {{< command >}}
-$ localstack pod remote add s3-storage-aws 's3://ls-pods-bucket-test/?access_key_id={access_key_id}&secret_access_key={secret_access_key}&access_token={access_token}'
+$ localstack pod remote add s3-storage-aws 's3://ls-pods-bucket-test/?access_key_id={access_key_id}&secret_access_key={secret_access_key}&session_token={session_token}'
 {{< / command >}}
 
 If you are experiencing issues connecting to the S3 bucket, you might need to add the S3 URL to the list of URLs that it resolved upstream, e.g.,:
