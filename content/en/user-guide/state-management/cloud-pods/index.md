@@ -437,30 +437,6 @@ Full S3 remotes support is available in the CLI from version 3.2.0.
 If you experience any difficulties, update your [LocalStack CLI]({{< ref "/getting-started/installation/#updating" >}}).
 {{< /callout >}}
 
-#### Troubleshooting
-
-You might encounter an error like the following:
-
-{{< command >}}
-An error occurred (InvalidAccessKeyId) when calling the CreateBucket operation: The AWS Access Key Id you provided does not exist in our records.
-{{< / command >}}
-
-This means that you are likely using temporary AWS credentials and the S3 remote configuration is missing the `AWS_SESSION_TOKEN` environment variable.
-To fix the issue, first export `AWS_SESSION_TOKEN` into your environment.
-Then, be sure to add the `session_token` placeholder to the URL of the `pod remote add` command:
-
-{{< command >}}
-$ localstack pod remote add s3-storage-aws 's3://ls-pods-bucket-test/?access_key_id={access_key_id}&secret_access_key={secret_access_key}&session_token={session_token}'
-{{< / command >}}
-
-If you are experiencing issues connecting to the S3 bucket, you might need to add the S3 URL to the list of URLs that it resolved upstream, e.g.,:
-
-```bash
-DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM=ls-pods-bucket-test.s3.amazonaws.com/
-```
-
-For more info, browse the [Skip LocalStack DNS Resolution]({{< ref "/user-guide/tools/dns-server/#skip-localstack-dns-resolution" >}}) section of our docs.
-
 ### ORAS remote storage
 
 The ORAS remote enables users to store Cloud Pods in OCI-compatible registries like Docker Hub, Nexus, or ECS registries.
@@ -722,3 +698,33 @@ An error occurred while checking remote management for pod "cloud-pod-product-ap
 Check if your machine's clock is set incorrectly or if the certificate store is outdated.
 This error can also occur if you use `localstack` as `LOCALSTACK_HOST`.
 In this case, the DNS incorrectly resolves `api.localstack.cloud` to `localhost`, causing a certificate mismatch.
+
+### `InvalidAccessKeyId` during `CreateBucket` API call
+
+You may see this error:
+
+```bash
+An error occurred (InvalidAccessKeyId) when calling the CreateBucket operation: The AWS Access Key Id you provided does not exist in our records.
+```
+
+This usually means you're using temporary AWS credentials, but `AWS_SESSION_TOKEN` is missing from the environment.
+
+To fix this, ensure that you export the `AWS_SESSION_TOKEN` environment variable:
+
+{{< command >}}
+$ export AWS_SESSION_TOKEN=...
+{{< / command >}}
+
+Then, add `session_token` to the `pod remote add` URL:
+
+{{< command >}}
+$ localstack pod remote add s3-storage-aws 's3://ls-pods-bucket-test/?access_key_id={access_key_id}&secret_access_key={secret_access_key}&session_token={session_token}'
+{{< / command >}}
+
+If you're still unable to connect to the S3 bucket, add the bucket hostname to the upstream DNS resolution list:
+
+```bash
+DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM=ls-pods-bucket-test.s3.amazonaws.com/
+```
+
+For more details, see the [Skip LocalStack DNS Resolution]({{< ref "/user-guide/tools/dns-server/#skip-localstack-dns-resolution" >}}) section.
