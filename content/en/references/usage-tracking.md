@@ -15,7 +15,7 @@ It is tracked regardless of whether the user disables event tracking since we co
 
 ## LocalStack usage statistics
 
-For Pro users, most of the information is collected to populate the [Stack Insights](https://docs.localstack.cloud/user-guide/web-application/stack-insights) dashboard.
+For Pro users, most of the information is collected to populate the [Stack Insights]({{ ref "stack-insights" >}}) dashboard.
 Collecting basic anonymized usage of AWS services helps us better direct engineering efforts to services that are used the most or cause the most issues.
 
 ### Session information

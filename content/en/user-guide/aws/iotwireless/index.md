@@ -2,7 +2,7 @@
 title: "IoT Wireless"
 linkTitle: "IoT Wireless"
 description: Get started with IoT Wireless on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -11,7 +11,7 @@ AWS IoT Wireless is a managed service that enables customers to connect and mana
 The service provides a set of APIs to manage wireless devices, gateways, and destinations.
 
 LocalStack allows you to use the IoT Wireless APIs in your local environment from creating wireless devices and gateways.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_iotwireless/), which provides information on the extent of IoT Wireless's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_iotwireless" >}}), which provides information on the extent of IoT Wireless's integration with LocalStack.
 
 ## Getting started
 

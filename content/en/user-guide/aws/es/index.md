@@ -3,9 +3,7 @@ title: "Elasticsearch Service"
 linkTitle: "Elasticsearch Service"
 description: >
   Get started with Amazon Elasticsearch Service (ES) on LocalStack
-aliases:
-  - /aws/elasticsearch/
-  - /user-guide/aws/elasticsearch/
+tags: ["Free"]
 ---
 
 The Elasticsearch Service in LocalStack lets you create one or more single-node Elasticsearch/OpenSearch cluster that behaves like the [Amazon Elasticsearch Service](https://aws.amazon.com/opensearch-service/the-elk-stack/what-is-elasticsearch/).

@@ -2,7 +2,7 @@
 title: "SageMaker"
 linkTitle: "SageMaker"
 description: Get started with SageMaker on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -10,8 +10,8 @@ tags: ["Pro image"]
 Amazon SageMaker is a fully managed service provided by Amazon Web Services (AWS) that provides the tools to build, train, and deploy machine-learning models in the cloud for predictive analytics applications.
 It streamlines the machine learning development process, reduces the time and effort required to build and deploy models, and offers the scalability and flexibility needed for large-scale machine learning projects in the AWS cloud.
 
-LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sagemaker/), which provides information on the extent of Sagemaker's integration with LocalStack.
+LocalStack provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_sagemaker" >}}), which provides information on the extent of Sagemaker's integration with LocalStack.
 
 {{< callout >}}
 LocalStack supports custom-built models in SageMaker.
@@ -92,7 +92,7 @@ You can also invoke a serverless endpoint, by navigating to `main.py` and uncomm
 
 ## Resource Browser
 
-The LocalStack Web Application provides a [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/) for managing Lambda resources.
+The LocalStack Web Application provides a [Resource Browser]({{< ref "resource-browser" >}}) for managing Lambda resources.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Sagemaker** under the **Compute** section.
 
 The Resource Browser displays Models, Endpoint Configurations and Endpoint.

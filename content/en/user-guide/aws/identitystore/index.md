@@ -2,7 +2,7 @@
 title: "Identity Store"
 linkTitle: "Identity Store"
 description: Get started with Identity Store on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -11,7 +11,7 @@ Identity Store is a managed service that enables the creation and management of 
 Groups are used to manage access to AWS resources, and Identity Store provides a central location to create and manage groups across your AWS accounts.
 
 LocalStack allows you to use the Identity Store APIs to create and manage groups in your local environment.
-The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_identitystore/), which provides information on the extent of Identity Store integration with LocalStack.
+The supported APIs are available on our [API Coverage Page]({{< ref "coverage_identitystore" >}}), which provides information on the extent of Identity Store integration with LocalStack.
 
 ## Getting started
 

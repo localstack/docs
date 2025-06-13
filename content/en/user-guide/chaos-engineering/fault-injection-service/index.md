@@ -2,9 +2,7 @@
 title: "AWS Fault Injection Service"
 linkTitle: "AWS Fault Injection Service"
 description: Use Fault Injection Service to simulate faults in your infrastructure and test its fault tolerance
-tags: ["Enterprise plan"]
-aliases:
-    - /tutorials/fault-injection-service-experiments/
+tags: ["Ultimate"]
 ---
 
 The [Fault Injection Service (FIS)](https://aws.amazon.com/fis/) is a fully managed service by AWS designed to help you improve the resilience of your applications by simulating real-world outages and operational issues.
@@ -12,11 +10,6 @@ This service allows you to conduct controlled experiments on your AWS infrastruc
 
 By using the Fault Injection Service, you can identify weaknesses, test recovery procedures, and ensure that your applications can withstand unexpected disruptions.
 This proactive approach to reliability engineering enables you to enhance system robustness, minimize downtime, and maintain a high level of service availability for your users.
-
-{{< alert title="Note">}}
-Fault Injection Service emulation is available as part of the LocalStack Enterprise plan.
-If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
-{{< /alert >}}
 
 {{< callout "tip" >}}
 For more information, please refer to the [FIS service docs]({{< ref "user-guide/aws/fis" >}}).

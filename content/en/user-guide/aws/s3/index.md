@@ -3,7 +3,7 @@ title: "Simple Storage Service (S3)"
 linkTitle: "Simple Storage Service (S3)"
 description: Get started with Amazon S3 on LocalStack
 persistence: supported
-
+tags: ["Free"]
 ---
 
 ## Introduction
@@ -14,13 +14,13 @@ Each object or file within S3 encompasses essential attributes such as a unique 
 S3 can store unlimited objects, allowing you to store, retrieve, and manage your data in a highly adaptable and reliable manner.
 
 LocalStack allows you to use the S3 APIs in your local environment to create new buckets, manage your S3 objects, and test your S3 configurations locally.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_s3/), which provides information on the extent of S3's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_s3" >}}), which provides information on the extent of S3's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to S3 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your [preferred method](https://docs.localstack.cloud/getting-started/installation/).
+Start your LocalStack container using your [preferred method]({{< ref "getting-started/installation" >}}).
 We will demonstrate how you can create an S3 bucket, manage S3 objects, and generate pre-signed URLs for S3 objects.
 
 ### Create an S3 bucket
@@ -143,12 +143,12 @@ By default, most SDKs will try to use **Virtual-Hosted style** requests and prep
 However, if the endpoint is not prefixed by `s3.`, LocalStack will not be able to understand the request and it will most likely result in an error.
 
 You can either change the endpoint to an S3-specific one, or configure your SDK to use **Path style** requests instead.
-Check out our [SDK documentation](https://docs.localstack.cloud/user-guide/integrations/sdks/) to learn how you can configure AWS SDKs to access LocalStack and S3.
+Check out our [SDK documentation]({{< ref "sdks" >}}) to learn how you can configure AWS SDKs to access LocalStack and S3.
 
 {{< callout "tip" >}}
 While using [AWS SDKs](https://aws.amazon.com/developer/tools/#SDKs), you would need to configure the `ForcePathStyle` parameter to `true` in the S3 client configuration to use **Path style** requests.
 If you want to use virtual host addressing of buckets, you can remove `ForcePathStyle` from the configuration.
-The `ForcePathStyle` parameter name can vary between SDK and languages, please check our [SDK documentation](https://docs.localstack.cloud/user-guide/integrations/sdks/)
+The `ForcePathStyle` parameter name can vary between SDK and languages, please check our [SDK documentation]({{< ref "sdks" >}})
 {{< /callout >}}
 
 If your endpoint is not prefixed with `s3.`, all requests are treated as **Path style** requests.
@@ -277,7 +277,7 @@ docker run \
 {{< /tabpane >}}
 
 The S3 Docker image has similar parity with the S3 APIs supported by LocalStack Docker image.
-You can use similar [configuration options](https://docs.localstack.cloud/references/configuration/#s3) to alter the behaviour of the S3 Docker image, such as `DEBUG` or `S3_SKIP_SIGNATURE_VALIDATION`.
+You can use similar [configuration options]({{< ref "configuration/#s3" >}}) to alter the behaviour of the S3 Docker image, such as `DEBUG` or `S3_SKIP_SIGNATURE_VALIDATION`.
 
 {{< callout >}}
 The S3 Docker image does not support persistence, and all data is lost when the container is stopped.
@@ -303,7 +303,7 @@ However, LocalStack does not support the actual encryption and decryption of obj
 
 ## Resource Browser
 
-The LocalStack Web Application provides a [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/) for managing S3 buckets & configurations.
+The LocalStack Web Application provides a [Resource Browser]({{< ref "resource-browser" >}}) for managing S3 buckets & configurations.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **S3** under the **Storage** section.
 
 <img src="s3-resource-browser.png" alt="S3 Resource Browser" title="S3 Resource Browser" width="900" />
@@ -324,4 +324,4 @@ The following code snippets and sample applications provide practical examples o
 - [Serverless Transcription application using Transcribe, S3, Lambda, SQS, and SES](https://github.com/localstack/sample-transcribe-app)
 - [Query data in S3 Bucket with Amazon Athena, Glue Catalog & CloudFormation](https://github.com/localstack/query-data-s3-athena-glue-sample)
 - [Serverless Image Resizer with Lambda, S3, SNS, and SES](https://github.com/localstack/serverless-image-resizer)
-- [Host a static website locally using Simple Storage Service (S3) and Terraform with LocalStack](https://docs.localstack.cloud/tutorials/s3-static-website-terraform/)
+- [Host a static website locally using Simple Storage Service (S3) and Terraform with LocalStack]({{< ref "s3-static-website-terraform" >}})

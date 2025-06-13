@@ -2,9 +2,8 @@
 title: "EventBridge Pipes"
 linkTitle: "EventBridge Pipes"
 description: Get started with EventBridge Pipes on LocalStack
-tags: ["Pro image"]
+tags: ["Free"]
 persistence: supported with limitations
-
 ---
 
 ## Introduction

@@ -3,7 +3,7 @@ title: "Managing extensions"
 weight: 2
 description: >
   How to manage LocalStack extensions in your LocalStack environment
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 You have different options to install and manage your LocalStack extensions depending on your environment and work style.

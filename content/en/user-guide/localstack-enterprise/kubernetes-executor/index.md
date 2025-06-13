@@ -3,7 +3,7 @@ title: "Kubernetes Executor"
 weight: 5
 description: >
   Configuring Kubernetes Executor for compute services in LocalStack Enterprise
-tags: ["Enterprise plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -61,9 +61,9 @@ Lambda hot reloading & remote debugging are not supported in the Kubernetes exec
 
 You can run the following services on Kubernetes clusters using the LocalStack Enterprise image:
 
-- [DocumentDB](https://docs.localstack.cloud/user-guide/aws/docdb/)
-- [MWAA](https://docs.localstack.cloud/user-guide/aws/docdb/)
-- [RDS](https://docs.localstack.cloud/user-guide/aws/rds/)  ([MySQL](https://docs.localstack.cloud/user-guide/aws/rds/#mysql-engine)  &  [MSSQL](https://docs.localstack.cloud/user-guide/aws/rds/#microsoft-sql-server-engine))
+- [DocumentDB]({{< ref "/user-guide/aws/docdb/" >}})
+- [MWAA]({{< ref "/user-guide/aws/docdb/" >}})
+- [RDS]({{< ref "/user-guide/aws/rds/" >}})  ([MySQL]({{< ref "/user-guide/aws/rds/#mysql-engine" >}})  &  [MSSQL]({{< ref "/user-guide/aws/rds/#microsoft-sql-server-engine" >}}))
 
 To use Kubernetes as the runtime backend, set the `CONTAINER_RUNTIME` configuration variable to `kubernetes`.
 Note that there are no service-specific configuration variables for these services.

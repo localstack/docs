@@ -2,6 +2,7 @@
 title: "Lake Formation"
 linkTitle: "Lake Formation"
 description: Get started with Lake Formation on LocalStack
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -10,7 +11,7 @@ Lake Formation is a managed service that allows users to build, secure, and mana
 Lake Formation allows users to define and enforce fine-grained access controls, manage metadata, and discover and share data across multiple data sources.
 
 LocalStack allows you to use the Lake Formation APIs in your local environment to register resources, grant permissions, and list resources and permissions.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_lakeformation/), which provides information on the extent of Lake Formation's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_lakeformation" >}}), which provides information on the extent of Lake Formation's integration with LocalStack.
 
 ## Getting started
 

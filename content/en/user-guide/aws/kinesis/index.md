@@ -3,7 +3,7 @@ title: "Kinesis Data Streams"
 linkTitle: "Kinesis Data Streams"
 description: Get started with Kinesis Data Streams on LocalStack
 persistence: supported
-
+tags: ["Free"]
 ---
 
 ## Introduction
@@ -12,7 +12,7 @@ Kinesis Data Streams is an AWS service for ingesting, buffering, and processing 
 It is used for applications that require real-time processing and deriving insights from data streams such as logs, metrics, user interactions, and sensor readings.
 
 LocalStack allows you to use the Kinesis Data Streams APIs in your local environment from setting up data streams and configuring data processing to building real-time applications.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kinesis/).
+The supported APIs are available on our [API coverage page]({{< ref "coverage_kinesis" >}}).
 
 Emulation for Kinesis is powered by [Kinesis Mock](https://github.com/etspaceman/kinesis-mock).
 
@@ -171,14 +171,22 @@ $ awslocal kinesis put-record \
 
 You can fetch the CloudWatch logs for your Lambda function reading records from the stream, using AWS CLI or LocalStack Resource Browser.
 
-## Configuration
+### Performance Tuning
 
-| Variable | Description |
-| -------- | ----------- |
-| `KINESIS_ERROR_PROBABILITY` | Decimal value between `0.0` (default) and `1.0`. This environment variable enables you to inject `ProvisionedThroughputException` at random intervals in your application. While this won't provide insight into your application's overall throughput handling, it aids in testing your application's exception-handling capabilities. |
-| `KINESIS_SHARD_LIMIT` | Integer value (default: `100`) or `Infinity` (to disable). Use this variable to assess whether your application conforms to the assigned shard limit. Disabling this behavior requires explicitly setting `KINESIS_SHARD_LIMIT=Infinity`. |
-| `KINESIS_LATENCY` | Integer value in milliseconds (default: `500`) or `0` (to disable). Particularly useful for testing latency-sensitive applications. Since local Kinesis service lacks latency simulation, you can introduce artificial latency into your AWS calls using this variable. To disable this behavior, set `KINESIS_LATENCY=0`. |
-| `KINESIS_INITIALIZE_STREAMS` | **Deprecated.** Comma-delimited string with stream names, corresponding shard counts, and an optional region for initialization during startup. If no region is provided, the default region is used. For example, `KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1`. In multi-account setups, the specified streams will be created for all accounts. |
+For high-volume workloads or large payloads, we recommend switching to the Scala engine via the `KINESIS_MOCK_PROVIDER_ENGINE=scala` flag, delivering up to 10x better performance compared to the default Node.js engine.
+
+Additionally, the following parameters can be tuned:
+
+- Increase `KINESIS_MOCK_MAXIMUM_HEAP_SIZE` beyond the default `512m` to reduce JVM memory pressure.
+- Increase `KINESIS_MOCK_INITIAL_HEAP_SIZE` beyond the default `256m` to pre-allocate more JVM heap memory.
+- Reduce `KINESIS_LATENCY` artificial response delays from the default `500` milliseconds (or disable entirely with `0`).
+
+Refer to our [Kinesis configuration documentation](https://docs.localstack.cloud/references/configuration/#kinesis) for more details on these parameters.
+
+{{< callout "note" >}}
+`KINESIS_MOCK_MAXIMUM_HEAP_SIZE` and `KINESIS_MOCK_INITIAL_HEAP_SIZE` are only applicable when using the Scala engine.
+Future versions of LocalStack will likely default to using the `scala` engine over the less-performant `node` version currently in use.
+{{< /callout >}}
 
 ## Resource Browser
 

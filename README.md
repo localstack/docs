@@ -88,6 +88,14 @@ Please follow these best practices when writing documentation in this repository
   If needed, you can also [highlight a specific line](https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences).
 - **Internal links:** Use the [`ref` or `relref` shortcode](https://gohugo.io/content-management/cross-references/#use-ref-and-relref) when creating non-external links (but still use the markdown native image linking, ref doesn't work there).
   You can either use `ref` or `relref`, the point is to have compile time internal-link checks (which works for both).
+
+  ```text
+  # Do this
+  Configuration options are [here]({{< ref "/references/configuration" >}})
+
+  # Don't do this
+  Configuration options are [here](https://docs.localstack.cloud/references/configuration/)
+  ```
 - **Code snippets:** For snippets, make sure you indicate the programming/markup language so that proper syntax highlighting is used.
   Use `bash` only for Bash scripts, and use `text` for shell outputs or command examples.
   The full list of the supported languages [here](https://gohugo.io/content-management/syntax-highlighting/).

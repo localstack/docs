@@ -2,9 +2,7 @@
 title: "Chaos Engineering Dashboard"
 linkTitle: "Chaos Engineering Dashboard"
 description: Chaos Engineering Dashboard allows users to run chaos experiments within their application stack to test the system's resilience.
-tags: ["Enterprise plan"]
-aliases:
-  - /user-guide/chaos-engineering/web-application-dashboard/
+tags: ["Ultimate"]
 ---
 
 ## Introduction

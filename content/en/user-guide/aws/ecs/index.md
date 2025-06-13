@@ -1,13 +1,9 @@
 ---
 title: "Elastic Container Service (ECS)"
 linkTitle: "Elastic Container Service (ECS)"
-categories: ["LocalStack Pro"]
+tags: ["Base"]
 description: Get started with Elastic Container Service (ECS) on LocalStack
-aliases:
-- /aws/elastic-container-service/
-- /user-guide/aws/elastic-container-service/
 persistence: supported
-
 ---
 
 ## Introduction
@@ -17,7 +13,7 @@ It allows you to run, stop, and manage Docker containers on a cluster.
 ECS eliminates the need for you to install, operate, and scale your own cluster management infrastructure.
 
 LocalStack allows you to use the ECS APIs in your local environment to create & manage ECS clusters, tasks, and services.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ecs/), which provides information on the extent of ECS's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_ecs" >}}), which provides information on the extent of ECS's integration with LocalStack.
 
 ## Getting Started
 
@@ -340,7 +336,7 @@ services:
       - ~/.docker/config.json:/config.json:ro
 ```
 
-Alternatively, you can download the image from the private registry before using it or employ an [Initialization Hook](https://docs.localstack.cloud/references/init-hooks/) to install the Docker client and use these credentials to download the image.
+Alternatively, you can download the image from the private registry before using it or employ an [Initialization Hook]({{< ref "/references/init-hooks" >}}) to install the Docker client and use these credentials to download the image.
 
 ## Firelens for ECS Tasks
 

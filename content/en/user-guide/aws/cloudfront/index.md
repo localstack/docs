@@ -2,9 +2,8 @@
 title: "CloudFront"
 linkTitle: "CloudFront"
 description: Get started with CloudFront on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 persistence: supported
-
 ---
 
 ## Introduction
@@ -14,7 +13,7 @@ CloudFront distributes its web content, videos, applications, and APIs with low 
 CloudFront APIs allow you to configure distributions, customize cache behavior, secure content with access controls, and monitor the CDN's performance through real-time metrics.
 
 LocalStack allows you to use the CloudFront APIs in your local environment to create local CloudFront distributions to transparently access your applications and file artifacts.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_cloudfront/), which provides information on the extent of CloudFront's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_cloudfront" >}}), which provides information on the extent of CloudFront's integration with LocalStack.
 
 ## Getting started
 
@@ -78,7 +77,7 @@ You can enable this feature by setting `CLOUDFRONT_LAMBDA_EDGE=1` in your LocalS
 
 ### Current limitations
 
-- The [`UpdateDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html), [`DeleteDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteDistribution.html), and [`Persistence Restore`](https://docs.localstack.cloud/user-guide/state-management/persistence/) features are not yet supported for Lambda@Edge.
+- The [`UpdateDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html), [`DeleteDistribution`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteDistribution.html), and [`Persistence Restore`]({{< ref "persistence" >}}) features are not yet supported for Lambda@Edge.
 - The `origin-request` and `origin-response` event types currently trigger for each request because caching is not implemented in CloudFront.
 
 ## Using custom URLs

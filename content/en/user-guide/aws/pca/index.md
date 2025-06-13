@@ -2,7 +2,7 @@
 title: "Private Certificate Authority (ACM PCA)"
 linkTitle: "Private Certificate Authority (ACM PCA)"
 description: Get started with Private Certificate Authority (ACM PCA) on LocalStack
-tags: ["Pro image"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -12,7 +12,7 @@ ACM PCA extends ACM's certificate management capabilities to private certificate
 
 LocalStack allows you to use the ACM PCA APIs to create, list, and delete private certificates.
 You can creating, describing, tagging, and listing tags for a CA using ACM PCA.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_acm-pca/), which provides information on the extent of ACM PCA's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_acm-pca" >}}), which provides information on the extent of ACM PCA's integration with LocalStack.
 
 ## Getting started
 

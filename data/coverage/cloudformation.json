@@ -92,7 +92,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -128,7 +128,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -188,7 +188,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -211,8 +211,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -331,8 +331,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -404,7 +404,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -415,8 +415,8 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -428,7 +428,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -560,7 +560,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -608,7 +608,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -788,7 +788,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -1004,7 +1004,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -1028,7 +1028,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -1642,9 +1642,9 @@
             "test": "test_cfn_apigateway_rest_api",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1652,9 +1652,9 @@
             "test": "test_cfn_apigateway_swagger_import",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1662,7 +1662,7 @@
             "test": "test_cfn_deploy_apigateway_from_s3_swagger",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags']",
+            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags', '$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3080,6 +3080,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
@@ -3858,9 +3868,9 @@
             "test": "test_cfn_apigateway_rest_api",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -4284,6 +4294,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version_provisioned_concurrency",
+            "test": "test_lambda_version_provisioned_concurrency",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CodeSize']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_multiple_lambda_permissions_for_singlefn",
             "test": "test_multiple_lambda_permissions_for_singlefn",
             "response": "200",
@@ -4670,6 +4690,16 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/ported_from_v1/resources/test_acm.py::test_cfn_acm_certificate",
+            "test": "test_cfn_acm_certificate",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -5066,6 +5096,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_efs.py::test_file_system_deployment",
             "test": "test_file_system_deployment",
             "response": "200",
@@ -5276,6 +5316,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs_patterns.py::TestEcsFargateApplicationLoadBalanced::test_service_deployment",
             "test": "test_service_deployment",
             "response": "200",
@@ -5430,7 +5480,7 @@
             "test": "test_validate_initial_setup",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList', '$..DBClusters..DatabaseInsightsMode', '$..DBClusters..EngineLifecycleSupport', '$..GlobalClusters..Endpoint', '$..GlobalClusters..EngineLifecycleSupport', '$..GlobalClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7428,9 +7478,9 @@
             "test": "test_cfn_apigateway_rest_api",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -7438,9 +7488,9 @@
             "test": "test_cfn_apigateway_swagger_import",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -7448,7 +7498,7 @@
             "test": "test_cfn_deploy_apigateway_from_s3_swagger",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags']",
+            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags', '$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -8176,6 +8226,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version",
             "test": "test_lambda_version",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CodeSize']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version_provisioned_concurrency",
+            "test": "test_lambda_version_provisioned_concurrency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..CodeSize']",
@@ -9274,6 +9334,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/ported_from_v1/resources/test_acm.py::test_cfn_acm_certificate",
+            "test": "test_cfn_acm_certificate",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/dynamodbstreams/test_dynamodb_streams.py::TestDynamoDBStreams::test_table_v2_stream",
             "test": "test_table_v2_stream",
             "response": "200",
@@ -10096,6 +10166,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
@@ -10820,7 +10900,7 @@
             "test": "test_failover",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..DatabaseInsightsMode', '$..DBClusters..EngineLifecycleSupport', '$..GlobalClusters..Endpoint', '$..GlobalClusters..EngineLifecycleSupport', '$..GlobalClusters..TagList', '$..GlobalCluster.Endpoint', '$..GlobalCluster.EngineLifecycleSupport', '$..GlobalCluster.TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -11948,9 +12028,9 @@
             "test": "test_cfn_apigateway_rest_api",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -11958,9 +12038,9 @@
             "test": "test_cfn_apigateway_swagger_import",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -11968,7 +12048,7 @@
             "test": "test_cfn_deploy_apigateway_from_s3_swagger",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags']",
+            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags', '$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -12696,6 +12776,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version",
             "test": "test_lambda_version",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CodeSize']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version_provisioned_concurrency",
+            "test": "test_lambda_version_provisioned_concurrency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..CodeSize']",
@@ -13814,6 +13904,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/ported_from_v1/resources/test_acm.py::test_cfn_acm_certificate",
+            "test": "test_cfn_acm_certificate",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/dynamodbstreams/test_dynamodb_streams.py::TestDynamoDBStreams::test_table_v2_stream",
             "test": "test_table_v2_stream",
             "response": "200",
@@ -14536,6 +14636,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
@@ -15240,7 +15350,7 @@
             "test": "test_validate_initial_setup",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList', '$..DBClusters..DatabaseInsightsMode', '$..DBClusters..EngineLifecycleSupport', '$..GlobalClusters..Endpoint', '$..GlobalClusters..EngineLifecycleSupport', '$..GlobalClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -15661,6 +15771,16 @@
           }
         ],
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_mwaa.py::test_mwaa_environment",
+            "test": "test_mwaa_environment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Environment.CeleryExecutorQueue', '$..Environment.DatabaseVpcEndpointService', '$..Environment.EndpointManagement', '$..Environment.EnvironmentClass', '$..Environment.LastUpdate', '$..Environment.LoggingConfiguration', '$..Environment.MaxWebservers', '$..Environment.MaxWorkers', '$..Environment.MinWebservers', '$..Environment.MinWorkers', '$..Environment.Schedulers', '$..Environment.ServiceRoleArn', '$..Environment.Tags', '$..Environment.WebserverAccessMode', '$..Environment.WebserverVpcEndpointService', '$..Environment.WeeklyMaintenanceWindowStart', '$..EnvCeleryExecutorQueue', '$..EnvCloudWatchLogGroupArn', '$..EnvDatabaseVpcEndpointService', '$..EnvWebserverVpcEndpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_cloudformation_stack_operations",
             "test": "test_cloudformation_stack_operations",
@@ -16154,6 +16274,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version",
             "test": "test_lambda_version",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CodeSize']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version_provisioned_concurrency",
+            "test": "test_lambda_version_provisioned_concurrency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..CodeSize']",
@@ -16898,7 +17028,7 @@
             "test": "test_validate_initial_setup",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList', '$..DBClusters..DatabaseInsightsMode', '$..DBClusters..EngineLifecycleSupport', '$..GlobalClusters..Endpoint', '$..GlobalClusters..EngineLifecycleSupport', '$..GlobalClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18386,9 +18516,9 @@
             "test": "test_cfn_apigateway_rest_api",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -18396,9 +18526,9 @@
             "test": "test_cfn_apigateway_rest_api",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -18406,9 +18536,9 @@
             "test": "test_cfn_apigateway_swagger_import",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -18416,9 +18546,9 @@
             "test": "test_cfn_apigateway_swagger_import",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -18426,7 +18556,7 @@
             "test": "test_cfn_deploy_apigateway_from_s3_swagger",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags']",
+            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags', '$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -18436,7 +18566,7 @@
             "test": "test_cfn_deploy_apigateway_from_s3_swagger",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags']",
+            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags', '$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -19254,6 +19384,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version",
             "test": "test_lambda_version",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CodeSize']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version_provisioned_concurrency",
+            "test": "test_lambda_version_provisioned_concurrency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..CodeSize']",
@@ -20448,6 +20588,16 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/ported_from_v1/resources/test_acm.py::test_cfn_acm_certificate",
+            "test": "test_cfn_acm_certificate",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -22454,6 +22604,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
@@ -23768,7 +23928,7 @@
             "test": "test_failover",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..DatabaseInsightsMode', '$..DBClusters..EngineLifecycleSupport', '$..GlobalClusters..Endpoint', '$..GlobalClusters..EngineLifecycleSupport', '$..GlobalClusters..TagList', '$..GlobalCluster.Endpoint', '$..GlobalCluster.EngineLifecycleSupport', '$..GlobalCluster.TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -23788,7 +23948,7 @@
             "test": "test_promote_secondary_headless",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..DatabaseInsightsMode', '$..DBClusters..EngineLifecycleSupport', '$..GlobalClusters..Endpoint', '$..GlobalClusters..EngineLifecycleSupport', '$..GlobalClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -23798,7 +23958,7 @@
             "test": "test_validate_initial_setup",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList', '$..DBClusters..DatabaseInsightsMode', '$..DBClusters..EngineLifecycleSupport', '$..GlobalClusters..Endpoint', '$..GlobalClusters..EngineLifecycleSupport', '$..GlobalClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -24618,7 +24778,7 @@
             "test": "test_validate_initial_setup",
             "response": "400",
             "error": "ValidationError",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList', '$..DBClusters..DatabaseInsightsMode', '$..DBClusters..EngineLifecycleSupport', '$..GlobalClusters..Endpoint', '$..GlobalClusters..EngineLifecycleSupport', '$..GlobalClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -25694,9 +25854,9 @@
             "test": "test_cfn_apigateway_rest_api",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -25704,9 +25864,9 @@
             "test": "test_cfn_apigateway_swagger_import",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -25714,7 +25874,7 @@
             "test": "test_cfn_deploy_apigateway_from_s3_swagger",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags']",
+            "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.get-stage.createdDate', '$.get-stage.lastUpdatedDate', '$.get-stage.methodSettings', '$.get-stage.tags', '$..endpointConfiguration.ipAddressType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -26442,6 +26602,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version",
             "test": "test_lambda_version",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..CodeSize']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_lambda_version_provisioned_concurrency",
+            "test": "test_lambda_version_provisioned_concurrency",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..CodeSize']",
@@ -27560,6 +27730,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/ported_from_v1/resources/test_acm.py::test_cfn_acm_certificate",
+            "test": "test_cfn_acm_certificate",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/dynamodbstreams/test_dynamodb_streams.py::TestDynamoDBStreams::test_table_v2_stream",
             "test": "test_table_v2_stream",
             "response": "200",
@@ -28282,6 +28462,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_create_service_with_code_deploy",
+            "test": "test_create_service_with_code_deploy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
@@ -28986,7 +29176,7 @@
             "test": "test_validate_initial_setup",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList', '$..DBClusters..DatabaseInsightsMode', '$..DBClusters..EngineLifecycleSupport', '$..GlobalClusters..Endpoint', '$..GlobalClusters..EngineLifecycleSupport', '$..GlobalClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"

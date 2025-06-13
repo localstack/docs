@@ -4,7 +4,7 @@ weight: 3
 description: Export and import the state of the current infrastructure state into a file or a LocalStack instance respectively!
 aliases:
   - /user-guide/web-application/export-import-state/
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction

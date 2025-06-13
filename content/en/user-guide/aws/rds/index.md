@@ -2,9 +2,8 @@
 title: "Relational Database Service (RDS)"
 linkTitle: "Relational Database Service (RDS)"
 description: Get started with Relational Database Service (RDS) on LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 persistence: supported with limitations
-
 ---
 
 ## Introduction
@@ -14,7 +13,7 @@ RDS allows you to deploy and manage various relational database engines like MyS
 RDS handles routine database tasks such as provisioning, patching, backup, recovery, and scaling.
 
 LocalStack allows you to use the RDS APIs in your local environment to create and manage RDS clusters and instances for testing & integration purposes.
-The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_rds/), which provides information on the extent of RDS's integration with LocalStack.
+The supported APIs are available on our [API coverage page]({{< ref "coverage_rds" >}}), which provides information on the extent of RDS's integration with LocalStack.
 
 {{< callout >}}
 We’ve introduced a new native RDS provider in LocalStack and made it the default.
@@ -179,12 +178,12 @@ For instance, the `storage-encrypted` flag is returned as configured, but active
 ### PostgreSQL Engine
 
 When you establish an RDS DB cluster or instance using the `postgres`/`aurora-postgresql` DB engine along with a specified `EngineVersion`, LocalStack will dynamically install and configure the corresponding PostgreSQL version as required.
-Presently, you have the option to choose major versions ranging from 11 to 16.
-If you select a major version beyond this range, the system will automatically default to version 15.
+Presently, you have the option to choose major versions ranging from 11 to 17.
+If you select a major version beyond this range, the system will automatically default to version 17.
 
 It's important to note that the selection of minor versions is not available.
 The latest major version will be installed within the Docker environment.
-If you wish to prevent the installation of customized versions, adjusting the `RDS_PG_CUSTOM_VERSIONS` environment variable to `0` will enforce the use of the default PostgreSQL version 15.
+If you wish to prevent the installation of customized versions, adjusting the `RDS_PG_CUSTOM_VERSIONS` environment variable to `0` will enforce the use of the default PostgreSQL version 17.
 
 {{< callout >}}
 While the [`DescribeDbCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusters.html) and [`DescribeDbInstances`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) APIs will still reflect the initially defined `engine-version`, the actual installed PostgreSQL engine might differ.

@@ -51,7 +51,7 @@ You can optionally run your LocalStack container in background mode by adding th
 The `localstack` CLI will detect the API key and properly pass it to the LocalStack container.
 
 {{< callout >}}
-If you are using LocalStack with an API Key, you need to pull the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image) that includes the Pro services and several other advanced features.
+If you are using LocalStack with an API Key, you need to pull the [LocalStack Pro image]({{< ref "docker-images/#localstack-pro-image" >}}) that includes the Pro services and several other advanced features.
 {{< /callout >}}
 
 ### Starting LocalStack via Docker
@@ -67,7 +67,7 @@ $ docker run \
   localstack/localstack-pro
 {{< / command >}}
 
-For more information about starting LocalStack with Docker, take a look at our [Docker installation](https://docs.localstack.cloud/getting-started/installation/#docker) guide.
+For more information about starting LocalStack with Docker, take a look at our [Docker installation]({{< ref "installation/#docker" >}}) guide.
 
 ### Starting LocalStack via Docker-Compose
 

@@ -4,7 +4,7 @@ linkTitle: "Transparent Endpoint Injection"
 weight: 10
 description: >
   Transparently resolve your AWS calls to LocalStack
-tags: ["Pro image"]
+tags: ["Base"]
 ---
 
 ## Introduction
@@ -109,4 +109,4 @@ Make sure to use this only for local testing, and never in production.
 ## Current Limitations
 
 - The mechanism to disable certificate validation for these requests is not currently functional with Go Lambdas.
-  To work around this issue, you'll need to manually set your endpoint when creating your AWS SDK client, as detailed in our documentation on the [Go AWS SDK](https://docs.localstack.cloud/user-guide/integrations/sdks/go/).
+  To work around this issue, you'll need to manually set your endpoint when creating your AWS SDK client, as detailed in our documentation on the [Go AWS SDK]({{< ref "/user-guide/integrations/sdks/go/" >}}).

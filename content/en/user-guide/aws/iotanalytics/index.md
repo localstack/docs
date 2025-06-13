@@ -1,9 +1,14 @@
 ---
 title: "IoT Analytics"
 linkTitle: "IoT Analytics"
-categories: ["LocalStack Pro"]
+tags: ["Ultimate"]
 description: Get started with IoT Analytics on LocalStack
 ---
+
+{{< callout "warning" >}}
+IoT Analytics will be [retired on 15 December 2025](https://docs.aws.amazon.com/iotanalytics/latest/userguide/iotanalytics-end-of-support.html).
+It will be removed from LocalStack soon after this date.
+{{< /callout >}}
 
 ## Introduction
 
@@ -11,7 +16,7 @@ IoT Analytics is a managed service that enables you to collect, store, process, 
 It provides a set of tools to build IoT applications without having to manage the underlying infrastructure.
 
 LocalStack allows you to use the IoT Analytics APIs to create and manage channels, data stores, and pipelines in your local environment.
-The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_iotanalytics/), which provides information on the extent of IoT Analytics integration with LocalStack.
+The supported APIs are available on our [API Coverage Page]({{< ref "coverage_iotanalytics" >}}), which provides information on the extent of IoT Analytics integration with LocalStack.
 
 ## Getting started
 

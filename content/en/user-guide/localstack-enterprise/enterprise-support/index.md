@@ -3,7 +3,7 @@ title: "Enterprise Support"
 linkTitle: "Enterprise Support"
 weight: 3
 description:
-tags: ["Enterprise plan"]
+tags: ["Enterprise"]
 ---
 
 ## Introduction

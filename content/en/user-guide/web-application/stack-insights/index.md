@@ -1,11 +1,9 @@
 ---
 title: "Stack Insights"
-tags: ["Teams plan"]
+tags: ["Base"]
 weight: 140
 description: >
   Stack Insights enable users to report AWS API usage telemetry of LocalStack runs to their LocalStack account.
-aliases:
- - /user-guide/tools/analytics-dashboard/
 ---
 
 ## Introduction

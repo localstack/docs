@@ -93,7 +93,7 @@ Since we are running LocalStack on OpenShift, we need to specify the route URL o
 You can swap `awslocal` with the AWS CLI, by specifying the additional `--endpoint-url` parameter.
 {{< /callout >}}
 
-You can further use integrations, such as [CDK](https://docs.localstack.cloud/user-guide/integrations/aws-cdk/), [SAM CLI](https://docs.localstack.cloud/user-guide/integrations/aws-sam/), and [Terraform](https://docs.localstack.cloud/user-guide/integrations/terraform/), to interact with the Ephemeral Instance.
+You can further use integrations, such as [CDK]({{< ref "/user-guide/integrations/aws-cdk" >}}), [SAM CLI]({{< ref "/user-guide/integrations/aws-sam" >}}), and [Terraform]({{< ref "/user-guide/integrations/terraform" >}}), to interact with the Ephemeral Instance.
 In these integrations, you can change the `AWS_ENDPOINT_URL` environment variable to the endpoint URL of the Ephemeral Instance.
 
 ### Deleting the LocalStack deployment

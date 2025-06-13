@@ -3,7 +3,7 @@ title: "K8s Operator"
 linkTitle: "K8s Operator"
 weight: 2
 description: Custom K8s operator that offers LocalStack emulator as a native resource in Kubernetes environments.
-tags: ["Enterprise plan"]
+tags: ["Ultimate"]
 ---
 
 ## Introduction
@@ -59,7 +59,7 @@ _Appears in:_
 | `shutdownConfigName` _string_ |  |
 | `startConfigName` _string_ |  |
 
-Use as described in the [Initialization Hooks](https://docs.localstack.cloud/references/init-hooks/) reference.
+Use as described in the [Initialization Hooks]({{< ref "/references/init-hooks" >}}) reference.
 
 #### LocalStack
 

@@ -3,7 +3,7 @@ title: "Single-Sign On"
 weight: 4
 description: >
   Configuring Custom Single-Sign On (SSO) Providers in LocalStack Web Application
-tags: ["Enterprise plan"]
+tags: ["Enterprise"]
 aliases:
   - /user-guide/web-application/single-sign-on/
 ---

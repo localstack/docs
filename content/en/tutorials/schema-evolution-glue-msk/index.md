@@ -53,7 +53,7 @@ The following chart shows the integration of producers and consumers with Amazon
 3. The consumer reads the serialized and compressed record.
 4. The consumer requests the schema from the schema registry (if it is not already cached) and uses the schema to decompress and deserialize the record.
 
-[AWS Glue Schema Registry](https://docs.localstack.cloud/user-guide/aws/glue/) is supported by LocalStack Pro as well, ultimately allowing you to test the evolution of your data streaming application completely on your local machine.
+[AWS Glue Schema Registry]({{< ref "glue" >}}) is supported by LocalStack Pro as well, ultimately allowing you to test the evolution of your data streaming application completely on your local machine.
 It allows you develop and test your application's data schema evolution locally.
 The code for this tutorial (including a script to execute it step-by-step) can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/glue-msk-schema-registry).
 
