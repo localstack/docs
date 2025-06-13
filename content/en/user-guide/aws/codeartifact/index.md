@@ -260,10 +260,86 @@ The following output is displayed:
 Please note, a repository can have one or more upstream repositories, or an external connection.
 {{< /callout >}}
 
+## Using CodeArtifact with npm
+
+### Configuring npm with the login command
+
+Use the `awslocal codeartifact login` command to fetch credentials for use with npm.
+
+{{< command >}}
+$ awslocal codeartifact login --tool npm --domain demo-domain --repository demo-repo
+{{< /command >}}
+
+This command makes the following changes to your `~/.npmrc` file:
+
+- Adds an authorization token after fetching it from CodeArtifact using your AWS credentials.
+- Sets the npm registry to the repository specified by the `--repository` option.
+- **For npm 6 and lower:** Adds `"always-auth=true"` so the authorization token is sent for every npm command.
+
+The default authorization period after calling login is 12 hours, and login must be called to periodically refresh the token.
+For more information about the authorization token created with the login command, see [Tokens created with the login command](https://docs.aws.amazon.com/codeartifact/latest/ug/tokens-authentication.html#auth-token-login).
+
+### Configuring npm manually
+
+You can configure npm with your CodeArtifact repository without the `awslocal codeartifact login` command by manually updating the npm configuration.
+
+#### To configure npm without using the login command
+
+1. In a command line, fetch a CodeArtifact authorization token and store it in an environment variable.
+  npm will use this token to authenticate with your CodeArtifact repository.
+
+{{< command >}}
+$ export CODEARTIFACT_AUTH_TOKEN=$(awslocal codeartifact get-authorization-token --domain demo-domain --query authorizationToken --output text)
+{{< /command >}}
+
+2. Get your CodeArtifact repository's endpoint by running the following command.
+  Your repository endpoint is used to point npm to your repository to install or publish packages.
+
+{{< command >}}
+$ awslocal codeartifact get-repository-endpoint --domain demo-domain --repository demo-repo --format npm
+{{< /command >}}
+
+The following URL is an example repository endpoint.
+
+```text
+http://demo-domain-000000000000.d.codeartifact.eu-central-1.localhost.localstack.cloud/npm/demo-repo/
+```
+
+3. Use the `npm config set` command to set the registry to your CodeArtifact repository.
+  Replace the URL with the repository endpoint URL from the previous step.
+
+{{< command >}}
+$ npm config set registry http://demo-domain-000000000000.d.codeartifact.eu-central-1.localhost.localstack.cloud/npm/demo-repo/
+{{< /command >}}
+
+4. Use the `npm config set` command to add your authorization token to your npm configuration.
+
+{{< command >}}
+$ npm config set //demo-domain-000000000000.d.codeartifact.eu-central-1.localhost.localstack.cloud/:_authToken=${CODEARTIFACT_AUTH_TOKEN}
+{{< /command >}}
+
+**For npm 6 or lower:** To make npm always pass the auth token to CodeArtifact, even for GET requests, set the always-auth configuration variable with npm config set.
+
+{{< command >}}
+$ npm config set //demo-domain-000000000000.d.codeartifact.eu-central-1.localhost.localstack.cloud/:always-auth=true
+{{< /command >}}
+
+#### Example npm configuration file (`.npmrc`)
+
+The following is an example `.npmrc` file after following the preceding instructions to set the CodeArtifact registry endpoint, add an authentication token, and configure `always-auth`.
+
+```text
+registry=http://demo-domain-000000000000.d.codeartifact.eu-central-1.localhost.localstack.cloud/npm/demo-repo/
+//demo-domain-000000000000.d.codeartifact.eu-central-1.localhost.localstack.cloud/:_authToken=eyJ2ZX...
+//demo-domain-000000000000.d.codeartifact.eu-central-1.localhost.localstack.cloud/:always-auth=true
+```
+
 ## Current Limitations
 
 LocalStack doesn't support the following features yet:
 
-- Domain and repository permission policies
-- Packages and package groups handlers
-- Retrieving repository endpoints
+- Domain owners are ignored
+- Copying package versions is not supported yet
+- Domain and repository permission policies are not supported yet
+- Package groups are not supported yet
+- Only supports the `npm` format
