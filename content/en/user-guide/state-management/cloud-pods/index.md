@@ -445,7 +445,7 @@ You might encounter an error like the following:
 An error occurred (InvalidAccessKeyId) when calling the CreateBucket operation: The AWS Access Key Id you provided does not exist in our records.
 {{< / command >}}
 
-This means that you are likely using temporary AWS credentials and the the S3 remote configuration is missing the `AWS_SESSION_TOKEN` environment variable.
+This means that you are likely using temporary AWS credentials and the S3 remote configuration is missing the `AWS_SESSION_TOKEN` environment variable.
 To fix the issue, first export `AWS_SESSION_TOKEN` into your environment.
 Then, be sure to add the `session_token` placeholder to the URL of the `pod remote add` command:
 
