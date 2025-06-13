@@ -4,6 +4,7 @@ linkTitle: "Transcribe"
 description: Get started with Amazon Transcribe on LocalStack
 persistence: supported
 tags: ["Free"]
+
 ---
 
 ## Introduction
