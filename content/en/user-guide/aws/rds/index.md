@@ -231,7 +231,7 @@ The following details concern default usernames, passwords, and database names f
 - When setting up a new RDS instance, you have the flexibility to utilize any `master-username`, with the exception of **postgres**.
   The system will automatically generate the user.
 - It's important to remember that the username **postgres** has special significance, preventing the creation of a new RDS instance under this particular name.
-- For clarity, please avoid using the `db-name` **postgres**, as it is already allocated for use by LocalStack.
+- Using the `db-name` **postgres** might lead to issues for older versions of LocalStack, please try to avoid using it.
 
 ## IAM Authentication Support
 
