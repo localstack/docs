@@ -40,7 +40,7 @@ $ awslocal mwaa create-environment --dag-s3-path /dags \
         --execution-role-arn arn:aws:iam::000000000000:role/airflow-role \
         --network-configuration {} \
         --source-bucket-arn arn:aws:s3:::my-mwaa-bucket \
-        --airflow-version 2.10.1 \
+        --airflow-version 2.10.3 \
         --airflow-configuration-options agent.code=007,agent.name=bond \
         --name my-mwaa-env
 {{< /command >}}
@@ -71,7 +71,8 @@ LocalStack supports the following versions of Apache Airflow:
 - `2.7.2`
 - `2.8.1`
 - `2.9.2`
-- `2.10.1` (default)
+- `2.10.1`
+- `2.10.3` (default)
 
 ## Airflow configuration options
 
