@@ -103,7 +103,6 @@ Given that the distribution ID is part of the generated domain name, it can be u
 
 LocalStack offers this possibility by using the `__custom_id__` tag when creating a distribution with the [`CreateDistributionWithTags`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistributionWithTags.html) operation.
 
-
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for CloudFront, which allows you to view and manage your CloudFront distributions.
