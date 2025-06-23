@@ -101,7 +101,7 @@ Please note that a complete configuration would entail additional values relevan
 Each CloudFront distribution is created with a random unique identifier automatically assigned by AWS.
 Given that the distribution ID is part of the generated domain name, it can be useful to have the possibility to create distributions with a deterministic ID (e.g., to simplify testing or integration with other AWS services).
 
-LocalStack offers this possibility by using the `__custom_id__` tag when creating a distribution with the [`CreateDistributionWithTags`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistributionWithTags.html) operation.
+LocalStack offers this possibility by using the `_custom_id_` tag when creating a distribution with the [`CreateDistributionWithTags`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistributionWithTags.html) operation.
 
 ## Resource Browser
 
