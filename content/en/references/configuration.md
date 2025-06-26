@@ -130,6 +130,7 @@ This section covers configuration options that are specific to certain AWS servi
 | Variable | Example Values | Description |
 | - | - | - |
 | `CODEBUILD_REMOVE_CONTAINERS` | `0`\|`1` (default) | Remove Docker containers associated with a CodeBuild build tasks after execution. Disabling this and dumping container logs might help with troubleshooting failing builds. |
+| `CODEBUILD_ENABLE_CUSTOM_IMAGES` | `0` (default) \|`1` | Enable the usage of arbitrary CodeBuild build images. By default, all the builds are executed in a Amazon Linux 2023 container. |
 
 ### CodePipeline
 
