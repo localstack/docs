@@ -195,6 +195,68 @@ custom:
 
 When this flag is set, the lambda code will be mounted into the container running the function directly from your local directory instead of packaging and uploading it.
 
+### Custom API deployment IDs
+By default localstack generates random deployment ids for the API gateway which in turn get populated into the endpoint URLs. As these IDs can literally change every time you deploy (depending on your setup) This makes continual local development practically impossible in situations where you rely on consistant urls (eg the url for your api for your frontend code)
+
+localstack provides a method to use a fixed custom id instead by passing a tag _custom_id_ to the API during creation. It has to be done during creation and it has to be on either the v2 API or the v1 RestApi.
+
+Serverless can do this out of the box with resource extensions. See below for the v1/v2 implementation.
+
+This will produce endpoints like
+http://localhost:4566/restapis/mytag/development/_user_request_  (v1)
+
+or for the newer localstack 
+http://localhost:4566/_aws/execute-api/mytag/development
+
+rather than a continually changing ID
+http://localhost:4566/restapis/jh345798dx/development/_user_request_
+
+```yaml
+resources:
+  extensions:
+    ApiGatewayRestApi:  #for v1
+      Properties:
+        Tags:
+          - Key: _custom_id_
+            Value: mytag
+
+    MyHTTPApi:  #for v2
+      Properties:
+        Tags:
+          - Key: _custom_id_
+            Value: mytag
+
+```
+
+### Hot reload
+To get hot-reload up and running quickly, put the following into a script before you run sls deploy.
+
+You need the region set to the same region in your config otherwise the bucket and ssm param can't be found by the sls deployment
+
+- note: this requires the localstack awslocal cli to be installed
+
+```bash
+awslocal s3api create-bucket --bucket hot-reload --create-bucket-configuration LocationConstraint=ap-southeast-2
+AWS_DEFAULT_REGION=ap-southeast-2 awslocal ssm put-parameter \
+    --name "/serverless-framework/deployment/s3-bucket" \
+    --type "String" \
+    --value "{\"bucketName\":\"hot-reload\",\"bucketRegion\":\"ap-southeast-2\"}"
+```
+
+Then in your serverless.yaml use the custom variables to set the names. This uses the default option to set the name to the same as serverless does when deploying 
+
+```yaml
+
+custom:
+  development:
+    bucket: 'hot-reload'
+
+provider:
+  deploymentBucket: ${self:custom.${self:provider.stage}.bucket, serverless-deployment-bucket-${self:service}-${self:provider.stage}}
+
+```
+
+
 ## Ran into trouble?
 
 If you run into any issues or problems while integrating LocalStack with your Serverless app, please [submit an issue](https://github.com/localstack/serverless-localstack/issues).
