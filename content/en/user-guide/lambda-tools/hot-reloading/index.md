@@ -42,13 +42,17 @@ MacOS may prompt you to grant Docker access to your target folders.
 
 **WSL2-compatible paths required with Rancher Desktop on Windows:**
 Make sure your Lambda handler paths are specified using WSL2-compatible paths. For example, instead of using a Windows-style path such as:
+
 ```bash
 C:\Users\myuser\projects\lambda\handler.py
 ```
+
 Use the corresponding WSL-style path:
+
 ```bash
 /mnt/c/Users/myuser/projects/lambda/handler.py
 ```
+
 This ensures that LocalStack can properly mount and watch your Lambda code inside the container when running under WSL2.
 
 **Layer limit with hot reloading for layers:**
