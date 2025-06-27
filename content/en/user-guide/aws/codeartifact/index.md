@@ -337,7 +337,7 @@ registry=http://demo-domain-000000000000.d.codeartifact.eu-central-1.localhost.l
 
 ## Current Limitations
 
-LocalStack doesn't support the following features yet:
+LocalStack does not support the following features yet:
 
 - Domain owners are ignored
 - Copying package versions is not supported yet
