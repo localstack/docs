@@ -109,6 +109,7 @@ To learn more about how a service behaves in LocalStack, refer to that individua
 | [](https://docs.localstack.cloud/user-guide/aws/qldb/)[Amazon Quantum Ledger Database (QLDB)](https://docs.localstack.cloud/user-guide/aws/qldb/) | ❌ | ❌ | ✅ |
 | Developer Tools |  |  |  |
 | [](https://docs.localstack.cloud/references/coverage/coverage_codecommit/)[AWS CodeCommit](https://docs.localstack.cloud/references/coverage/coverage_codecommit/) | ❌ | ✅ | ✅ |
+| AWS CodeArtifact | ❌ | ✅ | ✅ |
 | AWS CodeBuild | ❌ | ✅ | ✅ |
 | AWS CodeConnections | ❌ | ✅ | ✅ |
 | [](https://docs.localstack.cloud/user-guide/aws/fis/)[AWS Fault Injection Service](https://docs.localstack.cloud/user-guide/aws/fis/) | ❌ | ❌ | ✅ |
