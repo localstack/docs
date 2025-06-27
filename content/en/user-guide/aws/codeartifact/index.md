@@ -193,7 +193,14 @@ The following output is displayed:
 }
 ```
 
-### External Connections and Upstream Repositories
+### Upstream Repositories and External Connections
+
+A repository can have other CodeArtifact repositories as upstream repositories.
+This enables a package manager client to access the packages that are contained in more than one repository using a single repository endpoint.
+
+Furthermore, you can add a external connection between a CodeArtifact repository and an external, public repository such as [https://npmjs.com](https://npmjs.com).
+Then, when you request a package from the CodeArtifact repository that's not already present in the repository, the package can be fetched from the external connection.
+This makes it possible to consume open-source dependencies used by your application.
 
 Repositories can be associated with external connections using [AssociateExternalConnection](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssociateExternalConnection.html) and [DisassociateExternalConnection](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DisassociateExternalConnection.html).
 
