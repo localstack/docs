@@ -17,6 +17,7 @@ You can configure it to work with public repositories or use it to store your pr
 
 LocalStack provides mocking support for several CodeArtifact API operations.
 You can find supported operations on the [API coverage page]({{< ref "coverage_codeartifact" >}}).
+It also has full support to create and use NPM repositories.
 
 ## Getting Started
 
