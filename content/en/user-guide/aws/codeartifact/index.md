@@ -12,7 +12,7 @@ CodeArtifact is under active development and available in LocalStack as a previe
 
 CodeArtifact is a fully managed artifact repository service that makes it easy to securely store, publish, and share software packages used in your development process.
 
-On AWS, CodeArtifact supports common package formats such as Maven, npm, Python (pip), and NuGet.
+On AWS, CodeArtifact supports popular package formats such as Maven, npm, Python (pip), NuGet, etc.
 You can configure it to work with public repositories or use it to store your private packages.
 
 LocalStack provides mocking support for several CodeArtifact API operations.
