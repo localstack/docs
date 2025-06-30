@@ -4,6 +4,7 @@ linkTitle: "Cognito"
 description: Get started with Cognito on LocalStack
 tags: ["Base"]
 persistence: supported
+
 ---
 
 ## Introduction
