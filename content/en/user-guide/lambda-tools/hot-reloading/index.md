@@ -41,7 +41,8 @@ If using Docker Desktop on macOS, you might need to allow [file sharing](https:/
 MacOS may prompt you to grant Docker access to your target folders.
 
 **WSL2-compatible paths required with Rancher Desktop on Windows:**
-Make sure your Lambda handler paths are specified using WSL2-compatible paths. For example, instead of using a Windows-style path such as:
+Make sure your Lambda handler paths are specified using WSL2-compatible paths.
+For example, instead of using a Windows-style path such as:
 
 ```bash
 C:\Users\myuser\projects\lambda\handler.py
