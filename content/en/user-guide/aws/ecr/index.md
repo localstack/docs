@@ -4,6 +4,7 @@ linkTitle: "Elastic Container Registry (ECR)"
 description: Get started with Elastic Container Registry (ECR) on LocalStack
 tags: ["Base"]
 persistence: supported
+
 ---
 
 ## Introduction

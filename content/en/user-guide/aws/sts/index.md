@@ -4,6 +4,7 @@ linkTitle: "Security Token Service (STS)"
 description: Get started with Security Token Service on LocalStack
 persistence: supported
 tags: ["Free"]
+
 ---
 
 ## Introduction

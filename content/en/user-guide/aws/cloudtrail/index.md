@@ -4,6 +4,7 @@ linkTitle: "CloudTrail"
 description: Get started with CloudTrail on LocalStack
 tags: ["Ultimate"]
 persistence: supported
+
 ---
 
 ## Introduction
