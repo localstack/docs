@@ -6,7 +6,7 @@ description: >
 hide_readingtime: true
 ---
 
-## Coverage Overview
+## Coverage overview
 {{< localstack_coverage_table service="codeartifact" >}}
 
 ## Testing Details
