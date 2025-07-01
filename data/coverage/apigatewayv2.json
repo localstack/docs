@@ -90,11 +90,11 @@
       "CreateModel": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -119,6 +119,18 @@
         "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "CreateRoutingRule": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -280,13 +292,13 @@
     },
     {
       "DeleteRouteRequestParameter": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -304,6 +316,18 @@
     },
     {
       "DeleteRouteSettings": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DeleteRoutingRule": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -573,8 +597,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -611,6 +635,30 @@
         "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "GetRoutingRule": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListRoutingRules": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -683,6 +731,18 @@
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "PutRoutingRule": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -811,7 +871,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -1086,6 +1146,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_no_authorizer",
+            "test": "test_import_no_authorizer",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.import-api-empty-security.ResponseMetadata.HTTPStatusCode', '$..IpAddressType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_sam_api_tagging",
             "test": "test_sam_api_tagging",
             "response": "201",
@@ -1349,6 +1419,26 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..ApiKeyRequired']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_sqs.py::TestHttpApiAwsProxySubtypeSQS::test_aws_proxy_sqs_operations",
+            "test": "test_aws_proxy_sqs_operations",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Server']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_sqs.py::TestHttpApiAwsProxySubtypeSQS::test_aws_proxy_sqs_send_message",
+            "test": "test_aws_proxy_sqs_send_message",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Server']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2092,11 +2182,121 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_model_crud",
+            "test": "test_websocket_model_crud",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_route_model_crud",
+            "test": "test_websocket_route_model_crud",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_context.py::TestWebsocketsContext::test_websocket_aws_proxy_event_shape",
             "test": "test_websocket_aws_proxy_event_shape",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..requestContext.domainName', '$..requestContext.identity.userAgent']",
+            "snapshot_skipped": "['$..requestContext.domainName']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_method",
+            "test": "test_integration_method",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_request_parameters",
+            "test": "test_integration_request_parameters",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_response_selection_default",
+            "test": "test_integration_response_selection_default",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_template_selection_expr",
+            "test": "test_integration_template_selection_expr",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_type",
+            "test": "test_integration_type",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters",
+            "test": "test_delete_route_request_parameters",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters_validation",
+            "test": "test_delete_route_request_parameters_validation",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_route_request_parameters",
+            "test": "test_route_request_parameters",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2104,6 +2304,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_websocket_route_duplicate",
             "test": "test_websocket_route_duplicate",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_websocket_route_missing_integration",
+            "test": "test_websocket_route_missing_integration",
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
@@ -3203,6 +3413,20 @@
           }
         ]
       },
+      "ApiId, CredentialsArn, IntegrationMethod, IntegrationType, IntegrationUri": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_response_selection_default",
+            "test": "test_integration_response_selection_default",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "ApiId, CredentialsArn, IntegrationMethod, IntegrationType, IntegrationUri, PassthroughBehavior, PayloadFormatVersion, RequestParameters, RequestTemplates, TemplateSelectionExpression": {
         "ls_pro": [
           {
@@ -3336,6 +3560,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_sqs.py::TestHttpApiAwsProxySubtypeSQS::test_aws_proxy_sqs_operations",
+            "test": "test_aws_proxy_sqs_operations",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Server']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_sqs.py::TestHttpApiAwsProxySubtypeSQS::test_aws_proxy_sqs_send_message",
+            "test": "test_aws_proxy_sqs_send_message",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Server']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_stepfunctions.py::TestHttpApiAwsProxySubtypeStepFunctions::test_step_functions_integration_start_execution",
             "test": "test_step_functions_integration_start_execution",
             "response": "201",
@@ -3387,11 +3631,79 @@
           }
         ]
       },
+      "ApiId, IntegrationMethod, IntegrationType": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_response_selection_default",
+            "test": "test_integration_response_selection_default",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "ApiId, IntegrationMethod, IntegrationType, IntegrationUri": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_response_selection_default",
+            "test": "test_integration_response_selection_default",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_crud.py::TestApigatewayV2HttpIntegrationCrud::test_http_integration_invalid_use_cases",
             "test": "test_http_integration_invalid_use_cases",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, IntegrationMethod, IntegrationType, IntegrationUri, PassthroughBehavior, PayloadFormatVersion, RequestParameters": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_request_parameters",
+            "test": "test_integration_request_parameters",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters",
+            "test": "test_delete_route_request_parameters",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_route_request_parameters",
+            "test": "test_route_request_parameters",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_request_parameters",
+            "test": "test_integration_request_parameters",
             "response": "400",
             "error": "BadRequestException",
             "snapshot_skipped": "",
@@ -3838,7 +4150,27 @@
             "test": "test_websocket_aws_proxy_event_shape",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..requestContext.domainName', '$..requestContext.identity.userAgent']",
+            "snapshot_skipped": "['$..requestContext.domainName']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_type",
+            "test": "test_integration_type",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters_validation",
+            "test": "test_delete_route_request_parameters_validation",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3866,6 +4198,26 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestApigatewayV2PrivateIntegration::test_apigatewayv2_servicediscovery_validation",
             "test": "test_apigatewayv2_servicediscovery_validation",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_method",
+            "test": "test_integration_method",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_type",
+            "test": "test_integration_type",
             "response": "400",
             "error": "BadRequestException",
             "snapshot_skipped": "",
@@ -4134,6 +4486,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_template_selection_expr",
+            "test": "test_integration_template_selection_expr",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -4242,6 +4604,26 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_template_selection_expr",
+            "test": "test_integration_template_selection_expr",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_template_selection_expr",
+            "test": "test_integration_template_selection_expr",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -4308,6 +4690,26 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_ws_connection_with_invalid_auth",
             "test": "test_ws_connection_with_invalid_auth",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_route_model_crud",
+            "test": "test_websocket_route_model_crud",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
@@ -4576,6 +4978,80 @@
         ]
       }
     },
+    "CreateModel": {
+      "ApiId, ContentType, Description, Name, Schema": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_model_crud",
+            "test": "test_websocket_model_crud",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_route_model_crud",
+            "test": "test_websocket_route_model_crud",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_model_crud",
+            "test": "test_websocket_model_crud",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, ContentType, Name, Schema": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_model_crud",
+            "test": "test_websocket_model_crud",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, Name, Schema": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_model_crud",
+            "test": "test_websocket_model_crud",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "CreateRoute": {
       "ApiId, AuthorizationScopes, AuthorizationType, AuthorizerId, OperationName, RequestParameters, RouteKey, Target": {
         "ls_pro": [
@@ -4660,6 +5136,20 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          }
+        ]
+      },
+      "ApiId, AuthorizationScopes, AuthorizationType, OperationName, RequestParameters, RouteKey": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_no_authorizer",
+            "test": "test_import_no_authorizer",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.import-api-empty-security.ResponseMetadata.HTTPStatusCode', '$..IpAddressType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       },
@@ -5236,6 +5726,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_sqs.py::TestHttpApiAwsProxySubtypeSQS::test_aws_proxy_sqs_operations",
+            "test": "test_aws_proxy_sqs_operations",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Server']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_sqs.py::TestHttpApiAwsProxySubtypeSQS::test_aws_proxy_sqs_send_message",
+            "test": "test_aws_proxy_sqs_send_message",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Server']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_stepfunctions.py::TestHttpApiAwsProxySubtypeStepFunctions::test_step_functions_integration_start_execution",
             "test": "test_step_functions_integration_start_execution",
             "response": "201",
@@ -5620,7 +6130,7 @@
             "test": "test_websocket_aws_proxy_event_shape",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..requestContext.domainName', '$..requestContext.identity.userAgent']",
+            "snapshot_skipped": "['$..requestContext.domainName']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5644,6 +6154,30 @@
             "test": "test_connect_disconnect_always_called",
             "response": "201",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, ModelSelectionExpression, RequestModels, RouteKey, Target": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_route_model_crud",
+            "test": "test_websocket_route_model_crud",
+            "response": "400",
+            "error": "BadRequestException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -5696,6 +6230,40 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_websocket_route_missing_integration",
+            "test": "test_websocket_route_missing_integration",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, RequestParameters, RouteKey, Target": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters",
+            "test": "test_delete_route_request_parameters",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_route_request_parameters",
+            "test": "test_route_request_parameters",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -5704,6 +6272,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_crud.py::TestApigatewayV2HttpRouteCrud::test_route_with_authorizer_none",
             "test": "test_route_with_authorizer_none",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_websocket_route_missing_integration",
+            "test": "test_websocket_route_missing_integration",
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
@@ -5880,6 +6458,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters_validation",
+            "test": "test_delete_route_request_parameters_validation",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_websocket_route_duplicate",
             "test": "test_websocket_route_duplicate",
             "response": "201",
@@ -5904,6 +6492,26 @@
             "test": "test_websocket_route_response_key",
             "response": "201",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_route_request_parameters",
+            "test": "test_route_request_parameters",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_websocket_route_missing_integration",
+            "test": "test_websocket_route_missing_integration",
+            "response": "400",
+            "error": "BadRequestException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -6080,7 +6688,7 @@
             "test": "test_websocket_aws_proxy_event_shape",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..requestContext.domainName', '$..requestContext.identity.userAgent']",
+            "snapshot_skipped": "['$..requestContext.domainName']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6416,6 +7024,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_sqs.py::TestHttpApiAwsProxySubtypeSQS::test_aws_proxy_sqs_operations",
+            "test": "test_aws_proxy_sqs_operations",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Server']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_sqs.py::TestHttpApiAwsProxySubtypeSQS::test_aws_proxy_sqs_send_message",
+            "test": "test_aws_proxy_sqs_send_message",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Server']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_stepfunctions.py::TestHttpApiAwsProxySubtypeStepFunctions::test_step_functions_integration_start_execution",
             "test": "test_step_functions_integration_start_execution",
             "response": "201",
@@ -6700,7 +7328,7 @@
             "test": "test_websocket_aws_proxy_event_shape",
             "response": "201",
             "error": "",
-            "snapshot_skipped": "['$..requestContext.domainName', '$..requestContext.identity.userAgent']",
+            "snapshot_skipped": "['$..requestContext.domainName']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7634,6 +8262,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_sqs.py::TestHttpApiAwsProxySubtypeSQS::test_aws_proxy_sqs_operations",
+            "test": "test_aws_proxy_sqs_operations",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Server']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_sqs.py::TestHttpApiAwsProxySubtypeSQS::test_aws_proxy_sqs_send_message",
+            "test": "test_aws_proxy_sqs_send_message",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..headers.Server']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_aws_stepfunctions.py::TestHttpApiAwsProxySubtypeStepFunctions::test_step_functions_integration_start_execution",
             "test": "test_step_functions_integration_start_execution",
             "response": "204",
@@ -8314,6 +8962,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_no_authorizer",
+            "test": "test_import_no_authorizer",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$.import-api-empty-security.ResponseMetadata.HTTPStatusCode', '$..IpAddressType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_private.py::TestApigatewayV2PrivateIntegration::test_apigatewayv2_elb_validation",
             "test": "test_apigatewayv2_elb_validation",
             "response": "204",
@@ -8344,11 +9002,121 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_model_crud",
+            "test": "test_websocket_model_crud",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_route_model_crud",
+            "test": "test_websocket_route_model_crud",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_context.py::TestWebsocketsContext::test_websocket_aws_proxy_event_shape",
             "test": "test_websocket_aws_proxy_event_shape",
             "response": "204",
             "error": "",
-            "snapshot_skipped": "['$..requestContext.domainName', '$..requestContext.identity.userAgent']",
+            "snapshot_skipped": "['$..requestContext.domainName']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_method",
+            "test": "test_integration_method",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_request_parameters",
+            "test": "test_integration_request_parameters",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_response_selection_default",
+            "test": "test_integration_response_selection_default",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_template_selection_expr",
+            "test": "test_integration_template_selection_expr",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebSocketsIntegration::test_integration_type",
+            "test": "test_integration_type",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters",
+            "test": "test_delete_route_request_parameters",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters_validation",
+            "test": "test_delete_route_request_parameters_validation",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_route_request_parameters",
+            "test": "test_route_request_parameters",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -8356,6 +9124,16 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_websocket_route_duplicate",
             "test": "test_websocket_route_duplicate",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_websocket_route_missing_integration",
+            "test": "test_websocket_route_missing_integration",
             "response": "204",
             "error": "",
             "snapshot_skipped": "",
@@ -8964,6 +9742,32 @@
         ]
       }
     },
+    "DeleteRouteRequestParameter": {
+      "ApiId, RequestParameterKey, RouteId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters",
+            "test": "test_delete_route_request_parameters",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters_validation",
+            "test": "test_delete_route_request_parameters_validation",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "DeleteRouteResponse": {
       "ApiId, RouteId, RouteResponseId": {
         "ls_pro": [
@@ -9394,6 +10198,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_no_authorizer",
+            "test": "test_import_no_authorizer",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.import-api-empty-security.ResponseMetadata.HTTPStatusCode', '$..IpAddressType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -9624,6 +10438,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters",
+            "test": "test_delete_route_request_parameters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -9814,6 +10638,26 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websockets_crud.py::TestWebsocketsRoute::test_delete_route_request_parameters",
+            "test": "test_delete_route_request_parameters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -9903,6 +10747,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$.import-api-with-warnings.ResponseMetadata.HTTPStatusCode', '$..ImportInfo']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_no_authorizer",
+            "test": "test_import_no_authorizer",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.import-api-empty-security.ResponseMetadata.HTTPStatusCode', '$..IpAddressType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10107,6 +10961,16 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$.import-api-mock-integration.ResponseMetadata.HTTPStatusCode']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_import.py::TestApigatewayV2HttpImportApi::test_import_no_authorizer",
+            "test": "test_import_no_authorizer",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$.import-api-empty-security.ResponseMetadata.HTTPStatusCode', '$..IpAddressType']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -10677,11 +11541,105 @@
           }
         ]
       },
+      "ApiId, ModelSelectionExpression, RequestModels, RouteId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, ModelSelectionExpression, RequestModels, RouteId, RouteKey": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, ModelSelectionExpression, RouteId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, ModelSelectionExpression, RouteId, RouteKey": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "ApiId, OperationName, RouteId": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_apigatewayv2_http_crud.py::TestApigatewayV2HttpRouteCrud::test_route_with_authorizer_none",
             "test": "test_route_with_authorizer_none",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, RequestModels, RouteId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "ApiId, RequestModels, RouteId, RouteKey": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigatewayv2/test_websockets/test_websocket_validation.py::TestWebsocketsValidation::test_websocket_update_route_models",
+            "test": "test_websocket_update_route_models",
             "response": "201",
             "error": "",
             "snapshot_skipped": "",

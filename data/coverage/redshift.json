@@ -43,11 +43,11 @@
       "AuthorizeClusterSecurityGroupIngress": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -175,11 +175,11 @@
       "CreateClusterSecurityGroup": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -679,11 +679,11 @@
       "DescribeClusterSecurityGroups": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -1673,22 +1673,6 @@
     }
   ],
   "details": {
-    "AuthorizeClusterSecurityGroupIngress": {
-      "CIDRIP, ClusterSecurityGroupName": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/redshift/test_redshift.py::TestRedshift::test_cluster_security_groups",
-            "test": "test_cluster_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
     "CreateCluster": {
       "ClusterIdentifier, ClusterParameterGroupName, ClusterSubnetGroupName, ClusterType, DBName, MasterUserPassword, MasterUsername, NodeType": {
         "ls_pro": [
@@ -1714,20 +1698,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
-          }
-        ]
-      },
-      "ClusterIdentifier, ClusterType, DBName, MasterUserPassword, MasterUsername, NodeType": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_redshift.py::test_redshift_cluster",
-            "test": "test_redshift_cluster",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
             "origin": "internal"
           }
         ]
@@ -1765,20 +1735,6 @@
             "origin": "external"
           }
         ]
-      },
-      "ClusterIdentifier, MasterUserPassword, MasterUsername, NodeType, NumberOfNodes, PubliclyAccessible": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/redshift/test_redshift.py::TestRedshift::test_create_clusters",
-            "test": "test_create_clusters",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
       }
     },
     "CreateClusterParameterGroup": {
@@ -1802,22 +1758,6 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "CreateClusterSecurityGroup": {
-      "ClusterSecurityGroupName, Description": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/redshift/test_redshift.py::TestRedshift::test_cluster_security_groups",
-            "test": "test_cluster_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -1851,18 +1791,6 @@
     },
     "DeleteCluster": {
       "ClusterIdentifier": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_redshift.py::test_redshift_cluster",
-            "test": "test_redshift_cluster",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/kinesis_firehose_redshift/test_kinesis_firehose_redshift.py::TestKinesisFirehoseScenario::test_kinesis_firehose_redshift",
@@ -1907,18 +1835,6 @@
         ]
       },
       "ClusterIdentifier, SkipFinalClusterSnapshot": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/redshift/test_redshift.py::TestRedshift::test_create_clusters",
-            "test": "test_create_clusters",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_firehose_redshift_as_target",
@@ -2027,36 +1943,8 @@
         ]
       }
     },
-    "DescribeClusterSecurityGroups": {
-      "ClusterSecurityGroupName": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/redshift/test_redshift.py::TestRedshift::test_cluster_security_groups",
-            "test": "test_cluster_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
     "DescribeClusters": {
       "- (without any parameters)": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/redshift/test_redshift.py::TestRedshift::test_create_clusters",
-            "test": "test_create_clusters",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_firehose_redshift_as_target",
@@ -2111,38 +1999,6 @@
         ]
       },
       "ClusterIdentifier": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_redshift.py::test_redshift_cluster",
-            "test": "test_redshift_cluster",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_redshift.py::test_redshift_cluster",
-            "test": "test_redshift_cluster",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/redshift/test_redshift.py::TestRedshift::test_create_clusters",
-            "test": "test_create_clusters",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/kinesis_firehose_redshift/test_kinesis_firehose_redshift.py::TestKinesisFirehoseScenario::test_kinesis_firehose_redshift",

@@ -1,5 +1,6 @@
 {
   "service": "s3control",
+  "pro_support": true,
   "community_support": true,
   "operations": [
     {
@@ -112,8 +113,8 @@
     },
     {
       "CreateStorageLensGroup": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -318,10 +319,10 @@
       "DeletePublicAccessBlock": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
+        "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -702,10 +703,10 @@
       "GetPublicAccessBlock": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
+        "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -1050,10 +1051,10 @@
       "PutPublicAccessBlock": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
+        "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -1167,94 +1168,5 @@
       }
     }
   ],
-  "details": {
-    "DeletePublicAccessBlock": {
-      "AccountId": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3control/test_s3control.py::TestLegacyS3Control::test_lifecycle_public_access_block",
-            "test": "test_lifecycle_public_access_block",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "GetPublicAccessBlock": {
-      "AccountId": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3control/test_s3control.py::TestLegacyS3Control::test_lifecycle_public_access_block",
-            "test": "test_lifecycle_public_access_block",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3control/test_s3control.py::TestLegacyS3Control::test_public_access_block_validations",
-            "test": "test_public_access_block_validations",
-            "response": "403",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3control/test_s3control.py::TestLegacyS3Control::test_lifecycle_public_access_block",
-            "test": "test_lifecycle_public_access_block",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "PutPublicAccessBlock": {
-      "AccountId, PublicAccessBlockConfiguration": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3control/test_s3control.py::TestLegacyS3Control::test_lifecycle_public_access_block",
-            "test": "test_lifecycle_public_access_block",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3control/test_s3control.py::TestLegacyS3Control::test_public_access_block_validations",
-            "test": "test_public_access_block_validations",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3control/test_s3control.py::TestLegacyS3Control::test_public_access_block_validations",
-            "test": "test_public_access_block_validations",
-            "response": "403",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    }
-  }
+  "details": {}
 }

@@ -18,11 +18,11 @@
       "AssociateVPCWithHostedZone": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -126,11 +126,11 @@
       "CreateReusableDelegationSet": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -258,11 +258,11 @@
       "DeleteReusableDelegationSet": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -318,11 +318,11 @@
       "DisassociateVPCFromHostedZone": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -498,11 +498,11 @@
       "GetReusableDelegationSet": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -678,11 +678,11 @@
       "ListReusableDelegationSets": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -844,56 +844,8 @@
     }
   ],
   "details": {
-    "AssociateVPCWithHostedZone": {
-      "Comment, HostedZoneId, VPC": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_associate_vpc_with_hosted_zone",
-            "test": "test_associate_vpc_with_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
     "ChangeResourceRecordSets": {
       "ChangeBatch, HostedZoneId": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_id",
-            "test": "test_create_record_set_via_id",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_name",
-            "test": "test_create_record_set_via_name",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_without_resource_record",
-            "test": "test_create_record_set_without_resource_record",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/ec2_acm_pca/test_ec2_acm_pca.py::TestEC2ACMPCA::test_curl_from_client",
@@ -1056,6 +1008,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::test_elb_routing",
+            "test": "test_elb_routing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::test_elb_routing_cfn",
+            "test": "test_elb_routing_cfn",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_register_instance_in_private_dns_namespace",
             "test": "test_register_instance_in_private_dns_namespace",
             "response": "200",
@@ -1126,28 +1098,6 @@
     },
     "CreateHealthCheck": {
       "CallerReference, HealthCheckConfig": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_health_check",
-            "test": "test_create_health_check",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$..HealthCheckConfig.EnableSNI', '$..HealthCheckVersion']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_crud_health_check",
-            "test": "test_crud_health_check",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
@@ -1188,28 +1138,6 @@
         ]
       },
       "CallerReference, HostedZoneConfig, Name, VPC": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_associate_vpc_with_hosted_zone",
-            "test": "test_associate_vpc_with_hosted_zone",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_private_hosted_zone",
-            "test": "test_create_private_hosted_zone",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..MaxItems']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/ec2_acm_pca/test_ec2_acm_pca.py::TestEC2ACMPCA::test_curl_from_client",
@@ -1344,48 +1272,6 @@
         ]
       },
       "CallerReference, Name": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_id",
-            "test": "test_create_record_set_via_id",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_name",
-            "test": "test_create_record_set_via_name",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_without_resource_record",
-            "test": "test_create_record_set_without_resource_record",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_hosted_zone",
-            "test": "test_create_hosted_zone",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "['$..DelegationSet.Id', '$..HostedZone.CallerReference']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_route53/test_route53_hostedzone.py::test_read_hosted_zone_public",
@@ -1618,6 +1504,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::test_elb_routing",
+            "test": "test_elb_routing",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::test_elb_routing_cfn",
+            "test": "test_elb_routing_cfn",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/shield/test_shield.py::TestShield::test_create_and_delete_protection",
             "test": "test_create_and_delete_protection",
             "response": "201",
@@ -1678,20 +1584,6 @@
             "origin": "internal"
           }
         ]
-      },
-      "CallerReference, Name, VPC": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_hosted_zone_in_non_existent_vpc",
-            "test": "test_create_hosted_zone_in_non_existent_vpc",
-            "response": "400",
-            "error": "InvalidVPCId",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
       }
     },
     "CreateQueryLoggingConfig": {
@@ -1750,56 +1642,8 @@
         ]
       }
     },
-    "CreateReusableDelegationSet": {
-      "CallerReference": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_reusable_delegation_sets",
-            "test": "test_reusable_delegation_sets",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
     "DeleteHealthCheck": {
       "HealthCheckId": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_health_check",
-            "test": "test_create_health_check",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..HealthCheckConfig.EnableSNI', '$..HealthCheckVersion']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_crud_health_check",
-            "test": "test_crud_health_check",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_crud_health_check",
-            "test": "test_crud_health_check",
-            "response": "404",
-            "error": "NoSuchHealthCheck",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
@@ -1826,68 +1670,6 @@
     },
     "DeleteHostedZone": {
       "Id": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_id",
-            "test": "test_create_record_set_via_id",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_associate_vpc_with_hosted_zone",
-            "test": "test_associate_vpc_with_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_hosted_zone",
-            "test": "test_create_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..DelegationSet.Id', '$..HostedZone.CallerReference']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_private_hosted_zone",
-            "test": "test_create_private_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..MaxItems']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_name",
-            "test": "test_create_record_set_via_name",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_without_resource_record",
-            "test": "test_create_record_set_without_resource_record",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/ec2_acm_pca/test_ec2_acm_pca.py::TestEC2ACMPCA::test_curl_from_client",
@@ -2140,6 +1922,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::test_elb_routing",
+            "test": "test_elb_routing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::test_elb_routing_cfn",
+            "test": "test_elb_routing_cfn",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_private",
             "test": "test_dns_namespace_private",
             "response": "200",
@@ -2338,62 +2140,6 @@
         ]
       }
     },
-    "DeleteReusableDelegationSet": {
-      "Id": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_reusable_delegation_sets",
-            "test": "test_reusable_delegation_sets",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "DisassociateVPCFromHostedZone": {
-      "Comment, HostedZoneId, VPC": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_associate_vpc_with_hosted_zone",
-            "test": "test_associate_vpc_with_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "HostedZoneId, VPC": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_associate_vpc_with_hosted_zone",
-            "test": "test_associate_vpc_with_hosted_zone",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_associate_vpc_with_hosted_zone",
-            "test": "test_associate_vpc_with_hosted_zone",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
     "GetChange": {
       "Id": {
         "ls_pro": [
@@ -2472,28 +2218,6 @@
     },
     "GetHealthCheck": {
       "HealthCheckId": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_health_check",
-            "test": "test_create_health_check",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..HealthCheckConfig.EnableSNI', '$..HealthCheckVersion']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_crud_health_check",
-            "test": "test_crud_health_check",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_dns_failover_based_on_health_check",
@@ -2536,38 +2260,6 @@
     },
     "GetHostedZone": {
       "Id": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_associate_vpc_with_hosted_zone",
-            "test": "test_associate_vpc_with_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_hosted_zone",
-            "test": "test_create_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..DelegationSet.Id', '$..HostedZone.CallerReference']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_private_hosted_zone",
-            "test": "test_create_private_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..MaxItems']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudcontrol/services/test_route53/test_route53_hostedzone.py::test_read_hosted_zone_private",
@@ -2772,116 +2464,8 @@
         ]
       }
     },
-    "GetReusableDelegationSet": {
-      "Id": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_reusable_delegation_sets",
-            "test": "test_reusable_delegation_sets",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_reusable_delegation_sets",
-            "test": "test_reusable_delegation_sets",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
     "ListHostedZones": {
       "DelegationSetId, HostedZoneType, Marker, MaxItems": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_basic.py::TestAPIGateway::test_api_gateway_handle_domain_name",
-            "test": "test_api_gateway_handle_domain_name",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_basic.py::TestAPIGateway::test_base_path_mapping",
-            "test": "test_base_path_mapping",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_basic.py::TestAPIGateway::test_base_path_mapping_root",
-            "test": "test_base_path_mapping_root",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_extended.py::test_create_domain_names",
-            "test": "test_create_domain_names",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_extended.py::test_get_domain_name",
-            "test": "test_get_domain_name",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_extended.py::test_get_domain_names",
-            "test": "test_get_domain_names",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_apigateway.py::test_cfn_apigateway_aws_integration",
-            "test": "test_cfn_apigateway_aws_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_private_hosted_zone",
-            "test": "test_create_private_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..MaxItems']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_custom_domain_dns_resolution",
@@ -3078,28 +2662,6 @@
     },
     "ListHostedZonesByName": {
       "DNSName, HostedZoneId, MaxItems": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_name",
-            "test": "test_create_record_set_via_name",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_associate_vpc_with_hosted_zone",
-            "test": "test_associate_vpc_with_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_dns_namespace_private_hosted_zone",
@@ -3116,28 +2678,6 @@
     },
     "ListHostedZonesByVPC": {
       "MaxItems, NextToken, VPCId, VPCRegion": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_associate_vpc_with_hosted_zone",
-            "test": "test_associate_vpc_with_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_private_hosted_zone",
-            "test": "test_create_private_hosted_zone",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..HostedZone.CallerReference', '$..MaxItems']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_private_hostedzone",
@@ -3422,6 +2962,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::test_elb_routing",
+            "test": "test_elb_routing",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/servicediscovery/test_servicediscovery.py::TestServicediscovery::test_register_instance_in_private_dns_namespace",
             "test": "test_register_instance_in_private_dns_namespace",
             "response": "200",
@@ -3467,22 +3017,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$.source-hosted-zone.ChangeInfo.Status', '$.source-hosted-zone.DelegationSet.Id']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "ListReusableDelegationSets": {
-      "Marker, MaxItems": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_reusable_delegation_sets",
-            "test": "test_reusable_delegation_sets",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"

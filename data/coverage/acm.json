@@ -30,11 +30,11 @@
       "DescribeCertificate": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -55,7 +55,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -94,7 +94,7 @@
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": true,
-        "snapshot_tested": true,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -115,7 +115,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -171,6 +171,18 @@
       }
     },
     {
+      "RevokeCertificate": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "UpdateCertificateOptions": {
         "implemented": false,
         "availability": "",
@@ -186,78 +198,6 @@
   "details": {
     "DeleteCertificate": {
       "CertificateArn": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_boto_wait_for_certificate_validation",
-            "test": "test_boto_wait_for_certificate_validation",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_certificate_for_subdomain_wildcard",
-            "test": "test_certificate_for_subdomain_wildcard",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Certificate.SignatureAlgorithm']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_create_certificate_for_multiple_alternative_domains",
-            "test": "test_create_certificate_for_multiple_alternative_domains",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ExtendedKeyUsages', '$..IssuedAt', '$..KeyUsages', '$..NotAfter', '$..NotBefore', '$..Status', '$..DomainValidationOptions..ValidationMethod', '$..DomainValidationOptions..ValidationEmails', '$..DomainValidationOptions..ValidationStatus', '$..FailureReason', '$..ResourceRecord', '$..SignatureAlgorithm', '$..Serial']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_domain_validation",
-            "test": "test_domain_validation",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ResourceRecord', '$..ValidationEmails']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_import_certificate",
-            "test": "test_import_certificate",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Certificate.CreatedAt', '$..Certificate.DomainValidationOptions', '$..Certificate.ExtendedKeyUsages', '$..Certificate.ExtendedKeyUsages..Name', '$..Certificate.ExtendedKeyUsages..OID', '$..Certificate.Issuer', '$..Certificate.KeyUsages', '$..Certificate.KeyUsages..Name', '$..Certificate.Options.CertificateTransparencyLoggingPreference', '$..Certificate.Serial', '$..Certificate.Subject']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_acm.py::test_cfn_acm_certificate",
-            "test": "test_cfn_acm_certificate",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/ported_from_v1/resources/test_acm.py::test_cfn_acm_certificate",
-            "test": "test_cfn_acm_certificate",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_apigateway_custom_domain.py::TestApigatewayCustomDomain::test_custom_domain_dns_resolution",
@@ -452,62 +392,6 @@
         ]
       }
     },
-    "DescribeCertificate": {
-      "CertificateArn": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_boto_wait_for_certificate_validation",
-            "test": "test_boto_wait_for_certificate_validation",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_certificate_for_subdomain_wildcard",
-            "test": "test_certificate_for_subdomain_wildcard",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Certificate.SignatureAlgorithm']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_create_certificate_for_multiple_alternative_domains",
-            "test": "test_create_certificate_for_multiple_alternative_domains",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ExtendedKeyUsages', '$..IssuedAt', '$..KeyUsages', '$..NotAfter', '$..NotBefore', '$..Status', '$..DomainValidationOptions..ValidationMethod', '$..DomainValidationOptions..ValidationEmails', '$..DomainValidationOptions..ValidationStatus', '$..FailureReason', '$..ResourceRecord', '$..SignatureAlgorithm', '$..Serial']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_domain_validation",
-            "test": "test_domain_validation",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ResourceRecord', '$..ValidationEmails']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_import_certificate",
-            "test": "test_import_certificate",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Certificate.CreatedAt', '$..Certificate.DomainValidationOptions', '$..Certificate.ExtendedKeyUsages', '$..Certificate.ExtendedKeyUsages..Name', '$..Certificate.ExtendedKeyUsages..OID', '$..Certificate.Issuer', '$..Certificate.KeyUsages', '$..Certificate.KeyUsages..Name', '$..Certificate.Options.CertificateTransparencyLoggingPreference', '$..Certificate.Serial', '$..Certificate.Subject']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
     "ImportCertificate": {
       "Certificate, CertificateChain, PrivateKey": {
         "ls_pro": [
@@ -662,86 +546,10 @@
             "origin": "external"
           }
         ]
-      },
-      "Certificate, PrivateKey": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_import_certificate",
-            "test": "test_import_certificate",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Certificate.CreatedAt', '$..Certificate.DomainValidationOptions', '$..Certificate.ExtendedKeyUsages', '$..Certificate.ExtendedKeyUsages..Name', '$..Certificate.ExtendedKeyUsages..OID', '$..Certificate.Issuer', '$..Certificate.KeyUsages', '$..Certificate.KeyUsages..Name', '$..Certificate.Options.CertificateTransparencyLoggingPreference', '$..Certificate.Serial', '$..Certificate.Subject']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_import_certificate",
-            "test": "test_import_certificate",
-            "response": "400",
-            "error": "ValidationException",
-            "snapshot_skipped": "['$..Certificate.CreatedAt', '$..Certificate.DomainValidationOptions', '$..Certificate.ExtendedKeyUsages', '$..Certificate.ExtendedKeyUsages..Name', '$..Certificate.ExtendedKeyUsages..OID', '$..Certificate.Issuer', '$..Certificate.KeyUsages', '$..Certificate.KeyUsages..Name', '$..Certificate.Options.CertificateTransparencyLoggingPreference', '$..Certificate.Serial', '$..Certificate.Subject']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
       }
     },
     "ListCertificates": {
       "- (without any parameters)": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_certificate_for_subdomain_wildcard",
-            "test": "test_certificate_for_subdomain_wildcard",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Certificate.SignatureAlgorithm']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_create_certificate_for_multiple_alternative_domains",
-            "test": "test_create_certificate_for_multiple_alternative_domains",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ExtendedKeyUsages', '$..IssuedAt', '$..KeyUsages', '$..NotAfter', '$..NotBefore', '$..Status', '$..DomainValidationOptions..ValidationMethod', '$..DomainValidationOptions..ValidationEmails', '$..DomainValidationOptions..ValidationStatus', '$..FailureReason', '$..ResourceRecord', '$..SignatureAlgorithm', '$..Serial']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_acm.py::test_cfn_acm_certificate",
-            "test": "test_cfn_acm_certificate",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/ported_from_v1/resources/test_acm.py::test_cfn_acm_certificate",
-            "test": "test_cfn_acm_certificate",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_multi_accounts.py::TestMultiAccounts::test_account_id_namespacing_for_moto_backends",
-            "test": "test_account_id_namespacing_for_moto_backends",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_acm",
@@ -768,38 +576,6 @@
     },
     "RequestCertificate": {
       "DomainName": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_boto_wait_for_certificate_validation",
-            "test": "test_boto_wait_for_certificate_validation",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_domain_validation",
-            "test": "test_domain_validation",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ResourceRecord', '$..ValidationEmails']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_multi_accounts.py::TestMultiAccounts::test_account_id_namespacing_for_moto_backends",
-            "test": "test_account_id_namespacing_for_moto_backends",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync_api.py::TestAppSyncCrud::test_associate_api",
@@ -853,57 +629,7 @@
           }
         ]
       },
-      "DomainName, DomainValidationOptions, ValidationMethod": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_acm.py::test_cfn_acm_certificate",
-            "test": "test_cfn_acm_certificate",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/v2/ported_from_v1/resources/test_acm.py::test_cfn_acm_certificate",
-            "test": "test_cfn_acm_certificate",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          }
-        ]
-      },
-      "DomainName, SubjectAlternativeNames": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_create_certificate_for_multiple_alternative_domains",
-            "test": "test_create_certificate_for_multiple_alternative_domains",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ExtendedKeyUsages', '$..IssuedAt', '$..KeyUsages', '$..NotAfter', '$..NotBefore', '$..Status', '$..DomainValidationOptions..ValidationMethod', '$..DomainValidationOptions..ValidationEmails', '$..DomainValidationOptions..ValidationStatus', '$..FailureReason', '$..ResourceRecord', '$..SignatureAlgorithm', '$..Serial']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
       "DomainName, ValidationMethod": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/acm/test_acm.py::TestACM::test_certificate_for_subdomain_wildcard",
-            "test": "test_certificate_for_subdomain_wildcard",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..Certificate.SignatureAlgorithm']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_apigatewayv2.py::TestApiGwV2Apis::test_domain_name_attributes",
