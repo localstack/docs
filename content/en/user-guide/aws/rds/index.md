@@ -4,6 +4,7 @@ linkTitle: "Relational Database Service (RDS)"
 description: Get started with Relational Database Service (RDS) on LocalStack
 tags: ["Base"]
 persistence: supported with limitations
+
 ---
 
 ## Introduction
