@@ -96,6 +96,13 @@ Please note that a complete configuration would entail additional values relevan
 --distribution-config {...'Aliases':'{'Quantity':2, 'Items': ['custom.domain.one', 'customDomain.two']}'...}
 {{< / command >}}
 
+## Custom IDs for CloudFront Distributions via tags
+
+Each CloudFront distribution is created with a random unique identifier automatically assigned by AWS.
+Given that the distribution ID is part of the generated domain name, it can be useful to have the possibility to create distributions with a deterministic ID (e.g., to simplify testing or integration with other AWS services).
+
+LocalStack offers this possibility by using the `_custom_id_` tag when creating a distribution with the [`CreateDistributionWithTags`](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistributionWithTags.html) operation.
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for CloudFront, which allows you to view and manage your CloudFront distributions.
