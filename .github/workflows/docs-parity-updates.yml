@@ -84,10 +84,13 @@ jobs:
 
       - name: Download metrics data from latest Community test run (CircleCI)
         working-directory: docs
+        run: /tmp/get_latest_github_metrics.sh ./target master
         env:
-          CIRCLE_CI_TOKEN: ${{ secrets.CIRCLE_CI_TOKEN }}
-        run: /tmp/get_latest_circleci_metrics.sh ./target
-
+          GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
+          REPOSITORY_NAME: localstack
+          ARTIFACT_ID: capture-notimplemented
+          WORKFLOW: "AWS / Build, Test, Push"
+          RESOURCE_FOLDER: "metrics-implementation-details/community"
 
       - name: Create Parity Coverage Docs
         working-directory: docs
