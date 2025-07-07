@@ -1,6 +1,6 @@
 # 📖 Parity Metrics Docs Update Report 📖
 This PR has been automatically generated to update the AWS parity coverage docs.
-It aggregates the latest parity coverage test results from our [test pipeline on CircleCI](https://app.circleci.com/pipelines/github/localstack/localstack/) as well as from our Pro integration tests.
+It aggregates the latest parity coverage test results from our [test pipeline on GitHub](https://github.com/localstack/localstack/actions/workflows/aws-main.yml?query=branch%3Amaster) as well as from our Pro integration tests.
 
 ## 👷🏽 Handle this PR
 The following options describe how to interact with this PR / the auto-update:
