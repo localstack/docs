@@ -4,6 +4,7 @@ linkTitle: "Lambda"
 description: Get started with Lambda on LocalStack
 tags: ["Free"]
 persistence: supported with limitations
+
 ---
 
 ## Introduction

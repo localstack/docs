@@ -4,6 +4,7 @@ linkTitle: "CloudFront"
 description: Get started with CloudFront on LocalStack
 tags: ["Base"]
 persistence: supported
+
 ---
 
 ## Introduction

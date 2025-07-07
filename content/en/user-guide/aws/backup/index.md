@@ -4,6 +4,7 @@ linkTitle: "Backup"
 description: Get started with Backup on LocalStack
 tags: ["Ultimate"]
 persistence: supported
+
 ---
 
 ## Introduction

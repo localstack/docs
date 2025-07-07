@@ -4,6 +4,7 @@ linkTitle: "Timestream"
 description: Get started with Timestream on LocalStack
 tags: ["Ultimate"]
 persistence: supported
+
 ---
 
 ## Introduction

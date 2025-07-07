@@ -4,6 +4,7 @@ linkTitle: "EventBridge Pipes"
 description: Get started with EventBridge Pipes on LocalStack
 tags: ["Free"]
 persistence: supported with limitations
+
 ---
 
 ## Introduction

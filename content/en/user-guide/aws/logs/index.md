@@ -4,6 +4,7 @@ linkTitle: "CloudWatch Logs"
 description: Get started with AWS CloudWatch Logs on LocalStack
 tags: ["Free"]
 persistence: supported
+
 ---
 
 [CloudWatch Logs](https://docs.aws.amazon.com/cloudwatch/index.html) allows to store and retrieve logs.

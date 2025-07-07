@@ -4,6 +4,7 @@ linkTitle: "Identity and Access Management (IAM)"
 description: Get started with AWS Identity and Access Management (IAM) on LocalStack
 persistence: supported
 tags: ["Free"]
+
 ---
 
 ## Introduction
