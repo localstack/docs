@@ -38,8 +38,7 @@ jobs:
       - name: Download scripts from meta repository
         run: |
           curl -o /tmp/get_latest_github_metrics.sh -L https://raw.githubusercontent.com/localstack/meta/main/scripts/get_latest_github_metrics.sh -H 'Accept: application/vnd.github.v3.raw'
-          curl -o /tmp/get_latest_circleci_metrics.sh -L https://raw.githubusercontent.com/localstack/meta/main/scripts/get_latest_circleci_metrics.sh -H 'Accept: application/vnd.github.v3.raw'
-          chmod +x /tmp/get_latest_github_metrics.sh /tmp/get_latest_circleci_metrics.sh 
+          chmod +x /tmp/get_latest_github_metrics.sh
 
       - name: Download metrics data from Moto Integration test pipeline (GitHub)
         working-directory: docs
@@ -82,12 +81,25 @@ jobs:
           WORKFLOW: "AWS / Build, Test, Push" 
           RESOURCE_FOLDER: "metrics-implementation-details"
 
-      - name: Download metrics data from latest Community test run (CircleCI)
+      - name: Download metrics data from Community pipeline (GitHub)
         working-directory: docs
+        run: /tmp/get_latest_github_metrics.sh ./target master
         env:
-          CIRCLE_CI_TOKEN: ${{ secrets.CIRCLE_CI_TOKEN }}
-        run: /tmp/get_latest_circleci_metrics.sh ./target
+          GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
+          REPOSITORY_NAME: localstack
+          ARTIFACT_ID: parity-metric-raw-amd*
+          WORKFLOW: "AWS / Build, Test, Push"
+          PREFIX_ARTIFACT: community-integration-test
 
+      - name: Download coverage (capture-notimplemented) data from Community pipeline (GitHub)
+        working-directory: docs
+        run: /tmp/get_latest_github_metrics.sh ./target master
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
+          REPOSITORY_NAME: localstack
+          ARTIFACT_ID: capture-notimplemented
+          WORKFLOW: "AWS / Build, Test, Push"
+          RESOURCE_FOLDER: "metrics-implementation-details/community"
 
       - name: Create Parity Coverage Docs
         working-directory: docs
