@@ -4,6 +4,7 @@ linkTitle: "Amplify"
 description: Get started with Amplify on LocalStack
 tags: ["Ultimate"]
 persistence: supported
+
 ---
 
 ## Introduction

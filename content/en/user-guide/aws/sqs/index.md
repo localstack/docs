@@ -5,6 +5,7 @@ aliases:
 - /aws/sqs/
 persistence: supported
 tags: ["Free"]
+
 ---
 
 ## Introduction

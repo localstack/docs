@@ -4,6 +4,7 @@ linkTitle: "Elastic Compute Cloud (EC2)"
 tags: ["Free"]
 description: Get started with Amazon Elastic Compute Cloud (EC2) on LocalStack
 persistence: supported with limitations
+
 ---
 
 ## Introduction

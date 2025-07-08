@@ -4,6 +4,7 @@ linkTitle: "Elastic Container Service (ECS)"
 tags: ["Base"]
 description: Get started with Elastic Container Service (ECS) on LocalStack
 persistence: supported
+
 ---
 
 ## Introduction

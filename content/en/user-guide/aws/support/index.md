@@ -4,6 +4,7 @@ linkTitle: "Support"
 description: Get started with Support on LocalStack
 persistence: supported
 tags: ["Free"]
+
 ---
 
 ## Introduction
