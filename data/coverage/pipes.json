@@ -112,13 +112,13 @@
     },
     {
       "UpdatePipe": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     }
@@ -194,6 +194,16 @@
       "Name, RoleArn, Source, SourceParameters, Target": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_default_kinesis_source_batch_size_with_sqs_target",
+            "test": "test_default_kinesis_source_batch_size_with_sqs_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_dynamodb_pipe",
             "test": "test_dynamodb_pipe",
             "response": "200",
@@ -244,6 +254,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_validation.py::TestPipesValidation::test_source_parameters_for_wrong_source_type",
+            "test": "test_source_parameters_for_wrong_source_type",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_validation.py::TestPipesValidation::test_sqs_source_batch_size_bigger_than_event_bus_target_allows",
             "test": "test_sqs_source_batch_size_bigger_than_event_bus_target_allows",
             "response": "400",
@@ -270,6 +290,36 @@
           {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_kinesis_pipe",
             "test": "test_kinesis_pipe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_kinesis_source_batch_config",
+            "test": "test_change_kinesis_source_batch_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_kinesis_target_to_sqs",
+            "test": "test_change_kinesis_target_to_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_source_batch_size_exceeds_new_target_max_batch_size",
+            "test": "test_source_batch_size_exceeds_new_target_max_batch_size",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..StateReason']",
@@ -332,6 +382,76 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_add_and_update_enrichment",
+            "test": "test_add_and_update_enrichment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_add_filtering",
+            "test": "test_add_filtering",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_sqs_source_batch_config",
+            "test": "test_change_sqs_source_batch_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..md5OfMessageAttributes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_missing_required_parameters_for_new_kinesis_target",
+            "test": "test_missing_required_parameters_for_new_kinesis_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_parameters_for_wrong_source_type",
+            "test": "test_pipe_update_parameters_for_wrong_source_type",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_sqs_source_batch_size_bigger_than_target_sqs",
+            "test": "test_pipe_update_sqs_source_batch_size_bigger_than_target_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_validation.py::TestPipesValidation::test_missing_required_kinesis_target_parameters",
+            "test": "test_missing_required_kinesis_target_parameters",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_validation.py::TestPipesValidation::test_source_equals_destination",
             "test": "test_source_equals_destination",
             "response": "400",
@@ -364,6 +484,26 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_parameters_for_wrong_target_type",
+            "test": "test_pipe_update_parameters_for_wrong_target_type",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_validation.py::TestPipesValidation::test_target_parameters_for_wrong_target_type",
+            "test": "test_target_parameters_for_wrong_target_type",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -380,6 +520,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_default_kinesis_source_batch_size_with_sqs_target",
+            "test": "test_default_kinesis_source_batch_size_with_sqs_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_dynamodb_pipe",
@@ -532,6 +682,106 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_add_and_update_enrichment",
+            "test": "test_add_and_update_enrichment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_add_filtering",
+            "test": "test_add_filtering",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_kinesis_source_batch_config",
+            "test": "test_change_kinesis_source_batch_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_kinesis_target_to_sqs",
+            "test": "test_change_kinesis_target_to_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_sqs_source_batch_config",
+            "test": "test_change_sqs_source_batch_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..md5OfMessageAttributes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_missing_required_parameters_for_new_kinesis_target",
+            "test": "test_missing_required_parameters_for_new_kinesis_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_parameters_for_wrong_source_type",
+            "test": "test_pipe_update_parameters_for_wrong_source_type",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_parameters_for_wrong_target_type",
+            "test": "test_pipe_update_parameters_for_wrong_target_type",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_sqs_source_batch_size_bigger_than_target_sqs",
+            "test": "test_pipe_update_sqs_source_batch_size_bigger_than_target_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_source_batch_size_exceeds_new_target_max_batch_size",
+            "test": "test_source_batch_size_exceeds_new_target_max_batch_size",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_pipe",
             "test": "test_pipe",
             "response": "404",
@@ -563,6 +813,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes.py::TestPipes::test_default_kinesis_source_batch_size_with_sqs_target",
+            "test": "test_default_kinesis_source_batch_size_with_sqs_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -733,6 +993,106 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_add_and_update_enrichment",
+            "test": "test_add_and_update_enrichment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_add_filtering",
+            "test": "test_add_filtering",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_kinesis_source_batch_config",
+            "test": "test_change_kinesis_source_batch_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_kinesis_target_to_sqs",
+            "test": "test_change_kinesis_target_to_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_sqs_source_batch_config",
+            "test": "test_change_sqs_source_batch_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..md5OfMessageAttributes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_missing_required_parameters_for_new_kinesis_target",
+            "test": "test_missing_required_parameters_for_new_kinesis_target",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_parameters_for_wrong_source_type",
+            "test": "test_pipe_update_parameters_for_wrong_source_type",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_parameters_for_wrong_target_type",
+            "test": "test_pipe_update_parameters_for_wrong_target_type",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_sqs_source_batch_size_bigger_than_target_sqs",
+            "test": "test_pipe_update_sqs_source_batch_size_bigger_than_target_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_source_batch_size_exceeds_new_target_max_batch_size",
+            "test": "test_source_batch_size_exceeds_new_target_max_batch_size",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -874,6 +1234,124 @@
             "test": "test_pipe_tags",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdatePipe": {
+      "Enrichment, Name, RoleArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_add_and_update_enrichment",
+            "test": "test_add_and_update_enrichment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "Name, RoleArn, SourceParameters": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_add_filtering",
+            "test": "test_add_filtering",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_kinesis_source_batch_config",
+            "test": "test_change_kinesis_source_batch_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_sqs_source_batch_config",
+            "test": "test_change_sqs_source_batch_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..md5OfMessageAttributes']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_parameters_for_wrong_source_type",
+            "test": "test_pipe_update_parameters_for_wrong_source_type",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_sqs_source_batch_size_bigger_than_target_sqs",
+            "test": "test_pipe_update_sqs_source_batch_size_bigger_than_target_sqs",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "Name, RoleArn, Target": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_pipe.py::TestPipeUpdate::test_change_kinesis_target_to_sqs",
+            "test": "test_change_kinesis_target_to_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_missing_required_parameters_for_new_kinesis_target",
+            "test": "test_missing_required_parameters_for_new_kinesis_target",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_source_batch_size_exceeds_new_target_max_batch_size",
+            "test": "test_source_batch_size_exceeds_new_target_max_batch_size",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "['$..StateReason']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "Name, RoleArn, Target, TargetParameters": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/pipes/test_pipes_update_validation.py::TestPipeUpdateValidation::test_pipe_update_parameters_for_wrong_target_type",
+            "test": "test_pipe_update_parameters_for_wrong_target_type",
+            "response": "400",
+            "error": "ValidationException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
