@@ -528,7 +528,7 @@
             "test": "test_sns_cross_account_publish",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -790,6 +790,26 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_fifo_with_deduplication",
             "test": "test_sns_topic_fifo_with_deduplication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_attributes",
+            "test": "test_sns_topic_update_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
@@ -1178,7 +1198,7 @@
             "test": "test_nested_output_in_params",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Role.AssumeRolePolicyDocument..Action']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Role.AssumeRolePolicyDocument..Action', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1574,6 +1594,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_policy_resets_to_default",
+            "test": "test_sns_topic_policy_resets_to_default",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_update_subscription",
             "test": "test_update_subscription",
             "response": "200",
@@ -1896,6 +1926,26 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiAccounts::test_cross_account_publish_to_sqs",
             "test": "test_cross_account_publish_to_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_access",
+            "test": "test_cross_region_access",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_delivery_sqs",
+            "test": "test_cross_region_delivery_sqs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2569,6 +2619,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSTopicCrud::test_delete_topic_idempotency",
+            "test": "test_delete_topic_idempotency",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3050,7 +3110,7 @@
             "test": "test_sns_cross_account_publish",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3442,7 +3502,7 @@
             "test": "test_nested_output_in_params",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Role.AssumeRolePolicyDocument..Action']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Role.AssumeRolePolicyDocument..Action', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3800,6 +3860,36 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_fifo_with_deduplication",
             "test": "test_sns_topic_fifo_with_deduplication",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_policy_resets_to_default",
+            "test": "test_sns_topic_policy_resets_to_default",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_attributes",
+            "test": "test_sns_topic_update_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
@@ -4170,6 +4260,36 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiAccounts::test_cross_account_access",
             "test": "test_cross_account_access",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiAccounts::test_cross_account_publish_to_sqs",
+            "test": "test_cross_account_publish_to_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_access",
+            "test": "test_cross_region_access",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_delivery_sqs",
+            "test": "test_cross_region_delivery_sqs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5048,6 +5168,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSTopicCrud::test_delete_topic_idempotency",
+            "test": "test_delete_topic_idempotency",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSTopicCrud::test_tags",
             "test": "test_tags",
             "response": "200",
@@ -5446,6 +5576,16 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_access",
+            "test": "test_cross_region_access",
+            "response": "400",
+            "error": "InvalidParameterException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -5564,7 +5704,7 @@
             "test": "test_sns_cross_account_publish",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6680,6 +6820,36 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_policy_resets_to_default",
+            "test": "test_sns_topic_policy_resets_to_default",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_attributes",
+            "test": "test_sns_topic_update_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_with_attributes",
             "test": "test_sns_topic_with_attributes",
             "response": "200",
@@ -6930,11 +7100,31 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_access",
+            "test": "test_cross_region_access",
+            "response": "400",
+            "error": "InvalidParameterException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSTopicCrud::test_create_topic_with_attributes",
             "test": "test_create_topic_with_attributes",
             "response": "400",
             "error": "InvalidParameterException",
             "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6985,6 +7175,16 @@
             "response": "404",
             "error": "NotFoundException",
             "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSTopicCrud::test_delete_topic_idempotency",
+            "test": "test_delete_topic_idempotency",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7046,7 +7246,7 @@
             "test": "test_sns_cross_account_publish",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -7234,6 +7434,46 @@
       "TopicArn": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_update_stack.py::test_basic_update",
+            "test": "test_basic_update",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_update_stack.py::test_no_parameters_update",
+            "test": "test_no_parameters_update",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_update_stack.py::test_update_using_template_url",
+            "test": "test_update_using_template_url",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_update_lambda_permissions",
+            "test": "test_update_lambda_permissions",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_subscription",
             "test": "test_sns_subscription",
             "response": "200",
@@ -7242,6 +7482,36 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_attributes",
+            "test": "test_sns_topic_update_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiAccounts::test_cross_account_access",
@@ -7302,6 +7572,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_access",
+            "test": "test_cross_region_access",
+            "response": "400",
+            "error": "InvalidParameterException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -7309,6 +7589,76 @@
     "ListTagsForResource": {
       "ResourceArn": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_update_stack.py::test_basic_update",
+            "test": "test_basic_update",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_update_stack.py::test_no_parameters_update",
+            "test": "test_no_parameters_update",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/api/test_update_stack.py::test_update_using_template_url",
+            "test": "test_update_using_template_url",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::test_update_lambda_permissions",
+            "test": "test_update_lambda_permissions",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_attributes",
+            "test": "test_sns_topic_update_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_template_engine.py::TestSsmParameters::test_create_stack_with_ssm_parameters",
             "test": "test_create_stack_with_ssm_parameters",
@@ -7370,7 +7720,7 @@
             "test": "test_nested_output_in_params",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Role.AssumeRolePolicyDocument..Action']",
+            "snapshot_skipped": "['$..Role.Description', '$..Role.MaxSessionDuration', '$..Role.AssumeRolePolicyDocument..Action', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7605,6 +7955,16 @@
       },
       "Message, MessageAttributes, TopicArn": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_delivery_sqs",
+            "test": "test_cross_region_delivery_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSPlatformEndpoint::test_subscribe_platform_endpoint",
             "test": "test_subscribe_platform_endpoint",
@@ -8928,6 +9288,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_access",
+            "test": "test_cross_region_access",
+            "response": "400",
+            "error": "InvalidParameterException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSPublishCrud::test_empty_sns_message",
             "test": "test_empty_sns_message",
             "response": "400",
@@ -9054,7 +9424,7 @@
             "test": "test_sns_cross_account_publish",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -9144,7 +9514,7 @@
             "test": "test_sns_cross_account_publish",
             "response": "403",
             "error": "CommonServiceException",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -9892,6 +10262,26 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_policy_resets_to_default",
+            "test": "test_sns_topic_policy_resets_to_default",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_attributes",
+            "test": "test_sns_topic_update_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/events/test_events_targets.py::TestEventsTargetSns::test_put_events_with_target_sns[domain]",
             "test": "test_put_events_with_target_sns[domain]",
             "response": "200",
@@ -9982,14 +10372,14 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda",
-            "test": "test_events_sqs_sns_lambda",
-            "response": "500",
-            "error": "CommonServiceException",
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_access",
+            "test": "test_cross_region_access",
+            "response": "400",
+            "error": "InvalidParameterException",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -10746,6 +11136,26 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_attributes",
+            "test": "test_sns_topic_update_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudwatch/test_cloudwatch.py::TestCloudwatch::test_breaching_alarm_actions",
             "test": "test_breaching_alarm_actions",
             "response": "200",
@@ -10918,6 +11328,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiAccounts::test_cross_account_publish_to_sqs",
             "test": "test_cross_account_publish_to_sqs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_delivery_sqs",
+            "test": "test_cross_region_delivery_sqs",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -11496,6 +11916,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_access",
+            "test": "test_cross_region_access",
+            "response": "400",
+            "error": "InvalidParameterException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSMultiRegions::test_cross_region_delivery_sqs",
+            "test": "test_cross_region_delivery_sqs",
+            "response": "400",
+            "error": "InvalidParameterException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/sns/test_sns.py::TestSNSSubscriptionSQSFifo::test_validations_for_fifo",
             "test": "test_validations_for_fifo",
             "response": "400",
@@ -11624,6 +12064,26 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_attributes",
+            "test": "test_sns_topic_update_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/test_template_engine.py::TestSsmParameters::test_create_stack_with_ssm_parameters",
             "test": "test_create_stack_with_ssm_parameters",
             "response": "200",
@@ -11747,6 +12207,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_attributes",
+            "test": "test_sns_topic_update_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_sns.py::test_sns_topic_update_name",
+            "test": "test_sns_topic_update_name",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.DeliveryPolicy', '$..Attributes.EffectiveDeliveryPolicy', '$..Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"

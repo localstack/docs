@@ -3,6 +3,18 @@
   "pro_support": true,
   "operations": [
     {
+      "AssociateBackupVaultMpaApprovalTeam": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "CancelLegalHold": {
         "implemented": false,
         "availability": "",
@@ -88,6 +100,18 @@
     },
     {
       "CreateReportPlan": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "CreateRestoreAccessBackupVault": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -379,6 +403,18 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DisassociateBackupVaultMpaApprovalTeam": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -819,6 +855,18 @@
       }
     },
     {
+      "ListRestoreAccessBackupVaults": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "ListRestoreJobSummaries": {
         "implemented": false,
         "availability": "",
@@ -928,6 +976,18 @@
     },
     {
       "PutRestoreValidationResult": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "RevokeRestoreAccessBackupVault": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -1133,7 +1193,7 @@
   ],
   "details": {
     "CreateBackupPlan": {
-      "BackupPlan": {
+      "BackupPlan, CreatorRequestId": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/backup/test_backup.py::TestBackup::test_backup_plan",
@@ -1169,7 +1229,7 @@
       }
     },
     "CreateBackupSelection": {
-      "BackupPlanId, BackupSelection": {
+      "BackupPlanId, BackupSelection, CreatorRequestId": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/backup/test_backup.py::TestBackup::test_backup_selections",
@@ -1195,7 +1255,21 @@
       }
     },
     "CreateBackupVault": {
-      "BackupVaultName": {
+      "BackupVaultName, BackupVaultTags, CreatorRequestId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/backup/test_backup.py::TestBackup::test_backup_vaults",
+            "test": "test_backup_vaults",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
+      "BackupVaultName, CreatorRequestId": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/backup/test_backup.py::TestBackup::test_backup_plan",
@@ -1225,20 +1299,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "BackupVaultName, BackupVaultTags": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/backup/test_backup.py::TestBackup::test_backup_vaults",
-            "test": "test_backup_vaults",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -1575,7 +1635,7 @@
       }
     },
     "StartRestoreJob": {
-      "IamRoleArn, Metadata, RecoveryPointArn": {
+      "IamRoleArn, IdempotencyToken, Metadata, RecoveryPointArn": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/backup/test_backup.py::TestBackup::test_scheduled_backup_and_restore",

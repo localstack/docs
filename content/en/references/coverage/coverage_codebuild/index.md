@@ -1,6 +1,6 @@
 ---
-title: "CodeBuild"
-linkTitle: "CodeBuild"
+title: "codebuild"
+linkTitle: "codebuild"
 description: >
   Implementation details for API codebuild
 hide_readingtime: true

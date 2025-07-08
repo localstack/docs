@@ -460,13 +460,13 @@
     },
     {
       "ReEncrypt": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "community",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1496,16 +1496,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3_api.py::TestS3BucketEncryption::test_s3_bucket_encryption_sse_kms_aws_managed_key",
-            "test": "test_s3_bucket_encryption_sse_kms_aws_managed_key",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ETag', '$.managed-kms-key.KeyMetadata.KeyManager']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ],
         "ls_pro": [
@@ -1525,6 +1515,36 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_token_claims_with_username_attributes[None-testuser-user_attributes2]",
+            "test": "test_token_claims_with_username_attributes[None-testuser-user_attributes2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', \"$..'cognito:user_status'\"]",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_token_claims_with_username_attributes[email-test@example.com-user_attributes0]",
+            "test": "test_token_claims_with_username_attributes[email-test@example.com-user_attributes0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', \"$..'cognito:user_status'\"]",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_token_claims_with_username_attributes[phone_number-+15555555555-user_attributes1]",
+            "test": "test_token_claims_with_username_attributes[phone_number-+15555555555-user_attributes1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', \"$..'cognito:user_status'\"]",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1828,6 +1848,46 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt[RSA_2048-RSAES_OAEP_SHA_256]",
+            "test": "test_re_encrypt[RSA_2048-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
+            "test": "test_re_encrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt_incorrect_source_key",
+            "test": "test_re_encrypt_incorrect_source_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt_invalid_destination_key",
+            "test": "test_re_encrypt_invalid_destination_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_rotate_key_on_demand_modifies_key_material",
             "test": "test_rotate_key_on_demand_modifies_key_material",
             "response": "200",
@@ -2114,7 +2174,7 @@
             "test": "test_kms_cross_account_encrypt",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2163,6 +2223,18 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_conditions.py::TestIAMConditions::test_cognito_identity_policy_variables",
+            "test": "test_cognito_identity_policy_variables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AllowClassicFlow', '$..CognitoIdentityProviders..ServerSideTokenCheck', '$..Session', '$..Policies.SignInPolicy', '$..AssumedRoleUser.AssumedRoleId', '$..Audience', '$..PackedPolicySize', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2586,6 +2658,26 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_key_rotations_encryption_decryption",
             "test": "test_key_rotations_encryption_decryption",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt[RSA_2048-RSAES_OAEP_SHA_256]",
+            "test": "test_re_encrypt[RSA_2048-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
+            "test": "test_re_encrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3220,6 +3312,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_conditions.py::TestIAMConditions::test_cognito_identity_policy_variables",
+            "test": "test_cognito_identity_policy_variables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AllowClassicFlow', '$..CognitoIdentityProviders..ServerSideTokenCheck', '$..Session', '$..Policies.SignInPolicy', '$..AssumedRoleUser.AssumedRoleId', '$..Audience', '$..PackedPolicySize', '$..Role.Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_kms_key",
             "test": "test_kms_key",
             "response": "200",
@@ -3338,6 +3440,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_conditions.py::TestIAMConditions::test_cognito_identity_policy_variables",
+            "test": "test_cognito_identity_policy_variables",
+            "response": "400",
+            "error": "AccessDeniedException",
+            "snapshot_skipped": "['$..AllowClassicFlow', '$..CognitoIdentityProviders..ServerSideTokenCheck', '$..Session', '$..Policies.SignInPolicy', '$..AssumedRoleUser.AssumedRoleId', '$..Audience', '$..PackedPolicySize', '$..Role.Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_kms_key",
@@ -3694,6 +3806,46 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt[RSA_2048-RSAES_OAEP_SHA_256]",
+            "test": "test_re_encrypt[RSA_2048-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
+            "test": "test_re_encrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt_incorrect_source_key",
+            "test": "test_re_encrypt_incorrect_source_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt_invalid_destination_key",
+            "test": "test_re_encrypt_invalid_destination_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_rotate_key_on_demand_modifies_key_material",
             "test": "test_rotate_key_on_demand_modifies_key_material",
             "response": "200",
@@ -3780,7 +3932,7 @@
             "test": "test_kms_cross_account_encrypt",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3790,7 +3942,7 @@
             "test": "test_kms_cross_account_encrypt",
             "response": "400",
             "error": "AccessDeniedException",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4414,11 +4566,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_kms_cross_account_encrypt",
-            "test": "test_kms_cross_account_encrypt",
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_conditions.py::TestIAMConditions::test_cognito_identity_policy_variables",
+            "test": "test_cognito_identity_policy_variables",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..AllowClassicFlow', '$..CognitoIdentityProviders..ServerSideTokenCheck', '$..Session', '$..Policies.SignInPolicy', '$..AssumedRoleUser.AssumedRoleId', '$..Audience', '$..PackedPolicySize', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4428,7 +4580,17 @@
             "test": "test_kms_cross_account_encrypt",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_kms_cross_account_encrypt",
+            "test": "test_kms_cross_account_encrypt",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5188,6 +5350,36 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_conditions.py::TestIAMConditions::test_cognito_identity_policy_variables",
+            "test": "test_cognito_identity_policy_variables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AllowClassicFlow', '$..CognitoIdentityProviders..ServerSideTokenCheck', '$..Session', '$..Policies.SignInPolicy', '$..AssumedRoleUser.AssumedRoleId', '$..Audience', '$..PackedPolicySize', '$..Role.Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_kms_cross_account_encrypt",
+            "test": "test_kms_cross_account_encrypt",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_kms_key",
+            "test": "test_kms_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/replicator/services/kms/test_kms_replication.py::TestKmsSecretReplication::test_successful_replication[arn]",
             "test": "test_successful_replication[arn]",
             "response": "200",
@@ -5266,7 +5458,7 @@
             "test": "test_kms_cross_account_encrypt",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5276,6 +5468,52 @@
             "test": "test_kms_key",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ReEncrypt": {
+      "CiphertextBlob, DestinationEncryptionAlgorithm, DestinationKeyId, SourceEncryptionAlgorithm, SourceKeyId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt[RSA_2048-RSAES_OAEP_SHA_256]",
+            "test": "test_re_encrypt[RSA_2048-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
+            "test": "test_re_encrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt_incorrect_source_key",
+            "test": "test_re_encrypt_incorrect_source_key",
+            "response": "400",
+            "error": "IncorrectKeyException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt_invalid_destination_key",
+            "test": "test_re_encrypt_invalid_destination_key",
+            "response": "400",
+            "error": "InvalidKeyUsageException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -6162,6 +6400,46 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt[RSA_2048-RSAES_OAEP_SHA_256]",
+            "test": "test_re_encrypt[RSA_2048-RSAES_OAEP_SHA_256]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
+            "test": "test_re_encrypt[SYMMETRIC_DEFAULT-SYMMETRIC_DEFAULT]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt_incorrect_source_key",
+            "test": "test_re_encrypt_incorrect_source_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_re_encrypt_invalid_destination_key",
+            "test": "test_re_encrypt_invalid_destination_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_replicate_key",
             "test": "test_replicate_key",
             "response": "200",
@@ -6804,11 +7082,51 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_token_claims_with_username_attributes[None-testuser-user_attributes2]",
+            "test": "test_token_claims_with_username_attributes[None-testuser-user_attributes2]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', \"$..'cognito:user_status'\"]",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_token_claims_with_username_attributes[email-test@example.com-user_attributes0]",
+            "test": "test_token_claims_with_username_attributes[email-test@example.com-user_attributes0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', \"$..'cognito:user_status'\"]",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cognito/test_cognito.py::TestCognito::test_token_claims_with_username_attributes[phone_number-+15555555555-user_attributes1]",
+            "test": "test_token_claims_with_username_attributes[phone_number-+15555555555-user_attributes1]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..origin_jti', \"$..'cognito:user_status'\"]",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_conditions.py::TestIAMConditions::test_cognito_identity_policy_variables",
+            "test": "test_cognito_identity_policy_variables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AllowClassicFlow', '$..CognitoIdentityProviders..ServerSideTokenCheck', '$..Session', '$..Policies.SignInPolicy', '$..AssumedRoleUser.AssumedRoleId', '$..Audience', '$..PackedPolicySize', '$..Role.Tags']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/iam/test_iam_cross_account.py::TestLambdaCrossAccount::test_kms_cross_account_encrypt",
             "test": "test_kms_cross_account_encrypt",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message']",
+            "snapshot_skipped": "['$..Error.Message', '$..Role.Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"

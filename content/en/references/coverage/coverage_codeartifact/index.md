@@ -1,5 +1,5 @@
 ---
-title: "CodeArtifact"
+title: "codeartifact"
 linkTitle: "codeartifact"
 description: >
   Implementation details for API codeartifact
