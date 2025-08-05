@@ -4,8 +4,6 @@ from pathlib import Path
 
 import yaml
 
-DEFAULT_STATUS = 'unsupported'
-DEFAULT_EMULATION_LEVEL = 'CRUD'
 FEATURES_FILE_NAME='features.yml'
 
 MD_FILE_HEADER = """---
@@ -39,16 +37,16 @@ class FeatureCatalogMarkdownGenerator:
 
     def add_service_section(self, feature_file_content: str):
         service_name = feature_file_content.get('name')
-        emulation_level = feature_file_content.get('emulation_level', DEFAULT_EMULATION_LEVEL)
+        emulation_level = feature_file_content.get('emulation_level')
         self.md_content.append(f"| **{service_name}** | [Details 🔍] | {emulation_level} | |")
 
     def add_features_rows(self, feature_file_content: str):
         for feature in feature_file_content.get('features', []):
             feature_name = feature.get('name', '')
-            documentation_page = feature.get('documentation_page')
-            if documentation_page:
-                feature_name = f'[{feature_name}]({documentation_page})'
-            status = feature.get('status', DEFAULT_STATUS)
+            aws_docs_url = feature.get('aws_documentation_url')
+            if aws_docs_url:
+                feature_name = f'[{feature_name}]({aws_docs_url})'
+            status = feature.get('status')
 
             limitations = feature.get('limitations', [])
             limitations_md = '\n '.join(limitations) if limitations else ''
