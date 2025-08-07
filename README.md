@@ -1,6 +1,6 @@
 ## LocalStack Documentation has moved!
 
-We've launched [**LocalStack Docs v2**](https://github.com/localstack/localstack-docs), introducing a complete systems-level redesign of our documentation experience. 😻 🎉
+[We've launched **LocalStack Docs v2**](https://blog.localstack.cloud/announcing-localstack-docs-v2/), introducing a complete systems-level redesign of our documentation experience. 😻 🎉
 
 ## What’s New in LocalStack Docs v2?
 - A brand-new Information Architecture 
@@ -11,6 +11,8 @@ We've launched [**LocalStack Docs v2**](https://github.com/localstack/localstack
 
 ## Where Can I Find the New LocalStack Docs Repo?
 Our new docs repo is right over here: [github.com/localstack/localstack-docs](https://github.com/localstack/localstack-docs).
+
+Our docs website is still here: [docs.localstack.cloud](https://docs.localstack.cloud/).
 
 🗺️ ❤️ Our docs are still **100% open-source** 🗺️ ❤️, and we *love* [docs contributions from our community](https://github.com/localstack/localstack-docs/issues/new).
 
